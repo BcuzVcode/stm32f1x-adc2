@@ -5,6 +5,31 @@
 volatile uint16_t adc_value_register;
 volatile uint32_t msTicks = 0;  // Counter for milliseconds
 
+
+// Add this function before main()
+void Clock_Init(void) {
+    // Reset RCC clock configuration
+    RCC->CR |= RCC_CR_HSION;                     // Enable HSI
+    while(!(RCC->CR & RCC_CR_HSIRDY));           // Wait for HSI ready
+    
+    RCC->CFGR = 0x00000000;                      // Reset CFGR
+    RCC->CR &= ~(RCC_CR_HSEON | RCC_CR_CSSON | RCC_CR_PLLON); // Disable HSE, CSS, PLL
+    RCC->CR &= ~RCC_CR_HSEBYP;                   // Disable HSE bypass
+    
+    // Configure PLL (8MHz HSI/2 * 16 = 64MHz)
+    RCC->CFGR &= ~(RCC_CFGR_PLLSRC | RCC_CFGR_PLLXTPRE | RCC_CFGR_PLLMULL);
+    RCC->CFGR |= (RCC_CFGR_PLLSRC_HSI_Div2 | RCC_CFGR_PLLMULL16);
+    
+    // Enable PLL
+    RCC->CR |= RCC_CR_PLLON;
+    while(!(RCC->CR & RCC_CR_PLLRDY));
+    
+    // Set PLL as system clock
+    RCC->CFGR &= ~RCC_CFGR_SW;
+    RCC->CFGR |= RCC_CFGR_SW_PLL;
+    while((RCC->CFGR & RCC_CFGR_SWS) != RCC_CFGR_SWS_PLL);
+}
+
 void SysTick_Handler(void) {
     msTicks++;
 }
@@ -64,6 +89,8 @@ uint16_t ADC_Read(void) {
 }
 
 int main(void) {
+	  
+		Clock_Init();          // Add this line first
     SysTick_Init();  // Initialize SysTick for timing
     ADC_Init();
     
