@@ -3,10 +3,9 @@
 #include <stdint.h>
 
 volatile uint16_t adc_value_register;
-volatile uint32_t msTicks = 0;
 
 
-void Delay_ms(uint32_t ms) {
+void Delay_ms(uint16_t ms) {
     while(ms--){__NOP();}
 }
 
