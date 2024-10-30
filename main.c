@@ -6,7 +6,6 @@ volatile uint16_t adc_value_register;
 volatile uint32_t msTicks = 0;  // Counter for milliseconds
 
 
-// Add this function before main()
 void Clock_Init(void) {
     // Reset RCC clock configuration
     RCC->CR |= RCC_CR_HSION;                     // Enable HSI
@@ -16,9 +15,9 @@ void Clock_Init(void) {
     RCC->CR &= ~(RCC_CR_HSEON | RCC_CR_CSSON | RCC_CR_PLLON); // Disable HSE, CSS, PLL
     RCC->CR &= ~RCC_CR_HSEBYP;                   // Disable HSE bypass
     
-    // Configure PLL (8MHz HSI/2 * 16 = 64MHz)
+    // Configure PLL (8MHz HSI/2 * 9 = 36MHz)
     RCC->CFGR &= ~(RCC_CFGR_PLLSRC | RCC_CFGR_PLLXTPRE | RCC_CFGR_PLLMULL);
-    RCC->CFGR |= (RCC_CFGR_PLLSRC_HSI_Div2 | RCC_CFGR_PLLMULL16);
+    RCC->CFGR |= RCC_CFGR_PLLMULL9;             // Set PLL multiplication to 9x
     
     // Enable PLL
     RCC->CR |= RCC_CR_PLLON;
@@ -28,6 +27,13 @@ void Clock_Init(void) {
     RCC->CFGR &= ~RCC_CFGR_SW;
     RCC->CFGR |= RCC_CFGR_SW_PLL;
     while((RCC->CFGR & RCC_CFGR_SWS) != RCC_CFGR_SWS_PLL);
+    
+    // Configure AHB, APB1, APB2 prescalers
+    RCC->CFGR &= ~(RCC_CFGR_HPRE | RCC_CFGR_PPRE1 | RCC_CFGR_PPRE2);
+    // HCLK = SYSCLK = 36MHz
+    // PCLK1 = HCLK/2 = 18MHz
+    // PCLK2 = HCLK = 36MHz
+    RCC->CFGR |= RCC_CFGR_PPRE1_DIV2;           // APB1 = HCLK/2
 }
 
 void SysTick_Handler(void) {
