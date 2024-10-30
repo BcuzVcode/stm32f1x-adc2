@@ -49,7 +49,7 @@ void Clock_Init(void) {
 
 void ADC_Init(void) {
     // Enable clocks
-    RCC->APB2ENR |= RCC_APB2ENR_IOPAEN;     // Enable GPIO clock
+    RCC->APB2ENR |= RCC_APB2ENR_IOPAEN;	// Enable GPIO clock
     RCC->APB2ENR |= RCC_APB2ENR_ADC1EN;     // Enable ADC1 clock
     
     // Set ADC prescaler
@@ -92,8 +92,9 @@ uint16_t ADC_Read(void) {
 }
 
 int main(void) {
-    Clock_Init();
-    SysTick_Init();
+    //Clock_Init();
+    //SysTick_Init();
+		SystemInit();
     ADC_Init();
     
     while(1) {
