@@ -77,9 +77,9 @@ uint16_t ADC_Read(void) {
 }
 
 int main(void) {
-    //Clock_Init();
-    //SysTick_Init();
-		SystemInit();
+    Clock_Init();
+    SysTick_Init();
+		//SystemInit();
     ADC_Init();
     
     while(1) {
