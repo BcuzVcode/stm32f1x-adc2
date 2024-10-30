@@ -5,13 +5,9 @@
 volatile uint16_t adc_value_register;
 volatile uint32_t msTicks = 0;
 
-void SysTick_Handler(void) {
-    msTicks++;
-}
 
 void Delay_ms(uint32_t ms) {
-    uint32_t startTicks = msTicks;
-    while((msTicks - startTicks) < ms);
+    while(ms--){__NOP();}
 }
 
 void SysTick_Init(void) {
