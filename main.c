@@ -20,64 +20,49 @@ void SysTick_Init(void) {
 }
 
 void Clock_Init(void) {
-    // Enable HSE
-    RCC->CR |= RCC_CR_HSEON;                     // Enable HSE
-    while(!(RCC->CR & RCC_CR_HSERDY));           // Wait for HSE ready
+    // Reset clock configuration to default state
+    RCC->CR |= RCC_CR_HSION;                     // Enable HSI
+    while(!(RCC->CR & RCC_CR_HSIRDY));           // Wait for HSI ready
     
-    // Configure Flash latency for higher frequency
-    FLASH->ACR &= ~FLASH_ACR_LATENCY;
-    FLASH->ACR |= FLASH_ACR_LATENCY_2;           // Two wait states
+    // Reset CFGR register
+    RCC->CFGR = 0x00000000;
     
-    // Configure PLL (8MHz HSE * 9 = 72MHz)
-    RCC->CFGR &= ~(RCC_CFGR_PLLSRC | RCC_CFGR_PLLXTPRE | RCC_CFGR_PLLMULL);
-    RCC->CFGR |= (RCC_CFGR_PLLSRC |             // HSE as PLL source
-                  RCC_CFGR_PLLMULL9);            // PLL x9
+    // Disable PLL
+    RCC->CR &= ~RCC_CR_PLLON;
     
-    // Enable PLL
-    RCC->CR |= RCC_CR_PLLON;
-    while(!(RCC->CR & RCC_CR_PLLRDY));
-    
-    // Set PLL as system clock
-    RCC->CFGR &= ~RCC_CFGR_SW;
-    RCC->CFGR |= RCC_CFGR_SW_PLL;
-    while((RCC->CFGR & RCC_CFGR_SWS) != RCC_CFGR_SWS_PLL);
-    
-    // Set bus prescalers
-    RCC->CFGR &= ~(RCC_CFGR_HPRE | RCC_CFGR_PPRE1 | RCC_CFGR_PPRE2);
-    RCC->CFGR |= RCC_CFGR_PPRE1_DIV2;           // APB1 = HCLK/2 (36MHz max)
+    // Select HSI as system clock
+    RCC->CFGR &= ~RCC_CFGR_SW;                   // HSI as system clock
+    while ((RCC->CFGR & RCC_CFGR_SWS) != 0);     // Wait for HSI
 }
 
 void ADC_Init(void) {
     // Enable clocks
-    RCC->APB2ENR |= RCC_APB2ENR_IOPAEN;	// Enable GPIO clock
+    RCC->APB2ENR |= RCC_APB2ENR_IOPAEN;     // Enable GPIO clock
     RCC->APB2ENR |= RCC_APB2ENR_ADC1EN;     // Enable ADC1 clock
     
     // Set ADC prescaler
     RCC->CFGR &= ~RCC_CFGR_ADCPRE;          // Clear prescaler bits
-    RCC->CFGR |= RCC_CFGR_ADCPRE_DIV6;      // Set ADC prescaler to /6
+    RCC->CFGR |= RCC_CFGR_ADCPRE_DIV2;      // Set ADC prescaler to /2
     
     // Configure PA0 as analog input
     GPIOA->CRL &= ~GPIO_CRL_CNF0;           // Clear CNF bits for analog mode
     GPIOA->CRL &= ~GPIO_CRL_MODE0;          // Clear MODE bits for input mode
     
-    // Configure ADC1
-    ADC1->CR2 &= ~ADC_CR2_EXTTRIG;          // Disable external trigger
-    ADC1->CR2 |= ADC_CR2_CONT;              // Enable continuous conversion mode
-    
-    // First ADC enable (wake up)
+    // Power up ADC
     ADC1->CR2 |= ADC_CR2_ADON;
-    for(uint16_t i = 0; i < 100; i++) __NOP();  // Short delay
+    for(uint16_t i = 0; i < 100; i++) __NOP();
     
-    // Start calibration
+    // Calibrate ADC
     ADC1->CR2 |= ADC_CR2_CAL;
-    while(ADC1->CR2 & ADC_CR2_CAL);         // Wait for calibration
+    while(ADC1->CR2 & ADC_CR2_CAL);
     
-    // Configure sample time
+    // Configure for single conversion
+    ADC1->CR2 &= ~ADC_CR2_CONT;             // Single conversion mode
+    ADC1->CR2 &= ~ADC_CR2_EXTTRIG;          // Software trigger
+    
+    // Set sampling time
     ADC1->SMPR2 &= ~ADC_SMPR2_SMP0;
-    ADC1->SMPR2 |= (0b111 << 0);            // 239.5 cycles
-    
-    // Second ADC enable
-    ADC1->CR2 |= ADC_CR2_ADON;
+    ADC1->SMPR2 |= (0b100 << 0);            // Set to 41.5 cycles
 }
 
 uint16_t ADC_Read(void) {
