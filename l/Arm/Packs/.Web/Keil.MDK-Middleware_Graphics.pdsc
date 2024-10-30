@@ -1,0 +1,1054 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.7.28" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.28/schema/PACK.xsd">
+  <vendor>Keil</vendor>
+  <name>MDK-Middleware_Graphics</name>
+  <description>Middleware Graphics for Keil MDK-Professional and MDK-Plus</description>
+  <url>https://www.keil.com/pack/</url>
+  <license>license.rtf</license>
+  <releases>
+    <release version="1.3.1" date="2024-01-17">
+      Corrected dependency to CMSIS Core.
+    </release>
+    <release version="1.3.0" date="2023-07-03">
+      Graphics Component Segger emWin:
+        - version 6.32.3 (see revision history for details).
+        - GUI libraries build with GUI_USE_ARGB=1
+    </release>
+    <release version="1.2.0" date="2023-01-26">
+      Graphics Component Segger emWin:
+        - version 6.30.1 (see revision history for details).
+    </release>
+    <release version="1.1.0" date="2022-04-26">
+      Added support for Arm Cortex-M85 processor based devices.
+      Added support for Arm China Star-MC1 processor based devices.
+      Graphics Component Segger emWin:
+        - Version 6.24.0  (see revision history for details).
+        - Libraries built with Arm Compiler 6.
+      Updated VNC Server (new file GUI_VNC_X_StartServerRTE.c).
+      Deleted obsolete file GUI_X_CMSIS_RTOS.c (replaced by GUI_X_RTE.c).
+      Removed AppWizardTrial_#_#_Install.exe from Tools folder.
+    </release>
+    <release version="1.0.1" date="2022-01-03">
+      Added AppWizard support.
+    </release>
+    <release version="1.0.0" date="2021-12-10">
+      Initial Release.
+      Graphics Component Segger emWin:
+        - version 6.20.2  (see revision history for details).
+    </release>
+  </releases>
+
+  <requirements>
+    <packages>
+      <package vendor="ARM"  name="CMSIS"        version="5.9.0-0"/>
+      <package vendor="Keil" name="ARM_Compiler" version="1.7.2-0"/>
+    </packages>
+  </requirements>
+
+  <apis>
+    <api Cclass="Board Support" Cgroup="emWin LCD" Capiversion="1.1.0" exclusive="0">
+      <description>emWin LCD Interface</description>
+      <files>
+        <file category="header" name="emWin/Include/LCD_X.h"/>
+      </files>
+    </api>
+  </apis>
+
+  <conditions>
+    <condition id="Cortex-M Device">
+      <description>Cortex-M processor based device: Cortex-M0/M0+/M1/M3/M4/M7/M23/M33/M35P/M55/M85, ARMV8MBL/ML, Star-MC1, SC000/300</description>
+      <accept Dcore="Cortex-M0"/>
+      <accept Dcore="Cortex-M0+"/>
+      <accept Dcore="Cortex-M1"/>
+      <accept Dcore="Cortex-M3"/>
+      <accept Dcore="Cortex-M4"/>
+      <accept Dcore="Cortex-M7"/>
+      <accept Dcore="Cortex-M23"/>
+      <accept Dcore="Cortex-M33"/>
+      <accept Dcore="Cortex-M35P"/>
+      <accept Dcore="Cortex-M55"/>
+      <accept Dcore="Cortex-M85"/>
+      <accept Dcore="ARMV8MBL"/>
+      <accept Dcore="ARMV8MML"/>
+      <accept Dcore="Star-MC1"/>
+      <accept Dcore="SC000"/>
+      <accept Dcore="SC300"/>
+    </condition>
+    <condition id="CMSIS Core">
+      <description>CMSIS Core for Cortex-M</description>
+      <require Tcompiler="ARMCC"/>
+      <require condition="Cortex-M Device"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="CMSIS RTOS">
+      <description>CMSIS RTOS (API1 or API2)</description>
+      <accept Cclass="CMSIS" Cgroup="RTOS"/>
+      <accept Cclass="CMSIS" Cgroup="RTOS2"/>
+    </condition>
+    <condition id="CMSIS RTOS1">
+      <description>CMSIS RTOS (API1 only)</description>
+      <require Cclass="CMSIS" Cgroup="RTOS"/>
+    </condition>
+    <condition id="CMSIS RTOS2">
+      <description>CMSIS RTOS (API2 only)</description>
+      <require Cclass="CMSIS" Cgroup="RTOS2"/>
+    </condition>
+    <condition id="CMSIS Core with RTOS and Display">
+      <description>CMSIS Core with RTOS for Cortex-M and Display Interface</description>
+      <require condition="CMSIS Core"/>
+      <require condition="CMSIS RTOS"/>
+      <accept  Cclass="Graphics" Cgroup="Display"/>
+      <accept  Cclass="Board Support" Cgroup="emWin LCD"/>
+    </condition>
+    <condition id="Graphics Core">
+      <description>Graphics CORE component</description>
+      <require condition="CMSIS Core"/>
+      <require Cclass="Graphics" Cgroup="CORE"/>
+    </condition>
+    <condition id="Graphics Core and Joystick">
+      <description>Graphics CORE component and Joystick driver</description>
+      <require condition="Graphics Core"/>
+      <require Cclass="Board Support" Cgroup="Joystick"/>
+    </condition>
+    <condition id="Graphics Core and Touchscreen">
+      <description>Graphics CORE component and Touchscreen driver</description>
+      <require condition="Graphics Core"/>
+      <require Cclass="Board Support" Cgroup="Touchscreen"/>
+    </condition>
+    <condition id="Graphics Core and LCD 16-bit IF">
+      <description>Graphics CORE component and LCD driver (16-bit Interface)</description>
+      <require condition="Graphics Core"/>
+      <accept  Cclass="Board Support" Cgroup="emWin LCD" Csub="16-bit IF"/>
+      <accept  Cclass="Board Support" Cgroup="emWin LCD" Cvariant="16-bit IF"/>
+    </condition>
+    <condition id="Graphics Core and LCD SPI IF">
+      <description>Graphics CORE component and LCD driver (SPI Interface)</description>
+      <require condition="Graphics Core"/>
+      <accept  Cclass="Board Support" Cgroup="emWin LCD" Csub="SPI IF"/>
+      <accept  Cclass="Board Support" Cgroup="emWin LCD" Cvariant="SPI IF"/>
+    </condition>
+    <condition id="Graphics Core and LCD RGB IF">
+      <description>Graphics CORE component and LCD driver (RGB Interface)</description>
+      <require condition="Graphics Core"/>
+      <accept  Cclass="Board Support" Cgroup="emWin LCD" Csub="RGB IF"/>
+      <accept  Cclass="Board Support" Cgroup="emWin LCD" Cvariant="RGB IF"/>
+    </condition>
+    <condition id="Graphics Core with CMSIS RTOS and BSD Socket">
+      <description>Graphics CORE component with CMSIS RTOS and BSD Socket Interface</description>
+      <require condition="Graphics Core"/>
+      <accept  condition="CMSIS RTOS"/>
+      <accept  condition="CMSIS RTOS2"/>
+      <require Cclass="Network" Cgroup="Socket" Csub="BSD"/>
+    </condition>
+    <condition id="Graphics Demo">
+      <description>Graphics Demo Framework</description>
+      <require condition="CMSIS Core"/>
+      <require Cclass="Graphics" Cgroup="Demo" Csub="Framework"/>
+    </condition>
+    <!-- ARMCC -->
+    <condition id="CM0_LE_ARMCC">
+      <description>Cortex-M0 or Cortex-M0+ or SC000 processor based device in little endian mode for the ARM Compiler</description>
+      <accept Dcore="Cortex-M0"/>
+      <accept Dcore="Cortex-M0+"/>
+      <accept Dcore="SC000"/>
+      <require Dendian="Little-endian"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="CM1_LE_ARMCC">
+      <description>Cortex-M1 based device in little endian mode for the ARM Compiler</description>
+      <require Dcore="Cortex-M1"/>
+      <require Dendian="Little-endian"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="CM3_LE_ARMCC">
+      <description>Cortex-M3 or SC300 processor based device in little endian mode for the ARM Compiler</description>
+      <accept Dcore="Cortex-M3"/>
+      <accept Dcore="SC300"/>
+      <require Dendian="Little-endian"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="CM4_LE_ARMCC">
+      <description>Cortex-M4 processor based device in little endian mode for the ARM Compiler</description>
+      <require Dcore="Cortex-M4" Dfpu="NO_FPU" Dendian="Little-endian"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="CM4F_LE_ARMCC">
+      <description>Cortex-M4 processor based device using Floating Point Unit in little endian mode for the ARM Compiler</description>
+      <require Dcore="Cortex-M4" Dfpu="FPU" Dendian="Little-endian"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="CM7_LE_ARMCC">
+      <description>Cortex-M7 processor based device in little endian mode for the ARM Compiler</description>
+      <require Dcore="Cortex-M7" Dfpu="NO_FPU" Dendian="Little-endian"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="CM7F_LE_ARMCC">
+      <description>Cortex-M7 processor based device using Floating Point Unit in little endian mode for the ARM Compiler</description>
+      <accept Dcore="Cortex-M7" Dfpu="SP_FPU" Dendian="Little-endian"/>
+      <accept Dcore="Cortex-M7" Dfpu="DP_FPU" Dendian="Little-endian"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="CM23_LE_ARMCC">
+      <description>Cortex-M23 or ARMv8-M Baseline processor based device in little endian mode for the ARM Compiler</description>
+      <accept Dcore="Cortex-M23"/>
+      <accept Dcore="ARMV8MBL"/>
+      <require Dendian="Little-endian"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="CM33_LE_ARMCC">
+      <description>Cortex-M33 or ARMv8-M Mainline processor based device in little endian mode for the ARM Compiler</description>
+      <accept Dcore="Cortex-M33" Dfpu="NO_FPU"/>
+      <accept Dcore="ARMV8MML"   Dfpu="NO_FPU"/>
+      <accept Dcore="Star-MC1"   Dfpu="NO_FPU"/>
+      <require Dendian="Little-endian"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="CM33F_LE_ARMCC">
+      <description>Cortex-M33 or ARMv8-M Mainline processor based device using Floating Point Unit in little endian mode for the ARM Compiler</description>
+      <accept Dcore="Cortex-M33" Dfpu="SP_FPU"/>
+      <accept Dcore="ARMV8MML"   Dfpu="SP_FPU"/>
+      <accept Dcore="ARMV8MML"   Dfpu="DP_FPU"/>
+      <accept Dcore="Star-MC1"   Dfpu="SP_FPU"/>
+      <accept Dcore="Star-MC1"   Dfpu="DP_FPU"/>
+      <require Dendian="Little-endian"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="CM35P_LE_ARMCC">
+      <description>Cortex-M35P processor based device in little endian mode for the ARM Compiler</description>
+      <require Dcore="Cortex-M35P" Dfpu="NO_FPU"/>
+      <require Dendian="Little-endian"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="CM35PF_LE_ARMCC">
+      <description>Cortex-M35P processor based device using Floating Point Unit in little endian mode for the ARM Compiler</description>
+      <require Dcore="Cortex-M35P" Dfpu="SP_FPU"/>
+      <require Dendian="Little-endian"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="CM55_LE_ARMCC">
+      <description>Cortex-M55 processor based device in little endian mode for the ARM Compiler</description>
+      <require Dcore="Cortex-M55" Dfpu="NO_FPU"/>
+      <require Dendian="Little-endian"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="CM55F_LE_ARMCC">
+      <description>Cortex-M55 processor based device using Floating Point Unit in little endian mode for the ARM Compiler</description>
+      <accept  Dcore="Cortex-M55" Dfpu="SP_FPU"/>
+      <accept  Dcore="Cortex-M55" Dfpu="DP_FPU"/>
+      <require Dendian="Little-endian"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="CM85_LE_ARMCC">
+      <description>Cortex-M85 processor based device in little endian mode for the ARM Compiler</description>
+      <require Dcore="Cortex-M85" Dfpu="NO_FPU"/>
+      <require Dendian="Little-endian"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="CM85F_LE_ARMCC">
+      <description>Cortex-M85 processor based device using Floating Point Unit in little endian mode for the ARM Compiler</description>
+      <accept  Dcore="Cortex-M85" Dfpu="SP_FPU"/>
+      <accept  Dcore="Cortex-M85" Dfpu="DP_FPU"/>
+      <require Dendian="Little-endian"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+  </conditions>
+
+  <taxonomy>
+    <description Cclass="Graphics" Cgroup="Demo">Demonstrator for Graphical User Interface features</description>
+    <description Cclass="Graphics" Cgroup="Input Device">Devices used to control the Graphical User Interface</description>
+    <description Cclass="Graphics" Cgroup="Display">Display Interface Configuration</description>
+    <description Cclass="Graphics" Cgroup="Tools">emWin Tools</description>
+  </taxonomy>
+
+  <components>
+
+    <!-- emWin Graphics Library (MDK-Pro) -->
+    <bundle Cbundle="MDK-Pro" Cclass="Graphics" Cvendor="Segger" Cversion="6.32.3">
+      <description>User Interface on graphical LCD displays</description>
+      <doc>Doc/Graphics/html/index.html</doc>
+      <component Cgroup="CORE" condition="CMSIS Core with RTOS and Display">
+        <!-- short component description -->
+        <description>Graphics Core for Cortex-M</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Core               /* Graphics Core */
+        </RTE_Components_h>
+        <files>
+          <!-- CPU independent -->
+          <file category="header" name="emWin/Include/GUI.h"/>
+          <file category="source" name="emWin/Sample/Config/GUIConf.c" attr="config" version="5.0.0"/>
+          <file category="source" name="emWin/Sample/Template/RTOS1/GUI_TemplateThread.c" condition="CMSIS RTOS1" attr="template" select="emWin thread function for Demos and Templates"/>
+          <file category="source" name="emWin/Sample/Template/RTOS1/GUI_MultiThread.c"    condition="CMSIS RTOS1" attr="template" select="emWin GUI Thread for Multi-Tasking Execution Model"/>
+          <file category="source" name="emWin/Sample/Template/RTOS1/GUI_SingleThread.c"   condition="CMSIS RTOS1" attr="template" select="emWin GUI Thread for Single-Tasking Execution Model"/>
+          <file category="source" name="emWin/Sample/Template/RTOS2/GUI_TemplateThread.c" condition="CMSIS RTOS2" attr="template" select="emWin thread function for Demos and Templates"/>
+          <file category="source" name="emWin/Sample/Template/RTOS2/GUI_MultiThread.c"    condition="CMSIS RTOS2" attr="template" select="emWin GUI Thread for Multi-Tasking Execution Model"/>
+          <file category="source" name="emWin/Sample/Template/RTOS2/GUI_SingleThread.c"   condition="CMSIS RTOS2" attr="template" select="emWin GUI Thread for Single-Tasking Execution Model"/>
+          <file category="source" name="emWin/Sample/GUI_X/GUI_X_RTE.c"/>
+          <!-- CPU and Compiler dependent -->
+          <!-- ARMCC -->
+          <file category="library" condition="CM0_LE_ARMCC"    name="emWin/Lib/ARM/GUI_CM0_L.lib"/>
+          <!--  <file category="library" condition="CM0_BE_ARMCC"    name="emWin/Lib/ARM/GUI_CM0_B.lib"/>    -->
+          <file category="library" condition="CM1_LE_ARMCC"    name="emWin/Lib/ARM/GUI_CM0_L.lib"/>
+          <!--  <file category="library" condition="CM1_BE_ARMCC"    name="emWin/Lib/ARM/GUI_CM0_B.lib"/>    -->
+          <file category="library" condition="CM3_LE_ARMCC"    name="emWin/Lib/ARM/GUI_CM3_L.lib"/>
+          <!--  <file category="library" condition="CM3_BE_ARMCC"    name="emWin/Lib/ARM/GUI_CM3_B.lib"/>    -->
+          <file category="library" condition="CM4_LE_ARMCC"    name="emWin/Lib/ARM/GUI_CM3_L.lib"/>
+          <!--  <file category="library" condition="CM4_BE_ARMCC"    name="emWin/Lib/ARM/GUI_CM3_B.lib"/>    -->
+          <file category="library" condition="CM4F_LE_ARMCC"   name="emWin/Lib/ARM/GUI_CM4F_L.lib"/>
+          <!--  <file category="library" condition="CM4F_BE_ARMCC"   name="emWin/Lib/ARM/GUI_CM4F_B.lib"/>   -->
+          <file category="library" condition="CM7_LE_ARMCC"    name="emWin/Lib/ARM/GUI_CM3_L.lib"/>
+          <!--  <file category="library" condition="CM7_BE_ARMCC"    name="emWin/Lib/ARM/GUI_CM3_B.lib"/>    -->
+          <file category="library" condition="CM7F_LE_ARMCC"   name="emWin/Lib/ARM/GUI_CM4F_L.lib"/>
+          <!--  <file category="library" condition="CM7F_BE_ARMCC"   name="emWin/Lib/ARM/GUI_CM4F_B.lib"/>   -->
+          <file category="library" condition="CM23_LE_ARMCC"   name="emWin/Lib/ARM/GUI_CM0_L.lib"/>
+          <!--  <file category="library" condition="CM23_BE_ARMCC"   name="emWin/Lib/ARM/GUI_CM0_B.lib"/>    -->
+          <file category="library" condition="CM33_LE_ARMCC"   name="emWin/Lib/ARM/GUI_CM3_L.lib"/>
+          <!--  <file category="library" condition="CM33_BE_ARMCC"   name="emWin/Lib/ARM/GUI_CM3_B.lib"/>    -->
+          <file category="library" condition="CM33F_LE_ARMCC"  name="emWin/Lib/ARM/GUI_CM4F_L.lib"/>
+          <!--  <file category="library" condition="CM33F_BE_ARMCC"  name="emWin/Lib/ARM/GUI_CM4F_B.lib"/>   -->
+          <file category="library" condition="CM35P_LE_ARMCC"  name="emWin/Lib/ARM/GUI_CM3_L.lib"/>
+          <!--  <file category="library" condition="CM35P_BE_ARMCC"  name="emWin/Lib/ARM/GUI_CM3_B.lib"/>    -->
+          <file category="library" condition="CM35PF_LE_ARMCC" name="emWin/Lib/ARM/GUI_CM4F_L.lib"/>
+          <!--  <file category="library" condition="CM35PF_BE_ARMCC" name="emWin/Lib/ARM/GUI_CM4F_B.lib"/>   -->
+          <file category="library" condition="CM55_LE_ARMCC"   name="emWin/Lib/ARM/GUI_CM3_L.lib"/>
+          <!--  <file category="library" condition="CM55_BE_ARMCC"   name="emWin/Lib/ARM/GUI_CM3_B.lib"/>    -->
+          <file category="library" condition="CM55F_LE_ARMCC"  name="emWin/Lib/ARM/GUI_CM4F_L.lib"/>
+          <!--  <file category="library" condition="CM55F_BE_ARMCC"  name="emWin/Lib/ARM/GUI_CM4F_B.lib"/>   -->
+          <file category="library" condition="CM85_LE_ARMCC"   name="emWin/Lib/ARM/GUI_CM3_L.lib"/>
+          <!--  <file category="library" condition="CM85_BE_ARMCC"   name="emWin/Lib/ARM/GUI_CM3_B.lib"/>    -->
+          <file category="library" condition="CM85F_LE_ARMCC"  name="emWin/Lib/ARM/GUI_CM4F_L.lib"/>
+          <!--  <file category="library" condition="CM85F_BE_ARMCC"  name="emWin/Lib/ARM/GUI_CM4F_B.lib"/>   -->
+        </files>
+      </component>
+      <component Cgroup="Tools" Csub="GUI Builder" condition="Graphics Core">
+        <description>GUI Builder</description>
+        <files>
+          <file category="other" name="emWin/Tool/GUIBuilder.exe" attr="copy"/>
+          <file category="other" name="emWin/Tool/GUIBuilder.ini" attr="copy"/>
+          <file category="doc"   name="emWin/Tool/GUIBuilder.txt" attr="config" version="1.0.0"/>
+        </files>
+      </component>
+      <component Cgroup="Input Device" Csub="Joystick" condition="Graphics Core and Joystick">
+        <!-- short component description -->
+        <description>Pointer Input Device: Joystick</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Joystick           /* Graphics Input Device Joystick */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/GUI_X/GUI_X_Joystick.c"/>
+        </files>
+      </component>
+      <component Cgroup="Input Device" Csub="Touchscreen" condition="Graphics Core and Touchscreen">
+        <!-- short component description -->
+        <description>Pointer Input Device: Touchscreen</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Touchscreen        /* Graphics Input Device Touchscreen */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/GUI_X/GUI_X_Touch.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="Framework" condition="Graphics Core">
+        <!-- short component description -->
+        <description>Demo framework</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_Framework             /* Graphics Demo: Framework */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO.c"/>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_Start.c"/>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_Conf.c"/>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_Resource.c"/>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_Intro.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="AntialiasedText" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Shows text with different antialiasing qualities</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_AA_Text               /* Graphics Demo: AntialiasedText */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_AntialiasedText.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="Automotive" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Automotive samples</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_Automotive            /* Graphics Demo: Automotive */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_Automotive.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="BarGraph" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Shows a bargraph with alpha effect</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_BarGraph              /* Graphics Demo: BarGraph */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_BarGraph.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="Bitmap" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Draws bitmaps with and without compression</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_Bitmap                /* Graphics Demo: Bitmap */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_Bitmap.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="ColorBar" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Draws color bars</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_ColorBar              /* Graphics Demo: ColorBar */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_ColorBar.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="Cursor" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Shows Cursors</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_Cursor                /* Graphics Demo: Cursor */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_Cursor.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="Fading" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Demo of fading effect function</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_Fading                /* Graphics Demo: Fading */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_Fading.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="Graph" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Shows graphs</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_Graph                 /* Graphics Demo: Graph */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_Graph.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="IconView" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Shows Icons</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_IconView              /* Graphics Demo: IconView */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_IconView.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="ImageFlow" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Image flow demo</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_ImageFlow             /* Graphics Demo: ImageFlow */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_ImageFlow.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="ListView" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Listview demo</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_ListView              /* Graphics Demo: ListView */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_Listview.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="RadialMenu" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Shows how to create a radial menu with motion support</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_RadialMenu            /* Graphics Demo: RadialMenu */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_RadialMenu.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="Skinning" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Plays with some dialogs and uses skinning</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_Skinning              /* Graphics Demo: Skinning */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_Skinning.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="Speed" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Speed demo</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_Speed                 /* Graphics Demo: Speed */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_Speed.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="Speedometer" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Shows how to use memory devices for rotation</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_Speedometer           /* Graphics Demo: Speedometer */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_Speedometer.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="TransparentDialog" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Demo of a semi transparent dialog</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_TransparentDialog     /* Graphics Demo: TransparentDialog*/
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_TransparentDialog.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="Treeview" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Treeview demo</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_Treeview              /* Graphics Demo: Treeview */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_Treeview.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="VScreen" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Virtual screen demo</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_VScreen               /* Graphics Demo: VScreen */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_VScreen.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="WashingMachine" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Washing machine demo</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_WashingMachine        /* Graphics Demo: WashingMachine*/
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_WashingMachine.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="ZoomAndRotate" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Demo of zooming and rotating images</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_ZoomAndRotate         /* Graphics Demo: ZoomAndRotate*/
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_ZoomAndRotate.c"/>
+        </files>
+      </component>
+      <component Cgroup="Display" Csub="Interface Template" condition="Graphics Core">
+        <!-- short component description -->
+        <description>Configurable LCD Interface Template</description>
+        <files>
+          <file category="source" name="emWin/Sample/Config/LCDConf.c" attr="config" version="5.0.0"/>
+        </files>
+      </component>
+      <component Cgroup="Display" Csub="MCBQVGA_LD" Cvariant="16-bit IF" condition="Graphics Core and LCD 16-bit IF">
+        <!-- short component description -->
+        <description>LCD Configuration for Keil MCBQVGA Version LD (16-bit Interface)</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_LCD_MCBQVGA_LD_16  /* Graphics LCD MCBQVGA_LD 16-bit IF */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/LCDConf/GUIDRV_FlexColor/Keil/LCDConf_MCBQVGA_LD.c" attr="config" version="5.0.0"/>
+        </files>
+      </component>
+      <component Cgroup="Display" Csub="MCBQVGA_LD" Cvariant="SPI IF" condition="Graphics Core and LCD SPI IF">
+        <!-- short component description -->
+        <description>LCD Configuration for Keil MCBQVGA Version LD (SPI Interface)</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_LCD_MCBQVGA_LD_SPI /* Graphics LCD MCBQVGA_LD SPI IF */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/LCDConf/GUIDRV_FlexColor/Keil/LCDConf_MCBQVGA_LD.c" attr="config" version="5.0.0"/>
+        </files>
+      </component>
+      <component Cgroup="Display" Csub="MCBQVGA_LG" Cvariant="16-bit IF" condition="Graphics Core and LCD 16-bit IF">
+        <!-- short component description -->
+        <description>LCD Configuration for Keil MCBQVGA Version LG (16-bit Interface)</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_LCD_MCBQVGA_LG_16  /* Graphics LCD MCBQVGA_LG 16-bit IF */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/LCDConf/GUIDRV_FlexColor/Keil/LCDConf_MCBQVGA_LG.c" attr="config" version="5.0.0"/>
+        </files>
+      </component>
+      <component Cgroup="Display" Csub="MCBQVGA_LG" Cvariant="SPI IF" condition="Graphics Core and LCD SPI IF">
+        <!-- short component description -->
+        <description>LCD Configuration for Keil MCBQVGA Version LG (SPI Interface)</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_LCD_MCBQVGA_LG_SPI /* Graphics LCD MCBQVGA_LG SPI IF */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/LCDConf/GUIDRV_FlexColor/Keil/LCDConf_MCBQVGA_LG.c" attr="config" version="5.0.0"/>
+        </files>
+      </component>
+      <component Cgroup="Display" Csub="MCBQVGA_LG" Cvariant="RGB IF" condition="Graphics Core and LCD RGB IF">
+        <!-- short component description -->
+        <description>LCD Configuration for Keil MCBQVGA Version LG (RGB Interface)</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_LCD_MCBQVGA_LG_RGB /* Graphics LCD MCBQVGA_LG RGB IF */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/LCDConf/GUIDRV_Lin/Keil/LCDConf_MCBQVGA_RGB.c" attr="config" version="5.0.0"/>
+        </files>
+      </component>
+      <component Cgroup="VNC Server" condition="Graphics Core with CMSIS RTOS and BSD Socket">
+        <!-- short component description -->
+        <description>Enable Remote access via TCP/IP</description>
+        <files>
+          <file category="source" name="emWin/Sample/GUI_X/GUI_VNC_X_StartServerRTE.c" attr="config" version="1.0.0"/>
+        </files>
+      </component>
+    </bundle>
+
+    <!-- emWin Graphics Library (MDK-Plus) -->
+    <bundle Cbundle="MDK-Plus" Cclass="Graphics" Cvendor="Segger" Cversion="6.32.3">
+      <description>User Interface on graphical LCD displays</description>
+      <doc>Doc/Graphics/html/index.html</doc>
+      <component Cgroup="CORE" condition="CMSIS Core with RTOS and Display">
+        <!-- short component description -->
+        <description>Graphics Core for Cortex-M</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Core               /* Graphics Core */
+        </RTE_Components_h>
+        <files>
+          <!-- CPU independent -->
+          <file category="header" name="emWin/Include/GUI.h"/>
+          <file category="source" name="emWin/Sample/Config/GUIConf.c" attr="config" version="5.0.0"/>
+          <file category="source" name="emWin/Sample/Template/RTOS1/GUI_TemplateThread.c" condition="CMSIS RTOS1" attr="template" select="emWin thread function for Demos and Templates"/>
+          <file category="source" name="emWin/Sample/Template/RTOS1/GUI_MultiThread.c"    condition="CMSIS RTOS1" attr="template" select="emWin GUI Thread for Multi-Tasking Execution Model"/>
+          <file category="source" name="emWin/Sample/Template/RTOS1/GUI_SingleThread.c"   condition="CMSIS RTOS1" attr="template" select="emWin GUI Thread for Single-Tasking Execution Model"/>
+          <file category="source" name="emWin/Sample/Template/RTOS2/GUI_TemplateThread.c" condition="CMSIS RTOS2" attr="template" select="emWin thread function for Demos and Templates"/>
+          <file category="source" name="emWin/Sample/Template/RTOS2/GUI_MultiThread.c"    condition="CMSIS RTOS2" attr="template" select="emWin GUI Thread for Multi-Tasking Execution Model"/>
+          <file category="source" name="emWin/Sample/Template/RTOS2/GUI_SingleThread.c"   condition="CMSIS RTOS2" attr="template" select="emWin GUI Thread for Single-Tasking Execution Model"/>
+          <file category="source" name="emWin/Sample/GUI_X/GUI_X_RTE.c"/>
+          <!-- CPU and Compiler dependent -->
+          <!-- ARMCC -->
+          <file category="library" condition="CM0_LE_ARMCC"    name="emWin/Lib/ARM/GUI_CM0_L.lib"/>
+          <!--  <file category="library" condition="CM0_BE_ARMCC"    name="emWin/Lib/ARM/GUI_CM0_B.lib"/>    -->
+          <file category="library" condition="CM1_LE_ARMCC"    name="emWin/Lib/ARM/GUI_CM0_L.lib"/>
+          <!--  <file category="library" condition="CM1_BE_ARMCC"    name="emWin/Lib/ARM/GUI_CM0_B.lib"/>    -->
+          <file category="library" condition="CM3_LE_ARMCC"    name="emWin/Lib/ARM/GUI_CM3_L.lib"/>
+          <!--  <file category="library" condition="CM3_BE_ARMCC"    name="emWin/Lib/ARM/GUI_CM3_B.lib"/>    -->
+          <file category="library" condition="CM4_LE_ARMCC"    name="emWin/Lib/ARM/GUI_CM3_L.lib"/>
+          <!--  <file category="library" condition="CM4_BE_ARMCC"    name="emWin/Lib/ARM/GUI_CM3_B.lib"/>    -->
+          <file category="library" condition="CM4F_LE_ARMCC"   name="emWin/Lib/ARM/GUI_CM4F_L.lib"/>
+          <!--  <file category="library" condition="CM4F_BE_ARMCC"   name="emWin/Lib/ARM/GUI_CM4F_B.lib"/>   -->
+          <file category="library" condition="CM7_LE_ARMCC"    name="emWin/Lib/ARM/GUI_CM3_L.lib"/>
+          <!--  <file category="library" condition="CM7_BE_ARMCC"    name="emWin/Lib/ARM/GUI_CM3_B.lib"/>    -->
+          <file category="library" condition="CM7F_LE_ARMCC"   name="emWin/Lib/ARM/GUI_CM4F_L.lib"/>
+          <!--  <file category="library" condition="CM7F_BE_ARMCC"   name="emWin/Lib/ARM/GUI_CM4F_B.lib"/>   -->
+          <file category="library" condition="CM23_LE_ARMCC"   name="emWin/Lib/ARM/GUI_CM0_L.lib"/>
+          <!--  <file category="library" condition="CM23_BE_ARMCC"   name="emWin/Lib/ARM/GUI_CM0_B.lib"/>    -->
+          <file category="library" condition="CM33_LE_ARMCC"   name="emWin/Lib/ARM/GUI_CM3_L.lib"/>
+          <!--  <file category="library" condition="CM33_BE_ARMCC"   name="emWin/Lib/ARM/GUI_CM3_B.lib"/>    -->
+          <file category="library" condition="CM33F_LE_ARMCC"  name="emWin/Lib/ARM/GUI_CM4F_L.lib"/>
+          <!--  <file category="library" condition="CM33F_BE_ARMCC"  name="emWin/Lib/ARM/GUI_CM4F_B.lib"/>   -->
+          <file category="library" condition="CM35P_LE_ARMCC"  name="emWin/Lib/ARM/GUI_CM3_L.lib"/>
+          <!--  <file category="library" condition="CM35P_BE_ARMCC"  name="emWin/Lib/ARM/GUI_CM3_B.lib"/>    -->
+          <file category="library" condition="CM35PF_LE_ARMCC" name="emWin/Lib/ARM/GUI_CM4F_L.lib"/>
+          <!--  <file category="library" condition="CM35PF_BE_ARMCC" name="emWin/Lib/ARM/GUI_CM4F_B.lib"/>   -->
+          <file category="library" condition="CM55_LE_ARMCC"   name="emWin/Lib/ARM/GUI_CM3_L.lib"/>
+          <!--  <file category="library" condition="CM55_BE_ARMCC"   name="emWin/Lib/ARM/GUI_CM3_B.lib"/>    -->
+          <file category="library" condition="CM55F_LE_ARMCC"  name="emWin/Lib/ARM/GUI_CM4F_L.lib"/>
+          <!--  <file category="library" condition="CM55F_BE_ARMCC"  name="emWin/Lib/ARM/GUI_CM4F_B.lib"/>   -->
+          <file category="library" condition="CM85_LE_ARMCC"   name="emWin/Lib/ARM/GUI_CM3_L.lib"/>
+          <!--  <file category="library" condition="CM85_BE_ARMCC"   name="emWin/Lib/ARM/GUI_CM3_B.lib"/>    -->
+          <file category="library" condition="CM85F_LE_ARMCC"  name="emWin/Lib/ARM/GUI_CM4F_L.lib"/>
+          <!--  <file category="library" condition="CM85F_BE_ARMCC"  name="emWin/Lib/ARM/GUI_CM4F_B.lib"/>   -->
+        </files>
+      </component>
+      <component Cgroup="Tools" Csub="GUI Builder" condition="Graphics Core">
+        <description>GUI Builder</description>
+        <files>
+          <file category="other" name="emWin/Tool/GUIBuilder.exe" attr="copy"/>
+          <file category="other" name="emWin/Tool/GUIBuilder.ini" attr="copy"/>
+          <file category="doc"   name="emWin/Tool/GUIBuilder.txt" attr="config" version="1.0.0"/>
+        </files>
+      </component>
+      <component Cgroup="Input Device" Csub="Joystick" condition="Graphics Core and Joystick">
+        <!-- short component description -->
+        <description>Pointer Input Device: Joystick</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Joystick           /* Graphics Input Device Joystick */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/GUI_X/GUI_X_Joystick.c"/>
+        </files>
+      </component>
+      <component Cgroup="Input Device" Csub="Touchscreen" condition="Graphics Core and Touchscreen">
+        <!-- short component description -->
+        <description>Pointer Input Device: Touchscreen</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Touchscreen        /* Graphics Input Device Touchscreen */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/GUI_X/GUI_X_Touch.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="Framework" condition="Graphics Core">
+        <!-- short component description -->
+        <description>Demo framework</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_Framework             /* Graphics Demo: Framework */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO.c"/>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_Start.c"/>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_Conf.c"/>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_Resource.c"/>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_Intro.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="AntialiasedText" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Shows text with different antialiasing qualities</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_AA_Text               /* Graphics Demo: AntialiasedText */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_AntialiasedText.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="Automotive" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Automotive samples</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_Automotive            /* Graphics Demo: Automotive */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_Automotive.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="BarGraph" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Shows a bargraph with alpha effect</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_BarGraph              /* Graphics Demo: BarGraph */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_BarGraph.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="Bitmap" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Draws bitmaps with and without compression</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_Bitmap                /* Graphics Demo: Bitmap */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_Bitmap.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="ColorBar" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Draws color bars</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_ColorBar              /* Graphics Demo: ColorBar */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_ColorBar.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="Cursor" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Shows Cursors</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_Cursor                /* Graphics Demo: Cursor */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_Cursor.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="Fading" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Demo of fading effect function</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_Fading                /* Graphics Demo: Fading */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_Fading.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="Graph" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Shows graphs</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_Graph                 /* Graphics Demo: Graph */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_Graph.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="IconView" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Shows Icons</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_IconView              /* Graphics Demo: IconView */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_IconView.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="ImageFlow" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Image flow demo</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_ImageFlow             /* Graphics Demo: ImageFlow */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_ImageFlow.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="ListView" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Listview demo</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_ListView              /* Graphics Demo: ListView */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_Listview.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="RadialMenu" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Shows how to create a radial menu with motion support</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_RadialMenu            /* Graphics Demo: RadialMenu */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_RadialMenu.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="Skinning" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Plays with some dialogs and uses skinning</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_Skinning              /* Graphics Demo: Skinning */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_Skinning.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="Speed" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Speed demo</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_Speed                 /* Graphics Demo: Speed */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_Speed.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="Speedometer" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Shows how to use memory devices for rotation</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_Speedometer           /* Graphics Demo: Speedometer */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_Speedometer.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="TransparentDialog" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Demo of a semi transparent dialog</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_TransparentDialog     /* Graphics Demo: TransparentDialog*/
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_TransparentDialog.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="Treeview" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Treeview demo</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_Treeview              /* Graphics Demo: Treeview */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_Treeview.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="VScreen" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Virtual screen demo</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_VScreen               /* Graphics Demo: VScreen */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_VScreen.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="WashingMachine" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Washing machine demo</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_WashingMachine        /* Graphics Demo: WashingMachine*/
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_WashingMachine.c"/>
+        </files>
+      </component>
+      <component Cgroup="Demo" Csub="ZoomAndRotate" condition="Graphics Demo">
+        <!-- short component description -->
+        <description>Demo of zooming and rotating images</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_Demo_ZoomAndRotate         /* Graphics Demo: ZoomAndRotate*/
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/Application/GUIDemo/GUIDEMO_ZoomAndRotate.c"/>
+        </files>
+      </component>
+      <component Cgroup="Display" Csub="Interface Template" condition="Graphics Core">
+        <!-- short component description -->
+        <description>Configurable LCD Interface Template</description>
+        <files>
+          <file category="source" name="emWin/Sample/Config/LCDConf.c" attr="config" version="5.0.0"/>
+        </files>
+      </component>
+      <component Cgroup="Display" Csub="MCBQVGA_LD" Cvariant="16-bit IF" condition="Graphics Core and LCD 16-bit IF">
+        <!-- short component description -->
+        <description>LCD Configuration for Keil MCBQVGA Version LD (16-bit Interface)</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_LCD_MCBQVGA_LD_16  /* Graphics LCD MCBQVGA_LD 16-bit IF */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/LCDConf/GUIDRV_FlexColor/Keil/LCDConf_MCBQVGA_LD.c" attr="config" version="5.0.0"/>
+        </files>
+      </component>
+      <component Cgroup="Display" Csub="MCBQVGA_LD" Cvariant="SPI IF" condition="Graphics Core and LCD SPI IF">
+        <!-- short component description -->
+        <description>LCD Configuration for Keil MCBQVGA Version LD (SPI Interface)</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_LCD_MCBQVGA_LD_SPI /* Graphics LCD MCBQVGA_LD SPI IF */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/LCDConf/GUIDRV_FlexColor/Keil/LCDConf_MCBQVGA_LD.c" attr="config" version="5.0.0"/>
+        </files>
+      </component>
+      <component Cgroup="Display" Csub="MCBQVGA_LG" Cvariant="16-bit IF" condition="Graphics Core and LCD 16-bit IF">
+        <!-- short component description -->
+        <description>LCD Configuration for Keil MCBQVGA Version LG (16-bit Interface)</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_LCD_MCBQVGA_LG_16  /* Graphics LCD MCBQVGA_LG 16-bit IF */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/LCDConf/GUIDRV_FlexColor/Keil/LCDConf_MCBQVGA_LG.c" attr="config" version="5.0.0"/>
+        </files>
+      </component>
+      <component Cgroup="Display" Csub="MCBQVGA_LG" Cvariant="SPI IF" condition="Graphics Core and LCD SPI IF">
+        <!-- short component description -->
+        <description>LCD Configuration for Keil MCBQVGA Version LG (SPI Interface)</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_LCD_MCBQVGA_LG_SPI /* Graphics LCD MCBQVGA_LG SPI IF */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/LCDConf/GUIDRV_FlexColor/Keil/LCDConf_MCBQVGA_LG.c" attr="config" version="5.0.0"/>
+        </files>
+      </component>
+      <component Cgroup="Display" Csub="MCBQVGA_LG" Cvariant="RGB IF" condition="Graphics Core and LCD RGB IF">
+        <!-- short component description -->
+        <description>LCD Configuration for Keil MCBQVGA Version LG (RGB Interface)</description>
+        <RTE_Components_h>
+          <!-- the following content goes into file 'RTE_Components.h' -->
+          #define RTE_Graphics_LCD_MCBQVGA_LG_RGB /* Graphics LCD MCBQVGA_LG RGB IF */
+        </RTE_Components_h>
+        <files>
+          <file category="source" name="emWin/Sample/LCDConf/GUIDRV_Lin/Keil/LCDConf_MCBQVGA_RGB.c" attr="config" version="5.0.0"/>
+        </files>
+      </component>
+      <component Cgroup="VNC Server" condition="Graphics Core with CMSIS RTOS and BSD Socket">
+        <!-- short component description -->
+        <description>Enable Remote access via TCP/IP</description>
+        <files>
+          <file category="source" name="emWin/Sample/GUI_X/GUI_VNC_X_StartServerRTE.c" attr="config" version="1.0.0"/>
+        </files>
+      </component>
+    </bundle>
+
+  </components>
+</package>

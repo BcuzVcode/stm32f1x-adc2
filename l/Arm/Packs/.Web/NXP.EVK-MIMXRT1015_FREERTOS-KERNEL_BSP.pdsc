@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>EVK-MIMXRT1015_FREERTOS-KERNEL_BSP</name>
+  <vendor>NXP</vendor>
+  <description>Middleware freertos-kernel Board Support Pack for EVK-MIMXRT1015</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="1.0.1" date="2023-10-25" deprecated="2023-10-25" replacement="NXP.EVK-MIMXRT1015_FREERTOS-KERNEL_Examples">This pack is no longer maintained. The new pack has been released with "_Examples" suffix instead of "_BSP".</release>
+    <release version="1.0.0" date="2023-07-27">NXP CMSIS SBSP Packs based on MCUXpresso SDK 2.14.0</release>
+  </releases>
+  <keywords>
+    <keyword>Middleware Board Support Pack</keyword>
+  </keywords>
+  <requirements>
+    <packages>
+      <package name="FREERTOS-KERNEL" vendor="NXP" version="1.0.1"/>
+      <package name="MIMXRT1015_DFP" vendor="NXP" version="18.0.0"/>
+      <package name="EVK-MIMXRT1015_BSP" vendor="NXP" version="18.0.0"/>
+      <package name="CMSIS" vendor="ARM" version="5.8.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <boards>
+    <board vendor="NXP" name="EVK-MIMXRT1015">
+      <description>i.MX RT1015 Evaluation Kit</description>
+      <image small="boards/evkmimxrt1015/evkmimxrt1015.png"/>
+      <mountedDevice Dname="MIMXRT1015xxxxx" Dvendor="NXP:11"/>
+    </board>
+  </boards>
+  <examples>
+    <example name="freertos_hello" folder="boards/evkmimxrt1015/freertos_examples/freertos_hello" doc="readme.txt">
+      <description>The Hello World project is a simple demonstration program that uses the SDK UART drivere incombination with FreeRTOS. The purpose of this demo is to show how to use the debug console and toprovide a simple project for debugging and further development.The example application creates one task called hello_task. This task print "Hello world." messagevia debug console utility and suspend itself.</description>
+      <board name="EVK-MIMXRT1015" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/freertos_hello.uvprojx"/>
+        <environment name="csolution" load="freertos_hello.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="freertos_event" folder="boards/evkmimxrt1015/freertos_examples/freertos_event" doc="readme.txt">
+      <description>This document explains the freertos_event example. It shows how task waits for an event (defined setof bits in event group). This event can be set by any other process or interrupt in the system.The example application creates three tasks. Two write tasks write_task_1 and write_task_2continuously setting event bit 0 and bit 1.Read_task is waiting for any event bit and printing actual state on console. Event bits areautomatically cleared after read task is entered.Three possible states can occurre:Both bits are set.zBit B0 is set.Bit B1 is set.</description>
+      <board name="EVK-MIMXRT1015" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/freertos_event.uvprojx"/>
+        <environment name="csolution" load="freertos_event.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="freertos_generic" folder="boards/evkmimxrt1015/freertos_examples/freertos_generic" doc="readme.txt">
+      <description>This document explains the freertos_generic example. It is based on code FreeRTOS documentation fromhttp://www.freertos.org/Hardware-independent-RTOS-example.html. It shows combination of severaltasks with queue, software timer, tick hook and semaphore.The example application creates three tasks. The prvQueueSendTask periodically sending data toxQueue queue. The prvQueueReceiveTask is waiting for incoming message and counting number ofreceived messages. Task prvEventSemaphoreTask is waiting for xEventSemaphore semaphore given fromvApplicationTickHook. Tick hook give semaphore every 500 ms.Other hook types used for RTOS and resource statistics are also demonstrated in example:* vApplicationIdleHook* vApplicationStackOverflowHook* vApplicationMallocFailedHook</description>
+      <board name="EVK-MIMXRT1015" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/freertos_generic.uvprojx"/>
+        <environment name="csolution" load="freertos_generic.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="freertos_mutex" folder="boards/evkmimxrt1015/freertos_examples/freertos_mutex" doc="readme.txt">
+      <description>This document explains the freertos_mutex example. It shows how mutex manage access to commonresource (terminal output).The example application creates two identical instances of write_task. Each task will lock the mutexbefore printing and unlock it after printing to ensure that the outputs from tasks are not mixedtogether.The test_task accept output message during creation as function parameter. Output message have twoparts. If xMutex is unlocked, the write_task_1 acquire xMutex and print first part of message. Thenrescheduling is performed. In this moment scheduler check if some other task could run, but secondtask write_task+_2 is blocked because xMutex is already locked by first write task. The firstwrite_task_1 continue from last point by printing of second message part. Finaly the xMutex isunlocked and second instance of write_task_2 is executed.</description>
+      <board name="EVK-MIMXRT1015" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/freertos_mutex.uvprojx"/>
+        <environment name="csolution" load="freertos_mutex.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="freertos_queue" folder="boards/evkmimxrt1015/freertos_examples/freertos_queue" doc="readme.txt">
+      <description>This document explains the freertos_queue example. This example introduce simple logging mechanismbased on message passing.Example could be devided in two parts. First part is logger. It contain three tasks:log_add().....Add new message into the log. Call xQueueSend function to pass new message into              message queue.log_init()....Initialize logger (create logging task and message queue log_queue).log_task()....Task responsible for printing of log output.Second part is application of this simple logging mechanism. Each of two tasks write_task_1 andwrite_task_2 print 5 messages into log.</description>
+      <board name="EVK-MIMXRT1015" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/freertos_queue.uvprojx"/>
+        <environment name="csolution" load="freertos_queue.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="freertos_sem" folder="boards/evkmimxrt1015/freertos_examples/freertos_sem" doc="readme.txt">
+      <description>This document explains the freertos_sem example, what to expect when running it and a briefintroduction to the API. The freertos_sem example code shows how semaphores works. Two differenttasks are synchronized in bilateral rendezvous model.The example uses four tasks. One producer_task and three consumer_tasks. The producer_task starts bycreating of two semaphores (xSemaphore_producer and xSemaphore_consumer). These semaphores controlaccess to virtual item. The synchronization is based on bilateral rendezvous pattern. Both ofconsumer and producer must be prepared to enable transaction.</description>
+      <board name="EVK-MIMXRT1015" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/freertos_sem.uvprojx"/>
+        <environment name="csolution" load="freertos_sem.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="freertos_sem_static" folder="boards/evkmimxrt1015/freertos_examples/freertos_sem_static" doc="readme.txt">
+      <description>This document explains the freertos_sem example, what to expect when running it and a briefintroduction to the API. The freertos_sem example code shows how semaphores works. Two differenttasks are synchronized in bilateral rendezvous model.The example uses four tasks. One producer_task and three consumer_tasks. The producer_task starts bycreating of two semaphores (xSemaphore_producer and xSemaphore_consumer). These semaphores controlaccess to virtual item. The synchronization is based on bilateral rendezvous pattern. Both ofconsumer and producer must be prepared to enable transaction.</description>
+      <board name="EVK-MIMXRT1015" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/freertos_sem_static.uvprojx"/>
+        <environment name="csolution" load="freertos_sem_static.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="freertos_swtimer" folder="boards/evkmimxrt1015/freertos_examples/freertos_swtimer" doc="readme.txt">
+      <description>This document explains the freertos_swtimer example. It shows usage of software timer and itscallback.The example application creates one software timer SwTimer. The timer's callback SwTimerCallback isperiodically executed and text "Tick." is printed to terminal.</description>
+      <board name="EVK-MIMXRT1015" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/freertos_swtimer.uvprojx"/>
+        <environment name="csolution" load="freertos_swtimer.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="freertos_tickless" folder="boards/evkmimxrt1015/freertos_examples/freertos_tickless" doc="readme.txt">
+      <description>This document explains the freertos_tickless example. It shows the CPU enter at sleep mode and then it is waked up by expired time delay that using timer module.</description>
+      <board name="EVK-MIMXRT1015" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/freertos_tickless.uvprojx"/>
+        <environment name="csolution" load="freertos_tickless.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="freertos_segger_sysview" folder="boards/evkmimxrt1015/freertos_examples/visualization/freertos_segger_sysview" doc="readme.txt">
+      <description>Segger Sysview demo shows the basic capabilities of Segger System Viewer tool.Required software:    - J-Link Software and Documentation Pack    - SystemView - Real-time analysis and visualization    - J-Link OpenSDA - Board-Specific Firmwarescan be downloaded from https://www.segger.com/downloads/jlinkDemo requires JLink connected. The JLink can be external probe or on board SDA debugger.In case of SDA debugger you have to change firmware to J-Link OpenSDA by holding board RESET button while power up board. The board is then detected as USB mass storage device and it's required to copy the .bin firmware to the device. When it's done you have to reset the board once more.</description>
+      <board name="EVK-MIMXRT1015" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/freertos_segger_sysview.uvprojx"/>
+        <environment name="csolution" load="freertos_segger_sysview.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+  </examples>
+</package>

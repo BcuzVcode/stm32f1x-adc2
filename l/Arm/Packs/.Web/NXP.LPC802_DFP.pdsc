@@ -1,0 +1,996 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>LPC802_DFP</name>
+  <vendor>NXP</vendor>
+  <description>Device Family Pack for LPC802</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="19.0.0" date="2024-07-17">NXP CMSIS Packs based on MCUXpresso SDK 2.16.0</release>
+    <release version="18.0.0" date="2024-01-14">NXP CMSIS Packs based on MCUXpresso SDK 2.15.0</release>
+    <release version="17.0.0" date="2023-07-27">NXP CMSIS Packs based on MCUXpresso SDK 2.14.0</release>
+    <release version="16.0.0" date="2023-01-16">NXP CMSIS Packs based on MCUXpresso SDK 2.13.0</release>
+    <release version="15.0.0" date="2022-07-13">NXP CMSIS Packs based on MCUXpresso SDK 2.12.0</release>
+    <release version="14.0.0" date="2022-01-05">NXP CMSIS Packs based on MCUXpresso SDK 2.11.0</release>
+    <release version="13.1.0" date="2021-07-13">NXP CMSIS Packs based on MCUXpresso SDK 2.10.0</release>
+    <release version="13.0.0" date="2021-02-05">NXP CMSIS Packs based on MCUXpresso SDK 2.9.0 with restructured startup component files</release>
+    <release version="12.3.0" date="2021-01-14">NXP CMSIS Packs based on MCUXpresso SDK 2.9.0</release>
+    <release version="12.2.0" date="2020-07-20">NXP CMSIS Packs based on MCUXpresso SDK 2.8.0</release>
+    <release version="12.1.0" date="2019-12-19">NXP CMSIS Packs based on MCUXpresso SDK 2.7.0</release>
+    <release version="12.0.0" date="2019-06-10">NXP CMSIS packs based on MCUXpresso SDK 2.6.0</release>
+    <release version="11.0.1" date="2019-04-26">Removed invalid entries from Software Content Register</release>
+    <release version="11.0.0" date="2018-12-19">NXP CMSIS packs based on MCUXpresso SDK 2.5.0</release>
+    <release version="10.0.3" date="2018-07-16">A problem with missing components from some example the projects were dependent on was fixed (KEX-4241); Incorrect path to linked libraries were fixed: a pack version was a static part of the path and hadn’t worked for pack versions other than v10.0.0 (KEX-4373); A problem with incorrectly defined XIP_BOOT_HEADER_ENABLE, XIP_BOOT_HEADER_DCD_ENABLE and XIP_EXTERNAL_FLASH preprocessor symbols was fixed (KEX-4553); Missing flash algorithms for MK27, MK28, LPC802 and LPC804 device family packs were added (KEX-4659).</release>
+  </releases>
+  <keywords>
+    <keyword>Device Family Pack</keyword>
+  </keywords>
+  <requirements>
+    <packages>
+      <package name="CMSIS" vendor="ARM" version="5.9.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <devices>
+    <family Dfamily="LPC802" Dvendor="NXP:11">
+      <debugconfig default="swd" clock="5000000" swj="0"/>
+      <sequences>
+        <sequence name="ResetProcessor" disable="true"/>
+        <sequence name="ForceCoreHalt">
+          <block>
+      __var SCS_Addr   = 0xE000E000;
+      __var AIRCR_Addr = SCS_Addr + 0xD0C;
+      __var DHCSR_Addr = SCS_Addr + 0xDF0;
+      __var DCRSR_Addr = SCS_Addr + 0xDF4;
+      __var DCRDR_Addr = SCS_Addr + 0xDF8;
+      __var DHCSR_Val  = 0;
+    </block>
+          <control while="((DHCSR_Val = Read32(DHCSR_Addr)) &amp; 0x00020000) == 0" timeout="100000"/>
+          <control if="(DHCSR_Val &amp; 0x00020000) == 0">
+            <block info="Halt core">
+        Write32(DHCSR_Addr,0xA05F0003);                                  // halt core
+      </block>
+            <control while="(Read32(DHCSR_Addr) &amp; 0x00020000) == 0" timeout="1000"/>
+          </control>
+        </sequence>
+        <sequence name="ResetSystem" info="SYSRESETREQ">
+          <block>
+      __var SCS_Addr   = 0xE000E000;
+      __var AIRCR_Addr = SCS_Addr + 0xD0C;
+      __var DHCSR_Addr = SCS_Addr + 0xDF0;
+
+      __errorcontrol = 1;                                              // ignore errors
+      Write32(AIRCR_Addr, 0x05FA0004);                                 // Execute SYSRESETREQ via AIRCR
+      __errorcontrol = 0;                                              // check errors
+
+      DAP_Delay(1000);                                                 // time for reset
+    </block>
+          <control while="(Read32(DHCSR_Addr) &amp; 0x02000000) == 0" timeout="100000"/>
+          <block>
+      Sequence("ForceCoreHalt");                                       // halt the core
+    </block>
+        </sequence>
+        <sequence name="ResetProcessor" info="VECTRESET">
+          <block>
+      __var SCS_Addr   = 0xE000E000;
+      __var AIRCR_Addr = SCS_Addr + 0xD0C;
+      __var DHCSR_Addr = SCS_Addr + 0xDF0;
+
+      __errorcontrol = 1;                                              // ignore errors
+      Write32(AIRCR_Addr, 0x05FA0001);                                 // Execute VECTRESET via AIRCR
+      __errorcontrol = 0;                                              // check errors
+    </block>
+          <control while="(Read32(DHCSR_Addr) &amp; 0x02000000) == 0" timeout="100000"/>
+          <block>
+      Sequence("ForceCoreHalt");                                       // halt the core
+    </block>
+        </sequence>
+        <sequence name="ResetHardware" info="HW RESET">
+          <block>
+      __var nReset      = 0x80;
+      __var canReadPins = 0;
+
+      canReadPins = (DAP_SWJ_Pins(0x00, nReset, 0) != 0xFFFFFFFF);     // Deassert nRESET line
+    </block>
+          <!-- Keep reset active for 50 ms -->
+          <control while="1" timeout="50000"/>
+          <control if="canReadPins">
+            <!-- Assert nRESET line and wait max. 1s for recovery -->
+            <control while="(DAP_SWJ_Pins(nReset, nReset, 0) &amp; nReset) == 0" timeout="1000000"/>
+          </control>
+          <control if="!canReadPins">
+            <block>
+        DAP_SWJ_Pins(nReset, nReset, 0);                               // Assert nRESET line
+      </block>
+            <!-- Wait 100ms for recovery if nRESET not readable -->
+            <control while="1" timeout="100000"/>
+          </control>
+          <block>
+      Sequence("ForceCoreHalt");                                       // halt the core
+    </block>
+        </sequence>
+        <sequence name="ResetCatchSet">
+          <block>
+      __var SCS_Addr   = 0xE000E000;
+      __var DHCSR_Addr = SCS_Addr + 0xDF0;
+      __var DEMCR_Addr = SCS_Addr + 0xDFC;
+      __var value      = 0;
+      __var FPB_BKPT_H = 0x80000000;
+      __var FPB_BKPT_L = 0x40000000;
+      __var FPB_COMP_M = 0x1FFFFFFC;
+      __var FPB_KEY    = 0x00000002;
+      __var FPB_ENABLE = 0x00000001;
+    </block>
+          <!-- read reset vector from Flash -->
+          <block>
+      value = Read32(DEMCR_Addr);
+      Write32(DEMCR_Addr, (value &amp; (~0x00000001)));                // Disable Reset Vector Catch in DEMCR
+    </block>
+          <!-- set BreakPoint regardless whether reset vector is valid or not -->
+          <block>
+      Write32(0x40048000, 0x00000002);                                 // Map Flash to Vectors
+      value = Read32 (0x00000004);                                     // Read Reset Vector
+
+      value = ((value &amp; 0x02) ? FPB_BKPT_H : FPB_BKPT_L) | (value &amp; FPB_COMP_M) | FPB_ENABLE ;
+      Write32(0xE0002008, value);                                      // Set BP0 to Reset Vector
+      Write32(0xE0002000, (FPB_KEY | FPB_ENABLE));                     // Enable FPB
+    </block>
+          <block>
+      Read32(DHCSR_Addr);                                              // Read DHCSR to clear potentially set DHCSR.S_RESET_ST bit
+    </block>
+        </sequence>
+        <sequence name="ResetCatchClear">
+          <block>
+      __var SCS_Addr   = 0xE000E000;
+      __var DEMCR_Addr = SCS_Addr + 0xDFC;
+      __var value      = 0;
+
+      value = Read32(DEMCR_Addr);
+      Write32(DEMCR_Addr, (value &amp; (~0x00000001)));                // Disable Reset Vector Catch in DEMCR
+
+      Write32(0xE0002008, 0x00000000);                                 // Clear BP0
+      Write32(0xE0002000, 0x00000002);                                 // Disable FPB
+    </block>
+        </sequence>
+      </sequences>
+      <description>Low-Cost Microcontrollers (MCUs) based on Arm Cortex-M0+ Core</description>
+      <device Dname="LPC802">
+        <processor Dcore="Cortex-M0+" Dfpu="NO_FPU" Dmpu="NO_MPU" Dendian="Little-endian" Dclock="30000000"/>
+        <environment name="iar">
+          <file category="linkerfile" name="devices/LPC802/iar/LPC802_flash.icf"/>
+        </environment>
+        <memory name="BOOT_FLASH" start="0x00003f80" size="0x80" access="rx" default="1"/>
+        <memory name="IAP_SRAM" start="0x100007e0" size="0x20" access="rw" default="1"/>
+        <memory name="PROGRAM_FLASH" start="0x00000000" size="0x3f80" access="rx" default="1" startup="1"/>
+        <memory name="SRAM" start="0x10000000" size="0x07e0" access="rw" default="1"/>
+        <algorithm name="devices/LPC802/arm/LPC80x_16.FLM" start="0x00000000" size="0x00004000" RAMstart="0x10000000" RAMsize="0x000007e0" default="1"/>
+        <debug svd="devices/LPC802/LPC802.xml"/>
+        <variant Dvariant="LPC802M011JDH20">
+          <compile header="devices/LPC802/fsl_device_registers.h" define="CPU_LPC802M011JDH20"/>
+        </variant>
+        <variant Dvariant="LPC802M001JDH16">
+          <compile header="devices/LPC802/fsl_device_registers.h" define="CPU_LPC802M001JDH16"/>
+        </variant>
+        <variant Dvariant="LPC802M001JDH20">
+          <compile header="devices/LPC802/fsl_device_registers.h" define="CPU_LPC802M001JDH20"/>
+        </variant>
+        <variant Dvariant="LPC802M001JHI33">
+          <compile header="devices/LPC802/fsl_device_registers.h" define="CPU_LPC802M001JHI33"/>
+        </variant>
+        <variant Dvariant="LPC802UK">
+          <compile header="devices/LPC802/fsl_device_registers.h" define="CPU_LPC802UK"/>
+        </variant>
+      </device>
+    </family>
+  </devices>
+  <conditions>
+    <condition id="device_id.LPC802.internal_condition">
+      <accept Dname="LPC802M001JDH16" Dvendor="NXP:11"/>
+      <accept Dname="LPC802M001JDH20" Dvendor="NXP:11"/>
+      <accept Dname="LPC802M001JHI33" Dvendor="NXP:11"/>
+      <accept Dname="LPC802M011JDH20" Dvendor="NXP:11"/>
+      <accept Dname="LPC802UK" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="DEVICES_Project_Template.LPC802.condition_id">
+      <require condition="allOf.component.miniusart_adapter, device_id=LPC802, device.LPC802_startup, driver.clock, driver.common, driver.lpc_gpio, driver.lpc_iocon_lite, driver.lpc_miniusart, driver.power_no_lib, driver.rom_api, driver.swm, utility.assert_lite, utility.debug_console_lite.internal_condition"/>
+    </condition>
+    <condition id="allOf.component.miniusart_adapter, device_id=LPC802, device.LPC802_startup, driver.clock, driver.common, driver.lpc_gpio, driver.lpc_iocon_lite, driver.lpc_miniusart, driver.power_no_lib, driver.rom_api, driver.swm, utility.assert_lite, utility.debug_console_lite.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="miniusart_adapter"/>
+      <require condition="device_id.LPC802.internal_condition"/>
+      <require Cclass="Device" Cgroup="Startup" Csub=""/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="iocon"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="usart"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="power"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="rom_api"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="swm"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="assert_lite"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite"/>
+    </condition>
+    <condition id="device.LPC802.internal_condition">
+      <accept Dname="LPC802M001JDH16" Dvendor="NXP:11"/>
+      <accept Dname="LPC802M001JDH20" Dvendor="NXP:11"/>
+      <accept Dname="LPC802M001JHI33" Dvendor="NXP:11"/>
+      <accept Dname="LPC802M011JDH20" Dvendor="NXP:11"/>
+      <accept Dname="LPC802UK" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="cmake_toolchain.condition_id">
+      <require condition="allOf.device=LPC802.internal_condition"/>
+    </condition>
+    <condition id="allOf.device=LPC802.internal_condition">
+      <require condition="device.LPC802.internal_condition"/>
+    </condition>
+    <condition id="component.config_tools.condition_id">
+      <require condition="allOf.device=LPC802.internal_condition"/>
+    </condition>
+    <condition id="component.ctimer_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.ctimer, device=LPC802.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.ctimer, device=LPC802.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="ctimer"/>
+      <require condition="device.LPC802.internal_condition"/>
+    </condition>
+    <condition id="component.lists.condition_id">
+      <require condition="allOf.driver.common, device=LPC802.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, device=LPC802.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="device.LPC802.internal_condition"/>
+    </condition>
+    <condition id="component.log.condition_id">
+      <require condition="allOf.driver.common, utility.str, device=LPC802.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, utility.str, device=LPC802.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="str"/>
+      <require condition="device.LPC802.internal_condition"/>
+    </condition>
+    <condition id="component.log.backend.debugconsole_lite.condition_id">
+      <require condition="allOf.driver.common, component.log, utility.debug_console_lite, device=LPC802.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.log, utility.debug_console_lite, device=LPC802.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="log"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite"/>
+      <require condition="device.LPC802.internal_condition"/>
+    </condition>
+    <condition id="component.log.backend.ringbuffer.condition_id">
+      <require condition="allOf.driver.common, component.log, device=LPC802.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.log, device=LPC802.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="log"/>
+      <require condition="device.LPC802.internal_condition"/>
+    </condition>
+    <condition id="component.lpc_crc_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.lpc_crc, device=LPC802.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.lpc_crc, device=LPC802.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpc_crc"/>
+      <require condition="device.LPC802.internal_condition"/>
+    </condition>
+    <condition id="component.lpc_i2c_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.lpc_i2c, device=LPC802.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.lpc_i2c, device=LPC802.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c"/>
+      <require condition="device.LPC802.internal_condition"/>
+    </condition>
+    <condition id="component.mem_manager.condition_id">
+      <require condition="allOf.driver.common, component.lists, device=LPC802.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.lists, device=LPC802.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+      <require condition="device.LPC802.internal_condition"/>
+    </condition>
+    <condition id="component.mem_manager_light.condition_id">
+      <require condition="allOf.driver.common, component.lists, device=LPC802.internal_condition"/>
+    </condition>
+    <condition id="component.miniusart_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.lpc_miniusart, device=LPC802.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.lpc_miniusart, device=LPC802.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="usart"/>
+      <require condition="device.LPC802.internal_condition"/>
+    </condition>
+    <condition id="component.mrt_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.mrt, device=LPC802.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.mrt, device=LPC802.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="mrt"/>
+      <require condition="device.LPC802.internal_condition"/>
+    </condition>
+    <condition id="component.panic.condition_id">
+      <require condition="allOf.driver.common, device=LPC802.internal_condition"/>
+    </condition>
+    <condition id="component.pwm_ctimer_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.ctimer, device=LPC802.internal_condition"/>
+    </condition>
+    <condition id="component.reset_adapter.condition_id">
+      <require condition="allOf.driver.common, device=LPC802.internal_condition"/>
+    </condition>
+    <condition id="component.software_crc_adapter.condition_id">
+      <require condition="allOf.driver.common, device=LPC802.internal_condition"/>
+    </condition>
+    <condition id="component.software_rng_adapter.condition_id">
+      <require condition="allOf.driver.common, device=LPC802.internal_condition"/>
+    </condition>
+    <condition id="component.timer_manager.condition_id">
+      <require condition="allOf.driver.common, component.lists, anyOf=component.ctimer_adapter, component.mrt_adapter, device=LPC802.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.lists, anyOf=component.ctimer_adapter, component.mrt_adapter, device=LPC802.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+      <require condition="anyOf.component.ctimer_adapter, component.mrt_adapter.internal_condition"/>
+      <require condition="device.LPC802.internal_condition"/>
+    </condition>
+    <condition id="anyOf.component.ctimer_adapter, component.mrt_adapter.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="ctimer_adapter"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="mrt_adapter"/>
+    </condition>
+    <condition id="device.LPC802_CMSIS.condition_id">
+      <require condition="allOf.CMSIS_Include_core_cm, device_id=LPC802.internal_condition"/>
+    </condition>
+    <condition id="allOf.CMSIS_Include_core_cm, device_id=LPC802.internal_condition">
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require condition="device_id.LPC802.internal_condition"/>
+    </condition>
+    <condition id="device.LPC802_linker.condition_id">
+      <require condition="allOf.device_id=LPC802.internal_condition"/>
+    </condition>
+    <condition id="allOf.device_id=LPC802.internal_condition">
+      <require condition="device_id.LPC802.internal_condition"/>
+    </condition>
+    <condition id="device_ids.LPC802.internal_condition">
+      <accept Dname="LPC802M001JDH16" Dvendor="NXP:11"/>
+      <accept Dname="LPC802M001JDH20" Dvendor="NXP:11"/>
+      <accept Dname="LPC802M001JHI33" Dvendor="NXP:11"/>
+      <accept Dname="LPC802M011JDH20" Dvendor="NXP:11"/>
+      <accept Dname="LPC802UK" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="allOf.toolchains=mdk, device_ids=LPC802.condition_id">
+      <require condition="toolchains.mdk.internal_condition"/>
+      <require condition="device_ids.LPC802.internal_condition"/>
+    </condition>
+    <condition id="toolchains.mdk.internal_condition">
+      <accept Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="allOf.toolchains=armgcc, device_ids=LPC802.condition_id">
+      <require condition="toolchains.armgcc.internal_condition"/>
+      <require condition="device_ids.LPC802.internal_condition"/>
+    </condition>
+    <condition id="toolchains.armgcc.internal_condition">
+      <accept Tcompiler="GCC"/>
+    </condition>
+    <condition id="allOf.toolchains=iar, device_ids=LPC802.condition_id">
+      <require condition="toolchains.iar.internal_condition"/>
+      <require condition="device_ids.LPC802.internal_condition"/>
+    </condition>
+    <condition id="toolchains.iar.internal_condition">
+      <accept Tcompiler="IAR"/>
+    </condition>
+    <condition id="device.LPC802_startup.condition_id">
+      <require condition="allOf.device.LPC802_system, device=LPC802.internal_condition"/>
+    </condition>
+    <condition id="allOf.device.LPC802_system, device=LPC802.internal_condition">
+      <require Cclass="Device" Cgroup="CMSIS" Csub="LPC802_system"/>
+      <require condition="device.LPC802.internal_condition"/>
+    </condition>
+    <condition id="allOf.toolchains=iar.condition_id">
+      <require condition="toolchains.iar.internal_condition"/>
+    </condition>
+    <condition id="allOf.toolchains=armgcc.condition_id">
+      <require condition="toolchains.armgcc.internal_condition"/>
+    </condition>
+    <condition id="allOf.toolchains=mdk.condition_id">
+      <require condition="toolchains.mdk.internal_condition"/>
+    </condition>
+    <condition id="device.LPC802_system.condition_id">
+      <require condition="allOf.device.LPC802_CMSIS, device=LPC802.internal_condition"/>
+    </condition>
+    <condition id="allOf.device.LPC802_CMSIS, device=LPC802.internal_condition">
+      <require Cclass="Device" Cgroup="CMSIS" Csub="LPC802_header"/>
+      <require condition="device.LPC802.internal_condition"/>
+    </condition>
+    <condition id="driver.clock.condition_id">
+      <require condition="allOf.driver.rom_api, driver.power_no_lib, driver.common, device=LPC802.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.rom_api, driver.power_no_lib, driver.common, device=LPC802.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="rom_api"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="power"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="device.LPC802.internal_condition"/>
+    </condition>
+    <condition id="driver.common.condition_id">
+      <require condition="allOf.driver.reset, driver.clock, device.LPC802_CMSIS, device=LPC802.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.reset, driver.clock, device.LPC802_CMSIS, device=LPC802.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="reset"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="CMSIS" Csub="LPC802_header"/>
+      <require condition="device.LPC802.internal_condition"/>
+    </condition>
+    <condition id="allOf.cores=cm0p.condition_id">
+      <require condition="cores.cm0p.internal_condition"/>
+    </condition>
+    <condition id="cores.cm0p.internal_condition">
+      <accept Dcore="Cortex-M0+"/>
+    </condition>
+    <condition id="driver.ctimer.condition_id">
+      <require condition="allOf.device_id=LPC802, driver.common.internal_condition"/>
+    </condition>
+    <condition id="allOf.device_id=LPC802, driver.common.internal_condition">
+      <require condition="device_id.LPC802.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="driver.iap.condition_id">
+      <require condition="allOf.device_id=LPC802, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.lpc_acomp.condition_id">
+      <require condition="allOf.device_id=LPC802, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.lpc_adc.condition_id">
+      <require condition="allOf.device_id=LPC802, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.lpc_crc.condition_id">
+      <require condition="allOf.device_id=LPC802, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.lpc_gpio.condition_id">
+      <require condition="allOf.device_id=LPC802, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.lpc_i2c.condition_id">
+      <require condition="allOf.driver.common, device_id=LPC802.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, device_id=LPC802.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="device_id.LPC802.internal_condition"/>
+    </condition>
+    <condition id="driver.lpc_iocon_lite.condition_id">
+      <require condition="allOf.device_id=LPC802, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.lpc_minispi.condition_id">
+      <require condition="allOf.device_id=LPC802, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.lpc_miniusart.condition_id">
+      <require condition="allOf.device_id=LPC802, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.mrt.condition_id">
+      <require condition="allOf.device_id=LPC802, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.pint.condition_id">
+      <require condition="allOf.device_id=LPC802, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.power_no_lib.condition_id">
+      <require condition="allOf.driver.common, device_id=LPC802.internal_condition"/>
+    </condition>
+    <condition id="driver.reset.condition_id">
+      <require condition="allOf.driver.common, device_id=LPC802.internal_condition"/>
+    </condition>
+    <condition id="driver.rom_api.condition_id">
+      <require condition="allOf.driver.common, device_id=LPC802.internal_condition"/>
+    </condition>
+    <condition id="driver.swm.condition_id">
+      <require condition="allOf.device_id=LPC802, driver.common, driver.swm_connections.internal_condition"/>
+    </condition>
+    <condition id="allOf.device_id=LPC802, driver.common, driver.swm_connections.internal_condition">
+      <require condition="device_id.LPC802.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="swm_connections"/>
+    </condition>
+    <condition id="driver.swm_connections.condition_id">
+      <require condition="allOf.driver.common, device_id=LPC802.internal_condition"/>
+    </condition>
+    <condition id="driver.syscon.condition_id">
+      <require condition="allOf.device_id=LPC802, driver.common, driver.syscon_connections.internal_condition"/>
+    </condition>
+    <condition id="allOf.device_id=LPC802, driver.common, driver.syscon_connections.internal_condition">
+      <require condition="device_id.LPC802.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="syscon_connections"/>
+    </condition>
+    <condition id="driver.syscon_connections.condition_id">
+      <require condition="allOf.driver.common, device_id=LPC802.internal_condition"/>
+    </condition>
+    <condition id="driver.wkt.condition_id">
+      <require condition="allOf.device_id=LPC802, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.wwdt.condition_id">
+      <require condition="allOf.device_id=LPC802, driver.common.internal_condition"/>
+    </condition>
+    <condition id="middleware.baremetal.condition_id">
+      <require condition="allOf.device=LPC802.internal_condition"/>
+    </condition>
+    <condition id="utilities.misc_utilities.condition_id">
+      <require condition="allOf.device=LPC802.internal_condition"/>
+    </condition>
+    <condition id="utility.assert_lite.condition_id">
+      <require condition="allOf.utility.debug_console_lite, driver.common, device=LPC802.internal_condition"/>
+    </condition>
+    <condition id="allOf.utility.debug_console_lite, driver.common, device=LPC802.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="device.LPC802.internal_condition"/>
+    </condition>
+    <condition id="utility.debug_console_lite.condition_id">
+      <require condition="allOf.component.miniusart_adapter, device_id=LPC802, driver.common, utility.str.internal_condition"/>
+    </condition>
+    <condition id="allOf.component.miniusart_adapter, device_id=LPC802, driver.common, utility.str.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="miniusart_adapter"/>
+      <require condition="device_id.LPC802.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="str"/>
+    </condition>
+    <condition id="utility.shell.condition_id">
+      <require condition="allOf.utility.str, component.lists, driver.common, device=LPC802.internal_condition"/>
+    </condition>
+    <condition id="allOf.utility.str, component.lists, driver.common, device=LPC802.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="str"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="device.LPC802.internal_condition"/>
+    </condition>
+    <condition id="utility.str.condition_id">
+      <require condition="allOf.driver.common, device=LPC802.internal_condition"/>
+    </condition>
+  </conditions>
+  <components>
+    <component Cclass="Board Support" Cgroup="SDK Project Template" Csub="project_template" Cvariant="LPC802" Cversion="1.0.0" condition="DEVICES_Project_Template.LPC802.condition_id" isDefaultVariant="1">
+      <description>Devices_project_template LPC802</description>
+      <files>
+        <file category="header" attr="config" name="devices/LPC802/project_template/clock_config.h" version="1.0.0" projectpath="board"/>
+        <file category="sourceC" attr="config" name="devices/LPC802/project_template/clock_config.c" version="1.0.0" projectpath="board"/>
+        <file category="header" attr="config" name="devices/LPC802/project_template/pin_mux.h" version="1.0.0" projectpath="board"/>
+        <file category="sourceC" attr="config" name="devices/LPC802/project_template/pin_mux.c" version="1.0.0" projectpath="board"/>
+        <file category="header" attr="config" name="devices/LPC802/project_template/peripherals.h" version="1.0.0" projectpath="board"/>
+        <file category="sourceC" attr="config" name="devices/LPC802/project_template/peripherals.c" version="1.0.0" projectpath="board"/>
+        <file category="include" name="devices/LPC802/project_template/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="cmake_toolchain" Cversion="1.0.0" condition="cmake_toolchain.condition_id">
+      <description>Cmake_toolchain</description>
+      <files>
+        <file category="other" name="tools/cmake_toolchain_files/armgcc.cmake" projectpath="cmake_toolchain_files"/>
+        <file category="other" name="tools/cmake_toolchain_files/xcc.cmake" projectpath="cmake_toolchain_files"/>
+        <file category="other" name="tools/cmake_toolchain_files/xclang.cmake" projectpath="cmake_toolchain_files"/>
+        <file category="other" name="tools/cmake_toolchain_files/armgcc_force_cpp.cmake" projectpath="cmake_toolchain_files"/>
+        <file category="other" name="tools/cmake_toolchain_files/mcux_config.cmake" projectpath="cmake_toolchain_files"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Config Tools" Csub="Init" Cversion="1.0.0" condition="component.config_tools.condition_id" generator="MCUXpressoConfig">
+      <description>Initialization generated by MCUXpresso Config Tools</description>
+      <files>
+        <file category="doc" name="https://www.nxp.com/configtools"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ctimer_adapter" Cversion="1.0.0" condition="component.ctimer_adapter.condition_id">
+      <description>Component ctimer_adapter</description>
+      <RTE_Components_h>
+#ifndef TIMER_PORT_TYPE_CTIMER
+#define TIMER_PORT_TYPE_CTIMER 1
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/timer/fsl_adapter_timer.h" projectpath="component/timer"/>
+        <file category="sourceC" name="components/timer/fsl_adapter_ctimer.c" projectpath="component/timer"/>
+        <file category="include" name="components/timer/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lists" Cversion="1.0.0" condition="component.lists.condition_id">
+      <description>Component lists</description>
+      <files>
+        <file category="header" name="components/lists/fsl_component_generic_list.h" projectpath="component/lists"/>
+        <file category="sourceC" name="components/lists/fsl_component_generic_list.c" projectpath="component/lists"/>
+        <file category="include" name="components/lists/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="log" Cversion="1.0.0" condition="component.log.condition_id">
+      <description>Component log</description>
+      <files>
+        <file category="header" name="components/log/fsl_component_log.h" projectpath="component/log"/>
+        <file category="header" name="components/log/fsl_component_log_config.h" projectpath="component/log"/>
+        <file category="sourceC" name="components/log/fsl_component_log.c" projectpath="component/log"/>
+        <file category="include" name="components/log/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="debugconsole_lite" Cversion="1.0.0" condition="component.log.backend.debugconsole_lite.condition_id">
+      <description>Component log backend debug console lite</description>
+      <files>
+        <file category="sourceC" name="components/log/fsl_component_log_backend_debugconsole.c" projectpath="component/log"/>
+        <file category="header" name="components/log/fsl_component_log_backend_debugconsole.h" projectpath="component/log"/>
+        <file category="include" name="components/log/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ringbuffer" Cversion="1.0.0" condition="component.log.backend.ringbuffer.condition_id">
+      <description>Component log backend ring buffer</description>
+      <files>
+        <file category="sourceC" name="components/log/fsl_component_log_backend_ringbuffer.c" projectpath="component/log"/>
+        <file category="header" name="components/log/fsl_component_log_backend_ringbuffer.h" projectpath="component/log"/>
+        <file category="include" name="components/log/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpc_crc_adapter" Cversion="1.0.0" condition="component.lpc_crc_adapter.condition_id">
+      <description>Component lpc_crc_adapter</description>
+      <files>
+        <file category="header" name="components/crc/fsl_adapter_crc.h" projectpath="component/crc"/>
+        <file category="sourceC" name="components/crc/fsl_adapter_lpc_crc.c" projectpath="component/crc"/>
+        <file category="include" name="components/crc/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpc_i2c_adapter" Cversion="1.0.0" condition="component.lpc_i2c_adapter.condition_id">
+      <description>Component lpc_i2c_adapter</description>
+      <files>
+        <file category="header" name="components/i2c/fsl_adapter_i2c.h" projectpath="component/i2c"/>
+        <file category="sourceC" name="components/i2c/fsl_adapter_lpc_i2c.c" projectpath="component/i2c"/>
+        <file category="include" name="components/i2c/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mem_manager" Cversion="1.0.0" condition="component.mem_manager.condition_id">
+      <description>Component mem_manager</description>
+      <files>
+        <file category="header" name="components/mem_manager/fsl_component_mem_manager.h" projectpath="component/mem_manager"/>
+        <file category="sourceC" name="components/mem_manager/fsl_component_mem_manager.c" projectpath="component/mem_manager"/>
+        <file category="include" name="components/mem_manager/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mem_manager_light" Cversion="1.0.0" condition="component.mem_manager_light.condition_id">
+      <description>Component mem_manager_light</description>
+      <files>
+        <file category="header" name="components/mem_manager/fsl_component_mem_manager.h" projectpath="component/mem_manager"/>
+        <file category="sourceC" name="components/mem_manager/fsl_component_mem_manager_light.c" projectpath="component/mem_manager"/>
+        <file category="include" name="components/mem_manager/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="miniusart_adapter" Cversion="1.0.0" condition="component.miniusart_adapter.condition_id">
+      <description>Component miniusart_adapter</description>
+      <files>
+        <file category="header" name="components/uart/fsl_adapter_uart.h" projectpath="component/uart"/>
+        <file category="sourceC" name="components/uart/fsl_adapter_miniusart.c" projectpath="component/uart"/>
+        <file category="include" name="components/uart/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mrt_adapter" Cversion="1.0.0" condition="component.mrt_adapter.condition_id">
+      <description>Component mrt_adapter</description>
+      <RTE_Components_h>
+#ifndef TIMER_PORT_TYPE_MRT
+#define TIMER_PORT_TYPE_MRT 1
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/timer/fsl_adapter_timer.h" projectpath="component/timer"/>
+        <file category="sourceC" name="components/timer/fsl_adapter_mrt.c" projectpath="component/timer"/>
+        <file category="include" name="components/timer/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="panic" Cversion="1.0.0" condition="component.panic.condition_id">
+      <description>Component panic</description>
+      <files>
+        <file category="header" name="components/panic/fsl_component_panic.h" projectpath="component/panic"/>
+        <file category="sourceC" name="components/panic/fsl_component_panic.c" projectpath="component/panic"/>
+        <file category="include" name="components/panic/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pwm_ctimer_adapter" Cversion="1.0.0" condition="component.pwm_ctimer_adapter.condition_id">
+      <description>Component pwm_ctimer_adapter</description>
+      <files>
+        <file category="header" name="components/pwm/fsl_adapter_pwm.h" projectpath="component/pwm"/>
+        <file category="sourceC" name="components/pwm/fsl_adapter_pwm_ctimer.c" projectpath="component/pwm"/>
+        <file category="include" name="components/pwm/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="reset_adapter" Cversion="1.0.0" condition="component.reset_adapter.condition_id">
+      <description>Component reset_adapter</description>
+      <files>
+        <file category="header" name="components/reset/fsl_adapter_reset.h" projectpath="component/reset"/>
+        <file category="sourceC" name="components/reset/fsl_adapter_reset.c" projectpath="component/reset"/>
+        <file category="include" name="components/reset/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="software_crc_adapter" Cversion="1.0.0" condition="component.software_crc_adapter.condition_id">
+      <description>Component software_crc_adapter</description>
+      <files>
+        <file category="header" name="components/crc/fsl_adapter_crc.h" projectpath="component/crc"/>
+        <file category="sourceC" name="components/crc/fsl_adapter_software_crc.c" projectpath="component/crc"/>
+        <file category="include" name="components/crc/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="software_rng_adapter" Cversion="1.0.0" condition="component.software_rng_adapter.condition_id">
+      <description>Component software_rng_adapter</description>
+      <files>
+        <file category="header" name="components/rng/fsl_adapter_rng.h" projectpath="component/rng"/>
+        <file category="sourceC" name="components/rng/fsl_adapter_software_rng.c" projectpath="component/rng"/>
+        <file category="include" name="components/rng/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="timer_manager" Cversion="1.0.0" condition="component.timer_manager.condition_id">
+      <description>Component timer_manager</description>
+      <files>
+        <file category="header" name="components/timer_manager/fsl_component_timer_manager.h" projectpath="component/timer_manager"/>
+        <file category="sourceC" name="components/timer_manager/fsl_component_timer_manager.c" projectpath="component/timer_manager"/>
+        <file category="include" name="components/timer_manager/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="CMSIS" Csub="LPC802_header" Cversion="1.0.0" condition="device.LPC802_CMSIS.condition_id">
+      <description>Device LPC802_cmsis</description>
+      <files>
+        <file category="header" name="devices/LPC802/fsl_device_registers.h" projectpath="device"/>
+        <file category="header" name="devices/LPC802/LPC802.h" projectpath="device"/>
+        <file category="header" name="devices/LPC802/LPC802_features.h" projectpath="device"/>
+        <file category="include" name="devices/LPC802/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="LPC802_linker" Cversion="1.0.0" condition="device.LPC802_linker.condition_id">
+      <description>Device LPC802_linker</description>
+      <files>
+        <file condition="allOf.toolchains=mdk, device_ids=LPC802.condition_id" category="linkerScript" attr="config" name="devices/LPC802/arm/LPC802_flash.scf" version="1.0.0" projectpath="LPC802/arm"/>
+        <file condition="allOf.toolchains=mdk, device_ids=LPC802.condition_id" category="linkerScript" attr="config" name="devices/LPC802/arm/LPC802_ram.scf" version="1.0.0" projectpath="LPC802/arm"/>
+        <file condition="allOf.toolchains=armgcc, device_ids=LPC802.condition_id" category="linkerScript" attr="config" name="devices/LPC802/gcc/LPC802_flash.ld" version="1.0.0" projectpath="LPC802/gcc"/>
+        <file condition="allOf.toolchains=armgcc, device_ids=LPC802.condition_id" category="linkerScript" attr="config" name="devices/LPC802/gcc/LPC802_ram.ld" version="1.0.0" projectpath="LPC802/gcc"/>
+        <file condition="allOf.toolchains=iar, device_ids=LPC802.condition_id" category="linkerScript" attr="config" name="devices/LPC802/iar/LPC802_flash.icf" version="1.0.0" projectpath="LPC802/iar"/>
+        <file condition="allOf.toolchains=iar, device_ids=LPC802.condition_id" category="linkerScript" attr="config" name="devices/LPC802/iar/LPC802_ram.icf" version="1.0.0" projectpath="LPC802/iar"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Csub="" Cversion="1.1.0" condition="device.LPC802_startup.condition_id">
+      <description>Device LPC802_startup</description>
+      <files>
+        <file condition="allOf.toolchains=iar.condition_id" category="sourceAsm" attr="config" name="devices/LPC802/iar/startup_LPC802.s" version="1.1.0" projectpath="startup"/>
+        <file condition="allOf.toolchains=armgcc.condition_id" category="sourceAsm" attr="config" name="devices/LPC802/gcc/startup_LPC802.S" version="1.1.0" projectpath="startup"/>
+        <file condition="allOf.toolchains=mdk.condition_id" category="sourceAsm" attr="config" name="devices/LPC802/arm/startup_LPC802.S" version="1.1.0" projectpath="startup"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="CMSIS" Csub="LPC802_system" Cversion="1.0.0" condition="device.LPC802_system.condition_id">
+      <description>Device LPC802_system</description>
+      <files>
+        <file category="sourceC" name="devices/LPC802/system_LPC802.c" projectpath="device"/>
+        <file category="header" name="devices/LPC802/system_LPC802.h" projectpath="device"/>
+        <file category="include" name="devices/LPC802/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="clock" Cversion="2.3.1" condition="driver.clock.condition_id">
+      <description>Clock Driver</description>
+      <files>
+        <file category="header" name="devices/LPC802/drivers/fsl_clock.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC802/drivers/fsl_clock.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC802/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="common" Cversion="2.4.1" condition="driver.common.condition_id">
+      <description>COMMON Driver</description>
+      <files>
+        <file category="header" name="devices/LPC802/drivers/fsl_common.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC802/drivers/fsl_common.c" projectpath="drivers"/>
+        <file condition="allOf.cores=cm0p.condition_id" category="sourceC" name="devices/LPC802/drivers/fsl_common_arm.c" projectpath="drivers"/>
+        <file condition="allOf.cores=cm0p.condition_id" category="header" name="devices/LPC802/drivers/fsl_common_arm.h" projectpath="drivers"/>
+        <file category="include" name="devices/LPC802/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ctimer" Cversion="2.3.1" condition="driver.ctimer.condition_id">
+      <description>CTimer Driver</description>
+      <files>
+        <file category="header" name="devices/LPC802/drivers/fsl_ctimer.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC802/drivers/fsl_ctimer.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC802/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="iap" Cversion="2.0.7" condition="driver.iap.condition_id">
+      <description>IAP Driver</description>
+      <files>
+        <file category="header" name="devices/LPC802/drivers/fsl_iap.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC802/drivers/fsl_iap.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC802/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpc_acomp" Cversion="2.1.0" condition="driver.lpc_acomp.condition_id">
+      <description>LPC_ACOMP Driver</description>
+      <files>
+        <file category="header" name="devices/LPC802/drivers/fsl_acomp.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC802/drivers/fsl_acomp.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC802/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="adc" Cversion="2.5.3" condition="driver.lpc_adc.condition_id">
+      <description>ADC Driver</description>
+      <files>
+        <file category="header" name="devices/LPC802/drivers/fsl_adc.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC802/drivers/fsl_adc.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC802/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpc_crc" Cversion="2.1.1" condition="driver.lpc_crc.condition_id">
+      <description>CRC Driver</description>
+      <files>
+        <file category="header" name="devices/LPC802/drivers/fsl_crc.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC802/drivers/fsl_crc.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC802/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="gpio" Cversion="2.1.7" condition="driver.lpc_gpio.condition_id">
+      <description>GPIO Driver</description>
+      <files>
+        <file category="header" name="devices/LPC802/drivers/fsl_gpio.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC802/drivers/fsl_gpio.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC802/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="i2c" Cversion="2.1.0" condition="driver.lpc_i2c.condition_id">
+      <description>I2C Driver</description>
+      <files>
+        <file category="header" name="devices/LPC802/drivers/fsl_i2c.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC802/drivers/fsl_i2c.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC802/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="iocon" Cversion="2.0.2" condition="driver.lpc_iocon_lite.condition_id">
+      <description>IOCON Driver</description>
+      <files>
+        <file category="header" name="devices/LPC802/drivers/fsl_iocon.h" projectpath="drivers"/>
+        <file category="include" name="devices/LPC802/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="spi" Cversion="2.0.7" condition="driver.lpc_minispi.condition_id">
+      <description>SPI Driver</description>
+      <files>
+        <file category="header" name="devices/LPC802/drivers/fsl_spi.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC802/drivers/fsl_spi.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC802/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="usart" Cversion="2.5.1" condition="driver.lpc_miniusart.condition_id">
+      <description>USART Driver</description>
+      <files>
+        <file category="header" name="devices/LPC802/drivers/fsl_usart.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC802/drivers/fsl_usart.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC802/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mrt" Cversion="2.0.4" condition="driver.mrt.condition_id">
+      <description>MRT Driver</description>
+      <files>
+        <file category="header" name="devices/LPC802/drivers/fsl_mrt.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC802/drivers/fsl_mrt.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC802/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pint" Cversion="2.1.13" condition="driver.pint.condition_id">
+      <description>PINT Driver</description>
+      <files>
+        <file category="header" name="devices/LPC802/drivers/fsl_pint.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC802/drivers/fsl_pint.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC802/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="power" Cversion="2.0.0" condition="driver.power_no_lib.condition_id">
+      <description>Power Driver</description>
+      <files>
+        <file category="header" name="devices/LPC802/drivers/fsl_power.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC802/drivers/fsl_power.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC802/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="reset" Cversion="2.1.2" condition="driver.reset.condition_id">
+      <description>Reset Driver</description>
+      <files>
+        <file category="header" name="devices/LPC802/drivers/fsl_reset.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC802/drivers/fsl_reset.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC802/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="rom_api" Cversion="2.0.1" condition="driver.rom_api.condition_id">
+      <description>Rom_api Driver</description>
+      <files>
+        <file category="header" name="devices/LPC802/drivers/rom_api.h" projectpath="drivers"/>
+        <file category="include" name="devices/LPC802/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="swm" Cversion="2.1.2" condition="driver.swm.condition_id">
+      <description>SWM Driver</description>
+      <files>
+        <file category="header" name="devices/LPC802/drivers/fsl_swm.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC802/drivers/fsl_swm.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC802/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="swm_connections" Cversion="2.0.1" condition="driver.swm_connections.condition_id">
+      <description>Swm_connections Driver</description>
+      <files>
+        <file category="header" name="devices/LPC802/drivers/fsl_swm_connections.h" projectpath="drivers"/>
+        <file category="include" name="devices/LPC802/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="syscon" Cversion="2.0.1" condition="driver.syscon.condition_id">
+      <description>SYSCON Driver</description>
+      <files>
+        <file category="sourceC" name="devices/LPC802/drivers/fsl_syscon.c" projectpath="drivers"/>
+        <file category="header" name="devices/LPC802/drivers/fsl_syscon.h" projectpath="drivers"/>
+        <file category="include" name="devices/LPC802/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="syscon_connections" Cversion="2.0.1" condition="driver.syscon_connections.condition_id">
+      <description>Syscon_connections Driver</description>
+      <files>
+        <file category="header" name="devices/LPC802/drivers/fsl_syscon_connections.h" projectpath="drivers"/>
+        <file category="include" name="devices/LPC802/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="wkt" Cversion="2.0.2" condition="driver.wkt.condition_id">
+      <description>WKT Driver</description>
+      <files>
+        <file category="header" name="devices/LPC802/drivers/fsl_wkt.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC802/drivers/fsl_wkt.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC802/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="wwdt" Cversion="2.1.9" condition="driver.wwdt.condition_id">
+      <description>WWDT Driver</description>
+      <files>
+        <file category="header" name="devices/LPC802/drivers/fsl_wwdt.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/LPC802/drivers/fsl_wwdt.c" projectpath="drivers"/>
+        <file category="include" name="devices/LPC802/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="baremetal" Cversion="1.0.0" condition="middleware.baremetal.condition_id">
+      <description>Middleware baremetal</description>
+      <RTE_Components_h>
+#ifndef SDK_OS_BAREMETAL
+#define SDK_OS_BAREMETAL 
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="doc" name="middleware/bm/readme.txt" projectpath="middleware/bm"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="misc_utilities" Cversion="1.1.1" condition="utilities.misc_utilities.condition_id">
+      <description>Utilities which is needed for particular toolchain like the SBRK function required to address limitation between HEAP and STACK in GCC toolchain library.</description>
+      <files>
+        <file condition="allOf.toolchains=armgcc.condition_id" category="sourceC" name="devices/LPC802/utilities/fsl_sbrk.c" projectpath="utilities"/>
+        <file condition="allOf.toolchains=armgcc.condition_id" category="sourceC" name="devices/LPC802/utilities/fsl_syscall_stub.c" projectpath="utilities"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="assert_lite" Cversion="1.0.0" condition="utility.assert_lite.condition_id">
+      <description>Utility assert_lite</description>
+      <files>
+        <file category="sourceC" name="devices/LPC802/utilities/debug_console_lite/fsl_assert.c" projectpath="utilities"/>
+        <file category="header" name="devices/LPC802/utilities/debug_console_lite/fsl_assert.h" projectpath="utilities"/>
+        <file category="include" name="devices/LPC802/utilities/debug_console_lite/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite" Cversion="1.0.0" condition="utility.debug_console_lite.condition_id">
+      <description>Utility debug_console_lite</description>
+      <files>
+        <file category="sourceC" name="devices/LPC802/utilities/debug_console_lite/fsl_debug_console.c" projectpath="utilities"/>
+        <file category="header" name="devices/LPC802/utilities/debug_console_lite/fsl_debug_console.h" projectpath="utilities"/>
+        <file category="include" name="devices/LPC802/utilities/debug_console_lite/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="shell" Cversion="1.0.0" condition="utility.shell.condition_id">
+      <description>Utility shell</description>
+      <RTE_Components_h>
+#ifndef DEBUG_CONSOLE_RX_ENABLE
+#define DEBUG_CONSOLE_RX_ENABLE 0
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="sourceC" name="devices/LPC802/utilities/shell/fsl_shell.c" projectpath="utilities"/>
+        <file category="header" name="devices/LPC802/utilities/shell/fsl_shell.h" projectpath="utilities"/>
+        <file category="include" name="devices/LPC802/utilities/shell/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="str" Cversion="1.0.0" condition="utility.str.condition_id">
+      <description>Utility str</description>
+      <files>
+        <file category="sourceC" name="devices/LPC802/utilities/str/fsl_str.c" projectpath="utilities"/>
+        <file category="header" name="devices/LPC802/utilities/str/fsl_str.h" projectpath="utilities"/>
+        <file category="include" name="devices/LPC802/utilities/str/"/>
+      </files>
+    </component>
+  </components>
+</package>

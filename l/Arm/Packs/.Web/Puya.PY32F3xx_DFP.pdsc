@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.7.27"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.27/schema/PACK.xsd">
+    <vendor>Puya</vendor>
+    <url>https://www.puyasemi.com/uploadfiles/</url>
+    <name>PY32F3xx_DFP</name>
+    <description>Puya PY32F3 Series Device Support</description>
+    <releases>
+        <release version="1.0.0" date="2023-09-12">
+        First Release version of PY32F3 Device Family Pack.
+        </release>
+    </releases>
+
+    <keywords>
+        <keyword>Puya</keyword>
+        <keyword>Device Support</keyword>
+        <keyword>PY32F3</keyword>
+        <keyword>PY32F3xx</keyword>
+    </keywords>
+    <devices>
+        <family Dfamily="PY32F3 Series" Dvendor="Puya:176">
+            <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="1" Dmpu="1"
+                Dendian="Little-endian" />
+            <description>
+PUYA' PY32F3 series of mainstream MCUs covers the needs of a large variety of applications in the industrial, medical and consumer markets. High performance with first-class peripherals and low-power, low-voltage operation is paired with a high level of integration at accessible prices with a simple architecture and easy-to-use tools.
+Typical applications include motor drives and application control, medical and handheld equipment, industrial applications, PLCs, inverters, printers, and scanners, alarm systems, video intercom, HVAC and home audio equipment.
+
+    - 5 V-tolerant I/Os
+    - Timer with quadrature (incremental) encoder input
+    - 96-bit unique ID
+            </description>
+
+            <sequences>
+                <sequence name="DebugCoreStart">
+                    <block>
+                        // Replication of Standard Functionality
+                         Write32(0xE000EDF0, 0xA05F0001);                                        // Enable Core Debug via DHCSR
+
+                        // Device Specific Debug Setup
+                        Write32(0xE0042004, DbgMCU_CR);                                         // DBGMCU_CR: Configure MCU Debug
+                    </block>
+                </sequence>
+
+            </sequences>
+
+            <!-- ************************  Subfamily 'PY32F303'  **************************** -->
+            <subFamily DsubFamily="PY32F303">
+                <processor Dclock="144000000" />
+                <debug svd="SVD/py32f303xx.svd" />
+
+                <debugvars configfile="Debug/PY32F303xx.dbgconf">
+                    __var DbgMCU_CR      = 0x00000007;   // DBGMCU_CR: DBG_SLEEP, DBG_STOP, DBG_STANDBY
+                </debugvars>
+
+                <!-- *************************  Device 'PY32F303x8'  ***************************** -->
+                <device Dname="PY32F303x8">
+                    <compile header="Device/Include/py32f3xx.h" />
+                    <memory id="IROM1" start="0x08000000" size="0x00010000" startup="1" default="1" />
+                    <memory id="IRAM1" start="0x20000000" size="0x00008000" init="0" default="1" />
+                    <algorithm name="Flash/PY32F303xx_64.FLM" start="0x08000000" size="0x00060000" default="1" />
+                </device>
+
+                <!-- *************************  Device 'PY32F303xB'  ***************************** -->
+                <device Dname="PY32F303xB">
+                    <compile header="Device/Include/py32f3xx.h" />
+                    <memory id="IROM1" start="0x08000000" size="0x00020000" startup="1" default="1" />
+                    <memory id="IRAM1" start="0x20000000" size="0x00008000" init="0" default="1" />
+                    <algorithm name="Flash/PY32F303xx_128.FLM" start="0x08000000" size="0x00060000" default="1" />
+                </device>
+
+                <!-- *************************  Device 'PY32F303xC'  ***************************** -->
+                <device Dname="PY32F303xC">
+                    <compile header="Device/Include/py32f3xx.h" />
+                    <memory id="IROM1" start="0x08000000" size="0x00040000" startup="1" default="1" />
+                    <memory id="IRAM1" start="0x20000000" size="0x00008000" init="0" default="1" />
+                    <algorithm name="Flash/PY32F303xx_256.FLM" start="0x08000000" size="0x00060000" default="1" />
+                </device>
+
+            </subFamily>
+        </family>
+    </devices>
+
+    <conditions>
+        <condition id="PY32F3">
+            <description>Puya PY32F3 Series devices</description>
+            <require Dvendor="Puya:176" Dname="PY32F3*" />
+        </condition>
+
+        <condition id="PY32F303x8">
+            <description>Puya PY32F303x8 Series devices</description>
+            <require Dvendor="Puya:176" Dname="PY32F303?8*" />
+        </condition>
+
+        <condition id="PY32F303xB">
+            <description>Puya PY32F303xB Series devices</description>
+            <require Dvendor="Puya:176" Dname="PY32F303?B*" />
+        </condition>
+
+        <condition id="PY32F303xC">
+            <description>Puya PY32F303xC Series devices</description>
+            <require Dvendor="Puya:176" Dname="PY32F303?C*" />
+        </condition>
+
+        <condition id="PY32F303">
+            <description>Puya PY32F303 Series devices</description>
+            <accept condition="PY32F303x8" />
+            <accept condition="PY32F303xB" />
+            <accept condition="PY32F303xC" />
+        </condition>
+
+        <condition id="PY32F3_ARMCC">
+            <description>filter for PY32F3 devices and the ARM compiler</description>
+            <require condition="PY32F3" />
+            <require Tcompiler="ARMCC" />
+        </condition>
+
+        <condition id="PY32F303_ARMCC">
+            <description>filter for PY32F303 devices and the ARM compiler</description>
+            <require condition="PY32F303" />
+            <require Tcompiler="ARMCC" />
+        </condition>
+
+        <condition id="PY32F303x8_ARMCC">
+            <description>filter for PY32F303x8 devices and the ARM compiler</description>
+            <require condition="PY32F303x8" />
+            <require Tcompiler="ARMCC" />
+        </condition>
+
+        <condition id="PY32F303xB_ARMCC">
+            <description>filter for PY32F303xB devices and the ARM compiler</description>
+            <require condition="PY32F303xB" />
+            <require Tcompiler="ARMCC" />
+        </condition>
+
+        <condition id="PY32F303xC_ARMCC">
+            <description>filter for PY32F303xC devices and the ARM compiler</description>
+            <require condition="PY32F303xC" />
+            <require Tcompiler="ARMCC" />
+        </condition>
+
+        <condition id="PY32F3 CMSIS">
+            <description>Puya PY32F3 Device and CMSIS-CORE</description>
+            <require condition="PY32F3" />
+            <require Cclass="CMSIS" Cgroup="CORE" />
+        </condition>
+    </conditions>
+
+    <components>
+        <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="PY32F3 CMSIS">  <!-- Cversion is necessary -->
+            <description>System Startup for Puya PY32F3 Series</description>
+            <RTE_Components_h>
+                <!-- the following content goes into file 'RTE_Components.h' -->
+                #define RTE_DEVICE_STARTUP_PY32F3XX    /* Device Startup for PY32F3 */
+            </RTE_Components_h>
+
+            <files>
+                <!--  include folder -->
+                <file category="include" name="Device/Include/" />
+
+                <!-- common device header file -->
+                <file category="header" name="Device/Include/py32f3xx.h" />
+
+                <!-- startup files -->
+                <!-- ARM Compiler Toolchain -->
+                <file category="source" condition="PY32F303x8_ARMCC" name="Device/Source/ARM/startup_py32f303xx.s" attr="config" version="1.0.0" />
+                <file category="source" condition="PY32F303xB_ARMCC" name="Device/Source/ARM/startup_py32f303xx.s" attr="config" version="1.0.0" />
+                <file category="source" condition="PY32F303xC_ARMCC" name="Device/Source/ARM/startup_py32f303xx.s" attr="config" version="1.0.0" />
+
+                <!-- GCC Toolchain -->
+
+
+                <!-- IAR Toolchain -->
+
+
+                <!-- system file -->
+                <file category="source" name="Device/Source/system_py32f3xx.c" attr="config" version="1.0.0" />
+
+            </files>
+        </component>
+    </components>
+</package>

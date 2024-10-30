@@ -1,0 +1,842 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.28/schema/PACK.xsd" schemaVersion="1.7.28">
+  <vendor>Keil</vendor>
+  <name>S32K3xx_DFP</name>
+  <description>NXP S32K3xx Device Support</description>
+  <url>https://www.keil.com/pack/</url>
+  <license>LICENSE</license>
+
+  <releases>
+    <release version="1.0.1" date="2024-02-12" deprecated="2024-02-12">
+      This Software Pack is no longer maintained.
+	  Please contact the device vendor (NXP) for for available Software Development Kits.
+    </release>
+    <release version="1.0.0" date="2021-10-20">
+      Initial version of NXP S32K3xx Device Family Pack
+      Please report any debug authentication problems to support.intl@keil.com
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>NXP</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package NXP</keyword>
+    <keyword>S32K3xx</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="S32K Series" Dvendor="NXP:11">
+
+      <subFamily DsubFamily="S32K3xx">
+
+        <description>
+          The S32K3 family includes Arm Cortex-M7-based MCUs in single, dual and lockstep core configurations
+          supporting ASIL B/D safety applications. Features include a hardware security engine with NXP firmware,
+          support for firmware over-the-air (FOTA) updates and free ISO 26262 compliant real-time software
+          drivers for AUTOSAR and non-AUTOSAR. S32K3 MCUs are available in NXP’s new MaxQFP package, which
+          reduces package footprint by up to 55% compared with standard QFP package.
+        </description>
+
+        <sequences>
+          <!-- Helper sequences -->
+          <sequence name="ResetHardwareDeassert_Default">
+            <block>
+              __var nReset      = 0x80;
+              __var canReadPins = 0;
+
+              // Assert nRESET line and check if nRESET is readable
+              canReadPins = (DAP_SWJ_Pins(nReset, nReset, 0) != 0xFFFFFFFF);
+            </block>
+            <!-- Wait max. 1s for nRESET to recover from reset if readable-->
+            <control if="canReadPins" while="(DAP_SWJ_Pins(nReset, nReset, 0) &amp; nReset) == 0" timeout="1000000"/>
+
+            <!-- Wait 100ms for recovery if nRESET not readable -->
+            <control if="!canReadPins" while="1" timeout="100000"/>
+          </sequence>
+
+          <sequence name="EnableM7Debug">
+            <block info="Enable M7 cores debugging in SDA_AP">
+              __var ap = __ap;                                  // Save current AP
+
+              __ap = 7;                                         // Select SDA_AP
+              WriteAP(0x80, 0x300000F0);                        // Enable M7 Debug in SDA_AP.DBGENCTRL
+              __ap = ap;                                        // Restore AP
+            </block>
+          </sequence>
+
+          <sequence name="FunctionalReset">
+            <block info="Initiate functional reset">
+              __var ap = __ap;                                  // Save current AP
+
+              __ap = 6;                                         // Select MDM_AP
+              WriteAP(0x04, 0x00400B00);                        // Assert RSTRELCM7/RSTRELTLn, CMnDBGREQ (MDMAPCTL)
+              WriteAP(0x04, 0x00400B20);                        // Assert RSTRELCM7/RSTRELTLn, CMnDBGREQ and SYSFUNCRST (MDMAPCTL)
+              WriteAP(0x04, 0x00400B00);                        // Assert RSTRELCM7/RSTRELTLn, CMnDBGREQ (MDMAPCTL)
+              WriteAP(0x04, 0x00400000);                        // Assert RSTRELCM7/RSTRELTLn (MDMAPCTL)
+              __ap = ap;                                        // Restore AP
+            </block>
+          </sequence>
+
+          <sequence name="DebugFromFirstInstruction">
+            <block>
+              __var ap = __ap;                                  // Save current AP
+            </block>
+            <block>
+              Sequence("EnableM7Debug");
+            </block>
+            <block>
+              __ap = 6;                                         // set MDM-AP
+              WriteAP(0x04, 0x00430000);                        // MDMAPCTL: Bits 16 and 17 CM7_x_CORE_ACCESS
+            </block>
+            <block>
+              __ap = 7;                                         // SDA_AP;
+              WriteAP(0x90, 0x00000000);                        // SDAAPRSTCTRL: Ensure M7_1 and M7_0 are held in reset (RSTRELTLCM71/RSTRELTLCM70 = 0)
+            </block>
+          </sequence>
+
+          <sequence name="DebugEnablement">
+            <block>
+              Sequence("EnableM7Debug");                        // Enable M7 debugging
+            </block>
+            <control if="DoRAMInitialize">
+              <block>
+                Sequence("EnablePeripheralClocks");             // Enable peripheral clocks
+                Sequence("RAMInitialize");                      // Do RAM Initialize
+              </block>
+            </control>
+          </sequence>
+
+          <!-- Default sequence overrides -->
+          <sequence name="ResetHardwareDeassert">
+            <block>
+              __var ap = __ap;                                  // Save current AP
+              __var sdaaprstctrl_val;
+            </block>
+
+            <control if="ap == 4">
+              <block>
+                sdaaprstctrl_val = 0x02000000;                  // release CM7_0 from reset (RSTRELTLCM70 = 1)
+              </block>
+            </control>
+            <control if="ap == 5">
+              <block>
+                sdaaprstctrl_val = 0x04000000;                  // release CM7_1 from reset (RSTRELTLCM71 = 1)
+              </block>
+            </control>
+
+            <control if="(__connection &amp; 0x00010000)">
+              <block>
+                __errorcontrol = 1;
+                __ap = 7;                                       // __ap = SDA_AP;
+                WriteAP(0x90, sdaaprstctrl_val);                // SDAAPRSTCTRL: Release M7_0 or M7_1 from reset
+                __ap = ap;
+                __errorcontrol = 0;
+              </block>
+              <block>
+//                DAP_Delay(1000000);
+                __errorcontrol = 1;
+                Sequence("DebugEnablement");                    // Call DebugEnablement
+                __errorcontrol = 0;
+              </block>
+            </control>
+
+            <control if="(__connection &amp; 0x00010000) == 0x00000000" info="connect normal">
+              <block>
+                Sequence("ResetHardwareDeassert_Default");
+              </block>
+            </control>
+          </sequence>
+
+          <sequence name="DebugDeviceUnlock">
+            <control if="(__connection &amp; 0x00010000)"               info="connect under reset">
+              <block>
+                Sequence("DebugFromFirstInstruction");
+                Sequence("ResetHardwareDeassert_Default");
+              </block>
+            </control>
+
+            <control if="(__connection &amp; 0x00010000) == 0x00000000" info="connect normal">
+              <block>
+                Sequence("DebugEnablement");                    // Call DebugEnablement
+              </block>
+            </control>
+          </sequence>
+
+          <sequence name="ResetSystem">
+            <block>
+              Sequence("FunctionalReset");                      // Call FunctionalReset
+            </block>
+          </sequence>
+        </sequences>
+
+        <!-- ******************************  Device 'S32K312'  ****************************** -->
+        <device Dname="S32K312">          <!-- 1 x Cortex-M7 Lockstep -->
+          <processor Pname="Cortex-M7_0" Dcore="Cortex-M7"  DcoreVersion="r1p2" Dfpu="SP_FPU" Dmpu="MPU" Ddsp="DSP" Dclock="120000000"/>
+          <compile   Pname="Cortex-M7_0" header="Device/S32K312/Include/S32K312.h" define="CPU_S32K312" Pdefine="S32K3xx_M7_0"/>
+          <debug     Pname="Cortex-M7_0" svd="Device/S32K312/Debug/S32K312_M7.svd"/>
+
+          <debugvars configfile="Device/S32K312/Debug/S32K3xx.dbgconf" version="1.0.0">
+            __var DoRAMInitialize = 1;                            // Enabled
+          </debugvars>
+
+          <sequences>
+            <sequence name="EnablePeripheralClocks">
+              <block info="Enable peripheral clocks">
+                // partition 0
+                Write32(0x402DC134,0x0000F7DF);                   // Enable clock for block 1 in partition 0 (MC_ME.PRTN0_COFB1_CLKEN)
+                Write32(0x402DC100,0x00000001);                   // Enable clock to IPs (MC_ME.PRTN0_PCONF)
+                Write32(0x402DC104,0x00000001);                   // Trigger the hardware process (MC_ME.PRTN0_PUPD)
+                Write32(0x402DC000,0x00005AF0);                   // Start the hardware process; key '5AF0' (MC_ME.MC_ME_CTL_KEY
+                Write32(0x402DC000,0x0000A50F);                   //                             key 'A50F' (MC_ME.MC_ME_CTL_KEY
+
+                // partition 1
+                Write32(0x402DC330,0xB1E0FFF8);                   // Enable clock for block 0 in partition 1 (MC_ME.PRTN1_COFB0_CLKEN)
+                Write32(0x402DC334,0x812AA407);                   // Enable clock for block 1 in partition 1 (MC_ME.PRTN1_COFB1_CLKEN)
+                Write32(0x402DC338,0xBBF3FE7E);                   // Enable clock for block 2 in partition 1 (MC_ME.PRTN1_COFB2_CLKEN)
+                Write32(0x402DC33C,0x00000141);                   // Enable clock for block 3 in partition 1 (MC_ME.PRTN1_COFB3_CLKEN)
+                Write32(0x402DC300,0x00000001);                   // Enable clock to IPs (MC_ME.PRTN1_PCONF)
+                Write32(0x402DC304,0x00000001);                   // Trigger the hardware process (MC_ME.PRTN1_PUPD)
+                Write32(0x402DC000,0x00005AF0);                   // Start the hardware process; key '5AF0' (MC_ME.MC_ME_CTL_KEY
+                Write32(0x402DC000,0x0000A50F);                   //                             key 'A50F' (MC_ME.MC_ME_CTL_KEY
+              </block>
+            </sequence>
+
+            <sequence name="RAMInitialize">
+              <block>
+                __var TCD_B0 = 0x40210000;                        // TCD Base Address; TCD0 = 0x40210000, TCD1 = 0x40214000
+                __var CHCFG0 =       0x03;                        // CH0 = 3, CH1 = 2, CH2 = 1, CH3 = 0
+
+                __var TCD_B1 = 0x40214000;                        // TCD Base Address; TCD0 = 0x40210000, TCD1 = 0x40214000
+                __var CHCFG1 =       0x02;                        // CH0 = 3, CH1 = 2, CH2 = 1, CH3 = 0
+              </block>
+
+              <block info="Initialize SRAM via DMA">
+                // SRAM: 1 x 96kB @ 0x20400000
+                Write8(0x40280000 + CHCFG0, 0x80);                // Enable DMA CH0 (DMAMUX_0 register CHCFG0)
+                Write32(TCD_B0 + 0x020, 0x00400000);              // Source address '0x00400000' (DMA TCD register TCD0_SADDR)
+                Write32(TCD_B0 + 0x024, 0x03030000);              // Offset '0' and attributes SSIZE, DSIZE '64bit' (DMA TCD register TCD0_SOFF, TCD0_ATTR)
+                Write32(TCD_B0 + 0x028, 0x00018000);              // Transfer size Nbytes '96Kb' (DMA TCD register TCD0_NBYTES_MLOFFNO)
+                Write32(TCD_B0 + 0x02C, 0x00000000);              // Last source address adjustment '0' (DMA TCD register TCD0_SLAST_SDA)
+                Write32(TCD_B0 + 0x030, 0x20400000);              // Destination address '0x20400000' (DMA TCD register TCD0_DADDR)
+                Write32(TCD_B0 + 0x034, 0x00010008);              // Destination signed offset '8', Current Major Iteration Count '1' (DMA TCD register TCD0_DOFF, TCD0_CITER_ELINKNO)
+                Write32(TCD_B0 + 0x038, 0xFFFE8000);              // Last destination address adjustment -NBYTES '0xFFFE8000' (DMA TCD register TCD0_DLAST_SGA)
+                Write32(TCD_B0 + 0x03C, 0x00000001);              // Start DMA transfer (DMA TCD register TCD0_CSR)
+              </block>
+              <control while="(Read32(TCD_B0 + 0x000) &amp; 0x80000000)" timeout="1000000" info="Poll DMA is ACTIVE"/>
+
+              <block info="Initialize DTCM via DMA">
+                // DTCM: 1 x 64kB @ 0x20000000 (0x21000000 backdoor)
+                Write8(0x40280000 + CHCFG0, 0x80);                // Enable DMA CH0 (DMAMUX_0 register CHCFG0)
+                Write32(TCD_B0 + 0x020, 0x00400000);              // Source address '0x00400000' (DMA TCD register TCD0_SADDR)
+                Write32(TCD_B0 + 0x024, 0x03030000);              // Offset '0' and attributes SSIZE, DSIZE '64bit' (DMA TCD register TCD0_SOFF, TCD0_ATTR)
+                Write32(TCD_B0 + 0x028, 0x00010000);              // Transfer size Nbytes '64Kb' (DMA TCD register TCD0_NBYTES_MLOFFNO)
+                Write32(TCD_B0 + 0x02C, 0x00000000);              // Last source address adjustment '0' (DMA TCD register TCD0_SLAST_SDA)
+                Write32(TCD_B0 + 0x030, 0x21000000);              // Destination address '0x20000000' (DMA TCD register TCD0_DADDR)
+                Write32(TCD_B0 + 0x034, 0x00010008);              // Destination signed offset '8', Current Major Iteration Count '1' (DMA TCD register TCD0_DOFF, TCD0_CITER_ELINKNO)
+                Write32(TCD_B0 + 0x038, 0xFFFF0000);              // Last destination address adjustment -NBYTES '0xFFFF0000' (DMA TCD register TCD0_DLAST_SGA)
+                Write32(TCD_B0 + 0x03C, 0x00000001);              // Start DMA transfer (DMA TCD register TCD0_CSR)
+              </block>
+              <control while="(Read32(TCD_B0 + 0x000) &amp; 0x80000000)" timeout="1000000" info="Poll DMA is ACTIVE"/>
+
+            </sequence>
+          </sequences>
+
+          <!-- Memory adresses -->
+          <memory name="PFlash" access="rx"      start="0x00400000" size="0x00200000" startup="1" default="1"/> <!-- Program Flash -->
+          <memory name="DFlash" access="rx"      start="0x10000000" size="0x00020000" startup="0" default="0"/> <!-- Data Flash -->
+          <memory name="SRAM_0" access="rwx"     start="0x20400000" size="0x00018000" init   ="0" default="1"/> <!-- 96 SRAM_0 Non-cacheable -->
+          <memory name="DTCM_0" access="rwx"     start="0x20000000" size="0x00010000" init   ="0" default="0"/> <!-- 64 DTCM_0 Non-cacheable -->
+
+          <!-- Flash Algorithms -->
+          <algorithm name="Flash/S32K3x2_Code.FLM" start="0x00400000" size="0x00200000" RAMstart="0x20400000" RAMsize="0x00010000" default="1"/>
+          <algorithm name="Flash/S32K3x2_Data.FLM" start="0x10000000" size="0x00020000" RAMstart="0x20400000" RAMsize="0x00010000" default="0"/>
+
+          <!-- Debug access ports -->
+          <debug Pname="Cortex-M7_0" __dp="0" __ap="4"/>
+        </device>
+
+        <!-- ******************************  Device 'S32K314'  ****************************** -->
+        <device Dname="S32K314">          <!-- 1 x Cortex-M7 Single Core-->
+          <processor Pname="Cortex-M7_0" Dcore="Cortex-M7"  DcoreVersion="r1p2" Dfpu="SP_FPU" Dmpu="MPU" Ddsp="DSP" Dclock="160000000"/>
+          <compile   Pname="Cortex-M7_0" header="Device/S32K314/Include/S32K314.h" define="CPU_S32K314" Pdefine="S32K3xx_M7_0"/>
+          <debug     Pname="Cortex-M7_0" svd="Device/S32K314/Debug/S32K314.svd"/>
+
+          <debugvars configfile="Device/S32K314/Debug/S32K3xx.dbgconf" version="1.0.0">
+            __var DoRAMInitialize = 1;                            // Enabled
+          </debugvars>
+
+          <sequences>
+            <sequence name="EnablePeripheralClocks">
+              <block info="Enable peripheral clocks">
+                // partition 0
+                Write32(0x402DC134,0x0000F7DF);                   // Enable clock for block 1 in partition 0 (MC_ME.PRTN0_COFB1_CLKEN)
+                Write32(0x402DC100,0x00000001);                   // Enable clock to IPs (MC_ME.PRTN0_PCONF)
+                Write32(0x402DC104,0x00000001);                   // Trigger the hardware process (MC_ME.PRTN0_PUPD)
+                Write32(0x402DC000,0x00005AF0);                   // Start the hardware process; key '5AF0' (MC_ME.MC_ME_CTL_KEY
+                Write32(0x402DC000,0x0000A50F);                   //                             key 'A50F' (MC_ME.MC_ME_CTL_KEY
+
+                // partition 1
+                Write32(0x402DC330,0xB1E0FFF8);                   // Enable clock for block 0 in partition 1 (MC_ME.PRTN1_COFB0_CLKEN)
+                Write32(0x402DC334,0x812AA407);                   // Enable clock for block 1 in partition 1 (MC_ME.PRTN1_COFB1_CLKEN)
+                Write32(0x402DC338,0xBBF3FE7E);                   // Enable clock for block 2 in partition 1 (MC_ME.PRTN1_COFB2_CLKEN)
+                Write32(0x402DC33C,0x00000141);                   // Enable clock for block 3 in partition 1 (MC_ME.PRTN1_COFB3_CLKEN)
+                Write32(0x402DC300,0x00000001);                   // Enable clock to IPs (MC_ME.PRTN1_PCONF)
+                Write32(0x402DC304,0x00000001);                   // Trigger the hardware process (MC_ME.PRTN1_PUPD)
+                Write32(0x402DC000,0x00005AF0);                   // Start the hardware process; key '5AF0' (MC_ME.MC_ME_CTL_KEY
+                Write32(0x402DC000,0x0000A50F);                   //                             key 'A50F' (MC_ME.MC_ME_CTL_KEY
+
+                // partition 2
+                Write32(0x402DC530,0x29FFFFF0);                   // Enable clock for block 0 in partition 2 (MC_ME.PRTN2_COFB0_CLKEN)
+                Write32(0x402DC534,0xC48987F9);                   // Enable clock for block 1 in partition 2 (MC_ME.PRTN2_COFB1_CLKEN)
+                Write32(0x402DC500,0x00000001);                   // Enable clock to IPs (MC_ME.PRTN2_PCONF)
+                Write32(0x402DC504,0x00000001);                   // Trigger the hardware process (MC_ME.PRTN2_PUPD)
+                Write32(0x402DC000,0x00005AF0);                   // Start the hardware process; key '5AF0' (MC_ME.MC_ME_CTL_KEY
+                Write32(0x402DC000,0x0000A50F);                   //                             key 'A50F' (MC_ME.MC_ME_CTL_KEY
+              </block>
+            </sequence>
+
+            <sequence name="RAMInitialize">
+              <block>
+                __var TCD_B0 = 0x40210000;                        // TCD Base Address; TCD0 = 0x40210000, TCD1 = 0x40214000
+                __var CHCFG0 =       0x03;                        // CH0 = 3, CH1 = 2, CH2 = 1, CH3 = 0
+
+                __var TCD_B1 = 0x40214000;                        // TCD Base Address; TCD0 = 0x40210000, TCD1 = 0x40214000
+                __var CHCFG1 =       0x02;                        // CH0 = 3, CH1 = 2, CH2 = 1, CH3 = 0
+              </block>
+
+              <block info="Initialize SRAM via DMA">
+                // SRAM: 2 x 160kB @ 0x20400000
+                Write8(0x40280000 + CHCFG0, 0x80);                // Enable DMA CH0 (DMAMUX_0 register CHCFG0)
+                Write32(TCD_B0 + 0x020, 0x00400000);              // Source address '0x00400000' (DMA TCD register TCD0_SADDR)
+                Write32(TCD_B0 + 0x024, 0x03030000);              // Offset '0' and attributes SSIZE, DSIZE '64bit' (DMA TCD register TCD0_SOFF, TCD0_ATTR)
+                Write32(TCD_B0 + 0x028, 0x00050000);              // Transfer size Nbytes '320Kb' (DMA TCD register TCD0_NBYTES_MLOFFNO)
+                Write32(TCD_B0 + 0x02C, 0x00000000);              // Last source address adjustment '0' (DMA TCD register TCD0_SLAST_SDA)
+                Write32(TCD_B0 + 0x030, 0x20400000);              // Destination address '0x20400000' (DMA TCD register TCD0_DADDR)
+                Write32(TCD_B0 + 0x034, 0x00010008);              // Destination signed offset '8', Current Major Iteration Count '1' (DMA TCD register TCD0_DOFF, TCD0_CITER_ELINKNO)
+                Write32(TCD_B0 + 0x038, 0xFFFB0000);              // Last destination address adjustment -NBYTES '0xFFFB0000' (DMA TCD register TCD0_DLAST_SGA)
+                Write32(TCD_B0 + 0x03C, 0x00000001);              // Start DMA transfer (DMA TCD register TCD0_CSR)
+              </block>
+              <control while="(Read32(TCD_B0 + 0x000) &amp; 0x80000000)" timeout="1000000" info="Poll DMA is ACTIVE"/>
+
+              <block info="Initialize DTCM via DMA">
+                // DTCM: 1 x 128kB @ 0x20000000 (0x21000000 backdoor)
+                Write8(0x40280000 + CHCFG0, 0x80);                // Enable DMA CH0 (DMAMUX_0 register CHCFG0)
+                Write32(TCD_B0 + 0x020, 0x00400000);              // Source address '0x00400000' (DMA TCD register TCD0_SADDR)
+                Write32(TCD_B0 + 0x024, 0x03030000);              // Offset '0' and attributes SSIZE, DSIZE '64bit' (DMA TCD register TCD0_SOFF, TCD0_ATTR)
+                Write32(TCD_B0 + 0x028, 0x00020000);              // Transfer size Nbytes '128Kb' (DMA TCD register TCD0_NBYTES_MLOFFNO)
+                Write32(TCD_B0 + 0x02C, 0x00000000);              // Last source address adjustment '0' (DMA TCD register TCD0_SLAST_SDA)
+                Write32(TCD_B0 + 0x030, 0x21000000);              // Destination address '0x20000000' (DMA TCD register TCD0_DADDR)
+                Write32(TCD_B0 + 0x034, 0x00010008);              // Destination signed offset '8', Current Major Iteration Count '1' (DMA TCD register TCD0_DOFF, TCD0_CITER_ELINKNO)
+                Write32(TCD_B0 + 0x038, 0xFFFF0000);              // Last destination address adjustment -NBYTES '0xFFFF0000' (DMA TCD register TCD0_DLAST_SGA)
+                Write32(TCD_B0 + 0x03C, 0x00000001);              // Start DMA transfer (DMA TCD register TCD0_CSR)
+              </block>
+              <control while="(Read32(TCD_B0 + 0x000) &amp; 0x80000000)" timeout="1000000" info="Poll DMA is ACTIVE"/>
+            </sequence>
+          </sequences>
+
+          <!-- Memory adresses -->
+          <memory name="PFlash" access="rx"      start="0x00400000" size="0x00400000" startup="1" default="1"/> <!-- Program Flash -->
+          <memory name="DFlash" access="rx"      start="0x10000000" size="0x00020000" startup="0" default="0"/> <!-- Data Flash -->
+          <memory name="SRAM_0" access="rwx"     start="0x20400000" size="0x00028000" init   ="0" default="1"/> <!-- 160 SRAM_0 Non-cacheable -->
+          <memory name="SRAM_1" access="rwx"     start="0x20428000" size="0x00028000" init   ="0" default="1"/> <!-- 160 SRAM_1 Non-cacheable -->
+          <memory name="DTCM_0" access="rwx"     start="0x20000000" size="0x00010000" init   ="0" default="0"/> <!--  64 DTCM_0 Non-cacheable -->
+
+          <!-- Flash Algorithms -->
+          <algorithm name="Flash/S32K3x4_Code.FLM" start="0x00400000" size="0x00400000" RAMstart="0x20400000" RAMsize="0x00010000" default="1"/>
+          <algorithm name="Flash/S32K3x4_Data.FLM" start="0x10000000" size="0x00020000" RAMstart="0x20400000" RAMsize="0x00010000" default="0"/>
+
+          <!-- Debug access ports -->
+          <debug Pname="Cortex-M7_0" __dp="0" __ap="4"/>
+        </device>
+
+        <!-- ******************************  Device 'S32K324'  ****************************** -->
+        <device Dname="S32K324">          <!-- 2 x Cortex-M7 (S32K344 without LS) -->
+          <processor Pname="Cortex-M7_0" Dcore="Cortex-M7"  DcoreVersion="r1p2" Dfpu="SP_FPU" Dmpu="MPU" Ddsp="DSP" Dclock="160000000"/>
+          <processor Pname="Cortex-M7_1" Dcore="Cortex-M7"  DcoreVersion="r1p2" Dfpu="SP_FPU" Dmpu="MPU" Ddsp="DSP" Dclock="160000000"/>
+          <compile   Pname="Cortex-M7_0" header="Device/S32K324/Include/S32K324.h" define="CPU_S32K324" Pdefine="S32K3xx_M7_0"/>
+          <compile   Pname="Cortex-M7_1" header="Device/S32K324/Include/S32K324.h" define="CPU_S32K324" Pdefine="S32K3xx_M7_1"/>
+          <debug     Pname="Cortex-M7_0" svd="Device/S32K324/Debug/S32K324_M7.svd"/>
+          <debug     Pname="Cortex-M7_1" svd="Device/S32K324/Debug/S32K324_M7.svd"/>
+
+          <debugvars configfile="Device/S32K344/Debug/S32K3xx.dbgconf" version="1.0.0">
+            __var DoRAMInitialize = 1;                            // Enabled
+          </debugvars>
+
+          <sequences>
+            <sequence name="EnablePeripheralClocks">
+              <block info="Enable peripheral clocks">
+                // partition 0
+                Write32(0x402DC134,0x0000F7DF);                   // Enable clock for block 1 in partition 0 (MC_ME.PRTN0_COFB1_CLKEN)
+                Write32(0x402DC100,0x00000001);                   // Enable clock to IPs (MC_ME.PRTN0_PCONF)
+                Write32(0x402DC104,0x00000001);                   // Trigger the hardware process (MC_ME.PRTN0_PUPD)
+                Write32(0x402DC000,0x00005AF0);                   // Start the hardware process; key '5AF0' (MC_ME.MC_ME_CTL_KEY
+                Write32(0x402DC000,0x0000A50F);                   //                             key 'A50F' (MC_ME.MC_ME_CTL_KEY
+
+                // partition 1
+                Write32(0x402DC330,0xB1E0FFF8);                   // Enable clock for block 0 in partition 1 (MC_ME.PRTN1_COFB0_CLKEN)
+                Write32(0x402DC334,0x812AA407);                   // Enable clock for block 1 in partition 1 (MC_ME.PRTN1_COFB1_CLKEN)
+                Write32(0x402DC338,0xBBF3FE7E);                   // Enable clock for block 2 in partition 1 (MC_ME.PRTN1_COFB2_CLKEN)
+                Write32(0x402DC33C,0x00000141);                   // Enable clock for block 3 in partition 1 (MC_ME.PRTN1_COFB3_CLKEN)
+                Write32(0x402DC300,0x00000001);                   // Enable clock to IPs (MC_ME.PRTN1_PCONF)
+                Write32(0x402DC304,0x00000001);                   // Trigger the hardware process (MC_ME.PRTN1_PUPD)
+                Write32(0x402DC000,0x00005AF0);                   // Start the hardware process; key '5AF0' (MC_ME.MC_ME_CTL_KEY
+                Write32(0x402DC000,0x0000A50F);                   //                             key 'A50F' (MC_ME.MC_ME_CTL_KEY
+
+                // partition 2
+                Write32(0x402DC530,0x29FFFFF0);                   // Enable clock for block 0 in partition 2 (MC_ME.PRTN2_COFB0_CLKEN)
+                Write32(0x402DC534,0xC48987F9);                   // Enable clock for block 1 in partition 2 (MC_ME.PRTN2_COFB1_CLKEN)
+                Write32(0x402DC500,0x00000001);                   // Enable clock to IPs (MC_ME.PRTN2_PCONF)
+                Write32(0x402DC504,0x00000001);                   // Trigger the hardware process (MC_ME.PRTN2_PUPD)
+                Write32(0x402DC000,0x00005AF0);                   // Start the hardware process; key '5AF0' (MC_ME.MC_ME_CTL_KEY
+                Write32(0x402DC000,0x0000A50F);                   //                             key 'A50F' (MC_ME.MC_ME_CTL_KEY
+              </block>
+            </sequence>
+
+            <sequence name="RAMInitialize">
+              <block>
+                __var TCD_B0 = 0x40210000;                        // TCD Base Address; TCD0 = 0x40210000, TCD1 = 0x40214000
+                __var CHCFG0 =       0x03;                        // CH0 = 3, CH1 = 2, CH2 = 1, CH3 = 0
+
+                __var TCD_B1 = 0x40214000;                        // TCD Base Address; TCD0 = 0x40210000, TCD1 = 0x40214000
+                __var CHCFG1 =       0x02;                        // CH0 = 3, CH1 = 2, CH2 = 1, CH3 = 0
+              </block>
+
+              <block info="Initialize SRAM via DMA">
+                // SRAM: 2 x 160kB @ 0x20400000
+                Write8(0x40280000 + CHCFG0, 0x80);                // Enable DMA CH0 (DMAMUX_0 register CHCFG0)
+                Write32(TCD_B0 + 0x020, 0x00400000);              // Source address '0x00400000' (DMA TCD register TCD0_SADDR)
+                Write32(TCD_B0 + 0x024, 0x03030000);              // Offset '0' and attributes SSIZE, DSIZE '64bit' (DMA TCD register TCD0_SOFF, TCD0_ATTR)
+                Write32(TCD_B0 + 0x028, 0x00050000);              // Transfer size Nbytes '320Kb' (DMA TCD register TCD0_NBYTES_MLOFFNO)
+                Write32(TCD_B0 + 0x02C, 0x00000000);              // Last source address adjustment '0' (DMA TCD register TCD0_SLAST_SDA)
+                Write32(TCD_B0 + 0x030, 0x20400000);              // Destination address '0x20400000' (DMA TCD register TCD0_DADDR)
+                Write32(TCD_B0 + 0x034, 0x00010008);              // Destination signed offset '8', Current Major Iteration Count '1' (DMA TCD register TCD0_DOFF, TCD0_CITER_ELINKNO)
+                Write32(TCD_B0 + 0x038, 0xFFFB0000);              // Last destination address adjustment -NBYTES '0xFFFB0000' (DMA TCD register TCD0_DLAST_SGA)
+                Write32(TCD_B0 + 0x03C, 0x00000001);              // Start DMA transfer (DMA TCD register TCD0_CSR)
+              </block>
+              <control while="(Read32(TCD_B0 + 0x000) &amp; 0x80000000)" timeout="1000000" info="Poll DMA is ACTIVE"/>
+
+              <block info="Initialize DTCM via DMA">
+                // DTCM: 1 x 64B @ 0x20000000 (0x21000000 backdoor)
+                Write8(0x40280000 + CHCFG0, 0x80);                // Enable DMA CH0 (DMAMUX_0 register CHCFG0)
+                Write32(TCD_B0 + 0x020, 0x00400000);              // Source address '0x00400000' (DMA TCD register TCD0_SADDR)
+                Write32(TCD_B0 + 0x024, 0x03030000);              // Offset '0' and attributes SSIZE, DSIZE '64bit' (DMA TCD register TCD0_SOFF, TCD0_ATTR)
+                Write32(TCD_B0 + 0x028, 0x00010000);              // Transfer size Nbytes '64Kb' (DMA TCD register TCD0_NBYTES_MLOFFNO)
+                Write32(TCD_B0 + 0x02C, 0x00000000);              // Last source address adjustment '0' (DMA TCD register TCD0_SLAST_SDA)
+                Write32(TCD_B0 + 0x030, 0x21000000);              // Destination address '0x20000000' (DMA TCD register TCD0_DADDR)
+                Write32(TCD_B0 + 0x034, 0x00010008);              // Destination signed offset '8', Current Major Iteration Count '1' (DMA TCD register TCD0_DOFF, TCD0_CITER_ELINKNO)
+                Write32(TCD_B0 + 0x038, 0xFFFF0000);              // Last destination address adjustment -NBYTES '0xFFFF0000' (DMA TCD register TCD0_DLAST_SGA)
+                Write32(TCD_B0 + 0x03C, 0x00000001);              // Start DMA transfer (DMA TCD register TCD0_CSR)
+              </block>
+              <control while="(Read32(TCD_B0 + 0x000) &amp; 0x80000000)" timeout="1000000" info="Poll DMA is ACTIVE"/>
+            </sequence>
+          </sequences>
+
+          <!-- Memory adresses -->
+          <memory name="PFlash" access="rx"      start="0x00400000" size="0x00400000" startup="1" default="1"/> <!-- Program Flash -->
+          <memory name="DFlash" access="rx"      start="0x10000000" size="0x00020000" startup="0" default="0"/> <!-- Data Flash -->
+          <memory name="SRAM_0" access="rwx"     start="0x20400000" size="0x00028000" init   ="0" default="1"/> <!-- 160 SRAM_0 Non-cacheable -->
+          <memory name="SRAM_1" access="rwx"     start="0x20428000" size="0x00028000" init   ="0" default="1"/> <!-- 160 SRAM_1 Non-cacheable -->
+          <memory name="DTCM_0" access="rwx"     start="0x20000000" size="0x00010000" init   ="0" default="0"/> <!--  64 DTCM_0 Non-cacheable -->
+
+          <!-- Flash Algorithms -->
+          <algorithm name="Flash/S32K3x4_Code.FLM" start="0x00400000" size="0x00400000" RAMstart="0x20400000" RAMsize="0x00010000" default="1"/>
+          <algorithm name="Flash/S32K3x4_Data.FLM" start="0x10000000" size="0x00020000" RAMstart="0x20400000" RAMsize="0x00010000" default="0"/>
+
+          <!-- Debug access ports -->
+          <debug Pname="Cortex-M7_0" __dp="0" __ap="4"/>
+          <debug Pname="Cortex-M7_1" __dp="0" __ap="5"/>
+        </device>
+
+        <!-- ******************************  Device 'S32K344'  ****************************** -->
+        <device Dname="S32K344">          <!-- 1 x Cortex-M7 Lockstep -->
+          <processor Pname="Cortex-M7_0" Dcore="Cortex-M7"  DcoreVersion="r1p2" Dfpu="SP_FPU" Dmpu="MPU" Ddsp="DSP" Dclock="160000000"/>
+          <compile   Pname="Cortex-M7_0" header="Device/S32K344/Include/S32K344.h" define="CPU_S32K344" Pdefine="S32K3xx_M7_0"/>
+          <debug     Pname="Cortex-M7_0" svd="Device/S32K344/Debug/S32K344.svd"/>
+
+          <debugvars configfile="Device/S32K344/Debug/S32K3xx.dbgconf" version="1.0.0">
+            __var DoRAMInitialize = 1;                            // Enabled
+          </debugvars>
+
+          <sequences>
+            <sequence name="EnablePeripheralClocks">
+              <block info="Enable peripheral clocks">
+                // partition 0
+                Write32(0x402DC134,0x0000F7DF);                   // Enable clock for block 1 in partition 0 (MC_ME.PRTN0_COFB1_CLKEN)
+                Write32(0x402DC100,0x00000001);                   // Enable clock to IPs (MC_ME.PRTN0_PCONF)
+                Write32(0x402DC104,0x00000001);                   // Trigger the hardware process (MC_ME.PRTN0_PUPD)
+                Write32(0x402DC000,0x00005AF0);                   // Start the hardware process; key '5AF0' (MC_ME.MC_ME_CTL_KEY
+                Write32(0x402DC000,0x0000A50F);                   //                             key 'A50F' (MC_ME.MC_ME_CTL_KEY
+
+                // partition 1
+                Write32(0x402DC330,0xB1E0FFF8);                   // Enable clock for block 0 in partition 1 (MC_ME.PRTN1_COFB0_CLKEN)
+                Write32(0x402DC334,0x812AA407);                   // Enable clock for block 1 in partition 1 (MC_ME.PRTN1_COFB1_CLKEN)
+                Write32(0x402DC338,0xBBF3FE7E);                   // Enable clock for block 2 in partition 1 (MC_ME.PRTN1_COFB2_CLKEN)
+                Write32(0x402DC33C,0x00000141);                   // Enable clock for block 3 in partition 1 (MC_ME.PRTN1_COFB3_CLKEN)
+                Write32(0x402DC300,0x00000001);                   // Enable clock to IPs (MC_ME.PRTN1_PCONF)
+                Write32(0x402DC304,0x00000001);                   // Trigger the hardware process (MC_ME.PRTN1_PUPD)
+                Write32(0x402DC000,0x00005AF0);                   // Start the hardware process; key '5AF0' (MC_ME.MC_ME_CTL_KEY
+                Write32(0x402DC000,0x0000A50F);                   //                             key 'A50F' (MC_ME.MC_ME_CTL_KEY
+
+                // partition 2
+                Write32(0x402DC530,0x29FFFFF0);                   // Enable clock for block 0 in partition 2 (MC_ME.PRTN2_COFB0_CLKEN)
+                Write32(0x402DC534,0xC48987F9);                   // Enable clock for block 1 in partition 2 (MC_ME.PRTN2_COFB1_CLKEN)
+                Write32(0x402DC500,0x00000001);                   // Enable clock to IPs (MC_ME.PRTN2_PCONF)
+                Write32(0x402DC504,0x00000001);                   // Trigger the hardware process (MC_ME.PRTN2_PUPD)
+                Write32(0x402DC000,0x00005AF0);                   // Start the hardware process; key '5AF0' (MC_ME.MC_ME_CTL_KEY
+                Write32(0x402DC000,0x0000A50F);                   //                             key 'A50F' (MC_ME.MC_ME_CTL_KEY
+              </block>
+            </sequence>
+
+            <sequence name="RAMInitialize">
+              <block>
+                __var TCD_B0 = 0x40210000;                        // TCD Base Address; TCD0 = 0x40210000, TCD1 = 0x40214000
+                __var CHCFG0 =       0x03;                        // CH0 = 3, CH1 = 2, CH2 = 1, CH3 = 0
+
+                __var TCD_B1 = 0x40214000;                        // TCD Base Address; TCD0 = 0x40210000, TCD1 = 0x40214000
+                __var CHCFG1 =       0x02;                        // CH0 = 3, CH1 = 2, CH2 = 1, CH3 = 0
+              </block>
+
+              <block info="Initialize SRAM via DMA">
+                // SRAM: 2 x 160kB @ 0x20400000
+                Write8(0x40280000 + CHCFG0, 0x80);                // Enable DMA CH0 (DMAMUX_0 register CHCFG0)
+                Write32(TCD_B0 + 0x020, 0x00400000);              // Source address '0x00400000' (DMA TCD register TCD0_SADDR)
+                Write32(TCD_B0 + 0x024, 0x03030000);              // Offset '0' and attributes SSIZE, DSIZE '64bit' (DMA TCD register TCD0_SOFF, TCD0_ATTR)
+                Write32(TCD_B0 + 0x028, 0x00050000);              // Transfer size Nbytes '320Kb' (DMA TCD register TCD0_NBYTES_MLOFFNO)
+                Write32(TCD_B0 + 0x02C, 0x00000000);              // Last source address adjustment '0' (DMA TCD register TCD0_SLAST_SDA)
+                Write32(TCD_B0 + 0x030, 0x20400000);              // Destination address '0x20400000' (DMA TCD register TCD0_DADDR)
+                Write32(TCD_B0 + 0x034, 0x00010008);              // Destination signed offset '8', Current Major Iteration Count '1' (DMA TCD register TCD0_DOFF, TCD0_CITER_ELINKNO)
+                Write32(TCD_B0 + 0x038, 0xFFFB0000);              // Last destination address adjustment -NBYTES '0xFFFB0000' (DMA TCD register TCD0_DLAST_SGA)
+                Write32(TCD_B0 + 0x03C, 0x00000001);              // Start DMA transfer (DMA TCD register TCD0_CSR)
+              </block>
+              <control while="(Read32(TCD_B0 + 0x000) &amp; 0x80000000)" timeout="1000000" info="Poll DMA is ACTIVE"/>
+
+              <block info="Initialize DTCM via DMA">
+                // DTCM: 1 x 128kB @ 0x20000000 (0x21000000 backdoor)
+                Write8(0x40280000 + CHCFG0, 0x80);                // Enable DMA CH0 (DMAMUX_0 register CHCFG0)
+                Write32(TCD_B0 + 0x020, 0x00400000);              // Source address '0x00400000' (DMA TCD register TCD0_SADDR)
+                Write32(TCD_B0 + 0x024, 0x03030000);              // Offset '0' and attributes SSIZE, DSIZE '64bit' (DMA TCD register TCD0_SOFF, TCD0_ATTR)
+                Write32(TCD_B0 + 0x028, 0x00020000);              // Transfer size Nbytes '128Kb' (DMA TCD register TCD0_NBYTES_MLOFFNO)
+                Write32(TCD_B0 + 0x02C, 0x00000000);              // Last source address adjustment '0' (DMA TCD register TCD0_SLAST_SDA)
+                Write32(TCD_B0 + 0x030, 0x21000000);              // Destination address '0x20000000' (DMA TCD register TCD0_DADDR)
+                Write32(TCD_B0 + 0x034, 0x00010008);              // Destination signed offset '8', Current Major Iteration Count '1' (DMA TCD register TCD0_DOFF, TCD0_CITER_ELINKNO)
+                Write32(TCD_B0 + 0x038, 0xFFFE0000);              // Last destination address adjustment -NBYTES '0xFFFE0000' (DMA TCD register TCD0_DLAST_SGA)
+                Write32(TCD_B0 + 0x03C, 0x00000001);              // Start DMA transfer (DMA TCD register TCD0_CSR)
+              </block>
+              <control while="(Read32(TCD_B0 + 0x000) &amp; 0x80000000)" timeout="1000000" info="Poll DMA is ACTIVE"/>
+            </sequence>
+          </sequences>
+
+          <!-- Memory adresses -->
+          <memory name="PFlash" access="rx"      start="0x00400000" size="0x00400000" startup="1" default="1"/> <!-- Program Flash -->
+          <memory name="DFlash" access="rx"      start="0x10000000" size="0x00020000" startup="0" default="0"/> <!-- Data Flash -->
+          <memory name="SRAM_0" access="rwx"     start="0x20400000" size="0x00028000" init   ="0" default="1"/> <!-- 160 SRAM_0 Non-cacheable -->
+          <memory name="SRAM_1" access="rwx"     start="0x20428000" size="0x00028000" init   ="0" default="1"/> <!-- 160 SRAM_1 Non-cacheable -->
+          <memory name="DTCM_0" access="rwx"     start="0x20000000" size="0x00020000" init   ="0" default="0"/> <!-- 128 DTCM_0 Non-cacheable -->
+
+          <!-- Flash Algorithms -->
+          <algorithm name="Flash/S32K3x4_Code.FLM" start="0x00400000" size="0x00400000" RAMstart="0x20400000" RAMsize="0x00010000" default="1"/>
+          <algorithm name="Flash/S32K3x4_Data.FLM" start="0x10000000" size="0x00020000" RAMstart="0x20400000" RAMsize="0x00010000" default="0"/>
+
+          <!-- Debug access ports -->
+          <debug Pname="Cortex-M7_0" __dp="0" __ap="4"/>
+        </device>
+
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="GCC">
+      <require Tcompiler="GCC"/>
+    </condition>
+
+    <!-- Device Conditions -->
+    <condition id="S32K3 CMSIS">
+      <description>NXP S32Kxx device</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11" Dname="S32K3*"/>
+    </condition>
+
+    <condition id="S32K312 CMSIS">
+      <description>NXP S32K312 device</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11" Dname="S32K312"/>
+    </condition>
+
+    <condition id="S32K314 CMSIS">
+      <description>NXP S32K314 device</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11" Dname="S32K314"/>
+    </condition>
+
+    <condition id="S32K324 CMSIS">
+      <description>NXP S32K324 device</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11" Dname="S32K324"/>
+    </condition>
+
+    <condition id="S32K344 CMSIS">
+      <description>NXP S32K344 device</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="NXP:11" Dname="S32K344"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- Startup for S32K312 -->
+    <component Cclass="Device" Cgroup="Startup" Cvariant="C Startup" Cversion="1.0.0" condition="S32K312 CMSIS" isDefaultVariant="true">
+      <description>System Startup for NXP S32K3 Series (C variant)</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_DEVICE_STARTUP_S32K3      /* Device Startup for S32K Series */
+      </RTE_Components_h>
+      <files>
+        <!-- include folder -->
+        <file category="include"      name="Device/S32K312/Include/"/>
+        <!-- startup / system / linker file -->
+        <file category="sourceC"      name="Device/S32K312/Source/startup_S32K312.c"          version="1.0.0" attr="config" />
+        <file category="sourceC"      name="Device/S32K312/Source/system_S32K312.c"           version="1.0.0" attr="config" />
+        <file category="sourceAsm"    name="Device/S32K312/Source/startup_S32K3xx_util.S"     version="1.0.0" attr="config" />
+        <file category="linkerScript" name="Device/S32K312/Source/ARM/linker/S32K3xx.sct"     version="1.0.0" attr="config" condition="ARMCC" />
+        <file category="linkerScript" name="Device/S32K312/Source/GCC/linker/S32K3xx.ld"      version="1.0.0" attr="config" condition="GCC"/>
+        <!-- Memory mapping -->
+        <file category="header"       name="Device/S32K312/Include/S32K3xx_memmap.h"          version="1.0.0" attr="config" />
+
+        <!-- Boot Header template -->
+        <file category="sourceC"      name="Device/S32K312/Source/S32K3xx_bootheader.c"       version="1.0.0" attr="template"  select="S32K312 Boot Header"/>
+        <!-- LC, XRDC config template -->
+        <file category="sourceC"      name="Device/S32K312/Source/S32K3xx_lc_xrdc_config.c"   version="1.0.0" attr="template"  select="S32K344 LC XRCD Configuration"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup"                      Cversion="1.0.0" condition="S32K312 CMSIS">
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_DEVICE_STARTUP_S32K3      /* Device Startup for S32K Series */
+      </RTE_Components_h>
+      <description>System Startup for NXP S32K3 Series (Assembler variant)</description>
+      <files>
+        <!-- include folder / device header file -->
+        <file category="include"      name="Device/S32K312/Include/"/>
+        <!-- startup / system file -->
+        <file category="sourceAsm"    name="Device/S32K312/Source/ARM/startup_S32K312.S"      version="1.0.0" attr="config" condition="ARMCC"/>
+        <file category="sourceAsm"    name="Device/S32K312/Source/GCC/startup_S32K312.S"      version="1.0.0" attr="config" condition="GCC"/>
+        <file category="sourceC"      name="Device/S32K312/Source/system_S32K312.c"           version="1.0.0" attr="config"/>
+        <file category="sourceAsm"    name="Device/S32K312/Source/startup_S32K3xx_util.S"     version="1.0.0" attr="config" />
+        <file category="linkerScript" name="Device/S32K312/Source/ARM/linker/S32K3xx.sct"     version="1.0.0" attr="config" condition="ARMCC" />
+        <file category="linkerScript" name="Device/S32K312/Source/GCC/linker/S32K3xx.ld"      version="1.0.0" attr="config" condition="GCC"/>
+        <!-- Memory mapping -->
+        <file category="header"       name="Device/S32K312/Include/S32K3xx_memmap.h"          version="1.0.0" attr="config" />
+
+        <!-- Boot Header template -->
+        <file category="sourceC"      name="Device/S32K312/Source/S32K3xx_bootheader.c"       version="1.0.0" attr="template"  select="S32K344 Boot Header"/>
+        <!-- LC, XRDC config template -->
+        <file category="sourceC"      name="Device/S32K312/Source/S32K3xx_lc_xrdc_config.c"   version="1.0.0" attr="template"  select="S32K344 LC XRCD Configuration"/>
+      </files>
+    </component>
+
+    <!-- Startup for S32K314 -->
+    <component Cclass="Device" Cgroup="Startup" Cvariant="C Startup" Cversion="1.0.0" condition="S32K314 CMSIS" isDefaultVariant="true">
+      <description>System Startup for NXP S32K3 Series (C variant)</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_DEVICE_STARTUP_S32K3      /* Device Startup for S32K Series */
+      </RTE_Components_h>
+      <files>
+        <!-- include folder -->
+        <file category="include"      name="Device/S32K314/Include/"/>
+        <!-- startup / system / linker file -->
+        <file category="sourceC"      name="Device/S32K314/Source/startup_S32K314.c"          version="1.0.0" attr="config" />
+        <file category="sourceC"      name="Device/S32K314/Source/system_S32K314.c"           version="1.0.0" attr="config" />
+        <file category="sourceAsm"    name="Device/S32K314/Source/startup_S32K3xx_util.S"     version="1.0.0" attr="config" />
+        <file category="linkerScript" name="Device/S32K314/Source/ARM/linker/S32K3xx.sct"     version="1.0.0" attr="config" condition="ARMCC" />
+        <file category="linkerScript" name="Device/S32K314/Source/GCC/linker/S32K3xx.ld"      version="1.0.0" attr="config" condition="GCC"/>
+        <!-- Memory mapping -->
+        <file category="header"       name="Device/S32K314/Include/S32K3xx_memmap.h"          version="1.0.0" attr="config" />
+
+        <!-- Boot Header template -->
+        <file category="sourceC"      name="Device/S32K314/Source/S32K3xx_bootheader.c"       version="1.0.0" attr="template"  select="S32K344 Boot Header"/>
+        <!-- LC, XRDC config template -->
+        <file category="sourceC"      name="Device/S32K314/Source/S32K3xx_lc_xrdc_config.c"   version="1.0.0" attr="template"  select="S32K344 LC XRCD Configuration"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup"                      Cversion="1.0.0" condition="S32K314 CMSIS">
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_DEVICE_STARTUP_S32K3      /* Device Startup for S32K Series */
+      </RTE_Components_h>
+      <description>System Startup for NXP S32K3 Series (Assembler variant)</description>
+      <files>
+        <!-- include folder / device header file -->
+        <file category="include"      name="Device/S32K314/Include/"/>
+        <!-- startup / system file -->
+        <file category="sourceAsm"    name="Device/S32K314/Source/ARM/startup_S32K314.S"      version="1.0.0" attr="config" condition="ARMCC"/>
+        <file category="sourceAsm"    name="Device/S32K314/Source/GCC/startup_S32K314.S"      version="1.0.0" attr="config" condition="GCC"/>
+        <file category="sourceC"      name="Device/S32K314/Source/system_S32K314.c"           version="1.0.0" attr="config"/>
+        <file category="sourceAsm"    name="Device/S32K314/Source/startup_S32K3xx_util.S"     version="1.0.0" attr="config" />
+        <file category="linkerScript" name="Device/S32K314/Source/ARM/linker/S32K3xx.sct"     version="1.0.0" attr="config" condition="ARMCC" />
+        <file category="linkerScript" name="Device/S32K314/Source/GCC/linker/S32K3xx.ld"      version="1.0.0" attr="config" condition="GCC"/>
+        <!-- Memory mapping -->
+        <file category="header"       name="Device/S32K314/Include/S32K3xx_memmap.h"          version="1.0.0" attr="config" />
+
+        <!-- Boot Header template -->
+        <file category="sourceC"      name="Device/S32K314/Source/S32K3xx_bootheader.c"       version="1.0.0" attr="template"  select="S32K344 Boot Header"/>
+        <!-- LC, XRDC config template -->
+        <file category="sourceC"      name="Device/S32K314/Source/S32K3xx_lc_xrdc_config.c"   version="1.0.0" attr="template"  select="S32K344 LC XRCD Configuration"/>
+      </files>
+    </component>
+
+    <!-- Startup for S32K344 -->
+    <component Cclass="Device" Cgroup="Startup" Cvariant="C Startup" Cversion="1.0.0" condition="S32K324 CMSIS" isDefaultVariant="true">
+      <description>System Startup for NXP S32K3 Series (C variant)</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_DEVICE_STARTUP_S32K3      /* Device Startup for S32K Series */
+      </RTE_Components_h>
+      <files>
+        <!-- include folder -->
+        <file category="include"      name="Device/S32K324/Include/"/>
+        <!-- startup / system / linker file -->
+        <file category="sourceC"      name="Device/S32K324/Source/startup_S32K324.c"          version="1.0.0" attr="config" />
+        <file category="sourceC"      name="Device/S32K324/Source/system_S32K324.c"           version="1.0.0" attr="config" />
+        <file category="sourceAsm"    name="Device/S32K324/Source/startup_S32K3xx_util.S"     version="1.0.0" attr="config" />
+        <file category="linkerScript" name="Device/S32K324/Source/ARM/linker/S32K3xx.sct"     version="1.0.0" attr="config" condition="ARMCC" />
+        <file category="linkerScript" name="Device/S32K324/Source/GCC/linker/S32K3xx.ld"      version="1.0.0" attr="config" condition="GCC"/>
+        <!-- Memory mapping -->
+        <file category="header"       name="Device/S32K324/Include/S32K3xx_memmap.h"          version="1.0.0" attr="config" />
+
+        <!-- Boot Header template -->
+        <file category="sourceC"      name="Device/S32K324/Source/S32K3xx_bootheader.c"       version="1.0.0" attr="template"  select="S32K344 Boot Header"/>
+        <!-- LC, XRDC config template -->
+        <file category="sourceC"      name="Device/S32K324/Source/S32K3xx_lc_xrdc_config.c"   version="1.0.0" attr="template"  select="S32K344 LC XRCD Configuration"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup"                      Cversion="1.0.0" condition="S32K324 CMSIS">
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_DEVICE_STARTUP_S32K3      /* Device Startup for S32K Series */
+      </RTE_Components_h>
+      <description>System Startup for NXP S32K3 Series (Assembler variant)</description>
+      <files>
+        <!-- include folder / device header file -->
+        <file category="include"      name="Device/S32K324/Include/"/>
+        <!-- startup / system file -->
+        <file category="sourceAsm"    name="Device/S32K324/Source/ARM/startup_S32K324.S"      version="1.0.1" attr="config" condition="ARMCC"/>
+        <file category="sourceAsm"    name="Device/S32K324/Source/GCC/startup_S32K324.S"      version="1.0.1" attr="config" condition="GCC"/>
+        <file category="sourceC"      name="Device/S32K324/Source/system_S32K324.c"           version="1.0.0" attr="config"/>
+        <file category="sourceAsm"    name="Device/S32K324/Source/startup_S32K3xx_util.S"     version="1.0.0" attr="config" />
+        <file category="linkerScript" name="Device/S32K324/Source/ARM/linker/S32K3xx.sct"     version="1.0.0" attr="config" condition="ARMCC" />
+        <file category="linkerScript" name="Device/S32K324/Source/GCC/linker/S32K3xx.ld"      version="1.0.0" attr="config" condition="GCC"/>
+        <!-- Memory mapping -->
+        <file category="header"       name="Device/S32K324/Include/S32K3xx_memmap.h"          version="1.0.0" attr="config" />
+
+        <!-- Boot Header template -->
+        <file category="sourceC"      name="Device/S32K324/Source/S32K3xx_bootheader.c"       version="1.0.0" attr="template"  select="S32K344 Boot Header"/>
+        <!-- LC, XRDC config template -->
+        <file category="sourceC"      name="Device/S32K324/Source/S32K3xx_lc_xrdc_config.c"   version="1.0.0" attr="template"  select="S32K344 LC XRCD Configuration"/>
+      </files>
+    </component>
+
+    <!-- Startup for S32K344 -->
+    <component Cclass="Device" Cgroup="Startup" Cvariant="C Startup" Cversion="1.0.0" condition="S32K344 CMSIS" isDefaultVariant="true">
+      <description>System Startup for NXP S32K3 Series (C variant)</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_DEVICE_STARTUP_S32K3      /* Device Startup for S32K Series */
+      </RTE_Components_h>
+      <files>
+        <!-- include folder -->
+        <file category="include"      name="Device/S32K344/Include/"/>
+        <!-- startup / system / linker file -->
+        <file category="sourceC"      name="Device/S32K344/Source/startup_S32K344.c"          version="1.0.0" attr="config" />
+        <file category="sourceC"      name="Device/S32K344/Source/system_S32K344.c"           version="1.0.0" attr="config" />
+        <file category="sourceAsm"    name="Device/S32K344/Source/startup_S32K3xx_util.S"     version="1.0.0" attr="config" />
+        <file category="linkerScript" name="Device/S32K344/Source/ARM/linker/S32K3xx.sct"     version="1.0.0" attr="config" condition="ARMCC" />
+        <file category="linkerScript" name="Device/S32K344/Source/GCC/linker/S32K3xx.ld"      version="1.0.0" attr="config" condition="GCC"/>
+        <!-- Memory mapping -->
+        <file category="header"       name="Device/S32K344/Include/S32K3xx_memmap.h"          version="1.0.0" attr="config" />
+
+        <!-- Boot Header template -->
+        <file category="sourceC"      name="Device/S32K344/Source/S32K3xx_bootheader.c"       version="1.0.0" attr="template"  select="S32K344 Boot Header"/>
+        <!-- LC, XRDC config template -->
+        <file category="sourceC"      name="Device/S32K344/Source/S32K3xx_lc_xrdc_config.c"   version="1.0.0" attr="template"  select="S32K344 LC XRCD Configuration"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup"                      Cversion="1.0.0" condition="S32K344 CMSIS">
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_DEVICE_STARTUP_S32K3      /* Device Startup for S32K Series */
+      </RTE_Components_h>
+      <description>System Startup for NXP S32K3 Series (Assembler variant)</description>
+      <files>
+        <!-- include folder / device header file -->
+        <file category="include"      name="Device/S32K344/Include/"/>
+        <!-- startup / system file -->
+        <file category="sourceAsm"    name="Device/S32K344/Source/ARM/startup_S32K344.S"      version="1.0.0" attr="config" condition="ARMCC"/>
+        <file category="sourceAsm"    name="Device/S32K344/Source/GCC/startup_S32K344.S"      version="1.0.0" attr="config" condition="GCC"/>
+        <file category="sourceC"      name="Device/S32K344/Source/system_S32K344.c"           version="1.0.0" attr="config"/>
+        <file category="sourceAsm"    name="Device/S32K344/Source/startup_S32K3xx_util.S"     version="1.0.0" attr="config" />
+        <file category="linkerScript" name="Device/S32K344/Source/ARM/linker/S32K3xx.sct"     version="1.0.0" attr="config" condition="ARMCC" />
+        <file category="linkerScript" name="Device/S32K344/Source/GCC/linker/S32K3xx.ld"      version="1.0.0" attr="config" condition="GCC"/>
+        <!-- Memory mapping -->
+        <file category="header"       name="Device/S32K344/Include/S32K3xx_memmap.h"          version="1.0.0" attr="config" />
+
+        <!-- Boot Header template -->
+        <file category="sourceC"      name="Device/S32K344/Source/S32K3xx_bootheader.c"       version="1.0.0" attr="template"  select="S32K344 Boot Header"/>
+        <!-- LC, XRDC config template -->
+        <file category="sourceC"      name="Device/S32K344/Source/S32K3xx_lc_xrdc_config.c"   version="1.0.0" attr="template"  select="S32K344 LC XRCD Configuration"/>
+      </files>
+    </component>
+
+  </components>
+
+  <boards>
+    <board name="S32K3xxCVB" vendor="NXP" revision="Rev. A" salesContact="http://www.nxp.com/support/sales-and-support:SUPPORTHOME">
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="S32K344"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" Dname="S32K3*"/>
+      <description>
+        The S32K3xxCVB is an Evaluation Board for the S32K3xx Device Family.
+      </description>
+    </board>
+  </boards>
+
+  <examples>
+    <!-- Board S32K3xxCVB -->
+    <example name="CMSIS-RTOS2 Blinky" doc="Abstract.txt" folder="Boards/NXP/S32K3xxCVB/Blinky">
+      <description>CMSIS-RTOS2 Blinky example</description>
+      <board name="S32K3xxCVB" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <!-- Board S32K3xxCVB -->
+    <example name="CMSIS-RTOS2 Blinky MultiCore" doc="Abstract.txt" folder="Boards/NXP/S32K3xxCVB/Blinky_MultiCore">
+      <description>CMSIS-RTOS2 Blinky example for MultiCore Applications</description>
+      <board name="S32K3xxCVB" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="Blinky_MultiCore.uvmpw"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+  </examples>
+
+</package>

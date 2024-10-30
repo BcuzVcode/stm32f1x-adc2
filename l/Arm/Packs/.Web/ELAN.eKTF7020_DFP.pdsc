@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>ELAN</vendor>
+  <name>eKTF7020_DFP</name>
+  <description>ELAN ARM Cortex-M0+ Device Family Pack</description>
+  <url>http://www.emc.com.tw/emc/tw/Product/Product/SupportTools/MCU/PACK/</url>
+  <supportContact>aldrich.syu@emc.com.tw</supportContact>
+  <!-- optional license file -->
+  <!-- 
+  <license>
+  </license>
+  -->
+  
+  <releases>
+  	<release version="1.0.1" date="2023-04-18">
+		ELAN Startup Version
+	</release>
+  </releases>
+
+  <keywords>
+	<!-- keywords for indexing -->
+	<keyword>ELAN</keyword>
+	<keyword>Device Support</keyword>
+  </keywords>
+  	
+  <devices>
+	<family Dfamily="eKTF Series" Dvendor="ELAN:162">
+		<processor Dcore="Cortex-M0+" DcoreVersion="r2p1" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+		<description>
+			The eKTF7020 is a 32-bit ARM Cortex-M0+ processor. It operates at a maximum speed of 20MHz and features 24 Kbytes of flash rom (including 4Kbytes Boot area) and 4 Kbytes of SRAM. The peripheral set includes one UART, one USART, one I2C, three 16-bit PWM, two general- purpose 32-bit timers / counter, High-Low Voltage Detect (HLVD), Low Voltage Reset (LVR). eKTF7020 is a mutual-contained, the capacitive touchpad sensor is covered with a plastic or glass case. The system controller converts finger data to button presses, depending on finger location and human interface context.
+		</description>
+		<!-- ************************  Subfamily eKTFxxxx **************************** -->
+		<subFamily DsubFamily="eKTFxxxx">
+			<processor  Dclock="24000000" DcoreVersion="r0p1" Dfpu="NO_FPU" Dmpu="NO_MPU" Dendian="Little-endian"/>
+			<!-- features common for the sub family -->
+			<!-- *************************  Device eKTF7020  ***************************** -->
+			<device Dname="eKTF7020SO28">
+				<memory     id="IROM1" start="0x10000000" size="0x6000" startup="1"   default="1"/>
+				<memory     id="IRAM1" start="0x20000000" size="0x1000" default="1"/>
+				<feature 	type="SOP" n="28"							name="300mil"/>
+				<compile    header="Device/Include/eKTF7020.h" define="eKTFxxxx"/>
+				<debug      svd="SVD/eKTF7020.svd"/>
+				<algorithm 	name="Flash/eKTF7020.FLM" start="0x10000000" size="0x0FFFEC00" default="1"/>		 
+				<feature 	type="VCC"			n="2.0"			m="5.5"			name="System operation voltage"/>
+				<feature 	type="Temp"			n="-40"			m="85"/>
+				<feature 	type="IntRC"		n="16000000"	m="16000000"	name="Internal RC oscillator with +/-2% accuracy"/>
+				<feature 	type="IntRC"		n="20000000"	m="20000000"	name="Internal RC oscillator with +/-2% accuracy"/>
+				<feature 	type="IntRC"		n="24000000"	m="24000000"	name="Internal RC oscillator with +/-2% accuracy"/>		 
+				<feature 	type="I2C"			n="1"							name="support buffer mode; buffer depth 20-byte"/>
+				<feature 	type="UART"			n="1"/>
+				<feature 	type="USART"		n="1"/>
+				<feature 	type="PWM"			n="3"			m="16"/>
+				<feature 	type="Timer"		n="2"			m="32"/> 
+				<feature 	type="WDT"			n="1"/>
+				<feature 	type="Touch"		n="24"							name="Number of Touch channels"/>
+				<feature 	type="PowerOther"	n="1"							name="LVR Reset Level:2.4v,3.6v,4.4v, HLVD Detect Level:2.2v,2.5v,3.9v,4.6v"/>
+				<feature 	type="Other"		n="1"							name="IO Operation voltage: 1.8~5.5 V."/>
+			</device>
+		</subFamily>
+	</family>
+  </devices>
+  
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="ARMCC">
+	  <description>Startup assembler file for ARMCC</description>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="ELAN_M0plus CMSIS">
+      <description>ARM ELAN_M0plus Device and CMSIS Core</description>
+      <require Dvendor="ELAN:162" Dname="eKTF7020SO28"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+  </conditions> 
+  
+  
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.1" condition="ELAN_M0plus CMSIS">
+      <description>System and Startup for eKTF7020 device</description>
+      <files>
+		<!-- Include file -->
+		<file category="include" name="Device/Include/"/>
+		<!-- startup file -->
+        <file category="source"  name="Device/Source/ARM/startup_ELAN_M0plus_eKTF7020.s" attr="config" version="1.0.1" condition="ARMCC"/>
+        <!-- system file -->        
+		<file category="source"  name="Device/Source/system_ELAN_M0plus_eKTF7020.c"      attr="config" version="1.0.1"/>	
+	  </files>
+    </component>
+	
+    <component Cclass="eKTFxxxx_CodeOption" Cgroup="CodeOption" Cversion="1.0.1">
+	  <description>eKTF7020 Code Option</description>
+      <files>
+		<file category="source" attr="config" name="Device/Include/option.c" version="1.0.1"/>
+	  </files>
+	</component>
+  </components>
+  
+  
+  <boards>
+	  <board vendor="ELAN" name="eKTF7020 DevBoard" revision="v1.2" salesContact="" orderForm="">
+		<description>ELAN eKTF7020 Starter Kit</description>
+		<mountedDevice    deviceIndex="0" Dvendor="ELAN:162" Dname="eKTF7020SO28"/>
+		<compatibleDevice deviceIndex="0" Dvendor="ELAN:162" Dfamily="eKTF Series"/>
+		<feature type="XTAL" 	  n="32000000"/>
+		<feature type="RAM" 	  n="1"              name="4 kB SRAM RAM"/>		
+		<feature type="ROM"       n="1"              name="24 kB embedded-Flash"/>
+		<feature type="I2C"       n="1"              name="2-Pin Header"/>
+		<feature type="SPI" 	  n="1" 			 name="4-Pin Header"/>
+		<feature type="TempSens"  n="1"/>
+		<feature type="SensOther" n="1"              name="Touch Key Sensor"/>
+		<feature type="SensOther" n="1"              name="Touch screen Sensor"/>
+    </board>
+  </boards>  
+  
+  <!-- examples section (optional for all Software Packs)-->
+  <examples>
+	<example name="eKTF7020 Example" doc="readme.txt" folder="ARM/Boards/ELAN/eKTF7020_Example">
+      <description>eKTF7020 based example</description>
+      <board vendor="ELAN" name="eKTF7020 DevBoard"/>
+	  
+	  <project>
+		<environment name="uv" load="eKTF7020_Example.uvprojx"/>
+	  </project>
+	  
+	  <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+        <category>ELAN</category>
+      </attributes>
+    </example>
+  </examples>
+
+  <!-- devices section (mandatory for Device Family Packs) -->
+  <!--
+  <devices>
+  </devices>
+  -->
+
+  <!-- examples section (optional for all Software Packs)-->
+  <!--
+  <examples>
+  </examples>
+  -->
+  
+  <!-- conditions section (optional for all Software Packs)-->
+  <!--
+  <conditions>
+  </conditions>
+  -->
+  
+  <!-- component section (optional for all Software Packs)-->
+  <!--
+  <components>
+  </components>
+  -->
+  
+</package>

@@ -1,0 +1,1013 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package schemaVersion="1.7.7" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.7/schema/PACK.xsd">
+   <vendor>Maxim</vendor>
+   <name>MAX32670</name>
+   <url>http://www.mxim.net/microcontroller/pack/</url>
+   <description>Maxim Integrated MAX32670 Series Device Support, Board Support Package and Examples</description>
+   <supportContact>support@maximintegrated.com</supportContact>
+
+   <license>License/END_USER_LICENSE_AGREEMENT.rtf</license>
+
+   <releases>                  <!-- YYYY-MM-DD -->
+      <release version="1.1.0" date="2023-04-17">
+   		- updated for Keil Compiler 6
+		- updated libraries and examples for SDK for both Keil and IAR
+      </release>    
+      <release version="1.0.3" date="2021-10-21">
+   		- updated .pdsc to match new ARM pack generation.
+      </release>      
+      <release version="1.0.2" date="2021-04-01">
+      	- flc_me15.c updated to fix a bug
+      </release>    
+      <release version="1.0.1" date="2021-03-22">
+      	- Fixed the .pdsc to only handle MAX32670
+		- to prevent clash on the CMSIS Manager
+		- with MAX32670
+      </release>       
+      <release version="0.1.4" date="2020-10-14">
+      	- IAR and Keil Release. (Clean up).
+      </release> 
+      <release version="0.1.2" date="2020-08-05">
+      	-Initial limited release of SDK  (IAR)
+		- printf() can print floats and doubles (IAR)
+      </release>   
+      <release version="0.1.1" date="2020-07-01">
+      	-Initial limited release of SDK
+      </release>
+   </releases>
+
+   <keywords>
+      <keyword>Maxim</keyword>
+      <keyword>MAX32670</keyword>
+      <!-- <keyword>MAX32671</keyword> -->
+      <keyword>MAX32670 Evaluation Kit</keyword>
+      <keyword>Maxim Device Support</keyword>
+      <keyword>Device Support</keyword>
+      <keyword>Device Family Package Maxim</keyword>
+      <keyword>Maxim Evaluation Kit</keyword>
+   </keywords>
+
+   <requirements>
+      <languages>
+         <language name="C" version="99" />
+      </languages>
+   </requirements>
+   
+   <devices>
+      <family Dfamily="MAX32670 family" Dvendor="Maxim:23">
+         <book name="Doc/MAX32670_datasheet.txt" title="MAX32670 Family Data Sheet"/>
+         <book name="Doc/MAX32670_userguide.txt" title="MAX32670 Family Users Guide"/>         
+         <compile header="Libraries/CMSIS/Device/Maxim/MAX32670/Include/max32670.h" />
+         <compile header="Libraries/CMSIS/Device/Maxim/MAX32670/Include/max32670.h" define="MAX32670"/>
+         <memory name="IROM1" access="rx" start="0x10000000" size="0x0005FFFF" startup="1" default="1"/>
+         <memory name="IRAM1" access="rwx" start="0x20000000" size="0x00027FFF" init="0" default="1"/>
+         <algorithm name="Flash/MAX32670.FLM" start="0x10000000" size="0x0005FFFF" default="1"/>
+         <algorithm  name="FlashIAR/FlashMAX32670.flash" start="0x10000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00080000" default="0" style="IAR"/>
+         <description>
+            The MAX32670 is an ultra-low-power, cost-effective, high reliability 32-bit microcontroller enabling designs
+            with complex sensor processing without compromising battery life. It combines a flexible and versatile power management
+            unit with the powerful Arm Cortex-M4 core with FPU. It also offers legacy designs an easy and cost optimal upgrade path
+            from 8- or 16-bit microcontrollers. Error correction coding (ECC) (single error correction double error detection) for flash,
+            and SRAM provides extremely reliable code execution. The device integrates up to 384KB of flash memory and 160KB
+            (128KB with ECC) of SRAM to accommodate application and sensor code.
+            The device features five powerful and flexible power modes. It can operate from a single-supply battery or a dual-supply
+            typically provided by a PMIC. The I2C ports support standard, fast, fast-plus, and high-speed modes, operating up to
+            3400kbps. The SPI ports can run up to 48MHz in both master and slave mode, and three UARTs can run up to 4000kbaud.
+            One low power UART can run up to 1000kbaud. Four general-purpose 32-bit timers, two low power 32-bit timers, two
+            windowed watchdog timers, and a real-time clock are also provided. An I2S interface provides digital audio streaming to a
+            codec.
+         </description>     
+     <!--    <feature type="IOs" n="48"/>
+         <feature type="NVIC" n="110" name="NVIC"/>
+         <feature type="DMA" n="16" name="DMA"/>
+         <feature type="Timer" n="6" m="32" name="Timer Module"/>
+         <feature type="WDT" n="3"/>
+         <feature type="I2C" n="3" name="I2C"/>
+         <feature type="SPI" n="3" m="50000000" name="QSPI"/>
+         <feature type="UART" n="3" m="3000000" name="High-Speed UART Interface"/>
+         <feature type="USBD" n="1" name="High-Speed USB Device"/> -->
+         <!--<debug svd="SVD/MAX32670/max32670.svd" /> DELETE -->
+		 <debug svd="Libraries/CMSIS/Device/Maxim/MAX32670/Include/max32670.svd" version="1.1.0" />
+
+         <debugport __dp="0">
+            <swd idcode="0x2BA01477" />
+         </debugport>
+
+         <device Dname="MAX32670">
+            <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Pname="Cortex-M4" Punits="2" Dfpu="FPU" Dmpu="NO_MPU" Dendian="Little-endian" Dclock="96000000" />
+         </device>
+<!--		 
+         <device Dname="MAX32671">
+            <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Pname="Cortex-M4" Punits="2" Dfpu="FPU" Dmpu="NO_MPU" Dendian="Little-endian" Dclock="96000000" />
+            <feature type="Crypto" n="128.256" name="HW Accelerated Trust Protection Unit"/>
+         </device>		 
+-->
+      </family>
+   </devices>
+
+   <!-- MAX32670 Evaluation Kit Board Support Package -->
+   <boards>
+      <board vendor="Maxim" name="MAX32670 EvKit" revision="Rev A" salesContact="sales@maximintegrated.com">
+         <description>The MAX32670 Evaluation Kit provides a convenient platform for evaluating the capabilities of the MAX32670 Family of microcontrollers. The Evaluation Kit also provides a complete, functional system ideal for developing and debugging applications.
+         </description>
+         <book category="overview" name="Doc/MAX32670_EvKit.txt" title="MAX32670 EvKit Datasheet"/>
+         <book category="schematic" name="Doc/MAX32670_EvKitSchematic.txt" title="MAX32670 EvKit Schematic"/>
+    <!--     <feature type="PWR" n="5" name="USB Powered"/>
+         <feature type="MemCard" n="1" name="SD Card Holder"/>
+         <feature type="RAM" n="1" name="128kB SPIXR RAM"/>
+         <feature type="ROM" n="1" name="8 MB SPIXF NOR-Flash"/>
+         <feature type="USB" n="1" name="High-Speed USB Device, Micro-B receptacle"/>
+         <feature type="Button" n="3" name="Push-buttons: Reset, 2x User"/>
+         <feature type="LED" n="2" name="User LEDs"/>
+         <feature type="GLCD" n="1" m="128.128" name="1.3 inch SPI LCD"/>
+         <feature type="LineIn" n="1" name="TRS Audio Jack"/>
+         <feature type="LineOut" n="1" name="TRS Audio Jack"/>
+         <feature type="AIO" n="8" name="Analog Inputs"/>
+         <feature type="DIO" n="16" name="Digital IOs"/> -->
+     <!--    <mountedDevice Dvendor="Maxim:23" Dname="MAX32671"/> -->
+		 <mountedDevice Dvendor="Maxim:23" Dname="MAX32670"/>
+         <debugInterface adapter="CMSIS-DAP" connector="10-pin Cortex Debug Connector (0.05 inch connector)"/>
+         <debugInterface adapter="JTAG/SW" connector="20-pin Arm Standard JTAG Connector"/>
+      </board>
+   </boards>
+  
+   <!-- Evaluation Kit Example Programs -->
+      
+   <examples>
+   
+      <example name="AES" doc="ARM/Abstract.txt" folder="Examples/MAX32670/AES">
+         <description>AES Demo</description>
+         <board name="MAX32670 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/AES.ewp" />
+         <environment name="uv" load="ARM/AES.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32670 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="MAX32670 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>    
+	  
+      <example name="CRC" doc="ARM/Abstract.txt" folder="Examples/MAX32670/CRC">
+         <description>CRC Module Demo</description>
+         <board name="MAX32670 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/CRC.ewp" />
+            <environment name="uv" load="ARM/CRC.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32670 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="CRC"/>
+            <component Cbundle="MAX32670 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>	  
+	  
+      <example name="DMA" doc="ARM/Abstract.txt" folder="Examples/MAX32670/DMA">
+         <description>Direct Memory Access Controller Demo</description>
+         <board name="MAX32670 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/DMA.ewp" />
+            <environment name="uv" load="ARM/DMA.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32670 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="DMA"/>
+            <component Cbundle="MAX32670 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>  
+ 
+      <example name="Flash" doc="ARM/Abstract.txt" folder="Examples/MAX32670/Flash">
+         <description>Flash Demo</description>
+         <board name="MAX32670 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/Flash.ewp" />
+            <environment name="uv" load="ARM/Flash.uvprojx" />
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32670 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="FLC"/>
+            <component Cbundle="MAX32670 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+ 
+ 	  <example name="GPIO" doc="ARM/Abstract.txt" folder="Examples/MAX32670/GPIO">
+         <description>GPIO Demo</description>
+         <board name="MAX32670 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/GPIO.ewp" />
+            <environment name="uv" load="ARM/GPIO.uvprojx" /> 
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32670 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+			<component Cbundle="Maxim API" Cclass="Device" Cgroup="GPIO"/>
+            <component Cbundle="MAX32670 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+ 
+      <example name="Hello_World" doc="ARM/Abstract.txt" folder="Examples/MAX32670/Hello_World">
+         <description>Hello World Demo</description>
+         <board name="MAX32670 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/Hello_World.ewp" />
+            <environment name="uv" load="ARM/Hello_World.uvprojx" /> 
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32670 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Timers"/>
+            <component Cbundle="MAX32670 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+	  
+      <example name="I2C" doc="ARM/Abstract.txt" folder="Examples/MAX32670/I2C">
+         <description>I2C Demo</description>
+         <board name="MAX32670 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/I2C.ewp" />
+            <environment name="uv" load="ARM/I2C.uvprojx" /> 
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32670 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="I2C"/>
+            <component Cbundle="MAX32670 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+
+      <example name="ICC" doc="ARM/Abstract.txt" folder="Examples/MAX32670/ICC">
+         <description>Instruction Cache Controller Demo</description>
+         <board name="MAX32670 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/ICC.ewp" />
+            <environment name="uv" load="ARM/ICC.uvprojx" /> 
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32670 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="ICC"/>
+            <component Cbundle="MAX32670 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>     
+
+      <example name="LP" doc="ARM/Abstract.txt" folder="Examples/MAX32670/LP">
+         <description>Low Power Capabilities Demo</description>
+         <board name="MAX32670 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/LP.ewp" />
+            <environment name="uv" load="ARM/LP.uvprojx" /> 
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32670 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Low Power"/>
+            <component Cbundle="MAX32670 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+
+      <example name="RTC" doc="ARM/Abstract.txt" folder="Examples/MAX32670/RTC">
+         <description>Real Time Clock Demo</description>
+         <board name="MAX32670 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/RTC.ewp" />
+            <environment name="uv" load="ARM/RTC.uvprojx" /> 
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32670 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="RTC" />
+            <component Cbundle="MAX32670 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example> 
+
+      <example name="SPI" doc="ARM/Abstract.txt" folder="Examples/MAX32670/SPI">
+         <description>SPI Demo</description>
+         <board name="MAX32670 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/SPI.ewp" />
+            <environment name="uv" load="ARM/SPI.uvprojx" /> 
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32670 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>          
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="SPI"/>
+            <component Cbundle="MAX32670 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>      
+      </example>
+	  
+      <example name="TMR" doc="ARM/Abstract.txt" folder="Examples/MAX32670/TMR">
+         <description>Timer Demo</description>
+         <board name="MAX32670 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/TMR.ewp" />
+            <environment name="uv" load="ARM/TMR.uvprojx" /> 
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32670 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Timers"/>
+            <component Cbundle="MAX32670 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+
+      <example name="TRNG" doc="ARM/Abstract.txt" folder="Examples/MAX32670/TRNG">
+         <description>Semaphore Module Demo</description>
+         <board name="MAX32670 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/TRNG.ewp" />
+            <environment name="uv" load="ARM/TRNG.uvprojx" /> 
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32670 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="TRNG"/>
+            <component Cbundle="MAX32670 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>           
+
+      <example name="UART" doc="ARM/Abstract.txt" folder="Examples/MAX32670/UART">
+         <description>UART Demo</description>
+         <board name="MAX32670 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/UART.ewp" />
+            <environment name="uv" load="ARM/UART.uvprojx" /> 
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32670 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="UART"/>
+            <component Cbundle="MAX32670 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example> 
+
+      <example name="Watchdog" doc="ARM/Abstract.txt" folder="Examples/MAX32670/Watchdog">
+         <description>Watchdog Demo</description>
+         <board name="MAX32670 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/Watchdog.ewp" />
+            <environment name="uv" load="ARM/Watchdog.uvprojx" /> 
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32670 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="WDT"/>
+            <component Cbundle="MAX32670 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example> 
+	  
+
+      <example name="I2S" doc="ARM/Abstract.txt" folder="Examples/MAX32670/I2S">
+         <description>I2S Demo</description>
+         <board name="MAX32670 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/I2S.ewp" />
+            <environment name="uv" load="ARM/I2S.uvprojx" /> 
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32670 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="I2S"/>
+            <component Cbundle="MAX32670 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+	  
+   </examples>
+
+   <conditions>
+      <!-- MAX32670 Device Condition -->
+      <condition id="MAX32670 Family">
+         <description> Maxim Integrated MAX32670 device family</description>
+         <require Dvendor="Maxim:23"/>
+		 <require Dname="MAX32670"/>
+         <!-- <require Dfamily="MAX32670-71"/> -->
+      </condition>
+
+      <!-- MAX32670 Device Condition -->
+      <condition id="MAX32670 Device">
+         <description> Maxim Integrated MAX32670 device family</description>
+         <require Dvendor="Maxim:23"/>
+         <require Dname="MAX32670"/>
+      </condition>
+
+      <!-- MAX32671 Device Condition -->
+<!--      <condition id="MAX32671 Device">
+         <description> Maxim Integrated MAX32670 device family</description>
+         <require Dvendor="Maxim:23"/>
+         <require Dname="MAX32671"/>
+      </condition> -->
+
+      <!-- MAX32670/51/52 CMSIS-CORE Condition -->
+      <condition id="MAX32670 CMSIS-CORE">
+         <description>Maxim MAX32670 Series devices and CMSIS-CORE</description>
+         <require Cclass="CMSIS" Cgroup="CORE"/>
+         <require condition="MAX32670 Family"/>
+   <!--      <accept condition="MAX32671 Device"/> -->
+		 <accept condition="MAX32670 Device"/>
+         <require Cclass="Device" Cgroup="Startup"/>
+      </condition>
+
+      <!-- GNUC/Eclipse Compiler Condition -->
+      <condition id="Startup GCC">
+         <description>Startup files for the GNU C Toolchain</description>
+         <require Tcompiler="GCC"/>
+      </condition>
+
+      <!-- IAR Embedded Workbench Compiler Condition -->
+      <condition id="Startup ARM">
+         <description>Startup files for the KEIL Embedded Workbench Toolchain</description>
+         <require Tcompiler="ARMCC"/>
+      </condition> 
+      <condition id="Startup IAR">
+         <description>Startup files for the IAR Embedded Workbench Toolchain</description>
+         <require Tcompiler="IAR"/>
+      </condition>
+
+
+
+      <!-- AES Peripheral Condition -->
+      <condition id="MAX32670 CMSIS AES">
+         <description>AES Interface</description>
+         <require condition="MAX32670 CMSIS-CORE"/>
+      </condition>
+	  
+      <!-- CRC Peripheral Condition -->
+      <condition id="MAX32670 CMSIS CRC">
+         <description>CRC</description>
+         <require condition="MAX32670 CMSIS-CORE"/>
+      </condition>	
+	
+      <!-- Standard DMA Peripheral -->
+      <condition id="MAX32670 CMSIS DMA">
+         <description>Standard DMA</description>
+         <require condition="MAX32670 CMSIS-CORE"/>
+      </condition>	  
+
+      <!-- FLash Controller Peripheral -->
+      <condition id="MAX32670 CMSIS FLC">
+         <description>Internal Flash Controller</description>
+         <require condition="MAX32670 CMSIS-CORE"/>
+         <require condition="MAX32670 CMSIS ICC"/>
+      </condition>
+
+      <!-- GPIO -->
+      <condition id="MAX32670 CMSIS GPIO">
+         <description>GPIO</description>
+         <require condition="MAX32670 CMSIS-CORE"/>
+      </condition>
+
+      <!-- I2C -->
+      <condition id="MAX32670 CMSIS I2C">
+         <description>I2C Interface</description>
+         <require condition="MAX32670 CMSIS-CORE"/>
+      </condition>
+
+      <!-- I2S -->
+      <condition id="MAX32670 CMSIS I2S">
+         <description>I2S Interface</description>
+         <require condition="MAX32670 CMSIS-CORE"/>
+      </condition>
+
+      <!-- ICC -->
+      <condition id="MAX32670 CMSIS ICC">
+         <description>Instruction Cache Controller</description>
+         <require condition="MAX32670 CMSIS-CORE"/>
+      </condition>
+
+      <!-- Low Power -->
+      <condition id="MAX32670 CMSIS Low Power">
+         <description>Low Power API</description>
+         <require condition="MAX32670 CMSIS-CORE"/>
+      </condition>
+
+      <!-- RTC -->
+      <condition id="MAX32670 CMSIS RTC">
+         <description>Real-Time Clock</description>
+         <require condition="MAX32670 CMSIS-CORE"/>
+      </condition>
+
+      <!-- SPI Peripheral -->
+      <condition id="MAX32670 CMSIS SPI">
+         <description>SPI Interface</description>
+         <require condition="MAX32670 CMSIS-CORE"/>
+      </condition>
+
+      <!-- SYS -->
+      <condition id="MAX32670 CMSIS SYS">
+         <description>SYS Interface</description>
+         <require condition="MAX32670 CMSIS-CORE"/>
+      </condition>
+
+      <!-- Timer -->
+      <condition id="MAX32670 CMSIS TIMER">
+         <description>Timers</description>
+         <require condition="MAX32670 CMSIS-CORE"/>
+      </condition>
+
+      <!-- TRNG -->
+      <condition id="MAX32670 CMSIS TRNG">
+         <description>Timers</description>
+         <require condition="MAX32670 CMSIS-CORE"/>
+      </condition>
+
+      <!-- UART -->
+      <condition id="MAX32670 CMSIS UART">
+         <description>UART</description>
+         <require condition="MAX32670 CMSIS-CORE"/>
+      </condition>
+
+      <!-- WDT -->
+      <condition id="MAX32670 CMSIS WDT">
+         <description>Watchdog Timers</description>
+         <require condition="MAX32670 CMSIS-CORE"/>
+      </condition>
+
+      <!-- SIMO -->
+<!--      <condition id="MAX32670 CMSIS SIMO">
+         <description>Single Inductor Multiple Output DC/DC Converter</description>
+         <require condition="MAX32670 CMSIS-CORE"/>
+      </condition> -->
+
+      <condition id="MAX32670 BSP DEP">	  
+	     <description>Board Support Package</description>
+         <!-- <require condition="MAX32670 CMSIS-CORE"/> -->
+         <accept condition="MAX32670 Family"/>
+         <require Cclass="Device" Cgroup="UART"/>
+         <require Cclass="Device" Cgroup="GPIO"/>
+      </condition>
+	  
+   </conditions>	  
+
+   <components>
+<!--                                                                                
+       <component Cgroup="Rev" Cclass="Target Rev" Cvariant="A1" Cversion="1.1.0" condition="MAX32670 Family">
+            <description>Target Rev A1 selected</description>
+            <RTE_Components_h>
+			 #define TARGET 32670   /* Target Device Part Number */
+             #define TARGET_REV 0x4131       /* A1 chip */
+            </RTE_Components_h>
+       </component>
+       <component Cgroup="Rev" Cclass="Target Rev" Cvariant="A2" Cversion="1.1.0" condition="MAX32670 Family">
+             <description>Target Rev A2 selected</description>
+             <RTE_Components_h>
+			 #define TARGET 32670   /* Target Device Part Number */
+             #define TARGET_REV 0x4132       /* A2 chip */
+             </RTE_Components_h>
+        </component>
+-->
+      <bundle Cbundle="Maxim API" Cclass="Device" Cversion="1.1.0">
+         <description>Maxim Developed Hardware Abstraction Layer</description>
+         <doc>Doc/SDK_Documentation/doxygen.txt</doc>
+
+         <!-- MAX32670 Device Selection -->
+         <component Cgroup="Startup" Cversion="1.1.0" condition="MAX32670 Family" >
+            <description>System Startup for Maxim MAX32670 Microcontroller</description>
+			
+			
+            <files>
+               <!-- Include paths for the tools -->
+               <file category="include" name="Libraries/CMSIS/Device/Maxim/MAX32670/Include/" version="1.1.0" />
+               <file category="include" name="Libraries/PeriphDrivers/Include/MAX32670/" version="1.1.0" />
+
+			   <file category="include" name="Libraries/PeriphDrivers/Source/AES/" version="1.1.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/CRC/" version="1.1.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/DMA/" version="1.1.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/FLC/" version="1.1.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/GPIO/" version="1.1.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/I2C/" version="1.1.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/I2S/" version="1.1.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/ICC/" version="1.1.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/LP/" version="1.1.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/RTC/" version="1.1.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/SPI/" version="1.1.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/SYS/" version="1.1.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/TMR/" version="1.1.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/TRNG/" version="1.1.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/UART/" version="1.1.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/WDT/" version="1.1.0"/>
+
+               <!-- Keil/ARM device startup file and sub_main to call SystemInit -->			   
+               <file category="sourceAsm" attr="config" version="1.1.0" name="Libraries/CMSIS/Device/Maxim/MAX32670/Source/ARM/startup_max32670.s" condition="Startup ARM" />
+                <file category="sourceC" attr="config"  version="1.1.0" name="Libraries/CMSIS/Device/Maxim/MAX32670/Source/IAR/low_level_init.c" condition="Startup IAR" />
+				
+               <!-- GNUC/Eclipse device startup file -->
+               <file category="sourceAsm" attr="config"  version="1.1.0" name="Libraries/CMSIS/Device/Maxim/MAX32670/Source/GCC/startup_max32670.S" condition="Startup GCC" />
+
+               <!-- IAR device startup file, low level init and cmain.s -->  
+               <file category="sourceAsm" attr="config" name="Libraries/CMSIS/Device/Maxim/MAX32670/Source/IAR/startup_max32670.s" condition="Startup IAR" version="1.1.0" />
+               <file category="sourceC" attr="config"  version="1.1.0" name="Libraries/CMSIS/Device/Maxim/MAX32670/Source/IAR/low_level_init.c" condition="Startup IAR" />
+               <file category="sourceAsm" attr="config"  version="1.1.0" name="Libraries/CMSIS/Device/Maxim/MAX32670/Source/IAR/cmain.s" condition="Startup IAR" />
+
+               <!-- System, NVIC and device header files common to all platforms -->
+               <file category="sourceC" attr="config"  version="1.1.0" name="Libraries/CMSIS/Device/Maxim/MAX32670/Source/system_max32670.c" />
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SYS/nvic_table.c" version="1.1.0" />
+               <file category="header" attr="config" name="Libraries/CMSIS/Device/Maxim/MAX32670/Include/max32670.h" version="1.1.0" />
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SYS/mxc_assert.c"  version="1.1.0" />
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SYS/mxc_delay.c"  version="1.1.0" />
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SYS/mxc_lock.c"  version="1.1.0" />
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SYS/pins_me15.c"  version="1.1.0" />
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SYS/sys_me15.c"  version="1.1.0" />	   
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SYS/nvic_table.c"  version="1.1.0" />		   
+            </files>
+         </component>
+
+         <component Cgroup="AES" condition="MAX32670 CMSIS AES" Cversion="1.1.0"> 
+         	 <description>AES Interface</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/AES/aes_me15.c" version="1.1.0"/>
+	           <file category="sourceC" name="Libraries/PeriphDrivers/Source/AES/aes_revb.c" version="1.1.0"/>			   
+            </files>
+         </component>
+		 
+		 <component Cgroup="CRC" condition="MAX32670 CMSIS CRC" Cversion="1.1.0"> 
+         	 <description>Camera Interface</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/CRC/crc_me15.c" version="1.1.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/CRC/crc_reva.c" version="1.1.0"/>
+            </files>
+         </component>		 
+
+         <component Cgroup="DMA" condition="MAX32670 CMSIS DMA" Cversion="1.1.0">
+            <description>Standard DMA</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/DMA/dma_me15.c" version="1.1.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/DMA/dma_reva.c" version="1.1.0"/>
+            </files>
+         </component>
+
+         <component Cgroup="FLC" condition="MAX32670 CMSIS FLC" Cversion="1.1.0" >
+            <description> Flash Controller </description>
+            <files>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/FLC/flc_me15.c" version="1.1.0"/>			
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/FLC/flc_common.c" version="1.1.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/FLC/flc_reva.c" version="1.1.0"/>		
+		<!--	   <file category="sourceC" name="Libraries/PeriphDrivers/Source/FLC/flc_revb.c" version="1.1.0"/> -->
+            </files>
+         </component>
+		 
+		 <component Cgroup="GPIO" condition="MAX32670 CMSIS GPIO" Cversion="1.1.0">
+            <description> GPIO </description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/GPIO/gpio_me15.c" version="1.1.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/GPIO/gpio_reva.c" version="1.1.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/GPIO/gpio_common.c" version="1.1.0"/>		   
+            </files>
+         </component>
+		 
+        <component Cgroup="I2C" condition="MAX32670 CMSIS I2C" Cversion="1.1.0">
+            <description>I2C Interface</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/I2C/i2c_me15.c" version="1.1.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/I2C/i2c_reva.c" version="1.1.0"/>			   
+            </files>
+         </component>		 
+		 
+        <component Cgroup="I2S" condition="MAX32670 CMSIS I2S" Cversion="1.1.0">
+            <description>I2S Interface</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/I2S/i2s_me15.c" version="1.1.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/I2S/i2s_reva.c" version="1.1.0"/>			   
+            </files>
+         </component>		 		 
+
+         <component Cgroup="ICC" condition="MAX32670 CMSIS ICC" Cversion="1.1.0">
+            <description>Instruction Cache Controller</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/ICC/icc_me15.c" version="1.1.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/ICC/icc_reva.c" version="1.1.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/ICC/icc_common.c" version="1.1.0"/>			   
+            </files>
+         </component>		 
+		 
+         <component Cgroup="Low Power" condition="MAX32670 CMSIS Low Power" Cversion="1.1.0">
+            <description>Low Power API</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/LP/lp_me15.c" version="1.1.0"/>			   
+            </files>
+         </component>		 
+		 
+         <component Cgroup="RTC" condition="MAX32670 CMSIS RTC" Cversion="1.1.0">
+            <description>Real-Time Clock</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/RTC/rtc_me15.c" version="1.1.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/RTC/rtc_reva.c" version="1.1.0"/>			   
+            </files>
+         </component>
+
+         <component Cgroup="SPI" condition="MAX32670 CMSIS SPI" Cversion="1.1.0">
+            <description>SPI Interface</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SPI/spi_me15.c" version="1.1.0"/>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SPI/spi_reva.c" version="1.1.0"/>			   
+            </files>
+         </component>
+
+         <component Cgroup="SYS" condition="MAX32670 CMSIS SYS" Cversion="1.1.0">
+            <description>SYS Interface</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SYS/sys_me15.c" version="1.1.0"/>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SYS/pins_me15.c" version="1.1.0"/>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SYS/pins_es17.c" version="1.1.0"/>				   
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SYS/nvic_table.c" version="1.1.0"/>	
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SYS/mxc_lock.c" version="1.1.0"/>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SYS/mxc_delay.c" version="1.1.0"/>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SYS/mxc_assert.c" version="1.1.0"/>
+
+            </files>
+         </component>
+
+         <component Cgroup="Timers" condition="MAX32670 CMSIS TIMER" Cversion="1.1.0">
+            <description>32-Bit Timers</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/TMR/tmr_me15.c" version="1.1.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/TMR/tmr_revb.c" version="1.1.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/TMR/tmr_common.c" version="1.1.0"/>			   
+            </files>
+         </component>
+
+         <component Cgroup="TRNG" condition="MAX32670 CMSIS TRNG" Cversion="1.1.0">
+            <description>TRNG</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/TRNG/trng_me15.c" version="1.1.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/TRNG/trng_revb.c" version="1.1.0"/>		   
+            </files>
+         </component>
+
+         <component Cgroup="UART" condition="MAX32670 CMSIS UART" Cversion="1.1.0">
+            <description>UART Interface</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/UART/uart_me15.c" version="1.1.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/UART/uart_revb.c" version="1.1.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/UART/uart_common.c" version="1.1.0"/>
+            </files>
+         </component>
+
+      <component Cgroup="WDT" condition="MAX32670 CMSIS WDT" Cversion="1.1.0">
+            <description>Watchdog Timers</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/WDT/wdt_me15.c" version="1.1.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/WDT/wdt_revb.c" version="1.1.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/WDT/wdt_common.c" version="1.1.0"/>
+            </files>
+         </component>		    
+      </bundle>
+	  
+<!--      <bundle Cbundle="MAX32670 BSP" Cclass="BSP" Cversion="1.1.0">
+         <description>MAX32670 Evaluation Kit Board Support Package</description>
+         <doc>Doc/MAX32670_EvKit.txt</doc>
+            <component Cgroup="EvKit V1" condition="MAX32670 BSP DEP">
+		    <component Cgroup="EvKit V1">
+            <description>MAX32670 Evaluation Kit Board Setup</description>
+            <RTE_Components_h>
+               #define BOARD EvKit_V1 /* Target Board */
+            </RTE_Components_h>
+            <files>
+			   <file category="include" name="Libraries/Boards/MAX32670/EvKit_V1/Include/" version="1.1.0"/>
+               <file category="sourceC" name="Libraries/Boards/MAX32670/EvKit_V1/Source/board.c" version="1.1.0"/>	   			   
+               <file category="include" name="Libraries/Boards/MAX32670/Include/" version="1.1.0"/>
+               <file category="sourceC" name="Libraries/Boards/MAX32670/Source/led.c" version="1.1.0"/>
+               <file category="sourceC" name="Libraries/Boards/MAX32670/Source/pb.c" version="1.1.0"/>
+               <file category="sourceC" name="Libraries/Boards/MAX32670/Source/stdio.c" version="1.1.0"/>
+           </files>
+         </component>
+      </bundle> -->
+
+     <bundle Cbundle="MAX32670 BSP" Cclass="BSP" Cversion="1.1.0">
+         <description>MAX32670 Evaluation Kit Board Support Package</description>
+         <doc>Doc/MAX32670_EvKit.txt</doc>
+
+		 <component Cgroup="Board Type" Cvariant="EvKit" Cversion="1.1.0" condition="MAX32670 Family">
+            <description>MAX32670 Evaluation Kit Board Setup</description>
+            <RTE_Components_h>
+               #define EvKit_V1 /* Target Board */
+            </RTE_Components_h>			
+            <files>
+			   <file category="include" name="Libraries/Boards/MAX32670/EvKit_V1/Include/" version="1.1.0"/>
+			   <file category="include" name="Libraries/Boards/MAX32670/EvKit_V1/" version="1.1.0"/>
+		<!--	   <file category="include" name="Libraries/Boards/MAX32670/FTHR_RevA/Include/" version="1.1.0"/>
+			   <file category="include" name="Libraries/Boards/MAX32670/FTHR_RevA/" version="1.1.0"/>			   -->
+			   <file category="include" name="Libraries/Boards/MAX32670/Include/" version="1.1.0"/>
+               <file category="include" name="Libraries/MiscDrivers/Camera/" version="1.1.0"/>			   
+               <file category="include" name="Libraries/MiscDrivers/Display/" version="1.1.0"/>				   
+               <file category="include" name="Libraries/MiscDrivers/ExtMemory/" version="1.1.0"/>
+               <file category="include" name="Libraries/MiscDrivers/LED/" version="1.1.0"/>	
+               <file category="include" name="Libraries/MiscDrivers/PMIC/" version="1.1.0"/>			   
+               <file category="include" name="Libraries/MiscDrivers/PushButton/" version="1.1.0"/>
+               <file category="include" name="Libraries/MiscDrivers/Touchscreen/" version="1.1.0"/>				
+               <file category="sourceC" name="Libraries/Boards/MAX32670/EvKit_V1/Source/board.c" version="1.1.0"/>	   			   
+			   <file category="sourceC" name="Libraries/MiscDrivers/stdio.c" version="1.1.0"/>							
+               <file category="sourceC" name="Libraries/Boards/MAX32670/EvKit_V1/Source/board.c" version="1.1.0"/>	   			   
+			   <file category="sourceC" name="Libraries/MiscDrivers/stdio.c" version="1.1.0"/>		   
+           </files>
+         </component>
+
+<!--		 <component Cgroup="Board Type" Cvariant="FTHR" Cversion="1.1.0" condition="MAX32670 Family">
+            <description>MAX32670 Feather Board</description>
+            <RTE_Components_h>
+               #define FTHR /* Target Board */
+            </RTE_Components_h>			
+            <files>
+			   <file category="include" name="Libraries/Boards/MAX32670/EvKit_V1/Include/" version="1.1.0"/>
+			   <file category="include" name="Libraries/Boards/MAX32670/EvKit_V1/" version="1.1.0"/>
+			   <file category="include" name="Libraries/Boards/MAX32670/FTHR_RevA/Include/" version="1.1.0"/>
+			   <file category="include" name="Libraries/Boards/MAX32670/FTHR_RevA/" version="1.1.0"/>			   
+			   <file category="include" name="Libraries/Boards/MAX32670/Include/" version="1.1.0"/>
+               <file category="include" name="Libraries/MiscDrivers/Camera/" version="1.1.0"/>			   
+               <file category="include" name="Libraries/MiscDrivers/Display/" version="1.1.0"/>				   
+               <file category="include" name="Libraries/MiscDrivers/ExtMemory/" version="1.1.0"/>
+               <file category="include" name="Libraries/MiscDrivers/LED/" version="1.1.0"/>	
+               <file category="include" name="Libraries/MiscDrivers/PMIC/" version="1.1.0"/>			   
+               <file category="include" name="Libraries/MiscDrivers/PushButton/" version="1.1.0"/>
+               <file category="include" name="Libraries/MiscDrivers/Touchscreen/" version="1.1.0"/>				
+               <file category="sourceC" name="Libraries/Boards/MAX32670/EvKit_V1/Source/board.c" version="1.1.0"/>	   			   
+			   <file category="sourceC" name="Libraries/MiscDrivers/stdio.c" version="1.1.0"/>				
+               <file category="sourceC" name="Libraries/Boards/MAX32670/FTHR_RevA/Source/board.c" version="1.1.0"/>	   			   
+			   <file category="sourceC" name="Libraries/MiscDrivers/stdio.c" version="1.1.0"/>		   
+           </files>
+         </component> -->
+	
+
+<!--         <component Cgroup="Display" condition="MAX32670 BSP DEP">
+            <description>MAX32670 Evaluation Kit Board Setup</description>
+            <files>
+               <file category="sourceC" name="Libraries/MiscDrivers/Display/adafruit_3315_tft.c" version="1.1.0"/>			   
+               <file category="sourceC" name="Libraries/MiscDrivers/Display/tft_ili9341.c" version="1.1.0"/>
+               <file category="sourceC" name="Libraries/MiscDrivers/Display/tft_ssd2119.c" version="1.1.0"/>	   
+           </files>
+         </component> -->
+		 
+         <!-- Types of Display -->                                                                   
+         <component  Cgroup="Display" Cvariant="ADAFRUIT_3315_TFT" Cversion="1.1.0" condition="MAX32670 Family">
+            <description>ADAFRUIT_3315</description>
+            <files>
+               <file category="sourceC" name="Libraries/MiscDrivers/Display/adafruit_3315_tft.c" version="1.1.0"/>			   
+           </files>			
+         </component>
+         <component  Cgroup="Display" Cvariant="TFT_ILI9341" Cversion="1.1.0" condition="MAX32670 Family">
+             <description>TFT_ILI9341</description>
+            <files>
+               <file category="sourceC" name="Libraries/MiscDrivers/Display/tft_ili9341.c" version="1.1.0"/>	   
+           </files>			 
+         </component>
+         <component  Cgroup="Display" Cvariant="TFT_SSD2119" Cversion="1.1.0" condition="MAX32670 Family">
+             <description>TFT_SSD2119</description>
+            <files>
+               <file category="sourceC" name="Libraries/MiscDrivers/Display/tft_ssd2119.c" version="1.1.0"/>	   
+           </files>			 
+         </component>
+
+
+         <!-- Types of Camera -->
+         <component  Cgroup="Camera" Cvariant="HM01B0" Cversion="1.1.0" condition="MAX32670 Family">
+            <description>HM01B0</description>
+            <RTE_Components_h>
+               #define CAMERA_HM01B0
+            </RTE_Components_h>			
+            <files>
+               <file category="sourceC" name="Libraries/MiscDrivers/Camera/sccb.c" version="1.1.0"/>			
+               <file category="sourceC" name="Libraries/MiscDrivers/Camera/camera.c" version="1.1.0"/>				
+               <file category="sourceC" name="Libraries/MiscDrivers/Camera/hm01b0.c" version="1.1.0"/>			   
+           </files>			
+         </component>
+         <component  Cgroup="Camera" Cvariant="HM0360" Cversion="1.1.0" condition="MAX32670 Family">
+            <description>HM0360</description>
+            <RTE_Components_h>
+               #define CAMERA_HM0360
+            </RTE_Components_h>				
+            <files>
+               <file category="sourceC" name="Libraries/MiscDrivers/Camera/sccb.c" version="1.1.0"/>			
+               <file category="sourceC" name="Libraries/MiscDrivers/Camera/camera.c" version="1.1.0"/>				
+               <file category="sourceC" name="Libraries/MiscDrivers/Camera/hm0360_color.c" version="1.1.0"/>
+               <file category="sourceC" name="Libraries/MiscDrivers/Camera/hm0360_mono.c" version="1.1.0"/>			   
+           </files>			
+         </component>
+         <component  Cgroup="Camera" Cvariant="MIPI_CAMERA" Cversion="1.1.0" condition="MAX32670 Family">
+            <description>MIPI CAMERA</description>
+            <files>
+               <file category="sourceC" name="Libraries/MiscDrivers/Camera/sccb.c" version="1.1.0"/>			
+               <file category="sourceC" name="Libraries/MiscDrivers/Camera/camera.c" version="1.1.0"/>			
+               <file category="sourceC" name="Libraries/MiscDrivers/Camera/mipi_camera.c" version="1.1.0"/>			   
+           </files>			
+         </component>		 
+         <component  Cgroup="Camera" Cvariant="OV5640" Cversion="1.1.0" condition="MAX32670 Family">
+            <description>OV5640</description>
+            <files>
+               <file category="sourceC" name="Libraries/MiscDrivers/Camera/sccb.c" version="1.1.0"/>			
+               <file category="sourceC" name="Libraries/MiscDrivers/Camera/camera.c" version="1.1.0"/>			
+               <file category="sourceC" name="Libraries/MiscDrivers/Camera/ov5640.c" version="1.1.0"/>			   
+           </files>			
+         </component>
+         <component  Cgroup="Camera" Cvariant="OV5642" Cversion="1.1.0" condition="MAX32670 Family">
+            <description>OV5642</description>
+            <RTE_Components_h>
+               #define CAMERA_OV5642
+            </RTE_Components_h>				
+            <files>
+               <file category="sourceC" name="Libraries/MiscDrivers/Camera/sccb.c" version="1.1.0"/>			
+               <file category="sourceC" name="Libraries/MiscDrivers/Camera/camera.c" version="1.1.0"/>			
+               <file category="sourceC" name="Libraries/MiscDrivers/Camera/ov5642.c" version="1.1.0"/>			   
+           </files>			
+         </component>		 
+         <component Cgroup="Camera" Cvariant="OV7692" Cversion="1.1.0" condition="MAX32670 Family">
+            <description>OV7692</description>
+            <RTE_Components_h>
+               #define CAMERA_OV7692
+            </RTE_Components_h>			
+            <files>
+               <file category="sourceC" name="Libraries/MiscDrivers/Camera/sccb.c" version="1.1.0"/>			
+               <file category="sourceC" name="Libraries/MiscDrivers/Camera/camera.c" version="1.1.0"/>			
+               <file category="sourceC" name="Libraries/MiscDrivers/Camera/ov7692.c" version="1.1.0"/>			   
+           </files>			
+         </component>
+		 
+		  <!-- Types of Touch Screen -->
+          <component Cgroup="Touch Screen" Cvariant="ADAFRUIT 3315" Cversion="1.1.0" condition="MAX32670 BSP DEP">
+            <description>ADAFRUIT 3315</description>
+            <files>		
+               <file category="sourceC" name="Libraries/MiscDrivers/Touchscreen/adafruit_3315_touch.c" version="1.1.0"/>		   		   		   
+           </files>
+         </component>	
+          <component Cgroup="Touch Screen" Cvariant="TSC2046" Cversion="1.1.0" condition="MAX32670 BSP DEP">
+            <description>TSC2046</description>
+            <files>		   
+               <file category="sourceC" name="Libraries/MiscDrivers/Touchscreen/tsc2046.c" version="1.1.0"/>			   		   		   
+           </files>
+         </component>	 
+	
+	
+         <component Cgroup="LED" Cversion="1.1.0" condition="MAX32670 BSP DEP">
+            <description>MAX32670 Evaluation Kit Board Setup</description>
+            <files>
+               <file category="sourceC" name="Libraries/MiscDrivers/LED/led.c" version="1.1.0"/>		   		   
+           </files>
+         </component>	
+
+         <component Cgroup="PMIC" Cversion="1.1.0" condition="MAX32670 BSP DEP">
+            <description>MAX32670 Evaluation Kit Board Setup</description>
+            <files>
+               <file category="sourceC" name="Libraries/MiscDrivers/PMIC/max20303.c" version="1.1.0"/>			   		   
+           </files>
+         </component>
+
+          <component Cgroup="Push Btn" Cversion="1.1.0" condition="MAX32670 BSP DEP">
+            <description>MAX32670 Evaluation Kit Board Setup</description>
+            <files>		   
+               <file category="sourceC" name="Libraries/MiscDrivers/PushButton/pb.c" version="1.1.0"/>		   		   
+           </files>
+         </component>		 
+	
+      </bundle> 	  
+	  
+   </components>
+</package>

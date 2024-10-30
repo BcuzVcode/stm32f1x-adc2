@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<package schemaVersion="1.7.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="PACK.xsd">
+  <name>FreeRTOS_Cellular_Interface</name>
+
+  <description>library implements a simple unified API that hides the complexity of cellular modem-specific AT commands and exposes a socket-like interface to C programmer.</description>
+
+  <vendor>AWS</vendor>
+
+  <license>LICENSE</license>
+
+  <url>https://d1pm0k3vkcievw.cloudfront.net/</url>
+
+  <releases>
+    <release date="2023-06-23" version="1.0.1">Re-release of the last version due to hosting changes. Based on the https://github.com/FreeRTOS/FreeRTOS-Cellular-Interface/tree/v1.3.0 repository.</release>
+    <release date="2023-02-23" version="1.0.0">Based on the https://github.com/FreeRTOS/FreeRTOS-Cellular-Interface/tree/v1.3.0 repository.</release>
+  </releases>
+
+  <components>
+    <component Cclass="FreeRTOS" Cgroup="FreeRTOS Cellular Interface" Cversion="1.3.0">
+      <description>library implements a simple unified API that hides the complexity of cellular modem-specific AT commands and exposes a socket-like interface to C programmer.</description>
+      <files>
+        <file category="source" name="FreeRTOS-Cellular-Interface/source/cellular_3gpp_api.c"/>
+        <file category="source" name="FreeRTOS-Cellular-Interface/source/cellular_3gpp_urc_handler.c"/>
+        <file category="source" name="FreeRTOS-Cellular-Interface/source/cellular_at_core.c"/>
+        <file category="source" name="FreeRTOS-Cellular-Interface/source/cellular_common.c"/>
+        <file category="source" name="FreeRTOS-Cellular-Interface/source/cellular_common_api.c"/>
+        <file category="source" name="FreeRTOS-Cellular-Interface/source/cellular_pkthandler.c"/>
+        <file category="source" name="FreeRTOS-Cellular-Interface/source/cellular_pktio.c"/>
+        <file category="include" name="FreeRTOS-Cellular-Interface/source/include/"/>
+        <file category="include" name="FreeRTOS-Cellular-Interface/source/include/common/"/>
+        <file category="include" name="FreeRTOS-Cellular-Interface/source/include/private/"/>
+        <file category="include" name="FreeRTOS-Cellular-Interface/source/interface/"/>
+      </files>
+    </component>
+  </components>
+</package>
+

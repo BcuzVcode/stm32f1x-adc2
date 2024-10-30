@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<package schemaVersion="1.7.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="PACK.xsd">
+  <name>FreeRTOS_LTS</name>
+
+  <description>FreeRTOS LTS libraries that come with security updates and critical bug fixes to the included FreeRTOS kernel and IoT libraries for two years, and are maintained by AWS for the benefit of the FreeRTOS community.</description>
+
+  <vendor>AWS</vendor>
+
+  <license>LICENSE</license>
+
+  <url>https://d1pm0k3vkcievw.cloudfront.net/</url>
+
+  <requirements>
+    <packages>
+      <package name="CMSIS-FreeRTOS" vendor="ARM" version="10.5.1:10.5.1"/>
+      <package name="FreeRTOS-Plus-TCP" vendor="AWS" version="5.0.1:5.0.1"/>
+      <package name="coreMQTT" vendor="AWS" version="5.0.1:5.0.1"/>
+      <package name="coreHTTP" vendor="AWS" version="5.0.1:5.0.1"/>
+      <package name="corePKCS11" vendor="AWS" version="5.0.1:5.0.1"/>
+      <package name="coreJSON" vendor="AWS" version="4.1.1:4.1.1"/>
+      <package name="coreSNTP" vendor="AWS" version="1.0.1:1.0.1"/>
+      <package name="backoffAlgorithm" vendor="AWS" version="4.1.1:4.1.1"/>
+      <package name="FreeRTOS_Cellular_Interface" vendor="AWS" version="1.0.1:1.0.1"/>
+      <package name="AWS_IoT_Device_Shadow" vendor="AWS" version="5.0.1:5.0.1"/>
+      <package name="AWS_IoT_Device_Defender" vendor="AWS" version="4.1.1:4.1.1"/>
+      <package name="AWS_IoT_Jobs" vendor="AWS" version="4.1.1:4.1.1"/>
+      <package name="AWS_IoT_Over-the-air_Update" vendor="AWS" version="5.0.1:5.0.1"/>
+      <package name="AWS_IoT_SigV4" vendor="AWS" version="1.0.1:1.0.1"/>
+      <package name="AWS_IoT_Fleet_Provisioning" vendor="AWS" version="1.0.1:1.0.1"/>
+    </packages>
+  </requirements>
+
+  <releases>
+    <release date="2023-06-23" version="2022.0.1">Re-release of the last version due to hosting changes. Based on the https://github.com/FreeRTOS/FreeRTOS-LTS/tree/202210.01-LTS repository.</release>
+    <release date="2023-02-23" version="2022.0.0">Based on the https://github.com/FreeRTOS/FreeRTOS-LTS/tree/202210.01-LTS repository.</release>
+    <release date="2022-07-13" version="2021.0.1">Fixes template files not being marked as template files. Based on the https://github.com/FreeRTOS/FreeRTOS-LTS/tree/202012.04-LTS/ repository.</release>
+    <release date="2022-06-16" version="2021.0.0">Based on the https://github.com/FreeRTOS/FreeRTOS-LTS/tree/202012.04-LTS/ repository.</release>
+    <release date="2021-02-27" version="2020.12.1-Beta">Based on the https://github.com/FreeRTOS/FreeRTOS-LTS/tree/202012.01-LTS/ repository.</release>
+  </releases>
+</package>
+

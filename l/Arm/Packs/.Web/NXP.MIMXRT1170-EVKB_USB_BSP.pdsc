@@ -1,0 +1,859 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>MIMXRT1170-EVKB_USB_BSP</name>
+  <vendor>NXP</vendor>
+  <description>Middleware usb Board Support Pack for MIMXRT1170-EVKB</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="1.0.1" date="2023-10-25" deprecated="2023-10-25" replacement="NXP.MIMXRT1170-EVKB_USB_Examples">This pack is no longer maintained. The new pack has been released with "_Examples" suffix instead of "_BSP".</release>
+    <release version="1.0.0" date="2023-07-27">NXP CMSIS SBSP Packs based on MCUXpresso SDK 2.14.0</release>
+  </releases>
+  <keywords>
+    <keyword>Middleware Board Support Pack</keyword>
+  </keywords>
+  <requirements>
+    <packages>
+      <package name="MIMXRT1176_DFP" vendor="NXP" version="18.0.0"/>
+      <package name="USB" vendor="NXP" version="1.0.1"/>
+      <package name="MIMXRT1170-EVKB_BSP" vendor="NXP" version="18.0.0"/>
+      <package name="Component_OS_Abstraction_Layer" vendor="NXP" version="1.0.1"/>
+      <package name="CMSIS" vendor="ARM" version="5.8.0"/>
+      <package name="FREERTOS-KERNEL" vendor="NXP" version="1.0.1"/>
+      <package name="SDMMC" vendor="NXP" version="1.0.1"/>
+      <package name="FATFS" vendor="NXP" version="1.0.1"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <boards>
+    <board vendor="NXP" name="MIMXRT1170-EVKB">
+      <description>i.MX RT1170 Evaluation Kit</description>
+      <image small="boards/evkbmimxrt1170/evkbmimxrt1170.png"/>
+      <mountedDevice Dname="MIMXRT1176xxxxx" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1171AVM8A" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1171CVM8A" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1171DVMAA" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1172AVM8A" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1172CVM8A" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1172DVMAA" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1173CVM8A" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1175AVM8A" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1175CVM8A" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1175DVMAA" Dvendor="NXP:11"/>
+    </board>
+  </boards>
+  <examples>
+    <example name="dev_hid_mouse_bm_cm4" folder="boards/evkbmimxrt1170/usb_examples/usb_device_hid_mouse/bm/cm4" doc="readme.txt">
+      <description>The USB HID mouse application is a simple demonstration program based on the MCUXpresso SDK.It is enumerated as a mouse. Users can see the mouse arrow moving on the PC screen according in a rectangular fashion.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_hid_mouse_bm_cm4.uvprojx"/>
+        <environment name="csolution" load="dev_hid_mouse_bm_cm4.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_hid_mouse_lite_bm_cm4" folder="boards/evkbmimxrt1170/usb_examples/usb_device_hid_mouse_lite/bm/cm4" doc="readme.txt">
+      <description>The USB HID mouse application is a simple demonstration program based on the MCUXpresso SDK.It is enumerated as a mouse. Users can see the mouse arrow moving on the PC screen according in a rectangular fashion.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_hid_mouse_lite_bm_cm4.uvprojx"/>
+        <environment name="csolution" load="dev_hid_mouse_lite_bm_cm4.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_hid_mouse_freertos_cm4" folder="boards/evkbmimxrt1170/usb_examples/usb_device_hid_mouse/freertos/cm4" doc="readme.txt">
+      <description>The USB HID mouse application is a simple demonstration program based on the MCUXpresso SDK.It is enumerated as a mouse. Users can see the mouse arrow moving on the PC screen according in a rectangular fashion.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_hid_mouse_freertos_cm4.uvprojx"/>
+        <environment name="csolution" load="dev_hid_mouse_freertos_cm4.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="host_hid_mouse_bm_cm4" folder="boards/evkbmimxrt1170/usb_examples/usb_host_hid_mouse/bm/cm4" doc="readme.txt">
+      <description>The application supports the mouse device. It prints the mouse operation when the mouse device is attached.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/host_hid_mouse_bm_cm4.uvprojx"/>
+        <environment name="csolution" load="host_hid_mouse_bm_cm4.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="host_hid_mouse_freertos_cm4" folder="boards/evkbmimxrt1170/usb_examples/usb_host_hid_mouse/freertos/cm4" doc="readme.txt">
+      <description>The application supports the mouse device. It prints the mouse operation when the mouse device is attached.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/host_hid_mouse_freertos_cm4.uvprojx"/>
+        <environment name="csolution" load="host_hid_mouse_freertos_cm4.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_audio_generator_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_audio_generator/bm/cm7" doc="readme.txt">
+      <description>The USB Audio Generator application is a simple demonstration program based on the MCUXpresso SDK.It is enumerated as a recording device and users can record the sound from this device via the "Sound Recorder" in the Windows Accessories.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_audio_generator_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_audio_generator_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_audio_generator_lite_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_audio_generator_lite/bm/cm7" doc="readme.txt">
+      <description>The USB Audio Generator application is a simple demonstration program based on the MCUXpresso SDK.It is enumerated as a recording device and users can record the sound from this device via the "Sound Recorder" in the Windows Accessories.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_audio_generator_lite_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_audio_generator_lite_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_audio_speaker_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_audio_speaker/bm/cm7" doc="readme.txt">
+      <description>The USB Audio Speaker application is a simple demonstration program based on the MCUXpresso SDK. It is enumerated as a playback device and users can play music using the device.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_audio_speaker_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_audio_speaker_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_audio_speaker_lite_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_audio_speaker_lite/bm/cm7" doc="readme.txt">
+      <description>The USB Audio Speaker application is a simple demonstration program based on the MCUXpresso SDK. It is enumerated as a playback device and users can play music using the device.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_audio_speaker_lite_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_audio_speaker_lite_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_cdc_vcom_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_cdc_vcom/bm/cm7" doc="readme.txt">
+      <description>The Virtual COM project is enumerated as a COM port, which the users can open using terminal tools, such as TeraTerm. The demo echoes back any character it receives.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_cdc_vcom_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_cdc_vcom_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_cdc_vcom_lite_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_cdc_vcom_lite/bm/cm7" doc="readme.txt">
+      <description>The Virtual COM project enumerated as a COM port, which the users can open using terminal tools, such as TeraTerm. The demo echoes back any character it receives.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_cdc_vcom_lite_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_cdc_vcom_lite_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_cdc_vnic_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_cdc_vnic/bm/cm7" doc="readme.txt">
+      <description>The Virtual NIC project is enumerated as a network adapter. Users can access the network by properly configuring this network adapter.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_cdc_vnic_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_cdc_vnic_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_cdc_vnic_lite_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_cdc_vnic_lite/bm/cm7" doc="readme.txt">
+      <description>The Virtual NIC project is a simple demonstration program based on the MCUXpresso SDK.  It is enumerated as a network adapter. Users can access the network by properly configuring this network adapter.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_cdc_vnic_lite_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_cdc_vnic_lite_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_composite_cdc_msc_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_composite_cdc_msc/bm/cm7" doc="readme.txt">
+      <description>The Composite CDC_MSC project is a simple demonstration program based on the MCUXpresso SDK.  It is enumerated as a COM port and a RAM disk, which can be opened using terminal tools, such as TeraTerm. The demo echoes back any character it receives. The RAM disk can be formatted..</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_composite_cdc_msc_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_composite_cdc_msc_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_composite_cdc_msc_disk_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_composite_cdc_msc_disk/bm/cm7" doc="readme.txt">
+      <description>The Composite CDC_MSC project is a simple demonstration program based on the MCUXpresso SDK.  It is enumerated as a COM port and a RAM disk, which can be opened using terminal tools, such as TeraTerm. The demo echoes back any character it receives. The RAM disk can be formatted.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_composite_cdc_msc_disk_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_composite_cdc_msc_disk_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_composite_cdc_msc_disk_lite_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_composite_cdc_msc_disk_lite/bm/cm7" doc="readme.txt">
+      <description>The Composite CDC_MSC project is a simple demonstration program based on the MCUXpresso SDK.  It is enumerated as a COM port and a U-disk. The COM  port can be opened using terminal tools, such as TeraTerm. The demo echoes back any character it receives. The U-disk can be read and write as a standard SD card.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_composite_cdc_msc_disk_lite_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_composite_cdc_msc_disk_lite_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_composite_cdc_msc_lite_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_composite_cdc_msc_lite/bm/cm7" doc="readme.txt">
+      <description>The Composite CDC_MSC project is a simple demonstration program based on the MCUXpresso SDK.  It is enumerated as a COM port and a RAM disk, which can be opened using terminal tools, such as TeraTerm. The demo echoes back any character it receives. The RAM disk can be formatted.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_composite_cdc_msc_lite_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_composite_cdc_msc_lite_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_composite_cdc_vcom_cdc_vcom_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_composite_cdc_vcom_cdc_vcom/bm/cm7" doc="readme.txt">
+      <description>The Composite CDC_VCOM_CDC_VCOM project is a simple demonstration program based on the MCUXpresso SDK.  It is enumerated as two COM port, which can be opened using terminal tools, such as TeraTerm. The demo echoes back any character it receives.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_composite_cdc_vcom_cdc_vcom_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_composite_cdc_vcom_cdc_vcom_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_composite_cdc_vcom_cdc_vcom_lite_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_composite_cdc_vcom_cdc_vcom_lite/bm/cm7" doc="readme.txt">
+      <description>The Composite CDC_VCOM_CDC_VCOM project is a simple demonstration program based on the MCUXpresso SDK.  It is enumerated as two COM port, which can be opened using terminal tools, such as TeraTerm. The demo echoes back any character it receives.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_composite_cdc_vcom_cdc_vcom_lite_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_composite_cdc_vcom_cdc_vcom_lite_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_composite_hid_audio_unified_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_composite_hid_audio_unified/bm/cm7" doc="readme.txt">
+      <description>The USB Composite device application is a simple demonstration program based on the MCUXpresso SDK. It is enumerated as a recording device. Users can record the sound from this device via the "Sound Recorder" in the Windows Accessories with an HID mouse device.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_composite_hid_audio_unified_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_composite_hid_audio_unified_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_composite_hid_audio_unified_lite_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_composite_hid_audio_unified_lite/bm/cm7" doc="readme.txt">
+      <description>The USB Composite HID and Audio Unified application is a simple demonstration program based on the MCUXpresso SDK. It is enumerated as a playback and recording device. Users can record the sound from this device via the "Sound Recorder" in the Windows Accessories and play music with the device.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_composite_hid_audio_unified_lite_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_composite_hid_audio_unified_lite_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_composite_hid_mouse_hid_keyboard_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_composite_hid_mouse_hid_keyboard/bm/cm7" doc="readme.txt">
+      <description>The application is a simple demonstration program based on the MCUXpresso SDK. The application is enumerated as HID-compliant mouse and keyboard devices.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_composite_hid_mouse_hid_keyboard_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_composite_hid_mouse_hid_keyboard_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_composite_hid_mouse_hid_keyboard_lite_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_composite_hid_mouse_hid_keyboard_lite/bm/cm7" doc="readme.txt">
+      <description>The application is a simple demonstration program based on the MCUXpresso SDK. The application is enumerated as HID-compliant mouse and keyboard devices.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_composite_hid_mouse_hid_keyboard_lite_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_composite_hid_mouse_hid_keyboard_lite_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_dfu_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_dfu/bm/cm7" doc="readme.pdf">
+      <description>The DFU project is a simple demonstration program based on the MCUXpresso SDK.  It is enumerated as a compoiste dfu device, users can download one firmware to the dfu device with the tool called "dfu-util". the dfu example write the firmware content to flash and will check the CRC32 which stored in the last 4 byte of the firmware.if the CRC32 check is right, then the dfu example will run the new firmware.Generally speaking, the firmware doesn't have CRC32. sothe following content will introduce how to add CRC32 to the firmware.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_dfu_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_dfu_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_dfu_lite_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_dfu_lite/bm/cm7" doc="readme.pdf">
+      <description>The DFU project is a simple demonstration program based on the MCUXpresso SDK.  It is enumerated as a compoiste dfu device, users can download one firmware to the dfu device with the tool called "dfu-util". the dfu example write the firmware content to flash and will check the CRC32 which stored in the last 4 byte of the firmware.if the CRC32 check is right, then the dfu example will run the new firmware.Generally speaking, the firmware doesn't have CRC32. sothe following content will introduce how to add CRC32 to the firmware.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_dfu_lite_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_dfu_lite_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_hid_generic_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_hid_generic/bm/cm7" doc="readme.txt">
+      <description>The USB HID generic application is a simple demonstration program based on the MCUXpresso SDK.It is enumerated as a HID-compliant device. A PC application can be used to exchange data with the device.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_hid_generic_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_hid_generic_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_hid_generic_lite_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_hid_generic_lite/bm/cm7" doc="readme.txt">
+      <description>The USB HID generic application is a simple demonstration program based on the MCUXpresso SDK.It is enumerated as a HID-compliant device. A PC application can be used to exchange data with the device.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_hid_generic_lite_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_hid_generic_lite_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_hid_mouse_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_hid_mouse/bm/cm7" doc="readme.txt">
+      <description>The USB HID mouse application is a simple demonstration program based on the MCUXpresso SDK.It is enumerated as a mouse. Users can see the mouse arrow moving on the PC screen according in a rectangular fashion.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_hid_mouse_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_hid_mouse_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_hid_mouse_lite_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_hid_mouse_lite/bm/cm7" doc="readme.txt">
+      <description>The USB HID mouse application is a simple demonstration program based on the MCUXpresso SDK.It is enumerated as a mouse. Users can see the mouse arrow moving on the PC screen according in a rectangular fashion.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_hid_mouse_lite_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_hid_mouse_lite_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_msc_disk_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_msc_disk/bm/cm7" doc="readme.txt">
+      <description>The USB MSC RAM disk application is a simple demonstration program based on the MCUXpresso SDK.It is enumerated as a U-disk. Users can read and write the SD card or MMC as a standard U-disk.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_msc_disk_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_msc_disk_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_msc_disk_lite_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_msc_disk_lite/bm/cm7" doc="readme.txt">
+      <description>The USB MSC RAM disk application is a simple demonstration program based on the MCUXpresso SDK.It is enumerated as a U-disk. Users can read and write the SD card or MMC as a standard U-disk.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_msc_disk_lite_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_msc_disk_lite_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_msc_ramdisk_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_msc_ramdisk/bm/cm7" doc="readme.txt">
+      <description>The USB MSC RAM disk application is a simple demonstration program based on the MCUXpresso SDK.It is enumerated as a U-disk and can be read and written to as a normal U-disk .</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_msc_ramdisk_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_msc_ramdisk_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_msc_ramdisk_lite_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_msc_ramdisk_lite/bm/cm7" doc="readme.txt">
+      <description>The USB MSC RAM disk application is a simple demonstration program based on the MCUXpresso SDK.It is enumerated as a U-disk and can be read and written to as a normal U-disk .</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_msc_ramdisk_lite_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_msc_ramdisk_lite_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_mtp_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_mtp/bm/cm7" doc="readme.txt">
+      <description>The USB MTP application is a simple demonstration program based on the MCUXpresso SDK. It is enumerated as portable media device. Users can read and write the SD card or MMC by MTP operations.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_mtp_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_mtp_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_mtp_lite_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_mtp_lite/bm/cm7" doc="readme.txt">
+      <description>The USB MTP application is a simple demonstration program based on the MCUXpresso SDK. It is enumerated as portable media device. Users can read and write the SD card or MMC by MTP operations.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_mtp_lite_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_mtp_lite_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_phdc_weighscale_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_phdc_weighscale/bm/cm7" doc="readme.txt">
+      <description>The USB PHDC WeighScale application is a simple demonstration program based on the MCUXpresso SDK.It is enumerated as a weight scale device and the HealthLink software is used to interact with thisdevice to simulate the personal weight scale data, such as body mass and body mass index.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_phdc_weighscale_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_phdc_weighscale_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_phdc_weighscale_lite_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_phdc_weighscale_lite/bm/cm7" doc="readme.txt">
+      <description>The USB PHDC WeighScale application is a simple demonstration program based on the MCUXpresso SDK.It is enumerated as a weight scale device and the HealthLink software is used to interact with thisdevice to simulate the personal weight scale data, such as body mass and body mass index.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_phdc_weighscale_lite_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_phdc_weighscale_lite_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_printer_virtual_plain_text_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_printer_virtual_plain_text/bm/cm7" doc="readme.txt">
+      <description>The USB virtual printer application is a simple application to demonstrate a virtual printer functionality.Because there is no printer language parsing, the received raw data is output directly in the debug console.As a result, only plain text is suitable for testing. For other printer language support, such as postscript, implement the corresponding parser.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_printer_virtual_plain_text_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_printer_virtual_plain_text_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_printer_virtual_plain_text_lite_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_printer_virtual_plain_text_lite/bm/cm7" doc="readme.txt">
+      <description>The USB virtual printer application is a simple application to demonstrate a virtual printer functionality.Because there is no printer language parsing, the received raw data is output directly in the debug console.As a result, only plain text is suitable for testing. For other printer language support, such as postscript, implement the corresponding parser.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_printer_virtual_plain_text_lite_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_printer_virtual_plain_text_lite_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_suspend_resume_hid_mouse_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_suspend_resume_device_hid_mouse/bm/cm7" doc="readme.txt">
+      <description>the application is enumerated as a mouse. When host releases the USB Bus, the device will enter into low power mode. The device can be waked up when resume signal is detected on the bus. Or the device can remote wake-up the host by delivering the resume signal when the remote wake-up is enabled by the host.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_suspend_resume_hid_mouse_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_suspend_resume_hid_mouse_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_suspend_resume_hid_mouse_lite_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_suspend_resume_device_hid_mouse_lite/bm/cm7" doc="readme.txt">
+      <description>the application is enumerated as a mouse. When host releases the USB Bus, the device will enter into low power mode. The device can be waked up when resume signal is detected on the bus. Or the device can remote wake-up the host by delivering the resume signal when the remote wake-up is enabled by the host.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_suspend_resume_hid_mouse_lite_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_suspend_resume_hid_mouse_lite_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_video_virtual_camera_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_video_virtual_camera/bm/cm7" doc="readme.txt">
+      <description>The USB video virtual camera application is a simple demonstration program based on the MCUXpresso SDK.It is enumerated as a camera and users can see the video of the device by using a PC test tool.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_video_virtual_camera_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_video_virtual_camera_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_video_virtual_camera_lite_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_video_virtual_camera_lite/bm/cm7" doc="readme.txt">
+      <description>The USB video virtual camera application is a simple demonstration program based on the MCUXpresso SDK.It is enumerated as a camera and users can see the video of the device by using a PC test tool.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_video_virtual_camera_lite_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_video_virtual_camera_lite_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_audio_generator_freertos_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_audio_generator/freertos/cm7" doc="readme.txt">
+      <description>The USB Audio Generator application is a simple demonstration program based on the MCUXpresso SDK.It is enumerated as a recording device and users can record the sound from this device via the "Sound Recorder" in the Windows Accessories.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_audio_generator_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_audio_generator_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_audio_speaker_freertos_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_audio_speaker/freertos/cm7" doc="readme.txt">
+      <description>The USB Audio Speaker application is a simple demonstration program based on the MCUXpresso SDK. It is enumerated as a playback device and users can play music using the device.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_audio_speaker_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_audio_speaker_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_cdc_vcom_freertos_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_cdc_vcom/freertos/cm7" doc="readme.txt">
+      <description>The Virtual COM project is  enumerated as a COM port, which the users can open using terminal tools, such as TeraTerm. The demo echoes back any character it receives.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_cdc_vcom_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_cdc_vcom_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_cdc_vnic_freertos_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_cdc_vnic/freertos/cm7" doc="readme.txt">
+      <description>The Virtual NIC project is a simple demonstration program based on the MCUXpresso SDK.  It is enumerated as a network adapter. Users can access the network by properly configuring this network adapter.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_cdc_vnic_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_cdc_vnic_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_composite_cdc_msc_disk_freertos_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_composite_cdc_msc_disk/freertos/cm7" doc="readme.txt">
+      <description>The Composite CDC_MSC project is a simple demonstration program based on the MCUXpresso SDK.  It is enumerated as a COM port and a RAM disk, which can be opened using terminal tools, such as TeraTerm. The demo echoes back any character it receives. The RAM disk can be formatted.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_composite_cdc_msc_disk_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_composite_cdc_msc_disk_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_composite_cdc_msc_freertos_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_composite_cdc_msc/freertos/cm7" doc="readme.txt">
+      <description>The Composite CDC_MSC project is a simple demonstration program based on the MCUXpresso SDK.  It is enumerated as a COM port and a RAM disk, which can be opened using terminal tools, such as TeraTerm. The demo echoes back any character it receives. The RAM disk can be formatted.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_composite_cdc_msc_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_composite_cdc_msc_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_composite_cdc_vcom_cdc_vcom_freertos_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_composite_cdc_vcom_cdc_vcom/freertos/cm7" doc="readme.txt">
+      <description>The Composite CDC_VCOM_CDC_VCOM project is a simple demonstration program based on the MCUXpresso SDK.  It is enumerated as two COM port, which can be opened using terminal tools, such as TeraTerm. The demo echoes back any character it receives.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_composite_cdc_vcom_cdc_vcom_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_composite_cdc_vcom_cdc_vcom_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_composite_hid_audio_unified_freertos_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_composite_hid_audio_unified/freertos/cm7" doc="readme.txt">
+      <description>The USB Composite device application is a simple demonstration program based on the MCUXpresso SDK. It is enumerated as a recording device. Users can record the sound from this device via the "Sound Recorder" in the Windows Accessories with an HID mouse device.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_composite_hid_audio_unified_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_composite_hid_audio_unified_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_composite_hid_mouse_hid_keyboard_freertos_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_composite_hid_mouse_hid_keyboard/freertos/cm7" doc="readme.txt">
+      <description>The application is a simple demonstration program based on the MCUXpresso SDK. The application is enumerated as HID-compliant mouse and keyboard devices.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_composite_hid_mouse_hid_keyboard_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_composite_hid_mouse_hid_keyboard_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_dfu_freertos_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_dfu/freertos/cm7" doc="readme.pdf">
+      <description>The DFU project is a simple demonstration program based on the MCUXpresso SDK.  It is enumerated as a compoiste dfu device, users can download one firmware to the dfu device with the tool called "dfu-util". the dfu example write the firmware content to flash and will check the CRC32 which stored in the last 4 byte of the firmware.if the CRC32 check is right, then the dfu example will run the new firmware.Generally speaking, the firmware doesn't have CRC32. sothe following content will introduce how to add CRC32 to the firmware.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_dfu_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_dfu_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_hid_generic_freertos_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_hid_generic/freertos/cm7" doc="readme.txt">
+      <description>The USB HID generic application is a simple demonstration program based on the MCUXpresso SDK.It is enumerated as a HID-compliant device. A PC application can be used to exchange data with the device.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_hid_generic_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_hid_generic_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_hid_mouse_freertos_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_hid_mouse/freertos/cm7" doc="readme.txt">
+      <description>The USB HID mouse application is a simple demonstration program based on the MCUXpresso SDK.It is enumerated as a mouse. Users can see the mouse arrow moving on the PC screen according in a rectangular fashion.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_hid_mouse_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_hid_mouse_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_msc_disk_freertos_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_msc_disk/freertos/cm7" doc="readme.txt">
+      <description>The USB MSC RAM disk application is a simple demonstration program based on the MCUXpresso SDK.It is enumerated as a U-disk. Users can read and write the SD card or MMC as a standard U-disk.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_msc_disk_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_msc_disk_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_msc_ramdisk_freertos_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_msc_ramdisk/freertos/cm7" doc="readme.txt">
+      <description>The USB MSC RAM disk application is a simple demonstration program based on the MCUXpresso SDK.It is enumerated as a U-disk and can be read and written to as a normal U-disk .</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_msc_ramdisk_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_msc_ramdisk_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_mtp_freertos_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_mtp/freertos/cm7" doc="readme.txt">
+      <description>The USB MTP application is a simple demonstration program based on the MCUXpresso SDK. It is enumerated as portable media device. Users can read and write the SD card or MMC by MTP operations.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_mtp_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_mtp_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_phdc_weighscale_freertos_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_phdc_weighscale/freertos/cm7" doc="readme.txt">
+      <description>The USB PHDC WeighScale application is a simple demonstration program based on the MCUXpresso SDK.It is enumerated as a weight scale device and the HealthLink software is used to interact with thisdevice to simulate the personal weight scale data, such as body mass and body mass index.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_phdc_weighscale_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_phdc_weighscale_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_printer_virtual_plain_text_freertos_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_printer_virtual_plain_text/freertos/cm7" doc="readme.txt">
+      <description>The USB virtual printer application is a simple application to demonstrate a virtual printer functionality.Because there is no printer language parsing, the received raw data is output directly in the debug console.As a result, only plain text is suitable for testing. For other printer language support, such as postscript, implement the corresponding parser.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_printer_virtual_plain_text_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_printer_virtual_plain_text_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_suspend_resume_hid_mouse_freertos_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_suspend_resume_device_hid_mouse/freertos/cm7" doc="readme.txt">
+      <description>the application is enumerated as a mouse. When host releases the USB Bus, the device will enter into low power mode. The device can be waked up when resume signal is detected on the bus. Or the device can remote wake-up the host by delivering the resume signal when the remote wake-up is enabled by the host.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_suspend_resume_hid_mouse_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_suspend_resume_hid_mouse_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="dev_video_virtual_camera_freertos_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_device_video_virtual_camera/freertos/cm7" doc="readme.txt">
+      <description>The USB video virtual camera application is a simple demonstration program based on the MCUXpresso SDK.It is enumerated as a camera and users can see the video of the device by using a PC test tool.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/dev_video_virtual_camera_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="dev_video_virtual_camera_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="host_audio_speaker_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_host_audio_speaker/bm/cm7" doc="readme.txt">
+      <description>The Host Audio example supports the audio speaker device. @n The application prints the audio speaker information when the USB speaker device is attached.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/host_audio_speaker_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="host_audio_speaker_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="host_cdc_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_host_cdc/bm/cm7" doc="readme.txt">
+      <description>The host CDC project is a simple demonstration program based on the MCUXpresso SDK. It enumerates a COM port and echoes back the data from the UART.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/host_cdc_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="host_cdc_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="host_hid_generic_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_host_hid_generic/bm/cm7" doc="readme.txt">
+      <description>This application implements a simple HID interrupt in-and-out endpoint bi-directional communication.The application sends one test string to the device. The device receives and sends back the string. The application receives the string and prints it.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/host_hid_generic_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="host_hid_generic_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="host_hid_mouse_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_host_hid_mouse/bm/cm7" doc="readme.txt">
+      <description>The application supports the mouse device. It prints the mouse operation when the mouse device is attached.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/host_hid_mouse_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="host_hid_mouse_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="host_hid_mouse_keyboard_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_host_hid_mouse_keyboard/bm/cm7" doc="readme.txt">
+      <description>This example supports the mouse device and the keyboard device.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/host_hid_mouse_keyboard_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="host_hid_mouse_keyboard_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="host_msd_command_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_host_msd_command/bm/cm7" doc="readme.txt">
+      <description>This Host MSD example supports the UFI and SCSI U-disk device. The application prints the attached device information when the U-disk device is attached.The application executes UFI commands to test the attached device.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/host_msd_command_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="host_msd_command_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="host_msd_fatfs_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_host_msd_fatfs/bm/cm7" doc="readme.txt">
+      <description>This Host FatFs example supports UFI and SCSI U-disk device. The application prints the attached device information when U-disk device is attached.The application executes some FatFs APIs to test the attached device.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/host_msd_fatfs_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="host_msd_fatfs_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="host_phdc_manager_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_host_phdc_manager/bm/cm7" doc="readme.txt">
+      <description>The Host PHDC Manager Example is a simple demonstration program based on the MCUXpresso SDK.The application supports the USB weight scale device. It prints out the body mass and body mass index information when the USB weight scale device is attached.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/host_phdc_manager_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="host_phdc_manager_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="host_printer_plain_text_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_host_printer_plain_text/bm/cm7" doc="readme.txt">
+      <description>The host printer example demonstrates how to get the status of the printer deviceand how to print a certain test string.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/host_printer_plain_text_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="host_printer_plain_text_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="host_suspend_resume_hid_mouse_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_suspend_resume_host_hid_mouse/bm/cm7" doc="readme.txt">
+      <description>This is one example support suspend/resume.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/host_suspend_resume_hid_mouse_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="host_suspend_resume_hid_mouse_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="host_audio_recorder_freertos" folder="boards/evkbmimxrt1170/usb_examples/usb_host_audio_recorder/freertos/cm7" doc="readme.txt">
+      <description>The Host Audio example supports the audio recorder device. @n The application prints the audio recorder information when the USB recorder device is attached.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/host_audio_recorder_freertos.uvprojx"/>
+        <environment name="csolution" load="host_audio_recorder_freertos.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="host_audio_speaker_freertos_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_host_audio_speaker/freertos/cm7" doc="readme.txt">
+      <description>The Host Audio example supports the audio speaker device. @n The application prints the audio speaker information when the USB speaker device is attached.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/host_audio_speaker_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="host_audio_speaker_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="host_cdc_freertos_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_host_cdc/freertos/cm7" doc="readme.txt">
+      <description>The host CDC project is a simple demonstration program based on the MCUXpresso SDK. It enumerates a COM port and echoes back the data from the UART .</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/host_cdc_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="host_cdc_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="host_hid_generic_freertos_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_host_hid_generic/freertos/cm7" doc="readme.txt">
+      <description>This application implements a simple HID interrupt in-and-out endpoint bi-directional communication.The application sends one test string to the device. The device receives and sends back the string. The application receives the string and prints it.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/host_hid_generic_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="host_hid_generic_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="host_hid_mouse_freertos_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_host_hid_mouse/freertos/cm7" doc="readme.txt">
+      <description>The application supports the mouse device. It prints the mouse operation when the mouse device is attached.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/host_hid_mouse_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="host_hid_mouse_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="host_hid_mouse_keyboard_freertos_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_host_hid_mouse_keyboard/freertos/cm7" doc="readme.txt">
+      <description>This example supports the mouse device and the keyboard device.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/host_hid_mouse_keyboard_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="host_hid_mouse_keyboard_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="host_msd_command_freertos_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_host_msd_command/freertos/cm7" doc="readme.txt">
+      <description>This Host MSD example supports the UFI and SCSI U-disk device.  The application prints the attached device information when the U-disk device is attached.The application executes UFI commands to test the attached device.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/host_msd_command_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="host_msd_command_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="host_msd_fatfs_freertos_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_host_msd_fatfs/freertos/cm7" doc="readme.txt">
+      <description>This Host FatFs example supports UFI and SCSI U-disk device. The application prints the attached device information when U-disk device is attached.The application executes some FatFs APIs to test the attached device.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/host_msd_fatfs_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="host_msd_fatfs_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="host_phdc_manager_freertos_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_host_phdc_manager/freertos/cm7" doc="readme.txt">
+      <description>The Host PHDC Manager Example is a simple demonstration program based on the MCUXpresso SDK.The application supports the USB weight scale device. It prints out the body mass and body mass index information when the USB weight scale device is attached.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/host_phdc_manager_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="host_phdc_manager_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="host_printer_plain_text_freertos_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_host_printer_plain_text/freertos/cm7" doc="readme.txt">
+      <description>The host printer example demonstrates how to get the status of the printer deviceand how to print a certain test string..</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/host_printer_plain_text_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="host_printer_plain_text_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="host_suspend_resume_hid_mouse_freertos_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_suspend_resume_host_hid_mouse/freertos/cm7" doc="readme.txt">
+      <description>This is one example support suspend/resume.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/host_suspend_resume_hid_mouse_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="host_suspend_resume_hid_mouse_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="host_video_camera_freertos_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_host_video_camera/freertos/cm7" doc="readme.txt">
+      <description>The application supports to get JPEG image from camera function.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/host_video_camera_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="host_video_camera_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="keyboard2mouse_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_keyboard2mouse/bm/cm7" doc="readme.txt">
+      <description>This example implements the host and the device, where the one controller works as a host and the other controller works as a device.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/keyboard2mouse_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="keyboard2mouse_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="keyboard2mouse_freertos_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_keyboard2mouse/freertos/cm7" doc="readme.txt">
+      <description>This example implements the host and the device, where the one controller works as a host and the other controller works as a device.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/keyboard2mouse_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="keyboard2mouse_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="pin_detect_hid_mouse_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_pin_detect_hid_mouse/bm/cm7" doc="readme.pdf">
+      <description>This pin detect HID example supports the mouse device. The application prints the operation information when the mouse device is attached or plugged in to the PC host.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/pin_detect_hid_mouse_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="pin_detect_hid_mouse_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="pin_detect_hid_msd_bm_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_pin_detect_hid_msd/bm/cm7" doc="readme.pdf">
+      <description>This pin detect HID MSD example can become a HID mouse device or a MSD host that supports U-disk. The application prints the operation information when the U-disk is attached or is plugged into the PC host.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/pin_detect_hid_msd_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="pin_detect_hid_msd_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="pin_detect_hid_mouse_freertos_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_pin_detect_hid_mouse/freertos/cm7" doc="readme.pdf">
+      <description>This pin detect HID example supports the mouse device. The application prints the operation information when the mouse device is attached or plugged in to the PC host.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/pin_detect_hid_mouse_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="pin_detect_hid_mouse_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="pin_detect_hid_msd_freertos_cm7" folder="boards/evkbmimxrt1170/usb_examples/usb_pin_detect_hid_msd/freertos/cm7" doc="readme.pdf">
+      <description>This pin detect HID MSD example can become a HID mouse device or a MSD host that supports U-disk. The application prints the operation information when the U-disk is attached or is plugged into the PC host.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/pin_detect_hid_msd_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="pin_detect_hid_msd_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+  </examples>
+</package>

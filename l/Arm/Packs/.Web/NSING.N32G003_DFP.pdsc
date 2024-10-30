@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>NSING</vendor>
+    <url>https://www.nsing.com.sg/uploadfile/file/pack/</url>
+    <name>N32G003_DFP</name>
+    <description>Nsing N32G003 Series Device Support, Drivers and Examples</description>
+
+    <releases>
+		<release date="2024-08-14" version="1.0.1">		    
+            First release of N32G003_DFP
+        </release>
+    </releases>
+
+    <keywords>
+        <keyword>NSING</keyword>
+        <keyword>Device Support</keyword>
+        <keyword>N32G003</keyword>
+		<keyword>N32</keyword>
+    </keywords>
+
+    <devices>
+        <family Dfamily="N32G003 Series" Dvendor="NSING:185">
+          <processor Dcore="Cortex-M0" DcoreVersion="r0p1" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+          <description>
+The N32G003 series utilizes a 32-bit ARM Cortex-M0 core with operating frequency up to 48MHz. 
+
+- Up to 29.5KB embedded encrypted Flash memory.
+- 3KB SRAM.
+- 1x 12bit 1Msps ADC and 1x high-speed comparators
+- 2x UART, 1x I2C, 1x SPI, 1x OPAMP and Beeper	
+- Hardware Cryptographics Engine.
+          </description>
+  
+        <subFamily DsubFamily="N32G003">
+		   <processor Dclock="48000000"/>		   
+           <compile header="firmware/CMSIS/device/n32g003.h" define="N32G003 USE_STDPERIPH_DRIVER"/>
+	  	   <feature type="XTAL"     n="4000000"     m="48000000" name="Internal RC Oscillator"/>		   
+	  	   <feature type="VCC"      n="1.70"        m="5.50"/>		
+		   <feature type="Temp"      n="-40"        m="105"/>		
+		  <!-- *************************  Device 'N32G003F5'  ***************************** -->
+		  <device Dname="N32G003F5"> 
+		    <feature type="Memory"   n="29.5" 	name="29.5KB Flash"/>	
+		    <feature type="Memory"   n="3" 		name="3KB SRAM"/>	
+			<feature type="IOs"      n="18"     name="Input and Output Ports"/>
+			<feature type="Timer"    n="3"/>
+			<feature type="ADC"      n="9"     	m="12"  name="9-ch 12bit ADC"/>	
+			<feature type="UART"     n="2"/>	
+		    <feature type="SPI"      n="1"/>	
+			<feature type="I2C"      n="1"/>	
+
+			<memory id="IRAM1"   start="0x20000000" size="0x0C00" default="1" init="0"/>
+			<memory id="IROM1"   start="0x08000000" size="0x7600" default="1" startup="1"/>
+			<algorithm name="Flash/N32G003x.FLM" start="0x08000000" size="0x7600" default="1"/>
+			<debug svd="svd/N32G003.svd"/>
+          </device>	
+
+		 <!-- *************************  Device 'N32G003F4'  ***************************** -->
+		  <device Dname="N32G003F4"> 
+		    <feature type="Memory"   n="16" 	name="16KB Flash"/>	
+		    <feature type="Memory"   n="3" 		name="3KB SRAM"/>	
+			<feature type="IOs"      n="18"     name="Input and Output Ports"/>
+			<feature type="Timer"    n="3"/>
+			<feature type="ADC"      n="9"      m="12"  name="9-ch 12bit ADC"/>	
+			<feature type="UART"     n="2"/>	
+		    <feature type="SPI"      n="1"/>	
+			<feature type="I2C"      n="1"/>	
+
+			<memory id="IRAM1"   start="0x20000000" size="0x0C00" default="1" init="0"/>
+			<memory id="IROM1"   start="0x08000000" size="0x4000" default="1" startup="1"/>
+			<algorithm name="Flash/N32G003x_16.FLM" start="0x08000000" size="0x4000" default="1"/>
+			<debug svd="svd/N32G003.svd"/>
+          </device>	
+		
+        </subFamily>
+        </family>
+    </devices>        
+
+    <conditions>   
+		<!-- Compiler Conditions -->
+        <condition id="Compiler ARMCC">             
+            <require Tcompiler="ARMCC"/>
+        </condition>
+		
+		<!-- Device Conditions -->
+		<condition id="N32G003">
+		  <description>NSING N32G003 Devices</description> 
+		  <require Dvendor="NSING:185" Dname="N32*"/> 
+		</condition>
+		
+		<!-- Device + CMSIS Conditions -->
+        <condition id="N32G003 CMSIS">            
+		    <description>NSING N32G003 Device and the ARM compiler</description>
+		    <require condition="N32G003"/>
+		    <require Tcompiler="ARMCC"/>
+        </condition>
+
+		<!-- N32G003 STDPERIPHERALS RCC Conditions -->
+        <condition id="N32G003 STDPERIPHERALS RCC">
+            <description>NSING N32G003 Standard Peripherals driver with RCC</description>
+            <require condition="N32G003 CMSIS"/>
+            <require Cclass="Device" Cgroup="N32G003_StdPeripherals" Csub="RCC"/>
+        </condition>
+    </conditions>
+
+    <components>
+		<component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="N32G003">
+            <description>Startup File for Nsing N32G003 Series</description>
+            <files>
+                <file category="include" name="firmware/CMSIS/device/"/>
+				<file category="header" name="firmware/CMSIS/device/n32g003.h"/>
+				<!-- startup file -->				
+                <file category="source" name="firmware/CMSIS/device/startup/startup_n32g003.s" attr="config"  version="1.0.0" condition="Compiler ARMCC"/>
+				<!-- system file -->
+                <file category="source" name="firmware/CMSIS/device/system_n32g003.c" attr="config" version="1.0.0"/>
+				
+            </files>
+        </component>
+		
+	    <!-- N32G003_StdPeripherals -->		
+        <component Cclass="Device" Cgroup="N32G003_StdPeripherals" Csub="MISC" Cversion="1.0.0" condition="N32G003 CMSIS">
+            <description>Standard Peripherals Drivers Framework</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_FRAMEWORK
+            </RTE_Components_h>
+            <files>
+                <file category="include" name="firmware/n32g003_std_periph_driver/inc/"/>
+                <file category="source" name="firmware/n32g003_std_periph_driver/src/misc.c"/>
+            </files>
+        </component>
+		
+        <component Cclass="Device" Cgroup="N32G003_StdPeripherals" Csub="ADC" Cversion="1.0.0" condition="N32G003 STDPERIPHERALS RCC">
+            <description>Analog-to-digital converter (ADC) driver for N32G003</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_ADC
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g003_std_periph_driver/inc/n32g003_adc.h"/>
+                <file category="source" name="firmware/n32g003_std_periph_driver/src/n32g003_adc.c"/>
+            </files>
+        </component>		
+
+        <component Cclass="Device" Cgroup="N32G003_StdPeripherals" Csub="BEEPER" Cversion="1.0.0" condition="N32G003 STDPERIPHERALS RCC">
+            <description>BEEPER driver for N32G003</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_BEEPER
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g003_std_periph_driver/inc/n32g003_beeper.h"/>
+                <file category="source" name="firmware/n32g003_std_periph_driver/src/n32g003_beeper.c"/>
+            </files>
+        </component>
+
+        <component Cclass="Device" Cgroup="N32G003_StdPeripherals" Csub="COMP" Cversion="1.0.0" condition="N32G003 STDPERIPHERALS RCC">
+            <description>Comparator (COMP) driver for N32G003</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_COMP
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g003_std_periph_driver/inc/n32g003_comp.h"/>
+                <file category="source" name="firmware/n32g003_std_periph_driver/src/n32g003_comp.c"/>
+            </files>
+        </component>
+		
+        <component Cclass="Device" Cgroup="N32G003_StdPeripherals" Csub="CRC" Cversion="1.0.0" condition="N32G003 STDPERIPHERALS RCC">
+            <description>CRC calculation unit (CRC) driver for N32G003</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_CRC
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g003_std_periph_driver/inc/n32g003_crc.h"/>
+                <file category="source" name="firmware/n32g003_std_periph_driver/src/n32g003_crc.c"/>
+            </files>
+        </component>
+		
+       <component Cclass="Device" Cgroup="N32G003_StdPeripherals" Csub="DBG" Cversion="1.0.0" condition="N32G003 STDPERIPHERALS RCC">
+            <description>MCU debug component (DBG) driver for N32G003</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_DBG
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g003_std_periph_driver/inc/n32g003_dbg.h"/>
+                <file category="source" name="firmware/n32g003_std_periph_driver/src/n32g003_dbg.c"/>
+            </files>
+        </component>
+      
+        <component Cclass="Device" Cgroup="N32G003_StdPeripherals" Csub="EXTI" Cversion="1.0.0" condition="N32G003 STDPERIPHERALS RCC">
+            <description>External interrupt/event controller (EXTI) driver for N32G003</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_EXTI
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g003_std_periph_driver/inc/n32g003_exti.h"/>
+                <file category="source" name="firmware/n32g003_std_periph_driver/src/n32g003_exti.c"/>
+            </files>
+        </component>
+
+        <component Cclass="Device" Cgroup="N32G003_StdPeripherals" Csub="FLASH" Cversion="1.0.0" condition="N32G003 STDPERIPHERALS RCC">
+            <description>Embedded Flash memory (FLASH) driver for N32G003</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_FLASH
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g003_std_periph_driver/inc/n32g003_flash.h"/>
+                <file category="source" name="firmware/n32g003_std_periph_driver/src/n32g003_flash.c"/>
+            </files>
+        </component>
+
+        <component Cclass="Device" Cgroup="N32G003_StdPeripherals" Csub="GPIO" Cversion="1.0.0" condition="N32G003 STDPERIPHERALS RCC">
+            <description>General-purpose I/O (GPIO) driver for N32G003</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_GPIO
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g003_std_periph_driver/inc/n32g003_gpio.h"/>
+                <file category="source" name="firmware/n32g003_std_periph_driver/src/n32g003_gpio.c"/>
+            </files>
+        </component>
+
+        <component Cclass="Device" Cgroup="N32G003_StdPeripherals" Csub="I2C" Cversion="1.0.0" condition="N32G003 STDPERIPHERALS RCC">
+            <description>Inter-integrated circuit (I2C) interface driver for N32G003</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_I2C
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g003_std_periph_driver/inc/n32g003_i2c.h"/>
+                <file category="source" name="firmware/n32g003_std_periph_driver/src/n32g003_i2c.c"/>
+            </files>
+        </component>
+
+        <component Cclass="Device" Cgroup="N32G003_StdPeripherals" Csub="IWDG" Cversion="1.0.0" condition="N32G003 STDPERIPHERALS RCC">
+            <description>Independent watchdog (IWDG) driver for N32G003</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_IWDG
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g003_std_periph_driver/inc/n32g003_iwdg.h"/>
+                <file category="source" name="firmware/n32g003_std_periph_driver/src/n32g003_iwdg.c"/>
+            </files>
+        </component>
+
+        <component Cclass="Device" Cgroup="N32G003_StdPeripherals" Csub="PWR" Cversion="1.0.0" condition="N32G003 STDPERIPHERALS RCC">
+            <description>Power controller (PWR) driver for N32G003</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_PWR
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g003_std_periph_driver/inc/n32g003_pwr.h"/>
+                <file category="source" name="firmware/n32g003_std_periph_driver/src/n32g003_pwr.c"/>
+            </files>
+        </component>
+
+        <component Cclass="Device" Cgroup="N32G003_StdPeripherals" Csub="RCC" Cversion="1.0.0" condition="N32G003 STDPERIPHERALS RCC">
+            <description>Reset and clock control (RCC) driver for N32G003</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_RCC
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g003_std_periph_driver/inc/n32g003_rcc.h"/>
+                <file category="source" name="firmware/n32g003_std_periph_driver/src/n32g003_rcc.c"/>
+            </files>
+        </component>
+
+        <component Cclass="Device" Cgroup="N32G003_StdPeripherals" Csub="SPI" Cversion="1.0.0" condition="N32G003 STDPERIPHERALS RCC">
+            <description>Serial peripheral interface (SPI) driver for N32G003</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_SPI
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g003_std_periph_driver/inc/n32g003_spi.h"/>
+                <file category="source" name="firmware/n32g003_std_periph_driver/src/n32g003_spi.c"/>
+            </files>
+        </component>
+
+        <component Cclass="Device" Cgroup="N32G003_StdPeripherals" Csub="TIMER" Cversion="1.0.0" condition="N32G003 STDPERIPHERALS RCC">
+            <description>Timers (TIMER) driver for N32G003</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_TIM
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g003_std_periph_driver/inc/n32g003_tim.h"/>
+                <file category="source" name="firmware/n32g003_std_periph_driver/src/n32g003_tim.c"/>
+            </files>
+        </component>
+
+        <component Cclass="Device" Cgroup="N32G003_StdPeripherals" Csub="UART" Cversion="1.0.0" condition="N32G003 STDPERIPHERALS RCC">
+            <description>Universal asynchronous receiver transmitter (UART) driver for N32G003</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_USART
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g003_std_periph_driver/inc/n32g003_uart.h"/>
+                <file category="source" name="firmware/n32g003_std_periph_driver/src/n32g003_uart.c"/>
+            </files>
+        </component>
+    </components>
+</package>

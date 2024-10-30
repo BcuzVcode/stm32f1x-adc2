@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.7.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>SiliconLabs</vendor>
+  <url>https://www.silabs.com/documents/public/cmsis-packs/</url>
+  <name>GeckoPlatform_EFR32MG27_DFP</name>
+  <description>Silicon Labs EFR32MG27 Mighty Gecko Series Device Support.</description>
+  <license>License/license.md</license>
+
+  <releases>
+    <release version="2024.6.0" date="2024-06-19">
+      New device family for Caracal EFM32PG26, EFR32BG26, EFR32MG26
+    </release>
+    <release version="4.4.0" date="2024-02-08">
+      New device family EFM32PG28 and new OPNs for EFR32SG28, EFR32MG24, EFR32BG24, MGM21, RM21
+    </release>
+    <release version="4.3.0" date="2023-06-15">
+      New device families EFR32SG23, EFR32SG28 and new OPNs for EFR32MG27, EFR32MG24, EFR32FG25, EFR32BG24, MGM24
+    </release>
+    <release version="4.2.0" date="2022-11-25">
+      New device families EFR32ZG28, EFR32FG28 and EFR32MR21
+    </release>
+    <release version="4.1.1" date="2022-06-22">
+      Add TrustZone support for Series2 Devices
+    </release>
+    <release version="4.1.0" date="2022-06-03">
+      Update CMSIS version to 5.8.0. New device families EFR32BG27, EFR32MG27. Documentation updated for ZGM130S, MGM220P, EFR32PG23. Add Cortex-M33 Generic User Guide
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Silicon Labs</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Silicon Labs</keyword>
+    <keyword>EFR32MG27</keyword>
+    <keyword>EFR32</keyword>
+    <keyword>Mighty Gecko</keyword>
+    <keyword>Gecko</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="EFR32MG27 Series" Dvendor="Silicon Labs:21">
+      <processor Dcore="Cortex-M33" DcoreVersion="r0p4" Dfpu="FPU" Dmpu="MPU" Dtz="TZ" Ddsp="DSP" Dendian="Little-endian" Dclock="38400000"/>
+      <book name="Documents/cortex_m33_dgug.pdf"      title="Cortex-M33 Generic User Guide"/>
+      <book name="Documents/efr32xg27-rm.pdf"  title="EFR32MG27 Reference Manual"/>
+      <description>
+32-bit ARM Cortex-M33 core with 76.8 MHz maximum operating frequency
+      </description>
+
+      <subFamily DsubFamily="EFR32MG27C140">
+        <book         name="Documents/efr32mg27-datasheet.pdf"      title="EFR32MG27C140 Data Sheet"/>
+        <book         name="Documents/efr32mg27-errata.pdf"         title="EFR32MG27C140 Errata"/>
+        <!-- *************************  Device 'EFR32MG27C140F768IM32'  ***************************** -->
+        <device Dname="EFR32MG27C140F768IM32">
+          <compile header="Device/SiliconLabs/EFR32MG27/Include/em_device.h"  define="EFR32MG27C140F768IM32"/>
+          <debug      svd="SVD/EFR32MG27/EFR32MG27C140F768IM32.svd"/>
+          <memory     id="IROM1"                start="0x08000000"  size="0x000C0000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00010000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS2.FLM"  start="0x08000000"  size="0x000C0000"  RAMstart="0x20000000" RAMsize="0x10000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS2.flash"  start="0x08000000"  size="0x000C0000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFR32MG27C140F768IM40'  ***************************** -->
+        <device Dname="EFR32MG27C140F768IM40">
+          <compile header="Device/SiliconLabs/EFR32MG27/Include/em_device.h"  define="EFR32MG27C140F768IM40"/>
+          <debug      svd="SVD/EFR32MG27/EFR32MG27C140F768IM40.svd"/>
+          <memory     id="IROM1"                start="0x08000000"  size="0x000C0000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00010000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS2.FLM"  start="0x08000000"  size="0x000C0000"  RAMstart="0x20000000" RAMsize="0x10000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS2.flash"  start="0x08000000"  size="0x000C0000"  default="0"  style="IAR"/>
+        </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="EFR32MG27C230">
+        <book         name="Documents/efr32mg27-datasheet.pdf"      title="EFR32MG27C230 Data Sheet"/>
+        <book         name="Documents/efr32mg27-errata.pdf"         title="EFR32MG27C230 Errata"/>
+        <!-- *************************  Device 'EFR32MG27C230F768IM32'  ***************************** -->
+        <device Dname="EFR32MG27C230F768IM32">
+          <compile header="Device/SiliconLabs/EFR32MG27/Include/em_device.h"  define="EFR32MG27C230F768IM32"/>
+          <debug      svd="SVD/EFR32MG27/EFR32MG27C230F768IM32.svd"/>
+          <memory     id="IROM1"                start="0x08000000"  size="0x000C0000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00010000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS2.FLM"  start="0x08000000"  size="0x000C0000"  RAMstart="0x20000000" RAMsize="0x10000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS2.flash"  start="0x08000000"  size="0x000C0000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFR32MG27C230F768IM40'  ***************************** -->
+        <device Dname="EFR32MG27C230F768IM40">
+          <compile header="Device/SiliconLabs/EFR32MG27/Include/em_device.h"  define="EFR32MG27C230F768IM40"/>
+          <debug      svd="SVD/EFR32MG27/EFR32MG27C230F768IM40.svd"/>
+          <memory     id="IROM1"                start="0x08000000"  size="0x000C0000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00010000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS2.FLM"  start="0x08000000"  size="0x000C0000"  RAMstart="0x20000000" RAMsize="0x10000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS2.flash"  start="0x08000000"  size="0x000C0000"  default="0"  style="IAR"/>
+        </device>
+
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler GCC">
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="Compiler IAR">
+      <require Tcompiler="IAR"/>
+    </condition>
+
+    <!-- Device Conditions -->
+    <condition id="EFR32MG27">
+      <description>Silicon Labs EFR32MG27 device series</description>
+      <require Dvendor="Silicon Labs:21" Dname="EFR32MG27*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="2024.6.0" condition="EFR32MG27">
+      <description>System Startup for Silicon Labs EFR32MG27 device series</description>
+      <files>
+        <!-- include folder -->
+        <file category="include" name="Device/SiliconLabs/EFR32MG27/Include/"/>
+        <file category="header"  name="Device/SiliconLabs/EFR32MG27/Include/em_device.h"/>
+        <!-- startup files -->
+        <file category="source"  name="Device/SiliconLabs/EFR32MG27/Source/GCC/startup_efr32mg27.S" condition="Compiler GCC"   attr="config" version="2024.6.0"/>
+        <file category="source"  name="Device/SiliconLabs/EFR32MG27/Source/IAR/startup_efr32mg27.s" condition="Compiler IAR"   attr="config" version="2024.6.0"/>
+        <!-- linker command file -->
+        <file category="linkerScript"  name="Device/SiliconLabs/EFR32MG27/Source/GCC/efr32mg27.ld" condition="Compiler GCC" attr="config" version="2024.6.0"/>
+        <!-- system file -->
+        <file category="source"  name="Device/SiliconLabs/EFR32MG27/Source/system_efr32mg27.c" attr="config" version="2024.6.0"/>
+      </files>
+    </component>
+  </components>
+</package>

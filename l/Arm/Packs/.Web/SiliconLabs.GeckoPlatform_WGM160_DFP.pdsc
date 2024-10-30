@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.7.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>SiliconLabs</vendor>
+  <url>https://www.silabs.com/documents/public/cmsis-packs/</url>
+  <name>GeckoPlatform_WGM160_DFP</name>
+  <description>Silicon Labs WGM160 Wireless Gecko Series Device Support.</description>
+  <license>License/license.md</license>
+
+  <releases>
+    <release version="4.4.0" date="2024-02-08">
+      New device family EFM32PG28 and new OPNs for EFR32SG28, EFR32MG24, EFR32BG24, MGM21, RM21
+    </release>
+    <release version="4.3.0" date="2023-06-15">
+      New device families EFR32SG23, EFR32SG28 and new OPNs for EFR32MG27, EFR32MG24, EFR32FG25, EFR32BG24, MGM24
+    </release>
+    <release version="4.2.0" date="2022-11-25">
+      New device families EFR32ZG28, EFR32FG28 and EFR32MR21
+    </release>
+    <release version="4.1.1" date="2022-06-22">
+      Add TrustZone support for Series2 Devices
+    </release>
+    <release version="4.1.0" date="2022-06-03">
+      Update CMSIS version to 5.8.0. New device families EFR32BG27, EFR32MG27. Documentation updated for ZGM130S, MGM220P, EFR32PG23. Add Cortex-M33 Generic User Guide
+    </release>
+    <release version="4.0.2" date="2022-04-22">
+      New OPNs for modules MGM24, for SoC EFR32MG24. New device families EFR32FG25. Documentation updated for EFM32PG22, EFR32BG24, EFR32MG24 and WGM160.
+    </release>
+    <release version="4.0.0" date="2022-01-24">
+      New OPNs for modules MGM21 and MGM24, for SoC EFR32MG24. New device families EFR32BG24, BGM24. Documentation updated for EFR32FG23, EFR32ZG23 and EFM32PG23.
+    </release>
+    <release version="3.2.0" date="2021-06-16">
+      New MCU's families efr32mg24, mgm24, wgm160.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Silicon Labs</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Silicon Labs</keyword>
+    <keyword>WGM160</keyword>
+    <keyword>WGM16</keyword>
+    <keyword>Wireless Gecko</keyword>
+    <keyword>Gecko</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="WGM160 Series" Dvendor="Silicon Labs:21">
+      <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="FPU" Dmpu="MPU" Dtz="NO_TZ" Ddsp="NO_DSP" Dendian="Little-endian" Dclock="50000000"/>
+      <book name="Documents/cortex_m4_dgug.pdf"      title="Cortex-M4 Generic User Guide"/>
+      <description>
+- 32-bit ARM Cortex-M4 core with 72 MHz maximum operating frequency
+      </description>
+
+      <subFamily DsubFamily="WGM160P">
+        <book         name="Documents/wgm160p-datasheet.pdf"      title="WGM160P Data Sheet"/>
+        <!-- *************************  Device 'WGM160P022KGA2'  ***************************** -->
+        <device Dname="WGM160P022KGA2">
+          <compile header="Device/SiliconLabs/WGM160/Include/em_device.h"  define="WGM160P022KGA2"/>
+          <debug      svd="SVD/WGM160/WGM160P022KGA2.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00200000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00080000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS1.FLM"  start="0x00000000"  size="0x00200000"  RAMstart="0x20000000" RAMsize="0x80000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS1.flash"  start="0x00000000"  size="0x00200000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'WGM160P022KGA3'  ***************************** -->
+        <device Dname="WGM160P022KGA3">
+          <compile header="Device/SiliconLabs/WGM160/Include/em_device.h"  define="WGM160P022KGA3"/>
+          <debug      svd="SVD/WGM160/WGM160P022KGA3.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00200000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00080000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS1.FLM"  start="0x00000000"  size="0x00200000"  RAMstart="0x20000000" RAMsize="0x80000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS1.flash"  start="0x00000000"  size="0x00200000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'WGM160P022KGN2'  ***************************** -->
+        <device Dname="WGM160P022KGN2">
+          <compile header="Device/SiliconLabs/WGM160/Include/em_device.h"  define="WGM160P022KGN2"/>
+          <debug      svd="SVD/WGM160/WGM160P022KGN2.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00200000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00080000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS1.FLM"  start="0x00000000"  size="0x00200000"  RAMstart="0x20000000" RAMsize="0x80000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS1.flash"  start="0x00000000"  size="0x00200000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'WGM160P022KGN3'  ***************************** -->
+        <device Dname="WGM160P022KGN3">
+          <compile header="Device/SiliconLabs/WGM160/Include/em_device.h"  define="WGM160P022KGN3"/>
+          <debug      svd="SVD/WGM160/WGM160P022KGN3.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00200000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00080000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS1.FLM"  start="0x00000000"  size="0x00200000"  RAMstart="0x20000000" RAMsize="0x80000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS1.flash"  start="0x00000000"  size="0x00200000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'WGM160PX22KGA2'  ***************************** -->
+        <device Dname="WGM160PX22KGA2">
+          <compile header="Device/SiliconLabs/WGM160/Include/em_device.h"  define="WGM160PX22KGA2"/>
+          <debug      svd="SVD/WGM160/WGM160PX22KGA2.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00200000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00080000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS1.FLM"  start="0x00000000"  size="0x00200000"  RAMstart="0x20000000" RAMsize="0x80000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS1.flash"  start="0x00000000"  size="0x00200000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'WGM160PX22KGA3'  ***************************** -->
+        <device Dname="WGM160PX22KGA3">
+          <compile header="Device/SiliconLabs/WGM160/Include/em_device.h"  define="WGM160PX22KGA3"/>
+          <debug      svd="SVD/WGM160/WGM160PX22KGA3.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00200000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00080000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS1.FLM"  start="0x00000000"  size="0x00200000"  RAMstart="0x20000000" RAMsize="0x80000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS1.flash"  start="0x00000000"  size="0x00200000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'WGM160PX22KGN2'  ***************************** -->
+        <device Dname="WGM160PX22KGN2">
+          <compile header="Device/SiliconLabs/WGM160/Include/em_device.h"  define="WGM160PX22KGN2"/>
+          <debug      svd="SVD/WGM160/WGM160PX22KGN2.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00200000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00080000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS1.FLM"  start="0x00000000"  size="0x00200000"  RAMstart="0x20000000" RAMsize="0x80000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS1.flash"  start="0x00000000"  size="0x00200000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'WGM160PX22KGN3'  ***************************** -->
+        <device Dname="WGM160PX22KGN3">
+          <compile header="Device/SiliconLabs/WGM160/Include/em_device.h"  define="WGM160PX22KGN3"/>
+          <debug      svd="SVD/WGM160/WGM160PX22KGN3.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00200000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00080000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS1.FLM"  start="0x00000000"  size="0x00200000"  RAMstart="0x20000000" RAMsize="0x80000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS1.flash"  start="0x00000000"  size="0x00200000"  default="0"  style="IAR"/>
+        </device>
+
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler GCC">
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="Compiler IAR">
+      <require Tcompiler="IAR"/>
+    </condition>
+
+    <!-- Device Conditions -->
+    <condition id="WGM160">
+      <description>Silicon Labs WGM160 device series</description>
+      <require Dvendor="Silicon Labs:21" Dname="WGM160*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="4.4.0" condition="WGM160">
+      <description>System Startup for Silicon Labs WGM160 device series</description>
+      <files>
+        <!-- include folder -->
+        <file category="include" name="Device/SiliconLabs/WGM160/Include/"/>
+        <file category="header"  name="Device/SiliconLabs/WGM160/Include/em_device.h"/>
+        <!-- startup files -->
+        <file category="source"  name="Device/SiliconLabs/WGM160/Source/GCC/startup_wgm160.S" condition="Compiler GCC"   attr="config" version="4.4.0"/>
+        <file category="source"  name="Device/SiliconLabs/WGM160/Source/IAR/startup_wgm160.s" condition="Compiler IAR"   attr="config" version="4.4.0"/>
+        <!-- linker command file -->
+        <file category="linkerScript"  name="Device/SiliconLabs/WGM160/Source/GCC/wgm160.ld" condition="Compiler GCC" attr="config" version="4.4.0"/>
+        <!-- system file -->
+        <file category="source"  name="Device/SiliconLabs/WGM160/Source/system_wgm160.c" attr="config" version="4.4.0"/>
+      </files>
+    </component>
+  </components>
+</package>

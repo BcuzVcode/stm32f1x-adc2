@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.7.36" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.36/schema/PACK.xsd">
+  <name>B-L475E-IOT01A_BSP</name>
+  <vendor>Keil</vendor>
+  <description overview="Documents/OVERVIEW.md">STMicroelectronics STM32L4 Series B-L475E-IOT01A Board Support Pack</description>
+  <url>https://www.keil.com/pack/</url>
+  <repository type="git">https://github.com/Open-CMSIS-Pack/ST_B-L475E-IOT01A_BSP.git</repository>
+  <license>LICENSE</license>
+  <licenseSets>
+    <licenseSet id="all" default="true" gating="true">
+      <license name="LICENSE" title="Apache 2.0 open-source license" spdx="Apache-2.0"/>
+    </licenseSet>
+  </licenseSets>
+
+  <releases>
+    <release version="2.0.0" date="2024-10-11" tag="v2.0.0">
+      Updated for new CMSIS-Toolbox CubeMX integration
+      Removed BSP drivers
+      Removed Platform project
+      Migrated Blinky example to CMSIS Solution
+      Drivers:
+      - Updated VIO driver to API 1.0.0
+      Pack Description:
+      - Added LICENSE file
+      - Updated schemaVersion (1.7.36)
+    </release>
+    <release version="1.0.1" date="2021-07-12">
+      Drivers:
+      - VIO: update physical I/O mapping documentation
+      Blinky project:
+      - update RTX configuration (CMSIS 5.8.0)
+      - change assembler option to armclang (Auto Select)
+      - add .dbgconf file
+      Platform project (synchronize with CB_Lab4Layer):
+      - update RTX configuration (CMSIS 5.8.0)
+      - change assembler option to armclang (Auto Select)
+      - add .dbgconf file
+      - correct Arduino module
+      - new README.md format
+      - update layers description
+      - compiler optimization -O1
+    </release>
+    <release version="1.0.0" date="2020-07-03">
+      Initial public release
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>ST</keyword>
+    <keyword>Board Support Pack</keyword>
+    <keyword>STM32L4</keyword>
+    <keyword>B-L475E-IOT01A</keyword>
+  </keywords>
+
+  <requirements>
+    <packages>
+      <package vendor="Keil" name="STM32L4xx_DFP"      version="3.0.0-0"/>
+      <package vendor="ARM"  name="CMSIS"              version="6.0.0-0"/>
+      <package vendor="ARM"  name="CMSIS-Driver_STM32" version="1.0.0-0"/>
+    </packages>
+  </requirements>
+
+  <conditions>
+    <!-- Board Condition -->
+    <condition id="B-L475E-IOT01A">
+      <description>STMicroelectronics B-L475E-IOT01A Board</description>
+      <require Bvendor="STMicroelectronics" Bname="B-L475E-IOT01A"/>
+    </condition>
+
+    <!-- Board Condition + CMSIS Driver GPIO-->
+    <condition id="B-L475E-IOT01A GPIO">
+      <description>STMicroelectronics B-L475E-IOT01A Board with CMSIS Driver GPIO</description>
+      <require condition="B-L475E-IOT01A"/>
+      <require Cclass="CMSIS Driver" Cgroup="GPIO"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- CMSIS VIO Driver component for B-L475E-IOT01A -->
+    <component Cclass="CMSIS Driver" Cgroup="VIO" Csub="Board" Cversion="2.0.0" Capiversion="1.0.0" condition="B-L475E-IOT01A GPIO">
+      <description>I/O implementation for B-L475E-IOT01A</description>
+      <RTE_Components_h>
+        #define RTE_VIO_BOARD
+        #define RTE_VIO_B_L475E_IOT01A
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="CMSIS/Driver/vio_B-L475E-IOT01A.c"/>
+      </files>
+    </component>
+  </components>
+
+  <boards>
+    <!-- B-L475E-IOT01A -->
+    <board vendor="STMicroelectronics" name="B-L475E-IOT01A" revision="Rev.D"
+           salesContact="https://www.st.com/content/st_com/en/contact-us.html">
+      <description>STM32 Discovery development board with STM32L475VGTx MCU</description>
+      <image small="Images/b-l475e-iot01a_small.png"
+             large="Images/b-l475e-iot01a_large.png"/>
+      <book category="overview"  name="https://www.st.com/en/evaluation-tools/b-l475e-iot01a.html" title="B-L475E-IOT01A Board"/>
+      <book category="overview"  name="https://www.st.com/resource/en/data_brief/b-l475e-iot01a.pdf" title="Data Brief"/>
+      <book category="manual"    name="https://www.st.com/resource/en/user_manual/um2153-discovery-kit-for-iot-node-multichannel-communication-with-stm32l4-stmicroelectronics.pdf" title="User Manual"/>
+      <book category="schematic" name="https://www.st.com/resource/en/schematic_pack/b-l475e-iot01ax_sch.zip" title="Schematics"/>
+      <book category="other"     name="Documents/README.md" title="Guide"/>
+      <mountedDevice    deviceIndex="0" Dvendor="STMicroelectronics:13" Dname="STM32L475VGTx"/>
+      <compatibleDevice deviceIndex="0" Dvendor="STMicroelectronics:13" DsubFamily="STM32L475"/>
+      <feature type="ODbg"          n="1"          name="On-board ST-LINK/V2-1"/>
+      <feature type="ROM"           n="1"          name="64-Mbit Quad-SPI Flash memory"/>
+      <feature type="PWR"           n="3"  m="5"   name="External Supply"/>
+      <feature type="USB"           n="1"          name="USB OTG FS with Micro-AB connector"/>
+      <feature type="I2C"           n="1"          name="I2C extension connector"/>
+      <feature type="Button"        n="1"          name="Reset push button "/>
+      <feature type="LED"           n="9"          name="2 User LEDs"/>
+      <feature type="Accelerometer" n="1"          name="3D accelerometer (LSM6DSL)"/>
+      <feature type="Gyro"          n="1"          name="3D gyroscope (LSM6DSL)"/>
+      <feature type="PressSens"     n="1"          name="260-1260 hPa absolute digital output barometer (LPS22HB)"/>
+      <feature type="TempSens"      n="1"          name="Capacitive digital sensor for temperature (HTS221)"/>
+      <feature type="ConnOther"     n="1"          name="Sub-GHz (915 MHz) low-power-programmable RF module (SPSGRF-915)"/>
+      <feature type="ConnOther"     n="1"          name="802.11 b/g/n compliant Wi-Fi® module from Inventek Systems (ISM43362-M3G-L44)"/>
+      <feature type="ConnOther"     n="1"          name="Bluetooth® V4.1 Low Energy from STMicroelectronics (SPBTLE-RF)"/>
+      <feature type="ConnOther"     n="1"          name="Dynamic NFC tag based on M24SR with its printed NFC antenna"/>
+      <feature type="SensOther"     n="1"          name="Capacitive digital sensor for relative humidity (HTS221)"/>
+      <feature type="SensOther"     n="1"          name="High-performance 3-axis magnetometer (LIS3MDL)"/>
+      <feature type="SensOther"     n="1"          name="Time-of-Flight and gesture-detection sensor (VL53L0X)"/>
+      <feature type="MIC"           n="2"          name="Digital microphones"/>
+      <feature type="ArduinoFF"     n="1"          name="ARDUINO® Uno V3 expansion connectors"/>
+      <feature type="ConnOther"     n="1"          name="Pmod expansion connector"/>
+      <debugInterface adapter="ST-Link" connector="Micro-USB"/>
+      <debugProbe connector="Micro-USB" debugClock="10000000" debugLink="swd" name="ST-Link"/>
+    </board>
+  </boards>
+
+  <examples>
+    <example name="Blinky" folder="Examples/Blinky" doc="README.md">
+      <description>CMSIS-RTOS2 Blinky example with VIO</description>
+      <board name="B-L475E-IOT01A" vendor="STMicroelectronics"/>
+      <project>
+        <environment name="csolution" load="Blinky.csolution.yml"/>
+      </project>
+    </example>
+  </examples>
+</package>

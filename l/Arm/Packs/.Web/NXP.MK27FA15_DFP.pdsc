@@ -1,0 +1,1067 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>MK27FA15_DFP</name>
+  <vendor>NXP</vendor>
+  <description>Device Family Pack for MK27FA15</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="13.0.0" date="2021-02-05">NXP CMSIS Packs based on MCUXpresso SDK 2.9.0 with restructured startup component files</release>
+    <release version="12.3.0" date="2021-01-14">NXP CMSIS Packs based on MCUXpresso SDK 2.9.0</release>
+    <release version="12.2.0" date="2020-07-20">NXP CMSIS Packs based on MCUXpresso SDK 2.8.0</release>
+    <release version="12.1.0" date="2019-12-19">NXP CMSIS Packs based on MCUXpresso SDK 2.7.0</release>
+    <release version="12.0.0" date="2019-06-10">NXP CMSIS packs based on MCUXpresso SDK 2.6.0</release>
+    <release version="11.0.1" date="2019-04-26">Removed invalid entries from Software Content Register</release>
+    <release version="11.0.0" date="2018-12-19">NXP CMSIS packs based on MCUXpresso SDK 2.5.0</release>
+    <release version="10.0.3" date="2018-07-16">A problem with missing components from some example the projects were dependent on was fixed (KEX-4241); Incorrect path to linked libraries were fixed: a pack version was a static part of the path and hadn’t worked for pack versions other than v10.0.0 (KEX-4373); A problem with incorrectly defined XIP_BOOT_HEADER_ENABLE, XIP_BOOT_HEADER_DCD_ENABLE and XIP_EXTERNAL_FLASH preprocessor symbols was fixed (KEX-4553); Missing flash algorithms for MK27, MK28, LPC802 and LPC804 device family packs were added (KEX-4659).</release>
+    <release version="10.0.2" date="2018-05-25">NXP CMSIS packs based on MCUXpresso SDK 2.4.0</release>
+  </releases>
+  <keywords>
+    <keyword>Device Family Pack</keyword>
+  </keywords>
+  <taxonomy>
+    <description Cclass="Board Support" Cgroup="SDK Project Template">NXP MCUXpresso SDK Project Template</description>
+    <description Cclass="Device" Cgroup="SDK Project Template">NXP MCUXpresso SDK RTE Device Project Template</description>
+    <description Cclass="Device" Cgroup="SDK Drivers">NXP MCUXpresso SDK Peripheral Drivers</description>
+    <description Cclass="Device" Cgroup="SDK Utilities">NXP MCUXpresso SDK Utilities</description>
+    <description Cclass="Device" Cgroup="Startup">NXP MCUXpresso SDK Start up</description>
+    <description Cclass="CMSIS Driver">NXP MCUXpresso SDK Peripheral CMSIS Drivers</description>
+  </taxonomy>
+  <requirements>
+    <packages>
+      <package name="CMSIS" vendor="ARM" version="5.6.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <devices>
+    <family Dfamily="MK27FA15" Dvendor="NXP:11">
+      <description>Kinetis K27F 150 MHz, 1 MB SRAM Microcontrollers (MCUs) based on ARM Cortex-M4 Core</description>
+      <device Dname="MK27FN2M0Axxx15">
+        <processor Dcore="Cortex-M4" Dfpu="SP_FPU" Dmpu="NO_MPU" Dendian="Little-endian" Dclock="150000000"/>
+        <environment name="iar">
+          <file category="linkerfile" name="iar/MK27FN2M0Axxx15_flash.icf"/>
+        </environment>
+        <memory name="PROGRAM_FLASH" start="0x00000000" size="0x200000" access="rx" default="1" startup="1"/>
+        <memory name="SRAM_LOWER" start="0x1ffc0000" size="0x040000" access="rw" default="1"/>
+        <memory name="SRAM_OC" start="0x34000000" size="0x080000" access="rw" default="1"/>
+        <memory name="SRAM_UPPER" start="0x20000000" size="0x040000" access="rw" default="1"/>
+        <algorithm name="arm/MK_P2M0.FLM" start="0x00000000" size="0x00200000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+        <debug svd="MK27FA15.xml"/>
+        <variant Dvariant="MK27FN2M0AVMI15">
+          <compile header="fsl_device_registers.h" define="CPU_MK27FN2M0AVMI15"/>
+        </variant>
+      </device>
+    </family>
+  </devices>
+  <conditions>
+    <condition id="device.MK27FA15">
+      <accept Dname="MK27FN2M0Axxx15" Dvariant="MK27FN2M0AVMI15" Dvendor="NXP:11"/>
+      <accept Dname="MK27FN2M0AVMI15" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="component.serial_manager_AND_utility.debug_console">
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+    </condition>
+    <condition id="_component.serial_manager_AND_utility.debug_console__OR_utility.debug_console_lite">
+      <accept condition="component.serial_manager_AND_utility.debug_console"/>
+      <accept Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite"/>
+    </condition>
+    <condition id="device.MK27FA15_AND___component.serial_manager_AND_utility.debug_console__OR_utility.debug_console_lite__AND_component.lpuart_adapter_AND_device.MK27FA15_startup_AND_driver.clock_AND_driver.common_AND_driver.gpio_AND_driver.lpuart_AND_driver.port_AND_driver.smc">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart_adapter"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="port"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="smc"/>
+      <require Cclass="Device" Cgroup="Startup" Csub="MK27FA15_startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require condition="_component.serial_manager_AND_utility.debug_console__OR_utility.debug_console_lite"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_driver.edma">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_component.gpio_adapter_AND_component.timer_manager_AND_driver.common">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="timer_manager"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio_adapter"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_component.osa_AND_driver.common">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="osa"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_driver.common_AND_driver.crc">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="crc"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_driver.common_AND_driver.flash">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flash"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_driver.common_AND_driver.ftm">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="ftm"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_driver.gpio_AND_driver.port">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="port"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_driver.common">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_driver.common_AND_utility.debug_console">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_component.log_AND_driver.common_AND_utility.debug_console">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="log"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_component.log_AND_driver.common">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="log"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_driver.common_AND_driver.lptmr">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lptmr"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_driver.common_AND_driver.lpuart">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_component.lists_AND_driver.common">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_driver.common_AND_driver.pit">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="pit"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_driver.common_AND_driver.tpm">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="tpm"/>
+    </condition>
+    <condition id="component.serial_manager_swo_OR_component.serial_manager_uart_OR_component.serial_manager_virtual">
+      <accept Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_uart"/>
+      <accept Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_swo"/>
+      <accept Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_virtual"/>
+    </condition>
+    <condition id="device.MK27FA15_AND__component.serial_manager_swo_OR_component.serial_manager_uart_OR_component.serial_manager_virtual__AND_component.lists_AND_driver.common">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+      <require condition="component.serial_manager_swo_OR_component.serial_manager_uart_OR_component.serial_manager_virtual"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_component.serial_manager_AND_core_type.cm4f_AND_driver.common">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require Dcore="Cortex-M4" Dfpu="SP_FPU"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_component.lpuart_adapter_AND_component.serial_manager_AND_driver.lpuart">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart_adapter"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_component.serial_manager_AND_driver.common">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="component.ftm_adapter_OR_component.lptmr_adapter_OR_component.pit_adapter_OR_component.tpm_adapter">
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="tpm_adapter"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="pit_adapter"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="lptmr_adapter"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="ftm_adapter"/>
+    </condition>
+    <condition id="device.MK27FA15_AND__component.ftm_adapter_OR_component.lptmr_adapter_OR_component.pit_adapter_OR_component.tpm_adapter__AND_component.lists_AND_driver.common">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+      <require condition="component.ftm_adapter_OR_component.lptmr_adapter_OR_component.pit_adapter_OR_component.tpm_adapter"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_driver.common_AND_driver.trng">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="trng"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_CMSIS_Include_core_cm4">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="armclang_OR_iar">
+      <accept Tcompiler="ARMCC" Toptions="AC6"/>
+      <accept Tcompiler="IAR"/>
+    </condition>
+    <condition id="device.MK27FA15_AND__armclang_OR_iar__AND_device.MK27FA15_system">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="CMSIS" Csub="MK27FA15_system"/>
+      <require condition="armclang_OR_iar"/>
+    </condition>
+    <condition id="iar">
+      <require Tcompiler="IAR"/>
+    </condition>
+    <condition id="mdk">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_device.MK27FA15_CMSIS">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="CMSIS" Csub="MK27FA15_header"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_CMSIS_Driver_Include.SPI_AND_RTE_Device_AND_driver.dspi_edma">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dspi_edma"/>
+      <require Cclass="CMSIS Driver" Cgroup="SPI" Capiversion="2.2.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_CMSIS_Driver_Include.I2C_AND_RTE_Device_AND_driver.i2c">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c"/>
+      <require Cclass="CMSIS Driver" Cgroup="I2C" Capiversion="2.3.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_CMSIS_Driver_Include.USART_AND_RTE_Device_AND_driver.lpuart">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+      <require Cclass="CMSIS Driver" Cgroup="USART" Capiversion="2.3.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_device.MK27FA15_CMSIS_AND_driver.clock">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="CMSIS" Csub="MK27FA15_header"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_driver.dspi_AND_driver.edma">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dspi"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_driver.common_AND_driver.dmamux">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dmamux"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_driver.flexio">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexio"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_driver.edma_AND_driver.flexio_camera">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexio_camera"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_driver.edma_AND_driver.flexio_i2s">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexio_i2s"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_driver.edma_AND_driver.flexio_mculcd">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexio_mculcd"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_driver.edma_AND_driver.flexio_spi">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexio_spi"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_driver.edma_AND_driver.flexio_uart">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexio_uart"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_driver.edma_AND_driver.i2c">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_driver.edma_AND_driver.lpuart">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_driver.edma_AND_driver.qspi">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="qspi"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_driver.edma_AND_driver.sai">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="sai"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_utility.debug_console">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_utility.debug_console_lite">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_component.lpuart_adapter_AND_driver.common">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart_adapter"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="device.MK27FA15_AND_component.lists_AND_driver.common_AND_utility.debug_console">
+      <require condition="device.MK27FA15"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+  </conditions>
+  <components>
+    <component Cclass="Board Support" Cgroup="SDK Project Template" Csub="project_template" Cvariant="MK27FA15" Cversion="1.0.0" condition="device.MK27FA15_AND___component.serial_manager_AND_utility.debug_console__OR_utility.debug_console_lite__AND_component.lpuart_adapter_AND_device.MK27FA15_startup_AND_driver.clock_AND_driver.common_AND_driver.gpio_AND_driver.lpuart_AND_driver.port_AND_driver.smc" isDefaultVariant="1">
+      <description>Devices_project_template MK27FA15; {for-development:SDK-Manifest-ID: project_template.MK27FA15.MK27FA15}</description>
+      <files>
+        <file category="header" attr="config" name="project_template/board.h" version="1.0.0"/>
+        <file category="sourceC" attr="config" name="project_template/board.c" version="1.0.0"/>
+        <file category="header" attr="config" name="project_template/clock_config.h" version="1.0.0"/>
+        <file category="sourceC" attr="config" name="project_template/clock_config.c" version="1.0.0"/>
+        <file category="header" attr="config" name="project_template/pin_mux.h" version="1.0.0"/>
+        <file category="sourceC" attr="config" name="project_template/pin_mux.c" version="1.0.0"/>
+        <file category="header" attr="config" name="project_template/peripherals.h" version="1.0.0"/>
+        <file category="sourceC" attr="config" name="project_template/peripherals.c" version="1.0.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device" Cversion="1.0.0" condition="device.MK27FA15_AND_driver.edma">
+      <description>Rte_device; {for-development:SDK-Manifest-ID: RTE_Device.MK27FA15}</description>
+      <files>
+        <file category="header" attr="config" name="template/RTE_Device.h" version="1.0.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="button" Cversion="1.0.0" condition="device.MK27FA15_AND_component.gpio_adapter_AND_component.timer_manager_AND_driver.common">
+      <description>Component button; {for-development:SDK-Manifest-ID: component.button.MK27FA15}</description>
+      <files>
+        <file category="header" name="components/button/fsl_component_button.h"/>
+        <file category="sourceC" name="components/button/fsl_component_button.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="common_task" Cversion="1.0.0" condition="device.MK27FA15_AND_component.osa_AND_driver.common">
+      <description>Component common_task; {for-development:SDK-Manifest-ID: component.common_task.MK27FA15}</description>
+      <files>
+        <file category="header" name="components/common_task/fsl_component_common_task.h"/>
+        <file category="sourceC" name="components/common_task/fsl_component_common_task.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="crc_adapter" Cversion="1.0.0" condition="device.MK27FA15_AND_driver.common_AND_driver.crc">
+      <description>Component crc_adapter; {for-development:SDK-Manifest-ID: component.crc_adapter.MK27FA15}</description>
+      <files>
+        <file category="header" name="components/crc/fsl_adapter_crc.h"/>
+        <file category="sourceC" name="components/crc/fsl_adapter_crc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flash_adapter" Cversion="1.0.0" condition="device.MK27FA15_AND_driver.common_AND_driver.flash">
+      <description>Component flash_adapter; {for-development:SDK-Manifest-ID: component.flash_adapter.MK27FA15}</description>
+      <files>
+        <file category="header" name="components/internal_flash/fsl_adapter_flash.h"/>
+        <file category="sourceC" name="components/internal_flash/fsl_adapter_flash.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ftm_adapter" Cversion="1.0.0" condition="device.MK27FA15_AND_driver.common_AND_driver.ftm">
+      <description>Component ftm_adapter; {for-development:SDK-Manifest-ID: component.ftm_adapter.MK27FA15}</description>
+      <files>
+        <file category="header" name="components/timer/fsl_adapter_timer.h"/>
+        <file category="sourceC" name="components/timer/fsl_adapter_ftm.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="gpio_adapter" Cversion="1.0.0" condition="device.MK27FA15_AND_driver.gpio_AND_driver.port">
+      <description>Component gpio_adapter; {for-development:SDK-Manifest-ID: component.gpio_adapter.MK27FA15}</description>
+      <files>
+        <file category="header" name="components/gpio/fsl_adapter_gpio.h"/>
+        <file category="sourceC" name="components/gpio/fsl_adapter_gpio.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="led" Cversion="1.0.0" condition="device.MK27FA15_AND_component.gpio_adapter_AND_component.timer_manager_AND_driver.common">
+      <description>Component led; {for-development:SDK-Manifest-ID: component.led.MK27FA15}</description>
+      <files>
+        <file category="header" name="components/led/fsl_component_led.h"/>
+        <file category="sourceC" name="components/led/fsl_component_led.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lists" Cversion="1.0.0" condition="device.MK27FA15_AND_driver.common">
+      <description>Component lists; {for-development:SDK-Manifest-ID: component.lists.MK27FA15}</description>
+      <files>
+        <file category="header" name="components/lists/fsl_component_generic_list.h"/>
+        <file category="sourceC" name="components/lists/fsl_component_generic_list.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="log" Cversion="1.0.0" condition="device.MK27FA15_AND_driver.common_AND_utility.debug_console">
+      <description>Component log; {for-development:SDK-Manifest-ID: component.log.MK27FA15}</description>
+      <files>
+        <file category="header" name="components/log/fsl_component_log.h"/>
+        <file category="header" name="components/log/fsl_component_log_config.h"/>
+        <file category="sourceC" name="components/log/fsl_component_log.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="debugconsole" Cversion="1.0.0" condition="device.MK27FA15_AND_component.log_AND_driver.common_AND_utility.debug_console">
+      <description>Component log backend debug console; {for-development:SDK-Manifest-ID: component.log.backend.debugconsole.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="components/log/fsl_component_log_backend_debugconsole.c"/>
+        <file category="header" name="components/log/fsl_component_log_backend_debugconsole.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ringbuffer" Cversion="1.0.0" condition="device.MK27FA15_AND_component.log_AND_driver.common">
+      <description>Component log backend ring buffer; {for-development:SDK-Manifest-ID: component.log.backend.ringbuffer.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="components/log/fsl_component_log_backend_ringbuffer.c"/>
+        <file category="header" name="components/log/fsl_component_log_backend_ringbuffer.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lptmr_adapter" Cversion="1.0.0" condition="device.MK27FA15_AND_driver.common_AND_driver.lptmr">
+      <description>Component lptmr_adapter; {for-development:SDK-Manifest-ID: component.lptmr_adapter.MK27FA15}</description>
+      <files>
+        <file category="header" name="components/timer/fsl_adapter_timer.h"/>
+        <file category="sourceC" name="components/timer/fsl_adapter_lptmr.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart_adapter" Cversion="1.0.0" condition="device.MK27FA15_AND_driver.common_AND_driver.lpuart">
+      <description>Component lpuart_adapter; {for-development:SDK-Manifest-ID: component.lpuart_adapter.MK27FA15}</description>
+      <files>
+        <file category="header" name="components/uart/fsl_adapter_uart.h"/>
+        <file category="sourceC" name="components/uart/fsl_adapter_lpuart.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mem_manager" Cversion="1.0.0" condition="device.MK27FA15_AND_component.lists_AND_driver.common">
+      <description>Component mem_manager; {for-development:SDK-Manifest-ID: component.mem_manager.MK27FA15}</description>
+      <files>
+        <file category="header" name="components/mem_manager/fsl_component_mem_manager.h"/>
+        <file category="sourceC" name="components/mem_manager/fsl_component_mem_manager.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mem_manager_light" Cversion="1.0.0" condition="device.MK27FA15_AND_component.lists_AND_driver.common">
+      <description>Component mem_manager_light; {for-development:SDK-Manifest-ID: component.mem_manager_light.MK27FA15}</description>
+      <files>
+        <file category="header" name="components/mem_manager/fsl_component_mem_manager.h"/>
+        <file category="sourceC" name="components/mem_manager/fsl_component_mem_manager_light.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="osa" Cversion="1.0.0" condition="device.MK27FA15_AND_component.lists_AND_driver.common">
+      <description>Component osa; {for-development:SDK-Manifest-ID: component.osa.MK27FA15}</description>
+      <files>
+        <file category="header" name="components/osa/fsl_os_abstraction.h"/>
+        <file category="header" name="components/osa/fsl_os_abstraction_config.h"/>
+        <file category="header" name="components/osa/fsl_os_abstraction_bm.h"/>
+        <file category="sourceC" name="components/osa/fsl_os_abstraction_bm.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="osa_bm" Cversion="1.0.0" condition="device.MK27FA15_AND_component.lists_AND_driver.common">
+      <description>Component osa_bm; {for-development:SDK-Manifest-ID: component.osa_bm.MK27FA15}</description>
+      <files>
+        <file category="header" name="components/osa/fsl_os_abstraction.h"/>
+        <file category="header" name="components/osa/fsl_os_abstraction_bm.h"/>
+        <file category="header" name="components/osa/fsl_os_abstraction_config.h"/>
+        <file category="sourceC" name="components/osa/fsl_os_abstraction_bm.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="panic" Cversion="1.0.0" condition="device.MK27FA15_AND_driver.common_AND_utility.debug_console">
+      <description>Component panic; {for-development:SDK-Manifest-ID: component.panic.MK27FA15}</description>
+      <files>
+        <file category="header" name="components/panic/fsl_component_panic.h"/>
+        <file category="sourceC" name="components/panic/fsl_component_panic.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pit_adapter" Cversion="1.0.0" condition="device.MK27FA15_AND_driver.common_AND_driver.pit">
+      <description>Component pit_adapter; {for-development:SDK-Manifest-ID: component.pit_adapter.MK27FA15}</description>
+      <files>
+        <file category="header" name="components/timer/fsl_adapter_timer.h"/>
+        <file category="sourceC" name="components/timer/fsl_adapter_pit.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pwm_ftm_adapter" Cversion="1.0.0" condition="device.MK27FA15_AND_driver.common_AND_driver.ftm">
+      <description>Component pwm_ftm_adapter; {for-development:SDK-Manifest-ID: component.pwm_ftm_adapter.MK27FA15}</description>
+      <files>
+        <file category="header" name="components/pwm/fsl_adapter_pwm.h"/>
+        <file category="sourceC" name="components/pwm/fsl_adapter_pwm_ftm.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pwm_tpm_adapter" Cversion="1.0.0" condition="device.MK27FA15_AND_driver.common_AND_driver.tpm">
+      <description>Component pwm_tpm_adapter; {for-development:SDK-Manifest-ID: component.pwm_tpm_adapter.MK27FA15}</description>
+      <files>
+        <file category="header" name="components/pwm/fsl_adapter_pwm.h"/>
+        <file category="sourceC" name="components/pwm/fsl_adapter_pwm_tpm.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager" Cversion="1.0.0" condition="device.MK27FA15_AND__component.serial_manager_swo_OR_component.serial_manager_uart_OR_component.serial_manager_virtual__AND_component.lists_AND_driver.common">
+      <description>Component serial_manager; {for-development:SDK-Manifest-ID: component.serial_manager.MK27FA15}</description>
+      <files>
+        <file category="header" name="components/serial_manager/fsl_component_serial_manager.h"/>
+        <file category="header" name="components/serial_manager/fsl_component_serial_port_internal.h"/>
+        <file category="sourceC" name="components/serial_manager/fsl_component_serial_manager.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_swo" Cversion="1.0.0" condition="device.MK27FA15_AND_component.serial_manager_AND_core_type.cm4f_AND_driver.common">
+      <description>Component serial_manager_swo; {for-development:SDK-Manifest-ID: component.serial_manager_swo.MK27FA15}</description>
+      <RTE_Components_h>
+#define SERIAL_PORT_TYPE_SWO 1
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/serial_manager/fsl_component_serial_port_swo.h"/>
+        <file category="sourceC" name="components/serial_manager/fsl_component_serial_port_swo.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_uart" Cversion="1.0.0" condition="device.MK27FA15_AND_component.lpuart_adapter_AND_component.serial_manager_AND_driver.lpuart">
+      <description>Component serial_manager_uart; {for-development:SDK-Manifest-ID: component.serial_manager_uart.MK27FA15}</description>
+      <RTE_Components_h>
+#define SERIAL_PORT_TYPE_UART 1
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/serial_manager/fsl_component_serial_port_uart.h"/>
+        <file category="sourceC" name="components/serial_manager/fsl_component_serial_port_uart.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_virtual" Cversion="1.0.0" condition="device.MK27FA15_AND_component.serial_manager_AND_driver.common">
+      <description>Component serial_manager_virtual; {for-development:SDK-Manifest-ID: component.serial_manager_virtual.MK27FA15}</description>
+      <RTE_Components_h>
+#define SERIAL_PORT_TYPE_VIRTUAL 1
+#define DEBUG_CONSOLE_TRANSFER_NON_BLOCKING 
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/serial_manager/fsl_component_serial_port_virtual.h"/>
+        <file category="sourceC" name="components/serial_manager/fsl_component_serial_port_virtual.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="software_crc_adapter" Cversion="1.0.0" condition="device.MK27FA15_AND_driver.common">
+      <description>Component software_crc_adapter; {for-development:SDK-Manifest-ID: component.software_crc_adapter.MK27FA15}</description>
+      <files>
+        <file category="header" name="components/crc/fsl_adapter_crc.h"/>
+        <file category="sourceC" name="components/crc/fsl_adapter_software_crc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="software_rng_adapter" Cversion="1.0.0" condition="device.MK27FA15_AND_driver.common">
+      <description>Component software_rng_adapter; {for-development:SDK-Manifest-ID: component.software_rng_adapter.MK27FA15}</description>
+      <files>
+        <file category="header" name="components/rng/fsl_adapter_rng.h"/>
+        <file category="sourceC" name="components/rng/fsl_adapter_software_rng.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="timer_manager" Cversion="1.0.0" condition="device.MK27FA15_AND__component.ftm_adapter_OR_component.lptmr_adapter_OR_component.pit_adapter_OR_component.tpm_adapter__AND_component.lists_AND_driver.common">
+      <description>Component timer_manager; {for-development:SDK-Manifest-ID: component.timer_manager.MK27FA15}</description>
+      <files>
+        <file category="header" name="components/timer_manager/fsl_component_timer_manager.h"/>
+        <file category="sourceC" name="components/timer_manager/fsl_component_timer_manager.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="tpm_adapter" Cversion="1.0.0" condition="device.MK27FA15_AND_driver.common_AND_driver.tpm">
+      <description>Component tpm_adapter; {for-development:SDK-Manifest-ID: component.tpm_adapter.MK27FA15}</description>
+      <files>
+        <file category="header" name="components/timer/fsl_adapter_timer.h"/>
+        <file category="sourceC" name="components/timer/fsl_adapter_tpm.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="trng_adapter" Cversion="1.0.0" condition="device.MK27FA15_AND_driver.common_AND_driver.trng">
+      <description>Component trng_adapter; {for-development:SDK-Manifest-ID: component.trng_adapter.MK27FA15}</description>
+      <files>
+        <file category="header" name="components/rng/fsl_adapter_rng.h"/>
+        <file category="sourceC" name="components/rng/fsl_adapter_trng.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="CMSIS" Csub="MK27FA15_header" Cversion="1.0.0" condition="device.MK27FA15_AND_CMSIS_Include_core_cm4">
+      <description>Device MK27FA15_cmsis; {for-development:SDK-Manifest-ID: device.MK27FA15_CMSIS.MK27FA15}</description>
+      <files>
+        <file category="header" name="fsl_device_registers.h"/>
+        <file category="header" name="MK27FA15.h"/>
+        <file category="header" name="MK27FA15_features.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Csub="MK27FA15_startup" Cversion="1.1.0" condition="device.MK27FA15_AND__armclang_OR_iar__AND_device.MK27FA15_system">
+      <description>Device MK27FA15_startup; {for-development:SDK-Manifest-ID: device.MK27FA15_startup.MK27FA15}</description>
+      <files>
+        <file condition="iar" category="sourceAsm" name="iar/startup_MK27FA15.s"/>
+        <file condition="mdk" category="sourceAsm" name="arm/startup_MK27FA15.S"/>
+        <file condition="mdk" category="linkerScript" attr="config" name="arm/MK27FN2M0Axxx15_flash.scf" version="1.1.0"/>
+        <file condition="mdk" category="linkerScript" attr="config" name="arm/MK27FN2M0Axxx15_ram.scf" version="1.1.0"/>
+        <file condition="iar" category="linkerScript" attr="config" name="iar/MK27FN2M0Axxx15_flash.icf" version="1.1.0"/>
+        <file condition="iar" category="linkerScript" attr="config" name="iar/MK27FN2M0Axxx15_ram.icf" version="1.1.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="CMSIS" Csub="MK27FA15_system" Cversion="1.0.0" condition="device.MK27FA15_AND_device.MK27FA15_CMSIS">
+      <description>Device MK27FA15_system; {for-development:SDK-Manifest-ID: device.MK27FA15_system.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="system_MK27FA15.c"/>
+        <file category="header" name="system_MK27FA15.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="adc" Cversion="2.2.0" condition="device.MK27FA15_AND_driver.common">
+      <description>ADC16 Driver; {for-development:SDK-Manifest-ID: platform.drivers.adc16.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_adc16.c"/>
+        <file category="header" name="drivers/fsl_adc16.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="cache_lmem" Cversion="2.0.5" condition="device.MK27FA15_AND_driver.common">
+      <description>CACHE LMEM Driver; {for-development:SDK-Manifest-ID: platform.drivers.cache_lmem.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_cache.c"/>
+        <file category="header" name="drivers/fsl_cache.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="clock" Cversion="2.5.2" condition="device.MK27FA15_AND_driver.common">
+      <description>Clock Driver; {for-development:SDK-Manifest-ID: platform.drivers.clock.MK27FA15}</description>
+      <files>
+        <file category="header" name="drivers/fsl_clock.h"/>
+        <file category="sourceC" name="drivers/fsl_clock.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="cmp" Cversion="2.0.2" condition="device.MK27FA15_AND_driver.common">
+      <description>CMP Driver; {for-development:SDK-Manifest-ID: platform.drivers.cmp.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_cmp.c"/>
+        <file category="header" name="drivers/fsl_cmp.h"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="SPI" Csub="dspi_cmsis" Cversion="2.3.0" condition="device.MK27FA15_AND_CMSIS_Driver_Include.SPI_AND_RTE_Device_AND_driver.dspi_edma">
+      <description>DSPI CMSIS Driver; {for-development:SDK-Manifest-ID: platform.drivers.dspi_cmsis.MK27FA15}</description>
+      <files>
+        <file category="header" name="cmsis_drivers/fsl_dspi_cmsis.h"/>
+        <file category="sourceC" name="cmsis_drivers/fsl_dspi_cmsis.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="I2C" Csub="i2c_cmsis" Cversion="2.2.0" condition="device.MK27FA15_AND_CMSIS_Driver_Include.I2C_AND_RTE_Device_AND_driver.i2c">
+      <description>I2C CMSIS Driver; {for-development:SDK-Manifest-ID: platform.drivers.i2c_cmsis.MK27FA15}</description>
+      <files>
+        <file category="header" name="cmsis_drivers/fsl_i2c_cmsis.h"/>
+        <file category="sourceC" name="cmsis_drivers/fsl_i2c_cmsis.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="USART" Csub="lpuart_cmsis" Cversion="2.1.0" condition="device.MK27FA15_AND_CMSIS_Driver_Include.USART_AND_RTE_Device_AND_driver.lpuart">
+      <description>LPUART CMSIS Driver; {for-development:SDK-Manifest-ID: platform.drivers.lpuart_cmsis.MK27FA15}</description>
+      <files>
+        <file category="header" name="cmsis_drivers/fsl_lpuart_cmsis.h"/>
+        <file category="sourceC" name="cmsis_drivers/fsl_lpuart_cmsis.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="cmt" Cversion="2.0.3" condition="device.MK27FA15_AND_driver.common">
+      <description>CMT Driver; {for-development:SDK-Manifest-ID: platform.drivers.cmt.MK27FA15}</description>
+      <files>
+        <file category="header" name="drivers/fsl_cmt.h"/>
+        <file category="sourceC" name="drivers/fsl_cmt.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="common" Cversion="2.2.9" condition="device.MK27FA15_AND_device.MK27FA15_CMSIS_AND_driver.clock">
+      <description>COMMON Driver; {for-development:SDK-Manifest-ID: platform.drivers.common.MK27FA15}</description>
+      <files>
+        <file category="header" name="drivers/fsl_common.h"/>
+        <file category="sourceC" name="drivers/fsl_common.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="crc" Cversion="2.0.3" condition="device.MK27FA15_AND_driver.common">
+      <description>CRC Driver; {for-development:SDK-Manifest-ID: platform.drivers.crc.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_crc.c"/>
+        <file category="header" name="drivers/fsl_crc.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dac" Cversion="2.0.2" condition="device.MK27FA15_AND_driver.common">
+      <description>DAC Driver; {for-development:SDK-Manifest-ID: platform.drivers.dac.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_dac.c"/>
+        <file category="header" name="drivers/fsl_dac.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dmamux" Cversion="2.0.5" condition="device.MK27FA15_AND_driver.common">
+      <description>DMAMUX Driver; {for-development:SDK-Manifest-ID: platform.drivers.dmamux.MK27FA15}</description>
+      <files>
+        <file category="header" name="drivers/fsl_dmamux.h"/>
+        <file category="sourceC" name="drivers/fsl_dmamux.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dspi" Cversion="2.2.4" condition="device.MK27FA15_AND_driver.common">
+      <description>DSPI Driver; {for-development:SDK-Manifest-ID: platform.drivers.dspi.MK27FA15}</description>
+      <files>
+        <file category="header" name="drivers/fsl_dspi.h"/>
+        <file category="sourceC" name="drivers/fsl_dspi.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dspi_edma" Cversion="2.2.4" condition="device.MK27FA15_AND_driver.dspi_AND_driver.edma">
+      <description>DSPI Driver; {for-development:SDK-Manifest-ID: platform.drivers.dspi_edma.MK27FA15}</description>
+      <files>
+        <file category="header" name="drivers/fsl_dspi_edma.h"/>
+        <file category="sourceC" name="drivers/fsl_dspi_edma.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="edma" Cversion="2.4.1" condition="device.MK27FA15_AND_driver.common_AND_driver.dmamux">
+      <description>EDMA Driver; {for-development:SDK-Manifest-ID: platform.drivers.edma.MK27FA15}</description>
+      <files>
+        <file category="header" name="drivers/fsl_edma.h"/>
+        <file category="sourceC" name="drivers/fsl_edma.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ewm" Cversion="2.0.3" condition="device.MK27FA15_AND_driver.common">
+      <description>EWM Driver; {for-development:SDK-Manifest-ID: platform.drivers.ewm.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_ewm.c"/>
+        <file category="header" name="drivers/fsl_ewm.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flash" Cversion="3.0.0" condition="device.MK27FA15_AND_driver.common">
+      <description>Flash Driver; {for-development:SDK-Manifest-ID: platform.drivers.flash.MK27FA15}</description>
+      <files>
+        <file category="header" name="drivers/fsl_ftfx_adapter.h"/>
+        <file category="header" name="drivers/fsl_ftfx_utilities.h"/>
+        <file category="header" name="drivers/fsl_ftfx_features.h"/>
+        <file category="sourceC" name="drivers/fsl_ftfx_controller.c"/>
+        <file category="header" name="drivers/fsl_ftfx_controller.h"/>
+        <file category="sourceC" name="drivers/fsl_ftfx_flash.c"/>
+        <file category="header" name="drivers/fsl_ftfx_flash.h"/>
+        <file category="sourceC" name="drivers/fsl_ftfx_cache.c"/>
+        <file category="header" name="drivers/fsl_ftfx_cache.h"/>
+        <file category="sourceC" name="drivers/fsl_ftfx_flexnvm.c"/>
+        <file category="header" name="drivers/fsl_ftfx_flexnvm.h"/>
+        <file category="header" name="drivers/fsl_flash.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flexbus" Cversion="2.1.1" condition="device.MK27FA15_AND_driver.common">
+      <description>FLEXBUS Driver; {for-development:SDK-Manifest-ID: platform.drivers.flexbus.MK27FA15}</description>
+      <files>
+        <file category="header" name="drivers/fsl_flexbus.h"/>
+        <file category="sourceC" name="drivers/fsl_flexbus.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flexio" Cversion="2.0.4" condition="device.MK27FA15_AND_driver.common">
+      <description>FLEXIO Driver; {for-development:SDK-Manifest-ID: platform.drivers.flexio.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_flexio.c"/>
+        <file category="header" name="drivers/fsl_flexio.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flexio_camera" Cversion="2.1.3" condition="device.MK27FA15_AND_driver.flexio">
+      <description>FLEXIO Driver; {for-development:SDK-Manifest-ID: platform.drivers.flexio_camera.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_flexio_camera.c"/>
+        <file category="header" name="drivers/fsl_flexio_camera.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flexio_camera_edma" Cversion="2.1.3" condition="device.MK27FA15_AND_driver.edma_AND_driver.flexio_camera">
+      <description>FLEXIO CAMERA EDMA Driver; {for-development:SDK-Manifest-ID: platform.drivers.flexio_camera_edma.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_flexio_camera_edma.c"/>
+        <file category="header" name="drivers/fsl_flexio_camera_edma.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flexio_i2c_master" Cversion="2.4.0" condition="device.MK27FA15_AND_driver.flexio">
+      <description>FLEXIO I2C Driver; {for-development:SDK-Manifest-ID: platform.drivers.flexio_i2c_master.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_flexio_i2c_master.c"/>
+        <file category="header" name="drivers/fsl_flexio_i2c_master.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flexio_i2s" Cversion="2.2.0" condition="device.MK27FA15_AND_driver.flexio">
+      <description>FLEXIO I2S Driver; {for-development:SDK-Manifest-ID: platform.drivers.flexio_i2s.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_flexio_i2s.c"/>
+        <file category="header" name="drivers/fsl_flexio_i2s.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flexio_i2s_edma" Cversion="2.1.7" condition="device.MK27FA15_AND_driver.edma_AND_driver.flexio_i2s">
+      <description>FLEXIO I2S EDMA Driver; {for-development:SDK-Manifest-ID: platform.drivers.flexio_i2s_edma.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_flexio_i2s_edma.c"/>
+        <file category="header" name="drivers/fsl_flexio_i2s_edma.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flexio_mculcd" Cversion="2.0.5" condition="device.MK27FA15_AND_driver.flexio">
+      <description>FLEXIO MCULCD Driver; {for-development:SDK-Manifest-ID: platform.drivers.flexio_mculcd.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_flexio_mculcd.c"/>
+        <file category="header" name="drivers/fsl_flexio_mculcd.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flexio_mculcd_edma" Cversion="2.0.4" condition="device.MK27FA15_AND_driver.edma_AND_driver.flexio_mculcd">
+      <description>FLEXIO MCULCD EDMA Driver; {for-development:SDK-Manifest-ID: platform.drivers.flexio_mculcd_edma.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_flexio_mculcd_edma.c"/>
+        <file category="header" name="drivers/fsl_flexio_mculcd_edma.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flexio_spi" Cversion="2.2.0" condition="device.MK27FA15_AND_driver.flexio">
+      <description>FLEXIO SPI Driver; {for-development:SDK-Manifest-ID: platform.drivers.flexio_spi.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_flexio_spi.c"/>
+        <file category="header" name="drivers/fsl_flexio_spi.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flexio_spi_edma" Cversion="2.2.0" condition="device.MK27FA15_AND_driver.edma_AND_driver.flexio_spi">
+      <description>FLEXIO SPI EDMA Driver; {for-development:SDK-Manifest-ID: platform.drivers.flexio_spi_edma.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_flexio_spi_edma.c"/>
+        <file category="header" name="drivers/fsl_flexio_spi_edma.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flexio_uart" Cversion="2.3.0" condition="device.MK27FA15_AND_driver.flexio">
+      <description>FLEXIO UART Driver; {for-development:SDK-Manifest-ID: platform.drivers.flexio_uart.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_flexio_uart.c"/>
+        <file category="header" name="drivers/fsl_flexio_uart.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flexio_uart_edma" Cversion="2.3.0" condition="device.MK27FA15_AND_driver.edma_AND_driver.flexio_uart">
+      <description>FLEXIO UART EDMA Driver; {for-development:SDK-Manifest-ID: platform.drivers.flexio_uart_edma.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_flexio_uart_edma.c"/>
+        <file category="header" name="drivers/fsl_flexio_uart_edma.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ftm" Cversion="2.3.0" condition="device.MK27FA15_AND_driver.common">
+      <description>FTM Driver; {for-development:SDK-Manifest-ID: platform.drivers.ftm.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_ftm.c"/>
+        <file category="header" name="drivers/fsl_ftm.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="gpio" Cversion="2.5.1" condition="device.MK27FA15_AND_driver.common">
+      <description>GPIO Driver; {for-development:SDK-Manifest-ID: platform.drivers.gpio.MK27FA15}</description>
+      <files>
+        <file category="header" name="drivers/fsl_gpio.h"/>
+        <file category="sourceC" name="drivers/fsl_gpio.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="i2c" Cversion="2.0.9" condition="device.MK27FA15_AND_driver.common">
+      <description>I2C Driver; {for-development:SDK-Manifest-ID: platform.drivers.i2c.MK27FA15}</description>
+      <files>
+        <file category="header" name="drivers/fsl_i2c.h"/>
+        <file category="sourceC" name="drivers/fsl_i2c.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="i2c_edma" Cversion="2.0.9" condition="device.MK27FA15_AND_driver.edma_AND_driver.i2c">
+      <description>I2C Driver; {for-development:SDK-Manifest-ID: platform.drivers.i2c_edma.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_i2c_edma.c"/>
+        <file category="header" name="drivers/fsl_i2c_edma.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="llwu" Cversion="2.0.5" condition="device.MK27FA15_AND_driver.common">
+      <description>LLWU Driver; {for-development:SDK-Manifest-ID: platform.drivers.llwu.MK27FA15}</description>
+      <files>
+        <file category="header" name="drivers/fsl_llwu.h"/>
+        <file category="sourceC" name="drivers/fsl_llwu.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lmem" Cversion="2.1.2" condition="device.MK27FA15_AND_driver.common">
+      <description>LMEM Driver; {for-development:SDK-Manifest-ID: platform.drivers.lmem.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_lmem_cache.c"/>
+        <file category="header" name="drivers/fsl_lmem_cache.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lptmr" Cversion="2.1.1" condition="device.MK27FA15_AND_driver.common">
+      <description>LPTMR Driver; {for-development:SDK-Manifest-ID: platform.drivers.lptmr.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_lptmr.c"/>
+        <file category="header" name="drivers/fsl_lptmr.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart" Cversion="2.4.1" condition="device.MK27FA15_AND_driver.common">
+      <description>LPUART Driver; {for-development:SDK-Manifest-ID: platform.drivers.lpuart.MK27FA15}</description>
+      <files>
+        <file category="header" name="drivers/fsl_lpuart.h"/>
+        <file category="sourceC" name="drivers/fsl_lpuart.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart_edma" Cversion="2.4.0" condition="device.MK27FA15_AND_driver.edma_AND_driver.lpuart">
+      <description>LPUART Driver; {for-development:SDK-Manifest-ID: platform.drivers.lpuart_edma.MK27FA15}</description>
+      <files>
+        <file category="header" name="drivers/fsl_lpuart_edma.h"/>
+        <file category="sourceC" name="drivers/fsl_lpuart_edma.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pdb" Cversion="2.0.4" condition="device.MK27FA15_AND_driver.common">
+      <description>PDB Driver; {for-development:SDK-Manifest-ID: platform.drivers.pdb.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_pdb.c"/>
+        <file category="header" name="drivers/fsl_pdb.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pit" Cversion="2.0.4" condition="device.MK27FA15_AND_driver.common">
+      <description>PIT Driver; {for-development:SDK-Manifest-ID: platform.drivers.pit.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_pit.c"/>
+        <file category="header" name="drivers/fsl_pit.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pmc" Cversion="2.0.3" condition="device.MK27FA15_AND_driver.common">
+      <description>PMC Driver; {for-development:SDK-Manifest-ID: platform.drivers.pmc.MK27FA15}</description>
+      <files>
+        <file category="header" name="drivers/fsl_pmc.h"/>
+        <file category="sourceC" name="drivers/fsl_pmc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="port" Cversion="2.1.1" condition="device.MK27FA15_AND_driver.common">
+      <description>PORT Driver; {for-development:SDK-Manifest-ID: platform.drivers.port.MK27FA15}</description>
+      <files>
+        <file category="header" name="drivers/fsl_port.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="qspi" Cversion="2.2.2" condition="device.MK27FA15_AND_driver.common">
+      <description>QSPI Driver; {for-development:SDK-Manifest-ID: platform.drivers.qspi.MK27FA15}</description>
+      <files>
+        <file category="header" name="drivers/fsl_qspi.h"/>
+        <file category="sourceC" name="drivers/fsl_qspi.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="qspi_edma" Cversion="2.2.2" condition="device.MK27FA15_AND_driver.edma_AND_driver.qspi">
+      <description>QSPI Driver; {for-development:SDK-Manifest-ID: platform.drivers.qspi_edma.MK27FA15}</description>
+      <files>
+        <file category="header" name="drivers/fsl_qspi_edma.h"/>
+        <file category="sourceC" name="drivers/fsl_qspi_edma.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="rcm" Cversion="2.0.4" condition="device.MK27FA15_AND_driver.common">
+      <description>RCM Driver; {for-development:SDK-Manifest-ID: platform.drivers.rcm.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_rcm.c"/>
+        <file category="header" name="drivers/fsl_rcm.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="rtc" Cversion="2.2.1" condition="device.MK27FA15_AND_driver.common">
+      <description>RTC Driver; {for-development:SDK-Manifest-ID: platform.drivers.rtc.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_rtc.c"/>
+        <file category="header" name="drivers/fsl_rtc.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sai" Cversion="2.3.2" condition="device.MK27FA15_AND_driver.common">
+      <description>SAI Driver; {for-development:SDK-Manifest-ID: platform.drivers.sai.MK27FA15}</description>
+      <files>
+        <file category="header" name="drivers/fsl_sai.h"/>
+        <file category="sourceC" name="drivers/fsl_sai.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sai_edma" Cversion="2.3.1" condition="device.MK27FA15_AND_driver.edma_AND_driver.sai">
+      <description>SAI EDMA Driver; {for-development:SDK-Manifest-ID: platform.drivers.sai_edma.MK27FA15}</description>
+      <files>
+        <file category="header" name="drivers/fsl_sai_edma.h"/>
+        <file category="sourceC" name="drivers/fsl_sai_edma.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sdhc" Cversion="2.1.12" condition="device.MK27FA15_AND_driver.common">
+      <description>SDHC Driver; {for-development:SDK-Manifest-ID: platform.drivers.sdhc.MK27FA15}</description>
+      <files>
+        <file category="header" name="drivers/fsl_sdhc.h"/>
+        <file category="sourceC" name="drivers/fsl_sdhc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sdramc" Cversion="2.1.1" condition="device.MK27FA15_AND_driver.common">
+      <description>SDRAMC Driver; {for-development:SDK-Manifest-ID: platform.drivers.sdramc.MK27FA15}</description>
+      <files>
+        <file category="header" name="drivers/fsl_sdramc.h"/>
+        <file category="sourceC" name="drivers/fsl_sdramc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sim" Cversion="2.1.2" condition="device.MK27FA15_AND_driver.common">
+      <description>SIM Driver; {for-development:SDK-Manifest-ID: platform.drivers.sim.MK27FA15}</description>
+      <files>
+        <file category="header" name="drivers/fsl_sim.h"/>
+        <file category="sourceC" name="drivers/fsl_sim.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="smc" Cversion="2.0.7" condition="device.MK27FA15_AND_driver.common">
+      <description>SMC Driver; {for-development:SDK-Manifest-ID: platform.drivers.smc.MK27FA15}</description>
+      <files>
+        <file category="header" name="drivers/fsl_smc.h"/>
+        <file category="sourceC" name="drivers/fsl_smc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sysmpu" Cversion="2.2.3" condition="device.MK27FA15_AND_driver.common">
+      <description>SYSMPU Driver; {for-development:SDK-Manifest-ID: platform.drivers.sysmpu.MK27FA15}</description>
+      <files>
+        <file category="header" name="drivers/fsl_sysmpu.h"/>
+        <file category="sourceC" name="drivers/fsl_sysmpu.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="tpm" Cversion="2.0.7" condition="device.MK27FA15_AND_driver.common">
+      <description>TPM Driver; {for-development:SDK-Manifest-ID: platform.drivers.tpm.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_tpm.c"/>
+        <file category="header" name="drivers/fsl_tpm.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="trng" Cversion="2.0.12" condition="device.MK27FA15_AND_driver.common">
+      <description>TRNG Driver; {for-development:SDK-Manifest-ID: platform.drivers.trng.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_trng.c"/>
+        <file category="header" name="drivers/fsl_trng.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="vref" Cversion="2.1.2" condition="device.MK27FA15_AND_driver.common">
+      <description>VREF Driver; {for-development:SDK-Manifest-ID: platform.drivers.vref.MK27FA15}</description>
+      <files>
+        <file category="header" name="drivers/fsl_vref.h"/>
+        <file category="sourceC" name="drivers/fsl_vref.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="wdog" Cversion="2.0.1" condition="device.MK27FA15_AND_driver.common">
+      <description>WDOG Driver; {for-development:SDK-Manifest-ID: platform.drivers.wdog.MK27FA15}</description>
+      <files>
+        <file category="header" name="drivers/fsl_wdog.h"/>
+        <file category="sourceC" name="drivers/fsl_wdog.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="assert" Cversion="1.0.0" condition="device.MK27FA15_AND_utility.debug_console">
+      <description>Utility assert; {for-development:SDK-Manifest-ID: platform.utilities.assert.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="utilities/fsl_assert.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="assert_lite" Cversion="1.0.0" condition="device.MK27FA15_AND_utility.debug_console_lite">
+      <description>Utility assert_lite; {for-development:SDK-Manifest-ID: platform.utilities.assert_lite.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="utilities/debug_console_lite/fsl_assert.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console" Cversion="1.0.0" condition="device.MK27FA15_AND_component.serial_manager_AND_driver.common">
+      <description>Utility debug_console; {for-development:SDK-Manifest-ID: utility.debug_console.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="utilities/str/fsl_str.c"/>
+        <file category="header" name="utilities/str/fsl_str.h"/>
+        <file category="sourceC" name="utilities/debug_console/fsl_debug_console.c"/>
+        <file category="header" name="utilities/debug_console/fsl_debug_console.h"/>
+        <file category="header" name="utilities/debug_console/fsl_debug_console_conf.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite" Cversion="1.0.0" condition="device.MK27FA15_AND_component.lpuart_adapter_AND_driver.common">
+      <description>Utility debug_console_lite; {for-development:SDK-Manifest-ID: utility.debug_console_lite.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="utilities/debug_console_lite/fsl_debug_console.c"/>
+        <file category="header" name="utilities/debug_console_lite/fsl_debug_console.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="notifier" Cversion="1.0.0" condition="device.MK27FA15_AND_driver.common">
+      <description>Utility notifier; {for-development:SDK-Manifest-ID: platform.utilities.notifier.MK27FA15}</description>
+      <files>
+        <file category="sourceC" name="utilities/fsl_notifier.c"/>
+        <file category="header" name="utilities/fsl_notifier.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="shell" Cversion="1.0.0" condition="device.MK27FA15_AND_component.lists_AND_driver.common_AND_utility.debug_console">
+      <description>Utility shell; {for-development:SDK-Manifest-ID: utility.shell.MK27FA15}</description>
+      <RTE_Components_h>
+#define DEBUG_CONSOLE_RX_ENABLE 0
+</RTE_Components_h>
+      <files>
+        <file category="sourceC" name="utilities/fsl_shell.c"/>
+        <file category="header" name="utilities/fsl_shell.h"/>
+      </files>
+    </component>
+  </components>
+</package>

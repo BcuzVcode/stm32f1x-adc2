@@ -1,0 +1,1782 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>MCXA142_DFP</name>
+  <vendor>NXP</vendor>
+  <description>Device Family Pack for MCXA142</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="19.0.0" date="2024-07-17">NXP CMSIS Packs based on MCUXpresso SDK 2.16.0</release>
+    <release version="17.0.0" date="2024-01-26">NXP CMSIS Packs based on MCUXpresso SDK 2.14.2</release>
+  </releases>
+  <keywords>
+    <keyword>Device Family Pack</keyword>
+  </keywords>
+  <requirements>
+    <packages>
+      <package name="CMSIS" vendor="ARM" version="5.9.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <devices>
+    <family Dfamily="MCXA142" Dvendor="NXP:11">
+      <debugconfig default="swd" clock="5000000" swj="true"/>
+      <sequences>
+        <sequence name="EnableTraceClk">
+          <block>
+        __var SYSCON_NS_Base_Addr = 0x40091000;
+        __var IOCON_NS_Base_Addr  = 0x40001000;
+        __var TRACECLKSEL_Addr    = SYSCON_NS_Base_Addr + 0x138;
+        __var TRACECLKDIV_Addr    = SYSCON_NS_Base_Addr + 0x13C;
+        __var AHBCLKCTRLSET0_Addr = IOCON_NS_Base_Addr  + 0x220;
+        __var clksel              = 0;
+        __var clkdiv              = 0;
+      </block>
+          <control if="__traceout &amp; 0x3">
+            <block>
+          clksel = Read32(TRACECLKSEL_Addr);  // Read current TRACECLKSEL value
+        </block>
+            <control if="clksel &gt; 2" info="Trace (TPIU) Clock not selected?">
+              <block>
+            Write32(TRACECLKSEL_Addr, 0x0);   // Select Trace divided clock
+          </block>
+            </control>
+            <block>
+          clkdiv = (Read32(TRACECLKDIV_Addr) &amp; 0xFF);  // Read current TRACECLKDIV value, preserve divider but clear rest to enable
+          Write32(TRACECLKDIV_Addr, clkdiv);
+
+          Write32(AHBCLKCTRLSET0_Addr, (1 &lt;&lt; 13));   // Enable IOCON clock
+        </block>
+          </control>
+        </sequence>
+        <sequence name="EnableDebugMailbox">
+          <block>
+        __var status=0x55aa;
+        Message(0, "MCXA1xx connect script start");
+
+        // Read APIDR
+        __dp = 0;
+        __ap = 1;
+        status = ReadAP(0xFC);
+        Message(0, "APIDR: 0x%08X", status);
+
+        // Read DPIDR
+        __dp = 0;
+        __ap = 1;
+        status = ReadDP(0x0);
+        Message(0, "DPIDR: 0x%08X", status);
+
+        // Active DebugMailbox
+        __dp = 0;
+        __ap = 1;
+        WriteAP(0x0, 0x00000021);
+        DAP_Delay(30000);
+        ReadAP(0x0);
+
+        // Enter Debug Session
+        __dp = 0;
+        __ap = 1;
+        WriteAP(0x4, 0x00000007);
+        DAP_Delay(30000);
+        ReadAP(0x8);
+
+        __dp = 0;
+        __ap = 0;
+
+        Message(0, "MCXA1xx connect script end");
+      </block>
+        </sequence>
+        <sequence name="DebugPortStart">
+          <block>
+        __var SW_DP_ABORT  = 0x0;
+        __var DP_CTRL_STAT = 0x4;
+        __var DP_SELECT    = 0x8;
+        __var powered_down = 0;
+        // Switch to DP Register Bank 0
+        WriteDP(DP_SELECT, 0x00000000);
+
+        // Read DP CTRL/STAT Register and check if CSYSPWRUPACK and CDBGPWRUPACK bits are set
+        powered_down = ((ReadDP(DP_CTRL_STAT) &amp; 0xA0000000) != 0xA0000000);
+      </block>
+          <control if="powered_down">
+            <block>
+          // Request Debug/System Power-Up
+          WriteDP(DP_CTRL_STAT, 0x50000000);
+        </block>
+            <!-- Wait for Power-Up Request to be acknowledged -->
+            <control while="(ReadDP(DP_CTRL_STAT) &amp; 0xA0000000) != 0xA0000000" timeout="1000000"/>
+            <!-- JTAG Specific Part of sequence -->
+            <control if="(__protocol &amp; 0xFFFF) == 1">
+              <block>
+          // Init AP Transfer Mode, Transaction Counter, and Lane Mask (Normal Transfer Mode, Include all Byte Lanes)
+          // Additionally clear STICKYORUN, STICKYCMP, and STICKYERR bits by writing '1'
+          WriteDP(DP_CTRL_STAT, 0x50000F32);
+          </block>
+            </control>
+            <!-- SWD Specific Part of sequence -->
+            <control if="(__protocol &amp; 0xFFFF) == 2">
+              <block>
+            // Init AP Transfer Mode, Transaction Counter, and Lane Mask (Normal Transfer Mode, Include all Byte Lanes)
+            WriteDP(DP_CTRL_STAT, 0x50000F00);
+
+            // Clear WDATAERR, STICKYORUN, STICKYCMP, and STICKYERR bits of CTRL/STAT Register by write to ABORT register
+            WriteDP(SW_DP_ABORT, 0x0000001E);
+            ////Sequence("EnableDebugMailbox");
+          </block>
+            </control>
+            <block>
+          __var ap0_disable=0x55aa;
+          // Read AP0 CSW
+          __dp = 0;
+          __ap = 0;
+          ap0_disable = ReadAP(0x0);
+          ap0_disable = ((ap0_disable &amp; 0x40) == 0);
+          ////Message(0, "ap0_disable: 0x%08X", ap0_disable);
+        </block>
+            <control if="ap0_disable">
+              <block>
+              Sequence("EnableDebugMailbox");
+            </block>
+            </control>
+          </control>
+        </sequence>
+        <sequence name="DebugDeviceUnlock">
+          <control if="__traceout &amp; 0x3" info="Trace output via TPIU selected">
+            <block>
+          Sequence("EnableTraceClk");       // Enable trace clock to enable TPIU register accesses
+        </block>
+          </control>
+        </sequence>
+        <sequence name="ResetCatchSet">
+          <block>
+        __var SCS_Addr    = 0xE000E000;
+        __var DHCSR_Addr  = SCS_Addr + 0xDF0;
+        __var DEMCR_Addr  = SCS_Addr + 0xDFC;
+        __var resetVector = 0xFFFFFFFF;                                    // Reset Vector
+
+        Write32(0xE000EDFC, Read32(DEMCR_Addr) &amp; (~0x00000001));       // Clear Reset Vector Catch
+
+        //// Write32(0x40034010, 0x00000000);                                   // Program Flash Word Start Address to 0x0 to read reset vector (STARTA)
+        //// Write32(0x40034014, 0x00000000);                                   // Program Flash Word Stop Address to 0x0 to read reset vector (STOPA)
+        //// Write32(0x40034080, 0x00000000);                                   // DATAW0: Prepare for read
+        //// Write32(0x40034084, 0x00000000);                                   // DATAW1: Prepare for read
+        //// Write32(0x40034088, 0x00000000);                                   // DATAW2: Prepare for read
+        //// Write32(0x4003408C, 0x00000000);                                   // DATAW3: Prepare for read
+        //// Write32(0x40034090, 0x00000000);                                   // DATAW4: Prepare for read
+        //// Write32(0x40034094, 0x00000000);                                   // DATAW5: Prepare for read
+        //// Write32(0x40034098, 0x00000000);                                   // DATAW6: Prepare for read
+        //// Write32(0x4003409C, 0x00000000);                                   // DATAW7: Prepare for read 
+        //// Write32(0x40034FE8, 0x0000000F);                                   // Clear FLASH Controller Status (INT_CLR_STATUS)
+        //// Write32(0x40034000, 0x00000003);                                   // Read single Flash Word (CMD_READ_SINGLE_WORD)
+      </block>
+          <!-- <control while="(Read32(0x40034FE0) &amp; 0x00000004) == 0" timeout="100000" info="Wait for flash word read to finish"/> -->
+          <control if="1" info="No Error reading Flash Word with Reset Vector">
+            <block>
+          // Lowest flash page readable, read via AHB (flash controller for some reason returns garbage)
+          resetVector = Read32(0x00000004);                                // Read Reset Vector (Address 0x00000004)
+        </block>
+          </control>
+          <control if="resetVector != 0xFFFFFFFF" info="Breakpoint on user application reset vector">
+            <!-- we have a valid breakpoint address -->
+            <block>
+          Write32(0xE0002008, resetVector|1);                              // Program FPB Comparator 0 with reset handler address
+          Write32(0xE0002000, 0x00000003);                                 // Enable FPB
+        </block>
+          </control>
+          <control if="resetVector == 0xFFFFFFFF" info="Enable reset vector catch">
+            <!-- we do not have a valid breakpoint address -->
+            <block>
+          Write32(DEMCR_Addr, (Read32(DEMCR_Addr) | 0x00000001));          // Enable Reset Vector Catch in DEMCR
+        </block>
+          </control>
+          <block>
+        // Read DHCSR to clear potentially set DHCSR.S_RESET_ST bit
+        Read32(DHCSR_Addr);
+      </block>
+        </sequence>
+        <sequence name="ResetCatchClear">
+          <block>
+        __var DEMCR_Addr = 0xE000EDFC;
+
+        // Clear FPB Comparators 0 and 1
+        Write32(0xE0002008, 0x00000000);
+
+        // Disable FPB
+        Write32(0xE0002000, 0x00000002);
+
+        // Clear Reset Vector Catch
+        Write32(DEMCR_Addr, Read32(DEMCR_Addr) &amp; (~0x00000001));
+      </block>
+        </sequence>
+        <sequence name="WaitForStopAfterReset">
+          <block>
+            __var SCS_Addr    = 0xE000E000;
+            __var DHCSR_Addr  = SCS_Addr + 0xDF0;
+            __var DFSR_Addr  = SCS_Addr + 0xD30;
+        </block>
+          <!-- Check AHB-AP CSW DbgStatus to decide if the ROM finished preparation. -->
+          <control while="(ReadAP(0) &amp; 0x40) == 0" timeout="100000">
+            <block>
+            Sequence("EnableDebugMailbox");
+            Write32(DHCSR_Addr, 0xA05F0003);  // Halt the core in case it didn't stop at a breakpiont.
+            // Clear watch point
+            Write32(0xe0001028, 0x0);
+            Write32(0xe0001038, 0x0);
+            </block>
+          </control>
+          <!-- Reset Recovery: Wait for DHCSR.S_RESET_ST bit to clear on read -->
+          <control while="(Read32(DHCSR_Addr) &amp; 0x02000000)" timeout="500000"/>
+          <control if="(Read32(DHCSR_Addr) &amp; 0x00020000) == 0">
+            <block>
+            Write32(DHCSR_Addr, 0xA05F0003);  // Force halt until finding a proper catch. Probably works better from flash.
+            </block>
+          </control>
+        </sequence>
+        <sequence name="ResetHardware">
+          <block>
+        __var nReset      = 0x80;
+        __var canReadPins = 0;
+        __var SCS_Addr    = 0xE000E000;
+        __var DHCSR_Addr  = SCS_Addr + 0xDF0;
+
+        // De-assert nRESET line
+        canReadPins = (DAP_SWJ_Pins(0x00, nReset, 0) != 0xFFFFFFFF);
+      </block>
+          <!-- Keep reset active for 50 ms -->
+          <control while="1" timeout="50000"/>
+          <control if="canReadPins">
+            <!-- Assert nRESET line and wait max. 1s for recovery -->
+            <control while="(DAP_SWJ_Pins(nReset, nReset, 0) &amp; nReset) == 0" timeout="1000000"/>
+          </control>
+          <control if="!canReadPins">
+            <block>
+          // Assert nRESET line
+          DAP_SWJ_Pins(nReset, nReset, 0);
+        </block>
+            <!-- Wait 100ms for recovery if nRESET not readable -->
+            <control while="1" timeout="100000"/>
+          </control>
+          <control if="(__connection &amp; (1 &lt;&lt; 17)) == 0">
+            <block>
+          Sequence("WaitForStopAfterReset");
+        </block>
+          </control>
+        </sequence>
+        <sequence name="ResetSystem">
+          <block>
+        // System Control Space (SCS) offset as defined in Armv6-M/Armv7-M.
+        __var SCS_Addr   = 0xE000E000;
+        __var AIRCR_Addr = SCS_Addr + 0xD0C;
+        __var DHCSR_Addr = SCS_Addr + 0xDF0;
+        __var DEMCR_Addr = SCS_Addr + 0xDFC;
+        __var tmp;
+
+        __var ap0_disable=0x55aa;
+
+        //Halt the core
+        Write32(DHCSR_Addr, 0xA05F0003);
+        //clear VECTOR CATCH and set TRCENA
+        tmp = Read32(DEMCR_Addr);
+        Write32(DEMCR_Addr, tmp | 0x1000000);
+
+        __errorcontrol = 1;
+
+        // Set watch point
+        Write32(0xE0001020, 0x40091036);
+        Write32(0xE0001028, 0xF0000412);
+        Write32(0xE0001030, 0x40091040);
+        Write32(0xE0001038, 0xF0000403);
+
+        __errorcontrol = 1;
+        // Execute SYSRESETREQ via AIRCR
+        Write32(AIRCR_Addr, 0x05FA0004);
+
+        __dp = 0;
+        __ap = 1;
+        WriteAP(0x0, 0x20);
+
+        __errorcontrol = 0;
+
+        // Give bootloader time to do what it needs to do
+        DAP_Delay(BootTime);  // try 10ms
+
+        // Read AP0 CSW
+        __dp = 0;
+        __ap = 0;
+        ap0_disable = ReadAP(0x0);
+        ap0_disable = ((ap0_disable &amp; 0x40) == 0);
+        ////Message(0, "AP0 DIS: %x", ap0_disable);
+        Sequence("WaitForStopAfterReset");
+      </block>
+        </sequence>
+        <sequence name="ResetProcessor" disable="1"/>
+        <sequence name="TraceStart">
+          <control if="__traceout &amp; 0x1" info="SWO Trace output selected">
+            <block>
+          Sequence("EnableTraceClk");       // Enable and configure trace clock
+        </block>
+            <control if="SWO_Pin == 0" info="SWO via PIO0_10">
+              <block>
+            Write32(0x40001028, 0x00000046); // Configure PIO0_10: FUNC - 6, MODE - 0, SLEW - 1, INVERT - 0, DIGMODE - 0, OD - 0
+          </block>
+            </control>
+            <control if="SWO_Pin == 1" info="SWO via PIO0_8">
+              <block>
+            Write32(0x40001020, 0x00000044); // Configure PIO0_10: FUNC - 4, MODE - 0, SLEW - 1, INVERT - 0, DIGMODE - 0, OD - 0
+          </block>
+            </control>
+          </control>
+        </sequence>
+      </sequences>
+      <debugvars configfile="devices/MCXA142/arm/MCXA15X.dbgconf">
+  // Debug Access Variables, can be modified by user via copies of DBGCONF files as created by uVision. Also see sub-family level.
+  __var SWO_Pin               = 0;                    // Serial Wire Output pin: 0 = PIO0_10, 1 = PIO0_8
+  __var Dbg_CR                = 0x00000000;           // DBG_CR
+  __var BootTime              = 300000;                // 300 milliseconds
+</debugvars>
+      <description>Arm® Cortex®-M33 microcontroller with multiple high-speed connectivity, operating up to 96 MHz, serial peripherals, timers, analog and low power consumption.</description>
+      <device Dname="MCXA142">
+        <processor Dcore="Cortex-M33" Dfpu="NO_FPU" Dmpu="NO_MPU" Dtz="NO_TZ" Ddsp="NO_DSP" Dendian="Little-endian" Dclock="96000000"/>
+        <environment name="iar">
+          <file category="linkerfile" name="devices/MCXA142/iar/MCXA142_flash.icf"/>
+        </environment>
+        <memory name="BootROM" start="0x03000000" size="0x2000" access="rx"/>
+        <memory name="PROGRAM_FLASH" start="0x00000000" size="0x010000" access="rx" default="1" startup="1"/>
+        <memory name="SRAM" start="0x20000000" size="0x4000" access="rw" default="1"/>
+        <memory name="SRAMX1" start="0x04002000" size="0x1000" access="rw" default="1"/>
+        <algorithm name="devices/MCXA142/arm/MCXA15X_64.FLM" start="0x00000000" size="0x00010000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+        <debug svd="devices/MCXA142/MCXA142.xml"/>
+        <variant Dvariant="MCXA142VLH">
+          <compile header="devices/MCXA142/fsl_device_registers.h" define="CPU_MCXA142VLH"/>
+        </variant>
+        <variant Dvariant="MCXA142VFT">
+          <compile header="devices/MCXA142/fsl_device_registers.h" define="CPU_MCXA142VFT"/>
+        </variant>
+        <variant Dvariant="MCXA142VFM">
+          <compile header="devices/MCXA142/fsl_device_registers.h" define="CPU_MCXA142VFM"/>
+        </variant>
+        <variant Dvariant="MCXA142VLF">
+          <compile header="devices/MCXA142/fsl_device_registers.h" define="CPU_MCXA142VLF"/>
+        </variant>
+      </device>
+    </family>
+  </devices>
+  <conditions>
+    <condition id="device_id.MCXA142.internal_condition">
+      <accept Dname="MCXA142VFM" Dvendor="NXP:11"/>
+      <accept Dname="MCXA142VFT" Dvendor="NXP:11"/>
+      <accept Dname="MCXA142VLF" Dvendor="NXP:11"/>
+      <accept Dname="MCXA142VLH" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="DEVICES_Project_Template.MCXA142.condition_id">
+      <require condition="allOf.component.lpuart_adapter, device_id=MCXA142, device.MCXA142_startup, driver.clock, driver.common, driver.gpio, driver.lpuart, driver.port, driver.mcx_spc, driver.reset, anyOf=allOf=component.serial_manager, utility.assert, utility.debug_console, allOf=utility.assert_lite, utility.debug_console_lite.internal_condition"/>
+    </condition>
+    <condition id="allOf.component.lpuart_adapter, device_id=MCXA142, device.MCXA142_startup, driver.clock, driver.common, driver.gpio, driver.lpuart, driver.port, driver.mcx_spc, driver.reset, anyOf=allOf=component.serial_manager, utility.assert, utility.debug_console, allOf=utility.assert_lite, utility.debug_console_lite.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart_adapter"/>
+      <require condition="device_id.MCXA142.internal_condition"/>
+      <require Cclass="Device" Cgroup="Startup" Csub=""/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="port"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="mcx_spc"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="reset"/>
+      <require condition="anyOf.allOf=component.serial_manager, utility.assert, utility.debug_console, allOf=utility.assert_lite, utility.debug_console_lite.internal_condition"/>
+    </condition>
+    <condition id="anyOf.allOf=component.serial_manager, utility.assert, utility.debug_console, allOf=utility.assert_lite, utility.debug_console_lite.internal_condition">
+      <accept condition="allOf.component.serial_manager, utility.assert, utility.debug_console.internal_condition"/>
+      <accept condition="allOf.utility.assert_lite, utility.debug_console_lite.internal_condition"/>
+    </condition>
+    <condition id="allOf.component.serial_manager, utility.assert, utility.debug_console.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="assert"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+    </condition>
+    <condition id="allOf.utility.assert_lite, utility.debug_console_lite.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="assert_lite"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite"/>
+    </condition>
+    <condition id="RTE_Device.condition_id">
+      <require condition="allOf.device_id=MCXA142, driver.edma4.internal_condition"/>
+    </condition>
+    <condition id="allOf.device_id=MCXA142, driver.edma4.internal_condition">
+      <require condition="device_id.MCXA142.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+    </condition>
+    <condition id="device.MCXA142.internal_condition">
+      <accept Dname="MCXA142VFM" Dvendor="NXP:11"/>
+      <accept Dname="MCXA142VFT" Dvendor="NXP:11"/>
+      <accept Dname="MCXA142VLF" Dvendor="NXP:11"/>
+      <accept Dname="MCXA142VLH" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="cmake_toolchain.condition_id">
+      <require condition="allOf.device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.device=MCXA142.internal_condition">
+      <require condition="device.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="component.button.condition_id">
+      <require condition="allOf.driver.common, component.timer_manager, anyOf=component.gpio_adapter, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.timer_manager, anyOf=component.gpio_adapter, device=MCXA142.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="timer_manager"/>
+      <require condition="anyOf.component.gpio_adapter.internal_condition"/>
+      <require condition="device.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="anyOf.component.gpio_adapter.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="gpio_adapter"/>
+    </condition>
+    <condition id="component.config_tools.condition_id">
+      <require condition="allOf.device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="component.ctimer_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.ctimer, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.ctimer, device=MCXA142.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="ctimer"/>
+      <require condition="device.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="component.ctimer_time_stamp_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.ctimer, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="component.gpio_adapter.condition_id">
+      <require condition="allOf.driver.gpio, anyOf=driver.port, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.gpio, anyOf=driver.port, device=MCXA142.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require condition="anyOf.driver.port.internal_condition"/>
+      <require condition="device.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="anyOf.driver.port.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="port"/>
+    </condition>
+    <condition id="component.i3c_bus.condition_id">
+      <require condition="allOf.driver.common, component.lists, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.lists, device=MCXA142.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+      <require condition="device.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="component.i3c_bus_adapter.condition_id">
+      <require condition="allOf.driver.i3c, component.i3c_bus, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.i3c, component.i3c_bus, device=MCXA142.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i3c"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i3c_bus"/>
+      <require condition="device.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="component.led.condition_id">
+      <require condition="allOf.driver.common, component.timer_manager, anyOf=component.gpio_adapter, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="component.lists.condition_id">
+      <require condition="allOf.driver.common, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, device=MCXA142.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="device.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="component.lpspi_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.lpspi, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.lpspi, device=MCXA142.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpspi"/>
+      <require condition="device.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="component.lptmr_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.lptmr, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.lptmr, device=MCXA142.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lptmr"/>
+      <require condition="device.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="component.lptmr_time_stamp_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.lptmr, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="component.lpuart_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.lpuart, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.lpuart, device=MCXA142.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+      <require condition="device.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="component.lpuart_dma_adapter.condition_id">
+      <require condition="allOf.component.lpuart_adapter, component.timer_manager, anyOf=driver.lpuart_edma, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.component.lpuart_adapter, component.timer_manager, anyOf=driver.lpuart_edma, device=MCXA142.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart_adapter"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="timer_manager"/>
+      <require condition="anyOf.driver.lpuart_edma.internal_condition"/>
+      <require condition="device.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="anyOf.driver.lpuart_edma.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart_edma"/>
+    </condition>
+    <condition id="component.mem_manager.condition_id">
+      <require condition="allOf.driver.common, component.lists, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="component.mem_manager_light.condition_id">
+      <require condition="allOf.driver.common, component.lists, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="component.messaging.condition_id">
+      <require condition="allOf.driver.common, component.lists, anyOf=component.mem_manager_light, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.lists, anyOf=component.mem_manager_light, device=MCXA142.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+      <require condition="anyOf.component.mem_manager_light.internal_condition"/>
+      <require condition="device.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="anyOf.component.mem_manager_light.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="mem_manager_light"/>
+    </condition>
+    <condition id="component.ostimer_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.ostimer, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.ostimer, device=MCXA142.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="ostimer"/>
+      <require condition="device.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="component.ostimer_time_stamp_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.ostimer, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="component.panic.condition_id">
+      <require condition="allOf.driver.common, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="component.power_manager_core.condition_id">
+      <require condition="allOf.driver.common, component.lists, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="component.power_manager_docs.condition_id">
+      <require condition="allOf.device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="component.reset_adapter.condition_id">
+      <require condition="allOf.driver.common, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="component.serial_manager.condition_id">
+      <require condition="allOf.driver.common, component.lists, anyOf=component.serial_manager_uart, component.serial_manager_virtual, component.serial_manager_swo, component.serial_manager_spi, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.lists, anyOf=component.serial_manager_uart, component.serial_manager_virtual, component.serial_manager_swo, component.serial_manager_spi, device=MCXA142.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+      <require condition="anyOf.component.serial_manager_uart, component.serial_manager_virtual, component.serial_manager_swo, component.serial_manager_spi.internal_condition"/>
+      <require condition="device.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="anyOf.component.serial_manager_uart, component.serial_manager_virtual, component.serial_manager_swo, component.serial_manager_spi.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_uart"/>
+      <accept Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_virtual"/>
+      <accept Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_swo"/>
+      <accept Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_spi"/>
+    </condition>
+    <condition id="component.serial_manager_spi.condition_id">
+      <require condition="allOf.component.serial_manager, anyOf=allOf=driver.lpspi, component.lpspi_adapter, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.component.serial_manager, anyOf=allOf=driver.lpspi, component.lpspi_adapter, device=MCXA142.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require condition="anyOf.allOf=driver.lpspi, component.lpspi_adapter.internal_condition"/>
+      <require condition="device.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="anyOf.allOf=driver.lpspi, component.lpspi_adapter.internal_condition">
+      <accept condition="allOf.driver.lpspi, component.lpspi_adapter.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.lpspi, component.lpspi_adapter.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpspi"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpspi_adapter"/>
+    </condition>
+    <condition id="component.serial_manager_swo.condition_id">
+      <require condition="allOf.core=cm33, driver.common, component.serial_manager, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.core=cm33, driver.common, component.serial_manager, device=MCXA142.internal_condition">
+      <require condition="core.cm33.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require condition="device.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="core.cm33.internal_condition">
+      <accept Dcore="Cortex-M33"/>
+    </condition>
+    <condition id="component.serial_manager_uart.condition_id">
+      <require condition="allOf.component.lpuart_adapter, component.serial_manager, anyOf=driver.lpuart, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.component.lpuart_adapter, component.serial_manager, anyOf=driver.lpuart, device=MCXA142.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart_adapter"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require condition="anyOf.driver.lpuart.internal_condition"/>
+      <require condition="device.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="anyOf.driver.lpuart.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+    </condition>
+    <condition id="component.serial_manager_virtual.condition_id">
+      <require condition="allOf.component.serial_manager, driver.common, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.component.serial_manager, driver.common, device=MCXA142.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="device.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="component.timer_manager.condition_id">
+      <require condition="allOf.driver.common, component.lists, anyOf=component.ctimer_adapter, component.lptmr_adapter, component.ostimer_adapter, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.lists, anyOf=component.ctimer_adapter, component.lptmr_adapter, component.ostimer_adapter, device=MCXA142.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+      <require condition="anyOf.component.ctimer_adapter, component.lptmr_adapter, component.ostimer_adapter.internal_condition"/>
+      <require condition="device.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="anyOf.component.ctimer_adapter, component.lptmr_adapter, component.ostimer_adapter.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="ctimer_adapter"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="lptmr_adapter"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="ostimer_adapter"/>
+    </condition>
+    <condition id="device.MCXA142_CMSIS.condition_id">
+      <require condition="allOf.device_id=MCXA142, CMSIS_Include_core_cm.internal_condition"/>
+    </condition>
+    <condition id="allOf.device_id=MCXA142, CMSIS_Include_core_cm.internal_condition">
+      <require condition="device_id.MCXA142.internal_condition"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="device.MCXA142_linker.condition_id">
+      <require condition="allOf.device_id=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.device_id=MCXA142.internal_condition">
+      <require condition="device_id.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="device_ids.MCXA142.internal_condition">
+      <accept Dname="MCXA142VFM" Dvendor="NXP:11"/>
+      <accept Dname="MCXA142VFT" Dvendor="NXP:11"/>
+      <accept Dname="MCXA142VLF" Dvendor="NXP:11"/>
+      <accept Dname="MCXA142VLH" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="allOf.toolchains=mdk, device_ids=MCXA142.condition_id">
+      <require condition="toolchains.mdk.internal_condition"/>
+      <require condition="device_ids.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="toolchains.mdk.internal_condition">
+      <accept Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="allOf.toolchains=armgcc, device_ids=MCXA142.condition_id">
+      <require condition="toolchains.armgcc.internal_condition"/>
+      <require condition="device_ids.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="toolchains.armgcc.internal_condition">
+      <accept Tcompiler="GCC"/>
+    </condition>
+    <condition id="allOf.toolchains=iar, device_ids=MCXA142.condition_id">
+      <require condition="toolchains.iar.internal_condition"/>
+      <require condition="device_ids.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="toolchains.iar.internal_condition">
+      <accept Tcompiler="IAR"/>
+    </condition>
+    <condition id="device.MCXA142_startup.condition_id">
+      <require condition="allOf.device.MCXA142_system, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.device.MCXA142_system, device=MCXA142.internal_condition">
+      <require Cclass="Device" Cgroup="CMSIS" Csub="MCXA142_system"/>
+      <require condition="device.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.toolchains=iar.condition_id">
+      <require condition="toolchains.iar.internal_condition"/>
+    </condition>
+    <condition id="allOf.toolchains=armgcc.condition_id">
+      <require condition="toolchains.armgcc.internal_condition"/>
+    </condition>
+    <condition id="allOf.toolchains=mdk.condition_id">
+      <require condition="toolchains.mdk.internal_condition"/>
+    </condition>
+    <condition id="device.MCXA142_system.condition_id">
+      <require condition="allOf.device.MCXA142_CMSIS, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.device.MCXA142_CMSIS, device=MCXA142.internal_condition">
+      <require Cclass="Device" Cgroup="CMSIS" Csub="MCXA142_header"/>
+      <require condition="device.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="driver.aoi.condition_id">
+      <require condition="allOf.device_id=MCXA142, driver.common.internal_condition"/>
+    </condition>
+    <condition id="allOf.device_id=MCXA142, driver.common.internal_condition">
+      <require condition="device_id.MCXA142.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="driver.cdog.condition_id">
+      <require condition="allOf.device_id=MCXA142, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.clock.condition_id">
+      <require condition="allOf.driver.mcx_spc, driver.common, device_id=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.mcx_spc, driver.common, device_id=MCXA142.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="mcx_spc"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="device_id.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="driver.cmsis_lpi2c.condition_id">
+      <require condition="allOf.driver.lpi2c_edma, device_id=MCXA142, driver.lpi2c, CMSIS_Driver_Include.I2C, RTE_Device.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.lpi2c_edma, device_id=MCXA142, driver.lpi2c, CMSIS_Driver_Include.I2C, RTE_Device.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c_edma"/>
+      <require condition="device_id.MCXA142.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c"/>
+      <require Cclass="CMSIS Driver" Cgroup="I2C" Capiversion="2.4.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+    </condition>
+    <condition id="driver.cmsis_lpspi.condition_id">
+      <require condition="allOf.driver.lpspi_edma, device_id=MCXA142, driver.lpspi, CMSIS_Driver_Include.SPI, RTE_Device.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.lpspi_edma, device_id=MCXA142, driver.lpspi, CMSIS_Driver_Include.SPI, RTE_Device.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpspi_edma"/>
+      <require condition="device_id.MCXA142.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpspi"/>
+      <require Cclass="CMSIS Driver" Cgroup="SPI" Capiversion="2.3.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+    </condition>
+    <condition id="driver.cmsis_lpuart.condition_id">
+      <require condition="allOf.driver.lpuart_edma, device_id=MCXA142, driver.lpuart, CMSIS_Driver_Include.USART, RTE_Device.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.lpuart_edma, device_id=MCXA142, driver.lpuart, CMSIS_Driver_Include.USART, RTE_Device.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart_edma"/>
+      <require condition="device_id.MCXA142.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+      <require Cclass="CMSIS Driver" Cgroup="USART" Capiversion="2.4.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+    </condition>
+    <condition id="driver.common.condition_id">
+      <require condition="allOf.driver.reset, driver.clock, device.MCXA142_CMSIS, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.reset, driver.clock, device.MCXA142_CMSIS, device=MCXA142.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="reset"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="CMSIS" Csub="MCXA142_header"/>
+      <require condition="device.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.cores=cm33.condition_id">
+      <require condition="cores.cm33.internal_condition"/>
+    </condition>
+    <condition id="cores.cm33.internal_condition">
+      <accept Dcore="Cortex-M33"/>
+    </condition>
+    <condition id="driver.crc.condition_id">
+      <require condition="allOf.device_id=MCXA142, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.ctimer.condition_id">
+      <require condition="allOf.device_id=MCXA142, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.edma4.condition_id">
+      <require condition="allOf.driver.edma_soc, device_id=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.edma_soc, device_id=MCXA142.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma_soc"/>
+      <require condition="device_id.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="driver.edma_soc.condition_id">
+      <require condition="allOf.driver.edma4, driver.common, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.edma4, driver.common, device=MCXA142.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="device.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="driver.eim.condition_id">
+      <require condition="allOf.device_id=MCXA142, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.eqdc.condition_id">
+      <require condition="allOf.device_id=MCXA142, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.erm.condition_id">
+      <require condition="allOf.device_id=MCXA142, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.glikey.condition_id">
+      <require condition="allOf.device_id=MCXA142, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.gpio.condition_id">
+      <require condition="allOf.device_id=MCXA142, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.i3c.condition_id">
+      <require condition="allOf.driver.common, device_id=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, device_id=MCXA142.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="device_id.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="driver.i3c_edma.condition_id">
+      <require condition="allOf.driver.i3c, driver.edma4, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.i3c, driver.edma4, device=MCXA142.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i3c"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require condition="device.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="driver.inputmux.condition_id">
+      <require condition="allOf.device_id=MCXA142, driver.common, driver.inputmux_connections.internal_condition"/>
+    </condition>
+    <condition id="allOf.device_id=MCXA142, driver.common, driver.inputmux_connections.internal_condition">
+      <require condition="device_id.MCXA142.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="inputmux_connections"/>
+    </condition>
+    <condition id="driver.inputmux_connections.condition_id">
+      <require condition="allOf.driver.common, device_id=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="driver.lpadc.condition_id">
+      <require condition="allOf.device_id=MCXA142, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.lpc_freqme.condition_id">
+      <require condition="allOf.device_id=MCXA142, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.lpcmp.condition_id">
+      <require condition="allOf.device_id=MCXA142, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.lpi2c.condition_id">
+      <require condition="allOf.device_id=MCXA142, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.lpi2c_edma.condition_id">
+      <require condition="allOf.driver.edma4, driver.lpi2c, device_id=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.edma4, driver.lpi2c, device_id=MCXA142.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c"/>
+      <require condition="device_id.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="driver.lpspi.condition_id">
+      <require condition="allOf.device_id=MCXA142, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.lpspi_edma.condition_id">
+      <require condition="allOf.driver.edma4, driver.lpspi, device_id=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.edma4, driver.lpspi, device_id=MCXA142.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpspi"/>
+      <require condition="device_id.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="driver.lptmr.condition_id">
+      <require condition="allOf.device_id=MCXA142, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.lpuart.condition_id">
+      <require condition="allOf.device_id=MCXA142, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.lpuart_edma.condition_id">
+      <require condition="allOf.driver.edma4, driver.lpuart, device_id=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.edma4, driver.lpuart, device_id=MCXA142.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+      <require condition="device_id.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="driver.mcx_cmc.condition_id">
+      <require condition="allOf.device_id=MCXA142, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.mcx_spc.condition_id">
+      <require condition="allOf.device_id=MCXA142, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.mcx_vbat.condition_id">
+      <require condition="allOf.device_id=MCXA142, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.ostimer.condition_id">
+      <require condition="allOf.device_id=MCXA142, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.p3t1755.condition_id">
+      <require condition="allOf.device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="driver.port.condition_id">
+      <require condition="allOf.device_id=MCXA142, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.pwm.condition_id">
+      <require condition="allOf.device_id=MCXA142, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.reset.condition_id">
+      <require condition="allOf.driver.common, device_id=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="driver.romapi.condition_id">
+      <require condition="allOf.driver.common, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="driver.trdc_1.condition_id">
+      <require condition="allOf.driver.trdc_soc, device_id=MCXA142, driver.common.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.trdc_soc, device_id=MCXA142, driver.common.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="trdc_soc"/>
+      <require condition="device_id.MCXA142.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="driver.trdc_soc.condition_id">
+      <require condition="allOf.driver.common, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="driver.utick.condition_id">
+      <require condition="allOf.device_id=MCXA142, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.waketimer.condition_id">
+      <require condition="allOf.device_id=MCXA142, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.wuu.condition_id">
+      <require condition="allOf.device_id=MCXA142, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.wwdt.condition_id">
+      <require condition="allOf.device_id=MCXA142, driver.common.internal_condition"/>
+    </condition>
+    <condition id="middleware.baremetal.condition_id">
+      <require condition="allOf.device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="utilities.misc_utilities.condition_id">
+      <require condition="allOf.device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.toolchains=armgcc, cores=cm33.condition_id">
+      <require condition="toolchains.armgcc.internal_condition"/>
+      <require condition="cores.cm33.internal_condition"/>
+    </condition>
+    <condition id="utility.assert.condition_id">
+      <require condition="allOf.utility.debug_console, driver.common, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.utility.debug_console, driver.common, device=MCXA142.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="device.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="utility.assert_lite.condition_id">
+      <require condition="allOf.utility.debug_console_lite, driver.common, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.utility.debug_console_lite, driver.common, device=MCXA142.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="device.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="utility.debug_console.condition_id">
+      <require condition="allOf.component.serial_manager, driver.common, utility.str, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.component.serial_manager, driver.common, utility.str, device=MCXA142.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="str"/>
+      <require condition="device.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="utility.debug_console_lite.condition_id">
+      <require condition="allOf.device_id=MCXA142, driver.common, utility.str.internal_condition"/>
+    </condition>
+    <condition id="allOf.device_id=MCXA142, driver.common, utility.str.internal_condition">
+      <require condition="device_id.MCXA142.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="str"/>
+    </condition>
+    <condition id="utility.format.condition_id">
+      <require condition="allOf.device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="utility.shell.condition_id">
+      <require condition="allOf.utility.str, component.lists, driver.common, device=MCXA142.internal_condition"/>
+    </condition>
+    <condition id="allOf.utility.str, component.lists, driver.common, device=MCXA142.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="str"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="device.MCXA142.internal_condition"/>
+    </condition>
+    <condition id="utility.str.condition_id">
+      <require condition="allOf.driver.common, device=MCXA142.internal_condition"/>
+    </condition>
+  </conditions>
+  <components>
+    <component Cclass="Board Support" Cgroup="SDK Project Template" Csub="project_template" Cvariant="MCXA142" Cversion="1.0.0" condition="DEVICES_Project_Template.MCXA142.condition_id" isDefaultVariant="1">
+      <description>Devices_project_template MCXA142</description>
+      <files>
+        <file category="header" attr="config" name="devices/MCXA142/project_template/board.h" version="1.0.0" projectpath="board"/>
+        <file category="sourceC" attr="config" name="devices/MCXA142/project_template/board.c" version="1.0.0" projectpath="board"/>
+        <file category="header" attr="config" name="devices/MCXA142/project_template/clock_config.h" version="1.0.0" projectpath="board"/>
+        <file category="sourceC" attr="config" name="devices/MCXA142/project_template/clock_config.c" version="1.0.0" projectpath="board"/>
+        <file category="header" attr="config" name="devices/MCXA142/project_template/pin_mux.h" version="1.0.0" projectpath="board"/>
+        <file category="sourceC" attr="config" name="devices/MCXA142/project_template/pin_mux.c" version="1.0.0" projectpath="board"/>
+        <file category="header" attr="config" name="devices/MCXA142/project_template/peripherals.h" version="1.0.0" projectpath="board"/>
+        <file category="sourceC" attr="config" name="devices/MCXA142/project_template/peripherals.c" version="1.0.0" projectpath="board"/>
+        <file category="include" name="devices/MCXA142/project_template/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device" Cversion="1.0.0" condition="RTE_Device.condition_id">
+      <description>Rte_device</description>
+      <files>
+        <file category="header" attr="config" name="devices/MCXA142/template/RTE_Device.h" version="1.0.0" projectpath="board"/>
+        <file category="include" name="devices/MCXA142/template/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="cmake_toolchain" Cversion="1.0.0" condition="cmake_toolchain.condition_id">
+      <description>Cmake_toolchain</description>
+      <files>
+        <file category="other" name="tools/cmake_toolchain_files/armgcc.cmake" projectpath="cmake_toolchain_files"/>
+        <file category="other" name="tools/cmake_toolchain_files/xcc.cmake" projectpath="cmake_toolchain_files"/>
+        <file category="other" name="tools/cmake_toolchain_files/xclang.cmake" projectpath="cmake_toolchain_files"/>
+        <file category="other" name="tools/cmake_toolchain_files/armgcc_force_cpp.cmake" projectpath="cmake_toolchain_files"/>
+        <file category="other" name="tools/cmake_toolchain_files/mcux_config.cmake" projectpath="cmake_toolchain_files"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="button" Cversion="1.0.0" condition="component.button.condition_id">
+      <description>Component button</description>
+      <files>
+        <file category="header" name="components/button/fsl_component_button.h" projectpath="component/button"/>
+        <file category="sourceC" name="components/button/fsl_component_button.c" projectpath="component/button"/>
+        <file category="include" name="components/button/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Config Tools" Csub="Init" Cversion="1.0.0" condition="component.config_tools.condition_id" generator="MCUXpressoConfig">
+      <description>Initialization generated by MCUXpresso Config Tools</description>
+      <files>
+        <file category="doc" name="https://www.nxp.com/configtools"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ctimer_adapter" Cversion="1.0.0" condition="component.ctimer_adapter.condition_id">
+      <description>Component ctimer_adapter</description>
+      <RTE_Components_h>
+#ifndef TIMER_PORT_TYPE_CTIMER
+#define TIMER_PORT_TYPE_CTIMER 1
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/timer/fsl_adapter_timer.h" projectpath="component/timer"/>
+        <file category="sourceC" name="components/timer/fsl_adapter_ctimer.c" projectpath="component/timer"/>
+        <file category="include" name="components/timer/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ctimer_time_stamp_adapter" Cversion="1.0.0" condition="component.ctimer_time_stamp_adapter.condition_id">
+      <description>Component ctimer time stamp adapter</description>
+      <files>
+        <file category="header" name="components/time_stamp/fsl_adapter_time_stamp.h" projectpath="component/time_stamp"/>
+        <file category="sourceC" name="components/time_stamp/fsl_adapter_ctimer_time_stamp.c" projectpath="component/time_stamp"/>
+        <file category="include" name="components/time_stamp/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="gpio_adapter" Cversion="1.0.1" condition="component.gpio_adapter.condition_id">
+      <description>Component gpio_adapter</description>
+      <files>
+        <file category="header" name="components/gpio/fsl_adapter_gpio.h" projectpath="component/gpio"/>
+        <file category="sourceC" name="components/gpio/fsl_adapter_gpio.c" projectpath="component/gpio"/>
+        <file category="include" name="components/gpio/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="i3c_bus" Cversion="1.0.1" condition="component.i3c_bus.condition_id">
+      <description>Component i3c_bus</description>
+      <files>
+        <file category="header" name="components/i3c_bus/fsl_component_i3c.h" projectpath="component/i3c_bus"/>
+        <file category="sourceC" name="components/i3c_bus/fsl_component_i3c.c" projectpath="component/i3c_bus"/>
+        <file category="include" name="components/i3c_bus/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="i3c_bus_adapter" Cversion="1.1.0" condition="component.i3c_bus_adapter.condition_id">
+      <description>Component i3c_bus_adapter</description>
+      <files>
+        <file category="header" name="components/i3c_bus/fsl_component_i3c_adapter.h" projectpath="component/i3c_bus"/>
+        <file category="sourceC" name="components/i3c_bus/fsl_component_i3c_adapter.c" projectpath="component/i3c_bus"/>
+        <file category="include" name="components/i3c_bus/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="led" Cversion="1.0.0" condition="component.led.condition_id">
+      <description>Component led</description>
+      <files>
+        <file category="header" name="components/led/fsl_component_led.h" projectpath="component/led"/>
+        <file category="sourceC" name="components/led/fsl_component_led.c" projectpath="component/led"/>
+        <file category="include" name="components/led/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lists" Cversion="1.0.0" condition="component.lists.condition_id">
+      <description>Component lists</description>
+      <files>
+        <file category="header" name="components/lists/fsl_component_generic_list.h" projectpath="component/lists"/>
+        <file category="sourceC" name="components/lists/fsl_component_generic_list.c" projectpath="component/lists"/>
+        <file category="include" name="components/lists/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpspi_adapter" Cversion="1.0.0" condition="component.lpspi_adapter.condition_id">
+      <description>Component lpspi_adapter</description>
+      <files>
+        <file category="header" name="components/spi/fsl_adapter_spi.h" projectpath="component/spi"/>
+        <file category="sourceC" name="components/spi/fsl_adapter_lpspi.c" projectpath="component/spi"/>
+        <file category="include" name="components/spi/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lptmr_adapter" Cversion="1.0.0" condition="component.lptmr_adapter.condition_id">
+      <description>Component lptmr_adapter</description>
+      <RTE_Components_h>
+#ifndef TIMER_PORT_TYPE_LPTMR
+#define TIMER_PORT_TYPE_LPTMR 1
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/timer/fsl_adapter_timer.h" projectpath="component/timer"/>
+        <file category="sourceC" name="components/timer/fsl_adapter_lptmr.c" projectpath="component/timer"/>
+        <file category="include" name="components/timer/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lptmr_time_stamp_adapter" Cversion="1.0.0" condition="component.lptmr_time_stamp_adapter.condition_id">
+      <description>Component lptmr time stamp adapter</description>
+      <files>
+        <file category="header" name="components/time_stamp/fsl_adapter_time_stamp.h" projectpath="component/time_stamp"/>
+        <file category="sourceC" name="components/time_stamp/fsl_adapter_lptmr_time_stamp.c" projectpath="component/time_stamp"/>
+        <file category="include" name="components/time_stamp/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart_adapter" Cversion="1.0.0" condition="component.lpuart_adapter.condition_id">
+      <description>Component lpuart_adapter</description>
+      <files>
+        <file category="header" name="components/uart/fsl_adapter_uart.h" projectpath="component/uart"/>
+        <file category="sourceC" name="components/uart/fsl_adapter_lpuart.c" projectpath="component/uart"/>
+        <file category="include" name="components/uart/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart_dma_adapter" Cversion="1.0.0" condition="component.lpuart_dma_adapter.condition_id">
+      <description>Component lpuart_dma_adapter</description>
+      <RTE_Components_h>
+#ifndef HAL_UART_DMA_ENABLE
+#define HAL_UART_DMA_ENABLE 1
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/uart/fsl_adapter_uart.h" projectpath="component/uart"/>
+        <file category="sourceC" name="components/uart/fsl_adapter_lpuart.c" projectpath="component/uart"/>
+        <file category="include" name="components/uart/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mem_manager" Cversion="1.0.0" condition="component.mem_manager.condition_id">
+      <description>Component mem_manager</description>
+      <files>
+        <file category="header" name="components/mem_manager/fsl_component_mem_manager.h" projectpath="component/mem_manager"/>
+        <file category="sourceC" name="components/mem_manager/fsl_component_mem_manager.c" projectpath="component/mem_manager"/>
+        <file category="include" name="components/mem_manager/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mem_manager_light" Cversion="1.0.0" condition="component.mem_manager_light.condition_id">
+      <description>Component mem_manager_light</description>
+      <files>
+        <file category="header" name="components/mem_manager/fsl_component_mem_manager.h" projectpath="component/mem_manager"/>
+        <file category="sourceC" name="components/mem_manager/fsl_component_mem_manager_light.c" projectpath="component/mem_manager"/>
+        <file category="include" name="components/mem_manager/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="messaging" Cversion="1.0.0" condition="component.messaging.condition_id">
+      <description>Component messaging</description>
+      <files>
+        <file category="header" name="components/messaging/fsl_component_messaging.h" projectpath="component/messaging"/>
+        <file category="sourceC" name="components/messaging/fsl_component_messaging.c" projectpath="component/messaging"/>
+        <file category="include" name="components/messaging/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ostimer_adapter" Cversion="1.0.0" condition="component.ostimer_adapter.condition_id">
+      <description>Component ostimer_adapter</description>
+      <RTE_Components_h>
+#ifndef TIMER_PORT_TYPE_OSTIMER
+#define TIMER_PORT_TYPE_OSTIMER 1
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/timer/fsl_adapter_timer.h" projectpath="component/timer"/>
+        <file category="sourceC" name="components/timer/fsl_adapter_ostimer.c" projectpath="component/timer"/>
+        <file category="include" name="components/timer/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ostimer_time_stamp_adapter" Cversion="1.0.0" condition="component.ostimer_time_stamp_adapter.condition_id">
+      <description>Component ostimer time stamp adapter</description>
+      <files>
+        <file category="header" name="components/time_stamp/fsl_adapter_time_stamp.h" projectpath="component/time_stamp"/>
+        <file category="sourceC" name="components/time_stamp/fsl_adapter_ostimer_time_stamp.c" projectpath="component/time_stamp"/>
+        <file category="include" name="components/time_stamp/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="panic" Cversion="1.0.0" condition="component.panic.condition_id">
+      <description>Component panic</description>
+      <files>
+        <file category="header" name="components/panic/fsl_component_panic.h" projectpath="component/panic"/>
+        <file category="sourceC" name="components/panic/fsl_component_panic.c" projectpath="component/panic"/>
+        <file category="include" name="components/panic/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="power_manager_core" Cversion="2.0.0" condition="component.power_manager_core.condition_id">
+      <description>Component power manager core level</description>
+      <RTE_Components_h>
+#ifndef GENERIC_LIST_LIGHT
+#define GENERIC_LIST_LIGHT 1
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/power_manager/core/fsl_pm_core.h" projectpath="component/power_manager"/>
+        <file category="sourceC" name="components/power_manager/core/fsl_pm_core.c" projectpath="component/power_manager"/>
+        <file category="header" name="components/power_manager/core/fsl_pm_config.h" projectpath="component/power_manager"/>
+        <file category="include" name="components/power_manager/core/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="power_manager_docs" Cversion="2.0.0" condition="component.power_manager_docs.condition_id">
+      <description>Power Manager component documentation</description>
+      <files>
+        <file category="doc" name="components/power_manager/README.md" projectpath="component/power_manager"/>
+        <file category="image" name="components/power_manager/images/memory_example.png" projectpath="component/power_manager/images"/>
+        <file category="image" name="components/power_manager/images/SDK_PM_architecture.png" projectpath="component/power_manager/images"/>
+        <file category="include" name="components/power_manager/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="reset_adapter" Cversion="1.0.0" condition="component.reset_adapter.condition_id">
+      <description>Component reset_adapter</description>
+      <files>
+        <file category="header" name="components/reset/fsl_adapter_reset.h" projectpath="component/reset"/>
+        <file category="sourceC" name="components/reset/fsl_adapter_reset.c" projectpath="component/reset"/>
+        <file category="include" name="components/reset/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager" Cversion="1.0.1" condition="component.serial_manager.condition_id">
+      <description>Component serial_manager</description>
+      <files>
+        <file category="header" name="components/serial_manager/fsl_component_serial_manager.h" projectpath="component/serial_manager"/>
+        <file category="header" name="components/serial_manager/fsl_component_serial_port_internal.h" projectpath="component/serial_manager"/>
+        <file category="sourceC" name="components/serial_manager/fsl_component_serial_manager.c" projectpath="component/serial_manager"/>
+        <file category="include" name="components/serial_manager/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_spi" Cversion="1.0.0" condition="component.serial_manager_spi.condition_id">
+      <description>Component serial_manager_spi</description>
+      <RTE_Components_h>
+#ifndef SERIAL_PORT_TYPE_SPI
+#define SERIAL_PORT_TYPE_SPI 1
+#endif
+#ifndef SERIAL_PORT_TYPE_SPI_MASTER
+#define SERIAL_PORT_TYPE_SPI_MASTER 1
+#endif
+#ifndef SERIAL_PORT_TYPE_SPI_SLAVE
+#define SERIAL_PORT_TYPE_SPI_SLAVE 1
+#endif
+#ifndef SERIAL_MANAGER_NON_BLOCKING_MODE
+#define SERIAL_MANAGER_NON_BLOCKING_MODE 1
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/serial_manager/fsl_component_serial_port_spi.h" projectpath="component/serial_manager"/>
+        <file category="sourceC" name="components/serial_manager/fsl_component_serial_port_spi.c" projectpath="component/serial_manager"/>
+        <file category="include" name="components/serial_manager/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_swo" Cversion="1.0.0" condition="component.serial_manager_swo.condition_id">
+      <description>Component serial_manager_swo</description>
+      <RTE_Components_h>
+#ifndef SERIAL_PORT_TYPE_SWO
+#define SERIAL_PORT_TYPE_SWO 1
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/serial_manager/fsl_component_serial_port_swo.h" projectpath="component/serial_manager"/>
+        <file category="sourceC" name="components/serial_manager/fsl_component_serial_port_swo.c" projectpath="component/serial_manager"/>
+        <file category="include" name="components/serial_manager/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_uart" Cversion="1.0.0" condition="component.serial_manager_uart.condition_id">
+      <description>Component serial_manager_uart</description>
+      <RTE_Components_h>
+#ifndef SERIAL_PORT_TYPE_UART
+#define SERIAL_PORT_TYPE_UART 1
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/serial_manager/fsl_component_serial_port_uart.h" projectpath="component/serial_manager"/>
+        <file category="sourceC" name="components/serial_manager/fsl_component_serial_port_uart.c" projectpath="component/serial_manager"/>
+        <file category="include" name="components/serial_manager/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_virtual" Cversion="1.0.0" condition="component.serial_manager_virtual.condition_id">
+      <description>Component serial_manager_virtual</description>
+      <RTE_Components_h>
+#ifndef SERIAL_PORT_TYPE_VIRTUAL
+#define SERIAL_PORT_TYPE_VIRTUAL 1
+#endif
+#ifndef DEBUG_CONSOLE_TRANSFER_NON_BLOCKING
+#define DEBUG_CONSOLE_TRANSFER_NON_BLOCKING 
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/serial_manager/fsl_component_serial_port_virtual.h" projectpath="component/serial_manager"/>
+        <file category="sourceC" name="components/serial_manager/fsl_component_serial_port_virtual.c" projectpath="component/serial_manager"/>
+        <file category="include" name="components/serial_manager/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="timer_manager" Cversion="1.0.0" condition="component.timer_manager.condition_id">
+      <description>Component timer_manager</description>
+      <files>
+        <file category="header" name="components/timer_manager/fsl_component_timer_manager.h" projectpath="component/timer_manager"/>
+        <file category="sourceC" name="components/timer_manager/fsl_component_timer_manager.c" projectpath="component/timer_manager"/>
+        <file category="include" name="components/timer_manager/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="CMSIS" Csub="MCXA142_header" Cversion="1.0.0" condition="device.MCXA142_CMSIS.condition_id">
+      <description>Device MCXA142_cmsis</description>
+      <files>
+        <file category="header" name="devices/MCXA142/fsl_device_registers.h" projectpath="device"/>
+        <file category="header" name="devices/MCXA142/MCXA142.h" projectpath="device"/>
+        <file category="header" name="devices/MCXA142/MCXA142_features.h" projectpath="device"/>
+        <file category="include" name="devices/MCXA142/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="MCXA142_linker" Cversion="1.0.0" condition="device.MCXA142_linker.condition_id">
+      <description>Device MCXA142_linker</description>
+      <files>
+        <file condition="allOf.toolchains=mdk, device_ids=MCXA142.condition_id" category="linkerScript" name="devices/MCXA142/arm/MCXA142_flash.scf" projectpath="MCXA142/arm"/>
+        <file condition="allOf.toolchains=mdk, device_ids=MCXA142.condition_id" category="linkerScript" name="devices/MCXA142/arm/MCXA142_ram.scf" projectpath="MCXA142/arm"/>
+        <file condition="allOf.toolchains=armgcc, device_ids=MCXA142.condition_id" category="linkerScript" name="devices/MCXA142/gcc/MCXA142_flash.ld" projectpath="MCXA142/gcc"/>
+        <file condition="allOf.toolchains=armgcc, device_ids=MCXA142.condition_id" category="linkerScript" name="devices/MCXA142/gcc/MCXA142_ram.ld" projectpath="MCXA142/gcc"/>
+        <file condition="allOf.toolchains=iar, device_ids=MCXA142.condition_id" category="linkerScript" name="devices/MCXA142/iar/MCXA142_flash.icf" projectpath="MCXA142/iar"/>
+        <file condition="allOf.toolchains=iar, device_ids=MCXA142.condition_id" category="linkerScript" name="devices/MCXA142/iar/MCXA142_ram.icf" projectpath="MCXA142/iar"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Csub="" Cversion="1.1.0" condition="device.MCXA142_startup.condition_id">
+      <description>Device MCXA142_startup</description>
+      <files>
+        <file condition="allOf.toolchains=iar.condition_id" category="sourceAsm" attr="config" name="devices/MCXA142/iar/startup_MCXA142.s" version="1.1.0" projectpath="startup"/>
+        <file condition="allOf.toolchains=armgcc.condition_id" category="sourceAsm" attr="config" name="devices/MCXA142/gcc/startup_MCXA142.S" version="1.1.0" projectpath="startup"/>
+        <file condition="allOf.toolchains=mdk.condition_id" category="sourceAsm" attr="config" name="devices/MCXA142/arm/startup_MCXA142.S" version="1.1.0" projectpath="startup"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="CMSIS" Csub="MCXA142_system" Cversion="1.0.0" condition="device.MCXA142_system.condition_id">
+      <description>Device MCXA142_system</description>
+      <files>
+        <file category="sourceC" name="devices/MCXA142/system_MCXA142.c" projectpath="device"/>
+        <file category="header" name="devices/MCXA142/system_MCXA142.h" projectpath="device"/>
+        <file category="include" name="devices/MCXA142/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="aoi" Cversion="2.0.2" condition="driver.aoi.condition_id">
+      <description>AOI Driver</description>
+      <files>
+        <file category="header" name="devices/MCXA142/drivers/fsl_aoi.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_aoi.c" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="cdog" Cversion="2.1.3" condition="driver.cdog.condition_id">
+      <description>cdog Driver</description>
+      <files>
+        <file category="header" name="devices/MCXA142/drivers/fsl_cdog.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_cdog.c" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="clock" Cversion="2.0.0" condition="driver.clock.condition_id">
+      <description>Clock Driver</description>
+      <files>
+        <file category="header" name="devices/MCXA142/drivers/fsl_clock.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_clock.c" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="I2C" Csub="lpi2c_cmsis" Cversion="2.5.0" Capiversion="2.3.0" condition="driver.cmsis_lpi2c.condition_id">
+      <description>LPI2C CMSIS Driver</description>
+      <files>
+        <file category="header" name="devices/MCXA142/cmsis_drivers/fsl_lpi2c_cmsis.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MCXA142/cmsis_drivers/fsl_lpi2c_cmsis.c" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/cmsis_drivers/"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="SPI" Csub="lpspi_cmsis" Cversion="2.9.0" Capiversion="2.2.0" condition="driver.cmsis_lpspi.condition_id">
+      <description>LPSPI CMSIS Driver</description>
+      <files>
+        <file category="header" name="devices/MCXA142/cmsis_drivers/fsl_lpspi_cmsis.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MCXA142/cmsis_drivers/fsl_lpspi_cmsis.c" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/cmsis_drivers/"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="USART" Csub="lpuart_cmsis" Cversion="2.6.0" Capiversion="2.3.0" condition="driver.cmsis_lpuart.condition_id">
+      <description>LPUART CMSIS Driver</description>
+      <files>
+        <file category="header" name="devices/MCXA142/cmsis_drivers/fsl_lpuart_cmsis.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MCXA142/cmsis_drivers/fsl_lpuart_cmsis.c" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/cmsis_drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="common" Cversion="2.4.1" condition="driver.common.condition_id">
+      <description>COMMON Driver</description>
+      <files>
+        <file category="header" name="devices/MCXA142/drivers/fsl_common.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_common.c" projectpath="drivers"/>
+        <file condition="allOf.cores=cm33.condition_id" category="sourceC" name="devices/MCXA142/drivers/fsl_common_arm.c" projectpath="drivers"/>
+        <file condition="allOf.cores=cm33.condition_id" category="header" name="devices/MCXA142/drivers/fsl_common_arm.h" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="crc" Cversion="2.0.4" condition="driver.crc.condition_id">
+      <description>CRC Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_crc.c" projectpath="drivers"/>
+        <file category="header" name="devices/MCXA142/drivers/fsl_crc.h" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ctimer" Cversion="2.3.1" condition="driver.ctimer.condition_id">
+      <description>CTimer Driver</description>
+      <files>
+        <file category="header" name="devices/MCXA142/drivers/fsl_ctimer.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_ctimer.c" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="edma" Cversion="2.10.0" condition="driver.edma4.condition_id">
+      <description>EDMA Driver</description>
+      <files>
+        <file category="header" name="devices/MCXA142/drivers/fsl_edma.h" projectpath="drivers"/>
+        <file category="header" name="devices/MCXA142/drivers/fsl_edma_core.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_edma.c" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="edma_soc" Cversion="1.0.0" condition="driver.edma_soc.condition_id">
+      <description>EDMA SOC Driver</description>
+      <files>
+        <file category="header" name="devices/MCXA142/drivers/fsl_edma_soc.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_edma_soc.c" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="eim" Cversion="2.0.1" condition="driver.eim.condition_id">
+      <description>EIM Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_eim.c" projectpath="drivers"/>
+        <file category="header" name="devices/MCXA142/drivers/fsl_eim.h" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="eqdc" Cversion="2.3.0" condition="driver.eqdc.condition_id">
+      <description>EQDC Driver</description>
+      <files>
+        <file category="header" name="devices/MCXA142/drivers/fsl_eqdc.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_eqdc.c" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="erm" Cversion="2.0.1" condition="driver.erm.condition_id">
+      <description>ERM Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_erm.c" projectpath="drivers"/>
+        <file category="header" name="devices/MCXA142/drivers/fsl_erm.h" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="glikey" Cversion="2.0.0" condition="driver.glikey.condition_id">
+      <description>GLIKEY Driver</description>
+      <files>
+        <file category="header" name="devices/MCXA142/drivers/fsl_glikey.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_glikey.c" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="gpio" Cversion="2.7.3" condition="driver.gpio.condition_id">
+      <description>GPIO Driver</description>
+      <files>
+        <file category="header" name="devices/MCXA142/drivers/fsl_gpio.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_gpio.c" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="i3c" Cversion="2.12.0" condition="driver.i3c.condition_id">
+      <description>I3C Driver</description>
+      <files>
+        <file category="header" name="devices/MCXA142/drivers/fsl_i3c.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_i3c.c" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="i3c_edma" Cversion="2.2.9" condition="driver.i3c_edma.condition_id">
+      <description>I3C EDMA Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_i3c_edma.c" projectpath="drivers"/>
+        <file category="header" name="devices/MCXA142/drivers/fsl_i3c_edma.h" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="inputmux" Cversion="2.0.7" condition="driver.inputmux.condition_id">
+      <description>INPUTMUX Driver</description>
+      <files>
+        <file category="header" name="devices/MCXA142/drivers/fsl_inputmux.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_inputmux.c" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="inputmux_connections" Cversion="2.0.1" condition="driver.inputmux_connections.condition_id">
+      <description>Inputmux_connections Driver</description>
+      <files>
+        <file category="header" name="devices/MCXA142/drivers/fsl_inputmux_connections.h" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpadc" Cversion="2.8.4" condition="driver.lpadc.condition_id">
+      <description>LPADC Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_lpadc.c" projectpath="drivers"/>
+        <file category="header" name="devices/MCXA142/drivers/fsl_lpadc.h" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpc_freqme" Cversion="2.1.2" condition="driver.lpc_freqme.condition_id">
+      <description>lpc_freqme Driver</description>
+      <files>
+        <file category="header" name="devices/MCXA142/drivers/fsl_freqme.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_freqme.c" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpcmp" Cversion="2.1.3" condition="driver.lpcmp.condition_id">
+      <description>LPCMP Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_lpcmp.c" projectpath="drivers"/>
+        <file category="header" name="devices/MCXA142/drivers/fsl_lpcmp.h" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="i2c" Cversion="2.5.4" condition="driver.lpi2c.condition_id">
+      <description>LPI2C Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_lpi2c.c" projectpath="drivers"/>
+        <file category="header" name="devices/MCXA142/drivers/fsl_lpi2c.h" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="i2c_edma" Cversion="2.4.2" condition="driver.lpi2c_edma.condition_id">
+      <description>LPI2C Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_lpi2c_edma.c" projectpath="drivers"/>
+        <file category="header" name="devices/MCXA142/drivers/fsl_lpi2c_edma.h" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpspi" Cversion="2.6.8" condition="driver.lpspi.condition_id">
+      <description>LPSPI Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_lpspi.c" projectpath="drivers"/>
+        <file category="header" name="devices/MCXA142/drivers/fsl_lpspi.h" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpspi_edma" Cversion="2.4.4" condition="driver.lpspi_edma.condition_id">
+      <description>LPSPI Driver</description>
+      <files>
+        <file category="header" name="devices/MCXA142/drivers/fsl_lpspi_edma.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_lpspi_edma.c" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lptmr" Cversion="2.2.0" condition="driver.lptmr.condition_id">
+      <description>LPTMR Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_lptmr.c" projectpath="drivers"/>
+        <file category="header" name="devices/MCXA142/drivers/fsl_lptmr.h" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart" Cversion="2.8.2" condition="driver.lpuart.condition_id">
+      <description>LPUART Driver</description>
+      <files>
+        <file category="header" name="devices/MCXA142/drivers/fsl_lpuart.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_lpuart.c" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart_edma" Cversion="2.6.0" condition="driver.lpuart_edma.condition_id">
+      <description>LPUART Driver</description>
+      <files>
+        <file category="header" name="devices/MCXA142/drivers/fsl_lpuart_edma.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_lpuart_edma.c" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mcx_cmc" Cversion="2.2.2" condition="driver.mcx_cmc.condition_id">
+      <description>MCX_CMC Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_cmc.c" projectpath="drivers"/>
+        <file category="header" name="devices/MCXA142/drivers/fsl_cmc.h" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mcx_spc" Cversion="2.4.2" condition="driver.mcx_spc.condition_id">
+      <description>MCX SPC Driver</description>
+      <files>
+        <file category="header" name="devices/MCXA142/drivers/fsl_spc.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_spc.c" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mcx_vbat" Cversion="2.3.1" condition="driver.mcx_vbat.condition_id">
+      <description>MCX VBAT Driver</description>
+      <files>
+        <file category="header" name="devices/MCXA142/drivers/fsl_vbat.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_vbat.c" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ostimer" Cversion="2.2.2" condition="driver.ostimer.condition_id">
+      <description>OSTimer Driver</description>
+      <files>
+        <file category="header" name="devices/MCXA142/drivers/fsl_ostimer.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_ostimer.c" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="p3t1755" Cversion="2.0.0" condition="driver.p3t1755.condition_id">
+      <description>Driver p3t1755</description>
+      <files>
+        <file category="header" name="components/p3t1755/fsl_p3t1755.h" projectpath="component/p3t1755"/>
+        <file category="sourceC" name="components/p3t1755/fsl_p3t1755.c" projectpath="component/p3t1755"/>
+        <file category="include" name="components/p3t1755/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="port" Cversion="2.5.0" condition="driver.port.condition_id">
+      <description>PORT Driver</description>
+      <files>
+        <file category="header" name="devices/MCXA142/drivers/fsl_port.h" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pwm" Cversion="2.8.4" condition="driver.pwm.condition_id">
+      <description>PWM Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_pwm.c" projectpath="drivers"/>
+        <file category="header" name="devices/MCXA142/drivers/fsl_pwm.h" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="reset" Cversion="2.0.0" condition="driver.reset.condition_id">
+      <description>Reset Driver</description>
+      <files>
+        <file category="header" name="devices/MCXA142/drivers/fsl_reset.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_reset.c" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="romapi" Cversion="2.0.0" condition="driver.romapi.condition_id">
+      <description>ROMAPI Driver</description>
+      <files>
+        <file category="header" name="devices/MCXA142/drivers/fsl_romapi.h" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="trdc" Cversion="2.2.1" condition="driver.trdc_1.condition_id">
+      <description>TRDC Driver</description>
+      <files>
+        <file category="header" name="devices/MCXA142/drivers/fsl_trdc.h" projectpath="drivers"/>
+        <file category="header" name="devices/MCXA142/drivers/fsl_trdc_core.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_trdc.c" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="trdc_soc" Cversion="2.0.0" condition="driver.trdc_soc.condition_id">
+      <description>TRDC SOC Driver</description>
+      <files>
+        <file category="header" name="devices/MCXA142/drivers/fsl_trdc_soc.h" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="utick" Cversion="2.0.5" condition="driver.utick.condition_id">
+      <description>UTICK Driver</description>
+      <files>
+        <file category="header" name="devices/MCXA142/drivers/fsl_utick.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_utick.c" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="waketimer" Cversion="2.0.1" condition="driver.waketimer.condition_id">
+      <description>WAKETIMER Driver</description>
+      <files>
+        <file category="header" name="devices/MCXA142/drivers/fsl_waketimer.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_waketimer.c" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="wuu" Cversion="2.4.0" condition="driver.wuu.condition_id">
+      <description>WUU Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_wuu.c" projectpath="drivers"/>
+        <file category="header" name="devices/MCXA142/drivers/fsl_wuu.h" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="wwdt" Cversion="2.1.9" condition="driver.wwdt.condition_id">
+      <description>WWDT Driver</description>
+      <files>
+        <file category="header" name="devices/MCXA142/drivers/fsl_wwdt.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MCXA142/drivers/fsl_wwdt.c" projectpath="drivers"/>
+        <file category="include" name="devices/MCXA142/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="baremetal" Cversion="1.0.0" condition="middleware.baremetal.condition_id">
+      <description>Middleware baremetal</description>
+      <RTE_Components_h>
+#ifndef SDK_OS_BAREMETAL
+#define SDK_OS_BAREMETAL 
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="doc" name="middleware/bm/readme.txt" projectpath="middleware/bm"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="misc_utilities" Cversion="1.1.1" condition="utilities.misc_utilities.condition_id">
+      <description>Utilities which is needed for particular toolchain like the SBRK function required to address limitation between HEAP and STACK in GCC toolchain library.</description>
+      <files>
+        <file condition="allOf.toolchains=armgcc.condition_id" category="sourceC" name="devices/MCXA142/utilities/fsl_sbrk.c" projectpath="utilities"/>
+        <file condition="allOf.toolchains=armgcc.condition_id" category="sourceC" name="devices/MCXA142/utilities/fsl_syscall_stub.c" projectpath="utilities"/>
+        <file condition="allOf.toolchains=armgcc, cores=cm33.condition_id" category="sourceAsm" name="devices/MCXA142/utilities/fsl_memcpy.S" projectpath="utilities"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="assert" Cversion="1.0.0" condition="utility.assert.condition_id">
+      <description>Utility assert</description>
+      <files>
+        <file category="sourceC" name="devices/MCXA142/utilities/fsl_assert.c" projectpath="utilities"/>
+        <file category="header" name="devices/MCXA142/utilities/fsl_assert.h" projectpath="utilities"/>
+        <file category="include" name="devices/MCXA142/utilities/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="assert_lite" Cversion="1.0.0" condition="utility.assert_lite.condition_id">
+      <description>Utility assert_lite</description>
+      <files>
+        <file category="sourceC" name="devices/MCXA142/utilities/debug_console_lite/fsl_assert.c" projectpath="utilities"/>
+        <file category="header" name="devices/MCXA142/utilities/debug_console_lite/fsl_assert.h" projectpath="utilities"/>
+        <file category="include" name="devices/MCXA142/utilities/debug_console_lite/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console" Cversion="1.0.1" condition="utility.debug_console.condition_id">
+      <description>Utility debug_console</description>
+      <files>
+        <file category="sourceC" name="devices/MCXA142/utilities/debug_console/fsl_debug_console.c" projectpath="utilities"/>
+        <file category="header" name="devices/MCXA142/utilities/debug_console/fsl_debug_console.h" projectpath="utilities"/>
+        <file category="header" name="devices/MCXA142/utilities/debug_console/fsl_debug_console_conf.h" projectpath="utilities"/>
+        <file category="include" name="devices/MCXA142/utilities/debug_console/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite" Cversion="1.0.0" condition="utility.debug_console_lite.condition_id">
+      <description>Utility debug_console_lite</description>
+      <files>
+        <file category="sourceC" name="devices/MCXA142/utilities/debug_console_lite/fsl_debug_console.c" projectpath="utilities"/>
+        <file category="header" name="devices/MCXA142/utilities/debug_console_lite/fsl_debug_console.h" projectpath="utilities"/>
+        <file category="include" name="devices/MCXA142/utilities/debug_console_lite/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="format" Cversion="1.0.0" condition="utility.format.condition_id">
+      <description>Used to format convertion</description>
+      <files>
+        <file category="sourceC" name="devices/MCXA142/utilities/format/fsl_format.c" projectpath="utilities"/>
+        <file category="header" name="devices/MCXA142/utilities/format/fsl_format.h" projectpath="utilities"/>
+        <file category="include" name="devices/MCXA142/utilities/format/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="shell" Cversion="1.0.0" condition="utility.shell.condition_id">
+      <description>Utility shell</description>
+      <RTE_Components_h>
+#ifndef DEBUG_CONSOLE_RX_ENABLE
+#define DEBUG_CONSOLE_RX_ENABLE 0
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="sourceC" name="devices/MCXA142/utilities/shell/fsl_shell.c" projectpath="utilities"/>
+        <file category="header" name="devices/MCXA142/utilities/shell/fsl_shell.h" projectpath="utilities"/>
+        <file category="include" name="devices/MCXA142/utilities/shell/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="str" Cversion="1.0.0" condition="utility.str.condition_id">
+      <description>Utility str</description>
+      <files>
+        <file category="sourceC" name="devices/MCXA142/utilities/str/fsl_str.c" projectpath="utilities"/>
+        <file category="header" name="devices/MCXA142/utilities/str/fsl_str.h" projectpath="utilities"/>
+        <file category="include" name="devices/MCXA142/utilities/str/"/>
+      </files>
+    </component>
+  </components>
+</package>

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+	<vendor>MindMotion</vendor>
+	<url>http://www.mindmotion.com.cn/Download/MDK_KEIL/</url>
+	<name>MM32W0xxB_DFP</name>
+	<description>MindMotion MM32W0xxB Series Device Support, Drivers and Examples</description>
+	<releases>
+		<release version="1.0.6" date="2021-04-25">
+       Release version of MM32W0xxxB Device Family Pack.
+    </release>
+	</releases>
+	<keywords>
+		<!-- keywords for indexing -->
+		
+		<keyword>MindMotion</keyword>
+		<keyword>Device Support</keyword>
+		<keyword>Device Family Package MindMotion</keyword>
+		<keyword>MM32W0xxB</keyword>
+		<keyword>MM32</keyword>
+	</keywords>
+	<devices>
+		<!-- generated, do not modify this section! -->
+		<family Dfamily="MM32W0xxxB Series" Dvendor="MindMotion:132">
+			<processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+			<description>
+MM32W0xxxB Series
+			
+        </description>
+			<!-- ************************  Subfamily 'MM32W05xB'  **************************** -->
+			<subFamily DsubFamily="MM32W05xxxB">
+				<processor Dclock="48000000"/>
+        <description>
+Subfamily: MM32W05xxxB
+
+Frequency: 48MHz 
+Memory: 32 kB Flash, 4 kB RAM
+Communication: 2 x UART, 1 x SPI, 1 x I2C,
+Analog : ADC, COMP
+power saving mode:stop, sleep, and standby mode
+
+        </description>
+				
+				<!-- *************************  Device 'MM32W05xB'  ***************************** -->
+				<device Dname="MM32W051NTB">
+					<processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="48000000"/>
+					<compile header="Device/MM32W0xxB/Include/HAL_device.h" define="MM32W051NTB"/>
+					<debug svd="SVD/MM32W05xBq.svd"/>
+					<memory id="IROM1" start="0x08000000" size="0x8000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x1000" init="0" default="1"/>
+					<algorithm name="Flash/MM32W0xxB_32.FLM" start="0x08000000" size="0x8000" default="1"/>
+				</device>
+				<device Dname="MM32W051PFB">
+					<processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="48000000"/>
+					<compile header="Device/MM32W0xxB/Include/HAL_device.h" define="MM32W051PFB"/>
+					<debug svd="SVD/MM32W05xBq.svd"/>
+					<memory id="IROM1" start="0x08000000" size="0x8000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x1000" init="0" default="1"/>
+					<algorithm name="Flash/MM32W0xxB_32.FLM" start="0x08000000" size="0x8000" default="1"/>
+				</device>
+			</subFamily>
+			<!-- ************************  Subfamily 'MM32W06xB'  **************************** -->
+			<subFamily DsubFamily="MM32W06xxxB">
+				<processor Dclock="48000000"/>
+        <description>
+Subfamily: MM32W06xxxB
+
+Frequency: 48MHz 
+Memory: 64 kB Flash, 8 kB RAM
+Communication: 2 x UART, 1 x SPI, 1 x I2C,USB
+Analog : ADC, COMP
+power saving mode:Stop, sleep, and standby mode
+
+        </description>
+				
+				<!-- *************************  Device 'MM32W06xB'  ***************************** -->
+				<device Dname="MM32W062NTB">
+					<processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="48000000"/>
+					<compile header="Device/MM32W0xxB/Include/HAL_device.h" define="MM32W062NTB"/>
+					<debug svd="SVD/MM32W06xBs.svd"/>
+					<memory id="IROM1" start="0x08000000" size="0x10000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1"/>
+					<algorithm name="Flash/MM32W0xxB_64.FLM" start="0x08000000" size="0x10000" default="1"/>
+				</device>
+				<device Dname="MM32W062PFB">
+					<processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="48000000"/>
+					<compile header="Device/MM32W0xxB/Include/HAL_device.h" define="MM32W062PFB"/>
+					<debug svd="SVD/MM32W06xBs.svd"/>
+					<memory id="IROM1" start="0x08000000" size="0x10000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1"/>
+					<algorithm name="Flash/MM32W0xxB_64.FLM" start="0x08000000" size="0x10000" default="1"/>
+				</device>
+			</subFamily>
+			<!-- ************************  Subfamily 'MM32W07xB'  **************************** -->
+			<subFamily DsubFamily="MM32W07xxxB">
+				<processor Dclock="48000000"/>
+        <description>
+Subfamily: MM32W07xxxB
+
+Frequency: 48MHz 
+Memory: 128 kB Flash, 8 kB RAM
+Communication: 2 x UART, 1 x SPI, 1 x I2C, USB,CAN
+Analog : ADC, COMP
+power saving mode:stop ,sleep, and standby mode
+
+        </description>
+				<!-- *************************  Device 'MM32W07xB'  ***************************** -->
+				<device Dname="MM32W073NTB">
+					<processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="48000000"/>
+					<compile header="Device/MM32W0xxB/Include/HAL_device.h" define="MM32W073NTB"/>
+					<debug svd="SVD/MM32W07xBn.svd"/>
+					<memory id="IROM1" start="0x08000000" size="0x20000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1"/>
+					<algorithm name="Flash/MM32W0xxB_128.FLM" start="0x08000000" size="0x20000" default="1"/>
+				</device>
+				<device Dname="MM32W073PFB">
+					<processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="48000000"/>
+					<compile header="Device/MM32W0xxB/Include/HAL_device.h" define="MM32W073PFB"/>
+					<debug svd="SVD/MM32W07xBn.svd"/>
+					<memory id="IROM1" start="0x08000000" size="0x20000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1"/>
+					<algorithm name="Flash/MM32W0xxB_128.FLM" start="0x08000000" size="0x20000" default="1"/>
+				</device>
+			</subFamily>
+		</family>
+	</devices>
+	<conditions>
+		<!-- conditions are dependency rules that can apply to a component or an individual file -->
+		<!-- Compiler Conditions -->
+		<condition id=" ARMCC">
+			<require Tcompiler="ARMCC"/>
+		</condition>
+
+		<condition id="ARMCM0 CMSIS">
+			<description>CMSIS CORE processor and device specific Startup files</description>
+			<require Cclass="CMSIS" Cgroup="CORE"/>
+			<require Dvendor="MindMotion:132" Dname="MM32W0*B"/>
+		</condition>
+	</conditions>
+	<components>
+		<!-- CMSIS-Core component not required, is coming from CMSIS Pack -->
+		<!-- Startup MM32W0xxB -->
+		<component Cclass="Device" Cgroup="Startup" Cversion="1.0.4" condition="ARMCM0 CMSIS">
+			<description>System Startup for MindMotion MM32W0xxB Series devices</description>
+			<files>
+				<!-- include folder    -->
+				<!-- include folder / device header file -->
+				<file category="header" name="Device/MM32W0xxB/Include/HAL_device.h"/>
+				<file category="header" name="Device/MM32W0xxB/Source/system_MM32W0xxB.h"/>
+				<file category="sourceC" name="Device/MM32W0xxB/Source/system_MM32W0xxB.c" attr="config" version="1.0.4"/>
+				<file category="sourceAsm" name="Device/MM32W0xxB/Source/KEIL_StartAsm/startup_MM32W0xxB_KEIL.s" attr="config" version="1.0.4" condition=" ARMCC"/>
+			</files>
+		</component>
+			    <component Cclass="Board" Cgroup="Samples" Csub="LED" Cversion="1.0.4" condition="ARMCM0 CMSIS"> 
+      <description>Toggle  for MindMotion BSW0xxNTB_Boardreg Series devices</description>
+      <files>
+        <file category="header"  name="Boards/BSW0xxNTB_Boardreg/RegSample/GPIO_LED/HARDWARE/LED/led.h"/>
+        <file category="sourceC"  name="Boards/BSW0xxNTB_Boardreg/RegSample/GPIO_LED/HARDWARE/LED/led.c" attr="config"  version="1.0.4"/>
+        <file category="sourceC" name="Boards/BSW0xxNTB_Boardreg/RegSample/GPIO_LED/USER/test.c" attr="config"  version="1.0.4"/>    
+      </files>
+    </component> 	
+		
+	</components>
+	<examples>
+		<!-- MM32_BSW0xxNTB_Board Core Board -->
+		<example name="MM32_BSW0xxNTB_Board GPIO LED blinky" doc="README.TXT" folder="Boards/BSW0xxNTB_Boardreg/RegSample/GPIO_LED">
+			<description>MM32_BSW0xxNTB_Board Blinky example</description>
+			<board name="MM32_BSW0xxNTB_Board" vendor="MindMotion"/>
+			<project>
+				<environment name="uv" load="KEILPRJ/BLINK.uvprojx"/>
+			</project>
+			<attributes>
+				<component Cclass="CMSIS" Cgroup="CORE"/>
+				<component Cclass="Device" Cgroup="Startup"/>
+				<category>Getting Started</category>
+			</attributes>
+		</example>
+	</examples>
+	<boards>
+		<board vendor="MindMotion" name="MM32_BSW0xxNTB_Board" revision="Ver 1.0">
+			<description>MindMotion MM32_BSW0xxNTB_Board Development Board</description>
+			<image small="Images/BLESmartTestBoardsmall.jpg" large="Images/BLESmartTestBoardbig.jpg"/>
+      <book category="manual" name="Documents/boards/w0Reference.pdf" title="MM32_W0x  Manual"/>
+
+			<mountedDevice deviceIndex="0" Dvendor="MindMotion:132" Dname="MM32W051NTB"/>
+			<compatibleDevice deviceIndex="0" Dvendor="MindMotion:132" DsubFamily="MM32W05xxxB"/>
+			<compatibleDevice deviceIndex="0" Dvendor="MindMotion:132" DsubFamily="MM32W06xxxB"/>
+			<compatibleDevice deviceIndex="0" Dvendor="MindMotion:132" DsubFamily="MM32W07xxxB"/>
+			<feature type="XTAL" n="8000000"/>
+			<feature type="PWR" n="5" name="USB Powered"/>
+			<feature type="PWR" n="3" m="5" name="External Supply"/>
+			<feature type="Button" n="1" name="Push-buttons: Reset"/>
+			<feature type="LED" n="2" name="LEDs: Power, One user"/>
+			<debugInterface adapter="JTAG/SW" connector="20 pin JTAG (0.1 inch connector)"/>
+		</board>
+	</boards>
+</package>

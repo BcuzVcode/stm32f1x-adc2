@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.7.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>SiliconLabs</vendor>
+  <url>https://www.silabs.com/documents/public/cmsis-packs/</url>
+  <name>GeckoPlatform_EFR32FG28_DFP</name>
+  <description>Silicon Labs EFR32FG28 Flex Gecko Series Device Support.</description>
+  <license>License/license.md</license>
+
+  <releases>
+    <release version="2024.6.0" date="2024-06-19">
+      New device family for Caracal EFM32PG26, EFR32BG26, EFR32MG26
+    </release>
+    <release version="4.4.0" date="2024-02-08">
+      New device family EFM32PG28 and new OPNs for EFR32SG28, EFR32MG24, EFR32BG24, MGM21, RM21
+    </release>
+    <release version="4.3.0" date="2023-06-15">
+      New device families EFR32SG23, EFR32SG28 and new OPNs for EFR32MG27, EFR32MG24, EFR32FG25, EFR32BG24, MGM24
+    </release>
+    <release version="4.2.0" date="2022-11-25">
+      New device families EFR32ZG28, EFR32FG28 and EFR32MR21
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Silicon Labs</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Silicon Labs</keyword>
+    <keyword>EFR32FG28</keyword>
+    <keyword>EFR32</keyword>
+    <keyword>Flex Gecko</keyword>
+    <keyword>Gecko</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="EFR32FG28 Series" Dvendor="Silicon Labs:21">
+      <processor Dcore="Cortex-M33" DcoreVersion="r0p4" Dfpu="FPU" Dmpu="MPU" Dtz="TZ" Ddsp="DSP" Dendian="Little-endian" Dclock="39000000"/>
+      <book name="Documents/cortex_m33_dgug.pdf"      title="Cortex-M33 Generic User Guide"/>
+      <book name="Documents/efr32xg28-rm.pdf"  title="EFR32FG28 Reference Manual"/>
+      <description>
+32-bit ARM Cortex-M33 core with 78 MHz maximum operating frequency.
+      </description>
+
+      <subFamily DsubFamily="EFR32FG28A010">
+        <book         name="Documents/efr32fg28-datasheet.pdf"      title="EFR32FG28A010 Data Sheet"/>
+        <book         name="Documents/efr32fg28-errata.pdf"         title="EFR32FG28A010 Errata"/>
+        <book         name="Documents/efr32fg28-datashort.pdf"      title="EFR32FG28A010 Data Short"/>
+        <!-- *************************  Device 'EFR32FG28A010F1024GM48'  ***************************** -->
+        <device Dname="EFR32FG28A010F1024GM48">
+          <compile header="Device/SiliconLabs/EFR32FG28/Include/em_device.h"  define="EFR32FG28A010F1024GM48"/>
+          <debug      svd="SVD/EFR32FG28/EFR32FG28A010F1024GM48.svd"/>
+          <memory     id="IROM1"                start="0x08000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00020000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS2C3.FLM"  start="0x08000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS2C3.flash"  start="0x08000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFR32FG28A010F1024GM68'  ***************************** -->
+        <device Dname="EFR32FG28A010F1024GM68">
+          <compile header="Device/SiliconLabs/EFR32FG28/Include/em_device.h"  define="EFR32FG28A010F1024GM68"/>
+          <debug      svd="SVD/EFR32FG28/EFR32FG28A010F1024GM68.svd"/>
+          <memory     id="IROM1"                start="0x08000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00020000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS2C3.FLM"  start="0x08000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS2C3.flash"  start="0x08000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="EFR32FG28A110">
+        <book         name="Documents/efr32fg28-datasheet.pdf"      title="EFR32FG28A110 Data Sheet"/>
+        <book         name="Documents/efr32fg28-errata.pdf"         title="EFR32FG28A110 Errata"/>
+        <book         name="Documents/efr32fg28-datashort.pdf"      title="EFR32FG28A110 Data Short"/>
+        <!-- *************************  Device 'EFR32FG28A110F1024GM48'  ***************************** -->
+        <device Dname="EFR32FG28A110F1024GM48">
+          <compile header="Device/SiliconLabs/EFR32FG28/Include/em_device.h"  define="EFR32FG28A110F1024GM48"/>
+          <debug      svd="SVD/EFR32FG28/EFR32FG28A110F1024GM48.svd"/>
+          <memory     id="IROM1"                start="0x08000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS2C3.FLM"  start="0x08000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS2C3.flash"  start="0x08000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFR32FG28A110F1024GM68'  ***************************** -->
+        <device Dname="EFR32FG28A110F1024GM68">
+          <compile header="Device/SiliconLabs/EFR32FG28/Include/em_device.h"  define="EFR32FG28A110F1024GM68"/>
+          <debug      svd="SVD/EFR32FG28/EFR32FG28A110F1024GM68.svd"/>
+          <memory     id="IROM1"                start="0x08000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS2C3.FLM"  start="0x08000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS2C3.flash"  start="0x08000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="EFR32FG28A112">
+        <book         name="Documents/efr32fg28-datasheet.pdf"      title="EFR32FG28A112 Data Sheet"/>
+        <book         name="Documents/efr32fg28-errata.pdf"         title="EFR32FG28A112 Errata"/>
+        <book         name="Documents/efr32fg28-datashort.pdf"      title="EFR32FG28A112 Data Short"/>
+        <!-- *************************  Device 'EFR32FG28A112F1024GM48'  ***************************** -->
+        <device Dname="EFR32FG28A112F1024GM48">
+          <compile header="Device/SiliconLabs/EFR32FG28/Include/em_device.h"  define="EFR32FG28A112F1024GM48"/>
+          <debug      svd="SVD/EFR32FG28/EFR32FG28A112F1024GM48.svd"/>
+          <memory     id="IROM1"                start="0x08000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS2C3.FLM"  start="0x08000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS2C3.flash"  start="0x08000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFR32FG28A112F1024GM68'  ***************************** -->
+        <device Dname="EFR32FG28A112F1024GM68">
+          <compile header="Device/SiliconLabs/EFR32FG28/Include/em_device.h"  define="EFR32FG28A112F1024GM68"/>
+          <debug      svd="SVD/EFR32FG28/EFR32FG28A112F1024GM68.svd"/>
+          <memory     id="IROM1"                start="0x08000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS2C3.FLM"  start="0x08000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS2C3.flash"  start="0x08000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="EFR32FG28A120">
+        <book         name="Documents/efr32fg28-datasheet.pdf"      title="EFR32FG28A120 Data Sheet"/>
+        <book         name="Documents/efr32fg28-errata.pdf"         title="EFR32FG28A120 Errata"/>
+        <book         name="Documents/efr32fg28-datashort.pdf"      title="EFR32FG28A120 Data Short"/>
+        <!-- *************************  Device 'EFR32FG28A120F1024GM48'  ***************************** -->
+        <device Dname="EFR32FG28A120F1024GM48">
+          <compile header="Device/SiliconLabs/EFR32FG28/Include/em_device.h"  define="EFR32FG28A120F1024GM48"/>
+          <debug      svd="SVD/EFR32FG28/EFR32FG28A120F1024GM48.svd"/>
+          <memory     id="IROM1"                start="0x08000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS2C3.FLM"  start="0x08000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS2C3.flash"  start="0x08000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFR32FG28A120F1024GM68'  ***************************** -->
+        <device Dname="EFR32FG28A120F1024GM68">
+          <compile header="Device/SiliconLabs/EFR32FG28/Include/em_device.h"  define="EFR32FG28A120F1024GM68"/>
+          <debug      svd="SVD/EFR32FG28/EFR32FG28A120F1024GM68.svd"/>
+          <memory     id="IROM1"                start="0x08000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS2C3.FLM"  start="0x08000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS2C3.flash"  start="0x08000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="EFR32FG28A122">
+        <book         name="Documents/efr32fg28-datasheet.pdf"      title="EFR32FG28A122 Data Sheet"/>
+        <book         name="Documents/efr32fg28-errata.pdf"         title="EFR32FG28A122 Errata"/>
+        <book         name="Documents/efr32fg28-datashort.pdf"      title="EFR32FG28A122 Data Short"/>
+        <!-- *************************  Device 'EFR32FG28A122F1024GM48'  ***************************** -->
+        <device Dname="EFR32FG28A122F1024GM48">
+          <compile header="Device/SiliconLabs/EFR32FG28/Include/em_device.h"  define="EFR32FG28A122F1024GM48"/>
+          <debug      svd="SVD/EFR32FG28/EFR32FG28A122F1024GM48.svd"/>
+          <memory     id="IROM1"                start="0x08000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS2C3.FLM"  start="0x08000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS2C3.flash"  start="0x08000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFR32FG28A122F1024GM68'  ***************************** -->
+        <device Dname="EFR32FG28A122F1024GM68">
+          <compile header="Device/SiliconLabs/EFR32FG28/Include/em_device.h"  define="EFR32FG28A122F1024GM68"/>
+          <debug      svd="SVD/EFR32FG28/EFR32FG28A122F1024GM68.svd"/>
+          <memory     id="IROM1"                start="0x08000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS2C3.FLM"  start="0x08000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS2C3.flash"  start="0x08000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="EFR32FG28B310">
+        <book         name="Documents/efr32fg28-datasheet.pdf"      title="EFR32FG28B310 Data Sheet"/>
+        <book         name="Documents/efr32fg28-errata.pdf"         title="EFR32FG28B310 Errata"/>
+        <book         name="Documents/efr32fg28-datashort.pdf"      title="EFR32FG28B310 Data Short"/>
+        <!-- *************************  Device 'EFR32FG28B310F1024IM48'  ***************************** -->
+        <device Dname="EFR32FG28B310F1024IM48">
+          <compile header="Device/SiliconLabs/EFR32FG28/Include/em_device.h"  define="EFR32FG28B310F1024IM48"/>
+          <debug      svd="SVD/EFR32FG28/EFR32FG28B310F1024IM48.svd"/>
+          <memory     id="IROM1"                start="0x08000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS2C3.FLM"  start="0x08000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS2C3.flash"  start="0x08000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFR32FG28B310F1024IM68'  ***************************** -->
+        <device Dname="EFR32FG28B310F1024IM68">
+          <compile header="Device/SiliconLabs/EFR32FG28/Include/em_device.h"  define="EFR32FG28B310F1024IM68"/>
+          <debug      svd="SVD/EFR32FG28/EFR32FG28B310F1024IM68.svd"/>
+          <memory     id="IROM1"                start="0x08000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS2C3.FLM"  start="0x08000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS2C3.flash"  start="0x08000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="EFR32FG28B312">
+        <book         name="Documents/efr32fg28-datasheet.pdf"      title="EFR32FG28B312 Data Sheet"/>
+        <book         name="Documents/efr32fg28-errata.pdf"         title="EFR32FG28B312 Errata"/>
+        <book         name="Documents/efr32fg28-datashort.pdf"      title="EFR32FG28B312 Data Short"/>
+        <!-- *************************  Device 'EFR32FG28B312F1024IM48'  ***************************** -->
+        <device Dname="EFR32FG28B312F1024IM48">
+          <compile header="Device/SiliconLabs/EFR32FG28/Include/em_device.h"  define="EFR32FG28B312F1024IM48"/>
+          <debug      svd="SVD/EFR32FG28/EFR32FG28B312F1024IM48.svd"/>
+          <memory     id="IROM1"                start="0x08000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS2C3.FLM"  start="0x08000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS2C3.flash"  start="0x08000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFR32FG28B312F1024IM68'  ***************************** -->
+        <device Dname="EFR32FG28B312F1024IM68">
+          <compile header="Device/SiliconLabs/EFR32FG28/Include/em_device.h"  define="EFR32FG28B312F1024IM68"/>
+          <debug      svd="SVD/EFR32FG28/EFR32FG28B312F1024IM68.svd"/>
+          <memory     id="IROM1"                start="0x08000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS2C3.FLM"  start="0x08000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS2C3.flash"  start="0x08000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="EFR32FG28B320">
+        <book         name="Documents/efr32fg28-datasheet.pdf"      title="EFR32FG28B320 Data Sheet"/>
+        <book         name="Documents/efr32fg28-errata.pdf"         title="EFR32FG28B320 Errata"/>
+        <book         name="Documents/efr32fg28-datashort.pdf"      title="EFR32FG28B320 Data Short"/>
+        <!-- *************************  Device 'EFR32FG28B320F1024IM48'  ***************************** -->
+        <device Dname="EFR32FG28B320F1024IM48">
+          <compile header="Device/SiliconLabs/EFR32FG28/Include/em_device.h"  define="EFR32FG28B320F1024IM48"/>
+          <debug      svd="SVD/EFR32FG28/EFR32FG28B320F1024IM48.svd"/>
+          <memory     id="IROM1"                start="0x08000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS2C3.FLM"  start="0x08000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS2C3.flash"  start="0x08000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFR32FG28B320F1024IM68'  ***************************** -->
+        <device Dname="EFR32FG28B320F1024IM68">
+          <compile header="Device/SiliconLabs/EFR32FG28/Include/em_device.h"  define="EFR32FG28B320F1024IM68"/>
+          <debug      svd="SVD/EFR32FG28/EFR32FG28B320F1024IM68.svd"/>
+          <memory     id="IROM1"                start="0x08000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS2C3.FLM"  start="0x08000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS2C3.flash"  start="0x08000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="EFR32FG28B322">
+        <book         name="Documents/efr32fg28-datasheet.pdf"      title="EFR32FG28B322 Data Sheet"/>
+        <book         name="Documents/efr32fg28-errata.pdf"         title="EFR32FG28B322 Errata"/>
+        <book         name="Documents/efr32fg28-datashort.pdf"      title="EFR32FG28B322 Data Short"/>
+        <!-- *************************  Device 'EFR32FG28B322F1024IM48'  ***************************** -->
+        <device Dname="EFR32FG28B322F1024IM48">
+          <compile header="Device/SiliconLabs/EFR32FG28/Include/em_device.h"  define="EFR32FG28B322F1024IM48"/>
+          <debug      svd="SVD/EFR32FG28/EFR32FG28B322F1024IM48.svd"/>
+          <memory     id="IROM1"                start="0x08000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS2C3.FLM"  start="0x08000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS2C3.flash"  start="0x08000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFR32FG28B322F1024IM68'  ***************************** -->
+        <device Dname="EFR32FG28B322F1024IM68">
+          <compile header="Device/SiliconLabs/EFR32FG28/Include/em_device.h"  define="EFR32FG28B322F1024IM68"/>
+          <debug      svd="SVD/EFR32FG28/EFR32FG28B322F1024IM68.svd"/>
+          <memory     id="IROM1"                start="0x08000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS2C3.FLM"  start="0x08000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS2C3.flash"  start="0x08000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler GCC">
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="Compiler IAR">
+      <require Tcompiler="IAR"/>
+    </condition>
+
+    <!-- Device Conditions -->
+    <condition id="EFR32FG28">
+      <description>Silicon Labs EFR32FG28 device series</description>
+      <require Dvendor="Silicon Labs:21" Dname="EFR32FG28*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="2024.6.0" condition="EFR32FG28">
+      <description>System Startup for Silicon Labs EFR32FG28 device series</description>
+      <files>
+        <!-- include folder -->
+        <file category="include" name="Device/SiliconLabs/EFR32FG28/Include/"/>
+        <file category="header"  name="Device/SiliconLabs/EFR32FG28/Include/em_device.h"/>
+        <!-- startup files -->
+        <file category="source"  name="Device/SiliconLabs/EFR32FG28/Source/GCC/startup_efr32fg28.S" condition="Compiler GCC"   attr="config" version="2024.6.0"/>
+        <file category="source"  name="Device/SiliconLabs/EFR32FG28/Source/IAR/startup_efr32fg28.s" condition="Compiler IAR"   attr="config" version="2024.6.0"/>
+        <!-- linker command file -->
+        <file category="linkerScript"  name="Device/SiliconLabs/EFR32FG28/Source/GCC/efr32fg28.ld" condition="Compiler GCC" attr="config" version="2024.6.0"/>
+        <!-- system file -->
+        <file category="source"  name="Device/SiliconLabs/EFR32FG28/Source/system_efr32fg28.c" attr="config" version="2024.6.0"/>
+      </files>
+    </component>
+  </components>
+</package>

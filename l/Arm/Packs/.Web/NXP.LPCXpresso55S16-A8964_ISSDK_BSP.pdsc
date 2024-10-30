@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>LPCXpresso55S16-A8964_ISSDK_BSP</name>
+  <vendor>NXP</vendor>
+  <description>Middleware issdk Board Support Pack for LPCXpresso55S16-A8964</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="1.0.1" date="2023-10-25" deprecated="2023-10-25" replacement="NXP.LPCXpresso55S16-A8964_ISSDK_Examples">This pack is no longer maintained. The new pack has been released with "_Examples" suffix instead of "_BSP".</release>
+    <release version="1.0.0" date="2023-07-27">NXP CMSIS SBSP Packs based on MCUXpresso SDK 2.14.0</release>
+  </releases>
+  <keywords>
+    <keyword>Middleware Board Support Pack</keyword>
+  </keywords>
+  <requirements>
+    <packages>
+      <package name="ISSDK" vendor="NXP" version="1.0.1"/>
+      <package name="LPC55S16_DFP" vendor="NXP" version="18.0.0"/>
+      <package name="CMSIS" vendor="ARM" version="5.8.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <boards>
+    <board vendor="NXP" name="LPCXpresso55S16-A8964">
+      <description>LPC55S16 MCU evaluation kit with FRDM-STBA-A8964 sensor shield board having FXLS8964AF Ultra-low power motion wakeup sensor for Automotive Keyfob applications</description>
+      <image small="boards/lpcxpresso55s16_a8964/lpcxpresso55s16_a8964.png"/>
+      <mountedDevice Dname="LPC55S16" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC5512JBD100" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC5512JBD64" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC5514JBD100" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC5514JBD64" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC5514JEV59" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC5516JBD100" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC5516JBD64" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC5516JEV59" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC5516JEV98" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC55S14JBD100" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC55S14JBD64" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC55S14JEV59" Dvendor="NXP:11"/>
+    </board>
+  </boards>
+  <conditions>
+    <condition id="device.LPC55S16.internal_condition">
+      <accept Dname="LPC55S16" Dvariant="LPC55S16JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S16JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S16" Dvariant="LPC55S16JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S16JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S16" Dvariant="LPC55S16JEV59" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S16JEV59" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S16" Dvariant="LPC55S16JEV98" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S16JEV98" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="BOARD_Project_Template.lpcxpresso55s16_a8964.condition_id">
+      <require condition="allOf.driver.flexcomm_usart, driver.flexcomm, driver.lpc_iocon, driver.lpc_gpio, driver.common, driver.clock, driver.power, utility.debug_console, component.usart_adapter, component.serial_manager_uart, component.serial_manager, device.LPC55S16_startup, device=LPC55S16.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.flexcomm_usart, driver.flexcomm, driver.lpc_iocon, driver.lpc_gpio, driver.common, driver.clock, driver.power, utility.debug_console, component.usart_adapter, component.serial_manager_uart, component.serial_manager, device.LPC55S16_startup, device=LPC55S16.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="usart"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flexcomm"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="iocon"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="power"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="usart_adapter"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_uart"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require Cclass="Device" Cgroup="Startup" Csub=""/>
+      <require condition="device.LPC55S16.internal_condition"/>
+    </condition>
+  </conditions>
+  <examples>
+    <example name="fxls8964af_poll" folder="boards/lpcxpresso55s16_a8964/issdk_examples/sensors/fxls896xaf/fxls896xaf_poll" doc="readme.txt">
+      <description>The FXLS8964AF POLL example application demonstrates the use of the FXLS8964AF sensor in polling Mode using I2C interface.The example demonstrates configuration sensor registers reguired to put the sensor in Poll Mode and read out samples. The polls for dataready and when samples are available sensor reads samples.</description>
+      <board name="LPCXpresso55S16-A8964" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/fxls8964af_poll.uvprojx"/>
+        <environment name="csolution" load="fxls8964af_poll.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="fxls8964af_interrupt" folder="boards/lpcxpresso55s16_a8964/issdk_examples/sensors/fxls896xaf/fxls896xaf_interrupt" doc="readme.txt">
+      <description>The FXLS8964AF Interrupt example application demonstrates the use of the FXLS8964AF sensor in Interrupt Mode.The example demonstrates configuration of sensor reguired to put the sensor in Interrupt Mode and read out samples.The sensor waits for dataready interrupt and wakes on interrupt to read out samples.</description>
+      <board name="LPCXpresso55S16-A8964" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/fxls8964af_interrupt.uvprojx"/>
+        <environment name="csolution" load="fxls8964af_interrupt.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="fxls8964af_spi" folder="boards/lpcxpresso55s16_a8964/issdk_examples/sensors/fxls896xaf/fxls896xaf_spi" doc="readme.txt">
+      <description>The FXLS8964AF POLL example application demonstrates the use of the FXLS8964AF sensor in polling Mode using SPI interface.The example demonstrates configuration sensor registers reguired to put the sensor in Poll Mode and read out samples. The polls for dataready and when samples are available sensor reads samples.</description>
+      <board name="LPCXpresso55S16-A8964" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/fxls8964af_spi.uvprojx"/>
+        <environment name="csolution" load="fxls8964af_spi.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="fxls8964af_motion_wakeup" folder="boards/lpcxpresso55s16_a8964/issdk_examples/sensors/fxls896xaf/fxls896xaf_motion_wakeup" doc="readme.txt">
+      <description>The FXLS8964AF motion wakeup example demonstrated SDCD block configuration to detect motion event and wakeup the system. This example also demonstrated how to configure sensor for Auto Wake/Sleep to automatically go to low-power sleep when no-motion is detected for ASLP counter.</description>
+      <board name="LPCXpresso55S16-A8964" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/fxls8964af_motion_wakeup.uvprojx"/>
+        <environment name="csolution" load="fxls8964af_motion_wakeup.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+  </examples>
+  <components>
+    <component Cclass="Sensors" Cgroup="ISSDK project template" Csub="lpcxpresso55s16_a8964" Cversion="1.0.0" condition="BOARD_Project_Template.lpcxpresso55s16_a8964.condition_id">
+      <description>Board_project_template lpcxpresso55s16_a8964</description>
+      <files>
+        <file category="sourceC" attr="config" name="boards/lpcxpresso55s16_a8964/project_template/board.c" version="1.0.0" projectpath="lpcxpresso55s16_a8964/project_template"/>
+        <file category="header" attr="config" name="boards/lpcxpresso55s16_a8964/project_template/board.h" version="1.0.0" projectpath="lpcxpresso55s16_a8964/project_template"/>
+        <file category="sourceC" attr="config" name="boards/lpcxpresso55s16_a8964/project_template/clock_config.c" version="1.0.0" projectpath="lpcxpresso55s16_a8964/project_template"/>
+        <file category="header" attr="config" name="boards/lpcxpresso55s16_a8964/project_template/clock_config.h" version="1.0.0" projectpath="lpcxpresso55s16_a8964/project_template"/>
+        <file category="sourceC" attr="config" name="boards/lpcxpresso55s16_a8964/project_template/pin_mux.c" version="1.0.0" projectpath="lpcxpresso55s16_a8964/project_template"/>
+        <file category="header" attr="config" name="boards/lpcxpresso55s16_a8964/project_template/pin_mux.h" version="1.0.0" projectpath="lpcxpresso55s16_a8964/project_template"/>
+        <file category="sourceC" attr="config" name="boards/lpcxpresso55s16_a8964/project_template/peripherals.c" version="1.0.0" projectpath="lpcxpresso55s16_a8964/project_template"/>
+        <file category="header" attr="config" name="boards/lpcxpresso55s16_a8964/project_template/peripherals.h" version="1.0.0" projectpath="lpcxpresso55s16_a8964/project_template"/>
+        <file category="include" name="boards/lpcxpresso55s16_a8964/project_template/"/>
+      </files>
+    </component>
+  </components>
+</package>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.7.26" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.26/schema/PACK.xsd">
+  <vendor>YTMicro</vendor>
+  <name>YTM32B1MD1_DFP</name>
+  <description>Device Family Pack for YTM32B1MD1</description>
+  <url>https://doc.ytmicro.com/keil/</url>
+
+  <releases>
+    <release version="1.2.0" date="2024-03-12">
+      Update head and svd file.
+    </release>
+    <release version="1.1.1" date="2023-09-21">
+      Updated devices.
+    </release>
+    <release version="1.1.0" date="2023-06-25">
+      Changed company short form and Dvendor ID to 180.
+    </release>
+    <release version="1.0.4" date="2022-12-21"> 
+      Only include device info and flash download algorithm 
+    </release>
+  </releases>
+
+  <keywords>
+    <keyword>YTMicro</keyword>
+    <keyword>YTM32B1MD1</keyword>
+    <keyword>Device Family Pack</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="YTM32Bx" Dvendor="YTMicro:180">
+
+      <!-- ******************************  Subfamily 'YTM32B1MD1'  ****************************** -->
+      <subFamily DsubFamily="YTM32B1MD1">
+        <processor Dcore="Cortex-M33" DcoreVersion="r0p4" Dfpu="SP_FPU" Dmpu="MPU" Dtz="NO_TZ" Ddsp="DSP" Dendian="Little-endian" Dclock="120000000" /> 
+        <compile header="Device/Include/YTM32B1MD1.h"/>
+        <debug svd="SVD/YTM32B1MD1.svd"/>
+        <algorithm name="Flash/YTM32B1MD1_Main.FLM" start="0x00000000" size="0x00080000" default="1"/>
+        <memory name="IROM1" access="rx" start="0x00000000" size="0x80000" default="1"/>
+        <memory name="IRAM1" access="rwx" start="0x1FFF8000" size="0x8000" default="1"/>
+        <memory name="IRAM2" access="rwx" start="0x20000000" size="0x8000" default="1"/>
+        <description>YTM32B1MD1 120MHz MCU based on ARM Cortex-M33 Core </description>
+
+        <device Dname="YTM32B1MD14">
+          <description>Includes LQFP100/64 packages. 512KB PFlash, 64KB SRAM</description>
+        </device>
+      </subFamily>
+    
+    </family>
+  </devices>
+
+  <taxonomy>
+    <description Cclass="Device" Cgroup="Startup">YTMicro SDK Startup</description>
+    <description Cclass="Device" Cgroup="SDK Drivers">YTMicro SDK Peripheral Drivers</description>
+  </taxonomy>
+
+  <conditions>
+    <condition id="YTM32B1MD1">
+      <description>YTMicro YTM32B1MD1x device</description>
+      <require Dvendor="YTMicro:180" Dname="YTM32B1MD1*"/>
+    </condition>
+
+    <!-- Device + Compiler Conditions (GCC) -->
+    <condition id="YTM32B1M_GCC">
+      <description>YTMicro device and GCC compiler</description>
+      <require Tcompiler="GCC"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.1.1" condition="YTM32B1MD1">
+      <description>Startup for MCU</description>
+      <files>
+        <file category="include" name="Device/Include/"/>
+        <file category="source"  name="Device/Source/startup.c" attr="config" version="1.1.1"/>
+        <file category="source"  name="Device/Source/system_YTM32B1MD1.c" attr="config" version="1.1.1"/>
+        <file category="source"  condition="YTM32B1M_GCC" name="Device/Source/YTM32B1MD1_startup_gcc.S" attr="config" version="1.1.1"/>
+      </files>
+    </component>
+  </components>
+</package>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>EVKB-IMXRT1050_SDMMC_BSP</name>
+  <vendor>NXP</vendor>
+  <description>Middleware sdmmc Board Support Pack for EVKB-IMXRT1050</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="1.0.1" date="2023-10-25" deprecated="2023-10-25" replacement="NXP.EVKB-IMXRT1050_SDMMC_Examples">This pack is no longer maintained. The new pack has been released with "_Examples" suffix instead of "_BSP".</release>
+    <release version="1.0.0" date="2023-07-27">NXP CMSIS SBSP Packs based on MCUXpresso SDK 2.14.0</release>
+  </releases>
+  <keywords>
+    <keyword>Middleware Board Support Pack</keyword>
+  </keywords>
+  <requirements>
+    <packages>
+      <package name="MIMXRT1052_DFP" vendor="NXP" version="18.0.0"/>
+      <package name="SDMMC" vendor="NXP" version="1.0.1"/>
+      <package name="EVKB-IMXRT1050_BSP" vendor="NXP" version="18.0.0"/>
+      <package name="Component_OS_Abstraction_Layer" vendor="NXP" version="1.0.1"/>
+      <package name="CMSIS" vendor="ARM" version="5.8.0"/>
+      <package name="FREERTOS-KERNEL" vendor="NXP" version="1.0.1"/>
+      <package name="FATFS" vendor="NXP" version="1.0.1"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <boards>
+    <board vendor="NXP" name="EVKB-IMXRT1050">
+      <description>i.MX RT1050 Evaluation Kit</description>
+      <image small="boards/evkbimxrt1050/evkbimxrt1050.png"/>
+      <mountedDevice Dname="MIMXRT1052xxxxB" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1051CVJ5B" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1051CVL5B" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1051DVJ6B" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1051DVL6B" Dvendor="NXP:11"/>
+    </board>
+  </boards>
+  <examples>
+    <example name="sdcard_polling" folder="boards/evkbimxrt1050/sdmmc_examples/sdcard_polling" doc="readme.txt">
+      <description>The SDCARD Polling project is a demonstration program that uses the SDK software. It reads/writes/erases the SD card continusly. The purpose of this example is to show how to use SDCARD driver andshow how to use polling based transfer API in SDHC driver in SDK software to access SD card.Note: If DATA3 is used as the card detect PIN, please make sure DATA3 is pull down, no matter internal or external, at the same time, make sure the card can pull DATA3 up, then host can detect card through DATA3.And SDHC do not support detect card through CD by host, card can be detected through DATA3 or GPIO.No matter detect card through host or gpio, make sure the pinmux configuration is correct.</description>
+      <board name="EVKB-IMXRT1050" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/sdcard_polling.uvprojx"/>
+        <environment name="csolution" load="sdcard_polling.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="sdcard_interrupt" folder="boards/evkbimxrt1050/sdmmc_examples/sdcard_interrupt" doc="readme.txt">
+      <description>The SDCARD Interrupt project is a demonstration program that uses the SDK software. It reads/writes/erases the SD card continusly. The purpose of this example is to show how to use SDCARD driver andshow how to use interrupt based transfer API in SDHC driver in SDK software to access SD card.Note: If DATA3 is used as the card detect PIN, please make sure DATA3 is pull down, no matter internal or external, at the same time, make sure the card can pull DATA3 up, then host can detect card through DATA3.And SDHC do not support detect card through CD by host, card can be detected through DATA3 or GPIO.No matter detect card through host or gpio, make sure the pinmux configuration is correct.</description>
+      <board name="EVKB-IMXRT1050" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/sdcard_interrupt.uvprojx"/>
+        <environment name="csolution" load="sdcard_interrupt.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="sdcard_freertos" folder="boards/evkbimxrt1050/sdmmc_examples/sdcard_freertos" doc="readme.txt">
+      <description>The SDCARD FreeRTOS project is a demonstration program that uses the SDK software. It reads/writes/erases the SD card continusly. The purpose of this example is to show how to use SDCARD driver with FreeRTOS in SDK software to access SD card.Note: If DATA3 is used as the card detect PIN, please make sure DATA3 is pull down, no matter internal or external, at the same time, make sure the card can pull DATA3 up, then host can detect card through DATA3.And SDHC do not support detect card through CD by host, card can be detected through DATA3 or GPIO.No matter detect card through host or gpio, make sure the pinmux configuration is correct.</description>
+      <board name="EVKB-IMXRT1050" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/sdcard_freertos.uvprojx"/>
+        <environment name="csolution" load="sdcard_freertos.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="sdcard_fatfs" folder="boards/evkbimxrt1050/sdmmc_examples/sdcard_fatfs" doc="readme.txt">
+      <description>The SDCARD FATFS project is a demonstration program that uses the SDK software. Tt mounts a file system based on a SD card then does "creat directory/read directory/create file/write file/read file"operation. The file sdhc_config.h has default SDHC configuration which can be adjusted to let carddriver has different performance. The purpose of this example is to show how to use SDCARD driver based FATFS disk in SDK software.</description>
+      <board name="EVKB-IMXRT1050" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/sdcard_fatfs.uvprojx"/>
+        <environment name="csolution" load="sdcard_fatfs.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="mmccard_freertos" folder="boards/evkbimxrt1050/sdmmc_examples/mmccard_freertos" doc="readme.txt">
+      <description>The MMCCARD FreeRTOS project is a demonstration program that uses the SDK software. It reads/writes/erases the MMC card continusly. The purpose of this example is to show how to use MMCCARD driverwith FreeRTOS in SDK software to access MMC card.Note:User can use MMC plus card or emmc(on board IC, but not recommand use emmc socket,due to high speed timing restriction)</description>
+      <board name="EVKB-IMXRT1050" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/mmccard_freertos.uvprojx"/>
+        <environment name="csolution" load="mmccard_freertos.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="sdio_freertos" folder="boards/evkbimxrt1050/sdmmc_examples/sdio_freertos" doc="readme.txt">
+      <description>The FREERTOS SDIO project is a demonstration program that uses the SDK software. It reads/writes the SDIO card reigister. The purpose of this example is to show how to use SDio driver with freertos.</description>
+      <board name="EVKB-IMXRT1050" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/sdio_freertos.uvprojx"/>
+        <environment name="csolution" load="sdio_freertos.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="sdcard_fatfs_freertos" folder="boards/evkbimxrt1050/sdmmc_examples/sdcard_fatfs_freertos" doc="readme.txt">
+      <description>The SDCARD FATFS FREERTOS project is a demonstration program that uses the SDK software. The purpose of this example is to show how to use SDCARD with fatfs and freertos.</description>
+      <board name="EVKB-IMXRT1050" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/sdcard_fatfs_freertos.uvprojx"/>
+        <environment name="csolution" load="sdcard_fatfs_freertos.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+  </examples>
+</package>

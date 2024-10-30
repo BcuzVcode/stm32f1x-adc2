@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>VE_CAx_DFP</name>
+  <description>Versatile Express Device Family Pack for Cortex-A</description>
+
+  <releases>
+    <release version="1.0.0" date="2020-02-17">
+      Initial Release version of Versatile Express Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Arm</keyword>
+    <keyword>Device Family Package</keyword>
+    <keyword>Versatile Express</keyword>
+    <keyword>Versatile Express V2M-P1</keyword>
+  </keywords>
+
+  <conditions>
+    <!-- Device conditions -->
+    <condition id="ARMCAx CMSIS">
+      <description>ARMCA Device and CMSIS Core</description>
+      <require Dvendor="ARM:82" Dname="VE_CA*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    
+    <condition id="VE_CA5 CMSIS">
+      <description>Generic Arm Cortex-A5 device startup and depends on CMSIS Core</description>
+      <require Dvendor="ARM:82" Dname="VE_CA5"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="VE_CA7 CMSIS">
+      <description>Generic Arm Cortex-A7 device startup and depends on CMSIS Core</description>
+      <require Dvendor="ARM:82" Dname="VE_CA7"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="VE_CA9 CMSIS">
+      <description>Generic Arm Cortex-A9 device startup and depends on CMSIS Core</description>
+      <require Dvendor="ARM:82" Dname="VE_CA9"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    
+    <!-- Compiler conditions -->
+    <condition id="ARMCC6">
+      <accept Tcompiler="ARMCC" Toptions="AC6"/>
+      <accept Tcompiler="ARMCC" Toptions="AC6LTO"/>
+    </condition>
+    <condition id="ARMCC5">
+      <require Tcompiler="ARMCC" Toptions="AC5"/>
+    </condition>
+    <condition id="GCC">
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="IAR">
+      <require Tcompiler="IAR"/>
+    </condition>
+  </conditions>
+
+  <devices>
+      <!-- ******************************  Cortex-A5  ****************************** -->
+    <family Dfamily="ARM Cortex A5" Dvendor="ARM:82">
+      <book name="http://infocenter.arm.com/help/topic/com.arm.doc.ddi0433c/index.html" title="Cortex-A5 Technical Reference Manual"/>
+      <description>
+The Arm Cortex-A5 processor is a high-performance, low-power, Arm macrocell with an L1 cache subsystem that provides full
+virtual memory capabilities. The Cortex-A5 processor implements the Armv7-A architecture profile and can execute 32-bit
+Arm instructions and 16-bit and 32-bit Thumb instructions. The Cortex-A5 is the smallest member of the Cortex-A processor family.
+      </description>
+
+      <memory id="IROM1"                                start="0x00000000" size="0x04000000" startup="0" default="0"/> <!-- 64MB NOR -->
+      <memory id="IROM2"                                start="0x0C000000" size="0x04000000" startup="0" default="0"/> <!-- 64MB NOR -->
+      <memory id="IRAM1"                                start="0x14000000" size="0x02000000" init   ="0" default="0"/> <!-- 32MB SRAM -->
+      <memory id="IRAM2"                                start="0x80000000" size="0x40000000" init   ="1" default="1"/> <!-- 1GB DRAM -->
+
+      <device Dname="VE_CA5">
+        <processor Dcore="Cortex-A5" DcoreVersion="r0p1" Dfpu="DP_FPU" Dmpu="MPU" Dendian="Configurable" Dclock="12000000"/>
+        <compile header="Device/VE_CA5/Include/VE_CA5.h" define="VE_CA5"/>
+      </device>
+    </family>
+
+    <!-- ******************************  Cortex-A7  ****************************** -->
+    <family Dfamily="ARM Cortex A7" Dvendor="ARM:82">
+      <book name="http://infocenter.arm.com/help/topic/com.arm.doc.ddi0464f/index.html" title="Cortex-A7 MPCore Technical Reference Manual"/>
+      <description>
+The Cortex-A7 MPCore processor is a high-performance, low-power processor that implements the Armv7-A architecture.
+The Cortex-A7 MPCore processor has one to four processors in a single multiprocessor device with a L1 cache subsystem,
+an optional integrated GIC, and an optional L2 cache controller.
+      </description>
+
+      <memory id="IROM1"                                start="0x00000000" size="0x04000000" startup="0" default="0"/> <!-- 64MB NOR -->
+      <memory id="IROM2"                                start="0x0C000000" size="0x04000000" startup="0" default="0"/> <!-- 64MB NOR -->
+      <memory id="IRAM1"                                start="0x14000000" size="0x02000000" init   ="0" default="0"/> <!-- 32MB SRAM -->
+      <memory id="IRAM2"                                start="0x80000000" size="0x40000000" init   ="1" default="1"/> <!-- 1GB DRAM -->
+
+      <device Dname="VE_CA7">
+        <processor Dcore="Cortex-A7" DcoreVersion="r0p5" Dfpu="DP_FPU" Dmpu="MPU" Dendian="Configurable" Dclock="12000000"/>
+        <compile header="Device/VE_CA7/Include/VE_CA7.h" define="VE_CA7"/>
+      </device>
+    </family>
+
+    <!-- ******************************  Cortex-A9  ****************************** -->
+    <family Dfamily="ARM Cortex A9" Dvendor="ARM:82">
+      <book name="http://infocenter.arm.com/help/topic/com.arm.doc.100511_0401_10_en/index.html" title="Cortex-A9 Technical Reference Manual"/>
+      <description>
+The Cortex-A9 processor is a high-performance, low-power, Arm macrocell with an L1 cache subsystem that provides full virtual memory capabilities.
+The Cortex-A9 processor implements the Armv7-A architecture and runs 32-bit Arm instructions, 16-bit and 32-bit Thumb instructions,
+and 8-bit Java bytecodes in Jazelle state.
+      </description>
+
+      <memory id="IROM1"                                start="0x00000000" size="0x04000000" startup="0" default="0"/> <!-- 64MB NOR -->
+      <memory id="IROM2"                                start="0x0C000000" size="0x04000000" startup="0" default="0"/> <!-- 64MB NOR -->
+      <memory id="IRAM1"                                start="0x14000000" size="0x02000000" init   ="0" default="0"/> <!-- 32MB SRAM -->
+      <memory id="IRAM2"                                start="0x80000000" size="0x40000000" init   ="1" default="1"/> <!-- 1GB DRAM -->
+
+      <device Dname="VE_CA9">
+        <processor Dcore="Cortex-A9" DcoreVersion="r4p1" Dfpu="DP_FPU" Dmpu="MPU" Dendian="Configurable" Dclock="12000000"/>
+        <compile header="Device/VE_CA9/Include/VE_CA9.h" define="VE_CA9"/>
+      </device>
+    </family>
+  </devices>
+
+  <components>
+      <!-- Cortex-A5 -->
+    <component Cclass="Device" Cgroup="Startup"                      Cversion="1.0.0" condition="VE_CA5 CMSIS">
+      <description>System and Startup for Generic Arm Cortex-A5 device</description>
+      <files>
+        <!-- include folder / device header file -->
+        <file category="include"      name="Device/VE_CA5/Include/"/>
+        <!-- startup / system / mmu files -->      
+        <file category="sourceC"      name="Device/VE_CA5/Source/AC5/startup_VE_CA5.c" version="1.0.0" attr="config" condition="ARMCC5"/>
+        <file category="linkerScript" name="Device/VE_CA5/Source/AC5/VE_CA5.sct"       version="1.0.0" attr="config" condition="ARMCC5"/>
+        <file category="sourceC"      name="Device/VE_CA5/Source/AC6/startup_VE_CA5.c" version="1.0.0" attr="config" condition="ARMCC6"/>
+        <file category="linkerScript" name="Device/VE_CA5/Source/AC6/VE_CA5.sct"       version="1.0.0" attr="config" condition="ARMCC6"/>
+        <file category="sourceC"      name="Device/VE_CA5/Source/GCC/startup_VE_CA5.c" version="1.0.0" attr="config" condition="GCC"/>
+        <file category="other"        name="Device/VE_CA5/Source/GCC/VE_CA5.ld"        version="1.0.0" attr="config" condition="GCC"/>
+        <file category="sourceAsm"    name="Device/VE_CA5/Source/IAR/startup_VE_CA5.s" version="1.0.0" attr="config" condition="IAR"/>
+        <file category="linkerScript" name="Device/VE_CA5/Source/IAR/VE_CA5.icf"       version="1.0.0" attr="config" condition="IAR"/>
+        <file category="sourceC"      name="Device/VE_CA5/Source/system_VE_CA5.c"      version="1.0.0" attr="config"/>
+        <file category="sourceC"      name="Device/VE_CA5/Source/mmu_VE_CA5.c"         version="1.0.0" attr="config"/>
+        <file category="header"       name="Device/VE_CA5/Config/system_VE_CA5.h"      version="1.0.0" attr="config"/>
+        <file category="header"       name="Device/VE_CA5/Config/mem_VE_CA5.h"         version="1.0.0" attr="config"/>
+
+      </files>
+    </component>
+
+    <!-- Cortex-A7 -->
+    <component Cclass="Device" Cgroup="Startup"                      Cversion="1.0.0" condition="VE_CA7 CMSIS">
+      <description>System and Startup for Generic Arm Cortex-A7 device</description>
+      <files>
+        <!-- include folder / device header file -->
+        <file category="include"      name="Device/VE_CA7/Include/"/>
+        <!-- startup / system / mmu files -->
+        <file category="sourceC"      name="Device/VE_CA7/Source/AC5/startup_VE_CA7.c" version="1.0.0" attr="config" condition="ARMCC5"/>
+        <file category="linkerScript" name="Device/VE_CA7/Source/AC5/VE_CA7.sct"       version="1.0.0" attr="config" condition="ARMCC5"/>
+        <file category="sourceC"      name="Device/VE_CA7/Source/AC6/startup_VE_CA7.c" version="1.0.0" attr="config" condition="ARMCC6"/>
+        <file category="linkerScript" name="Device/VE_CA7/Source/AC6/VE_CA7.sct"       version="1.0.0" attr="config" condition="ARMCC6"/>
+        <file category="sourceC"      name="Device/VE_CA7/Source/GCC/startup_VE_CA7.c" version="1.0.0" attr="config" condition="GCC"/>
+        <file category="other"        name="Device/VE_CA7/Source/GCC/VE_CA7.ld"        version="1.0.0" attr="config" condition="GCC"/>
+        <file category="sourceAsm"    name="Device/VE_CA7/Source/IAR/startup_VE_CA7.s" version="1.0.0" attr="config" condition="IAR"/>
+        <file category="linkerScript" name="Device/VE_CA7/Source/IAR/VE_CA7.icf"       version="1.0.0" attr="config" condition="IAR"/>
+        <file category="sourceC"      name="Device/VE_CA7/Source/system_VE_CA7.c"      version="1.0.0" attr="config"/>
+        <file category="sourceC"      name="Device/VE_CA7/Source/mmu_VE_CA7.c"         version="1.0.0" attr="config"/>
+        <file category="header"       name="Device/VE_CA7/Config/system_VE_CA7.h"      version="1.0.0" attr="config"/>
+        <file category="header"       name="Device/VE_CA7/Config/mem_VE_CA7.h"         version="1.0.0" attr="config"/>
+      </files>
+    </component>
+
+    <!-- Cortex-A9 -->
+    <component Cclass="Device" Cgroup="Startup"                      Cversion="1.0.1" condition="VE_CA9 CMSIS">
+      <description>System and Startup for Generic Arm Cortex-A9 device</description>
+      <files>
+        <!-- include folder / device header file -->
+        <file category="include"  name="Device/VE_CA9/Include/"/>
+        <!-- startup / system / mmu files -->
+        <file category="sourceC"      name="Device/VE_CA9/Source/AC5/startup_VE_CA9.c" version="1.0.0" attr="config" condition="ARMCC5"/>
+        <file category="linkerScript" name="Device/VE_CA9/Source/AC5/VE_CA9.sct"       version="1.0.0" attr="config" condition="ARMCC5"/>
+        <file category="sourceC"      name="Device/VE_CA9/Source/AC6/startup_VE_CA9.c" version="1.0.0" attr="config" condition="ARMCC6"/>
+        <file category="linkerScript" name="Device/VE_CA9/Source/AC6/VE_CA9.sct"       version="1.0.0" attr="config" condition="ARMCC6"/>
+        <file category="sourceC"      name="Device/VE_CA9/Source/GCC/startup_VE_CA9.c" version="1.0.0" attr="config" condition="GCC"/>
+        <file category="other"        name="Device/VE_CA9/Source/GCC/VE_CA9.ld"        version="1.0.0" attr="config" condition="GCC"/>
+        <file category="sourceAsm"    name="Device/VE_CA9/Source/IAR/startup_VE_CA9.s" version="1.0.0" attr="config" condition="IAR"/>
+        <file category="linkerScript" name="Device/VE_CA9/Source/IAR/VE_CA9.icf"       version="1.0.0" attr="config" condition="IAR"/>
+        <file category="sourceC"      name="Device/VE_CA9/Source/system_VE_CA9.c"      version="1.0.0" attr="config"/>
+        <file category="sourceC"      name="Device/VE_CA9/Source/mmu_VE_CA9.c"         version="1.0.0" attr="config"/>
+        <file category="header"       name="Device/VE_CA9/Config/system_VE_CA9.h"      version="1.0.0" attr="config"/>
+        <file category="header"       name="Device/VE_CA9/Config/mem_VE_CA9.h"         version="1.0.0" attr="config"/>
+      </files>
+    </component>
+
+    <!-- Versatile Express V2M-P1 -->
+    <bundle Cbundle="Versatile Express V2M-P1" Cclass="Board Support" Cversion="1.0.0">
+      <description>Arm Motherboard Express</description>
+      <doc>http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.subset.boards.express/index.html</doc>
+      <component Cgroup="LED" Capiversion="1.0.0" condition="ARMCAx CMSIS">
+      <description>LED driver for Versatile Express</description>
+        <files>
+          <file category="include" name="Boards/Arm/V2M-P1/Common/"/>
+          <file category="source" name="Boards/Arm/V2M-P1/Common/LED_V2M-P1.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.0.0" condition="ARMCAx CMSIS">
+      <description>Buttons driver for Versatile Express</description>
+        <files>
+          <file category="include" name="Boards/Arm/V2M-P1/Common/"/>
+          <file category="source" name="Boards/Arm/V2M-P1/Common/Buttons_V2M-P1.c"/>
+        </files>
+      </component>
+    </bundle>
+  </components>
+
+  <boards>
+    <board name="Versatile Express V2M-P1" vendor="ARM" revision="J">
+      <description>Arm Motherboard Express</description>
+      <book category="overview" name="http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.subset.boards.express/index.html" title="Versatile Express (web page)"/>
+      <book category="manual" name="Documents/DUI0447J_v2m_p1_trm.pdf" title="Arm Motherboard Express - Technical Reference Manual"/>
+      <book category="manual" name="Documents/DDI0496B_v2_configuration.pdf" title="Versatile Express Configuration - Technical Reference Manual"/>
+      <book category="manual" name="Documents/DUI0465F_boot_monitor_trm.pdf" title="Versatile Express Boot Monitor - Technical Reference Manual"/>
+      <book category="manual" name="Documents/fast_models_fvp_rg_100966_1104_00_en.pdf" title="Fixed Virtual Platforms - Reference Guide"/>
+      <mountedDevice deviceIndex="0" Dvendor="ARM:82" Dname="VE_CA5"/>
+      <mountedDevice deviceIndex="0" Dvendor="ARM:82" Dname="VE_CA7"/>
+      <mountedDevice deviceIndex="0" Dvendor="ARM:82" Dname="VE_CA9"/>
+      <feature type="RAM"         n="1"   name="32MB user SRAM"/>
+      <feature type="RAM"         n="1"   name="8MB local video SRAM"/>
+      <feature type="ROM"         n="2"   name="64MB user NOR Flash"/>
+      <feature type="USB"         n="1"   name="USB OTG slave"/>
+      <feature type="USB"         n="2"   name="USB 2.0 host ports"/>
+      <feature type="ETH"         n="1"   name="Ethernet Port"/>
+      <feature type="RS232"       n="4"   name="UART Ports"/>
+      <feature type="LineIn"      n="1"   name="AC97 Audio Codec"/>
+      <feature type="LineOut"     n="1"   name="AC97 Audio Codec"/>
+      <feature type="MemCard"     n="1"   name="MMC/SD Card Slot"/>
+      <feature type="MemCard"     n="1"   name="Compact Flash Slot"/>
+      <feature type="ConnOther"   n="4"   name="PCI Express Gen 1"/>
+      <feature type="ConnOther"   n="1"   name="DVI Connector"/>
+      <feature type="ConnOther"   n="1"   name="PS2 Keyboard and Mouse"/>
+      <feature type="Button"      n="8"   name="User Push-Buttons"/>
+      <feature type="LED"         n="8"   name="User LEDs"/>
+    </board>
+  </boards>
+
+   <examples>
+    <example name="CMSIS-RTOS2 RTX5 Blinky A5" doc="Abstract.txt" folder="Boards/Arm/V2M-P1/Blinky_A5_RTX5">
+      <description>CMSIS-RTOS2 RTX5 Blinky example for Cortex-A5</description>
+      <board name="Versatile Express V2M-P1" vendor="ARM"/>
+      <project>
+        <environment name="ds5" load=".project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS2"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX5</category>
+      </attributes>
+    </example>
+
+    <example name="CMSIS-RTOS2 RTX5 Blinky A7" doc="Abstract.txt" folder="Boards/Arm/V2M-P1/Blinky_A7_RTX5">
+      <description>CMSIS-RTOS2 RTX5 Blinky example for Cortex-A7</description>
+      <board name="Versatile Express V2M-P1" vendor="ARM"/>
+      <project>
+        <environment name="ds5" load=".project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS2"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX5</category>
+      </attributes>
+    </example>
+
+    <example name="CMSIS-RTOS2 RTX5 Blinky A9" doc="Abstract.txt" folder="Boards/Arm/V2M-P1/Blinky_A9_RTX5">
+      <description>CMSIS-RTOS2 RTX5 Blinky example for Cortex-A9</description>
+      <board name="Versatile Express V2M-P1" vendor="ARM"/>
+      <project>
+        <environment name="ds5" load=".project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS2"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX5</category>
+      </attributes>
+    </example>
+
+  <example name="CMSIS-RTOS2 FreeRTOS Blinky A9 (AC5)" doc="Abstract.txt" folder="Boards/Arm/V2M-P1/Blinky_A9_FreeRTOS_AC5">
+      <description>CMSIS-RTOS2 FreeRTOS Blinky example for Cortex-A9 (ARM Compiler 5)</description>
+      <board name="Versatile Express V2M-P1" vendor="ARM"/>
+      <project>
+        <environment name="ds5" load=".project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="CMSIS" Cgroup="RTOS2"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="CMSIS-RTOS2 FreeRTOS Blinky A9 (AC6)" doc="Abstract.txt" folder="Boards/Arm/V2M-P1/Blinky_A9_FreeRTOS_AC6">
+      <description>CMSIS-RTOS2 FreeRTOS Blinky example for Cortex-A9 (ARM Compiler 6)</description>
+      <board name="Versatile Express V2M-P1" vendor="ARM"/>
+      <project>
+        <environment name="ds5" load=".project"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="CMSIS" Cgroup="RTOS2"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+  </examples>
+
+</package>

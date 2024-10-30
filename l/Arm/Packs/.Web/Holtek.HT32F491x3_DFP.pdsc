@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.2"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Holtek</vendor>
+  <url>https://mcu.holtek.com.tw/pack</url>
+  <name>HT32F491x3_DFP</name>
+  <description>Holtek HT32F491x3 Series Device Support</description>
+  <releases>
+    <release version="1.0.3" date="2024-01-17">
+      Update information.
+    </release>
+    <release version="1.0.2" date="2023-11-08">
+      Update information.
+    </release>
+    <release version="1.0.1" date="2023-10-16">
+      Update the device name of flash loader.
+    </release>
+    <release version="1.0.0" date="2023-10-06">
+      First Release version of HT32F491x3 Device Family Pack.
+    </release>
+  </releases>
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Holtek</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>HT32F491x3</keyword>
+    <keyword>HT32F491</keyword>
+    <keyword>HT32</keyword>
+  </keywords>
+
+  <devices>
+    <!-- ******************************  Cortex-M4  ********************** -->
+    <family Dfamily="HT32F491xx Series" Dvendor="Holtek:106">
+      <!--book name="Device/ARM/Documents/??_dgug.pdf" title="?? Device Generic Users Guide"/-->
+      <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="1" Dmpu="1" Dtz="NO_TZ" Dendian="Little-endian" />
+      <compile header="Device/Include/ht32f491x3.h"/>
+
+      <description>
+HT32F491x3 is a new 32-bit high performance, low power consumption universal microcontroller family powered by the ARM Cortex-M4 RISC core,which targeted at various MCU application areas.
+HT32F491x3 family integrates features to simplify system design and provide customers wide range of comprehensive and superior cost effective MCU portfolios with proven technology and great innovation.
+      </description>
+
+      <!-- ************************  Subfamily 'HT32F49153/49163'  **************************** -->
+      <subFamily DsubFamily="HT32F49153/49163">
+        <processor Dfpu="1" Dclock="150000000"/>
+        <debug svd="SVD/HT32F491x3.svd"/>
+        <description>
+HT32F491x3 - ARM Cortex-M4 Core
+  Frequency up to 150 MHz
+  Single-cycle multiplier and hardware divider
+  NVIC support 16 internal, 68 external interrupts, each has 16 priority levels
+
+Memories
+  Flash size up to 256 KB
+  SRAM size up to 48KB
+
+Low power management
+  Power saving mode: sleep,deep-sleep and standby mode
+  Independent battery supply for real-calendar RTC and battry powered domain register
+
+Advanced analog peripherals
+  Up to 1 x 12bit ADC
+
+Integrated peripherals interface
+  Up to 8 x USART/UART/Irda/LIN/ISO7816
+  Up to 3 x SPI
+  Up to 3 x I2C
+
+On-chip resources
+  Up to 1 x 16 bit Advanced Timer, 1 x SysTick Timer, 8 x 16 bit GPTM, 1 x 32 bit GPTM, 2 x WDT, 1 x ERTC
+  5-chs DMA support: Timers, ADC, SPIs, I2Cs, USARTs
+  System supervisor and reset: POR,PDR,LVD
+  80% GPIO available
+  32-bit CRC, 96-bit unique ID
+  On-chip clock: HICK (8MHz), LICK (40KHz)
+        </description>
+
+        <feature type="WDT" n="2"/>
+        <feature type="RTC" n="32768"/>
+        <feature type="ADC" n="1" m="12"/>
+        <feature type="Temp" n="-40" m="105"/>
+        <feature type="VCC" n="2.40" m="3.60"/>
+
+        <!-- *************************  Device 'HT32F49153_32QFN'  ***************************** -->
+        <device Dname="HT32F49153_32QFN">
+          <compile header="Device/Include/ht32f491x3.h" define="USE_HT32F49153_32QFN"/>
+          <memory id="IROM1" access="rx" start="0x08000000" size="0x20000" startup="1" default="1"/>
+          <memory id="IRAM1" access="rw" start="0x20000000" size="0xC000"       init   ="0" default="1"/>
+          <algorithm name="Flash/HT32F491x3_128.FLM" start="0x08000000" size="0x20000" default="1"/>
+          <algorithm name="Flash/HT32F491x3_BOOTMEM_AP.FLM" start="0x1FFFA400" size="0x05000" default="0"/>
+          <algorithm name="Flash/HT32F491x3_USD.FLM" start="0x1FFFF800" size="0x00200" default="0"/>
+        </device>
+
+        <!-- *************************  Device 'HT32F49163_32QFN'  ***************************** -->
+        <device Dname="HT32F49163_32QFN">
+          <compile header="Device/Include/ht32f491x3.h" define="USE_HT32F49163_32QFN"/>
+          <memory id="IROM1" access="rx" start="0x08000000" size="0x20000" startup="1" default="1"/>
+          <memory id="IRAM1" access="rw" start="0x20000000" size="0xC000"       init   ="0" default="1"/>
+          <algorithm name="Flash/HT32F491x3_256.FLM" start="0x08000000" size="0x40000" default="1"/>
+          <algorithm name="Flash/HT32F491x3_BOOTMEM_AP.FLM" start="0x1FFFA400" size="0x05000" default="0"/>
+          <algorithm name="Flash/HT32F491x3_USD.FLM" start="0x1FFFF800" size="0x00200" default="0"/>
+        </device>
+
+        <!-- *************************  Device 'HT32F49153_48LQFP'  ***************************** -->
+        <device Dname="HT32F49153_48LQFP">
+          <compile header="Device/Include/ht32f491x3.h" define="USE_HT32F49153_48LQFP"/>
+          <memory id="IROM1" access="rx" start="0x08000000" size="0x20000" startup="1" default="1"/>
+          <memory id="IRAM1" access="rw" start="0x20000000" size="0xC000"       init   ="0" default="1"/>
+          <algorithm name="Flash/HT32F491x3_128.FLM" start="0x08000000" size="0x20000" default="1"/>
+          <algorithm name="Flash/HT32F491x3_BOOTMEM_AP.FLM" start="0x1FFFA400" size="0x05000" default="0"/>
+          <algorithm name="Flash/HT32F491x3_USD.FLM" start="0x1FFFF800" size="0x00200" default="0"/>
+        </device>
+
+        <!-- *************************  Device 'HT32F49163_48LQFP'  ***************************** -->
+        <device Dname="HT32F49163_48LQFP">
+          <compile header="Device/Include/ht32f491x3.h" define="USE_HT32F49163_48LQFP"/>
+          <memory id="IROM1" access="rx" start="0x08000000" size="0x20000" startup="1" default="1"/>
+          <memory id="IRAM1" access="rw" start="0x20000000" size="0xC000"       init   ="0" default="1"/>
+          <algorithm name="Flash/HT32F491x3_256.FLM" start="0x08000000" size="0x40000" default="1"/>
+          <algorithm name="Flash/HT32F491x3_BOOTMEM_AP.FLM" start="0x1FFFA400" size="0x05000" default="0"/>
+          <algorithm name="Flash/HT32F491x3_USD.FLM" start="0x1FFFF800" size="0x00200" default="0"/>
+        </device>
+
+        <!-- *************************  Device 'HT32F49153_64LQFP'  ***************************** -->
+        <device Dname="HT32F49153_64LQFP">
+          <compile header="Device/Include/ht32f491x3.h" define="USE_HT32F49153_64LQFP"/>
+          <memory id="IROM1" access="rx" start="0x08000000" size="0x20000" startup="1" default="1"/>
+          <memory id="IRAM1" access="rw" start="0x20000000" size="0xC000"       init   ="0" default="1"/>
+          <algorithm name="Flash/HT32F491x3_128.FLM" start="0x08000000" size="0x20000" default="1"/>
+          <algorithm name="Flash/HT32F491x3_BOOTMEM_AP.FLM" start="0x1FFFA400" size="0x05000" default="0"/>
+          <algorithm name="Flash/HT32F491x3_USD.FLM" start="0x1FFFF800" size="0x00200" default="0"/>
+        </device>
+
+        <!-- *************************  Device 'HT32F49163_64LQFP'  ***************************** -->
+        <device Dname="HT32F49163_64LQFP">
+          <compile header="Device/Include/ht32f491x3.h" define="USE_HT32F49163_64LQFP"/>
+          <memory id="IROM1" access="rx" start="0x08000000" size="0x20000" startup="1" default="1"/>
+          <memory id="IRAM1" access="rw" start="0x20000000" size="0xC000"       init   ="0" default="1"/>
+          <algorithm name="Flash/HT32F491x3_256.FLM" start="0x08000000" size="0x40000" default="1"/>
+          <algorithm name="Flash/HT32F491x3_BOOTMEM_AP.FLM" start="0x1FFFA400" size="0x05000" default="0"/>
+          <algorithm name="Flash/HT32F491x3_USD.FLM" start="0x1FFFF800" size="0x00200" default="0"/>
+        </device>
+
+        <!-- *************************  Device 'HT32F49153_100LQFP'  ***************************** -->
+        <device Dname="HT32F49153_100LQFP">
+          <compile header="Device/Include/ht32f491x3.h" define="USE_HT32F49153_100LQFP"/>
+          <memory id="IROM1" access="rx" start="0x08000000" size="0x20000" startup="1" default="1"/>
+          <memory id="IRAM1" access="rw" start="0x20000000" size="0xC000"       init   ="0" default="1"/>
+          <algorithm name="Flash/HT32F491x3_128.FLM" start="0x08000000" size="0x20000" default="1"/>
+          <algorithm name="Flash/HT32F491x3_BOOTMEM_AP.FLM" start="0x1FFFA400" size="0x05000" default="0"/>
+          <algorithm name="Flash/HT32F491x3_USD.FLM" start="0x1FFFF800" size="0x00200" default="0"/>
+        </device>
+
+        <!-- *************************  Device 'HT32F49163_100LQFP'  ***************************** -->
+        <device Dname="HT32F49163_100LQFP">
+          <compile header="Device/Include/ht32f491x3.h" define="USE_HT32F49163_100LQFP"/>
+          <memory id="IROM1" access="rx" start="0x08000000" size="0x20000" startup="1" default="1"/>
+          <memory id="IRAM1" access="rw" start="0x20000000" size="0xC000"       init   ="0" default="1"/>
+          <algorithm name="Flash/HT32F491x3_256.FLM" start="0x08000000" size="0x40000" default="1"/>
+          <algorithm name="Flash/HT32F491x3_BOOTMEM_AP.FLM" start="0x1FFFA400" size="0x05000" default="0"/>
+          <algorithm name="Flash/HT32F491x3_USD.FLM" start="0x1FFFF800" size="0x00200" default="0"/>
+        </device>
+
+      </subFamily>
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- Device Conditions -->
+    <condition id="HT32F491x3">
+      <description>Holtek HT32F491x3 Devices</description>
+      <require Dvendor="Holtek:106" Dname="HT32F491*3*"/>
+      <require Cclass="Device" Cgroup="Startup" />
+    </condition>
+
+    <condition id="HT32F491x3 ARMCC">
+      <description>Holtek HT32F491x3xx Series devices</description>
+      <require Dvendor="Holtek:106" Dname="HT32F491*3*"/>
+      <require condition="Compiler ARMCC"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="HT32F491x3 CMSIS">
+      <description>Holtek HT32F491x3 Devices and CMSIS-CORE</description>
+      <require condition="HT32F491x3"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Cclass="Device" Cgroup="ht32f491x3_conf"/>
+      <require Cclass="Device" Cgroup="ht32f491x3_firmware_library" Csub="crm"/>
+    </condition>
+
+    <!-- HT32F491x3 STDPERIPHERALS CRM Conditions -->
+    <condition id="HT32F491x3 STDPERIPHERALS CRM">
+      <description>Holtek HT32F491x3 Standard Peripherals Drivers with CRM</description>
+      <require condition="HT32F491x3 CMSIS"/>
+      <require Cclass="Device" Cgroup="ht32f491x3_firmware_library" Csub="crm"/>
+    </condition>
+
+    <!-- HT32F491x3 STDPERIPHERALS MISC Conditions -->
+    <condition id="HT32F491x3 STDPERIPHERALS MISC">
+      <description>Holtek  HT32F491x3 Standard Peripherals Drivers with MISC</description>
+      <require condition="HT32F491x3 CMSIS"/>
+      <require Cclass="Device" Cgroup="ht32f491x3_firmware_library" Csub="misc"/>
+    </condition>
+
+    <!-- HT32F491x3 STDPERIPHERALS EVAL Conditions -->
+    <condition id="HT32F491x3 STDPERIPHERALS EVB">
+      <description>Holtek HT32F491x3 Standard Peripherals Drivers with EVB</description>
+      <require condition="HT32F491x3 CMSIS"/>
+      <require Cclass="Device" Cgroup="ht32f491x3_firmware_library" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="ht32f491x3_firmware_library" Csub="exint"/>
+      <require Cclass="Device" Cgroup="ht32f491x3_firmware_library" Csub="usart"/>
+      <require Cclass="Device" Cgroup="ht32f491x3_firmware_library" Csub="scfg"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- ht32f491x3_firmware_library -->
+    <component Cclass="Device" Cgroup="ht32f491x3_firmware_library" Csub="acc" Cversion="1.0.0" condition="HT32F491x3 STDPERIPHERALS CRM">
+      <description>Auto Clock Calibration (ACC) driver for HT32F491x3 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_ACC
+      </RTE_Components_h>
+      <files>
+        <!-- ACC file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f491x3_acc.h"/>
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f491x3_acc.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f491x3_firmware_library" Csub="adc" Cversion="1.0.0" condition="HT32F491x3 STDPERIPHERALS CRM">
+      <description>Analog-to-digital converter (ADC) driver for HT32F491x3 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_ADC
+      </RTE_Components_h>
+      <files>
+        <!-- ADC file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f491x3_adc.h"/>
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f491x3_adc.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f491x3_firmware_library" Csub="can" Cversion="1.0.0" condition="HT32F491x3 STDPERIPHERALS CRM">
+      <description>CAN (CAN) driver for HT32F491x3 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_CAN
+      </RTE_Components_h>
+      <files>
+        <!-- CAN file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f491x3_can.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f491x3_can.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f491x3_firmware_library" Csub="crc" Cversion="1.0.0" condition="HT32F491x3 STDPERIPHERALS CRM">
+      <description>Cyclic Redundancy Check (CRC) driver for HT32F491x3 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_CRC
+      </RTE_Components_h>
+      <files>
+        <!-- CRC file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f491x3_crc.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f491x3_crc.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f491x3_firmware_library" Csub="crm" Cversion="1.0.0" condition="HT32F491x3 STDPERIPHERALS MISC">
+      <description>Clock and Reset Management (CRM) driver for HT32F491x3 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_CRM
+      </RTE_Components_h>
+      <files>
+        <!-- CRM file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f491x3_crm.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f491x3_crm.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f491x3_firmware_library" Csub="dac" Cversion="1.0.0" condition="HT32F491x3 STDPERIPHERALS CRM">
+      <description>Digital-to-Analog-to converter (DAC) driver for HT32F491x3 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_DAC
+      </RTE_Components_h>
+      <files>
+        <!-- DAC file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f491x3_dac.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f491x3_dac.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f491x3_firmware_library" Csub="debug" Cversion="1.0.0" condition="HT32F491x3 STDPERIPHERALS CRM">
+      <description>Debug (DEBUG) driver for HT32F491x3 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_DEBUG
+      </RTE_Components_h>
+      <files>
+        <!-- DEBUG file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f491x3_debug.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f491x3_debug.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f491x3_firmware_library" Csub="dma" Cversion="1.0.0" condition="HT32F491x3 STDPERIPHERALS CRM">
+      <description>Direct Memory Access (DMA) driver for HT32F491x3 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_DMA
+      </RTE_Components_h>
+      <files>
+        <!-- DMA file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f491x3_dma.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f491x3_dma.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f491x3_firmware_library" Csub="ertc" Cversion="1.0.0" condition="HT32F491x3 STDPERIPHERALS CRM">
+      <description>Enhance Real-time Clock (ERTC) driver for HT32F491x3 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_ERTC
+      </RTE_Components_h>
+      <files>
+        <!-- ERTC file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f491x3_ertc.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f491x3_ertc.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f491x3_firmware_library" Csub="exint" Cversion="1.0.0" condition="HT32F491x3 STDPERIPHERALS CRM">
+      <description>External Interrupt/Event (EXINT) driver for HT32F491x3 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_EXINT
+      </RTE_Components_h>
+      <files>
+        <!-- EXINT file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f491x3_exint.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f491x3_exint.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f491x3_firmware_library" Csub="flash" Cversion="1.0.0" condition="HT32F491x3 STDPERIPHERALS CRM">
+      <description>Flash Memory Controller (FLASH) driver for HT32F491x3 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_FLASH
+      </RTE_Components_h>
+      <files>
+        <!-- FLASH file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f491x3_flash.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f491x3_flash.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f491x3_firmware_library" Csub="gpio" Cversion="1.0.0" condition="HT32F491x3 STDPERIPHERALS CRM">
+      <description>General-purpose and Alternate-function I/Os (GPIO) driver for HT32F491x3 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_GPIO
+      </RTE_Components_h>
+      <files>
+        <!-- GPIO file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f491x3_gpio.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f491x3_gpio.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f491x3_firmware_library" Csub="i2c" Cversion="1.0.0" condition="HT32F491x3 STDPERIPHERALS CRM">
+      <description>Inter-integrated Circuit (I2C) driver for HT32F491x3 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_I2C
+      </RTE_Components_h>
+      <files>
+        <!-- I2C file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f491x3_i2c.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f491x3_i2c.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f491x3_firmware_library" Csub="misc" Cversion="1.0.0" condition="HT32F491x3 CMSIS">
+      <description>MISC driver for HT32F491x3 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_MISC
+      </RTE_Components_h>
+      <files>
+        <!-- MISC file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f491x3_misc.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f491x3_misc.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f491x3_firmware_library" Csub="pwc" Cversion="1.0.0" condition="HT32F491x3 STDPERIPHERALS CRM">
+      <description>Power Control Unit(PWC) driver for HT32F491x3 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_PWC
+      </RTE_Components_h>
+      <files>
+        <!-- PWC file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f491x3_pwc.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f491x3_pwc.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f491x3_firmware_library" Csub="spi" Cversion="1.0.0" condition="HT32F491x3 STDPERIPHERALS CRM">
+      <description>Serial Peripheral Interface / Inter-IC Sound (SPI) driver for HT32F491x3 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_SPI
+      </RTE_Components_h>
+      <files>
+        <!-- SPI file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f491x3_spi.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f491x3_spi.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f491x3_firmware_library" Csub="scfg" Cversion="1.0.0" condition="HT32F491x3 STDPERIPHERALS CRM">
+      <description>System config (SCFG) driver for HT32F491x3 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_SCFG
+      </RTE_Components_h>
+      <files>
+        <!-- SPI file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f491x3_scfg.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f491x3_scfg.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f491x3_firmware_library" Csub="tmr" Cversion="1.0.0" condition="HT32F491x3 STDPERIPHERALS CRM">
+      <description>TMR driver for HT32F491x3 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_TMR
+      </RTE_Components_h>
+      <files>
+        <!-- TIMER file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f491x3_tmr.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f491x3_tmr.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f491x3_firmware_library" Csub="usart" Cversion="1.0.0" condition="HT32F491x3 STDPERIPHERALS CRM">
+      <description>Universal Synchronous Asynchronous Receiver Transmitter (USART) driver for HT32F491x3 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_USART
+      </RTE_Components_h>
+      <files>
+        <!-- USART file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f491x3_usart.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f491x3_usart.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f491x3_firmware_library" Csub="usb" Cversion="1.0.0" condition="HT32F491x3 STDPERIPHERALS CRM">
+      <description>Universal Serial Bus driver for HT32F491x3 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_USB
+      </RTE_Components_h>
+      <files>
+        <!-- USART file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f491x3_usb.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f491x3_usb.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f491x3_firmware_library" Csub="wdt" Cversion="1.0.0" condition="HT32F491x3 STDPERIPHERALS CRM">
+      <description>Watchdog timer(WDT) driver for HT32F491x3 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_WDT
+      </RTE_Components_h>
+      <files>
+        <!-- WDT file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f491x3_wdt.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f491x3_wdt.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f491x3_firmware_library" Csub="wwdt" Cversion="1.0.0" condition="HT32F491x3 STDPERIPHERALS CRM">
+      <description>Window Watchdog Timer (WWDT) driver for HT32F491x3 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_WWDT
+      </RTE_Components_h>
+      <files>
+        <!-- WWDT file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f491x3_wwdt.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f491x3_wwdt.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f491x3_firmware_library" Csub="xmc" Cversion="1.0.0" condition="HT32F491x3 STDPERIPHERALS CRM">
+      <description>External Memory Controller (XMC) driver for HT32F491x3 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_XMC
+      </RTE_Components_h>
+      <files>
+        <!-- XMC file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f491x3_xmc.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f491x3_xmc.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <!-- Utilities HT32F491x3 -->
+    <component Cclass="Device" Cgroup="evb" Csub="ht32f49163_sk" Cversion="1.0.0" condition="HT32F491x3 STDPERIPHERALS EVB">
+      <description>Firmware functions to manage Leds, Keys, COM ports</description>
+      <files>
+        <!-- include folder -->
+        <file category="header" name="Device/Utilities/ht32f491x3_board.h" />
+        <!-- evb file -->
+        <file category="source" name="Device/Utilities/ht32f491x3_board.c" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Config HT32F491x3 -->
+    <component Cclass="Device" Cgroup="ht32f491x3_conf" Cversion="1.0.0" condition="HT32F491x3 CMSIS">
+      <description>Configuration file</description>
+      <files>
+        <!-- include folder -->
+        <file category="header" name="Device/Include/ht32f491x3_conf.h" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup HT32F491x3  -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="HT32F491x3">
+      <description>System startup for Holtek HT32F491x3 Devices</description>
+      <files>
+        <!-- include folder -->
+        <file category="include" name="Device/Include/"/>
+        <file category="header" name="Device/Include/ht32f491x3.h"/>
+        <!-- startup file -->
+        <file category="source" name="Device/Source/ARM/startup_ht32f491x3.s" attr="config" version="1.0.0" condition="HT32F491x3 ARMCC"/>
+        <!-- system file -->
+        <file category="source" name="Device/Source/system_ht32f491x3.c" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+  </components>
+</package>

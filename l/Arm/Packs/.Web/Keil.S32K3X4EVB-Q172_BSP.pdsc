@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.28/schema/PACK.xsd" schemaVersion="1.7.28">
+  <vendor>Keil</vendor>
+  <name>S32K3X4EVB-Q172_BSP</name>
+  <description>NXP S32K3X4EVB-Q172 board support pack</description>
+  <license>LICENSE</license>
+  <url>https://www.keil.com/pack/</url>
+
+  <releases>
+    <release version="1.0.1" date="2024-02-12" deprecated="2024-02-12">
+      This Software Pack is no longer maintained.
+	  Please contact the device vendor (NXP) for for available Software Development Kits.
+
+      Board examples:
+      - Updated to CMSIS 6
+      CMSIS-Driver:
+      - Updated VIO driver to API 1.0.0
+    </release>
+    <release version="1.0.0" date="2022-04-06">
+      Board description and documentation for S32K3X4EVB-Q172
+      Example projects:
+      - CMSIS-RTOS2 Blinky (verify the basic tool setup)
+      - CMSIS-RTOS2 Platform (configure the board hardware)
+    </release>
+  </releases>
+
+  <requirements>
+    <packages>
+      <package vendor="ARM"  name="CMSIS"       version="5.8.0"/>
+      <package vendor="Keil" name="S32K3xx_DFP" version="1.0.0"/>
+    </packages>
+  </requirements>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>NXP</keyword>
+    <keyword>S32K3</keyword>
+    <keyword>S32K3X4EVB-Q172</keyword>
+  </keywords>
+
+  <conditions>
+    <condition id="S32K344 CMSIS">
+      <description>NXP S32K344 device and CMSIS-CORE</description>
+      <require Dvendor="NXP:11" Dname="S32K344*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <condition id="S32K3X4EVB-Q172 VIO">
+      <description>Virtual I/O S32K3X4EVB-Q172</description>
+      <require condition="S32K344 CMSIS"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- VIO component for S32K3X4EVB-Q172 -->
+    <component Cclass="CMSIS Driver" Cgroup="VIO" Csub="Board" Cvariant="S32K3X4EVB-Q172" Cversion="2.0.0" Capiversion="1.0.0"   condition="S32K3X4EVB-Q172 VIO">
+      <description>Virtual I/O implementation for S32K3X4EVB-Q172 VIO</description>
+      <RTE_Components_h>
+        #define RTE_VIO_BOARD
+        #define RTE_VIO_S32K3X4EVB_Q172
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/Platform/vio_S32K3X4EVB-Q172.c"/>
+      </files>
+    </component>
+  </components>
+
+  <boards>
+    <board vendor="NXP" name="S32K3X4EVB-Q172" revision="Rev.A"
+           salesContact="https://www.nxp.com/company/contact-us:CONTACTUS"
+           orderForm   ="https://www.nxp.com/part/S32K3X4EVB-Q172#/">
+      <description>S32K3X4EVB-Q172: Evaluation and Development Board for General Purpose</description>
+      <feature type="ROM" n="1" name="64 MB QSPI Flash"/>
+      <feature type="ETH" n="1" m="10000000" name="Ethernet (10/100T) connector"/>
+      <feature type="CAN" n="1" name="On-board secure HS-CAN"/>
+      <feature type="ConnOther" n="2" name="On-board LIN"/>
+      <feature type="LED" n="1" name="User RGB LED"/>
+      <feature type="Button" n="3" name="Push-buttons: Reset, 2 x User"/>
+      <feature type="ContOther" n="2" name="Touch pad electrode"/>
+      <feature type="ConnOther" n="1" name="Arduino interface"/>
+      <mountedDevice Dname="S32K344" Dvendor="NXP:11"/>
+      <image small="Images/S32K3X4EVB-Q172_small.jpg"
+             large="Images/S32K3X4EVB-Q172_large.jpg" public="true"/>
+      <debugInterface adapter="JTAG/SW" connector="20-pin Arm Standard JTAG Connector (0.1 inch connector)"/>
+      <book category="overview"  name="https://www.nxp.com/design/development-boards/automotive-development-platforms/s32k-mcu-platforms/evaluation-and-development-board-for-general-purpose:S32K3X4EVB-Q172" title="S32K3X4EVB-Q172"/>
+<!--
+      <book category="manual"    name="Documents/S32K3X4EVB-Q172_HW-UM.pdf" title="Board Hardware User's Guide" public="true"/>
+      <book category="schematic" name="Documents/S32K3X4EVB-Q172_SCH.pdf"   title="Schematics" public="true"/>
+-->
+      <book category="other"     name="Documents/README.md"                 title="Guide" public="true"/>
+      <debugProbe connector="Micro-USB" debugClock="10000000" debugLink="swd" name="DAP-Link" />
+    </board>
+  </boards>
+
+  <examples>
+    <example name="Blinky" doc="README.md" folder="Projects/Blinky">
+      <description>CMSIS-RTOS2 Blinky example with VIO</description>
+      <board name="S32K3X4EVB-Q172" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS"  Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS"  Cgroup="RTOS"/>
+        <component Cclass="CMSIS Driver" Cgroup="VIO"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="Platform" doc="README.md" folder="Projects/Platform">
+      <description>CMSIS-RTOS2 Platform example with VIO</description>
+      <board name="S32K3X4EVB-Q172" vendor="NXP"/>
+      <project>
+        <environment name="uv" load="Platform.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <component Cclass="CMSIS Driver" Cgroup="VIO"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+  </examples>
+</package>

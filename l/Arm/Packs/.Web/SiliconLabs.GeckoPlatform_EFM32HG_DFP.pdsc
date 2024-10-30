@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.7.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>SiliconLabs</vendor>
+  <url>https://www.silabs.com/documents/public/cmsis-packs/</url>
+  <name>GeckoPlatform_EFM32HG_DFP</name>
+  <description>Silicon Labs EFM32HG Happy Gecko Series Device Support.</description>
+  <license>License/license.md</license>
+
+  <releases>
+    <release version="4.4.0" date="2024-02-08">
+      New device family EFM32PG28 and new OPNs for EFR32SG28, EFR32MG24, EFR32BG24, MGM21, RM21
+    </release>
+    <release version="4.3.0" date="2023-06-15">
+      New device families EFR32SG23, EFR32SG28 and new OPNs for EFR32MG27, EFR32MG24, EFR32FG25, EFR32BG24, MGM24
+    </release>
+    <release version="4.2.0" date="2022-11-25">
+      New device families EFR32ZG28, EFR32FG28 and EFR32MR21
+    </release>
+    <release version="4.1.1" date="2022-06-22">
+      Add TrustZone support for Series2 Devices
+    </release>
+    <release version="4.1.0" date="2022-06-03">
+      Update CMSIS version to 5.8.0. New device families EFR32BG27, EFR32MG27. Documentation updated for ZGM130S, MGM220P, EFR32PG23. Add Cortex-M33 Generic User Guide
+    </release>
+    <release version="4.0.2" date="2022-04-22">
+      New OPNs for modules MGM24, for SoC EFR32MG24. New device families EFR32FG25. Documentation updated for EFM32PG22, EFR32BG24, EFR32MG24 and WGM160.
+    </release>
+    <release version="4.0.0" date="2022-01-24">
+      New OPNs for modules MGM21 and MGM24, for SoC EFR32MG24. New device families EFR32BG24, BGM24. Documentation updated for EFR32FG23, EFR32ZG23 and EFM32PG23.
+    </release>
+    <release version="3.2.0" date="2021-06-16">
+      New MCU's families efr32mg24, mgm24, wgm160.
+    </release>
+    <release version="3.1.0" date="2020-12-11">
+      New MCU's families efr32pg22, efr32fg23, efr32zg23 and efm32pg23.
+    </release>
+    <release version="3.0.0" date="2020-09-14">
+      Addition of EFR32ZG13L, EFR32ZG13S and removal of EFR32BG14P device families.
+    </release>
+    <release version="2.7.3" date="2020-03-23">
+      The PRORTC timer peripheral has been added to EFR32xG13 and EFR32xG14 device families.
+    </release>
+    <release version="2.7.0" date="2019-11-12">
+      Changed pack names and version number sequence.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Silicon Labs</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Silicon Labs</keyword>
+    <keyword>EFM32HG</keyword>
+    <keyword>EFM32</keyword>
+    <keyword>Happy Gecko</keyword>
+    <keyword>Gecko</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="EFM32HG Series" Dvendor="Silicon Labs:21">
+      <processor Dcore="Cortex-M0+" DcoreVersion="r0p1" Dfpu="NO_FPU" Dmpu="NO_MPU" Dtz="NO_TZ" Ddsp="NO_DSP" Dendian="Little-endian" Dclock="24000000"/>
+      <book name="Documents/cortex_m0p_dgug.pdf"      title="Cortex-M0+ Generic User Guide"/>
+      <book name="Documents/EFM32HG-RM.pdf"  title="EFM32HG Reference Manual"/>
+      <description>
+- 32-bit ARM Cortex-M0+ processor running at up to 25 MHz&#xD;&#xA;- Up to 64 kB Flash and 8 kB RAM memory&#xD;&#xA;- Energy efficient and autonomous peripherals&#xD;&#xA;- Ultra low power Energy Modes with sub-uA operation&#xD;&#xA;- Fast wake-up time of only 2 us&#xD;&#xA;&#xD;&#xA;The EFM32HG microcontroller series revolutionizes the 8- to 32-bit market with a combination of unmatched performance and ultra low power consumption in both active- and sleep modes. EFM32HG devices consume as little as 114 uA/MHz in run mode.
+      </description>
+
+      <subFamily DsubFamily="EFM32HG108">
+        <book         name="Documents/efm32hg-datasheet.pdf"      title="EFM32HG108 Data Sheet"/>
+        <book         name="Documents/efm32hg-errata.pdf"         title="EFM32HG108 Errata"/>
+        <!-- *************************  Device 'EFM32HG108F32'  ***************************** -->
+        <device Dname="EFM32HG108F32">
+          <compile header="Device/SiliconLabs/EFM32HG/Include/em_device.h"  define="EFM32HG108F32"/>
+          <debug      svd="SVD/EFM32HG/EFM32HG108F32.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00008000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00001000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32M0P.FLM"  start="0x00000000"  size="0x00008000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32M0P.flash"  start="0x00000000"  size="0x00008000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32HG108F64'  ***************************** -->
+        <device Dname="EFM32HG108F64">
+          <compile header="Device/SiliconLabs/EFM32HG/Include/em_device.h"  define="EFM32HG108F64"/>
+          <debug      svd="SVD/EFM32HG/EFM32HG108F64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00010000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00002000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32M0P.FLM"  start="0x00000000"  size="0x00010000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32M0P.flash"  start="0x00000000"  size="0x00010000"  default="0"   style="IAR"/>
+        </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="EFM32HG110">
+        <book         name="Documents/efm32hg-datasheet.pdf"      title="EFM32HG110 Data Sheet"/>
+        <book         name="Documents/efm32hg-errata.pdf"         title="EFM32HG110 Errata"/>
+        <!-- *************************  Device 'EFM32HG110F32'  ***************************** -->
+        <device Dname="EFM32HG110F32">
+          <compile header="Device/SiliconLabs/EFM32HG/Include/em_device.h"  define="EFM32HG110F32"/>
+          <debug      svd="SVD/EFM32HG/EFM32HG110F32.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00008000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00001000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32M0P.FLM"  start="0x00000000"  size="0x00008000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32M0P.flash"  start="0x00000000"  size="0x00008000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32HG110F64'  ***************************** -->
+        <device Dname="EFM32HG110F64">
+          <compile header="Device/SiliconLabs/EFM32HG/Include/em_device.h"  define="EFM32HG110F64"/>
+          <debug      svd="SVD/EFM32HG/EFM32HG110F64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00010000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00002000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32M0P.FLM"  start="0x00000000"  size="0x00010000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32M0P.flash"  start="0x00000000"  size="0x00010000"  default="0"   style="IAR"/>
+        </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="EFM32HG210">
+        <book         name="Documents/efm32hg-datasheet.pdf"      title="EFM32HG210 Data Sheet"/>
+        <book         name="Documents/efm32hg-errata.pdf"         title="EFM32HG210 Errata"/>
+        <!-- *************************  Device 'EFM32HG210F32'  ***************************** -->
+        <device Dname="EFM32HG210F32">
+          <compile header="Device/SiliconLabs/EFM32HG/Include/em_device.h"  define="EFM32HG210F32"/>
+          <debug      svd="SVD/EFM32HG/EFM32HG210F32.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00008000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00001000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32M0P.FLM"  start="0x00000000"  size="0x00008000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32M0P.flash"  start="0x00000000"  size="0x00008000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32HG210F64'  ***************************** -->
+        <device Dname="EFM32HG210F64">
+          <compile header="Device/SiliconLabs/EFM32HG/Include/em_device.h"  define="EFM32HG210F64"/>
+          <debug      svd="SVD/EFM32HG/EFM32HG210F64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00010000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00002000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32M0P.FLM"  start="0x00000000"  size="0x00010000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32M0P.flash"  start="0x00000000"  size="0x00010000"  default="0"   style="IAR"/>
+        </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="EFM32HG222">
+        <book         name="Documents/efm32hg-datasheet.pdf"      title="EFM32HG222 Data Sheet"/>
+        <book         name="Documents/efm32hg-errata.pdf"         title="EFM32HG222 Errata"/>
+        <!-- *************************  Device 'EFM32HG222F32'  ***************************** -->
+        <device Dname="EFM32HG222F32">
+          <compile header="Device/SiliconLabs/EFM32HG/Include/em_device.h"  define="EFM32HG222F32"/>
+          <debug      svd="SVD/EFM32HG/EFM32HG222F32.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00008000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00001000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32M0P.FLM"  start="0x00000000"  size="0x00008000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32M0P.flash"  start="0x00000000"  size="0x00008000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32HG222F64'  ***************************** -->
+        <device Dname="EFM32HG222F64">
+          <compile header="Device/SiliconLabs/EFM32HG/Include/em_device.h"  define="EFM32HG222F64"/>
+          <debug      svd="SVD/EFM32HG/EFM32HG222F64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00010000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00002000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32M0P.FLM"  start="0x00000000"  size="0x00010000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32M0P.flash"  start="0x00000000"  size="0x00010000"  default="0"   style="IAR"/>
+        </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="EFM32HG308">
+        <book         name="Documents/efm32hg-datasheet.pdf"      title="EFM32HG308 Data Sheet"/>
+        <book         name="Documents/efm32hg-errata.pdf"         title="EFM32HG308 Errata"/>
+        <!-- *************************  Device 'EFM32HG308F32'  ***************************** -->
+        <device Dname="EFM32HG308F32">
+          <compile header="Device/SiliconLabs/EFM32HG/Include/em_device.h"  define="EFM32HG308F32"/>
+          <debug      svd="SVD/EFM32HG/EFM32HG308F32.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00008000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00002000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32M0P.FLM"  start="0x00000000"  size="0x00008000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32M0P.flash"  start="0x00000000"  size="0x00008000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32HG308F64'  ***************************** -->
+        <device Dname="EFM32HG308F64">
+          <compile header="Device/SiliconLabs/EFM32HG/Include/em_device.h"  define="EFM32HG308F64"/>
+          <debug      svd="SVD/EFM32HG/EFM32HG308F64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00010000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00002000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32M0P.FLM"  start="0x00000000"  size="0x00010000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32M0P.flash"  start="0x00000000"  size="0x00010000"  default="0"   style="IAR"/>
+        </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="EFM32HG309">
+        <book         name="Documents/efm32hg-datasheet.pdf"      title="EFM32HG309 Data Sheet"/>
+        <book         name="Documents/efm32hg-errata.pdf"         title="EFM32HG309 Errata"/>
+        <!-- *************************  Device 'EFM32HG309F32'  ***************************** -->
+        <device Dname="EFM32HG309F32">
+          <compile header="Device/SiliconLabs/EFM32HG/Include/em_device.h"  define="EFM32HG309F32"/>
+          <debug      svd="SVD/EFM32HG/EFM32HG309F32.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00008000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00002000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32M0P.FLM"  start="0x00000000"  size="0x00008000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32M0P.flash"  start="0x00000000"  size="0x00008000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32HG309F64'  ***************************** -->
+        <device Dname="EFM32HG309F64">
+          <compile header="Device/SiliconLabs/EFM32HG/Include/em_device.h"  define="EFM32HG309F64"/>
+          <debug      svd="SVD/EFM32HG/EFM32HG309F64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00010000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00002000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32M0P.FLM"  start="0x00000000"  size="0x00010000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32M0P.flash"  start="0x00000000"  size="0x00010000"  default="0"   style="IAR"/>
+        </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="EFM32HG310">
+        <book         name="Documents/efm32hg-datasheet.pdf"      title="EFM32HG310 Data Sheet"/>
+        <book         name="Documents/efm32hg-errata.pdf"         title="EFM32HG310 Errata"/>
+        <!-- *************************  Device 'EFM32HG310F32'  ***************************** -->
+        <device Dname="EFM32HG310F32">
+          <compile header="Device/SiliconLabs/EFM32HG/Include/em_device.h"  define="EFM32HG310F32"/>
+          <debug      svd="SVD/EFM32HG/EFM32HG310F32.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00008000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00002000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32M0P.FLM"  start="0x00000000"  size="0x00008000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32M0P.flash"  start="0x00000000"  size="0x00008000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32HG310F64'  ***************************** -->
+        <device Dname="EFM32HG310F64">
+          <compile header="Device/SiliconLabs/EFM32HG/Include/em_device.h"  define="EFM32HG310F64"/>
+          <debug      svd="SVD/EFM32HG/EFM32HG310F64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00010000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00002000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32M0P.FLM"  start="0x00000000"  size="0x00010000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32M0P.flash"  start="0x00000000"  size="0x00010000"  default="0"   style="IAR"/>
+        </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="EFM32HG321">
+        <book         name="Documents/efm32hg-datasheet.pdf"      title="EFM32HG321 Data Sheet"/>
+        <book         name="Documents/efm32hg-errata.pdf"         title="EFM32HG321 Errata"/>
+        <!-- *************************  Device 'EFM32HG321F32'  ***************************** -->
+        <device Dname="EFM32HG321F32">
+          <compile header="Device/SiliconLabs/EFM32HG/Include/em_device.h"  define="EFM32HG321F32"/>
+          <debug      svd="SVD/EFM32HG/EFM32HG321F32.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00008000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00002000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32M0P.FLM"  start="0x00000000"  size="0x00008000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32M0P.flash"  start="0x00000000"  size="0x00008000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32HG321F64'  ***************************** -->
+        <device Dname="EFM32HG321F64">
+          <compile header="Device/SiliconLabs/EFM32HG/Include/em_device.h"  define="EFM32HG321F64"/>
+          <debug      svd="SVD/EFM32HG/EFM32HG321F64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00010000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00002000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32M0P.FLM"  start="0x00000000"  size="0x00010000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32M0P.flash"  start="0x00000000"  size="0x00010000"  default="0"   style="IAR"/>
+        </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="EFM32HG322">
+        <book         name="Documents/efm32hg-datasheet.pdf"      title="EFM32HG322 Data Sheet"/>
+        <book         name="Documents/efm32hg-errata.pdf"         title="EFM32HG322 Errata"/>
+        <!-- *************************  Device 'EFM32HG322F32'  ***************************** -->
+        <device Dname="EFM32HG322F32">
+          <compile header="Device/SiliconLabs/EFM32HG/Include/em_device.h"  define="EFM32HG322F32"/>
+          <debug      svd="SVD/EFM32HG/EFM32HG322F32.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00008000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00002000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32M0P.FLM"  start="0x00000000"  size="0x00008000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32M0P.flash"  start="0x00000000"  size="0x00008000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32HG322F64'  ***************************** -->
+        <device Dname="EFM32HG322F64">
+          <compile header="Device/SiliconLabs/EFM32HG/Include/em_device.h"  define="EFM32HG322F64"/>
+          <debug      svd="SVD/EFM32HG/EFM32HG322F64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00010000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00002000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32M0P.FLM"  start="0x00000000"  size="0x00010000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32M0P.flash"  start="0x00000000"  size="0x00010000"  default="0"   style="IAR"/>
+        </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="EFM32HG350">
+        <book         name="Documents/efm32hg-datasheet.pdf"      title="EFM32HG350 Data Sheet"/>
+        <book         name="Documents/efm32hg-errata.pdf"         title="EFM32HG350 Errata"/>
+        <!-- *************************  Device 'EFM32HG350F32'  ***************************** -->
+        <device Dname="EFM32HG350F32">
+          <compile header="Device/SiliconLabs/EFM32HG/Include/em_device.h"  define="EFM32HG350F32"/>
+          <debug      svd="SVD/EFM32HG/EFM32HG350F32.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00008000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00002000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32M0P.FLM"  start="0x00000000"  size="0x00008000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32M0P.flash"  start="0x00000000"  size="0x00008000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32HG350F64'  ***************************** -->
+        <device Dname="EFM32HG350F64">
+          <compile header="Device/SiliconLabs/EFM32HG/Include/em_device.h"  define="EFM32HG350F64"/>
+          <debug      svd="SVD/EFM32HG/EFM32HG350F64.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00010000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00002000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32M0P.FLM"  start="0x00000000"  size="0x00010000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32M0P.flash"  start="0x00000000"  size="0x00010000"  default="0"   style="IAR"/>
+        </device>
+
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler GCC">
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="Compiler IAR">
+      <require Tcompiler="IAR"/>
+    </condition>
+
+    <!-- Device Conditions -->
+    <condition id="EFM32HG">
+      <description>Silicon Labs EFM32HG device series</description>
+      <require Dvendor="Silicon Labs:21" Dname="EFM32HG*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="4.4.0" condition="EFM32HG">
+      <description>System Startup for Silicon Labs EFM32HG device series</description>
+      <files>
+        <!-- include folder -->
+        <file category="include" name="Device/SiliconLabs/EFM32HG/Include/"/>
+        <file category="header"  name="Device/SiliconLabs/EFM32HG/Include/em_device.h"/>
+        <!-- startup files -->
+        <file category="source"  name="Device/SiliconLabs/EFM32HG/Source/GCC/startup_efm32hg.S" condition="Compiler GCC"   attr="config" version="4.4.0"/>
+        <file category="source"  name="Device/SiliconLabs/EFM32HG/Source/IAR/startup_efm32hg.s" condition="Compiler IAR"   attr="config" version="4.4.0"/>
+        <!-- linker command file -->
+        <file category="linkerScript"  name="Device/SiliconLabs/EFM32HG/Source/GCC/efm32hg.ld" condition="Compiler GCC" attr="config" version="4.4.0"/>
+        <!-- system file -->
+        <file category="source"  name="Device/SiliconLabs/EFM32HG/Source/system_efm32hg.c" attr="config" version="4.4.0"/>
+      </files>
+    </component>
+  </components>
+</package>

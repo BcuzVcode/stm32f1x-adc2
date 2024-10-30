@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+	<vendor>MindMotion</vendor>
+	<url>http://www.mindmotion.com.cn/Download/MDK_KEIL/</url>
+	<name>MM32SPIN0x_DFP</name>
+	<description>MindMotion MM32SPIN0x Series Device Support, Drivers and Examples</description>
+	<releases>
+		<release version="1.0.8" date="2021-04-25">
+       Release version of MM32SPIN0x Device Family Pack.
+    </release>
+	</releases>
+	<keywords>
+		<!-- keywords for indexing -->
+		<keyword>MindMotion</keyword>
+		<keyword>Device Support</keyword>
+		<keyword>Device Family Package MindMotion</keyword>
+		<keyword>MM32SPIN0x</keyword>
+		<keyword>MM32</keyword>
+	</keywords>
+	<devices>
+		<!-- generated, do not modify this section! -->
+		<family Dfamily="MM32SPIN0x Series" Dvendor="MindMotion:132">
+			<processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+			<description>
+MM32SPIN0x Series
+
+			</description>
+			<!-- ************************  Subfamily 'MM32SPIN0x'  **************************** -->
+			<subFamily DsubFamily="MM32SPIN05">
+				<processor Dclock="72000000"/>
+			<description>
+Subfamily: MM32SPIN05
+
+Frequency: 72MHz 
+Memory: 32 kB Flash, 4 kB RAM
+Communication: 2 x UART, 2 x SPI, 1 x I2C
+Analog : ADC, COMP
+power saving mode:stop, sleep, and standby mode
+Other: HWDIV
+			</description>
+				<!-- *************************  Device 'MM32SPIN0x'  ***************************** -->
+				<device Dname="MM32SPIN05TW">
+					<processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="72000000"/>
+        <compile header="Device/MM32SPIN06xx_s/Include/mm32_device.h"  define="MM32SPIN05TW"/>
+					<debug svd="SVD/MM32SPIN05x_q.svd"/>
+					<memory id="IROM1" start="0x08000000" size="0x8000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x1000" init="0" default="1"/>
+					<algorithm name="Flash/MM32SPIN05_32.FLM" start="0x08000000" size="0x8000" default="1"/>
+				</device>
+				<device Dname="MM32SPIN05NW">
+					<processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="72000000"/>
+        <compile header="Device/MM32SPIN06xx_s/Include/mm32_device.h"  define="MM32SPIN05NW"/>
+
+					<debug svd="SVD/MM32SPIN05x_q.svd"/>
+					<memory id="IROM1" start="0x08000000" size="0x8000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x1000" init="0" default="1"/>
+					<algorithm name="Flash/MM32SPIN05_32.FLM" start="0x08000000" size="0x8000" default="1"/>
+				</device>                
+				<device Dname="MM32SPIN05PT">
+					<processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="72000000"/>
+        <compile header="Device/MM32SPIN06xx_s/Include/mm32_device.h"  define="MM32SPIN05PT"/>
+
+					<debug svd="SVD/MM32SPIN05x_q.svd"/>
+					<memory id="IROM1" start="0x08000000" size="0x8000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x1000" init="0" default="1"/>
+					<algorithm name="Flash/MM32SPIN05_32.FLM" start="0x08000000" size="0x8000" default="1"/>
+				</device>
+				<device Dname="MM32SPIN05NT">
+					<processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="72000000"/>
+        <compile header="Device/MM32SPIN06xx_s/Include/mm32_device.h"  define="MM32SPIN05NT"/>
+
+					<debug svd="SVD/MM32SPIN05x_q.svd"/>
+					<memory id="IROM1" start="0x08000000" size="0x8000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x1000" init="0" default="1"/>
+					<algorithm name="Flash/MM32SPIN05_32.FLM" start="0x08000000" size="0x8000" default="1"/>
+				</device>
+				<device Dname="MM32SPIN05PF">
+					<processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="72000000"/>
+        <compile header="Device/MM32SPIN06xx_s/Include/mm32_device.h"  define="MM32SPIN05PF"/>
+
+					<debug svd="SVD/MM32SPIN05x_q.svd"/>
+					<memory id="IROM1" start="0x08000000" size="0x8000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x1000" init="0" default="1"/>
+					<algorithm name="Flash/MM32SPIN05_32.FLM" start="0x08000000" size="0x8000" default="1"/>
+                </device>
+			</subFamily>
+			<subFamily DsubFamily="MM32SPIN06">
+				<processor Dclock="96000000"/>
+			<description>
+Subfamily: MM32SPIN06
+
+Frequency: 96MHz 
+Memory: 64 kB Flash, 16 kB RAM
+Communication: 2 x UART, 2 x SPI, 1 x I2C, 1 x CAN
+Analog : ADC, COMP
+power saving mode:stop, sleep, and standby mode
+Other: HWDIV
+            </description>
+            <device Dname="MM32SPIN06NT">
+                    <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="96000000" />
+        <compile header="Device/MM32SPIN06xx_s/Include/mm32_device.h"  define="MM32SPIN06NT"/>
+
+                    <debug svd="SVD/MM32SPIN06x_s.svd" />
+                    <memory id="IROM1" start="0x08000000" size="0x10000" startup="1" default="1" />
+                    <memory id="IRAM1" start="0x20000000" size="0x4000" init="0" default="1" />
+                    <algorithm name="Flash/MM32SPIN06_64K.FLM" start="0x08000000" size="0x10000" default="1" />
+                </device>
+                <device Dname="MM32SPIN06PF">
+                    <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="96000000" />
+        <compile header="Device/MM32SPIN06xx_s/Include/mm32_device.h"  define="MM32SPIN06PF"/>
+
+                    <debug svd="SVD/MM32SPIN06x_s.svd" />
+                    <memory id="IROM1" start="0x08000000" size="0x10000" startup="1" default="1" />
+                    <memory id="IRAM1" start="0x20000000" size="0x4000" init="0" default="1" />
+                    <algorithm name="Flash/MM32SPIN06_64K.FLM" start="0x08000000" size="0x10000" default="1" />
+                </device>
+                <device Dname="MM32SPIN06PS">
+                    <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="96000000" />
+        <compile header="Device/MM32SPIN06xx_s/Include/mm32_device.h"  define="MM32SPIN06PS"/>
+ 
+ <debug svd="SVD/MM32SPIN06x_s.svd" />
+                    <memory id="IROM1" start="0x08000000" size="0x10000" startup="1" default="1" />
+                    <memory id="IRAM1" start="0x20000000" size="0x4000" init="0" default="1" />
+                    <algorithm name="Flash/MM32SPIN06_64K.FLM" start="0x08000000" size="0x10000" default="1" />
+                </device>
+            </subFamily>
+        </family>
+    </devices>
+	
+	
+    <conditions>   
+	<condition id=" ARMCC">
+	<require Tcompiler="ARMCC"/>
+    </condition>
+
+     
+	
+    <condition id="ARMCM0 CMSIS">
+      <description>CMSIS CORE processor and device specific Startup files</description>
+        <require Cclass="CMSIS" Cgroup="CORE"/>
+		<require Dvendor="MindMotion:132"  Dname="MM32SPIN0*"/> 
+    </condition>
+	
+
+  </conditions>
+  
+<components>
+
+                 <!-- Cortex-M Device Startup -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="ARMCM0 CMSIS"> 
+      <description>System Startup for MindMotion MM32SPIN06xx_s Series devices</description>
+      <files>
+        <file category="header"  name="Device/MM32SPIN06xx_s/Include/mm32_device.h"/>
+        <file category="sourceC" name="Device/MM32SPIN06xx_s/Source/system_mm32spin06xx_s.c" attr="config"  version="1.0.0"/>    
+        <file category="sourceAsm" name="Device/MM32SPIN06xx_s/Source/KEIL_StartAsm/startup_mm32spin06xx_s_keil.s" attr="config" version="1.0.0" condition=" ARMCC"/> 
+      </files>
+    </component> 
+	
+	    <component Cclass="Board" Cgroup="Samples" Csub="LED" Cversion="1.0.0" condition="ARMCM0 CMSIS"> 
+      <description>LED sample for  MindMotion MM32SPIN06xx_s board</description>
+      <files>
+        <file category="header"  name="Boards/MBSPIN0_Boardreg/RegSample/GPIO_Toggle/HARDWARE/LED/led.h"/>
+        <file category="sourceC"  name="Boards/MBSPIN0_Boardreg/RegSample/GPIO_Toggle/HARDWARE/LED/led.c" attr="config"  version="1.0.0"/>
+        <file category="sourceC" name="Boards/MBSPIN0_Boardreg/RegSample/GPIO_Toggle/USER/main.c" attr="config"  version="1.0.0"/>    
+      </files>
+    </component> 
+
+</components>
+ 
+   <examples>
+	<example name="MM32_MBSPIN0xx_Board GPIO LED blinky" doc="README.TXT" folder="Boards/MBSPIN0_Boardreg/RegSample/GPIO_Toggle">
+		<description>MM32_MBSPIN0xx_Board Blinky example</description>           
+		<board name="MM32_MBSPIN0xx_Board" vendor="MindMotion"/>
+		<project>   
+			<environment name="uv" load="KEILPRJ/GPIO_Toggle.uvprojx"/>
+		</project>                      
+		<attributes>
+			<component Cclass="CMSIS"     Cgroup="CORE"/>
+			<component Cclass="Device"    Cgroup="Startup"/>
+			<category>Getting Started</category>
+		</attributes>
+	</example>
+  </examples>  
+  
+ <boards>
+	<board vendor="MindMotion" name="MM32_MBSPIN0xx_Board" revision="Ver 1.0" >
+      <description>MindMotion MM32_MBSPIN0xx_Board Development Board</description>
+			<book category="manual" name="Documents/boards/Spin0Reference.pdf" title="MM32_MBSPIN0  Manual"/>
+      <mountedDevice    deviceIndex="0" Dvendor="MindMotion:132" Dname="MM32SPIN06PS"/>
+	  <compatibleDevice deviceIndex="0" Dvendor="MindMotion:132" DsubFamily="MM32SPIN05"/>	  
+	  <compatibleDevice deviceIndex="0" Dvendor="MindMotion:132" DsubFamily="MM32SPIN06"/>	  
+
+			  
+	  <feature type="XTAL"      n="8000000"/>
+      <feature type="PWR"       n="5"              name="USB Powered"/>
+      <feature type="PWR"       n="3"  m="5"       name="External Supply"/>
+      <feature type="Button"    n="1"              name="Push-buttons: Reset"/>
+      <feature type="LED"       n="2"              name="LEDs: Power, One user"/>
+      <debugInterface adapter="JTAG/SW" connector="20 pin JTAG (0.1 inch connector)"/>
+    </board>
+  </boards>
+  
+  
+</package>

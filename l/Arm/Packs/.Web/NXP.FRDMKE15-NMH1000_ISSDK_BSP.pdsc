@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>FRDMKE15-NMH1000_ISSDK_BSP</name>
+  <vendor>NXP</vendor>
+  <description>Middleware issdk Board Support Pack for FRDMKE15-NMH1000</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="1.0.0" date="2023-07-27">NXP CMSIS SBSP Packs based on MCUXpresso SDK 2.14.0</release>
+  </releases>
+  <keywords>
+    <keyword>Middleware Board Support Pack</keyword>
+  </keywords>
+  <requirements>
+    <packages>
+      <package name="ISSDK" vendor="NXP" version="1.0.0"/>
+      <package name="MKE15Z7_DFP" vendor="NXP" version="17.0.0"/>
+      <package name="CMSIS" vendor="ARM" version="5.8.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <boards>
+    <board vendor="NXP" name="FRDMKE15-NMH1000">
+      <description>FRDMKE15-NMH1000</description>
+      <image small="boards/frdmke15z_nmh1000/frdmke15z_nmh1000.png"/>
+      <mountedDevice Dname="MKE15Z256xxx7" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MKE14Z128VLH7" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MKE14Z128VLL7" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MKE14Z256VLH7" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MKE14Z256VLL7" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MKE15Z128VLH7" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MKE15Z128VLL7" Dvendor="NXP:11"/>
+    </board>
+  </boards>
+  <conditions>
+    <condition id="device.MKE15Z7.internal_condition">
+      <accept Dname="MKE15Z256xxx7" Dvariant="MKE15Z256VLH7" Dvendor="NXP:11"/>
+      <accept Dname="MKE15Z256VLH7" Dvendor="NXP:11"/>
+      <accept Dname="MKE15Z256xxx7" Dvariant="MKE15Z256VLL7" Dvendor="NXP:11"/>
+      <accept Dname="MKE15Z256VLL7" Dvendor="NXP:11"/>
+      <accept Dname="MKE15Z128xxx7" Dvariant="MKE15Z128VLH7" Dvendor="NXP:11"/>
+      <accept Dname="MKE15Z128VLH7" Dvendor="NXP:11"/>
+      <accept Dname="MKE15Z128xxx7" Dvariant="MKE15Z128VLL7" Dvendor="NXP:11"/>
+      <accept Dname="MKE15Z128VLL7" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="BOARD_Project_Template.frdmke15z_nmh1000.condition_id">
+      <require condition="allOf.device.MKE15Z7_startup, driver.lpuart, driver.port, driver.common, utility.debug_console, driver.gpio, driver.smc, component.lpuart_adapter, component.serial_manager_uart, component.serial_manager, device=MKE15Z7.internal_condition"/>
+    </condition>
+    <condition id="allOf.device.MKE15Z7_startup, driver.lpuart, driver.port, driver.common, utility.debug_console, driver.gpio, driver.smc, component.lpuart_adapter, component.serial_manager_uart, component.serial_manager, device=MKE15Z7.internal_condition">
+      <require Cclass="Device" Cgroup="Startup" Csub=""/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="port"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="smc"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart_adapter"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_uart"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require condition="device.MKE15Z7.internal_condition"/>
+    </condition>
+  </conditions>
+  <examples>
+    <example name="nmh1000_example" folder="boards/frdmke15z_nmh1000/issdk_examples/sensors/nmh1000/nmh1000_example" doc="readme.txt">
+      <description>The NMH1000 FIFO example application demonstrates configuration of all registers reguired to put the sensor in Auto Mode and read out samples.</description>
+      <board name="FRDMKE15-NMH1000" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/nmh1000_example.uvprojx"/>
+        <environment name="csolution" load="nmh1000_example.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+  </examples>
+  <components>
+    <component Cclass="Sensors" Cgroup="ISSDK project template" Csub="frdmke15z_nmh1000" Cversion="1.0.0" condition="BOARD_Project_Template.frdmke15z_nmh1000.condition_id">
+      <description>Board_project_template frdmke15z_nmh1000</description>
+      <files>
+        <file category="sourceC" attr="config" name="boards/frdmke15z_nmh1000/project_template/board.c" version="1.0.0" projectpath="frdmke15z_nmh1000/project_template"/>
+        <file category="header" attr="config" name="boards/frdmke15z_nmh1000/project_template/board.h" version="1.0.0" projectpath="frdmke15z_nmh1000/project_template"/>
+        <file category="sourceC" attr="config" name="boards/frdmke15z_nmh1000/project_template/clock_config.c" version="1.0.0" projectpath="frdmke15z_nmh1000/project_template"/>
+        <file category="header" attr="config" name="boards/frdmke15z_nmh1000/project_template/clock_config.h" version="1.0.0" projectpath="frdmke15z_nmh1000/project_template"/>
+        <file category="sourceC" attr="config" name="boards/frdmke15z_nmh1000/project_template/pin_mux.c" version="1.0.0" projectpath="frdmke15z_nmh1000/project_template"/>
+        <file category="header" attr="config" name="boards/frdmke15z_nmh1000/project_template/pin_mux.h" version="1.0.0" projectpath="frdmke15z_nmh1000/project_template"/>
+        <file category="sourceC" attr="config" name="boards/frdmke15z_nmh1000/project_template/peripherals.c" version="1.0.0" projectpath="frdmke15z_nmh1000/project_template"/>
+        <file category="header" attr="config" name="boards/frdmke15z_nmh1000/project_template/peripherals.h" version="1.0.0" projectpath="frdmke15z_nmh1000/project_template"/>
+        <file category="include" name="boards/frdmke15z_nmh1000/project_template/"/>
+      </files>
+    </component>
+  </components>
+</package>

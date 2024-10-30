@@ -1,0 +1,1660 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="1.3" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Infineon</vendor>
+  <name>TLE988x_9x_DFP</name>
+  <description>Infineon TLE988x/TLE989x Series Device Support</description>
+  <url>https://itools.infineon.com/cmsis_packs/TLE988x_9x/</url>
+  <supportContact>http://www.infineon.com/cms/en/corporate/company/contact/support/index.html</supportContact>
+  <license>license/cmsis_end_user_license_agreement.txt</license>
+  <releases>
+    <release version="1.2.0" date="2024-06-19">
+      Config Wizard: Added support for KBA viewer [EP-1524]
+      Disabled warning 'unsafe buffer access' in Keil uVision examples [EP-1480]
+      Added svd file for 2 phase variant (TLE988x) [EP-1518]
+      Added unused memory areas to IAR linker script for consistency [EP-1449]
+      Corrected DSRAM size in TLE9881/TLE9891 ARM linker file [EP-1530]
+      ADC, BDRV, CCU: Added several new functions [EP-1488]
+      ADC1: Removed connection ADC1/VDDEXT in Config Wizard [EP-1529]
+      Startup: Corrected UC_FLASH0_UBSL_SIZE calculation [EP-1481]
+      Startup: Removed outdated comments from startup file [EP-1510]
+      Note: The Keil uVision examples need at least ARM Compiler for Embedded v6.21
+    </release>
+    <release version="1.1.0" date="2023-12-13">
+      CCU7: Corrected CCPOS0A mapping in Config Wizard [EP-1454]
+      CSACSC: Fixed formula for CSACSC.CTRL2.THR_SEL [EP-1469]
+      GPIO: Added GPIO names and locks to EXTINT section [EP-1452]
+      Startup: Corrected linker file (NVM1 not available) [EP-1461]
+      Startup: Improved debug handling (startup file) [EP-1464]
+      Startup: Applied Cache Enable from CW [EP-1465]
+      UART: Added initialization of UARTx.LINCON register [EP-1448]
+      Corrected tle_device.c when using a device without SDADC [EP-1471]
+      Added MOTIX series to svd file [EP-1459]
+      Known issue: Warning 'unsafe buffer access' with Arm Compiler for Embedded 6.21
+    </release>
+    <release version="1.0.0" date="2023-06-14">
+      Initial release of TLE988x/9x Device Family Pack for Keil uVision and IAR Embedded Workbench for ARM (version 9.40.1 and newer)
+    </release>
+  </releases>
+  <keywords>
+    <keyword>Infineon</keyword>
+    <keyword>TLE988x</keyword>
+    <keyword>TLE989x</keyword>
+    <keyword>Embedded Power</keyword>
+  </keywords>
+  <devices>
+    <family Dfamily="TLE98xx Series" Dvendor="Infineon:7">
+      <processor Dcore="Cortex-M3" DcoreVersion="r0p0" Dfpu="NO_FPU" Dmpu="NO_MPU" Dendian="Little-endian"/>
+      <description>
+        The TLE988x/TLE989x series is designed for 3-phase motor drive applications with CAN interface
+        - Ultra low power consumption
+        - Nested Vectored Interrupt Controller (NVIC)
+        - Integrated CAN transceiver
+        - DMA (selected derivatives)
+        - Current Sense Amplifier (selected derivatives)
+      </description>
+      <environment name="uv">
+      </environment>
+      <subFamily DsubFamily="TLE988x Series">
+        <device Dname="TLE9881">
+          <processor Dclock="60000000"/>
+          <debug svd="device/tlelib/cfgwiz/xml/tle988x.svd"/>
+          <memory name="Flash0" access="rx" start="0x11000000" size="0x6000" startup="1" default="1"/>
+          <memory name="Flash1" access="rx" start="0x12002000" size="0x1E000" startup="0" default="1"/>
+          <memory name="PSRAM" access="rwx" start="0x18000000" size="0x2000" init="0" default="1"/>
+          <memory name="DSRAM" access="rw" start="0x18002000" size="0x2000" init="0" default="1"/>
+          <algorithm name="flash/TLE9881_FLASH0_UBSL.FLM" start="0x11000000" size="0x6000" default="1"/>
+          <algorithm name="flash/TLE9881_FLASH0_DATAFLASH.FLM" start="0x11006000" size="0x2000" default="1"/>
+          <algorithm name="flash/TLE9881_FLASH1.FLM" start="0x12002000" size="0x1E000" default="1"/>
+          <book name="documents/Infineon-TLE988x9x_User_Manual-UserManual-v01_00-EN.pdf" title="TLE988x/TLE989x User Manual"/>
+          <book name="documents/Infineon-TLE988x_9x_Firmware_User_Manual-UserManual-v01_00-EN.pdf" title="TLE988x/TLE989x Firmware User Manual"/>
+          <book name="documents/Infineon-TLE988x_9x_DataSheet-DataSheet-v01_00-EN.pdf" title="TLE988x/TLE989x Datasheet"/>
+          <book name="documents/html/index.html" title="SDK Help"/>
+          <variant Dvariant="TLE9881_2QTW60">
+            <compile header="device/tlelib/inc/tle989x.h" define="TLE9881_2QTW60"/>
+          </variant>
+        </device>
+        <device Dname="TLE9883">
+          <processor Dclock="60000000"/>
+          <debug svd="device/tlelib/cfgwiz/xml/tle988x.svd"/>
+          <memory name="Flash0" access="rx" start="0x11000000" size="0x6000" startup="1" default="1"/>
+          <memory name="Flash1" access="rx" start="0x12002000" size="0x3E000" startup="0" default="1"/>
+          <memory name="PSRAM" access="rwx" start="0x18000000" size="0x2000" init="0" default="1"/>
+          <memory name="DSRAM" access="rw" start="0x18002000" size="0x5C00" init="0" default="1"/>
+          <algorithm name="flash/TLE9883_FLASH0_UBSL.FLM" start="0x11000000" size="0x6000" default="1"/>
+          <algorithm name="flash/TLE9883_FLASH0_DATAFLASH.FLM" start="0x11006000" size="0x2000" default="1"/>
+          <algorithm name="flash/TLE9883_FLASH1.FLM" start="0x12002000" size="0x3E000" default="1"/>
+          <book name="documents/Infineon-TLE988x9x_User_Manual-UserManual-v01_00-EN.pdf" title="TLE988x/TLE989x User Manual"/>
+          <book name="documents/Infineon-TLE988x_9x_Firmware_User_Manual-UserManual-v01_00-EN.pdf" title="TLE988x/TLE989x Firmware User Manual"/>
+          <book name="documents/Infineon-TLE988x_9x_DataSheet-DataSheet-v01_00-EN.pdf" title="TLE988x/TLE989x Datasheet"/>
+          <book name="documents/html/index.html" title="SDK Help"/>
+          <variant Dvariant="TLE9883_2QTW62S">
+            <compile header="device/tlelib/inc/tle989x.h" define="TLE9883_2QTW62S"/>
+          </variant>
+          <variant Dvariant="TLE9883QTA62">
+            <compile header="device/tlelib/inc/tle989x.h" define="TLE9883QTA62"/>
+          </variant>
+        </device>
+      </subFamily>
+      <subFamily DsubFamily="TLE989x Series">
+        <device Dname="TLE9891">
+          <processor Dclock="60000000"/>
+          <debug svd="device/tlelib/cfgwiz/xml/tle989x.svd"/>
+          <memory name="Flash0" access="rx" start="0x11000000" size="0x6000" startup="1" default="1"/>
+          <memory name="Flash1" access="rx" start="0x12002000" size="0x1E000" startup="0" default="1"/>
+          <memory name="PSRAM" access="rwx" start="0x18000000" size="0x2000" init="0" default="1"/>
+          <memory name="DSRAM" access="rw" start="0x18002000" size="0x2000" init="0" default="1"/>
+          <algorithm name="flash/TLE9891_FLASH0_UBSL.FLM" start="0x11000000" size="0x6000" default="1"/>
+          <algorithm name="flash/TLE9891_FLASH0_DATAFLASH.FLM" start="0x11006000" size="0x2000" default="1"/>
+          <algorithm name="flash/TLE9891_FLASH1.FLM" start="0x12002000" size="0x1E000" default="1"/>
+          <book name="documents/Infineon-TLE988x9x_User_Manual-UserManual-v01_00-EN.pdf" title="TLE988x/TLE989x User Manual"/>
+          <book name="documents/Infineon-TLE988x_9x_Firmware_User_Manual-UserManual-v01_00-EN.pdf" title="TLE988x/TLE989x Firmware User Manual"/>
+          <book name="documents/Infineon-TLE988x_9x_DataSheet-DataSheet-v01_00-EN.pdf" title="TLE988x/TLE989x Datasheet"/>
+          <book name="documents/html/index.html" title="SDK Help"/>
+          <variant Dvariant="TLE9891QTA61">
+            <compile header="device/tlelib/inc/tle989x.h" define="TLE9891QTA61"/>
+          </variant>
+          <variant Dvariant="TLE9891_2QTW60">
+            <compile header="device/tlelib/inc/tle989x.h" define="TLE9891_2QTW60"/>
+          </variant>
+          <variant Dvariant="TLE9891_2QTW61">
+            <compile header="device/tlelib/inc/tle989x.h" define="TLE9891_2QTW61"/>
+          </variant>
+        </device>
+        <device Dname="TLE9893">
+          <processor Dclock="60000000"/>
+          <debug svd="device/tlelib/cfgwiz/xml/tle989x.svd"/>
+          <memory name="Flash0" access="rx" start="0x11000000" size="0x6000" startup="1" default="1"/>
+          <memory name="Flash1" access="rx" start="0x12002000" size="0x3E000" startup="0" default="1"/>
+          <memory name="PSRAM" access="rwx" start="0x18000000" size="0x2000" init="0" default="1"/>
+          <memory name="DSRAM" access="rw" start="0x18002000" size="0x5C00" init="0" default="1"/>
+          <algorithm name="flash/TLE9893_FLASH0_UBSL.FLM" start="0x11000000" size="0x6000" default="1"/>
+          <algorithm name="flash/TLE9893_FLASH0_DATAFLASH.FLM" start="0x11006000" size="0x2000" default="1"/>
+          <algorithm name="flash/TLE9893_FLASH1.FLM" start="0x12002000" size="0x3E000" default="1"/>
+          <book name="documents/Infineon-TLE988x9x_User_Manual-UserManual-v01_00-EN.pdf" title="TLE988x/TLE989x User Manual"/>
+          <book name="documents/Infineon-TLE988x_9x_Firmware_User_Manual-UserManual-v01_00-EN.pdf" title="TLE988x/TLE989x Firmware User Manual"/>
+          <book name="documents/Infineon-TLE988x_9x_DataSheet-DataSheet-v01_00-EN.pdf" title="TLE988x/TLE989x Datasheet"/>
+          <book name="documents/html/index.html" title="SDK Help"/>
+          <variant Dvariant="TLE9893QKW62S">
+            <compile header="device/tlelib/inc/tle989x.h" define="TLE9893QKW62S"/>
+          </variant>
+          <variant Dvariant="TLE9893_2QTA62">
+            <compile header="device/tlelib/inc/tle989x.h" define="TLE9893_2QTA62"/>
+          </variant>
+          <variant Dvariant="TLE9893_2QTW62S">
+            <compile header="device/tlelib/inc/tle989x.h" define="TLE9893_2QTW62S"/>
+          </variant>
+          <variant Dvariant="TLE9893_2QTA62S">
+            <compile header="device/tlelib/inc/tle989x.h" define="TLE9893_2QTA62S"/>
+          </variant>
+          <variant Dvariant="TLE9893_2QKW62S">
+            <compile header="device/tlelib/inc/tle989x.h" define="TLE9893_2QKW62S"/>
+          </variant>
+        </device>
+      </subFamily>
+    </family>
+  </devices>
+  <conditions>
+    <condition id="cond_TLE988x_9x_startup_modules">
+      <description>Infineon TLE988x/TLE989x device series</description>
+      <require Cclass="CMSIS" Cgroup="CORE" Csub=""/>
+      <require Cclass="Device" Cgroup="TLELib" Csub="ADC1"/>
+      <require Cclass="Device" Cgroup="TLELib" Csub="ADC2"/>
+      <require Cclass="Device" Cgroup="TLELib" Csub="BDRV"/>
+      <require Cclass="Device" Cgroup="TLELib" Csub="BOOTROM"/>
+      <require Cclass="Device" Cgroup="TLELib" Csub="CSACSC"/>
+      <require Cclass="Device" Cgroup="TLELib" Csub="GPIO"/>
+      <require Cclass="Device" Cgroup="TLELib" Csub="INT"/>
+      <require Cclass="Device" Cgroup="TLELib" Csub="ISR"/>
+      <require Cclass="Device" Cgroup="TLELib" Csub="PMU"/>
+      <require Cclass="Device" Cgroup="TLELib" Csub="SCU"/>
+      <accept condition="cond_any_TLE988x_9x_device"/>
+      <accept Cclass="Device" Cgroup="ConfigWizard" Csub=""/>
+    </condition>
+    <condition id="cond_TLE988x_9x_startup">
+      <description>Infineon TLE988x/TLE989x device series</description>
+      <require condition="cond_TLE988x_9x_startup_modules"/>
+      <require Cclass="Device" Cgroup="Startup" Csub=""/>
+    </condition>
+    <condition id="cond_any_Config_Wizard">
+      <require Cclass="Device" Cgroup="TLELib" Csub="GPIO"/>
+      <require Cclass="Device" Cgroup="TLELib" Csub="INT"/>
+      <require Cclass="Device" Cgroup="TLELib" Csub="ISR"/>
+      <require Cclass="Device" Cgroup="TLELib" Csub="PMU"/>
+      <require Cclass="Device" Cgroup="TLELib" Csub="SCU"/>
+      <accept condition="cond_any_TLE988x_9x_device"/>
+    </condition>
+    <condition id="cond_any_TLE988x_device">
+      <description>Infineon TLE988x device series</description>
+      <accept Dvendor="Infineon:7" Dname="TLE988*"/>
+    </condition>
+    <condition id="cond_any_TLE989x_device">
+      <description>Infineon TLE989x device series</description>
+      <accept Dvendor="Infineon:7" Dname="TLE989*"/>
+    </condition>
+    <condition id="cond_any_TLE988x_9x_device">
+      <description>Infineon TLE988x/TLE989x device series</description>
+      <accept Dvendor="Infineon:7" Dname="TLE988*"/>
+      <accept Dvendor="Infineon:7" Dname="TLE989*"/>
+    </condition>
+    <condition id="cond_TLE988x">
+      <description>Infineon TLE988x device</description>
+      <require Dvendor="Infineon:7" Dname="TLE988*"/>
+    </condition>
+    <condition id="cond_TLE989x">
+      <description>Infineon TLE989x device</description>
+      <require Dvendor="Infineon:7" Dname="TLE989*"/>
+    </condition>
+    <!-- 48 or 64 pin -->
+    <condition id="cond_TLE988x_9x_48pin">
+      <description>Infineon TLE988x/9x device with 48 pin</description>
+      <accept Dvendor="Infineon:7" Dname="TLE989*T*"/>
+      <accept Dvendor="Infineon:7" Dname="TLE988*T*"/>
+    </condition>
+    <condition id="cond_TLE988x_9x_64pin">
+      <description>Infineon TLE988x/9x device with 64 pin</description>
+      <accept Dvendor="Infineon:7" Dname="TLE989*K*"/>
+      <accept Dvendor="Infineon:7" Dname="TLE988*K*"/>
+    </condition>
+    <!-- One condition for every device, for adding the correct icwp and defines -->
+    <condition id="cond_TLE9881_2QTW60">
+      <require Dvendor="Infineon:7" Dname="TLE9881_2QTW60"/>
+    </condition>
+    <condition id="cond_TLE9883_2QTW62S">
+      <require Dvendor="Infineon:7" Dname="TLE9883_2QTW62S"/>
+    </condition>
+    <condition id="cond_TLE9883QTA62">
+      <require Dvendor="Infineon:7" Dname="TLE9883QTA62"/>
+    </condition>
+    <condition id="cond_TLE9891_2QTW60">
+      <require Dvendor="Infineon:7" Dname="TLE9891_2QTW60"/>
+    </condition>
+    <condition id="cond_TLE9891_2QTW61">
+      <require Dvendor="Infineon:7" Dname="TLE9891_2QTW61"/>
+    </condition>
+    <condition id="cond_TLE9891QTA61">
+      <require Dvendor="Infineon:7" Dname="TLE9891QTA61"/>
+    </condition>
+    <condition id="cond_TLE9893_2QKW62S">
+      <require Dvendor="Infineon:7" Dname="TLE9893_2QKW62S"/>
+    </condition>
+    <condition id="cond_TLE9893_2QTA62">
+      <require Dvendor="Infineon:7" Dname="TLE9893_2QTA62"/>
+    </condition>
+    <condition id="cond_TLE9893_2QTA62S">
+      <require Dvendor="Infineon:7" Dname="TLE9893_2QTA62S"/>
+    </condition>
+    <condition id="cond_TLE9893_2QTW62S">
+      <require Dvendor="Infineon:7" Dname="TLE9893_2QTW62S"/>
+    </condition>
+    <condition id="cond_TLE9893QKW62S">
+      <require Dvendor="Infineon:7" Dname="TLE9893QKW62S"/>
+    </condition>
+    <!-- One condition for every module -->
+    <condition id="cond_TLE988x_9x_ADC1">
+      <accept condition="cond_any_TLE988x_9x_device"/>
+    </condition>
+    <condition id="cond_TLE988x_9x_ADC2">
+      <accept condition="cond_any_TLE988x_9x_device"/>
+    </condition>
+    <condition id="cond_TLE988x_9x_BDRV">
+      <accept condition="cond_any_TLE988x_9x_device"/>
+    </condition>
+    <condition id="cond_TLE988x_9x_BOOTROM">
+      <accept condition="cond_any_TLE988x_9x_device"/>
+    </condition>
+    <condition id="cond_TLE988x_9x_CANCONTR">
+      <accept condition="cond_any_TLE988x_9x_device"/>
+      <deny Cclass="Device" Cgroup="TLELib" Csub="CANCOM"/>
+    </condition>
+    <condition id="cond_TLE988x_9x_CANTRX">
+      <accept condition="cond_any_TLE988x_9x_device"/>
+      <deny Cclass="Device" Cgroup="TLELib" Csub="CANCOM"/>
+    </condition>
+    <condition id="cond_TLE988x_9x_CANCOM">
+      <accept condition="cond_any_TLE988x_9x_device"/>
+      <!-- CANCOM currently only exists for ARM -->
+      <require condition="cond_TLE988x_9x_ARM"/>
+      <deny Cclass="Device" Cgroup="TLELib" Csub="CANCONTR"/>
+      <deny Cclass="Device" Cgroup="TLELib" Csub="CANTRX"/>
+    </condition>
+    <condition id="cond_TLE988x_9x_CCU7">
+      <accept condition="cond_any_TLE988x_9x_device"/>
+    </condition>
+    <condition id="cond_TLE988x_9x_CSACSC">
+      <accept condition="cond_any_TLE988x_9x_device"/>
+    </condition>
+    <condition id="cond_TLE988x_9x_DMA">
+      <accept condition="cond_any_TLE988x_9x_device"/>
+    </condition>
+    <condition id="cond_TLE988x_9x_GPIO">
+      <accept condition="cond_any_TLE988x_9x_device"/>
+    </condition>
+    <condition id="cond_TLE988x_9x_GPT12">
+      <accept condition="cond_any_TLE988x_9x_device"/>
+    </condition>
+    <condition id="cond_TLE988x_9x_INT">
+      <accept condition="cond_any_TLE988x_9x_device"/>
+    </condition>
+    <condition id="cond_TLE988x_9x_ISR">
+      <accept condition="cond_any_TLE988x_9x_device"/>
+    </condition>
+    <condition id="cond_TLE988x_9x_MON">
+      <accept condition="cond_any_TLE988x_9x_device"/>
+    </condition>
+    <condition id="cond_TLE988x_9x_PMU">
+      <accept condition="cond_any_TLE988x_9x_device"/>
+    </condition>
+    <condition id="cond_TLE988x_9x_SCU">
+      <accept condition="cond_any_TLE988x_9x_device"/>
+    </condition>
+    <condition id="cond_TLE988x_9x_SDADC">
+      <accept Dvendor="Infineon:7" Dname="TLE9881_2QTW60"/>
+      <accept Dvendor="Infineon:7" Dname="TLE9883_2QTW62S"/>
+      <accept Dvendor="Infineon:7" Dname="TLE9891_2QTW60"/>
+      <accept Dvendor="Infineon:7" Dname="TLE9891_2QTW61"/>
+      <accept Dvendor="Infineon:7" Dname="TLE9893_2QTA62"/>
+      <accept Dvendor="Infineon:7" Dname="TLE9893_2QTW62S"/>
+      <accept Dvendor="Infineon:7" Dname="TLE9893_2QTA62S"/>
+      <accept Dvendor="Infineon:7" Dname="TLE9893_2QKW62S"/>
+    </condition>
+    <condition id="cond_TLE988x_9x_SSC">
+      <accept condition="cond_any_TLE988x_9x_device"/>
+    </condition>
+    <condition id="cond_TLE988x_9x_TIMER2X">
+      <accept condition="cond_any_TLE988x_9x_device"/>
+    </condition>
+    <condition id="cond_TLE988x_9x_UART">
+      <accept condition="cond_any_TLE988x_9x_device"/>
+    </condition>
+    <!-- conditions for compiler -->
+    <condition id="cond_TLE988x_9x_ARM">
+      <description>Infineon TLE988x/9x device series with ARMCC</description>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="cond_TLE988x_9x_IAR">
+      <description>Infineon TLE988x/9x device series with IAR</description>
+      <require Tcompiler="IAR"/>
+    </condition>
+    <!-- conditions for memory size and Compiler to select the correct linker file -->
+    <condition id="cond_TLE9881_91_ARM">
+      <require Tcompiler="ARMCC"/>
+      <accept Dvendor="Infineon:7" Dname="TLE9881*"/>
+      <accept Dvendor="Infineon:7" Dname="TLE9891*"/>
+    </condition>
+    <condition id="cond_TLE9883_93_ARM">
+      <require Tcompiler="ARMCC"/>
+      <accept Dvendor="Infineon:7" Dname="TLE9883*"/>
+      <accept Dvendor="Infineon:7" Dname="TLE9893*"/>
+    </condition>
+    <condition id="cond_TLE9881_IAR">
+      <require Tcompiler="IAR"/>
+      <accept Dvendor="Infineon:7" Dname="TLE9881*"/>
+    </condition>
+    <condition id="cond_TLE9883_IAR">
+      <require Tcompiler="IAR"/>
+      <accept Dvendor="Infineon:7" Dname="TLE9883*"/>
+    </condition>
+    <condition id="cond_TLE9891_IAR">
+      <require Tcompiler="IAR"/>
+      <accept Dvendor="Infineon:7" Dname="TLE9891*"/>
+    </condition>
+    <condition id="cond_TLE9893_IAR">
+      <require Tcompiler="IAR"/>
+      <accept Dvendor="Infineon:7" Dname="TLE9893*"/>
+    </condition>
+    <condition id="cond_TLE9881_2QTW60_ARM">
+      <description>TLE9881_2QTW60 with ARMCC</description>
+      <require Tcompiler="ARMCC"/>
+      <require Dvendor="Infineon:7" Dname="TLE9881_2QTW60"/>
+    </condition>
+    <condition id="cond_TLE9881_2QTW60_IAR">
+      <description>TLE9881_2QTW60 with IAR</description>
+      <require Tcompiler="IAR"/>
+      <require Dvendor="Infineon:7" Dname="TLE9881_2QTW60"/>
+    </condition>
+    <condition id="cond_TLE9883_2QTW62S_ARM">
+      <description>TLE9883_2QTW62S with ARMCC</description>
+      <require Tcompiler="ARMCC"/>
+      <require Dvendor="Infineon:7" Dname="TLE9883_2QTW62S"/>
+    </condition>
+    <condition id="cond_TLE9883_2QTW62S_IAR">
+      <description>TLE9883_2QTW62S with IAR</description>
+      <require Tcompiler="IAR"/>
+      <require Dvendor="Infineon:7" Dname="TLE9883_2QTW62S"/>
+    </condition>
+    <condition id="cond_TLE9883QTA62_ARM">
+      <description>TLE9883QTA62 with ARMCC</description>
+      <require Tcompiler="ARMCC"/>
+      <require Dvendor="Infineon:7" Dname="TLE9883QTA62"/>
+    </condition>
+    <condition id="cond_TLE9883QTA62_IAR">
+      <description>TLE9883QTA62 with IAR</description>
+      <require Tcompiler="IAR"/>
+      <require Dvendor="Infineon:7" Dname="TLE9883QTA62"/>
+    </condition>
+    <condition id="cond_TLE9891_2QTW60_ARM">
+      <description>TLE9891_2QTW60 with ARMCC</description>
+      <require Tcompiler="ARMCC"/>
+      <require Dvendor="Infineon:7" Dname="TLE9891_2QTW60"/>
+    </condition>
+    <condition id="cond_TLE9891_2QTW60_IAR">
+      <description>TLE9891_2QTW60 with IAR</description>
+      <require Tcompiler="IAR"/>
+      <require Dvendor="Infineon:7" Dname="TLE9891_2QTW60"/>
+    </condition>
+    <condition id="cond_TLE9891_2QTW61_ARM">
+      <description>TLE9891_2QTW61 with ARMCC</description>
+      <require Tcompiler="ARMCC"/>
+      <require Dvendor="Infineon:7" Dname="TLE9891_2QTW61"/>
+    </condition>
+    <condition id="cond_TLE9891_2QTW61_IAR">
+      <description>TLE9891_2QTW61 with IAR</description>
+      <require Tcompiler="IAR"/>
+      <require Dvendor="Infineon:7" Dname="TLE9891_2QTW61"/>
+    </condition>
+    <condition id="cond_TLE9891QTA61_ARM">
+      <description>TLE9891QTA61 with ARMCC</description>
+      <require Tcompiler="ARMCC"/>
+      <require Dvendor="Infineon:7" Dname="TLE9891QTA61"/>
+    </condition>
+    <condition id="cond_TLE9891QTA61_IAR">
+      <description>TLE9891QTA61 with IAR</description>
+      <require Tcompiler="IAR"/>
+      <require Dvendor="Infineon:7" Dname="TLE9891QTA61"/>
+    </condition>
+    <condition id="cond_TLE9893_2QKW62S_ARM">
+      <description>TLE9893_2QKW62S with ARMCC</description>
+      <require Tcompiler="ARMCC"/>
+      <require Dvendor="Infineon:7" Dname="TLE9893_2QKW62S"/>
+    </condition>
+    <condition id="cond_TLE9893_2QKW62S_IAR">
+      <description>TLE9893_2QKW62S with IAR</description>
+      <require Tcompiler="IAR"/>
+      <require Dvendor="Infineon:7" Dname="TLE9893_2QKW62S"/>
+    </condition>
+    <condition id="cond_TLE9893_2QTA62_ARM">
+      <description>TLE9893_2QTA62 with ARMCC</description>
+      <require Tcompiler="ARMCC"/>
+      <require Dvendor="Infineon:7" Dname="TLE9893_2QTA62"/>
+    </condition>
+    <condition id="cond_TLE9893_2QTA62_IAR">
+      <description>TLE9893_2QTA62 with IAR</description>
+      <require Tcompiler="IAR"/>
+      <require Dvendor="Infineon:7" Dname="TLE9893_2QTA62"/>
+    </condition>
+    <condition id="cond_TLE9893_2QTA62S_ARM">
+      <description>TLE9893_2QTA62S with ARMCC</description>
+      <require Tcompiler="ARMCC"/>
+      <require Dvendor="Infineon:7" Dname="TLE9893_2QTA62S"/>
+    </condition>
+    <condition id="cond_TLE9893_2QTA62S_IAR">
+      <description>TLE9893_2QTA62S with IAR</description>
+      <require Tcompiler="IAR"/>
+      <require Dvendor="Infineon:7" Dname="TLE9893_2QTA62S"/>
+    </condition>
+    <condition id="cond_TLE9893_2QTW62S_ARM">
+      <description>TLE9893_2QTW62S with ARMCC</description>
+      <require Tcompiler="ARMCC"/>
+      <require Dvendor="Infineon:7" Dname="TLE9893_2QTW62S"/>
+    </condition>
+    <condition id="cond_TLE9893_2QTW62S_IAR">
+      <description>TLE9893_2QTW62S with IAR</description>
+      <require Tcompiler="IAR"/>
+      <require Dvendor="Infineon:7" Dname="TLE9893_2QTW62S"/>
+    </condition>
+    <condition id="cond_TLE9893QKW62S_ARM">
+      <description>TLE9893QKW62S with ARMCC</description>
+      <require Tcompiler="ARMCC"/>
+      <require Dvendor="Infineon:7" Dname="TLE9893QKW62S"/>
+    </condition>
+    <condition id="cond_TLE9893QKW62S_IAR">
+      <description>TLE9893QKW62S with IAR</description>
+      <require Tcompiler="IAR"/>
+      <require Dvendor="Infineon:7" Dname="TLE9893QKW62S"/>
+    </condition>
+  </conditions>
+  <boards>
+    <board vendor="Infineon" name="TLE988x/TLE989x EvalBoard" revision="V1.0" salesContact="sales@infineon.com" orderForm="http://www.infineon.com/embeddedpower">
+      <description>Infineon TLE988x/TLE989x EvalKit Board Support and Examples</description>
+      <book category="overview" name="https://www.infineon.com/cms/de/product/evaluation-boards/tle989x-evalb_lqfp/" title="TLE989x EvalBoard LQFP Web Page"/>
+      <book category="overview" name="https://www.infineon.com/cms/de/product/evaluation-boards/tle989x-evalb_tqfp/" title="TLE989x EvalBoard TQFP Web Page"/>
+      <book name="documents/Infineon-TLE988x_9x_Evalboard-UG-v01_1-EN-UserManual-v01_00-EN.pdf" title="TLE988x/TLE989x EvalBoard User Guide"/>
+      <mountedDevice deviceIndex="0" Dvendor="Infineon:7" Dname="TLE9893"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Infineon:7" DsubFamily="TLE989x Series" Dname="TLE9891"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Infineon:7" DsubFamily="TLE989x Series" Dname="TLE9881"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Infineon:7" DsubFamily="TLE989x Series" Dname="TLE9883"/>
+    </board>
+  </boards>
+  <apis>
+    <api Cclass="Device Driver" Cgroup="TLELib">
+      <files>
+        <file category="header" name="device/tlelib/lib/can_types.h" version="301.0"/>
+        <file category="header" name="device/tlelib/lib/Can_Api.h" version="301.0"/>
+        <file category="header" name="device/tlelib/lib/com_types.h" version="301.0"/>
+        <file category="header" name="device/tlelib/lib/Com_Api.h" version="301.0"/>
+      </files>
+    </api>
+  </apis>
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="0.4.0" condition="cond_TLE988x_9x_startup">
+      <description>System Startup C for Infineon TLE988x/TLE989x device series</description>
+      <files>
+        <file category="source" attr="config" name="device/startup/c/startup_tle989x.c" condition="cond_TLE988x_9x_IAR" version="0.1.4"/>
+        <file category="source" attr="config" name="device/startup/c/startup_tle989x.c" condition="cond_TLE988x_9x_ARM" version="0.1.4"/>
+        <file category="linkerScript" attr="config" name="device/startup/c/tle9881_91.sct" condition="cond_TLE9881_91_ARM" version="1.1.0"/>
+        <file category="linkerScript" attr="config" name="device/startup/c/tle9883_93.sct" condition="cond_TLE9883_93_ARM" version="1.0.0"/>
+        <file category="linkerScript" attr="config" name="device/startup/c/TLE9881.icf" condition="cond_TLE9881_IAR" version="0.1.0"/>
+        <file category="linkerScript" attr="config" name="device/startup/c/TLE9883.icf" condition="cond_TLE9883_IAR" version="0.1.0"/>
+        <file category="linkerScript" attr="config" name="device/startup/c/TLE9891.icf" condition="cond_TLE9891_IAR" version="0.1.0"/>
+        <file category="linkerScript" attr="config" name="device/startup/c/TLE9893.icf" condition="cond_TLE9893_IAR" version="0.1.0"/>
+        <file category="source" attr="config" name="device/startup/src/system_tle989x.c" version="0.4.6"/>
+        <file category="header" attr="config" name="device/startup/inc/system_tle989x.h" version="0.4.6"/>
+        <file category="source" attr="config" name="device/tlelib/src/tle_device.c" version="0.3.9"/>
+        <file category="header" attr="config" name="device/tlelib/inc/tle_device.h" version="0.3.9"/>
+        <file category="header" attr="config" name="device/tlelib/inc/tle_variants.h" version="0.4.4"/>
+        <file category="header" attr="config" name="device/tlelib/inc/types.h" version="0.4.2"/>
+        <file category="header" attr="config" name="device/tlelib/inc/error_codes.h" version="0.3.1"/>
+        <file category="header" attr="config" name="device/tlelib/inc/cmsis_misra.h" version="0.2.4"/>
+        <file category="header" attr="config" name="device/tlelib/inc/tle989x.h" version="0.6.0"/>
+        <file category="sourceC" attr="template" name="device/tlelib/main/main.c" select="Simple Main" version="1.5.5"/>
+        <file category="doc" name="documents/html/index.html"/>
+        <!-- for F1 help -->
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="ConfigWizard" condition="cond_any_Config_Wizard" Cversion="0.0.0">
+      <description>Infineon ConfigWizard Configuration File</description>
+      <RTE_Components_h>
+        #define CONFIGWIZARD 2
+      </RTE_Components_h>
+      <files>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/icw_ocn.xml" version="0.6.0"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/tle988x.svd" version="1.0.1" condition="cond_any_TLE988x_device"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/tle989x.svd" version="1.0.1" condition="cond_any_TLE989x_device"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/tle989x_48.pin" version="0.5.0" condition="cond_TLE988x_9x_48pin"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/tle989x_64.pin" version="0.5.0" condition="cond_TLE988x_9x_64pin"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/adc1.py" version="0.1.5"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/adc2.py" version="0.1.7"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/ccu7_calc.py" version="0.1.6"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/scu.py" version="0.1.2"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/timer2x.py" version="0.1.4"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/uart.py" version="0.1.3"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/bsl_defines_inc_save_handler.py" version="0.2.2"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/icw_ocn_adc1.xml" version="0.1.3"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/icw_ocn_adc2.xml" version="0.0.6"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/icw_ocn_BDRV.xml" version="0.2.8"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/icw_ocn_bemf.xml" version="0.0.7"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/icw_ocn_bsl.xml" version="0.1.0"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/icw_ocn_cantrx.xml" version="0.0.5"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/icw_ocn_CCU7.xml" version="0.3.3"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/icw_ocn_CSACSC.xml" version="0.2.1"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/icw_ocn_dma.xml" version="0.0.6"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/icw_ocn_gpio.xml" version="0.2.1"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/icw_ocn_gpt12.xml" version="0.1.4"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/icw_ocn_interrupt.xml" version="0.4.0"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/icw_ocn_mon.xml" version="0.1.5"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/icw_ocn_pmu.xml" version="0.1.8"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/icw_ocn_scu.xml" version="0.3.0"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/icw_ocn_sdadc.xml" version="0.0.8"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/icw_ocn_SSC.xml" version="0.1.0"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/icw_ocn_timer2x.xml" version="0.1.8"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/icw_ocn_UARTx.xml" version="0.1.8"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_adc1_calibration.xml" version="0.2.2"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_adc1_channel.xml" version="0.3.4"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_adc1_channel_class.xml" version="0.2.2"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_adc1_compare.xml" version="0.2.3"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_adc1_filter.xml" version="0.2.2"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_adc1_sequencer.xml" version="0.2.2"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_adc1_sequencer_slots.xml" version="0.2.2"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_adc1_sequencer_variables.xml" version="0.2.2"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_adc1_variables2.xml" version="0.2.2"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_adc2_channel.xml" version="0.0.6"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_adc2_channel_class.xml" version="0.0.3"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_adc2_channel_user.xml" version="0.0.6"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_adc2_compare.xml" version="0.0.6"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_adc2_compare_fix.xml" version="0.0.6"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_adc2_compare_fix_nmi_up.xml" version="0.0.6"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_adc2_compare_fix_nmi_lo.xml" version="0.0.6"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_adc2_compare_fix_nmi_uplo.xml" version="0.0.6"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_adc2_filter.xml" version="0.0.3"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_adc2_filter_fix.xml" version="0.0.3"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_adc2_sequencer.xml" version="0.0.5"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_adc2_sequencer_slots.xml" version="0.0.3"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_bdrv_currentsConst.xml" version="0.1.6"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_bdrv_currentsSeq.xml" version="0.1.6"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_bdrv_timingsConst.xml" version="0.1.6"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_bdrv_timingsSeq.xml" version="0.1.6"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_bdrv_hb_chrg_dischrg_settings.xml" version="0.0.6"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_bdrv_hb_graph.xml" version="0.0.4"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_bdrv_hb_settings.xml" version="0.0.3"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_ccu7_cmpval_input.xml" version="0.1.2"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_ccu7_perval_input.xml" version="0.1.2"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_ccu7_sum_cmpval.xml" version="0.1.3"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_ccu7_sum_t1x.xml" version="0.1.2"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_ccu7_t12.xml" version="0.1.7"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_ccu7_t13.xml" version="0.1.4"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_ccu7_t141516.xml" version="0.1.4"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_ccu7_deadtime_graph.xml" version="0.0.3"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_dma_mode.xml" version="0.0.3"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_gpio_p0p1.xml" version="0.1.3"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_gpio_p2.xml" version="0.1.3"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_gpt12_mode.xml" version="0.3.3"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_gpt12_timer.xml" version="0.1.3"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_interrupt_overview_adc1.xml" version="0.1.3"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_interrupt_overview_adc2.xml" version="0.1.6"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_interrupt_overview_bemf_sdadc.xml" version="0.3.2"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_interrupt_overview_can.xml" version="0.1.4"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_interrupt_overview_ccu7.xml" version="0.1.3"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_interrupt_overview_dma.xml" version="0.1.3"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_interrupt_overview_extint.xml" version="0.2.3"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_interrupt_overview_gpt12.xml" version="0.1.3"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_interrupt_overview_memctrl.xml" version="0.1.3"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_interrupt_overview_mon.xml" version="0.1.3"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_interrupt_overview_ssc.xml" version="0.1.4"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_interrupt_overview_t20.xml" version="0.1.3"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_interrupt_overview_t21.xml" version="0.1.3"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_interrupt_overview_uart.xml" version="0.1.3"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_interrupt_overview_warn.xml" version="0.1.5"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_pmu_gpiowake.xml" version="0.2.2"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_pmu_interrupt.xml" version="0.1.3"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_pmu_timer.xml" version="0.1.4"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_sdadc_channel.xml" version="0.2.4"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_sdadc_interrupt.xml" version="0.1.4"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_sdadc_timers.xml" version="0.1.4"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_ssc_graph.xml" version="0.1.3"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_ssc_mode.xml" version="0.1.6"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_ssc_pinsel.xml" version="0.2.2"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_ssc_timer.xml" version="0.1.5"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_t2x_graph.xml" version="0.1.4"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_t2x_mode.xml" version="0.3.3"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_uart_graph.xml" version="0.1.5"/>
+        <file category="doc" attr="config" name="device/tlelib/cfgwiz/xml/template_uart_mode.xml" version="0.3.2"/>
+        <!-- icwp files and defines are device specific -->
+        <!-- TLE9881_2QTW60 -->
+        <file condition="cond_TLE9881_2QTW60" category="doc" attr="config" name="device/tlelib/cfgwiz/defines/TLE9881_2QTW60/config.icwp" version="0.0.0"/>
+        <file condition="cond_TLE9881_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9881_2QTW60/adc1_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9881_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9881_2QTW60/adc2_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9881_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9881_2QTW60/bdrv_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9881_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9881_2QTW60/bsl_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9881_2QTW60_ARM" category="doc" attr="config" name="device/tlelib/cfgwiz/defines/TLE9881_2QTW60/bsl_defines_ARM.inc" version="0.0.0"/>
+        <file condition="cond_TLE9881_2QTW60_IAR" category="doc" attr="config" name="device/tlelib/cfgwiz/defines/TLE9881_2QTW60/bsl_defines_IAR.inc" version="0.0.0"/>
+        <file condition="cond_TLE9881_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9881_2QTW60/cantrx_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9881_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9881_2QTW60/ccu7_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9881_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9881_2QTW60/csacsc_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9881_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9881_2QTW60/dma_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9881_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9881_2QTW60/gpio_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9881_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9881_2QTW60/gpt12_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9881_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9881_2QTW60/isr_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9881_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9881_2QTW60/pmu_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9881_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9881_2QTW60/scu_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9881_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9881_2QTW60/sdadc_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9881_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9881_2QTW60/ssc_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9881_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9881_2QTW60/timer2x_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9881_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9881_2QTW60/uart_defines.h" version="0.0.0"/>
+        <!-- TLE9883_2QTW62S -->
+        <file condition="cond_TLE9883_2QTW62S" category="doc" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883_2QTW62S/config.icwp" version="0.0.0"/>
+        <file condition="cond_TLE9883_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883_2QTW62S/adc1_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9883_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883_2QTW62S/adc2_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9883_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883_2QTW62S/bdrv_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9883_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883_2QTW62S/bsl_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9883_2QTW62S_ARM" category="doc" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883_2QTW62S/bsl_defines_ARM.inc" version="0.0.0"/>
+        <file condition="cond_TLE9883_2QTW62S_IAR" category="doc" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883_2QTW62S/bsl_defines_IAR.inc" version="0.0.0"/>
+        <file condition="cond_TLE9883_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883_2QTW62S/cantrx_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9883_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883_2QTW62S/ccu7_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9883_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883_2QTW62S/csacsc_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9883_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883_2QTW62S/dma_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9883_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883_2QTW62S/gpio_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9883_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883_2QTW62S/gpt12_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9883_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883_2QTW62S/isr_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9883_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883_2QTW62S/pmu_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9883_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883_2QTW62S/scu_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9883_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883_2QTW62S/sdadc_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9883_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883_2QTW62S/ssc_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9883_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883_2QTW62S/timer2x_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9883_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883_2QTW62S/uart_defines.h" version="0.0.0"/>
+        <!-- TLE9883QTA62 -->
+        <file condition="cond_TLE9883QTA62" category="doc" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883QTA62/config.icwp" version="0.0.0"/>
+        <file condition="cond_TLE9883QTA62" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883QTA62/adc1_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9883QTA62" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883QTA62/adc2_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9883QTA62" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883QTA62/bdrv_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9883QTA62" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883QTA62/bsl_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9883QTA62_ARM" category="doc" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883QTA62/bsl_defines_ARM.inc" version="0.0.0"/>
+        <file condition="cond_TLE9883QTA62_IAR" category="doc" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883QTA62/bsl_defines_IAR.inc" version="0.0.0"/>
+        <file condition="cond_TLE9883QTA62" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883QTA62/cantrx_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9883QTA62" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883QTA62/ccu7_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9883QTA62" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883QTA62/csacsc_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9883QTA62" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883QTA62/dma_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9883QTA62" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883QTA62/gpio_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9883QTA62" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883QTA62/gpt12_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9883QTA62" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883QTA62/isr_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9883QTA62" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883QTA62/pmu_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9883QTA62" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883QTA62/scu_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9883QTA62" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883QTA62/ssc_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9883QTA62" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883QTA62/timer2x_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9883QTA62" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9883QTA62/uart_defines.h" version="0.0.0"/>
+        <!-- TLE9891_2QTW60 -->
+        <file condition="cond_TLE9891_2QTW60" category="doc" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW60/config.icwp" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW60/adc1_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW60/adc2_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW60/bdrv_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW60/bsl_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW60_ARM" category="doc" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW60/bsl_defines_ARM.inc" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW60_IAR" category="doc" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW60/bsl_defines_IAR.inc" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW60/cantrx_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW60/ccu7_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW60/csacsc_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW60/dma_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW60/gpio_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW60/gpt12_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW60/isr_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW60/pmu_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW60/scu_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW60/sdadc_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW60/ssc_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW60/timer2x_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW60" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW60/uart_defines.h" version="0.0.0"/>
+        <!-- TLE9891_2QTW61 -->
+        <file condition="cond_TLE9891_2QTW61" category="doc" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW61/config.icwp" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW61" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW61/adc1_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW61" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW61/adc2_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW61" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW61/bdrv_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW61" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW61/bsl_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW61_ARM" category="doc" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW61/bsl_defines_ARM.inc" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW61_IAR" category="doc" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW61/bsl_defines_IAR.inc" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW61" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW61/cantrx_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW61" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW61/ccu7_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW61" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW61/csacsc_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW61" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW61/dma_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW61" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW61/gpio_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW61" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW61/gpt12_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW61" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW61/isr_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW61" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW61/pmu_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW61" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW61/scu_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW61" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW61/sdadc_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW61" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW61/ssc_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW61" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW61/timer2x_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891_2QTW61" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891_2QTW61/uart_defines.h" version="0.0.0"/>
+        <!-- TLE9891QTA61 -->
+        <file condition="cond_TLE9891QTA61" category="doc" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891QTA61/config.icwp" version="0.0.0"/>
+        <file condition="cond_TLE9891QTA61" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891QTA61/adc1_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891QTA61" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891QTA61/adc2_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891QTA61" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891QTA61/bdrv_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891QTA61" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891QTA61/bsl_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891QTA61_ARM" category="doc" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891QTA61/bsl_defines_ARM.inc" version="0.0.0"/>
+        <file condition="cond_TLE9891QTA61_IAR" category="doc" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891QTA61/bsl_defines_IAR.inc" version="0.0.0"/>
+        <file condition="cond_TLE9891QTA61" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891QTA61/cantrx_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891QTA61" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891QTA61/ccu7_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891QTA61" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891QTA61/csacsc_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891QTA61" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891QTA61/dma_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891QTA61" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891QTA61/gpio_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891QTA61" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891QTA61/gpt12_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891QTA61" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891QTA61/isr_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891QTA61" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891QTA61/pmu_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891QTA61" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891QTA61/scu_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891QTA61" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891QTA61/ssc_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891QTA61" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891QTA61/timer2x_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9891QTA61" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9891QTA61/uart_defines.h" version="0.0.0"/>
+        <!-- TLE9893_2QKW62S -->
+        <file condition="cond_TLE9893_2QKW62S" category="doc" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QKW62S/config.icwp" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QKW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QKW62S/adc1_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QKW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QKW62S/adc2_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QKW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QKW62S/bdrv_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QKW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QKW62S/bsl_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QKW62S_ARM" category="doc" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QKW62S/bsl_defines_ARM.inc" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QKW62S_IAR" category="doc" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QKW62S/bsl_defines_IAR.inc" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QKW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QKW62S/cantrx_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QKW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QKW62S/ccu7_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QKW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QKW62S/csacsc_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QKW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QKW62S/dma_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QKW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QKW62S/gpio_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QKW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QKW62S/gpt12_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QKW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QKW62S/isr_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QKW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QKW62S/pmu_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QKW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QKW62S/scu_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QKW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QKW62S/sdadc_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QKW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QKW62S/ssc_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QKW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QKW62S/timer2x_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QKW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QKW62S/uart_defines.h" version="0.0.0"/>
+        <!-- TLE9893_2QTA62 -->
+        <file condition="cond_TLE9893_2QTA62" category="doc" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62/config.icwp" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62/adc1_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62/adc2_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62/bdrv_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62/bsl_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62_ARM" category="doc" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62/bsl_defines_ARM.inc" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62_IAR" category="doc" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62/bsl_defines_IAR.inc" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62/cantrx_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62/ccu7_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62/csacsc_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62/dma_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62/gpio_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62/gpt12_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62/isr_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62/pmu_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62/scu_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62/sdadc_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62/ssc_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62/timer2x_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62/uart_defines.h" version="0.0.0"/>
+        <!-- TLE9893_2QTA62S -->
+        <file condition="cond_TLE9893_2QTA62S" category="doc" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62S/config.icwp" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62S/adc1_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62S/adc2_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62S/bdrv_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62S/bsl_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62S_ARM" category="doc" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62S/bsl_defines_ARM.inc" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62S_IAR" category="doc" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62S/bsl_defines_IAR.inc" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62S/cantrx_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62S/ccu7_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62S/csacsc_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62S/dma_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62S/gpio_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62S/gpt12_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62S/isr_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62S/pmu_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62S/scu_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62S/sdadc_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62S/ssc_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62S/timer2x_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTA62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTA62S/uart_defines.h" version="0.0.0"/>
+        <!-- TLE9893_2QTW62S -->
+        <file condition="cond_TLE9893_2QTW62S" category="doc" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTW62S/config.icwp" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTW62S/adc1_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTW62S/adc2_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTW62S/bdrv_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTW62S/bsl_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTW62S_ARM" category="doc" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTW62S/bsl_defines_ARM.inc" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTW62S_IAR" category="doc" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTW62S/bsl_defines_IAR.inc" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTW62S/cantrx_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTW62S/ccu7_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTW62S/csacsc_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTW62S/dma_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTW62S/gpio_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTW62S/gpt12_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTW62S/isr_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTW62S/pmu_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTW62S/scu_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTW62S/sdadc_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTW62S/ssc_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTW62S/timer2x_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893_2QTW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893_2QTW62S/uart_defines.h" version="0.0.0"/>
+        <!-- TLE9893QKW62S -->
+        <file condition="cond_TLE9893QKW62S" category="doc" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893QKW62S/config.icwp" version="0.0.0"/>
+        <file condition="cond_TLE9893QKW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893QKW62S/adc1_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893QKW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893QKW62S/adc2_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893QKW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893QKW62S/bdrv_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893QKW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893QKW62S/bsl_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893QKW62S_ARM" category="doc" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893QKW62S/bsl_defines_ARM.inc" version="0.0.0"/>
+        <file condition="cond_TLE9893QKW62S_IAR" category="doc" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893QKW62S/bsl_defines_IAR.inc" version="0.0.0"/>
+        <file condition="cond_TLE9893QKW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893QKW62S/cantrx_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893QKW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893QKW62S/ccu7_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893QKW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893QKW62S/csacsc_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893QKW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893QKW62S/dma_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893QKW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893QKW62S/gpio_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893QKW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893QKW62S/gpt12_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893QKW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893QKW62S/isr_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893QKW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893QKW62S/pmu_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893QKW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893QKW62S/scu_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893QKW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893QKW62S/ssc_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893QKW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893QKW62S/timer2x_defines.h" version="0.0.0"/>
+        <file condition="cond_TLE9893QKW62S" category="header" attr="config" name="device/tlelib/cfgwiz/defines/TLE9893QKW62S/uart_defines.h" version="0.0.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="TLELib" Csub="ADC1" condition="cond_TLE988x_9x_ADC1" Cversion="0.6.0">
+      <description>Analog Digital Converter 1 (ADC1) driver for TLE988x/TLE989xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_TLELIB_ADC1
+      </RTE_Components_h>
+      <files>
+        <file category="header" attr="config" name="device/tlelib/inc/adc1.h" version="0.6.0"/>
+        <file category="source" attr="config" name="device/tlelib/src/adc1.c" version="0.6.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="TLELib" Csub="ADC2" condition="cond_TLE988x_9x_ADC2" Cversion="0.5.7">
+      <description>Analog Digital Converter 2 (ADC2) driver for TLE988x/TLE989xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_TLELIB_ADC2
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="device/tlelib/inc/adc2.h" attr="config" version="0.5.7"/>
+        <file category="source" name="device/tlelib/src/adc2.c" attr="config" version="0.5.7"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="TLELib" Csub="BDRV" condition="cond_TLE988x_9x_BDRV" Cversion="0.9.0">
+      <description>Bridge Driver (BDRV) driver for TLE988x/TLE989xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_TLELIB_BDRV
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="device/tlelib/inc/bdrv.h" attr="config" version="0.9.0"/>
+        <file category="source" name="device/tlelib/src/bdrv.c" attr="config" version="0.9.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="TLELib" Csub="BOOTROM" condition="cond_TLE988x_9x_BOOTROM" Cversion="0.3.3">
+      <description>BootROM driver for TLE988x/TLE989xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_TLELIB_BOOTROM
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="device/tlelib/inc/bootrom.h" attr="config" version="0.3.3"/>
+        <file category="source" name="device/tlelib/src/bootrom.c" attr="config" version="0.3.3"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="TLELib" Csub="CANCONTR" condition="cond_TLE988x_9x_CANCONTR" Cversion="0.3.4">
+      <description>CAN driver for TLE988x/TLE989xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_TLELIB_CANCONTR
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="device/tlelib/inc/can.h" attr="config" version="0.3.4"/>
+        <file category="source" name="device/tlelib/src/can.c" attr="config" version="0.3.4"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="TLELib" Csub="CANTRX" condition="cond_TLE988x_9x_CANTRX" Cversion="0.3.4">
+      <description>CANTRX driver for TLE988x/TLE989xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_TLELIB_CANTRX
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="device/tlelib/inc/cantrx.h" attr="config" version="0.3.4"/>
+        <file category="source" name="device/tlelib/src/cantrx.c" attr="config" version="0.3.4"/>
+      </files>
+    </component>
+    <component Cclass="Device Driver" Cgroup="TLELib" Csub="CANCOM" condition="cond_TLE988x_9x_CANCOM" Cversion="301.0">
+      <description>IHR CAN/COM stack for TLE988x/TLE989x</description>
+      <files>
+        <file category="library" name="device/tlelib/lib/CanDriverLib_Demo.lib" version="301.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="TLELib" Csub="CCU7" condition="cond_TLE988x_9x_CCU7" Cversion="0.5.0">
+      <description>Capture compare Unit 7 (CCU7) driver for TLE988x/TLE989xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_TLELIB_CCU7
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="device/tlelib/inc/ccu7.h" attr="config" version="0.5.0"/>
+        <file category="source" name="device/tlelib/src/ccu7.c" attr="config" version="0.5.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="TLELib" Csub="CSACSC" condition="cond_TLE988x_9x_CSACSC" Cversion="0.2.8">
+      <description>Current Sense amplifier (CSACSC) driver for TLE988x/TLE989xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_TLELIB_CSACSC
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="device/tlelib/inc/csacsc.h" attr="config" version="0.2.8"/>
+        <file category="source" name="device/tlelib/src/csacsc.c" attr="config" version="0.2.8"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="TLELib" Csub="DMA" condition="cond_TLE988x_9x_DMA" Cversion="0.3.2">
+      <description>Direct Memory Access (DMA) driver for TLE988x/TLE989xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_TLELIB_DMA
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="device/tlelib/inc/dma.h" attr="config" version="0.3.2"/>
+        <file category="source" name="device/tlelib/src/dma.c" attr="config" version="0.3.2"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="TLELib" Csub="GPIO" condition="cond_TLE988x_9x_GPIO" Cversion="0.2.6">
+      <description>General Purpose I/O (GPIO) driver for TLE988x/TLE989xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_TLELIB_GPIO
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="device/tlelib/inc/gpio.h" attr="config" version="0.2.6"/>
+        <file category="source" name="device/tlelib/src/gpio.c" attr="config" version="0.2.6"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="TLELib" Csub="GPT12" condition="cond_TLE988x_9x_GPT12" Cversion="0.6.2">
+      <description>General Purpose Timer 1/2 (GPT12) driver for TLE988x/TLE989xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_TLELIB_GPT12
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="device/tlelib/inc/gpt12.h" attr="config" version="0.6.2"/>
+        <file category="source" name="device/tlelib/src/gpt12.c" attr="config" version="0.6.2"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="TLELib" Csub="INT" condition="cond_TLE988x_9x_INT" Cversion="0.3.1">
+      <description>Interrupt (INT) driver for TLE988x/TLE989xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_TLELIB_INT
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="device/tlelib/inc/int.h" attr="config" version="0.3.1"/>
+        <file category="source" name="device/tlelib/src/int.c" attr="config" version="0.3.1"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="TLELib" Csub="ISR" condition="cond_TLE988x_9x_ISR" Cversion="0.5.1">
+      <description>Interrupt Service Routine (ISR) driver for TLE988x/TLE989xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_TLELIB_ISR
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="device/tlelib/inc/isr.h" attr="config" version="0.5.1"/>
+        <file category="source" name="device/tlelib/src/isr_exceptions.c" attr="config" version="0.5.1"/>
+        <file category="source" name="device/tlelib/src/isr_nvic_irq0_handler.c" attr="config" version="0.5.1"/>
+        <file category="source" name="device/tlelib/src/isr_nvic_irq1_handler.c" attr="config" version="0.5.1"/>
+        <file category="source" name="device/tlelib/src/isr_nvic_irq2_handler.c" attr="config" version="0.5.1"/>
+        <file category="source" name="device/tlelib/src/isr_nvic_irq3_handler.c" attr="config" version="0.5.1"/>
+        <file category="source" name="device/tlelib/src/isr_nvic_irq4_handler.c" attr="config" version="0.5.1"/>
+        <file category="source" name="device/tlelib/src/isr_nvic_irq5_handler.c" attr="config" version="0.5.1"/>
+        <file category="source" name="device/tlelib/src/isr_nvic_irq7_handler.c" attr="config" version="0.5.1"/>
+        <file category="source" name="device/tlelib/src/isr_nvic_irq8_handler.c" attr="config" version="0.5.1"/>
+        <file category="source" name="device/tlelib/src/isr_nvic_irq9_handler.c" attr="config" version="0.5.1"/>
+        <file category="source" name="device/tlelib/src/isr_nvic_irq10_handler.c" attr="config" version="0.5.1"/>
+        <file category="source" name="device/tlelib/src/isr_nvic_irq11_handler.c" attr="config" version="0.5.1"/>
+        <file category="source" name="device/tlelib/src/isr_nvic_irq12_handler.c" attr="config" version="0.5.1"/>
+        <file category="source" name="device/tlelib/src/isr_nvic_irq13_handler.c" attr="config" version="0.5.1"/>
+        <file category="source" name="device/tlelib/src/isr_nvic_irq14_handler.c" attr="config" version="0.5.1"/>
+        <file category="source" name="device/tlelib/src/isr_nvic_irq15_handler.c" attr="config" version="0.5.1"/>
+        <file category="source" name="device/tlelib/src/isr_nvic_irq16_handler.c" attr="config" version="0.5.1"/>
+        <file category="source" name="device/tlelib/src/isr_nvic_irq17_handler.c" attr="config" version="0.5.1"/>
+        <file category="source" name="device/tlelib/src/isr_nvic_irq18_handler.c" attr="config" version="0.5.1"/>
+        <file category="source" name="device/tlelib/src/isr_nvic_irq19_handler.c" attr="config" version="0.5.1"/>
+        <file category="source" name="device/tlelib/src/isr_nvic_irq20_handler.c" attr="config" version="0.5.1"/>
+        <file category="source" name="device/tlelib/src/isr_nvic_irq21_handler.c" attr="config" version="0.5.1"/>
+        <file category="source" name="device/tlelib/src/isr_nvic_irq22_handler.c" attr="config" version="0.5.1"/>
+        <file category="source" name="device/tlelib/src/isr_nvic_irq23_handler.c" attr="config" version="0.5.1"/>
+        <file category="source" name="device/tlelib/src/isr_nvic_irq24_handler.c" attr="config" version="0.5.1"/>
+        <file category="source" name="device/tlelib/src/isr_nvic_irq25_handler.c" attr="config" version="0.5.1"/>
+        <file category="source" name="device/tlelib/src/isr_nvic_irq26_handler.c" attr="config" version="0.5.1"/>
+        <file category="source" name="device/tlelib/src/isr_nvic_irq27_handler.c" attr="config" version="0.5.1"/>
+        <file category="source" name="device/tlelib/src/isr_nvic_irq28_handler.c" attr="config" version="0.5.1"/>
+        <file category="source" name="device/tlelib/src/isr_nvic_irq29_handler.c" attr="config" version="0.5.1"/>
+        <file category="source" name="device/tlelib/src/isr_nvic_irq30_handler.c" attr="config" version="0.5.1"/>
+        <file category="source" name="device/tlelib/src/isr_nvic_irq31_handler.c" attr="config" version="0.5.1"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="TLELib" Csub="MON" condition="cond_TLE988x_9x_MON" Cversion="0.3.4">
+      <description>Monitor Pin (MON) driver for TLE988x/TLE989xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_TLELIB_MON
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="device/tlelib/inc/mon.h" attr="config" version="0.3.4"/>
+        <file category="source" name="device/tlelib/src/mon.c" attr="config" version="0.3.4"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="TLELib" Csub="PMU" condition="cond_TLE988x_9x_PMU" Cversion="0.6.0">
+      <description>Power Management Unit (PMU) driver for TLE988x/TLE989xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_TLELIB_PMU
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="device/tlelib/inc/pmu.h" attr="config" version="0.6.0"/>
+        <file category="source" name="device/tlelib/src/pmu.c" attr="config" version="0.6.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="TLELib" Csub="SCU" condition="cond_TLE988x_9x_SCU" Cversion="0.5.5">
+      <description>System Control Unit (SCU) driver for TLE988x/TLE989xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_TLELIB_SCU
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="device/tlelib/inc/scu.h" attr="config" version="0.5.5"/>
+        <file category="source" name="device/tlelib/src/scu.c" attr="config" version="0.5.5"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="TLELib" Csub="SDADC" condition="cond_TLE988x_9x_SDADC" Cversion="0.4.0">
+      <description>Sigma Delta ADC (SDADC) driver for TLE988x/TLE989xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_TLELIB_SDADC
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="device/tlelib/inc/sdadc.h" attr="config" version="0.4.0"/>
+        <file category="source" name="device/tlelib/src/sdadc.c" attr="config" version="0.4.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="TLELib" Csub="SSC" condition="cond_TLE988x_9x_SSC" Cversion="0.3.8">
+      <description>Synchronous Serial Communication (SSC) driver for TLE988x/TLE989xx, for e.g. SPI communication</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_TLELIB_SSC
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="device/tlelib/inc/ssc.h" attr="config" version="0.3.8"/>
+        <file category="source" name="device/tlelib/src/ssc.c" attr="config" version="0.3.8"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="TLELib" Csub="TIMER2X" condition="cond_TLE988x_9x_TIMER2X" Cversion="0.5.0">
+      <description>Timer20, Timer21 (TIMER2X) driver for TLE988x/TLE989xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_TLELIB_TIMER2X
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="device/tlelib/inc/timer2x.h" attr="config" version="0.5.0"/>
+        <file category="source" name="device/tlelib/src/timer2x.c" attr="config" version="0.5.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="TLELib" Csub="UART" condition="cond_TLE988x_9x_UART" Cversion="0.6.1">
+      <description>Universal Asynchronous Receiver Transmitter (UART) driver for TLE988x/TLE989xx</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_TLELIB_UART
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="device/tlelib/inc/uart.h" attr="config" version="0.6.1"/>
+        <file category="source" name="device/tlelib/src/uart.c" attr="config" version="0.6.1"/>
+      </files>
+    </component>
+  </components>
+  <examples>
+    <example name="TLE9893_2QKW62S_ADC1_POTI_SWTRG" doc="abstract.txt" folder="boards/infineon/tle988x_tle989x_evalboard/ADC1_POTI_SWTRG_EXAMPLE_TLE989X/">
+      <description>Reading the Poti voltage via an ADC1 measurement and displaying it on the LEDs</description>
+      <board name="TLE988x/TLE989x EvalBoard" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9893_2QKW62S_ADC1_POTI_SWTRG.uvprojx"/>
+        <environment name="iar" load="TLE9893_2QKW62S_ADC1_POTI_SWTRG.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BOOTROM"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="CSACSC"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="INT"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="PMU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="SCU"/>
+        <category>Getting Started</category>
+        <category>TLELib</category>
+      </attributes>
+    </example>
+    <example name="TLE9893_2QKW62S_AES_GCM" doc="abstract.txt" folder="boards/infineon/tle988x_tle989x_evalboard/AES_GCM_EXAMPLE_TLE989X/">
+      <description>Compute an AES tag and print it via UART</description>
+      <board name="TLE988x/TLE989x EvalBoard" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9893_2QKW62S_AES_GCM.uvprojx"/>
+        <environment name="iar" load="TLE9893_2QKW62S_AES_GCM.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BOOTROM"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="CSACSC"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="INT"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="PMU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="UART"/>
+        <category>Getting Started</category>
+        <category>TLELib</category>
+      </attributes>
+    </example>
+    <example name="TLE9893_2QKW62S_BL_AND_APP_APPLICATION" doc="abstract.txt" folder="boards/infineon/tle988x_tle989x_evalboard/BL_AND_APP_APPLICATION_EXAMPLE_TLE989X/">
+      <description>BL and Application example pair: Application part</description>
+      <board name="TLE988x/TLE989x EvalBoard" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9893_2QKW62S_BL_AND_APP_APPLICATION.uvprojx"/>
+        <environment name="iar" load="TLE9893_2QKW62S_BL_AND_APP_APPLICATION.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BOOTROM"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="CSACSC"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="INT"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="PMU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="SCU"/>
+        <category>Getting Started</category>
+        <category>TLELib</category>
+      </attributes>
+    </example>
+    <example name="TLE9893_2QKW62S_BL_AND_APP_BOOTLOADER" doc="abstract.txt" folder="boards/infineon/tle988x_tle989x_evalboard/BL_AND_APP_BOOTLOADER_EXAMPLE_TLE989X/">
+      <description>BL and Application example pair: Bootloader part</description>
+      <board name="TLE988x/TLE989x EvalBoard" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9893_2QKW62S_BL_AND_APP_BOOTLOADER.uvprojx"/>
+        <environment name="iar" load="TLE9893_2QKW62S_BL_AND_APP_BOOTLOADER.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BOOTROM"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="CSACSC"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="INT"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="PMU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="SCU"/>
+        <category>Getting Started</category>
+        <category>TLELib</category>
+      </attributes>
+    </example>
+    <example name="TLE9893_2QKW62S_BLINKY_SIMPLE" doc="abstract.txt" folder="boards/infineon/tle988x_tle989x_evalboard/BLINKY_SIMPLE_EXAMPLE_TLE989X/">
+      <description>Simple blinking LED</description>
+      <board name="TLE988x/TLE989x EvalBoard" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9893_2QKW62S_BLINKY_SIMPLE.uvprojx"/>
+        <environment name="iar" load="TLE9893_2QKW62S_BLINKY_SIMPLE.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BOOTROM"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="CSACSC"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="INT"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="PMU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="SCU"/>
+        <category>Getting Started</category>
+        <category>TLELib</category>
+      </attributes>
+    </example>
+    <example name="TLE9893_2QKW62S_CAN_COM" doc="abstract.txt" folder="boards/infineon/tle988x_tle989x_evalboard/CAN_COM_EXAMPLE_TLE989X/">
+      <description>The CAN Driver demo is intended to allow evaluation of the CAN driver and its integration.</description>
+      <board name="TLE988x/TLE989x EvalBoard" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9893_2QKW62S_CAN_COM.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="CSACSC"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BOOTROM"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="INT"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="PMU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="SCU"/>
+        <component Cclass="Device Driver" Cgroup="TLELib" Csub="CANCOM"/>
+        <category>Getting Started</category>
+        <category>TLELib</category>
+      </attributes>
+    </example>
+    <example name="TLE9893_2QKW62S_CCU7_PWM" doc="abstract.txt" folder="boards/infineon/tle988x_tle989x_evalboard/CCU7_PWM_EXAMPLE_TLE989X/">
+      <description>Generating 3 different PWM signals with CCU7</description>
+      <board name="TLE988x/TLE989x EvalBoard" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9893_2QKW62S_CCU7_PWM.uvprojx"/>
+        <environment name="iar" load="TLE9893_2QKW62S_CCU7_PWM.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BOOTROM"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="CCU7"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="CSACSC"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="INT"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="PMU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="SCU"/>
+        <category>Getting Started</category>
+        <category>TLELib</category>
+      </attributes>
+    </example>
+    <example name="TLE9893_2QKW62S_GETTING_STARTED" doc="abstract.txt" folder="boards/infineon/tle988x_tle989x_evalboard/GETTING_STARTED_EXAMPLE_TLE989X/">
+      <description>Getting started Project with all components using ULINK2 debugger</description>
+      <board name="TLE988x/TLE989x EvalBoard" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9893_2QKW62S_GETTING_STARTED.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BOOTROM"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="CANCONTR"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="CANTRX"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="CCU7"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="CSACSC"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="DMA"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="GPT12"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="INT"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="MON"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="PMU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="SDADC"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="SSC"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="TIMER2X"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="UART"/>
+        <category>Getting Started</category>
+        <category>TLELib</category>
+      </attributes>
+    </example>
+    <example name="TLE9893_2QKW62S_MCTRL_HALL" doc="abstract.txt" folder="boards/infineon/tle988x_tle989x_evalboard/MCTRL_HALL_EXAMPLE_TLE989X/">
+      <description>Motor Control using Hall Sensors</description>
+      <board name="TLE988x/TLE989x EvalBoard" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9893_2QKW62S_MCTRL_HALL.uvprojx"/>
+        <environment name="iar" load="TLE9893_2QKW62S_MCTRL_HALL.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BOOTROM"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="CANCONTR"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="CCU7"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="CSACSC"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="DMA"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="GPT12"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="INT"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="MON"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="PMU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="SDADC"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="SSC"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="TIMER2X"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="UART"/>
+        <category>Getting Started</category>
+        <category>TLELib</category>
+      </attributes>
+    </example>
+    <example name="TLE9893_2QKW62S_NVM_PROG_UCODE" doc="abstract.txt" folder="boards/infineon/tle988x_tle989x_evalboard/NVM_PROG_UCODE_EXAMPLE_TLE989X/">
+      <description>Writing a page to user code flash area</description>
+      <board name="TLE988x/TLE989x EvalBoard" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9893_2QKW62S_NVM_PROG_UCODE.uvprojx"/>
+        <environment name="iar" load="TLE9893_2QKW62S_NVM_PROG_UCODE.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BOOTROM"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="CSACSC"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="INT"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="PMU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="TIMER2X"/>
+        <category>Getting Started</category>
+        <category>TLELib</category>
+      </attributes>
+    </example>
+    <example name="TLE9893_2QKW62S_NVM_PROG_UDATA" doc="abstract.txt" folder="boards/infineon/tle988x_tle989x_evalboard/NVM_PROG_UDATA_EXAMPLE_TLE989X/">
+      <description>Writing a page to user data flash area</description>
+      <board name="TLE988x/TLE989x EvalBoard" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9893_2QKW62S_NVM_PROG_UDATA.uvprojx"/>
+        <environment name="iar" load="TLE9893_2QKW62S_NVM_PROG_UDATA.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BOOTROM"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="CSACSC"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="INT"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="PMU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="SCU"/>
+        <category>Getting Started</category>
+        <category>TLELib</category>
+      </attributes>
+    </example>
+    <example name="TLE9893_2QKW62S_PMU_SLEEP_EXTRG" doc="abstract.txt" folder="boards/infineon/tle988x_tle989x_evalboard/PMU_SLEEP_EXTRG_EXAMPLE_TLE989X/">
+      <description>Entering sleep mode and wakeup via external MON1 trigger</description>
+      <board name="TLE988x/TLE989x EvalBoard" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9893_2QKW62S_PMU_SLEEP_EXTRG.uvprojx"/>
+        <environment name="iar" load="TLE9893_2QKW62S_PMU_SLEEP_EXTRG.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BOOTROM"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="CSACSC"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="INT"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="PMU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="SCU"/>
+        <category>Getting Started</category>
+        <category>TLELib</category>
+      </attributes>
+    </example>
+    <example name="TLE9893_2QKW62S_PMU_STOP_EXTRG" doc="abstract.txt" folder="boards/infineon/tle988x_tle989x_evalboard/PMU_STOP_EXTRG_EXAMPLE_TLE989X/">
+      <description>Entering stop mode and wakeup via external GPIO trigger</description>
+      <board name="TLE988x/TLE989x EvalBoard" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9893_2QKW62S_PMU_STOP_EXTRG.uvprojx"/>
+        <environment name="iar" load="TLE9893_2QKW62S_PMU_STOP_EXTRG.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BOOTROM"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="CSACSC"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="INT"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="PMU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="SCU"/>
+        <category>Getting Started</category>
+        <category>TLELib</category>
+      </attributes>
+    </example>
+    <example name="TLE9893_2QKW62S_SECURE_BOOT" doc="abstract.txt" folder="boards/infineon/tle988x_tle989x_evalboard/SECURE_BOOT_EXAMPLE_TLE989X/">
+      <description>Generate CMAC for secure boot and write it to flash (first page)</description>
+      <board name="TLE988x/TLE989x EvalBoard" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9893_2QKW62S_SECURE_BOOT.uvprojx"/>
+        <environment name="iar" load="TLE9893_2QKW62S_SECURE_BOOT.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BOOTROM"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="CSACSC"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="INT"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="PMU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="UART"/>
+        <category>Getting Started</category>
+        <category>TLELib</category>
+      </attributes>
+    </example>
+    <example name="TLE9893_2QKW62S_SECURITY_ACCESS_USING_AES" doc="abstract.txt" folder="boards/infineon/tle988x_tle989x_evalboard/SECURITY_ACCESS_USING_AES_EXAMPLE_TLE989X/">
+      <description>Demonstrate the secure access mechanism using AES</description>
+      <board name="TLE988x/TLE989x EvalBoard" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9893_2QKW62S_SECURITY_ACCESS_USING_AES.uvprojx"/>
+        <environment name="iar" load="TLE9893_2QKW62S_SECURITY_ACCESS_USING_AES.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BOOTROM"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="CSACSC"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="INT"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="PMU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="UART"/>
+        <category>Getting Started</category>
+        <category>TLELib</category>
+      </attributes>
+    </example>
+    <example name="TLE9893_2QKW62S_SECURITY_ACCESS_USING_CMAC" doc="abstract.txt" folder="boards/infineon/tle988x_tle989x_evalboard/SECURITY_ACCESS_USING_CMAC_EXAMPLE_TLE989X/">
+      <description>Demonstrate the secure access mechanism using CMAC</description>
+      <board name="TLE988x/TLE989x EvalBoard" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9893_2QKW62S_SECURITY_ACCESS_USING_CMAC.uvprojx"/>
+        <environment name="iar" load="TLE9893_2QKW62S_SECURITY_ACCESS_USING_CMAC.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BOOTROM"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="CSACSC"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="INT"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="PMU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="UART"/>
+        <category>Getting Started</category>
+        <category>TLELib</category>
+      </attributes>
+    </example>
+    <example name="TLE9893_2QKW62S_SECURITY_WRITE_KEY" doc="abstract.txt" folder="boards/infineon/tle988x_tle989x_evalboard/SECURITY_WRITE_KEY_EXAMPLE_TLE989X/">
+      <description>Write a key to the device based on information sent via UART</description>
+      <board name="TLE988x/TLE989x EvalBoard" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9893_2QKW62S_SECURITY_WRITE_KEY.uvprojx"/>
+        <environment name="iar" load="TLE9893_2QKW62S_SECURITY_WRITE_KEY.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BOOTROM"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="CSACSC"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="INT"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="PMU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="UART"/>
+        <category>Getting Started</category>
+        <category>TLELib</category>
+      </attributes>
+    </example>
+    <example name="TLE9893_2QKW62S_SSC0_LOOPBACK_SSC1" doc="abstract.txt" folder="boards/infineon/tle988x_tle989x_evalboard/SSC0_LOOPBACK_SSC1_EXAMPLE_TLE989X/">
+      <description>Sending magic value via SSC0 and loopback to SSC1 (SPI)</description>
+      <board name="TLE988x/TLE989x EvalBoard" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9893_2QKW62S_SSC0_LOOPBACK_SSC1.uvprojx"/>
+        <environment name="iar" load="TLE9893_2QKW62S_SSC0_LOOPBACK_SSC1.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BOOTROM"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="CSACSC"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="INT"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="PMU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="SSC"/>
+        <category>Getting Started</category>
+        <category>TLELib</category>
+      </attributes>
+    </example>
+    <example name="TLE9893_2QKW62S_T20_PWM_CAPTURE" doc="abstract.txt" folder="boards/infineon/tle988x_tle989x_evalboard/T20_PWM_CAPTURE_EXAMPLE_TLE989X/">
+      <description>Capture a PWM signal using T20</description>
+      <board name="TLE988x/TLE989x EvalBoard" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9893_2QKW62S_T20_PWM_CAPTURE.uvprojx"/>
+        <environment name="iar" load="TLE9893_2QKW62S_T20_PWM_CAPTURE.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BOOTROM"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="CSACSC"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="INT"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="PMU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="TIMER2X"/>
+        <category>Getting Started</category>
+        <category>TLELib</category>
+      </attributes>
+    </example>
+    <example name="TLE9893_2QKW62S_T20_RELOAD_INTTRG" doc="abstract.txt" folder="boards/infineon/tle988x_tle989x_evalboard/T20_RELOAD_INTTRG_EXAMPLE_TLE989X/">
+      <description>Blinking a LED via T20</description>
+      <board name="TLE988x/TLE989x EvalBoard" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9893_2QKW62S_T20_RELOAD_INTTRG.uvprojx"/>
+        <environment name="iar" load="TLE9893_2QKW62S_T20_RELOAD_INTTRG.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BOOTROM"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="CSACSC"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="INT"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="PMU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="TIMER2X"/>
+        <category>Getting Started</category>
+        <category>TLELib</category>
+      </attributes>
+    </example>
+    <example name="TLE9893_2QKW62S_UART_PRINTF" doc="abstract.txt" folder="boards/infineon/tle988x_tle989x_evalboard/UART_PRINTF_EXAMPLE_TLE989X/">
+      <description>Using printf to write via UART debug pin</description>
+      <board name="TLE988x/TLE989x EvalBoard" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9893_2QKW62S_UART_PRINTF.uvprojx"/>
+        <environment name="iar" load="TLE9893_2QKW62S_UART_PRINTF.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BOOTROM"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="CSACSC"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="INT"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="PMU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="UART"/>
+        <category>Getting Started</category>
+        <category>TLELib</category>
+      </attributes>
+    </example>
+    <example name="TLE9893_2QKW62S_UART_TRANSCEIVER" doc="abstract.txt" folder="boards/infineon/tle988x_tle989x_evalboard/UART_TRANSCEIVER_EXAMPLE_TLE989X/">
+      <description>Sends and receives data via jlink pins using the uart.</description>
+      <board name="TLE988x/TLE989x EvalBoard" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9893_2QKW62S_UART_TRANSCEIVER.uvprojx"/>
+        <environment name="iar" load="TLE9893_2QKW62S_UART_TRANSCEIVER.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="BOOTROM"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="CSACSC"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="GPIO"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="INT"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="PMU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="TLELib" Csub="UART"/>
+        <category>Getting Started</category>
+        <category>TLELib</category>
+      </attributes>
+    </example>
+  </examples>
+</package>

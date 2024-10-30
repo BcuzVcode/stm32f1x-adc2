@@ -1,0 +1,1193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+	<vendor>Sinowealth</vendor>
+	<name>SH3xF2xx_DFP</name>
+	<description>Sinowealth SH3xF2xx Device Family Pack</description>
+	<url>http://www.sinowealth.com/Tools/ARM32/</url>
+
+	<releases>
+		<release version="2.4.0" date="2022-07-20">
+			Update the files of the User configuration templates.
+			Update the files of SH3xF2xx_SB0_StdPeriph_Driver.
+			Update the algorithm files for IAR.
+			Delete Chip SH32F2801.
+		</release>
+		
+		<release version="2.3.0" date="2022-02-09">
+			Updated the format of PDSC file.
+		</release>
+		
+		<release version="2.2.0" date="2022-01-05">
+			Update the header files of the User configuration templates for SH3xF2xx_SB0.
+			Update startup_sh32f2601_keil.s.
+		</release>
+	
+		<release version="2.1.0" date="2021-10-08">
+			Added Chip SH32F2601						
+			Added Chip SH33F2801						
+			Added Chip SH33F2811
+			Modify sh3xf2xx_sa0_gpt.c						
+		</release>
+		
+		<release version="2.0.0" date="2021-07-06">
+		  New Architecture					
+			Added Chip SH32F205						
+			Added Chip SH32F284						
+			Added Chip SH32F2053						
+			Added Chip SH32F2801						
+		</release>
+	</releases>
+	
+  
+	<keywords>
+		<!-- keywords for indexing -->
+    <keyword>Sinowealth</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Sinowealth</keyword>
+	</keywords>
+
+  <requirements>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  
+	<!-- devices section (mandatory for Device Family Packs) -->
+	<devices>
+			<family Dfamily="SH3xF2xx Series" Dvendor="Sinowealth:149">
+    
+      <environment name="uv" >
+        <CMisc>--c99</CMisc>
+      </environment>    
+
+			<description>
+Sinowealth's SH3xF2 series are high-performance 32 bit MCUs based on ARM Cortex-M3 Core or ARM Star Core. Apply to all kinds of brushless DC motor (BLDC) and permanent magnet synchronous motor (PMSM). Can drive 1 to 3 completely independent three-phase DC motors.
+Focusing on providing high integration and high computing power of the monolithic integrated circuit, providing a cost-effective microcontroller system solution.
+			</description>
+           
+		<!-- ************************  Subfamily 'SH3xF2xx_SA0'  ************************ -->
+		
+				<!-- *****************************  Device 'SH32F205'  ***************************** -->
+				<device Dname="SH32F205">		
+	    		<processor Dcore="Cortex-M3" DcoreVersion="r2p1" Dmpu="1" Dendian="Little-endian" Dclock="120000000"/>
+					<compile header="Device/SH3xF2xx_SA0/Include/sh32f205.h"  define="_SH32F205"/>
+					<debug svd="SVD/sh32f205.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x40000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x10000000"  size="0x4000"     init   ="0"   default="1"/>
+       		<algorithm  name="Flash/SH32F205.FLM"       start="0x00000000"  size="0x10000000"    RAMstart="0x20000000"  RAMsize="0x2000"   default="1"/>
+
+          <environment name="iar">
+         		<file category="linkerfile" name="Device/SH3xF2xx_SA0/Source/IAR/sh32f205_iar.icf"/>
+          </environment>  
+
+					<description>
+- Cortex-M3
+- Up to 120MHz
+- Flash Size:256KB, SRAM:8KB, CRAM:16KB, EEPROM:12KB, OTP:2KB
+- 3 x ADC(8CHs), 1 x MACP, 2 x MCM, 4 x GPT, 1 x QEI
+- 3 x OP, 3 x CMP
+- 4 x Timer, 3 x UART, 2 x SPI, 1 x TWI, 16 x EXTI, 1 x CRC
+- 8 channel DMA
+- Up to 58 GPIOs
+					</description>
+     		       		
+          </device>
+				
+				<!-- *****************************  Device 'SH32F2053'  ***************************** -->
+				<device Dname="SH32F2053">			
+	    		<processor Dcore="Cortex-M3" DcoreVersion="r2p1" Dmpu="1" Dendian="Little-endian" Dclock="120000000"/>
+					<compile header="Device/SH3xF2xx_SA0/Include/sh32f2053.h"  define="_SH32F2053"/>
+					<debug svd="SVD/sh32f2053.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x40000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x10000000"  size="0x4000"     init   ="0"   default="1"/>
+       		<algorithm  name="Flash/SH32F2053.FLM"      start="0x00000000"  size="0x10000000"    RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+
+          <environment name="iar">
+         		<file category="linkerfile" name="Device/SH3xF2xx_SA0/Source/IAR/sh32f2053_iar.icf"/>
+         	</environment>  
+
+					<description>
+- Cortex-M3                  
+- Up to 120MHz                  
+- Flash Size:256KB, SRAM:8KB, CRAM:16KB, EEPROM:12KB, OTP:2KB
+- 3 x ADC(8CHs), 1 x MACP, 2 x MCM, 4 x GPT, 1 x QEI 
+- 3 x OP, 3 x CMP                  
+- 4 x Timer, 3 x UART, 2 x SPI, 1 x TWI, 16 x EXTI, 1 x CRC
+- 8 channel DMA                     
+- Up to 58 GPIOs                    
+				 </description>				
+     		
+				</device>
+		  
+				<!-- *****************************  Device 'SH32F284'  ***************************** -->
+				<device Dname="SH32F284">		
+	    		<processor Dcore="Cortex-M3" DcoreVersion="r2p1" Dmpu="1" Dendian="Little-endian" Dclock="84000000"/>
+					<compile header="Device/SH3xF2xx_SA0/Include/sh32f284.h"  define="_SH32F284"/>
+					<debug svd="SVD/sh32f284.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x2000"     init   ="0"   default="1"/>
+          <memory     id="IRAM2"                      start="0x10000000"  size="0x4000"     init   ="0"   default="1"/>
+       		<algorithm  name="Flash/SH32F284.FLM"       start="0x00000000"  size="0x10000000"    RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+
+          <environment name="iar">
+        		 <file category="linkerfile" name="Device/SH3xF2xx_SA0/Source/IAR/sh32f284_iar.icf"/>
+         	</environment> 
+
+					<description>
+- Cortex-M3
+- Up to 84MHz
+- Flash Size:128KB, SRAM:8KB, CRAM:16KB, EEPROM:6KB, OTP:2KB
+- 2 x ADC(8CHs), 1 x MACP, 1 x MCM, 3 x GPT, 1 x QEI 
+- 3 x OP, 3 x CMP
+- 4 x Timer, 3 x UART, 1 x SPI, 1 x TWI, 16 x EXTI, 1 x CRC
+- 8 channel DMA     
+- Up to 58 GPIOs      
+					</description>						
+      		
+				</device>
+
+											
+	<!-- *************************  End sub Family 'SH3xF2xx_SA0'  ***************************** -->
+
+
+		<!-- ************************  Subfamily 'SH3xF2xx_SB0'  ************************ -->
+		
+				<!-- *****************************  Device 'SH32F2601'  ***************************** -->
+				<device Dname="SH32F2601">		
+	    		<processor Dcore="ARMV8MML" DcoreVersion="r0p1" Dfpu="NO_FPU" Dmpu="NO_MPU" Ddsp="NO_DSP" Dtz="NO_TZ" Dendian="Little-endian" Dclock="84000000"/>
+					<compile header="Device/SH3xF2xx_SB0/Include/sh32f2601.h"  define="_SH32F2601"/>
+					<debug svd="SVD/sh32f2601.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x10000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+       		<algorithm  name="Flash/SH32F2601.FLM"      start="0x00000000"  size="0x10000000"    RAMstart="0x20000000"  RAMsize="0x4000"   default="1"/>
+
+          <environment name="iar">
+         		<file category="linkerfile" name="Device/SH3xF2xx_SB0/Source/IAR/sh32f2601_iar.icf"/>
+          </environment>  
+
+					<description>
+- ARM STAR
+- Up to 84MHz
+- Flash Size:64KB, SRAM:16KB, EEPROM:4KB, OTP:1KB
+- 1 x ADC(16 CHs), 1 x MACP, 1 x MCM, 2 x PCA, 1 x QEI 
+- 4 x OP, 1 x CMP
+- 2 x Timer, 3 x UART, 1 x SPI, 1 x TWI, 8 x EXTI, 1 x CRC
+- Up to 45 GPIOs
+					</description>
+     		       		
+          </device>
+				
+				<!-- *****************************  Device 'SH33F2801'  ***************************** -->
+				<device Dname="SH33F2801">			
+	    		<processor Dcore="ARMV8MML" DcoreVersion="r0p1" Dfpu="SP_FPU" Dmpu="NO_MPU" Ddsp="DSP" Dtz="NO_TZ" Dendian="Little-endian" Dclock="84000000"/>
+					<compile header="Device/SH3xF2xx_SB0/Include/sh33f2801.h"  define="_SH33F2801"/>
+					<debug svd="SVD/sh33f2801.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+       		<algorithm  name="Flash/SH33F2801.FLM"      start="0x00000000"  size="0x10000000" RAMstart="0x20000000"  RAMsize="0x4000"  default="1"/>
+
+          <environment name="iar">
+         		<file category="linkerfile" name="Device/SH3xF2xx_SB0/Source/IAR/sh33f2801_iar.icf"/>
+         	</environment>  
+
+					<description>
+- ARM STAR
+- Up to 84MHz
+- DSP and FPU
+- Flash Size:128KB, SRAM:16KB, EEPROM:4KB, OTP:1KB
+- 1 x ADC(16 CHs), 1 x MACP, 1 x MCM, 2 x PCA, 1 x QEI 
+- 4 x OP, 1 x CMP
+- 2 x Timer, 3 x UART, 1 x SPI, 1 x TWI, 8 x EXTI, 1 x CRC
+- 1 x CAN 2.0B     
+- Up to 45 GPIOs
+				 </description>				
+     		
+				</device>
+		  
+				<!-- *****************************  Device 'SH33F2811'  ***************************** -->
+				<device Dname="SH33F2811">		
+	    		<processor Dcore="ARMV8MML" DcoreVersion="r0p1" Dfpu="SP_FPU" Dmpu="NO_MPU" Ddsp="DSP" Dtz="NO_TZ" Dendian="Little-endian" Dclock="84000000"/>
+					<compile header="Device/SH3xF2xx_SB0/Include/sh33f2811.h"  define="_SH33F2811"/>
+					<debug svd="SVD/sh33f2811.svd"/>
+          <memory     id="IROM1"                      start="0x00000000"  size="0x20000"    startup="1"   default="1"/>
+          <memory     id="IRAM1"                      start="0x20000000"  size="0x4000"     init   ="0"   default="1"/>
+       		<algorithm  name="Flash/SH33F2811.FLM"      start="0x00000000"  size="0x10000000"    RAMstart="0x20000000"  RAMsize="0x4000"  default="1"/>
+
+          <environment name="iar">
+        		 <file category="linkerfile" name="Device/SH3xF2xx_SB0/Source/IAR/sh33f2811_iar.icf"/>
+         	</environment> 
+
+					<description>
+- ARM STAR
+- Up to 84MHz
+- DSP and FPU
+- Flash Size:128KB, SRAM:16KB, EEPROM:4KB, OTP:1KB
+- 3-Half-bridge MOS/IGBT gate driver
+- Built-in DC-DC, LDO
+- 1 x ADC(16 CHs), 1 x MACP, 1 x MCM, 2 x PCA, 1 x QEI 
+- 4 x OP, 1 x CMP
+- 2 x Timer, 3 x UART, 1 x SPI, 1 x TWI, 8 x EXTI, 1 x CRC
+- 1 x CAN 2.0B     
+- Up to 47 GPIOs     
+					</description>						
+      		
+				</device>
+
+											
+	<!-- *************************  End sub Family 'SH3xF2xx_SB0'  ***************************** -->
+
+
+		</family>
+	</devices>
+	
+	<!-- conditions section (optional for all Software Packs)-->
+	<conditions>
+		<!-- Compiler Conditions -->
+		
+			<condition id="ARMCC">
+				<require Tcompiler="ARMCC"/>
+			</condition>
+			   
+  		
+    	<condition id="IAR">
+     		<require Tcompiler="IAR"/>
+   		</condition>
+   		
+   		<condition id="GCC">
+      	<require Tcompiler="GCC"/>
+    	</condition>
+  	    	
+        	
+		<condition id="Startup ARM">
+			<description>Startup assembler file for ARMCC</description>
+			<require condition = "ARMCC" />
+		</condition>
+
+		<condition id="Startup GCC">
+			<description>Startup assembler file for GCC</description>
+			<require condition="GCC"/>
+		</condition>
+
+		<condition id="Startup IAR">
+			<description>Startup assembler file for IAR</description>
+			<require condition="IAR"/>
+		</condition>
+		    	
+
+		<!--  SH3xF2 SA0 -->  
+		
+		  <condition id="SH32F205">
+				<require Dname="SH32F205"/>	
+	  	  <require Cclass="CMSIS"  Cgroup="CORE"/>						
+	      <accept condition="ARMCC" />
+	      <accept condition="GCC" />
+	      <accept condition="IAR" />			
+	  </condition>
+
+		  <condition id="SH32F2053">
+				<require Dname="SH32F2053"/>
+	  	 <require Cclass="CMSIS"  Cgroup="CORE"/>						
+	      <accept condition="ARMCC" />
+	      <accept condition="GCC" />
+	      <accept condition="IAR" />							
+		  </condition>
+
+		  <condition id="SH32F284">
+				<require Dname="SH32F284"/>
+	  	 <require Cclass="CMSIS"  Cgroup="CORE"/>						
+	      <accept condition="ARMCC" />
+	      <accept condition="GCC" />
+	      <accept condition="IAR" />							
+		  </condition>
+
+	    <condition id="SH3xF2_SA0">
+			<description>Sinowealth SH3xF2_SA0 Series Device</description>	
+	      <accept condition="SH32F205"/>          
+	      <accept condition="SH32F2053"/>          
+	      <accept condition="SH32F284"/>          
+	    </condition>
+
+		  <condition id="SH32F2601">
+				<require Dname="SH32F2601"/>
+ 	  	  <require Cclass="CMSIS"  Cgroup="CORE"/>						
+	      <accept condition="ARMCC" />
+	      <accept condition="GCC" />
+	      <accept condition="IAR" />							
+		  </condition>
+
+		  <condition id="SH33F2801">
+				<require Dname="SH33F2801"/>
+ 	  	  <require Cclass="CMSIS"  Cgroup="CORE"/>						
+	      <accept condition="ARMCC" />
+	      <accept condition="GCC" />
+	      <accept condition="IAR" />							
+		  </condition>
+
+		  <condition id="SH33F2811">
+				<require Dname="SH33F2811"/>
+ 	  	  <require Cclass="CMSIS"  Cgroup="CORE"/>						
+	      <accept condition="ARMCC" />
+	      <accept condition="GCC" />
+	      <accept condition="IAR" />							
+		  </condition>
+
+	    <condition id="SH3xF2_SB0">
+			<description>Sinowealth SH3xF2_SB0 Series Device</description>	
+	      <accept condition="SH32F2601"/>          
+	      <accept condition="SH33F2801"/>          
+	      <accept condition="SH33F2811"/>          
+	    </condition>
+
+	    <condition id="SH3xF2_SB0_CAN">
+			<description>Sinowealth SH3xF2_SB0 Series Device With CAN Module</description>	
+	      <accept condition="SH33F2801"/>          
+	      <accept condition="SH33F2811"/>          
+	    </condition>
+	    
+<!--  MODULE CONDITION --> 
+   
+   <condition id="MT Stdlib COMMON">
+      <description>Sinowealth SH3xF2xx Series COMMON Driver with CMSIS</description>
+	  	<require Cclass="CMSIS"  Cgroup="CORE"/>						
+      <accept condition="SH3xF2_SA0" />      
+      <accept condition="SH3xF2_SB0" />      
+   </condition>
+   
+   <condition id="MT Stdlib RCC">
+      <description>Sinowealth SH3xF2xx Series RCC Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="COMMON" />
+      <accept condition="SH3xF2_SA0" />      
+      <accept condition="SH3xF2_SB0" />      
+   </condition>
+   
+   <condition id="MT Stdlib GPIO">
+      <description>Sinowealth SH3xF2xx Series GPIO Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="RCC" />
+      <accept condition="SH3xF2_SA0" />      
+      <accept condition="SH3xF2_SB0" />      
+   </condition>
+
+   <condition id="MT Stdlib ADC">
+      <description>Sinowealth SH3xF2xx Series ADC Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="GPIO" />
+      <accept condition="SH3xF2_SA0" />      
+      <accept condition="SH3xF2_SB0" />      
+   </condition>   
+
+   <condition id="MT Stdlib AMOC">
+      <description>Sinowealth SH3xF2xx Series AMOC Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="GPIO" />
+      <accept condition="SH3xF2_SA0" />      
+      <accept condition="SH3xF2_SB0" />      
+   </condition>
+
+   <condition id="MT Stdlib CAN">
+      <description>Sinowealth SH3xF2xx Series CAN Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="GPIO" />
+      <accept condition="SH3xF2_SB0_CAN" />      
+   </condition>
+
+   <condition id="MT Stdlib CORE">
+      <description>Sinowealth SH3xF2xx Series Additional CORE Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="COMMON" />
+      <accept condition="SH3xF2_SA0" />      
+      <accept condition="SH3xF2_SB0" />      
+   </condition>
+   
+   <condition id="MT Stdlib CRC">
+      <description>Sinowealth SH3xF2xx Series CRC Driver</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="RCC" />
+      <accept condition="SH3xF2_SA0" />      
+      <accept condition="SH3xF2_SB0" />      
+   </condition>
+
+   <condition id="MT Stdlib DMA">
+      <description>Sinowealth SH3xF2xx Series DMA Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="RCC" />
+      <accept condition="SH3xF2_SA0" />
+   </condition>
+
+   <condition id="MT Stdlib EXTI">
+      <description>Sinowealth SH3xF2xx Series EXTI Driver</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="GPIO" />
+      <accept condition="SH3xF2_SA0" />      
+      <accept condition="SH3xF2_SB0" />      
+   </condition>
+
+   <condition id="MT Stdlib FIFO">
+      <description>Sinowealth SH3xF2xx Series FIFO Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="RCC" />
+      <accept condition="SH3xF2_SB0" />      
+   </condition>
+
+   <condition id="MT Stdlib FLASH">
+      <description>Sinowealth SH3xF2xx Series FLASH Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="COMMON" />
+      <accept condition="SH3xF2_SA0" />      
+      <accept condition="SH3xF2_SB0" />      
+   </condition>
+
+   <condition id="MT Stdlib GPT">
+      <description>Sinowealth SH3xF2xx Series GPT Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="RCC" />
+      <accept condition="SH3xF2_SA0" />
+   </condition>
+
+   <condition id="MT Stdlib IQmath">
+      <description>Sinowealth SH3xF2xx Series IQmath Driver</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="RCC" />
+      <accept condition="SH3xF2_SA0" />      
+      <accept condition="SH3xF2_SB0" />      
+   </condition>
+   
+   <condition id="MT Stdlib IWDT">
+      <description>Sinowealth SH3xF2xx Series IWDT Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="COMMON" />
+      <accept condition="SH3xF2_SA0" />      
+      <accept condition="SH3xF2_SB0" />      
+   </condition>
+   
+   <condition id="MT Stdlib MACP">
+      <description>Sinowealth SH3xF2xx Series MACP Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="RCC" />
+      <accept condition="SH3xF2_SA0" />
+      <accept condition="SH3xF2_SB0" />      
+   </condition>
+
+   <condition id="MT Stdlib MCM">
+      <description>Sinowealth SH3xF2xx Series MCM Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="GPIO" />
+      <accept condition="SH3xF2_SA0" />
+      <accept condition="SH3xF2_SB0" />      
+   </condition>
+
+   <condition id="MT Stdlib MPU">
+      <description>Sinowealth SH3xF2xx Series MPU Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="COMMON" />      
+      <accept condition="SH3xF2_SA0" />
+   </condition>
+   
+   <condition id="MT Stdlib NVIC">
+      <description>Sinowealth SH3xF2xx Series NVIC Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="COMMON" />
+      <accept condition="SH3xF2_SA0" />      
+      <accept condition="SH3xF2_SB0" />      
+   </condition>  
+
+   <condition id="MT Stdlib PCA">
+      <description>Sinowealth SH3xF2xx Series PCA Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="GPIO" />
+      <accept condition="SH3xF2_SB0" />
+   </condition>
+   
+   <condition id="MT Stdlib QEI">
+      <description>Sinowealth SH3xF2xx Series QEI Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="GPIO" />
+      <accept condition="SH3xF2_SA0" />
+      <accept condition="SH3xF2_SB0" />      
+   </condition>
+
+   <condition id="MT Stdlib SPI">
+      <description>Sinowealth SH3xF2xx Series SPI Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="GPIO" />
+      <accept condition="SH3xF2_SA0" />
+      <accept condition="SH3xF2_SB0" />      
+   </condition>
+
+   <condition id="MT Stdlib SYSCFG">
+      <description>Sinowealth SH3xF2xx Series SYSCFG Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="RCC" />
+      <accept condition="SH3xF2_SA0" />      
+      <accept condition="SH3xF2_SB0" />      
+   </condition>
+
+   <condition id="MT Stdlib TIMER">
+      <description>Sinowealth SH3xF2xx Series TIMER Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="RCC" />
+      <accept condition="SH3xF2_SA0" />      
+      <accept condition="SH3xF2_SB0" />      
+  </condition>
+
+   <condition id="MT Stdlib TWI">
+      <description>Sinowealth SH3xF2xx Series TWI Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="GPIO" />
+      <accept condition="SH3xF2_SA0" />      
+      <accept condition="SH3xF2_SB0" />      
+    </condition>
+
+   <condition id="MT Stdlib UART">
+      <description>Sinowealth SH3xF2xx Series UART Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="GPIO" />
+      <accept condition="SH3xF2_SA0" />      
+      <accept condition="SH3xF2_SB0" />      
+   </condition>
+
+   <condition id="MT Stdlib WWDT">
+      <description>Sinowealth SH3xF2xx Series WWDT Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="RCC" />
+      <accept condition="SH3xF2_SA0" />      
+      <accept condition="SH3xF2_SB0" />      
+   </condition>
+  	    		
+	</conditions>
+
+
+		
+	<!-- component section (optional for all Software Packs)-->
+	<components>
+		<!-- Startup SH32F205 -->
+		<component Cclass="Device" Cgroup="Startup"  Cversion="2.2.0" condition="SH32F205">
+			<description>System Startup for SH32F205 </description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->              
+				#define SH_USE_PRJ_CFG
+      </RTE_Components_h>			
+				<files>				
+        <!-- header files -->
+		     <file category="header" name="Device/SH3xF2xx_SA0/Include/sh32f205.h" />
+		              
+        <!-- startup file -->
+				<file category="source" name="Device/SH3xF2xx_SA0/Source/ARM/startup_sh32f205_keil.s" attr="config" version="1.0.0" condition="Startup ARM"/>
+				<file category="source" name="Device/SH3xF2xx_SA0/Source/GCC/startup_sh32f205_gcc.S"  attr="config" version="1.0.0" condition="Startup GCC"/>
+				<file category="source" name="Device/SH3xF2xx_SA0/Source/IAR/startup_sh32f205_iar.s"  attr="config" version="1.0.0" condition="Startup IAR"/>
+				
+        <!-- linker file -->
+       <file category="linkerScript"  name="Device/SH3xF2xx_SA0/Source/ARM/sh32f205_keil.sct" attr="config" version="1.0.0" condition="Startup ARM"/>
+       <file category="linkerScript"  name="Device/SH3xF2xx_SA0/Source/GCC/sh32f205_gcc.ld"   attr="config" version="1.0.0" condition="Startup GCC"/>
+       <file category="linkerScript"  name="Device/SH3xF2xx_SA0/Source/IAR/sh32f205_iar.icf"  attr="config" version="1.0.0" condition="Startup IAR"/>
+
+				<!-- config file -->
+        <file category="header"  condition="SH32F205" name="Device/SH3xF2xx_SA0/templates/SH32F205/CFG32F205.h" attr="config" version="1.0.2"/>
+        <file category="source"  condition="SH32F205" name="Device/SH3xF2xx_SA0/templates/SH32F205/CFG32F205.c" attr="config" version="1.0.2"/>
+
+				<!-- system file -->
+				<file category="source" name="Device/SH3xF2xx_SA0/Source/system_sh3xf2xx_sa0.c" attr="config" version="1.0.0"/>
+
+			</files>
+		</component>
+		
+			<!-- Startup SH32F2053 -->
+			<component Cclass="Device" Cgroup="Startup" Cversion="2.2.0" condition="SH32F2053">
+			<description>System Startup for SH32F2053 </description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->              
+				#define SH_USE_PRJ_CFG
+      </RTE_Components_h>			
+				<files>				
+        <!-- header files -->
+        <file category="header" name="Device/SH3xF2xx_SA0/Include/sh32f2053.h" />
+        
+        <!-- startup file -->
+				<file category="source" name="Device/SH3xF2xx_SA0/Source/ARM/startup_sh32f2053_keil.s" attr="config" version="1.0.0" condition="Startup ARM"/>
+				<file category="source" name="Device/SH3xF2xx_SA0/Source/GCC/startup_sh32f2053_gcc.S"  attr="config" version="1.0.0" condition="Startup GCC"/>
+				<file category="source" name="Device/SH3xF2xx_SA0/Source/IAR/startup_sh32f2053_iar.s"  attr="config" version="1.0.0" condition="Startup IAR"/>
+
+        <!-- linker file -->
+       <file category="linkerScript"  name="Device/SH3xF2xx_SA0/Source/ARM/sh32f2053_keil.sct" attr="config" version="1.0.0" condition="Startup ARM"/>
+       <file category="linkerScript"  name="Device/SH3xF2xx_SA0/Source/GCC/sh32f2053_gcc.ld"   attr="config" version="1.0.0" condition="Startup GCC"/>
+       <file category="linkerScript"  name="Device/SH3xF2xx_SA0/Source/IAR/sh32f2053_iar.icf"  attr="config" version="1.0.0" condition="Startup IAR"/>
+       
+ 				<!-- config file -->
+        <file category="header"  condition="SH32F2053" name="Device/SH3xF2xx_SA0/templates/SH32F2053/CFG32F2053.h"  attr="config" version="1.0.2"/>
+        <file category="source"  condition="SH32F2053" name="Device/SH3xF2xx_SA0/templates/SH32F2053/CFG32F2053.c"  attr="config" version="1.0.2"/>
+
+				<!-- system file -->
+				<file category="source" name="Device/SH3xF2xx_SA0/Source/system_sh3xf2xx_sa0.c" attr="config" version="1.0.0"/>
+
+			</files>
+		</component>
+		
+		
+			<!-- Startup SH32F284 -->
+		<component Cclass="Device" Cgroup="Startup" Cversion="2.2.0" condition="SH32F284">
+			<description>System Startup for SH32F284 </description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->              
+				#define SH_USE_PRJ_CFG
+      </RTE_Components_h>			
+				<files>
+				
+        <!-- header files -->
+        <file category="header" name="Device/SH3xF2xx_SA0/Include/sh32f284.h" />
+        
+        <!-- startup file -->
+				<file category="source" name="Device/SH3xF2xx_SA0/Source/ARM/startup_sh32f284_keil.s" attr="config"  version="1.0.0" condition="Startup ARM"/>
+				<file category="source" name="Device/SH3xF2xx_SA0/Source/GCC/startup_sh32f284_gcc.S"  attr="config"  version="1.0.0" condition="Startup GCC"/>
+				<file category="source" name="Device/SH3xF2xx_SA0/Source/IAR/startup_sh32f284_iar.s"  attr="config"  version="1.0.0" condition="Startup IAR"/>
+
+        <!-- linker file -->
+       <file category="linkerScript"  name="Device/SH3xF2xx_SA0/Source/ARM/sh32f284_keil.sct" attr="config"  version="1.0.0" condition="Startup ARM"/>        
+       <file category="linkerScript"  name="Device/SH3xF2xx_SA0/Source/GCC/sh32f284_gcc.ld"   attr="config"  version="1.0.0" condition="Startup GCC"/>
+       <file category="linkerScript"  name="Device/SH3xF2xx_SA0/Source/IAR/sh32f284_iar.icf"  attr="config"  version="1.0.0" condition="Startup IAR"/>
+
+				<!-- config file -->
+        <file category="header"  condition="SH32F284" name="Device/SH3xF2xx_SA0/templates/SH32F284/CFG32F284.h"  attr="config"  version="1.0.0"/>
+        <file category="source"  condition="SH32F284" name="Device/SH3xF2xx_SA0/templates/SH32F284/CFG32F284.c"  attr="config"  version="1.0.0"/>
+
+				<!-- system file -->
+				<file category="source" name="Device/SH3xF2xx_SA0/Source/system_sh3xf2xx_sa0.c" attr="config"  version="1.0.0"/>
+
+			</files>
+		</component>
+		
+
+					<!-- Startup SH32F2601 -->
+		<component Cclass="Device" Cgroup="Startup" Cversion="2.2.0" condition="SH32F2601">
+			<description>System Startup for SH32F2601 </description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->              
+				#define SH_USE_PRJ_CFG
+      </RTE_Components_h>			
+				<files>
+				
+        <!-- header files -->
+        <file category="header" name="Device/SH3xF2xx_SB0/Include/sh32f2601.h" />
+        
+        <!-- startup file -->
+				<file category="source" name="Device/SH3xF2xx_SB0/Source/ARM/startup_sh32f2601_keil.s" attr="config"  version="1.0.0" condition="Startup ARM"/>
+				<file category="source" name="Device/SH3xF2xx_SB0/Source/GCC/startup_sh32f2601_gcc.S"  attr="config"  version="1.0.0" condition="Startup GCC"/>
+				<file category="source" name="Device/SH3xF2xx_SB0/Source/IAR/startup_sh32f2601_iar.s"  attr="config"  version="1.0.0" condition="Startup IAR"/>
+
+        <!-- linker file -->
+       <file category="linkerScript"  name="Device/SH3xF2xx_SB0/Source/ARM/sh32f2601_keil.sct" attr="config"  version="1.0.0" condition="Startup ARM"/>        
+       <file category="linkerScript"  name="Device/SH3xF2xx_SB0/Source/GCC/sh32f2601_gcc.ld"   attr="config"  version="1.0.0" condition="Startup GCC"/>
+       <file category="linkerScript"  name="Device/SH3xF2xx_SB0/Source/IAR/sh32f2601_iar.icf"  attr="config"  version="1.0.0" condition="Startup IAR"/>
+
+				<!-- config file -->
+        <file category="header"  condition="SH32F2601" name="Device/SH3xF2xx_SB0/templates/SH32F2601/CFG32F2601.h"  attr="config" version="1.0.0"/>
+        <file category="source"  condition="SH32F2601" name="Device/SH3xF2xx_SB0/templates/SH32F2601/CFG32F2601.c"  attr="config" version="1.0.0"/>
+
+				<!-- system file -->
+				<file category="source" name="Device/SH3xF2xx_SB0/Source/system_sh3xf2xx_sb0.c" attr="config" version="1.0.0"/>
+
+			</files>
+		</component>
+	
+
+					<!-- Startup SH33F2801 -->
+		<component Cclass="Device" Cgroup="Startup" Cversion="2.2.0" condition="SH33F2801">
+			<description>System Startup for SH33F2801 </description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->              
+				#define SH_USE_PRJ_CFG
+      </RTE_Components_h>			
+				<files>
+				
+        <!-- header files -->
+        <file category="header" name="Device/SH3xF2xx_SB0/Include/sh33f2801.h" />
+        
+        <!-- startup file -->
+				<file category="source" name="Device/SH3xF2xx_SB0/Source/ARM/startup_sh33f2801_keil.s" attr="config"  version="1.0.0" condition="Startup ARM"/>
+				<file category="source" name="Device/SH3xF2xx_SB0/Source/GCC/startup_sh33f2801_gcc.S"  attr="config"  version="1.0.0" condition="Startup GCC"/>
+				<file category="source" name="Device/SH3xF2xx_SB0/Source/IAR/startup_sh33f2801_iar.s"  attr="config"  version="1.0.0" condition="Startup IAR"/>
+
+        <!-- linker file -->
+       <file category="linkerScript"  name="Device/SH3xF2xx_SB0/Source/ARM/sh33f2801_keil.sct" attr="config"  version="1.0.0" condition="Startup ARM"/>        
+       <file category="linkerScript"  name="Device/SH3xF2xx_SB0/Source/GCC/sh33f2801_gcc.ld"   attr="config"  version="1.0.0" condition="Startup GCC"/>
+       <file category="linkerScript"  name="Device/SH3xF2xx_SB0/Source/IAR/sh33f2801_iar.icf"  attr="config"  version="1.0.0" condition="Startup IAR"/>
+
+				<!-- config file -->
+        <file category="header"  condition="SH33F2801" name="Device/SH3xF2xx_SB0/templates/SH33F2801/CFG33F2801.h"  attr="config" version="1.0.0"/>
+        <file category="source"  condition="SH33F2801" name="Device/SH3xF2xx_SB0/templates/SH33F2801/CFG33F2801.c"  attr="config" version="1.0.0"/>
+
+				<!-- system file -->
+				<file category="source" name="Device/SH3xF2xx_SB0/Source/system_sh3xf2xx_sb0.c" attr="config" version="1.0.0"/>
+
+			</files>
+		</component>
+
+
+					<!-- Startup SH33F2811 -->
+		<component Cclass="Device" Cgroup="Startup" Cversion="2.2.0" condition="SH33F2811">
+			<description>System Startup for SH33F2811 </description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->              
+				#define SH_USE_PRJ_CFG
+      </RTE_Components_h>			
+				<files>
+				
+        <!-- header files -->
+        <file category="header" name="Device/SH3xF2xx_SB0/Include/sh33f2811.h" />
+        
+        <!-- startup file -->
+				<file category="source" name="Device/SH3xF2xx_SB0/Source/ARM/startup_sh33f2811_keil.s" attr="config"  version="1.0.0" condition="Startup ARM"/>
+				<file category="source" name="Device/SH3xF2xx_SB0/Source/GCC/startup_sh33f2811_gcc.S"  attr="config"  version="1.0.0" condition="Startup GCC"/>
+				<file category="source" name="Device/SH3xF2xx_SB0/Source/IAR/startup_sh33f2811_iar.s"  attr="config"  version="1.0.0" condition="Startup IAR"/>
+
+        <!-- linker file -->
+       <file category="linkerScript"  name="Device/SH3xF2xx_SB0/Source/ARM/sh33f2811_keil.sct" attr="config"  version="1.0.0" condition="Startup ARM"/>        
+       <file category="linkerScript"  name="Device/SH3xF2xx_SB0/Source/GCC/sh33f2811_gcc.ld"   attr="config"  version="1.0.0" condition="Startup GCC"/>
+       <file category="linkerScript"  name="Device/SH3xF2xx_SB0/Source/IAR/sh33f2811_iar.icf"  attr="config"  version="1.0.0" condition="Startup IAR"/>
+
+				<!-- config file -->
+        <file category="header"  condition="SH33F2811" name="Device/SH3xF2xx_SB0/templates/SH33F2811/CFG33F2811.h"  attr="config" version="1.0.0"/>
+        <file category="source"  condition="SH33F2811" name="Device/SH3xF2xx_SB0/templates/SH33F2811/CFG33F2811.c"  attr="config" version="1.0.0"/>
+
+				<!-- system file -->
+				<file category="source" name="Device/SH3xF2xx_SB0/Source/system_sh3xf2xx_sb0.c" attr="config" version="1.0.0"/>
+
+			</files>
+		</component>
+		
+			<component Cclass="Sino32StdPeripherals" Cgroup="COMMON" Cversion="1.1.0" condition="MT Stdlib COMMON">
+			<description></description>
+			<RTE_Components_h>
+        	#define SH_USE_MODULE_LIB
+      </RTE_Components_h>
+			<files>
+			  
+				<file category="header" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/inc/sh3xf2xx_sa0_lib.h" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>
+				<file category="header" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/inc/sh3xf2xx_sb0_lib.h" attr="config" version="1.0.0" condition="SH3xF2_SB0"/>
+			
+			</files>
+		</component>
+
+		
+		<component Cclass="Sino32StdPeripherals" Cgroup="ADC" Cversion="1.1.0" condition="MT Stdlib ADC">
+			<description>ADC driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_ADC
+      </RTE_Components_h>
+			<files>
+
+				<file category="header" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/inc/sh3xf2xx_sa0_adc.h" attr="config"  version="1.1.0" condition="SH3xF2_SA0"/>
+				<file category="source" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/src/sh3xf2xx_sa0_adc.c" attr="config"  version="1.1.0" condition="SH3xF2_SA0"/>
+
+				<file category="header" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/inc/sh3xf2xx_sb0_adc.h" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+				<file category="source" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/src/sh3xf2xx_sb0_adc.c" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+
+			</files>
+		</component>
+
+		
+		<component Cclass="Sino32StdPeripherals" Cgroup="AMOC" Cversion="1.1.0" condition="MT Stdlib AMOC">
+			<description>Analog-module-on-chip (AMOC) driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_AMOC
+      </RTE_Components_h>
+			<files>
+				
+				<file category="header" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/inc/sh3xf2xx_sa0_amoc.h" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>
+				<file category="source" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/src/sh3xf2xx_sa0_amoc.c" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>				
+
+				<file category="header" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/inc/sh3xf2xx_sb0_amoc.h" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+				<file category="source" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/src/sh3xf2xx_sb0_amoc.c" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+
+			</files>
+		</component>
+
+
+     <component Cclass="Sino32StdPeripherals" Cgroup="CAN" Cversion="1.1.0" condition="MT Stdlib CAN">
+      <description>CAN driver of Sino32 Stdlib</description>
+      <RTE_Components_h>
+       	#define RTE_MODULE_CAN
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/inc/sh3xf2xx_sb0_can.h" attr="config" version="1.1.0" condition="SH3xF2_SB0" />
+        <file category="source" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/src/sh3xf2xx_sb0_can.c" attr="config" version="1.1.0" condition="SH3xF2_SB0" />        
+      </files>
+    </component>  
+
+
+		<component Cclass="Sino32StdPeripherals" Cgroup="CORE" Cversion="1.1.0" condition="MT Stdlib CORE">
+			<description>Core special functions driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_CORTEX
+      </RTE_Components_h>
+			<files>
+
+				<file category="header" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/inc/sh3xf2xx_sa0_core.h" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>
+				<file category="source" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/src/sh3xf2xx_sa0_core.c" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>
+
+				<file category="header" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/inc/sh3xf2xx_sb0_core.h" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+				<file category="source" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/src/sh3xf2xx_sb0_core.c" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+
+			</files>
+		</component>
+
+		
+		<component Cclass="Sino32StdPeripherals" Cgroup="CRC" Cversion="1.1.0" condition="MT Stdlib CRC">
+			<description>Cyclic-redundancy-check (CRC) driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_CRC
+      </RTE_Components_h>
+			<files>
+
+				<file category="header" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/inc/sh3xf2xx_sa0_crc.h" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>
+				<file category="source" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/src/sh3xf2xx_sa0_crc.c" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>
+
+				<file category="header" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/inc/sh3xf2xx_sb0_crc.h" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+				<file category="source" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/src/sh3xf2xx_sb0_crc.c" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+
+			</files>
+		</component>
+
+
+     <component Cclass="Sino32StdPeripherals" Cgroup="DMA" Cversion="1.1.0" condition="MT Stdlib DMA">
+      <description>Direct-memory-access (DMA) driver of Sino32 Stdlib</description>
+      <RTE_Components_h>
+       	#define RTE_MODULE_DMA
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/inc/sh3xf2xx_sa0_dma.h" attr="config" version="1.1.0" condition="SH3xF2_SA0" />
+        <file category="source" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/src/sh3xf2xx_sa0_dma.c" attr="config" version="1.1.0" condition="SH3xF2_SA0" />        
+      </files>
+    </component>    
+
+
+		<component Cclass="Sino32StdPeripherals" Cgroup="EXTI" Cversion="1.1.0" condition="MT Stdlib EXTI">
+			<description>External-Interrupt (EXTI) driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_EXTI
+      </RTE_Components_h>
+			<files>
+
+				<file category="header" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/inc/sh3xf2xx_sa0_exti.h" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>
+				<file category="source" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/src/sh3xf2xx_sa0_exti.c" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>
+
+				<file category="header" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/inc/sh3xf2xx_sb0_exti.h" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+				<file category="source" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/src/sh3xf2xx_sb0_exti.c" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+
+			</files>
+		</component>
+
+
+		<component Cclass="Sino32StdPeripherals" Cgroup="FIFO" Cversion="1.1.0" condition="MT Stdlib FIFO">
+			<description>FIFO driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_FIFO
+      </RTE_Components_h>
+			<files>
+				<file category="header" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/inc/sh3xf2xx_sb0_fifo.h" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+				<file category="source" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/src/sh3xf2xx_sb0_fifo.c" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+			</files>
+		</component>
+
+		
+		<component Cclass="Sino32StdPeripherals" Cgroup="FLASH" Cversion="1.1.0" condition="MT Stdlib FLASH">
+			<description>Flash memory programming driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_FLASH
+      </RTE_Components_h>
+			<files>
+				
+				<file category="header" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/inc/sh3xf2xx_sa0_flash.h" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>
+				<file category="source" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/src/sh3xf2xx_sa0_flash.c" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>				
+
+				<file category="header" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/inc/sh3xf2xx_sb0_flash.h" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+				<file category="source" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/src/sh3xf2xx_sb0_flash.c" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+
+			</files>
+		</component>
+
+		
+		<component Cclass="Sino32StdPeripherals" Cgroup="GPIO" Cversion="1.1.0" condition="MT Stdlib GPIO">
+			<description>General-purpose-input-and-output (GPIO) driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_GPIO
+      </RTE_Components_h>
+			<files>
+				
+				<file category="header" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/inc/sh3xf2xx_sa0_gpio.h" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>
+				<file category="source" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/src/sh3xf2xx_sa0_gpio.c" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>				
+
+				<file category="header" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/inc/sh3xf2xx_sb0_gpio.h" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+				<file category="source" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/src/sh3xf2xx_sb0_gpio.c" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+
+			</files>
+		</component>
+
+
+     <component Cclass="Sino32StdPeripherals" Cgroup="GPT" Cversion="1.1.0" condition="MT Stdlib GPT">
+      <description>GPT driver of Sino32 Stdlib</description>
+      <RTE_Components_h>
+        #define RTE_MODULE_GPT
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/inc/sh3xf2xx_sa0_gpt.h" attr="config" version="1.1.0" condition="SH3xF2_SA0" />
+        <file category="source" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/src/sh3xf2xx_sa0_gpt.c" attr="config" version="1.1.0" condition="SH3xF2_SA0" />
+       </files>
+    </component>  
+
+
+		<component Cclass="Sino32StdPeripherals" Cgroup="IQmath" Cversion="1.1.0" condition="MT Stdlib IQmath">
+			<description>IQmath driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_IQMATH
+      </RTE_Components_h>
+			<files>
+
+				<file category="header" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/inc/sh3xf2xx_sa0_IQmath.h" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>
+				<file category="source" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/src/sh3xf2xx_sa0_IQmath.c" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>				
+
+				<file category="header" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/inc/sh3xf2xx_sb0_IQmath.h" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+				<file category="source" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/src/sh3xf2xx_sb0_IQmath.c" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+
+			</files>
+		</component>
+
+
+		<component Cclass="Sino32StdPeripherals" Cgroup="IWDT" Cversion="1.1.0" condition="MT Stdlib IWDT">
+			<description>IWDT driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_IWDT
+      </RTE_Components_h>
+			<files>
+
+				<file category="header" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/inc/sh3xf2xx_sa0_iwdt.h" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>
+				<file category="source" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/src/sh3xf2xx_sa0_iwdt.c" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>
+
+				<file category="header" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/inc/sh3xf2xx_sb0_iwdt.h" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+				<file category="source" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/src/sh3xf2xx_sb0_iwdt.c" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+
+			</files>
+		</component>
+
+		
+		<component Cclass="Sino32StdPeripherals" Cgroup="MACP" Cversion="1.1.0" condition="MT Stdlib MACP">
+			<description>Mathematic-coprocessor (MACP) driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_MACP
+      </RTE_Components_h>
+			<files>
+				
+				<file category="header" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/inc/sh3xf2xx_sa0_macp.h" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>
+				<file category="source" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/src/sh3xf2xx_sa0_macp.c" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>								
+
+				<file category="header" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/inc/sh3xf2xx_sb0_macp.h" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+				<file category="source" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/src/sh3xf2xx_sb0_macp.c" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+
+			</files>
+		</component>
+
+
+		<component Cclass="Sino32StdPeripherals" Cgroup="MCM" Cversion="1.1.0" condition="MT Stdlib MCM">
+			<description>Motor-control-module (MCM) driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_MCM
+      </RTE_Components_h>
+			<files>
+
+				<file category="header" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/inc/sh3xf2xx_sa0_mcm.h" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>
+				<file category="source" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/src/sh3xf2xx_sa0_mcm.c" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>								
+
+				<file category="header" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/inc/sh3xf2xx_sb0_mcm.h" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+				<file category="source" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/src/sh3xf2xx_sb0_mcm.c" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+
+			</files>
+		</component>
+
+
+     <component Cclass="Sino32StdPeripherals" Cgroup="MPU" Cversion="1.1.0" condition="MT Stdlib MPU">
+      <description>Memory-protection-unit (MPU) driver of Sino32 Stdlib</description>
+      <RTE_Components_h>
+        #define RTE_MODULE_MPU
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/inc/sh3xf2xx_sa0_mpu.h" attr="config" version="1.1.0" condition="SH3xF2_SA0" />
+        <file category="source" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/src/sh3xf2xx_sa0_mpu.c" attr="config" version="1.1.0" condition="SH3xF2_SA0" />
+       </files>
+    </component>  
+
+		
+		<component Cclass="Sino32StdPeripherals" Cgroup="NVIC" Cversion="1.1.0" condition="MT Stdlib NVIC">
+			<description>Additional Nested-vectored-interrupt-controller (NVIC) driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_NVIC
+      </RTE_Components_h>
+			<files>
+				
+				<file category="header" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/inc/sh3xf2xx_sa0_nvic.h" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>
+				<file category="source" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/src/sh3xf2xx_sa0_nvic.c" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>												
+
+				<file category="header" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/inc/sh3xf2xx_sb0_nvic.h" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+				<file category="source" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/src/sh3xf2xx_sb0_nvic.c" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+
+			</files>
+		</component>
+
+
+		<component Cclass="Sino32StdPeripherals" Cgroup="PCA" Cversion="1.1.0" condition="MT Stdlib PCA">
+			<description>PCA driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_PCA
+      </RTE_Components_h>
+			<files>
+				<file category="header" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/inc/sh3xf2xx_sb0_pca.h" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+				<file category="source" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/src/sh3xf2xx_sb0_pca.c" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+			</files>
+		</component>
+
+
+
+		<component Cclass="Sino32StdPeripherals" Cgroup="QEI" Cversion="1.1.0" condition="MT Stdlib QEI">
+			<description>Quadrature-encoder-interface (QEI) driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_QEI
+      </RTE_Components_h>
+			<files>
+			
+				<file category="header" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/inc/sh3xf2xx_sa0_qei.h" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>
+				<file category="source" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/src/sh3xf2xx_sa0_qei.c" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>												
+
+				<file category="header" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/inc/sh3xf2xx_sb0_qei.h" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+				<file category="source" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/src/sh3xf2xx_sb0_qei.c" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+
+			</files>
+		</component>
+
+
+		<component Cclass="Sino32StdPeripherals" Cgroup="RCC" Cversion="1.1.0" condition="MT Stdlib RCC">
+			<description>Reset-and-clock-control (RCC) driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_RCC
+      </RTE_Components_h>
+			<files>
+
+				<file category="header" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/inc/sh3xf2xx_sa0_rcc.h" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>
+				<file category="source" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/src/sh3xf2xx_sa0_rcc.c" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>												
+
+				<file category="header" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/inc/sh3xf2xx_sb0_rcc.h" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+				<file category="source" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/src/sh3xf2xx_sb0_rcc.c" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+
+			</files>
+		</component>
+
+
+		<component Cclass="Sino32StdPeripherals" Cgroup="SPI" Cversion="1.1.0" condition="MT Stdlib SPI">
+			<description>Serial Peripheral Interface (SPI) driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_SPI
+      </RTE_Components_h>
+			<files>
+				
+				<file category="header" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/inc/sh3xf2xx_sa0_spi.h" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>
+				<file category="source" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/src/sh3xf2xx_sa0_spi.c" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>																
+
+				<file category="header" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/inc/sh3xf2xx_sb0_spi.h" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+				<file category="source" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/src/sh3xf2xx_sb0_spi.c" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+
+			</files>
+		</component>
+
+
+		<component Cclass="Sino32StdPeripherals" Cgroup="SYSCFG" Cversion="1.1.0" condition="MT Stdlib SYSCFG">
+			<description>System configuration (SYSCFG) driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_SYSCFG
+      </RTE_Components_h>
+			<files>
+			
+				<file category="header" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/inc/sh3xf2xx_sa0_syscfg.h" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>
+				<file category="source" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/src/sh3xf2xx_sa0_syscfg.c" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>																
+
+				<file category="header" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/inc/sh3xf2xx_sb0_syscfg.h" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+				<file category="source" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/src/sh3xf2xx_sb0_syscfg.c" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+
+			</files>
+		</component>		
+
+
+		<component Cclass="Sino32StdPeripherals" Cgroup="TIMER" Cversion="1.1.0" condition="MT Stdlib TIMER">
+			<description>General Timer driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_TIMER
+      </RTE_Components_h>
+			<files>
+				
+				<file category="header" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/inc/sh3xf2xx_sa0_tim.h" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>
+				<file category="source" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/src/sh3xf2xx_sa0_tim.c" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>																
+
+				<file category="header" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/inc/sh3xf2xx_sb0_tim.h" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+				<file category="source" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/src/sh3xf2xx_sb0_tim.c" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+
+			</files>
+		</component>		
+
+		
+		<component Cclass="Sino32StdPeripherals" Cgroup="TWI" Cversion="1.1.0" condition="MT Stdlib TWI">
+			<description>Two-wire-serial-interface (TWI) driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_TWI
+      </RTE_Components_h>
+			<files>
+				
+				<file category="header" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/inc/sh3xf2xx_sa0_twi.h" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>
+				<file category="source" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/src/sh3xf2xx_sa0_twi.c" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>																
+
+				<file category="header" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/inc/sh3xf2xx_sb0_twi.h" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+				<file category="source" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/src/sh3xf2xx_sb0_twi.c" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+
+			</files>
+		</component>
+
+
+		<component Cclass="Sino32StdPeripherals" Cgroup="UART" Cversion="1.1.0" condition="MT Stdlib UART">
+			<description>Universal-asynchronous-receiver-transmitter (UART) driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_UART
+      </RTE_Components_h>
+			<files>
+				
+				<file category="header" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/inc/sh3xf2xx_sa0_uart.h" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>
+				<file category="source" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/src/sh3xf2xx_sa0_uart.c" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>																
+
+				<file category="header" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/inc/sh3xf2xx_sb0_uart.h" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+				<file category="source" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/src/sh3xf2xx_sb0_uart.c" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+
+			</files>
+		</component>
+		
+		
+		<component Cclass="Sino32StdPeripherals" Cgroup="WWDT" Cversion="1.1.0" condition="MT Stdlib WWDT">
+			<description>Window-watchdog-timer (WWDT) driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_WWDT
+      </RTE_Components_h>
+			<files>
+
+				<file category="header" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/inc/sh3xf2xx_sa0_wwdt.h" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>
+				<file category="source" name="Device/SH3xF2xx_SA0_StdPeriph_Driver/src/sh3xf2xx_sa0_wwdt.c" attr="config" version="1.1.0" condition="SH3xF2_SA0"/>																
+
+				<file category="header" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/inc/sh3xf2xx_sb0_wwdt.h" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+				<file category="source" name="Device/SH3xF2xx_SB0_StdPeriph_Driver/src/sh3xf2xx_sb0_wwdt.c" attr="config"  version="1.0.0" condition="SH3xF2_SB0"/>
+
+			</files>
+		</component>
+
+		<!-- END: Sino_MT Standard Peripherals Drivers -->
+		
+
+			
+		<!-- END: Project Config  -->
+			
+		<!-- START: Project Template  -->	
+		<component Cclass="Project" Cgroup="Project Template" Cversion="1.1.0" condition="SH3xF2_SA0">
+			<description>Project Template for SH3xF2_SA0 </description>
+			<files>      
+        <file category="header" name="Device/SH3xF2xx_SA0/templates/sh3xf2xx_sa0_int.h"   attr="config" version="1.1.0"/>								
+        <file category="source" name="Device/SH3xF2xx_SA0/templates/sh3xf2xx_sa0_int.c"   attr="config" version="1.1.0"/>
+        <file category="source" name="Device/SH3xF2xx_SA0/templates/sh3xf2xx_sa0_main.c"  attr="config" version="1.1.0"/>
+     </files>
+		</component>
+
+		<component Cclass="Project" Cgroup="Project Template" Cversion="1.1.0" condition="SH3xF2_SB0">
+			<description>Project Template for SH3xF2_SB0 </description>
+			<files>      
+        <file category="header" name="Device/SH3xF2xx_SB0/templates/sh3xf2xx_sb0_int.h"   attr="config" version="1.1.0"/>								
+        <file category="source" name="Device/SH3xF2xx_SB0/templates/sh3xf2xx_sb0_int.c"   attr="config" version="1.1.0"/>
+        <file category="source" name="Device/SH3xF2xx_SB0/templates/sh3xf2xx_sb0_main.c"  attr="config" version="1.1.0"/>
+     </files>
+		</component>
+
+		<!-- END: Project Template -->				
+										
+	</components>
+		
+        
+</package>
+
+
+

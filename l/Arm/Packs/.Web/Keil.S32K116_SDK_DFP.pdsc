@@ -1,0 +1,1102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.28/schema/PACK.xsd" schemaVersion="1.7.28">
+  <vendor>Keil</vendor>
+  <name>S32K116_SDK_DFP</name>
+  <description>NXP S32K116 SDK including S32K116 basic CMSIS Device Support</description>
+  <license>LICENSE</license>
+  <url>https://www.keil.com/pack/</url>
+
+  <releases>
+    <release version="1.2.1" date="2024-02-12" deprecated="2024-02-12">
+      This Software Pack is no longer maintained.
+	  Please contact the device vendor (NXP) for for available Software Development Kits.
+    </release>
+    <release version="1.2.0" date="2021-07-21">
+      Added missing sub components to 'SDK PAL' group.
+    </release>
+    <release version="1.1.0" date="2021-07-06">
+      Updated S32_SDK to version V4.0.2.
+      Changed ARM startup file suffix back to capital S.
+      Reworked linker files.
+      Updated documentation.
+      Reworked PDSC Conditions.
+      Updated Example:
+      - Corrected 'Release' configuration.
+      - Terminating app_main thread with osThreadExit() to avoid endless loop
+      Updated device support:
+      - reworked startup.c s32_core_cm0.h
+    </release>
+    <release version="1.0.0" date="2018-06-28">
+      Initial version of NXP S32K116 Device Family Pack
+      - based on the NXP Software Development Kit for S32K116 Version 1.8.7.
+      - example project for S32K116-EVB FRDM Board
+      - patched device include file (CMSIS also for ARMCC, GCC, IAR).
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>NXP</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package NXP</keyword>
+    <keyword>S32</keyword>
+  </keywords>
+
+  <requirements>
+    <compilers>
+      <compiler name="ARMCC" version="6.4.0"/>
+      <compiler name="GCC"   version="9.0.0"/>
+    </compilers>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+
+  <devices>
+    <family Dfamily="S32K Series" Dvendor="NXP:11">
+      <description>
+The NXP S32K product series of 32-bit automotive microcontrollers provides a highly integrated, low-power, safe and secure single-chip solution.
+The combination of fast CPU with flexible low-power modes and the low-leakage technology process will not force any compromises on performance relative to low-power.
+Our combined Cortex® M0+ and M4-based automotive MCU offerings span a broad memory space and include package options from 8 K to 2 MByte with 16 to 176 pins initially.
+The ARM® Cortex M4 core architecture includes an IEEE-754 compliant single precision Floating Point Unit (FPU) with DSP functions unleashing the full potential of model-based design flows.
+      </description>
+
+      <!-- ******************************  Subfamily 'S32K11x'  ****************************** -->
+      <subFamily DsubFamily="S32K11x">
+        <processor Dcore="Cortex-M0+" DcoreVersion="r0p1" Dfpu="NO_FPU" Dmpu="NO_MPU" Dendian="Little-endian"/>
+
+        <book name="MDK/Documents/DUI0662B_cortex_m0p_r0p1_dgug.pdf" title="Cortex-M0+ Generic User Guide"/>
+        <book name="MDK/Documents/S32K-RM.pdf"                       title="S32K1xx Series Reference Manual"/>
+        <book name="MDK/Documents/S32K-DS.pdf"                       title="S32K1xx Data Sheet"/>
+        <book name="doc/S32SDKQSG.pdf"                               title="S32 SDK Quick Start Guide"/>
+
+        <!-- ******************************  Device 'S32K116'  ****************************** -->
+        <device Dname="S32K116">
+          <book name="doc/S32SDK_S32K116_UserManual.pdf" title="S32SDK User Manual"/>
+
+          <compile header="platform/devices/device_registers.h"/>
+          <compile define="CPU_S32K116"/>
+          <debug  svd="platform/devices/S32K116/S32K116.svd"/>
+          <memory id="IROM1"                                     start="0x00000000" size="0x00020000" default="1" startup="1"/>
+          <algorithm name="CMSIS/Flash/S32K116_P128_2KB_SEC.FLM" start="0x00000000" size="0x00020000" default="1"/>
+
+          <!-- *********************** -->
+          <!-- 48MHz 48LQFP -->
+          <variant Dvariant="S32K116xxxxMLFx">
+            <processor Dclock="48000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00002000" init="0" default="1"/>
+            <memory id="IRAM2" start="0x20002000" size="0x00001800" init="0" default="0"/>
+            <feature type="QFP" n="48"/>
+          </variant>
+          <variant Dvariant="S32K116xxxxVLFx">
+            <processor Dclock="48000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00002000" init="0" default="1"/>
+            <memory id="IRAM2" start="0x20002000" size="0x00001800" init="0" default="0"/>
+            <feature type="QFP" n="48"/>
+          </variant>
+
+          <!-- 48MHz 32QFN -->
+          <variant Dvariant="S32K116xxxxMFMx">
+            <processor Dclock="48000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00002000" init="0" default="1"/>
+            <memory id="IRAM2" start="0x20002000" size="0x00001800" init="0" default="0"/>
+            <feature type="QFN" n="32"/>
+          </variant>
+          <variant Dvariant="S32K116xxxxVFMx">
+            <processor Dclock="48000000"/>
+            <memory id="IRAM1" start="0x20000000" size="0x00002000" init="0" default="1"/>
+            <memory id="IRAM2" start="0x20002000" size="0x00001800" init="0" default="0"/>
+            <feature type="QFN" n="32"/>
+          </variant>
+        </device>
+
+      </subFamily>
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Device Conditions -->
+    <condition id="S32K11x">
+      <description>NXP S32K116x devices</description>
+      <accept condition="S32K116"/>
+      <!--accept condition="next device with same coreclock"/-->
+    </condition>
+
+    <condition id="S32K116">
+      <description>NXP S32K116 device</description>
+      <accept Dvendor="NXP:11" Dname="S32K116*"/>
+    </condition>
+    <condition id="S32K116_17">
+      <description>NXP S32K116 device with 17K RAM</description>
+      <accept Dvendor="NXP:11" Dname="S32K116*"/>
+    </condition>
+
+    <!-- Device + Compiler Conditions (ARM) -->
+    <condition id="S32K116_ARM">
+      <description>NXP S32K116 device and ARM compiler</description>
+      <require condition="S32K116"/>
+      <require Tcompiler="ARMCC" Toptions="AC6"/>
+    </condition>
+    <condition id="S32K116_17_ARM">
+      <description>NXP S32K116 device with 17K RAM and ARM compiler</description>
+      <require condition="S32K116_17"/>
+      <require Tcompiler="ARMCC" Toptions="AC6"/>
+    </condition>
+
+    <!-- Device + Compiler Conditions (GCC) -->
+    <condition id="S32K116_GCC">
+      <description>NXP S32K116 device and GCC compiler</description>
+      <require condition="S32K116"/>
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="S32K116_17_GCC">
+      <description>NXP S32K116 device with 17K RAM and GCC compiler</description>
+      <require condition="S32K116_17"/>
+      <require Tcompiler="GCC"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="S32K11x_CMSIS">
+      <description>NXP S32K11x devices and CMSIS-CORE</description>
+      <accept condition="S32K11x"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <!-- bundle dependencies -->
+    <condition id="S32K116 DRV_CLOCK_PINS">
+      <description>NXP S32K Driver Clock Pins dependency</description>
+      <require condition="S32K116"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Clock"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="PINS"/>
+    </condition>
+    <!--condition id="S32K116 DRV_CLOCK_PINS_ADC">
+      <description>NXP S32K Driver Clock Pins ADC dependency</description>
+      <require condition="S32K116"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Clock"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="PINS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="ADC"/>
+    </condition-->
+
+    <!-- SDK driver dependencies -->
+    <condition id="S32K11x DRV_ADC">
+      <description>NXP S32K Driver ADC dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Clock"/>
+    </condition>
+    <condition id="S32K11x DRV_Clock">
+      <description>NXP S32K System Clock dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Interrupt"/>
+    </condition>
+    <condition id="S32K11x DRV_CMP">
+      <description>NXP S32K Driver CMP dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+    </condition>
+    <condition id="S32K11x DRV_CRC">
+      <description>NXP S32K Driver CRC dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+    </condition>
+    <condition id="S32K11x DRV_CSEC">
+      <description>NXP S32K Driver CSEC dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Interrupt"/>
+    </condition>
+    <condition id="S32K11x DRV_EDMA">
+      <description>NXP S32K Driver eDMA dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Interrupt"/>
+    </condition>
+    <condition id="S32K11x DRV_EIM">
+      <description>NXP S32K Driver EIM dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+    </condition>
+    <condition id="S32K11x DRV_ERM">
+      <description>NXP S32K Driver ERM dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+    </condition>
+    <condition id="S32K11x DRV_FTM">
+      <description>NXP S32K Driver FTM dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Clock"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Interrupt"/>
+    </condition>
+    <condition id="S32K11x DRV_FTM_IC">
+      <description>NXP S32K Driver FTM dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="FTM"/>
+    </condition>
+    <condition id="S32K11x DRV_FTM_MC">
+      <description>NXP S32K Driver FTM dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="FTM"/>
+    </condition>
+    <condition id="S32K11x DRV_FTM_OC">
+      <description>NXP S32K Driver FTM dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="FTM"/>
+    </condition>
+    <condition id="S32K11x DRV_FTM_PWM">
+      <description>NXP S32K Driver FTM dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="FTM"/>
+    </condition>
+    <condition id="S32K11x DRV_FTM_QD">
+      <description>NXP S32K Driver FTM dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="FTM"/>
+    </condition>
+    <condition id="S32K11x DRV_FlexCAN">
+      <description>NXP S32K Driver FlexCAN dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="eDMA"/>
+      <require Cclass="Device" Cgroup="SDK OSIF"   Csub="OSIF"/>
+    </condition>
+    <condition id="S32K11x DRV_FlexIO">
+      <description>NXP S32K Driver FLEXIO dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK OSIF"   Csub="OSIF"/>
+    </condition>
+    <condition id="S32K11x DRV_FlexIO_I2C">
+      <description>NXP S32K Driver FLEXIO I2C dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="FlexIO"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="eDMA"/>
+    </condition>
+    <condition id="S32K11x DRV_FlexIO_I2S">
+      <description>NXP S32K Driver FLEXIO I2S dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="FlexIO"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="eDMA"/>
+    </condition>
+    <condition id="S32K11x DRV_FlexIO_SPI">
+      <description>NXP S32K Driver FLEXIO SPI dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="FlexIO"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="eDMA"/>
+    </condition>
+    <condition id="S32K11x DRV_FlexIO_UART">
+      <description>NXP S32K Driver FLEXIO UART dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="FlexIO"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="eDMA"/>
+    </condition>
+    <condition id="S32K11x DRV_LIN">
+      <description>NXP S32K Driver LIN dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="LPUART"/>
+    </condition>
+    <condition id="S32K11x DRV_LPI2C">
+      <description>NXP S32K Driver LPI2C dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="eDMA"/>
+      <require Cclass="Device" Cgroup="SDK OSIF"   Csub="OSIF"/>
+    </condition>
+    <condition id="S32K11x DRV_LPIT">
+      <description>NXP S32K Driver LPIT dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Clock"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Interrupt"/>
+    </condition>
+    <condition id="S32K11x DRV_LPSPI">
+      <description>NXP S32K Driver LPSPI dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="eDMA"/>
+      <require Cclass="Device" Cgroup="SDK OSIF"   Csub="OSIF"/>
+    </condition>
+    <condition id="S32K11x DRV_LPTMR">
+      <description>NXP S32K Driver LPTMR dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Clock"/>
+    </condition>
+    <condition id="S32K11x DRV_LPUART">
+      <description>NXP S32K Driver LPUART IRQ dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="eDMA"/>
+      <require Cclass="Device" Cgroup="SDK OSIF"   Csub="OSIF"/>
+    </condition>
+    <condition id="S32K11x DRV_MPU">
+      <description>NXP S32K Driver MPU dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+    </condition>
+    <condition id="S32K11x DRV_PDB">
+      <description>NXP S32K Driver PDB dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Clock"/>
+    </condition>
+    <condition id="S32K11x DRV_PINS">
+      <description>NXP S32K Driver PINS dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+    </condition>
+    <condition id="S32K11x DRV_Power">
+      <description>NXP S32K11x System Power dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Clock"/>
+    </condition>
+    <condition id="S32K11x DRV_RTC">
+      <description>NXP S32K Driver RTC dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Interrupt"/>
+    </condition>
+    <condition id="S32K11x DRV_TRGMUX">
+      <description>NXP S32K Driver TRGMUX dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+    </condition>
+    <condition id="S32K11x DRV_WDOG">
+      <description>NXP S32K Driver WDOG dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Interrupt"/>
+    </condition>
+
+    <!-- SDK PAL dependencies -->
+    <condition id="S32K11x PAL_ADC">
+      <description>NXP S32K11x PAL ADC dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="ADC"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="PDB"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="TRGMUX"/>
+      <require Cclass="Device" Cgroup="SDK OSIF" Csub="OSIF"/>
+    </condition>
+    <condition id="S32K11x PAL_CAN">
+      <description>NXP S32K11x PAL CAN dependency</description>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="FlexCAN"/>
+      <require condition="S32K11x_CMSIS"/>
+    </condition>
+    <condition id="S32K11x PAL_I2C">
+      <description>NXP S32K11x PAL I2C dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="LPI2C"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="FlexIO (I2C)"/>
+    </condition>
+    <condition id="S32K11x PAL_I2S">
+      <description>NXP S32K11x PAL I2S dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="FlexIO (I2S)"/>
+    </condition>
+    <condition id="S32K11x PAL_IC">
+      <description>NXP S32K11x PAL IC dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="FTM (IC)"/>
+    </condition>
+    <condition id="S32K11x PAL_MPU">
+      <description>NXP S32K11x PAL MPU dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="MPU"/>
+    </condition>
+    <condition id="S32K11x PAL_OC">
+      <description>NXP S32K11x PAL OC dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="FTM (OC)"/>
+    </condition>
+    <condition id="S32K11x PAL_PWM">
+      <description>NXP S32K11x PAL PWM dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="FTM (PWM)"/>
+    </condition>
+    <condition id="S32K11x PAL_Security">
+      <description>NXP S32K11x PAL Security dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="CSEC"/>
+      <require Cclass="Device" Cgroup="SDK OSIF" Csub="OSIF"/>
+    </condition>
+    <condition id="S32K11x PAL_SPI">
+      <description>NXP S32K11x PAL SPI dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="LPSPI"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="FlexIO (SPI)"/>
+    </condition>
+    <condition id="S32K11x PAL_Timing">
+      <description>NXP S32K11x PAL Timing dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="FTM (OC)"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="LPIT"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="LPTMR"/>
+    </condition>
+    <condition id="S32K11x PAL_UART">
+      <description>NXP S32K11x PAL UART dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="LPUART"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="FlexIO (UART)"/>
+    </condition>
+    <condition id="S32K11x PAL_WDG">
+      <description>NXP S32K11x PAL WDG dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="WDOG"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Clock"/>
+    </condition>
+
+    <condition id="S32K11x OSIF_BM">
+      <description>NXP S32K11x OSIF Bare Metal dependency</description>
+      <require condition="S32K11x_CMSIS"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Clock"/>
+      <require Cclass="Device" Cgroup="SDK Driver" Csub="Interrupt"/>
+    </condition>
+
+  </conditions>
+
+  <components>
+    <!-- StartUp -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="S32K11x_CMSIS">
+      <description>System Startup for NXP S32K11x Series</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_DEVICE_STARTUP_S32K11x      /* Device Startup for S32K11x Series */
+      </RTE_Components_h>
+      <files>
+        <!-- include folders -->
+        <file category="header"  name="platform/devices/device_registers.h"/> <!-- generates warning in PackCheck because name is not CMSIS conform -->
+        <file category="include" name="platform/devices/"/>
+        <file category="include" name="platform/devices/common/"/>
+
+        <!-- startup files (general) -->
+        <file category="source" name="platform/devices/startup.c"/>
+
+        <!-- system files -->
+        <file category="header"       condition="S32K116"         name="platform/devices/S32K116/startup/system_S32K116.h"            attr="config" version="1.1.0"/>
+        <file category="source"       condition="S32K116"         name="platform/devices/S32K116/startup/system_S32K116.c"            attr="config" version="1.1.0"/>
+
+        <!-- startup files (ARM specific) -->
+        <file category="source"       condition="S32K116_ARM"     name="platform/devices/S32K116/startup/armc/startup_S32K116.S"      attr="config" version="2.2.0"/>
+
+        <!-- startup files (GCC specific) -->
+        <file category="source"       condition="S32K116_GCC"     name="platform/devices/S32K116/startup/gcc/startup_S32K116.S"       attr="config" version="1.0.0"/>
+
+        <!-- linker scripts (ARM)-->
+        <file category="linkerScript" condition="S32K116_17_ARM"  name="platform/devices/S32K116/linker/armc/S32K116_17_flash.sct"    attr="config" version="2.2.0"/>
+        <file category="linkerScript" condition="S32K116_17_ARM"  name="platform/devices/S32K116/linker/armc/S32K116_17_ram.sct"      attr="config" version="2.2.0"/>
+
+        <!-- linker scripts  (GCC) -->
+        <file category="linkerScript" condition="S32K116_17_GCC"  name="platform/devices/S32K116/linker/gcc/S32K116_17_flash.ld"      attr="config" version="1.0.0"/>
+        <file category="linkerScript" condition="S32K116_17_GCC"  name="platform/devices/S32K116/linker/gcc/S32K116_17_ram.ld"        attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- SDK PAL -->
+    <component Cclass="Device" Cgroup="SDK PAL"    Csub="ADC"                Cversion="4.0.2" condition="S32K11x PAL_ADC">
+      <description>ADC Peripheral Abstraction Layer (ADC PAL)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_PAL_ADC
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/pal/inc/adc_pal.h"/>
+        <file category="source" name="platform/pal/src/adc/adc_pal.c"/>
+        <file category="source" name="platform/pal/src/adc/adc_irq.c"/>
+
+        <file category="header" name="platform/pal/cfg/adc_pal_cfg.h" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK PAL"    Csub="CAN"                Cversion="4.0.2" condition="S32K11x PAL_CAN">
+      <description>CAN Peripheral Abstraction Layer (CAN PAL)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_PAL_CAN
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/pal/inc/can_pal.h"/>
+        <file category="source" name="platform/pal/src/can/can_pal.c"/>
+
+        <file category="header" name="platform/pal/cfg/can_pal_cfg.h" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK PAL"    Csub="I2C"                Cversion="4.0.2" condition="S32K11x PAL_I2C">
+      <description>I2C Peripheral Abstraction Layer (I2C PAL)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_PAL_I2C
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/pal/inc/i2c_pal.h"/>
+        <file category="source" name="platform/pal/src/i2c/i2c_pal.c"/>
+
+        <file category="header" name="platform/pal/cfg/i2c_pal_cfg.h" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK PAL"    Csub="I2S"                Cversion="4.0.2" condition="S32K11x PAL_I2S">
+      <description>I2S Peripheral Abstraction Layer (I2S PAL)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_PAL_I2S
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/pal/inc/i2s_pal.h"/>
+        <file category="source" name="platform/pal/src/i2s/i2s_pal.c"/>
+
+        <file category="header" name="platform/pal/cfg/i2s_pal_cfg.h" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK PAL"    Csub="IC"                 Cversion="4.0.2" condition="S32K11x PAL_IC">
+      <description>IC Peripheral Abstraction Layer (IC PAL)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_PAL_IC
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/pal/inc/ic_pal.h"/>
+        <file category="source" name="platform/pal/src/ic/ic_pal.c"/>
+        <file category="source" name="platform/pal/src/ic/ic_irq.c"/>
+
+        <file category="header" name="platform/pal/cfg/ic_pal_cfg.h" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK PAL"    Csub="MPU"                Cversion="4.0.2" condition="S32K11x PAL_MPU">
+      <description>MPU Peripheral Abstraction Layer (MPU PAL)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_PAL_MPU
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/pal/inc/mpu_pal.h"/>
+        <file category="source" name="platform/pal/src/mpu/mpu_pal.c"/>
+
+        <file category="header" name="platform/pal/cfg/mpu_pal_cfg.h" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK PAL"    Csub="OC"                 Cversion="4.0.2" condition="S32K11x PAL_OC">
+      <description>OC Peripheral Abstraction Layer (OC PAL)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_PAL_OC
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/pal/inc/oc_pal.h"/>
+        <file category="source" name="platform/pal/src/oc/oc_pal.c"/>
+        <file category="source" name="platform/pal/src/oc/oc_irq.c"/>
+
+        <file category="header" name="platform/pal/cfg/oc_pal_cfg.h" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK PAL"    Csub="PWM"                Cversion="4.0.2" condition="S32K11x PAL_PWM">
+      <description>PWM Peripheral Abstraction Layer (PWM PAL)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_PAL_PWM
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/pal/inc/pwm_pal.h"/>
+        <file category="source" name="platform/pal/src/pwm/pwm_pal.c"/>
+
+        <file category="header" name="platform/pal/cfg/pwm_pal_cfg.h" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK PAL"    Csub="Security"           Cversion="4.0.2" condition="S32K11x PAL_Security">
+      <description>Security Peripheral Abstraction Layer (Security PAL)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_PAL_SECURITY
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/pal/inc/security_pal.h"/>
+        <file category="source" name="platform/pal/src/security/security_pal.c"/>
+
+        <file category="header" name="platform/pal/cfg/security_pal_cfg.h" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK PAL"    Csub="SPI"                Cversion="4.0.2" condition="S32K11x PAL_SPI">
+      <description>SPI Peripheral Abstraction Layer (SPI PAL)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_PAL_SPI
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/pal/inc/spi_pal.h"/>
+        <file category="source" name="platform/pal/src/spi/spi_pal.c"/>
+
+        <file category="header" name="platform/pal/cfg/spi_pal_cfg.h" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK PAL"    Csub="Timing"             Cversion="4.0.2" condition="S32K11x PAL_Timing">
+      <description>Timing Peripheral Abstraction Layer (Timing PAL)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_PAL_TIMING
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/pal/inc/timing_pal.h"/>
+        <file category="source" name="platform/pal/src/timing/timing_pal.c"/>
+        <file category="source" name="platform/pal/src/timing/timing_irq.c"/>
+
+        <file category="header" name="platform/pal/cfg/timing_pal_cfg.h" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK PAL"    Csub="UART"               Cversion="4.0.2" condition="S32K11x PAL_UART">
+      <description>UART Peripheral Abstraction Layer (UART PAL)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_PAL_UART
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/pal/inc/uart_pal.h"/>
+        <file category="source" name="platform/pal/src/uart/uart_pal.c"/>
+
+        <file category="header" name="platform/pal/cfg/uart_pal_cfg.h" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK PAL"    Csub="WDG"                Cversion="4.0.2" condition="S32K11x PAL_WDG">
+      <description>WDG Peripheral Abstraction Layer (WDG PAL)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_PAL_WDG
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/pal/inc/wdg_pal.h"/>
+        <file category="source" name="platform/pal/src/wdg/wdg_pal.c"/>
+
+        <file category="header" name="platform/pal/cfg/wdg_pal_cfg.h" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- SDK Driver -->
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="ADC"                Cversion="4.0.2" condition="S32K11x DRV_ADC">
+      <description>Analog to Digital Converter Peripheral (ADC) Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_ADC
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/drivers/inc/adc_driver.h"/>
+        <file category="source" name="platform/drivers/src/adc/adc_driver.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="Clock"              Cversion="4.0.2" condition="S32K11x DRV_Clock">
+      <description>Clock Manager Driver (SK32K1xx)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_CLOCK
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/drivers/inc/clock_manager.h"/>
+        <file category="header" name="platform/drivers/src/clock/S32K1xx/clock_S32K1xx.h"/>
+        <file category="source" name="platform/drivers/src/clock/S32K1xx/clock_S32K1xx.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="CMP"                Cversion="4.0.2" condition="S32K11x DRV_CMP">
+      <description>Comparator (CMP) Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_CMP
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/drivers/inc/cmp_driver.h"/>
+        <file category="source" name="platform/drivers/src/cmp/cmp_driver.c"/>
+        <file category="source" name="platform/drivers/src/cmp/cmp_hw_access.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="CRC"                Cversion="4.0.2" condition="S32K11x DRV_CRC">
+      <description>Cyclic Redundancy Check (CRC) Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_CRC
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/drivers/inc/crc_driver.h"/>
+        <file category="source" name="platform/drivers/src/crc/crc_driver.c"/>
+        <file category="source" name="platform/drivers/src/crc/crc_hw_access.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="CSEC"               Cversion="4.0.2" condition="S32K11x DRV_CSEC">
+      <description>Cryptographic Services Engine (CSEc) Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_CSEC
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/drivers/inc/csec_driver.h"/>
+        <file category="source" name="platform/drivers/src/csec/csec_driver.c"/>
+        <file category="source" name="platform/drivers/src/csec/csec_hw_access.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="eDMA"               Cversion="4.0.2" condition="S32K11x DRV_EDMA">
+      <description>Enhanced Direct Memory Access (eDMA) Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_EDMA
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/drivers/inc/edma_driver.h"/>
+        <file category="source" name="platform/drivers/src/edma/edma_driver.c"/>
+        <file category="source" name="platform/drivers/src/edma/edma_hw_access.c"/>
+        <file category="source" name="platform/drivers/src/edma/edma_irq.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="EIM"                Cversion="4.0.2" condition="S32K11x DRV_EIM">
+      <description>Error Injection Module (EIM) Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_EIM
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/drivers/inc/eim_driver.h"/>
+        <file category="source" name="platform/drivers/src/eim/eim_driver.c"/>
+        <file category="source" name="platform/drivers/src/eim/eim_hw_access.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="ERM"                Cversion="4.0.2" condition="S32K11x DRV_ERM">
+      <description>Error Reporting Module (ERM) Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_ERM
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/drivers/inc/erm_driver.h"/>
+        <file category="source" name="platform/drivers/src/erm/erm_driver.c"/>
+        <file category="source" name="platform/drivers/src/erm/erm_hw_access.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="Flash"              Cversion="4.0.2" condition="S32K11x">
+      <description>Flash Memory (Flash) Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_FLASH
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/drivers/inc/flash_driver.h"/>
+        <file category="source" name="platform/drivers/src/flash/flash_driver.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="FlexCAN"            Cversion="4.0.2" condition="S32K11x DRV_FlexCAN">
+      <description>Controller Area Network with Flexible Data Rate (FlexCAN) Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_FLEXCAN
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/drivers/inc/flexcan_driver.h"/>
+        <file category="source" name="platform/drivers/src/flexcan/flexcan_driver.c"/>
+        <file category="source" name="platform/drivers/src/flexcan/flexcan_hw_access.c"/>
+        <file category="source" name="platform/drivers/src/flexcan/flexcan_irq.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="FlexIO"             Cversion="4.0.2" condition="S32K11x DRV_FlexIO">
+      <description>FlexIO Common Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_FLEXIO
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/drivers/inc/flexio.h"/>
+        <file category="source" name="platform/drivers/src/flexio/flexio_common.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="FlexIO (I2C)"       Cversion="4.0.2" condition="S32K11x DRV_FlexIO_I2C">
+      <description>FlexIO I2C Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_FLEXIO_I2C
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="platform/drivers/src/flexio/flexio_i2c_driver.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="FlexIO (I2S)"       Cversion="4.0.2" condition="S32K11x DRV_FlexIO_I2S">
+      <description>FlexIO I2S Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_FLEXIO_I2S
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="platform/drivers/src/flexio/flexio_i2s_driver.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="FlexIO (SPI)"       Cversion="4.0.2" condition="S32K11x DRV_FlexIO_SPI">
+      <description>FlexIO SPI Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_FLEXIO_SPI
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="platform/drivers/src/flexio/flexio_spi_driver.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="FlexIO (UART)"      Cversion="4.0.2" condition="S32K11x DRV_FlexIO_UART">
+      <description>FlexIO UART Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_FLEXIO_UART
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="platform/drivers/src/flexio/flexio_uart_driver.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="FTM"                Cversion="4.0.2" condition="S32K11x DRV_FTM">
+      <description>FlexTimer Common Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_FTM
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="platform/drivers/inc/ftm_common.h"/>
+        <file category="source"  name="platform/drivers/src/ftm/ftm_common.c"/>
+        <file category="source"  name="platform/drivers/src/ftm/ftm_hw_access.c"/>
+        <file category="include" name="platform/drivers/src/ftm/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="FTM (IC)"           Cversion="4.0.2" condition="S32K11x DRV_FTM_IC">
+      <description>FlexTimer Input Capture Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_FTM_IC
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/drivers/inc/ftm_ic_driver.h"/>
+        <file category="source" name="platform/drivers/src/ftm/ftm_ic_driver.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="FTM (MC)"           Cversion="4.0.2" condition="S32K11x DRV_FTM_MC">
+      <description>FlexTimer Module Counter Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_FTM_MC
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/drivers/inc/ftm_mc_driver.h"/>
+        <file category="source" name="platform/drivers/src/ftm/ftm_mc_driver.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="FTM (OC)"           Cversion="4.0.2" condition="S32K11x DRV_FTM_OC">
+      <description>FlexTimer Output Compare Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_FTM_OC
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/drivers/inc/ftm_oc_driver.h"/>
+        <file category="source" name="platform/drivers/src/ftm/ftm_oc_driver.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="FTM (PWM)"          Cversion="4.0.2" condition="S32K11x DRV_FTM_PWM">
+      <description>FlexTimer Pulse Width Modulation Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_FTM_PWM
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/drivers/inc/ftm_pwm_driver.h"/>
+        <file category="source" name="platform/drivers/src/ftm/ftm_pwm_driver.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="FTM (QD)"           Cversion="4.0.2" condition="S32K11x DRV_FTM_QD">
+      <description>FlexTimer Quadrature Decoder Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_FTM_QD
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/drivers/inc/ftm_qd_driver.h"/>
+        <file category="source" name="platform/drivers/src/ftm/ftm_qd_driver.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="Interrupt"          Cversion="4.0.2" condition="S32K11x">
+      <description>Interrupt Manager (Interrupt)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_INTERRUPT
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/drivers/inc/interrupt_manager.h"/>
+        <file category="source" name="platform/drivers/src/interrupt/interrupt_manager.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="LIN (LPUART)"       Cversion="4.0.2" condition="S32K11x DRV_LIN">
+      <description>LIN Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_LIN
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/drivers/inc/lin_driver.h"/>
+        <file category="source" name="platform/drivers/src/lin/lin_common.c"/>
+        <file category="source" name="platform/drivers/src/lin/lin_driver.c"/>
+        <file category="source" name="platform/drivers/src/lin/lin_irq.c"/>
+
+        <file category="include" name="platform/drivers/src/lpuart/"/>
+        <file category="source" name="platform/drivers/src/lpuart/lin_lpuart_driver.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="LPI2C"              Cversion="4.0.2" condition="S32K11x DRV_LPI2C">
+      <description>Low Power Inter-Integrated Circuit (LPI2C) Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_LPI2C
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/drivers/inc/lpi2c_driver.h"/>
+        <file category="source" name="platform/drivers/src/lpi2c/lpi2c_driver.c"/>
+        <file category="source" name="platform/drivers/src/lpi2c/lpi2c_hw_access.c"/>
+        <file category="source" name="platform/drivers/src/lpi2c/lpi2c_irq.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="LPIT"               Cversion="4.0.2" condition="S32K11x DRV_LPIT">
+      <description>Low Power Interrupt Timer (LPIT) Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_LPIT
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/drivers/inc/lpit_driver.h"/>
+        <file category="source" name="platform/drivers/src/lpit/lpit_driver.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="LPSPI"              Cversion="4.0.2" condition="S32K11x DRV_LPSPI">
+      <description>Low Power Serial Peripheral Interface (LPSPI) Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_LPSPI
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/drivers/inc/lpspi_master_driver.h"/>
+        <file category="header" name="platform/drivers/inc/lpspi_slave_driver.h"/>
+        <file category="header" name="platform/drivers/inc/lpspi_shared_function.h"/>
+        <file category="source" name="platform/drivers/src/lpspi/lpspi_master_driver.c"/>
+        <file category="source" name="platform/drivers/src/lpspi/lpspi_slave_driver.c"/>
+        <file category="source" name="platform/drivers/src/lpspi/lpspi_shared_function.c"/>
+        <file category="source" name="platform/drivers/src/lpspi/lpspi_irq.c"/>
+        <file category="source" name="platform/drivers/src/lpspi/lpspi_hw_access.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="LPTMR"              Cversion="4.0.2" condition="S32K11x DRV_LPTMR">
+      <description>Low Power Timer (LPTMR) Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_LPTMR
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/drivers/inc/lptmr_driver.h"/>
+        <file category="source" name="platform/drivers/src/lptmr/lptmr_driver.c"/>
+        <file category="source" name="platform/drivers/src/lptmr/lptmr_hw_access.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="LPUART"             Cversion="4.0.2" condition="S32K11x DRV_LPUART">
+      <description>Low Power Universal Asynchronous Receiver-Transmitter (LPUART) Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_LPUART
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/drivers/inc/lpuart_driver.h"/>
+        <file category="source" name="platform/drivers/src/lpuart/lpuart_driver.c"/>
+        <file category="source" name="platform/drivers/src/lpuart/lpuart_hw_access.c"/>
+        <file category="source" name="platform/drivers/src/lpuart/lpuart_irq.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="MPU"                Cversion="4.0.2" condition="S32K11x DRV_MPU">
+      <description>Memory Protection Unit (MPU) Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_MPU
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/drivers/inc/mpu_driver.h"/>
+        <file category="source" name="platform/drivers/src/mpu/mpu_driver.c"/>
+        <file category="source" name="platform/drivers/src/mpu/mpu_hw_access.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="PDB"                Cversion="4.0.2" condition="S32K11x DRV_PDB">
+      <description>Programmable Delay Block (PDB) Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_PDB
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/drivers/inc/pdb_driver.h"/>
+        <file category="source" name="platform/drivers/src/pdb/pdb_driver.c"/>
+        <file category="source" name="platform/drivers/src/pdb/pdb_hw_access.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="PINS"               Cversion="4.0.2" condition="S32K11x DRV_PINS">
+      <description>Pins Driver (PINS)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_PINS
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/drivers/inc/pins_driver.h"/>
+        <file category="source" name="platform/drivers/src/pins/pins_driver.c"/>
+        <file category="source" name="platform/drivers/src/pins/pins_port_hw_access.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="Power"              Cversion="4.0.2" condition="S32K11x DRV_Power">
+      <description>Power Manager Driver (SK32K1xx)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_POWER
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/drivers/inc/power_manager.h"/>
+        <file category="source" name="platform/drivers/src/power/power_manager.c"/>
+        <file category="source" name="platform/drivers/src/power/S32K1xx/power_manager_S32K1xx.c"/>
+        <file category="header" name="platform/drivers/src/power/S32K1xx/power_manager_S32K1xx.h"/>
+        <file category="source" name="platform/drivers/src/power/S32K1xx/power_smc_hw_access.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="RTC"                Cversion="4.0.2" condition="S32K11x DRV_RTC">
+      <description>Real Time Clock Driver (RTC)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_RTC
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/drivers/inc/rtc_driver.h"/>
+        <file category="source" name="platform/drivers/src/rtc/rtc_driver.c"/>
+        <file category="source" name="platform/drivers/src/rtc/rtc_hw_access.c"/>
+        <file category="source" name="platform/drivers/src/rtc/rtc_irq.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="TRGMUX"             Cversion="4.0.2" condition="S32K11x DRV_TRGMUX">
+      <description>TRGMUX Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_SAI
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/drivers/inc/trgmux_driver.h"/>
+        <file category="source" name="platform/drivers/src/trgmux/trgmux_driver.c"/>
+        <file category="source" name="platform/drivers/src/trgmux/trgmux_hw_access.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Driver" Csub="WDOG"               Cversion="4.0.2" condition="S32K11x DRV_WDOG">
+      <description>Watchdog timer (WDOG) Driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_WDOG
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="platform/drivers/inc/wdog_driver.h"/>
+        <file category="source" name="platform/drivers/src/wdog/wdog_driver.c"/>
+        <file category="source" name="platform/drivers/src/wdog/wdog_hw_access.c"/>
+      </files>
+    </component>
+
+    <!-- SDK OSA -->
+    <component Cclass="Device" Cgroup="SDK OSIF" Csub="OSIF" Cvariant="Bare Metal" Cversion="4.0.2" condition="S32K11x OSIF_BM">
+      <description>Bare Metal Abstraction Layer (no RTOS)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_OSIF_BM
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="rtos/osif/osif.h"/>
+        <file category="source" name="rtos/osif/osif_baremetal.c"/>
+      </files>
+    </component>
+
+    <bundle Cbundle="S32K116-EVB" Cclass="Board Support" Cversion="1.0.0">
+      <description>NXP S32K116-EVB Development Board</description>
+      <doc></doc>
+      <component Cgroup="LED"           Capiversion="1.0.0" condition="S32K116 DRV_CLOCK_PINS">
+        <description>LED Interface for S32K116-EVB</description>
+        <files>
+          <file category="source" name="MDK/Boards/NXP/S32K116-EVB/Common/LED_S32K116-EVB.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons"       Capiversion="1.0.0" condition="S32K116 DRV_CLOCK_PINS">
+        <description>Buttons Interface for S32K116-EVB</description>
+        <files>
+          <file category="source" name="MDK/Boards/NXP/S32K116-EVB/Common/Buttons_S32K116-EVB.c"/>
+        </files>
+      </component>
+      <!--component Cgroup="A/D Converter" Capiversion="1.0.0" condition="S32K116 DRV_CLOCK_PINS_ADC">
+        <description>A/D Converter Interface for S32K116-EVB</description>
+        <files>
+          <file category="source" name="MDK/Boards/NXP/S32K116-EVB/Common/ADC_S32K116-EVB.c"/>
+        </files>
+      </component-->
+    </bundle>
+
+  </components>
+
+  <boards>
+    <board name="S32K116-EVB" vendor="NXP" revision="Rev. B" salesContact="http://www.nxp.com/support/sales-and-support:SUPPORTHOME">
+      <mountedDevice    deviceIndex="0" Dvendor="NXP:11" Dname="S32K116xxxxMLFx"/>
+      <compatibleDevice deviceIndex="0" Dvendor="NXP:11" Dname="S32K116*"/>
+      <image small="MDK/Boards/NXP/S32K116-EVB/Documents/S32K116-EVB_small.png"
+             large="MDK/Boards/NXP/S32K116-EVB/Documents/S32K116-EVB_large.png"/>
+      <description>
+        The S32K116EVB2Q048 and S32K116EVB are low-cost evaluation and development boards for general purpose automotive applications.
+        Based on the 32-bit Arm® Cortex®-M0+ S32K11x MCU, both S32K116EVB2Q048 and S32K116EVB-Q048 offer a standard-based form factor compatible with the Arduino® UNO pin layout, providing a broad range of expansion board options.
+      </description>
+      <book category="overview"  name="https://www.nxp.com/design/development-boards/automotive-development-platforms/s32k-mcu-platforms/s32k116-evaluation-boards-for-general-purpose:S32K116EVB" title="S32K116 Evaulation Board"/>
+      <book category="manual"    name="https://www.nxp.com/docs/en/supporting-information/S32K116EVB-QSG.pdf"    title="S32K116EVB Quick Start guide"/>
+      <feature type="ODbg"          n="1"              name="Onboard open-standard serial and debug adaptor (OpenSDA)"/>
+      <feature type="PWR"           n="5"              name="USB Powered"/>
+      <feature type="Button"        n="4"              name="Push-buttons: Reset, OpenSDA Reset, 2x User"/>
+      <feature type="Button"        n="2"              name="2x capacitive touch"/>
+      <feature type="LED"           n="1"              name="RGB LED"/>
+      <feature type="Poti"          n="1"              name="Potentiometer for voltage and analog measurement"/>
+      <debugInterface adapter="JTAG/SW" connector="10 pin Cortex debug (0.05 inch connector)"/>
+      <debugInterface adapter="JTAG/SW" connector="SDA 10 pin Cortex debug (0.05 inch connector)"/>
+    </board>
+
+  </boards>
+
+  <examples>
+    <!-- S32K116-EVB FRDM Board -->
+    <example name="CMSIS-RTOS2 (Keil RTX5) Blinky" doc="Abstract.txt" folder="MDK/Boards/NXP/S32K116-EVB/RTOS2_KeilRTX5_Blinky/">
+      <description>CMSIS-RTOS2 (Keil RTX5) based Blinky example</description>
+      <board name="S32K116-EVB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+  </examples>
+
+</package>

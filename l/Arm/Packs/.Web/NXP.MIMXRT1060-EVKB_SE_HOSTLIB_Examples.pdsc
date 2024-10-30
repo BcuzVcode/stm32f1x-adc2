@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>MIMXRT1060-EVKB_SE_HOSTLIB_Examples</name>
+  <vendor>NXP</vendor>
+  <description>Middleware se_hostlib Examples Pack for MIMXRT1060-EVKB</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="2.0.0" date="2024-07-17">NXP CMSIS SBSP Packs based on MCUXpresso SDK 2.16.0</release>
+    <release version="1.0.0" date="2024-01-14">NXP CMSIS SBSP Packs based on MCUXpresso SDK 2.15.0</release>
+  </releases>
+  <keywords>
+    <keyword>Middleware Board Support Pack</keyword>
+  </keywords>
+  <requirements>
+    <packages>
+      <package name="MIMXRT1060-EVKB_BSP" vendor="NXP" version="19.0.0"/>
+      <package name="MIMXRT1062_DFP" vendor="NXP" version="19.0.0"/>
+      <package name="MBEDTLS" vendor="NXP" version="3.0.0"/>
+      <package name="SE_HOSTLIB" vendor="NXP" version="2.0.0"/>
+      <package name="CMSIS" vendor="ARM" version="5.9.0"/>
+      <package name="USB" vendor="NXP" version="3.0.0"/>
+      <package name="Component_OS_Abstraction_Layer" vendor="NXP" version="3.0.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <examples>
+    <example name="se05x_GetInfo" folder="boards/evkbmimxrt1060/se_hostlib_examples/se05x_GetInfo" doc="readme.md">
+      <description>This project can be used to get SE05X platform information.</description>
+      <board name="MIMXRT1060-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/se05x_GetInfo.uvprojx"/>
+        <environment name="csolution" load="se05x_GetInfo.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="se05x_Minimal" folder="boards/evkbmimxrt1060/se_hostlib_examples/se05x_Minimal" doc="readme.md">
+      <description>This is a bare minimum example for se050. This gets the amount of free memory.</description>
+      <board name="MIMXRT1060-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/se05x_Minimal.uvprojx"/>
+        <environment name="csolution" load="se05x_Minimal.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="se05x_ex_ecc" folder="boards/evkbmimxrt1060/se_hostlib_examples/se05x_ex_ecc" doc="readme.md">
+      <description>This example does a elliptic curve cryptography signing and verify operation.</description>
+      <board name="MIMXRT1060-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/se05x_ex_ecc.uvprojx"/>
+        <environment name="csolution" load="se05x_ex_ecc.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="se05x_vcom" folder="boards/evkbmimxrt1060/se_hostlib_examples/vcomSE050" doc="readme.md">
+      <description>The vcomSE050 demo application allows the board to be used as a bridge between the PC and the secure module and enables the execution of the config tool and other utilities from the PC.</description>
+      <board name="MIMXRT1060-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/se05x_vcom.uvprojx"/>
+        <environment name="csolution" load="se05x_vcom.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+  </examples>
+</package>

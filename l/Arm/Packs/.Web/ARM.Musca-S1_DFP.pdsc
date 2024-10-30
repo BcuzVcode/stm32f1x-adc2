@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2018 - 2023 Arm Limited
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+<package schemaVersion="1.6.1" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>ARM</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>Musca-S1_DFP</name>
+  <supportContact>https://github.com/ARM-software/CMSIS-Musca-S1/issues</supportContact>
+
+  <description>
+  Musca-S1 (with on-chip eMRAM and CryptoCell) device and board support pack.
+  </description>
+
+  <releases>
+    <release version="1.2.2" date="2023-07-07" tag="1.2.2" deprecated="2023-07-07">
+      This device and board support pack is no longer maintained.
+    </release>
+    <release version="1.2.1" date="2021-10-19" tag="1.2.1">
+      Fixed MDK Blinky example projects.
+    </release>
+    <release version="1.2.0" date="2020-07-09" tag="1.2.0">
+      Added TF-M platform components.
+      Refactored TrustZone setup.
+      Added MPC LUT Init debug sequence.
+      Updated orderForm tag in board element
+      Updated supportContact
+    </release>
+    <release version="1.1.0" date="2020-05-18" tag="1.1.0">
+      Fixed partition header file with missing FPU settings.
+      Added support contact and board documentation information.
+      Updated BM_low_power example
+      CMSIS-Driver included:
+      - Flash eMRAM 1.1.0
+      UART driver updated:
+      - Added support for FIFO handling and ARM_USART_EVENT_RX_TIMEOUT signal event
+      Removed dangling slash character from the device header file
+      CMSIS-Driver included:
+      - I2C: initial version 1.0.0.
+      Example projects cleaned.
+    </release>
+    <release version="1.0.0" date="2020-01-13" tag="1.0.0">
+      Initial public release of this pack.
+      CMSIS Startup: for Arm Compiler 6.
+      CMSIS-Driver included:
+      - SPI: initial version 1.0.0.
+      - USART: initial version 1.0.0.
+      CMSIS-Zone resource file: Device/Zone/Musca-S1.rzone.
+    </release>
+  </releases>
+
+  <keywords>
+    <keyword>Musca-S1</keyword>
+    <keyword>DFP</keyword>
+  </keywords>
+
+  <devices>
+    <!-- ****************************** ARM V2M-MPS2 SSE-200 Cortex-M33  *********************** -->
+    <family Dfamily="ARM Cortex M33" Dvendor="ARM:82">
+
+      <debugconfig default="swd" clock="10000000" swj="true"/>
+
+      <description>
+      Musca-S1 is an Arm Cortex-M33 based dual-core device with TrustZone, CryptoCell, and eMRAM.
+      </description>
+
+      <memory name="CodeSRAM_NS" access="rwxn" start="0x00000000" size="0x00200000" default="1" startup="0" alias="CodeSRAM_S"/>
+      <memory name="QSPI_NS"     access="rxn"  start="0x00200000" size="0x02000000" default="1" startup="1" alias="QSPI_S"/>
+      <memory name="eMRAM_NS"    access="rwxn" start="0x0A000000" size="0x00200000" default="1" startup="0" alias="eMRAM_S"/>
+      <memory name="OTP_NS"      access="rxn"  start="0x0E000000" size="0x00000400" default="1" startup="0" alias="OTP_S"/>
+      <memory name="CodeSRAM_S"  access="rwxs" start="0x10000000" size="0x00200000" default="1" startup="0"/>
+      <memory name="QSPI_S"      access="rxs"  start="0x10200000" size="0x02000000" default="1" startup="1"/>
+      <memory name="eMRAM_S"     access="rwxs" start="0x1A000000" size="0x00200000" default="1" startup="0"/>
+      <memory name="OTP_S"       access="rxs"  start="0x1E000000" size="0x00000400" default="1" startup="0"/>
+      <memory name="SysSRAM_NS"  access="rwxn" start="0x20000000" size="0x00080000" default="1" alias="SysSRAM_S"/>
+      <memory name="SysSRAM_S"   access="rwxs" start="0x30000000" size="0x00080000" default="1"/>
+
+      <debugvars configfile="Device/Debug/CM33.dbgconf">
+        // Debug Authentication Variables
+        __var DAuthFixed  = 0x1;     // 1 - Use fixed authentication, 0 - Ask for user input
+        __var DAuthConfig = 0xF;     // Authentication Value (Security Control Block)
+        // Bit 0 - Invasive Debug (Hardwired to 1)
+        // Bit 1 - Non-Invasive Debug (Hardwired to 1)
+        // Bit 2 - Invasive Secure Debug
+        // Bit 3 - Non-Invasive Secure Debug
+
+        __var MPC_SRAM0_LUTInit = 0x1;
+        __var MPC_SRAM1_LUTInit = 0x1;
+        __var MPC_SRAM2_LUTInit = 0x1;
+        __var MPC_SRAM3_LUTInit = 0x1;
+        __var MPC_eMRAM_LUTInit = 0x1;
+        __var MPC_CSRAM_LUTInit = 0x1;
+        __var MPC_QSPI_LUTInit  = 0x1;
+      </debugvars>
+
+      <sequences>
+        <!-- Local processor reset not avaialable in ARMv8-M -->
+        <sequence name="ResetProcessor" disable="true"/>
+
+        <sequence name="ResetSystem">
+          <block>
+            // System Control Space (SCS) offset as defined in Armv6-M/Armv7-M.
+            __var SCS_Addr   = 0xE000E000;
+            __var AIRCR_Addr = SCS_Addr + 0xD0C;
+            __var DHCSR_Addr = SCS_Addr + 0xDF0;
+
+            // Execute SYSRESETREQ via AIRCR
+            Write32(AIRCR_Addr, 0x05FA0004);
+          </block>
+          <!-- Reset Recovery: Wait for DHCSR.S_RESET_ST bit to clear on read -->
+          <control while="(Read32(DHCSR_Addr) &amp; 0x02000000)" timeout="500000"/>
+
+          <!-- reset MPCs if core has stopped (DHCSR.S_HALT) -->
+          <control if="(Read32(DHCSR_Addr) &amp; (1 &lt;&lt; 17 ))" info="check if core has stopped">
+            <block>
+              Sequence("MPC_LUT_Init");
+            </block>
+          </control>
+
+        </sequence>
+
+        <sequence name="DebugDeviceUnlock">
+          <block>
+            __var DAuthUserInput  = 0;
+            __var DAUTHSTATUS_Val = 0;
+            __var DHCSR_Val       = 0;
+            __var SecureDebugEna   = 0;
+            __var SecureDebugAvail = 0;
+            __var DAuthVal         = 0;
+            __var SECDBGSTAT_Val   = 0;
+            __var SECDBGSET_Val    = 0;
+            __var SECDBGCLR_Val    = 0;
+            __var RESET_MASK       = 0;
+
+            DAUTHSTATUS_Val  = Read32(0xE000EE04);                          // struct CoreDebug_Type of v8m/cm33
+            DHCSR_Val        = Read32(0xE000EDF0);                          // struct CoreDebug_Type of v8m/cm33
+            SecureDebugAvail = (DAUTHSTATUS_Val &amp; 0x00000020) ? 1 : 0;  // SID: Secure Invasive Debug Implemented
+
+            RESET_MASK  = Read32(0x50021104);                               // SSE-200 System Control Element - System Control register block - RESET_MASK register
+            RESET_MASK |= (1 &lt;&lt; 4) | (1 &lt;&lt; 5);                  // RESET_MASK: Enable SYSRESETREQ0_EN and SYSRSTREQ1_EN
+            Write32(0x50021104, RESET_MASK);
+
+          </block>
+
+          <control if="SecureDebugAvail" info="Configure Debug Authentication if Security Extensions available">
+            <block>
+              SecureDebugEna = ((DHCSR_Val &amp; 0x00100000) || ((DAUTHSTATUS_Val &amp; 0x00000030) == 0x00000030)) ? 1 : 0;
+            </block>
+
+            <control if="DAuthFixed">
+              <block>
+                // Debug Authentication as per Debug Configuration File
+                DAuthVal = DAuthConfig;
+              </block>
+            </control>
+            <control if="DAuthFixed == 0">
+              <block>
+                DAuthUserInput = Query(1, "Enable Secure Debug?", 3);
+              </block>
+              <control if="DAuthUserInput == 3">
+                <block>
+                  // Enable Secure Debug
+                  DAuthVal = 0xF;
+                </block>
+              </control>
+              <control if="DAuthUserInput != 3">
+                <block>
+                  // Disable Secure Debug
+                  DAuthVal = 0x3;
+                </block>
+              </control>
+            </control>
+
+            <control if="SecureDebugEna">
+              <block>
+                // Read Secure Debug Authentication Status
+                SECDBGSTAT_Val = Read32(0x50021000); // SSE-200 System Control Element - System Control register block - SECDBGSTAT register
+
+                // Assemble SECDBGSET and SECDBGCLR Values
+                SECDBGSET_Val  = 0x000000AA;                                // Use internal signals:
+                                                                            // DBGEN_SEL_SET   - 1,
+                                                                            // NIDEN_SEL_SET   - 1,
+                                                                            // SPIDEN_SEL_SET  - 1,
+                                                                            // SPNIDEN_SEL_SET - 1
+
+                SECDBGSET_Val |=  DAuthVal &amp; 0x1;                       // DBGEN_I_SET
+                SECDBGSET_Val |= (DAuthVal &amp; 0x2) &lt;&lt; 1;           // NIDEN_I_SET
+                SECDBGSET_Val |= (DAuthVal &amp; 0x4) &lt;&lt; 2;           // SPIDEN_I_SET
+                SECDBGSET_Val |= (DAuthVal &amp; 0x8) &lt;&lt; 3;           // SPNIDEN_I_SET
+
+                SECDBGCLR_Val |=   (DAuthVal ^ 0x1) &amp; 0x1;              // DBGEN_I_SET
+                SECDBGCLR_Val |= (((DAuthVal ^ 0x2) &amp; 0x2) &lt;&lt; 1); // NIDEN_I_SET
+                SECDBGCLR_Val |= (((DAuthVal ^ 0x4) &amp; 0x4) &lt;&lt; 2); // SPIDEN_I_SET
+                SECDBGCLR_Val |= (((DAuthVal ^ 0x8) &amp; 0x8) &lt;&lt; 3); // SPNIDEN_I_SET
+
+                // Write Secure Debug Authentication Set Register
+                Write32(0x50021004, SECDBGSET_Val);
+
+                // Write Secure Debug Authentication Clear Register
+                Write32(0x50021008, SECDBGCLR_Val);
+              </block>
+            </control>
+            <control if="SecureDebugEna == 0">
+              <control if="DAuthVal &amp; 0x4">
+                <block>
+                  Query(0, "Cannot configure Debug Authentication, secure debug disabled! Please reboot Board!", 1);
+                </block>
+              </control>
+            </control>
+
+          </control>
+        </sequence>
+
+
+        <!-- User-Defined Sequences -->
+        <sequence name="MPC_LUT_Init">
+          <block>
+            // MPC address (TRM Arm CoreLink SSE-200 Subsystem for Embedded Revision: r2p0)
+            __var MPC_SRAM0    = 0x50083000;
+            __var MPC_SRAM1    = 0x50084000;
+            __var MPC_SRAM2    = 0x50085000;
+            __var MPC_SRAM3    = 0x50086000;
+            __var MPC_eMRAM    = 0x50140000;
+            __var MPC_CSRAM    = 0x50130000;
+            __var MPC_QSPI     = 0x50120000;
+            __var MPC_CTRL     = 0x000;
+            __var MPC_BLK_MAX  = 0x010;
+            __var MPC_BLK_IDX  = 0x018;
+            __var MPC_BLK_LUT  = 0x01C;
+
+            __var mpc_adr = 0;
+            __var ctrl = 0;
+            __var blk_max = 0;
+            __var blk_idx = 0;
+
+            __var mpc_val = 0;
+            __var error_ctrl = 0;
+          </block>
+
+          <control if="MPC_SRAM0_LUTInit" info="Initialize MPC LUT SRAM Block 0">
+            <block>
+              mpc_adr = MPC_SRAM0;
+
+              Write32(mpc_adr + MPC_CTRL, (Read32(mpc_adr + MPC_CTRL) | (1 &lt;&lt; 8 )) );    // MPC_CTRL:    Set LUT index Auto-increment.
+              Write32(mpc_adr + MPC_BLK_IDX, 0x0);                                             // MPC_BLK_IDX: Set LUT index to 0.
+              blk_max = Read32(mpc_adr + MPC_BLK_MAX);                                         // MPC_BLK_MAX: read block maximum value
+              blk_idx = 0;
+            </block>
+            <control while="blk_idx &lt;= blk_max">
+              <block>
+                Write32(mpc_adr + MPC_BLK_LUT, 0x0);                                           // MPC_BLK_LUT: Set all blocks to secure.
+                blk_idx = blk_idx + 1;
+              </block>
+            </control>
+          </control>
+
+          <control if="MPC_SRAM1_LUTInit" info="Initialize MPC LUT SRAM Block 1">
+            <block>
+              mpc_adr = MPC_SRAM1;
+
+              Write32(mpc_adr + MPC_CTRL, (Read32(mpc_adr + MPC_CTRL) | (1 &lt;&lt; 8 )) );    // MPC_CTRL:    Set LUT index Auto-increment.
+              Write32(mpc_adr + MPC_BLK_IDX, 0x0);                                             // MPC_BLK_IDX: Set LUT index to 0.
+              blk_max = Read32(mpc_adr + MPC_BLK_MAX);                                         // MPC_BLK_MAX: read block maximum value
+              blk_idx = 0;
+            </block>
+            <control while="blk_idx &lt;= blk_max">
+              <block>
+                Write32(mpc_adr + MPC_BLK_LUT, 0x0);                                           // MPC_BLK_LUT: Set all blocks to secure.
+                blk_idx = blk_idx + 1;
+              </block>
+            </control>
+          </control>
+
+          <control if="MPC_SRAM2_LUTInit" info="Initialize MPC LUT SRAM Block 2">
+            <block>
+              mpc_adr = MPC_SRAM2;
+
+              Write32(mpc_adr + MPC_CTRL, (Read32(mpc_adr + MPC_CTRL) | (1 &lt;&lt; 8 )) );    // MPC_CTRL:    Set LUT index Auto-increment.
+              Write32(mpc_adr + MPC_BLK_IDX, 0x0);                                             // MPC_BLK_IDX: Set LUT index to 0.
+              blk_max = Read32(mpc_adr + MPC_BLK_MAX);                                         // MPC_BLK_MAX: read block maximum value
+              blk_idx = 0;
+            </block>
+            <control while="blk_idx &lt;= blk_max">
+              <block>
+                Write32(mpc_adr + MPC_BLK_LUT, 0x0);                                           // MPC_BLK_LUT: Set all blocks to secure.
+                blk_idx = blk_idx + 1;
+              </block>
+            </control>
+          </control>
+
+          <control if="MPC_SRAM3_LUTInit" info="Initialize MPC LUT SRAM Block 3">
+            <block>
+              mpc_adr = MPC_SRAM3;
+
+              Write32(mpc_adr + MPC_CTRL, (Read32(mpc_adr + MPC_CTRL) | (1 &lt;&lt; 8 )) );    // MPC_CTRL:    Set LUT index Auto-increment.
+              Write32(mpc_adr + MPC_BLK_IDX, 0x0);                                             // MPC_BLK_IDX: Set LUT index to 0.
+              blk_max = Read32(mpc_adr + MPC_BLK_MAX);                                         // MPC_BLK_MAX: read block maximum value
+              blk_idx = 0;
+            </block>
+            <control while="blk_idx &lt;= blk_max">
+              <block>
+                Write32(mpc_adr + MPC_BLK_LUT, 0x0);                                           // MPC_BLK_LUT: Set all blocks to secure.
+                blk_idx = blk_idx + 1;
+              </block>
+            </control>
+          </control>
+
+          <control if="MPC_eMRAM_LUTInit" info="Initialize MPC LUT eMRAM">
+            <block>
+              mpc_adr = MPC_eMRAM;
+
+              Write32(mpc_adr + MPC_CTRL, (Read32(mpc_adr + MPC_CTRL) | (1 &lt;&lt; 8 )) );    // MPC_CTRL:    Set LUT index Auto-increment.
+              Write32(mpc_adr + MPC_BLK_IDX, 0x0);                                             // MPC_BLK_IDX: Set LUT index to 0.
+              blk_max = Read32(mpc_adr + MPC_BLK_MAX);                                         // MPC_BLK_MAX: read block maximum value
+              blk_idx = 0;
+            </block>
+            <control while="blk_idx &lt;= blk_max">
+              <block>
+                Write32(mpc_adr + MPC_BLK_LUT, 0x0);                                           // MPC_BLK_LUT: Set all blocks to secure.
+                blk_idx = blk_idx + 1;
+              </block>
+            </control>
+          </control>
+
+          <control if="MPC_CSRAM_LUTInit" info="Initialize MPC LUT Code SRAM">
+            <block>
+              mpc_adr = MPC_CSRAM;
+
+              Write32(mpc_adr + MPC_CTRL, (Read32(mpc_adr + MPC_CTRL) | (1 &lt;&lt; 8 )) );    // MPC_CTRL:    Set LUT index Auto-increment.
+              Write32(mpc_adr + MPC_BLK_IDX, 0x0);                                             // MPC_BLK_IDX: Set LUT index to 0.
+              blk_max = Read32(mpc_adr + MPC_BLK_MAX);                                         // MPC_BLK_MAX: read block maximum value
+              blk_idx = 0;
+            </block>
+            <control while="blk_idx &lt;= blk_max">
+              <block>
+                Write32(mpc_adr + MPC_BLK_LUT, 0x0);                                           // MPC_BLK_LUT: Set all blocks to secure.
+                blk_idx = blk_idx + 1;
+              </block>
+            </control>
+          </control>
+
+          <control if="MPC_QSPI_LUTInit" info="Initialize MPC LUT QSPI Flash">
+            <block>
+              mpc_adr = MPC_QSPI;
+
+              Write32(mpc_adr + MPC_CTRL, (Read32(mpc_adr + MPC_CTRL) | (1 &lt;&lt; 8 )) );    // MPC_CTRL:    Set LUT index Auto-increment.
+              Write32(mpc_adr + MPC_BLK_IDX, 0x0);                                             // MPC_BLK_IDX: Set LUT index to 0.
+              blk_max = Read32(mpc_adr + MPC_BLK_MAX);                                         // MPC_BLK_MAX: read block maximum value
+              blk_idx = 0;
+            </block>
+            <control while="blk_idx &lt;= blk_max">
+              <block>
+                Write32(mpc_adr + MPC_BLK_LUT, 0x0);                                           // MPC_BLK_LUT: Set all blocks to secure.
+                blk_idx = blk_idx + 1;
+              </block>
+            </control>
+          </control>
+        </sequence>
+
+      </sequences>
+
+      <device Dname="Musca-S1">
+        <processor Pname="CM33-0" Dcore="Cortex-M33" DcoreVersion="r0p0" Dfpu="FPU" Dmpu="MPU" Ddsp="DSP" Dtz="TZ" Dendian="Configurable" Dclock="50000000" />
+        <processor Pname="CM33-1" Dcore="Cortex-M33" DcoreVersion="r0p0" Dfpu="FPU" Dmpu="MPU" Ddsp="DSP" Dtz="TZ" Dendian="Configurable" Dclock="200000000" />
+        <debug Pname="CM33-0" svd="SVD/Musca_S1.svd" __dp="0" __ap="1" address="0xE000E000"/>
+        <debug Pname="CM33-1" svd="SVD/Musca_S1.svd" __dp="0" __ap="2" address="0xE000E000"/>
+        <book name="Documents/musca_s1_trm_101835_0000_00_en.pdf" title="Musca-S1 Technical Reference Manual" public="true"/>
+        <book name="Documents/musca_s1_to_101756_0000_00_en.pdf" title="Musca-S1 Technical Overview" public="true"/>
+        <book name="https://developer.arm.com/tools-and-software/development-boards/iot-test-chips-and-boards/musca-s1-test-chip-board" title="Musca-S1 Developer Page"/>
+        <book name="https://community.arm.com/developer/tools-software/oss-platforms/w/docs/448/musca-s1-development-board" title="Musca-S1 Community Page"/>
+        <algorithm name="Flash/MT25QL512.FLM"    start="0x10200000" size="0x00800000" RAMstart="0x20000000" RAMsize="0x00020000" default="1" style="Keil"/>
+        <algorithm name="Flash/MT25QL512_DC.FLM" start="0x10200000" size="0x00800000" RAMstart="0x20000000" RAMsize="0x00020000" default="0" style="Keil"/>
+        <compile header="Device/Include/Musca-S1.h" />
+        <feature type="Crypto" n="256" name="TrustZone CryptoCell"/>
+        <feature type="MemoryOther" n="1" name="2 MB eMRAM"/>
+        <feature type="Memory" n="1024" name="Security Registers"/>
+        <feature type="RTC" n="32000"/>
+        <feature type="I2S" n="3"/>
+        <feature type="PWM" n="3" m="16"/>
+        <feature type="UART" n="2" m="460800" name="Security Registers"/>
+        <feature type="I2C" n="2"/>
+        <feature type="SPI" n="1"/>
+        <feature type="ComOther" n="1" name="QSPI for external Flash control with Execute in Place (XIP) capability"/>
+        <feature type="PLL" n="1" name="Internal 200 MHz PLL"/>
+        <feature type="WDT" n="3"/>
+        <feature type="IOs" n="16"/>
+        <feature type="QFN" n="56"/>
+      </device>
+    </family>
+  </devices>
+
+  <conditions>
+    <condition id="ARMCC6">
+      <accept Tcompiler="ARMCC" Toptions="AC6"/>
+      <accept Tcompiler="ARMCC" Toptions="AC6LTO"/>
+    </condition>
+    <condition id="GCC">
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="ARMCC6 GCC">
+      <accept condition="ARMCC6"/>
+      <accept condition="GCC"/>
+    </condition>
+
+    <condition id="TZ Secure">
+      <description>TrustZone (Secure)</description>
+      <require Dtz="TZ"/>
+      <require Dsecure="Secure"/>
+    </condition>
+
+    <condition id="Musca-S1 CMSIS">
+      <description>Musca-S1 device and CMSIS-Core</description>
+      <require Dvendor="ARM:82" Dname="Musca-S1*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+    <!-- TF-M Platform -->
+    <condition id="TFM Platform Musca-S1">
+      <description>TF-M Platform for Musca-S1</description>
+      <require condition="Musca-S1 CMSIS"/>
+      <require condition="ARMCC6 GCC"/>
+      <require condition="TZ Secure"/>
+    </condition>
+    <condition id="TFM Platform SPM HAL Musca-S1">
+      <description>TF-M Platform SPM HAL for Musca-S1</description>
+      <require condition="TFM Platform Musca-S1"/>
+      <require Cclass="TFM" Cgroup="Core"/>
+      <require Cclass="TFM Platform" Cgroup="Memory Map"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+    </condition>
+    <condition id="TFM Platform System Musca-S1">
+      <description>TF-M Platform System for Musca-S1</description>
+      <require condition="TFM Platform Musca-S1"/>
+      <require Cclass="TFM" Cgroup="Core"/>
+    </condition>
+    <condition id="TFM Platform Test Musca-S1">
+      <description>TF-M Platform Test for Musca-S1</description>
+      <require condition="TFM Platform Musca-S1"/>
+      <require Cclass="TFM" Cgroup="Core"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- Musca-S1 Startup -->
+    <component Cclass="Device" Cgroup="Startup" Cvariant="C Startup" Cversion="2.0.0" condition="Musca-S1 CMSIS">
+      <description>System and Startup (C-Variant) for ARM Musca-S1 device</description>
+      <files>
+        <file category="include"      name="Device/Include/"/>
+        <file category="sourceC"      name="Device/Source/startup_Musca-S1.c"             version="2.0.0" attr="config"/>
+        <file category="linkerScript" name="Device/Source/ARM/armcc6_arm.sct"             version="1.0.0" attr="config" condition="ARMCC6"/>
+        <file category="sourceC"      name="Device/Source/system_Musca-S1.c"              version="2.0.0" attr="config"/>
+        <file category="sourceC"      name="Device/Source/tz_config.c"                    version="1.0.0" attr="config" condition="TZ Secure"/>
+        <file category="header"       name="Device/Include/Template/tz_config.h"          version="1.0.0" attr="config" condition="TZ Secure"/>
+        <!-- device configuration -->
+        <file category="header"       name="CMSIS/Driver/Config/RTE_Device.h"             version="1.2.0" attr="config"/>
+      </files>
+    </component>
+
+    <!-- Musca-S1 CMSIS driver -->
+    <component Cclass="CMSIS Driver" Cgroup="USART" Capiversion="2.1.0" Cversion="1.1.0" condition="Musca-S1 CMSIS">
+      <description>USART Driver for Musca-S1 Device</description>
+      <RTE_Components_h>
+        #define RTE_Drivers_USART
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="CMSIS/Driver/USART_Musca-S1.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="SPI"   Capiversion="2.1.0" Cversion="1.0.0" condition="Musca-S1 CMSIS">
+      <description>SPI Driver for Musca-S1 Device</description>
+      <RTE_Components_h>
+        #define RTE_Drivers_SPI
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="CMSIS/Driver/SPI_Musca-S1.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="I2C"   Capiversion="2.1.0" Cversion="1.0.0" condition="Musca-S1 CMSIS">
+      <description>I2C Driver for Musca-S1 Device</description>
+      <RTE_Components_h>
+        #define RTE_Drivers_I2C
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="CMSIS/Driver/I2C_Musca-S1.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="Flash" Csub="MRAM" Capiversion="2.3.0" Cversion="1.1.0" condition="Musca-S1 CMSIS">
+      <description>eMRAM Flash Driver for Musca-S1 Device</description>
+      <RTE_Components_h>
+        #define RTE_Drivers_Flash
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="CMSIS/Driver/Flash-MRAM_Musca-S1.c"/>
+      </files>
+    </component>
+
+    <!-- V2M-Musca-S1 Board support -->
+    <bundle Cbundle="V2M-Musca-S1" Cclass="Board Support" Cversion="1.0.0">
+      <description>ARM V2M-Musca-S1 Board Support</description>
+      <doc>https://developer.arm.com/tools-and-software/development-boards/iot-test-chips-and-boards/musca-s1-test-chip-board</doc>
+      <component Cgroup="LED"         Capiversion="1.0.0" condition="Musca-S1 CMSIS">
+      <description>LED driver for ARM V2M-Musca-S1 Board</description>
+        <files>
+          <file category="source" name="Boards/ARM/V2M-Musca-S1/Common/LED_V2M-Musca-S1.c"/>
+        </files>
+      </component>
+    </bundle>
+
+    <!-- TF-M Platform -->
+    <component Cclass="TFM Platform" Cgroup="Memory Map" Cversion="1.0.0" condition="TFM Platform Musca-S1">
+      <description>TF-M Platform Memory Map for ST Musca-S1</description>
+      <RTE_Components_h>
+        #define RTE_TFM_IF_PLATFORM_MEMORY_MAP  /* TF-M Platform Memory Map */
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="TFM/partition/mem_layout.h"   attr="config" version="1.0.0"/>
+        <file category="header"  name="TFM/partition/flash_layout.h" attr="config" version="1.0.0"/>
+        <file category="header"  name="TFM/partition/region_defs.h"  attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <component Cclass="TFM Platform" Cgroup="SPM HAL" Csub="Platform" Capiversion="1.0.0" Cversion="1.0.0" condition="TFM Platform SPM HAL Musca-S1">
+      <description>TF-M Platform SPM HAL for ST Musca-S1</description>
+      <RTE_Components_h>
+        #define RTE_TFM_IF_PLATFORM_SPM_HAL     /* TF-M Platform SPM HAL */
+      </RTE_Components_h>
+      <files>
+        <file category="preIncludeLocal"
+                                 name="TFM/rte/preinclude.h"/>
+        <file category="include" name="TFM/"/>
+        <file category="include" name="TFM/driver/"/>
+        <file category="source"  name="TFM/driver/mpu_armv8m_drv.c"/>
+        <file category="source"  name="TFM/spm_hal.c"/>
+        <file category="header"  name="TFM/target_cfg.h"/>
+        <file category="source"  name="TFM/target_cfg.c"/>
+      </files>
+    </component>
+    <component Cclass="TFM Platform" Cgroup="System" Csub="Template" Capiversion="1.0.0" Cversion="1.0.0" condition="TFM Platform System Musca-S1">
+      <description>TF-M Platform System Template for ST Musca-S1</description>
+      <RTE_Components_h>
+        #define RTE_TFM_PLATFORM_SYSTEM         /* TF-M Platform System */
+      </RTE_Components_h>
+      <files>
+        <file category="preIncludeLocal"
+                                 name="TFM/rte/preinclude.h"/>
+        <file category="source"  name="TFM/services/src/tfm_platform_system.c" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <component Cclass="TFM Platform" Cgroup="Test" Csub="Platform" Capiversion="1.0.0" Cversion="1.0.0" condition="TFM Platform Test Musca-S1">
+      <description>TF-M Platform Test for ST Musca-S1</description>
+      <RTE_Components_h>
+        #define RTE_TFM_PLATFORM_TEST           /* TF-M Platform Test */
+      </RTE_Components_h>
+      <files>
+        <file category="preIncludeLocal"
+                                 name="TFM/rte/preinclude.h"/>
+        <file category="source"  name="TFM/plat_test.c"/>
+      </files>
+    </component>
+    <component Cclass="TFM Platform" Cgroup="Boot HAL" Csub="Platform" Capiversion="1.0.0" Cversion="1.0.0" condition="TFM Platform Musca-S1">
+      <description>TF-M Platform Boot HAL for ST Musca-S1</description>
+      <RTE_Components_h>
+        #define RTE_TFM_PLATFORM_BOOT_HAL       /* TF-M Platform Boot HAL */
+      </RTE_Components_h>
+      <files>
+        <file category="preIncludeLocal"
+                                 name="TFM/rte/preinclude.h"/>
+        <file category="source"  name="TFM/boot_hal.c" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+  </components>
+
+  <boards>
+    <board name="V2M-Musca-S1" vendor="ARM" revision="S1" salesContact="sales.intl@keil.com" orderForm="https://developer.arm.com/tools-and-software/development-boards/iot-test-chips-and-boards/musca-s1-test-chip-board">
+      <description>V2M-Musca-S1 SoC IoT Board</description>
+      <image small="Images/Musca-S1_Small.png" large="Images/Musca-S1_Large.png" public="true"/>
+      <book category="schematic" name="Boards/ARM/V2M-Musca-S1/Documents/hpi0394a_varA.pdf" title="Schematics"/>
+      <book category="setup"     name="Boards/ARM/V2M-Musca-S1/Documents/V2M-Musca-S1_QSPI_Usage.pdf" title="How to use on-board QSPI"/>
+      <mountedDevice    deviceIndex="0" Dvendor="ARM:82" Dname="Musca-S1"/>
+      <!-- <compatibleDevice    deviceIndex="0" Dvendor="ARM:82" Dname="CMSDK_IOTSS"/> -->
+      <feature type="XTAL"      n="50000000"/>
+      <feature type="Batt"      n="1"              name="3V battery connector"/>
+      <feature type="ArduinoFF" n="1"/>
+      <feature type="Button"    n="2"              name="Push-buttons: Hardware RESET, ON/OFF soft RESET"/>
+      <feature type="LED"       n="3"              name="RGB LED directly connected to port pins"/>
+      <feature type="ODbg"      n="1"              name="DAPLink (Mini-USB connector"/>
+
+      <debugInterface adapter="JTAG/SW"   connector="10-pin Cortex Debug Connector (0.05 inch connector)"/>
+      <debugInterface adapter="DAPLink"   connector="Mini-USB connector"/>
+    </board>
+  </boards>
+
+  <examples>
+    <!-- V2M-Musca-S1 Board Examples -->
+    <example name="CMSIS-RTOS2 (Keil RTX5) Blinky"       doc="Abstract.txt" folder="Boards/ARM/V2M-Musca-S1/RTOS2_KeilRTX5_Blinky">
+      <description>CMSIS-RTOS2 (Keil RTX5) based Blinky example</description>
+      <board name="V2M-Musca-S1" vendor="ARM"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="CMSIS-RTOS2 (Keil RTX5) Blinky low power"       doc="Abstract.txt" folder="Boards/ARM/V2M-Musca-S1/RTOS2_KeilRTX5_Blinky_low_power">
+      <description>CMSIS-RTOS2 (Keil RTX5) based Blinky example (Tick-less Low-Power)</description>
+      <board name="V2M-Musca-S1" vendor="ARM"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+
+    <example name="Bare-metal low power"       doc="Abstract.txt" folder="Boards/ARM/V2M-Musca-S1/BM_low_power">
+      <description>Ultra-low power bare-metal blinky example</description>
+      <board name="V2M-Musca-S1" vendor="ARM"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+
+    <example name="TF-M" doc="Abstract.txt" folder="TFM/project/tfm">
+      <description>TF-M Project Template</description>
+      <board name="V2M-Musca-S1" vendor="ARM"/>
+      <project>
+        <environment name="uv" load="tfm.uvmpw"/>
+      </project>
+      <attributes>
+        <component Cclass="TFM"/>
+        <component Cclass="TFM Platform"/>
+        <category>TF-M</category>
+      </attributes>
+    </example>
+    <example name="TF-M Test SFN" doc="Abstract.txt" folder="TFM/test/sfn">
+      <description>TF-M Regression Test - SFN (Secure Functions aka Library Mode)</description>
+      <board name="V2M-Musca-S1" vendor="ARM"/>
+      <project>
+        <environment name="uv" load="tfm.uvmpw"/>
+      </project>
+      <attributes>
+        <component Cclass="TFM"/>
+        <component Cclass="TFM Platform"/>
+        <category>TF-M</category>
+      </attributes>
+    </example>
+    <example name="TF-M Test IPC Level 1" doc="Abstract.txt" folder="TFM/test/ipc_l1">
+      <description>TF-M Regression Test - IPC Mode, Isolation Level 1</description>
+      <board name="V2M-Musca-S1" vendor="ARM"/>
+      <project>
+        <environment name="uv" load="tfm.uvmpw"/>
+      </project>
+      <attributes>
+        <component Cclass="TFM"/>
+        <component Cclass="TFM Platform"/>
+        <category>TF-M</category>
+      </attributes>
+    </example>
+    <example name="TF-M Test IPC Level 2" doc="Abstract.txt" folder="TFM/test/ipc_l2">
+      <description>TF-M Regression Test - IPC Mode, Isolation Level 2</description>
+      <board name="V2M-Musca-S1" vendor="ARM"/>
+      <project>
+        <environment name="uv" load="tfm.uvmpw"/>
+      </project>
+      <attributes>
+        <component Cclass="TFM"/>
+        <component Cclass="TFM Platform"/>
+        <category>TF-M</category>
+      </attributes>
+    </example>
+  </examples>
+
+ </package>

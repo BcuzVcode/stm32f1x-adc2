@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>LPCXpresso860MAX_MOTOR_CONTROL_Examples</name>
+  <vendor>NXP</vendor>
+  <description>Middleware motor_control Examples Pack for LPCXpresso860MAX</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="1.0.0" date="2024-01-14">NXP CMSIS SBSP Packs based on MCUXpresso SDK 2.15.0</release>
+  </releases>
+  <keywords>
+    <keyword>Middleware Board Support Pack</keyword>
+  </keywords>
+  <requirements>
+    <packages>
+      <package name="LPCXpresso860MAX_BSP" vendor="NXP" version="18.0.0"/>
+      <package name="LPC865_DFP" vendor="NXP" version="18.0.0"/>
+      <package name="MOTOR_CONTROL" vendor="NXP" version="1.0.0"/>
+      <package name="FREEMASTER" vendor="NXP" version="1.0.0"/>
+      <package name="CMSIS" vendor="ARM" version="5.8.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <examples>
+    <example name="mc_pmsm" folder="boards/lpcxpresso860max/demo_apps/mc_pmsm/pmsm_snsless" doc="PMSMLPC860MAX.pdf">
+      <description>This example demonstrates the control of the PMSM.</description>
+      <board name="LPCXpresso860MAX" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/mc_pmsm.uvprojx"/>
+        <environment name="csolution" load="mc_pmsm.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+  </examples>
+</package>

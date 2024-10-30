@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>MIMXRT1040-EVK_EDGEFAST_BLUETOOTH_BSP</name>
+  <vendor>NXP</vendor>
+  <description>Middleware edgefast_bluetooth Board Support Pack for MIMXRT1040-EVK</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="1.0.1" date="2023-10-25" deprecated="2023-10-25" replacement="NXP.MIMXRT1040-EVK_EDGEFAST_BLUETOOTH_Examples">This pack is no longer maintained. The new pack has been released with "_Examples" suffix instead of "_BSP".</release>
+    <release version="1.0.0" date="2023-07-27">NXP CMSIS SBSP Packs based on MCUXpresso SDK 2.14.0</release>
+  </releases>
+  <keywords>
+    <keyword>Middleware Board Support Pack</keyword>
+  </keywords>
+  <requirements>
+    <packages>
+      <package name="MIMXRT1042_DFP" vendor="NXP" version="18.0.0"/>
+      <package name="MIMXRT1040-EVK_BSP" vendor="NXP" version="18.0.0"/>
+      <package name="SDMMC" vendor="NXP" version="1.0.1"/>
+      <package name="USB" vendor="NXP" version="1.0.1"/>
+      <package name="FATFS" vendor="NXP" version="1.0.1"/>
+      <package name="EDGEFAST_BT_BLE" vendor="NXP" version="1.0.1"/>
+      <package name="Component_OS_Abstraction_Layer" vendor="NXP" version="1.0.1"/>
+      <package name="FREERTOS-KERNEL" vendor="NXP" version="1.0.1"/>
+      <package name="WIFI" vendor="NXP" version="1.0.1"/>
+      <package name="LITTLEFS" vendor="NXP" version="1.0.1"/>
+      <package name="MBEDTLS" vendor="NXP" version="1.0.1"/>
+      <package name="CMSIS" vendor="ARM" version="5.8.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <boards>
+    <board vendor="NXP" name="MIMXRT1040-EVK">
+      <description>i.MX RT1040 Evaluation Kit</description>
+      <image small="boards/evkmimxrt1040/evkmimxrt1040.png"/>
+      <mountedDevice Dname="MIMXRT1042xxxxB" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1041DFP6B" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1041DJM6B" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1041XFP5B" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1041XJM5B" Dvendor="NXP:11"/>
+    </board>
+  </boards>
+  <examples>
+    <example name="spp" folder="boards/evkmimxrt1040/edgefast_bluetooth_examples/spp" doc="readme.txt">
+      <description>The Bluetooth BR SPP example.</description>
+      <board name="MIMXRT1040-EVK" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/spp.uvprojx"/>
+        <environment name="csolution" load="spp.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="a2dp_sink" folder="boards/evkmimxrt1040/edgefast_bluetooth_examples/a2dp_sink" doc="readme.txt">
+      <description>The Edgefast Bluetooth audio source with simplified application.</description>
+      <board name="MIMXRT1040-EVK" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/a2dp_sink.uvprojx"/>
+        <environment name="csolution" load="a2dp_sink.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="handsfree_ag" folder="boards/evkmimxrt1040/edgefast_bluetooth_examples/handsfree_ag" doc="readme.txt">
+      <description>The Edgefast Bluetooth handsfree AG example with simplified application.</description>
+      <board name="MIMXRT1040-EVK" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/handsfree_ag.uvprojx"/>
+        <environment name="csolution" load="handsfree_ag.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="handsfree" folder="boards/evkmimxrt1040/edgefast_bluetooth_examples/handsfree" doc="readme.txt">
+      <description>The Edgefast Bluetooth bluetooth handsfree example with simplified application.</description>
+      <board name="MIMXRT1040-EVK" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/handsfree.uvprojx"/>
+        <environment name="csolution" load="handsfree.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="a2dp_source" folder="boards/evkmimxrt1040/edgefast_bluetooth_examples/a2dp_source" doc="readme.txt">
+      <description>The Edgefast Bluetooth audio source with simplified application.</description>
+      <board name="MIMXRT1040-EVK" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/a2dp_source.uvprojx"/>
+        <environment name="csolution" load="a2dp_source.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="peripheral_ht" folder="boards/evkmimxrt1040/edgefast_bluetooth_examples/peripheral_ht" doc="readme.txt">
+      <description>The Edgefast Bluetooth hts example with simplified application.</description>
+      <board name="MIMXRT1040-EVK" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/peripheral_ht.uvprojx"/>
+        <environment name="csolution" load="peripheral_ht.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="central_ht" folder="boards/evkmimxrt1040/edgefast_bluetooth_examples/central_ht" doc="readme.txt">
+      <description>The Edgefast Bluetooth hts example with simplified application.</description>
+      <board name="MIMXRT1040-EVK" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/central_ht.uvprojx"/>
+        <environment name="csolution" load="central_ht.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="peripheral_ipsp" folder="boards/evkmimxrt1040/edgefast_bluetooth_examples/peripheral_ipsp" doc="readme.txt">
+      <description>The Edgefast Bluetooth ipsp example with simplified application.</description>
+      <board name="MIMXRT1040-EVK" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/peripheral_ipsp.uvprojx"/>
+        <environment name="csolution" load="peripheral_ipsp.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="central_ipsp" folder="boards/evkmimxrt1040/edgefast_bluetooth_examples/central_ipsp" doc="readme.txt">
+      <description>The Edgefast Bluetooth ipsp example with simplified application.</description>
+      <board name="MIMXRT1040-EVK" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/central_ipsp.uvprojx"/>
+        <environment name="csolution" load="central_ipsp.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="peripheral_pxr" folder="boards/evkmimxrt1040/edgefast_bluetooth_examples/peripheral_pxr" doc="readme.txt">
+      <description>The Edgefast Bluetooth pxr example with simplified application.</description>
+      <board name="MIMXRT1040-EVK" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/peripheral_pxr.uvprojx"/>
+        <environment name="csolution" load="peripheral_pxr.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="central_pxm" folder="boards/evkmimxrt1040/edgefast_bluetooth_examples/central_pxm" doc="readme.txt">
+      <description>The Edgefast Bluetooth pxm example with simplified application.</description>
+      <board name="MIMXRT1040-EVK" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/central_pxm.uvprojx"/>
+        <environment name="csolution" load="central_pxm.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="peripheral_beacon" folder="boards/evkmimxrt1040/edgefast_bluetooth_examples/peripheral_beacon" doc="readme.txt">
+      <description>The Edgefast Bluetooth beacon example with simplified application.</description>
+      <board name="MIMXRT1040-EVK" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/peripheral_beacon.uvprojx"/>
+        <environment name="csolution" load="peripheral_beacon.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="peripheral_hps" folder="boards/evkmimxrt1040/edgefast_bluetooth_examples/peripheral_hps" doc="readme.txt">
+      <description>The Edgefast Bluetooth hps example with simplified application.</description>
+      <board name="MIMXRT1040-EVK" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/peripheral_hps.uvprojx"/>
+        <environment name="csolution" load="peripheral_hps.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="central_hpc" folder="boards/evkmimxrt1040/edgefast_bluetooth_examples/central_hpc" doc="readme.txt">
+      <description>The Edgefast Bluetooth hpc example with simplified application.</description>
+      <board name="MIMXRT1040-EVK" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/central_hpc.uvprojx"/>
+        <environment name="csolution" load="central_hpc.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="wireless_uart" folder="boards/evkmimxrt1040/edgefast_bluetooth_examples/wireless_uart" doc="readme.txt">
+      <description>The Edgefast Bluetooth wireless uart example with simplified application.</description>
+      <board name="MIMXRT1040-EVK" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/wireless_uart.uvprojx"/>
+        <environment name="csolution" load="wireless_uart.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+  </examples>
+</package>

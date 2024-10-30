@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package schemaVersion="1.2" xs:noNamespaceSchemaLocation="PACK.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance">
+    <vendor>FMSH</vendor>
+    <name>FM33LG0XX_DFP</name>
+    <description>FMSH FM33LG0XX Series Device Family Pack</description>
+    <url>https://fmdevelopers.oss-cn-shanghai.aliyuncs.com/</url>    <releases>
+		<release date="2022-09-19" version="3.0.1">
+      		Modify PDSC file
+    	</release>
+		<release date="2022-08-19" version="3.0.0">
+      		Old Version is not maintained
+    	</release>
+    </releases>
+    <keywords>
+        <!--keywords for indexing -->
+        <keyword>Keil</keyword>
+        <keyword>FMSH</keyword>
+    </keywords>
+    <!-- devices section (mandatory for Device Family Packs) -->
+    <devices>
+        <family Dfamily="FM33LG0XX Series" Dvendor="FMSH:159">
+            <processor DcoreVersion="r2p1" Dfpu="0" Dendian="Little-endian" Dmpu="1" Dcore="Cortex-M0"/>
+             <!-- debug information -->
+            <debugconfig swj="1" default="swd" clock="5000000"/>           
+			<description>The FM33LG0XX device family contains an ARM Cortex-M0 processor, running up to 64 MHz with a versatile set of on-chip peripherals.</description>
+            <subFamily DsubFamily="FM33LG0XX">
+                <processor Dclock="64000000" Dmpu="1"/>
+				<debug svd="SVD/FM33LG0XX.SVD"/>
+				<compile header="Device/Include/fm33lg0xx.h" define="FM33LG0xx"/>
+                <!-- FM33LG01X-->
+                <device Dname="FM33LG01X">
+                    <memory size="0x10000" default="1" startup="1" id="IROM1" start="0x00000000"/>
+                    <memory size="0x4000"  default="1" id="IRAM1" start="0x20000000" init="0"/>
+                    <algorithm name="Flash/FM33LG01X_FLASH64.FLM" start="0x00000000" size="0x10000" default="1" />
+                </device>
+                <!-- FM33LG02X-->
+                <device Dname="FM33LG02X">
+                    <memory size="0x20000" default="1" startup="1" id="IROM1" start="0x00000000"/>
+                    <memory size="0x8000"  default="1" id="IRAM1" start="0x20000000" init="0"/>
+                    <algorithm name="Flash/FM33LG02X_FLASH128.FLM" start="0x00000000" size="0x20000" default="1"/>
+                </device>
+                <!-- FM33LG04X-->
+                <device Dname="FM33LG04X">
+                    <memory size="0x40000" default="1" startup="1" id="IROM1" start="0x00000000"/>
+                    <memory size="0x8000"  default="1" id="IRAM1" start="0x20000000" init="0"/>
+                    <algorithm name="Flash/FM33LG04X_FLASH256.FLM" start="0x00000000" size="0x40000" default="1"/>
+                </device>
+            </subFamily>
+        </family>
+    </devices>
+    <!-- conditions section (optional for all Software Packs)-->
+    <conditions>
+        <condition id="FM33LG0XX CMSIS-CORE">
+            <!-- conditions selecting Devices -->
+            <description>FMSH FM33LG0XX Series devices and CMSIS-CORE</description>
+            <require Cclass="CMSIS" Cgroup="CORE"/>
+            <require Dvendor="FMSH:159" Dmpu="1" Dname="FM33LG0**"/>
+        </condition>
+        <condition id="Startup ARM">
+            <description>Startup assembler file for ARMCC</description>
+            <require Tcompiler="ARMCC"/>
+        </condition>
+    </conditions>
+    <!-- component section (optional for all Software Packs)-->
+    <components>
+        <component condition="FM33LG0XX CMSIS-CORE" Cclass="Device" Cversion="1.0.0" Cgroup="Startup">
+            <description>System Startup for FMSH FM33LG0XX Series</description>
+            <files>
+                <!--  include folder -->
+                <file category="include" name="Device/Include/"/>
+                <file attr="config" version="1.0.0" condition="Startup ARM" category="source" name="Device/Source/ARM/startup_fm33lg0xx.s"/>
+                <file attr="config" version="1.0.0" category="source" name="Device/Source/system_fm33lg0xx.c"/>
+            </files>
+        </component>
+    </components>
+</package>

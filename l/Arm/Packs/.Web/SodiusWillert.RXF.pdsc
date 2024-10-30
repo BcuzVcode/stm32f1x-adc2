@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>SodiusWillert</vendor>
+  <name>RXF</name>
+  <description>Embedded UML Realtime eXecution Framework (RXF) - UML-based development for saftety-critical embedded systems</description>
+  <url>https://ftp.willert.de/downloads/Keil/Pack/RXF/</url>
+  <repository type="git">https://github.com/SodiusWillert/Embedded-UML-RXF.git</repository>
+  <supportContact>support@sodiuswillert.com</supportContact>
+  
+  <releases>
+    <release version="8.0.1" date="2022-03-14">
+      Initial Release of RXF CMSIS Pack - Synchronized with RXF Release 8.0.1
+    </release>
+  </releases>
+  
+  <keywords>
+    <keyword>Willert</keyword>
+    <keyword>Sodius</keyword>
+    <keyword>SodiusWillert</keyword>
+    <keyword>RXF</keyword>
+    <keyword>IBM</keyword>
+    <keyword>Rational</keyword>
+    <keyword>Rhapsody</keyword>
+    <keyword>Modeling</keyword>
+    <keyword>UML</keyword>
+    <keyword>EUS</keyword>
+    <keyword>Embedded UML Studio</keyword>
+    <keyword>Code Generation</keyword>
+    <keyword>Traceability</keyword>
+    <keyword>OSLC</keyword>
+  </keywords>
+  
+  <generators>
+    <generator id="WillertRXF">
+      <gpdsc name="$PWillertRXF.gpdsc"/>
+    </generator>
+  </generators>
+
+  <taxonomy>
+    <description Cclass="RXF" doc="RXF/Doc/Help/index.htm">Embedded UML Realtime Execution Framework</description>
+  </taxonomy>
+
+  <components>
+    <component Cclass="RXF" Cgroup="Integrate Generated Code" Cversion="1.0.0" generator="WillertRXF" >
+      <description>Integrate Generated Code from UML Modeling Tool</description>
+      <files>
+        <file category="doc" name="RXF/Doc/Help/WST_2-Usage_4-Keil-uVision-CMSIS-Pack-Integration.htm"/>
+      </files>
+    </component>
+  </components>
+</package>

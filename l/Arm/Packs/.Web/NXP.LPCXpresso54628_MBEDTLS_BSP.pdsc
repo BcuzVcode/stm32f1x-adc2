@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>LPCXpresso54628_MBEDTLS_BSP</name>
+  <vendor>NXP</vendor>
+  <description>Middleware mbedtls Board Support Pack for LPCXpresso54628</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="1.0.1" date="2023-10-25" deprecated="2023-10-25" replacement="NXP.LPCXpresso54628_MBEDTLS_Examples">This pack is no longer maintained. The new pack has been released with "_Examples" suffix instead of "_BSP".</release>
+    <release version="1.0.0" date="2023-07-27">NXP CMSIS SBSP Packs based on MCUXpresso SDK 2.14.0</release>
+  </releases>
+  <keywords>
+    <keyword>Middleware Board Support Pack</keyword>
+  </keywords>
+  <requirements>
+    <packages>
+      <package name="LPC54628_DFP" vendor="NXP" version="18.0.0"/>
+      <package name="MBEDTLS" vendor="NXP" version="1.0.1"/>
+      <package name="CMSIS" vendor="ARM" version="5.8.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <boards>
+    <board vendor="NXP" name="LPCXpresso54628">
+      <description>LPCXpresso Development Board for the LPC546xx family of MCUs</description>
+      <image small="boards/lpcxpresso54628/lpcxpresso54628.png"/>
+      <mountedDevice Dname="LPC54628J512" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC54618J512BD208" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC54618J512ET180" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC54616J256ET180" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC54616J512BD100" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC54616J512BD208" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC54616J512ET100" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC54608J512BD208" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC54608J512ET180" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC54607J256BD208" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC54607J256ET180" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC54607J512ET180" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC54606J256BD100" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC54606J256ET100" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC54606J256ET180" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC54606J512BD100" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC54606J512BD208" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC54606J512ET100" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC54605J256BD100" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC54605J256ET100" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC54605J256ET180" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC54605J512BD100" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC54605J512ET100" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC54605J512ET180" Dvendor="NXP:11"/>
+    </board>
+  </boards>
+  <examples>
+    <example name="mbedtls_selftest" folder="boards/lpcxpresso54628/mbedtls_examples/mbedtls_selftest" doc="readme.txt">
+      <description>The mbdedTLS SelfTest program performs cryptographic algorithm testing and prints results to the terminal.</description>
+      <board name="LPCXpresso54628" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/mbedtls_selftest.uvprojx"/>
+        <environment name="iar" load="iar/mbedtls_selftest.ewp"/>
+        <environment name="csolution" load="mbedtls_selftest.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="mbedtls_benchmark" folder="boards/lpcxpresso54628/mbedtls_examples/mbedtls_benchmark" doc="readme.txt">
+      <description>The mbdedTLS Benchmark demo application performs cryptographic algorithm benchmarking and prints results to the terminal.</description>
+      <board name="LPCXpresso54628" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/mbedtls_benchmark.uvprojx"/>
+        <environment name="iar" load="iar/mbedtls_benchmark.ewp"/>
+        <environment name="csolution" load="mbedtls_benchmark.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+  </examples>
+</package>

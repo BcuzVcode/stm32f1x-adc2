@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>PKCS11</name>
+  <vendor>NXP</vendor>
+  <description>Software Pack for pkcs11</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="2.0.0" date="2024-07-17">NXP CMSIS SWP Packs based on MCUXpresso SDK 2.16.0</release>
+    <release version="1.0.0" date="2024-01-14">NXP CMSIS SWP Packs based on MCUXpresso SDK 2.15.0</release>
+  </releases>
+  <keywords>
+    <keyword>Software Pack</keyword>
+  </keywords>
+  <taxonomy>
+    <description Cclass="AWS IoT" Cgroup="OASIS PKCS Standard 11">AWS IoT NXP</description>
+  </taxonomy>
+  <requirements>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <components>
+    <bundle Cbundle="AWS IoT NXP" Cclass="AWS IoT" Cversion="1.0.0">
+      <description>AWS IoT NXP</description>
+      <doc>middleware/pkcs11/AWS IoT NXP_dummy.txt</doc>
+      <component Cgroup="OASIS PKCS Standard 11" Csub="pkcs11" Cversion="2.40.1">
+        <description>Public Key Cryptography Standard #11 defines generic cryptographic token interface.</description>
+        <files>
+          <file category="doc" name="middleware/pkcs11/README.md" projectpath="pkcs11"/>
+          <file category="header" name="middleware/pkcs11/pkcs11t.h" projectpath="pkcs11"/>
+          <file category="header" name="middleware/pkcs11/pkcs11f.h" projectpath="pkcs11"/>
+          <file category="header" name="middleware/pkcs11/pkcs11.h" projectpath="pkcs11"/>
+          <file category="doc" name="middleware/pkcs11/LICENSE.md" projectpath="pkcs11"/>
+          <file category="doc" name="middleware/pkcs11/CONTRIBUTING.md" projectpath="pkcs11"/>
+          <file category="doc" name="middleware/pkcs11/AWS IoT NXP_dummy.txt"/>
+          <file category="include" name="middleware/pkcs11/"/>
+        </files>
+      </component>
+    </bundle>
+  </components>
+</package>

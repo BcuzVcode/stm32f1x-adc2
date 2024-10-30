@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>MCX-N5XX-EVK-A8974_ISSDK_Examples</name>
+  <vendor>NXP</vendor>
+  <description>Middleware issdk Examples Pack for MCX-N5XX-EVK-A8974</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="1.0.0" date="2024-07-17">NXP CMSIS SBSP Packs based on MCUXpresso SDK 2.16.0</release>
+  </releases>
+  <keywords>
+    <keyword>Middleware Board Support Pack</keyword>
+  </keywords>
+  <requirements>
+    <packages>
+      <package name="ISSDK" vendor="NXP" version="3.0.0"/>
+      <package name="MCXN547_DFP" vendor="NXP" version="19.0.0"/>
+      <package name="CMSIS" vendor="ARM" version="5.9.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <boards>
+    <board vendor="NXP" name="MCX-N5XX-EVK-A8974">
+      <description>MCXN548 MCU evaluation kit with FRDM-STBI-A8974 sensor shield board having FXLS8974CF Ultra-low power motion wakeup sensor for Industrial, Medical IoT Applications.</description>
+      <image small="boards/mcxn5xxevk_a8974/mcxn5xxevk_a8974.png"/>
+      <mountedDevice Dname="MCXN547VDF" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MCXN546VDF" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MCXN546VNL" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MCXN546VPB" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MCXN547VNL" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MCXN547VPB" Dvendor="NXP:11"/>
+    </board>
+  </boards>
+  <examples>
+    <example name="fxls8974cf_interrupt" folder="boards/mcxn5xxevk_a8974/issdk_examples/sensors/fxls8974cf/fxls8974cf_interrupt/cm33_core0" doc="readme.txt">
+      <description>The FXLS8974CF Interrupt example application demonstrates the use of the FXLS8974CF sensor in interrupt Mode using I2C interface.The example demonstrates configuration sensor registers reguired to put the sensor in...See more details in readme document.</description>
+      <board name="MCX-N5XX-EVK-A8974" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/fxls8974cf_interrupt.uvprojx"/>
+        <environment name="csolution" load="fxls8974cf_interrupt.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="fxls8974cf_motion_wakeup" folder="boards/mcxn5xxevk_a8974/issdk_examples/sensors/fxls8974cf/fxls8974cf_motion_wakeup/cm33_core0" doc="readme.txt">
+      <description>The FXLS8974CF motion wakeup example application demonstrates motion detection and Auto-Wake/Sleep features of FXLS8974CF sensor.</description>
+      <board name="MCX-N5XX-EVK-A8974" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/fxls8974cf_motion_wakeup.uvprojx"/>
+        <environment name="csolution" load="fxls8974cf_motion_wakeup.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="fxls8974cf_poll" folder="boards/mcxn5xxevk_a8974/issdk_examples/sensors/fxls8974cf/fxls8974cf_poll/cm33_core0" doc="readme.txt">
+      <description>The FXLS8974CF POLL example application demonstrates the use of the FXLS8974CF sensor in polling Mode using I2C interface.The example demonstrates configuration sensor registers reguired to put the sensor in Poll...See more details in readme document.</description>
+      <board name="MCX-N5XX-EVK-A8974" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/fxls8974cf_poll.uvprojx"/>
+        <environment name="csolution" load="fxls8974cf_poll.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="fxls8974cf_spi" folder="boards/mcxn5xxevk_a8974/issdk_examples/sensors/fxls8974cf/fxls8974cf_spi/cm33_core0" doc="readme.txt">
+      <description>The FXLS8974CF SPI example application demonstrates the use of the FXLS8974CF sensor in polling Mode using SPI interface.The example demonstrates configuration sensor registers reguired to put the sensor in Poll Mode...See more details in readme document.</description>
+      <board name="MCX-N5XX-EVK-A8974" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/fxls8974cf_spi.uvprojx"/>
+        <environment name="csolution" load="fxls8974cf_spi.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+  </examples>
+</package>

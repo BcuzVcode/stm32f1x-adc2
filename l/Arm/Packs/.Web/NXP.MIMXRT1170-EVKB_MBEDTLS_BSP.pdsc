@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>MIMXRT1170-EVKB_MBEDTLS_BSP</name>
+  <vendor>NXP</vendor>
+  <description>Middleware mbedtls Board Support Pack for MIMXRT1170-EVKB</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="1.0.1" date="2023-10-25" deprecated="2023-10-25" replacement="NXP.MIMXRT1170-EVKB_MBEDTLS_Examples">This pack is no longer maintained. The new pack has been released with "_Examples" suffix instead of "_BSP".</release>
+    <release version="1.0.0" date="2023-07-27">NXP CMSIS SBSP Packs based on MCUXpresso SDK 2.14.0</release>
+  </releases>
+  <keywords>
+    <keyword>Middleware Board Support Pack</keyword>
+  </keywords>
+  <requirements>
+    <packages>
+      <package name="MIMXRT1176_DFP" vendor="NXP" version="18.0.0"/>
+      <package name="MBEDTLS" vendor="NXP" version="1.0.1"/>
+      <package name="MIMXRT1170-EVKB_BSP" vendor="NXP" version="18.0.0"/>
+      <package name="CMSIS" vendor="ARM" version="5.8.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <boards>
+    <board vendor="NXP" name="MIMXRT1170-EVKB">
+      <description>i.MX RT1170 Evaluation Kit</description>
+      <image small="boards/evkbmimxrt1170/evkbmimxrt1170.png"/>
+      <mountedDevice Dname="MIMXRT1176xxxxx" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1171AVM8A" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1171CVM8A" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1171DVMAA" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1172AVM8A" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1172CVM8A" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1172DVMAA" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1173CVM8A" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1175AVM8A" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1175CVM8A" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1175DVMAA" Dvendor="NXP:11"/>
+    </board>
+  </boards>
+  <examples>
+    <example name="mbedtls_selftest_cm4" folder="boards/evkbmimxrt1170/mbedtls_examples/mbedtls_selftest/cm4" doc="readme.txt">
+      <description>The mbedTLS SelfTest program performs cryptographic algorithm testing and prints results to the terminal.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/mbedtls_selftest_cm4.uvprojx"/>
+        <environment name="iar" load="iar/mbedtls_selftest_cm4.ewp"/>
+        <environment name="csolution" load="mbedtls_selftest_cm4.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="mbedtls_benchmark_cm4" folder="boards/evkbmimxrt1170/mbedtls_examples/mbedtls_benchmark/cm4" doc="readme.txt">
+      <description>The mbdedTLS Benchmark demo application performs cryptographic algorithm benchmarking and prints results to the terminal.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/mbedtls_benchmark_cm4.uvprojx"/>
+        <environment name="iar" load="iar/mbedtls_benchmark_cm4.ewp"/>
+        <environment name="csolution" load="mbedtls_benchmark_cm4.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="mbedtls_selftest_cm7" folder="boards/evkbmimxrt1170/mbedtls_examples/mbedtls_selftest/cm7" doc="readme.txt">
+      <description>The mbedTLS SelfTest program performs cryptographic algorithm testing and prints results to the terminal.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/mbedtls_selftest_cm7.uvprojx"/>
+        <environment name="iar" load="iar/mbedtls_selftest_cm7.ewp"/>
+        <environment name="csolution" load="mbedtls_selftest_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="mbedtls_benchmark_cm7" folder="boards/evkbmimxrt1170/mbedtls_examples/mbedtls_benchmark/cm7" doc="readme.txt">
+      <description>The mbdedTLS Benchmark demo application performs cryptographic algorithm benchmarking and prints results to the terminal.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/mbedtls_benchmark_cm7.uvprojx"/>
+        <environment name="iar" load="iar/mbedtls_benchmark_cm7.ewp"/>
+        <environment name="csolution" load="mbedtls_benchmark_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+  </examples>
+</package>

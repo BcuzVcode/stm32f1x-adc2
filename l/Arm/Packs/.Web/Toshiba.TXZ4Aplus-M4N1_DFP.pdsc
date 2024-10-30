@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <license>License/SOFTWARE_LICENSE_AGREEMENT.txt</license> 
+  <vendor>Toshiba</vendor>
+  <url>https://toshiba.semicon-storage.com/content/dam/toshiba-ss/shared/docs/product/micro/device-family-Pack/</url>
+  <name>TXZ4Aplus-M4N1_DFP</name>
+  <description>Toshiba TXZ4A+ Series TMPM4N(1) Group Device Support</description>
+
+  <releases>
+    <release version="1.0.1" date="2021-07-26">
+      Correction for SOFTWARE_LICENSE_AGREEMENT.
+      First Release version of TXZ4A+ Series TMPM4N(1) Group Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Toshiba</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Toshiba</keyword>
+    <keyword>TMPM4N</keyword>
+    <keyword>TXZ4A+</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="TXZ4A+ Series" Dvendor="Toshiba:92">
+      <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="1" Dmpu="1" Dendian="Little-endian"/>
+      <description>
+The TXZ4A+ microcontroller series embeds an ARM Cortex-M4 core, which provides high code density and fast interrupt response times required for real-time applications.
+      </description>
+      <!-- ************************  Subfamily 'TMPM4Nx'  **************************** -->
+      <subFamily DsubFamily="M4N(1)">
+
+        <!-- ***********************  Device 'TMPM4NRF20x'  ************************* -->
+        <device Dname="TMPM4NRF20FG">
+          <processor Dclock="200000000"/>
+          <compile header="Device/Include/TMPM4NR.h" define="TMPM4NR"/>
+          <debug svd="SVD/M4NR.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00200000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00040000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Nx_code_2048.FLM" start="0x00000000" size="0x00200000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Nx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="14"      m="32"/>
+          <feature type="DMA"           n="3"                           name="DMA"/>
+          <feature type="UART"          n="6"/>
+          <feature type="I2C"           n="5"                           name="I2C"/>
+          <feature type="ADC"           n="24"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="16"/>
+          <feature type="IOs"           n="146"/>
+          <feature type="VCC"           n="2.70"    m="3.60"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="I2S"           n="2" />
+          <feature type="USBOTG"        n="2"/>
+          <feature type="QFP" n="176" name="LQFP 176 20x20x0.4"/>
+        </device>
+        <device Dname="TMPM4NRF20XBG">
+          <processor Dclock="200000000"/>
+          <compile header="Device/Include/TMPM4NR.h" define="TMPM4NR"/>
+          <debug svd="SVD/M4NR.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00200000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00040000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Nx_code_2048.FLM" start="0x00000000" size="0x00200000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Nx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="14"      m="32"/>
+          <feature type="DMA"           n="3"                           name="DMA"/>
+          <feature type="UART"          n="6"/>
+          <feature type="I2C"           n="5"                           name="I2C"/>
+          <feature type="ADC"           n="24"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="16"/>
+          <feature type="IOs"           n="146"/>
+          <feature type="VCC"           n="2.70"    m="3.60"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="I2S"           n="2" />
+          <feature type="USBOTG"        n="2"/>
+          <feature type="BGA" n="177" name="VFBGA 177 13x13x0.8"/>
+        </device>
+
+        <!-- ***********************  Device 'TMPM4NRF15x'  ************************* -->
+        <device Dname="TMPM4NRF15FG">
+          <processor Dclock="200000000"/>
+          <compile header="Device/Include/TMPM4NR.h" define="TMPM4NR"/>
+          <debug svd="SVD/M4NR.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00180000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00040000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Nx_code_1536.FLM" start="0x00000000" size="0x00180000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Nx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="14"      m="32"/>
+          <feature type="DMA"           n="3"                           name="DMA"/>
+          <feature type="UART"          n="6"/>
+          <feature type="I2C"           n="5"                           name="I2C"/>
+          <feature type="ADC"           n="24"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="16"/>
+          <feature type="IOs"           n="146"/>
+          <feature type="VCC"           n="2.70"    m="3.60"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="I2S"           n="2" />
+          <feature type="USBOTG"        n="2"/>
+          <feature type="QFP" n="176" name="LQFP 176 20x20x0.4"/>
+        </device>
+        <device Dname="TMPM4NRF15XBG">
+          <processor Dclock="200000000"/>
+          <compile header="Device/Include/TMPM4NR.h" define="TMPM4NR"/>
+          <debug svd="SVD/M4NR.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00180000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00040000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Nx_code_1536.FLM" start="0x00000000" size="0x00180000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Nx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="14"      m="32"/>
+          <feature type="DMA"           n="3"                           name="DMA"/>
+          <feature type="UART"          n="6"/>
+          <feature type="I2C"           n="5"                           name="I2C"/>
+          <feature type="ADC"           n="24"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="16"/>
+          <feature type="IOs"           n="146"/>
+          <feature type="VCC"           n="2.70"    m="3.60"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="I2S"           n="2" />
+          <feature type="USBOTG"        n="2"/>
+          <feature type="BGA" n="177" name="VFBGA 177 13x13x0.8"/>
+        </device>
+
+        <!-- ***********************  Device 'TMPM4NRF10x'  ************************* -->
+        <device Dname="TMPM4NRF10FG">
+          <processor Dclock="200000000"/>
+          <compile header="Device/Include/TMPM4NR.h" define="TMPM4NR"/>
+          <debug svd="SVD/M4NR.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00040000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Nx_code_1024.FLM" start="0x00000000" size="0x00100000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Nx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="14"      m="32"/>
+          <feature type="DMA"           n="3"                           name="DMA"/>
+          <feature type="UART"          n="6"/>
+          <feature type="I2C"           n="5"                           name="I2C"/>
+          <feature type="ADC"           n="24"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="16"/>
+          <feature type="IOs"           n="146"/>
+          <feature type="VCC"           n="2.70"    m="3.60"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="I2S"           n="2" />
+          <feature type="USBOTG"        n="2"/>
+          <feature type="QFP" n="176" name="LQFP 176 20x20x0.4"/>
+        </device>
+        <device Dname="TMPM4NRF10XBG">
+          <processor Dclock="200000000"/>
+          <compile header="Device/Include/TMPM4NR.h" define="TMPM4NR"/>
+          <debug svd="SVD/M4NR.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00040000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Nx_code_1024.FLM" start="0x00000000" size="0x00100000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Nx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="14"      m="32"/>
+          <feature type="DMA"           n="3"                           name="DMA"/>
+          <feature type="UART"          n="6"/>
+          <feature type="I2C"           n="5"                           name="I2C"/>
+          <feature type="ADC"           n="24"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="16"/>
+          <feature type="IOs"           n="146"/>
+          <feature type="VCC"           n="2.70"    m="3.60"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="I2S"           n="2" />
+          <feature type="USBOTG"        n="2"/>
+          <feature type="BGA" n="177" name="VFBGA 177 13x13x0.8"/>
+        </device>
+
+        <!-- ***********************  Device 'TMPM4NRFDx'  ************************* -->
+        <device Dname="TMPM4NRFDFG">
+          <processor Dclock="200000000"/>
+          <compile header="Device/Include/TMPM4NR.h" define="TMPM4NR"/>
+          <debug svd="SVD/M4NR.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00030000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Nx_code_512.FLM" start="0x00000000" size="0x00080000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Nx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="14"      m="32"/>
+          <feature type="DMA"           n="3"                           name="DMA"/>
+          <feature type="UART"          n="6"/>
+          <feature type="I2C"           n="5"                           name="I2C"/>
+          <feature type="ADC"           n="24"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="16"/>
+          <feature type="IOs"           n="146"/>
+          <feature type="VCC"           n="2.70"    m="3.60"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="I2S"           n="2" />
+          <feature type="USBOTG"        n="2"/>
+          <feature type="QFP" n="176" name="LQFP 176 20x20x0.4"/>
+        </device>
+        <device Dname="TMPM4NRFDXBG">
+          <processor Dclock="200000000"/>
+          <compile header="Device/Include/TMPM4NR.h" define="TMPM4NR"/>
+          <debug svd="SVD/M4NR.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00030000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Nx_code_512.FLM" start="0x00000000" size="0x00080000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Nx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="14"      m="32"/>
+          <feature type="DMA"           n="3"                           name="DMA"/>
+          <feature type="UART"          n="6"/>
+          <feature type="I2C"           n="5"                           name="I2C"/>
+          <feature type="ADC"           n="24"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="16"/>
+          <feature type="IOs"           n="146"/>
+          <feature type="VCC"           n="2.70"    m="3.60"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="I2S"           n="2" />
+          <feature type="USBOTG"        n="2"/>
+          <feature type="BGA" n="177" name="VFBGA 177 13x13x0.8"/>
+        </device>
+
+      <!-- ************************  Subfamily 'TMPM4NQx'  **************************** -->
+
+        <!-- ***********************  Device 'TMPM4NQF20x'  ************************* -->
+        <device Dname="TMPM4NQF20FG">
+          <processor Dclock="200000000"/>
+          <compile header="Device/Include/TMPM4NQ.h" define="TMPM4NQ"/>
+          <debug svd="SVD/M4NQ.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00200000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00040000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Nx_code_2048.FLM" start="0x00000000" size="0x00200000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Nx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="14"      m="32"/>
+          <feature type="DMA"           n="3"                           name="DMA"/>
+          <feature type="UART"          n="5"/>
+          <feature type="I2C"           n="5"                           name="I2C"/>
+          <feature type="ADC"           n="24"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="14"/>
+          <feature type="IOs"           n="118"/>
+          <feature type="VCC"           n="2.70"    m="3.60"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="I2S"           n="2" />
+          <feature type="USBOTG"        n="2"/>
+          <feature type="QFP" n="144" name="LQFP 144 20x20x0.5"/>
+        </device>
+        <device Dname="TMPM4NQF20XBG">
+          <processor Dclock="200000000"/>
+          <compile header="Device/Include/TMPM4NQ.h" define="TMPM4NQ"/>
+          <debug svd="SVD/M4NQ.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00200000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00040000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Nx_code_2048.FLM" start="0x00000000" size="0x00200000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Nx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="14"      m="32"/>
+          <feature type="DMA"           n="3"                           name="DMA"/>
+          <feature type="UART"          n="5"/>
+          <feature type="I2C"           n="5"                           name="I2C"/>
+          <feature type="ADC"           n="24"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="14"/>
+          <feature type="IOs"           n="118"/>
+          <feature type="VCC"           n="2.70"    m="3.60"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="I2S"           n="2" />
+          <feature type="USBOTG"        n="2"/>
+          <feature type="BGA" n="145" name="VFBGA 145 12x12x0.8"/>
+        </device>
+        <!-- ***********************  Device 'TMPM4NQF15x'  ************************* -->
+        <device Dname="TMPM4NQF15FG">
+          <processor Dclock="200000000"/>
+          <compile header="Device/Include/TMPM4NQ.h" define="TMPM4NQ"/>
+          <debug svd="SVD/M4NQ.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00180000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00040000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Nx_code_1536.FLM" start="0x00000000" size="0x00180000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Nx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="14"      m="32"/>
+          <feature type="DMA"           n="3"                           name="DMA"/>
+          <feature type="UART"          n="5"/>
+          <feature type="I2C"           n="5"                           name="I2C"/>
+          <feature type="ADC"           n="24"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="14"/>
+          <feature type="IOs"           n="118"/>
+          <feature type="VCC"           n="2.70"    m="3.60"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="I2S"           n="2" />
+          <feature type="USBOTG"        n="2"/>
+          <feature type="QFP" n="144" name="LQFP 144 20x20x0.5"/>
+        </device>
+        <device Dname="TMPM4NQF15XBG">
+          <processor Dclock="200000000"/>
+          <compile header="Device/Include/TMPM4NQ.h" define="TMPM4NQ"/>
+          <debug svd="SVD/M4NQ.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00180000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00040000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Nx_code_1536.FLM" start="0x00000000" size="0x00180000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Nx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="14"      m="32"/>
+          <feature type="DMA"           n="3"                           name="DMA"/>
+          <feature type="UART"          n="5"/>
+          <feature type="I2C"           n="5"                           name="I2C"/>
+          <feature type="ADC"           n="24"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="14"/>
+          <feature type="IOs"           n="118"/>
+          <feature type="VCC"           n="2.70"    m="3.60"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="I2S"           n="2" />
+          <feature type="USBOTG"        n="2"/>
+          <feature type="BGA" n="145" name="VFBGA 145 12x12x0.8"/>
+        </device>
+        <!-- ***********************  Device 'TMPM4NQF10x'  ************************* -->
+        <device Dname="TMPM4NQF10FG">
+          <processor Dclock="200000000"/>
+          <compile header="Device/Include/TMPM4NQ.h" define="TMPM4NQ"/>
+          <debug svd="SVD/M4NQ.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00040000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Nx_code_1024.FLM" start="0x00000000" size="0x00100000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Nx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="14"      m="32"/>
+          <feature type="DMA"           n="3"                           name="DMA"/>
+          <feature type="UART"          n="5"/>
+          <feature type="I2C"           n="5"                           name="I2C"/>
+          <feature type="ADC"           n="24"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="14"/>
+          <feature type="IOs"           n="118"/>
+          <feature type="VCC"           n="2.70"    m="3.60"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="I2S"           n="2" />
+          <feature type="USBOTG"        n="2"/>
+          <feature type="QFP" n="144" name="LQFP 144 20x20x0.5"/>
+        </device>
+        <device Dname="TMPM4NQF10XBG">
+          <processor Dclock="200000000"/>
+          <compile header="Device/Include/TMPM4NQ.h" define="TMPM4NQ"/>
+          <debug svd="SVD/M4NQ.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00040000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Nx_code_1024.FLM" start="0x00000000" size="0x00100000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Nx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="14"      m="32"/>
+          <feature type="DMA"           n="3"                           name="DMA"/>
+          <feature type="UART"          n="5"/>
+          <feature type="I2C"           n="5"                           name="I2C"/>
+          <feature type="ADC"           n="24"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="14"/>
+          <feature type="IOs"           n="118"/>
+          <feature type="VCC"           n="2.70"    m="3.60"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="I2S"           n="2" />
+          <feature type="USBOTG"        n="2"/>
+          <feature type="BGA" n="145" name="VFBGA 145 12x12x0.8"/>
+        </device>
+        <!-- ***********************  Device 'TMPM4NQFDx'  ************************* -->
+        <device Dname="TMPM4NQFDFG">
+          <processor Dclock="200000000"/>
+          <compile header="Device/Include/TMPM4NQ.h" define="TMPM4NQ"/>
+          <debug svd="SVD/M4NQ.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00030000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Nx_code_512.FLM" start="0x00000000" size="0x00080000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Nx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="14"      m="32"/>
+          <feature type="DMA"           n="3"                           name="DMA"/>
+          <feature type="UART"          n="5"/>
+          <feature type="I2C"           n="5"                           name="I2C"/>
+          <feature type="ADC"           n="24"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="14"/>
+          <feature type="IOs"           n="118"/>
+          <feature type="VCC"           n="2.70"    m="3.60"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="I2S"           n="2" />
+          <feature type="USBOTG"        n="2"/>
+          <feature type="QFP" n="144" name="LQFP 144 20x20x0.5"/>
+        </device>
+        <device Dname="TMPM4NQFDXBG">
+          <processor Dclock="200000000"/>
+          <compile header="Device/Include/TMPM4NQ.h" define="TMPM4NQ"/>
+          <debug svd="SVD/M4NQ.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00030000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Nx_code_512.FLM" start="0x00000000" size="0x00080000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Nx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="14"      m="32"/>
+          <feature type="DMA"           n="3"                           name="DMA"/>
+          <feature type="UART"          n="5"/>
+          <feature type="I2C"           n="5"                           name="I2C"/>
+          <feature type="ADC"           n="24"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="14"/>
+          <feature type="IOs"           n="118"/>
+          <feature type="VCC"           n="2.70"    m="3.60"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="I2S"           n="2" />
+          <feature type="USBOTG"        n="2"/>
+          <feature type="BGA" n="145" name="VFBGA 145 12x12x0.8"/>
+        </device>
+        
+      <!-- ************************  Subfamily 'TMPM4NNx'  **************************** -->
+
+        <!-- ***********************  Device 'TMPM4NNF20x'  ************************* -->
+        <device Dname="TMPM4NNF20FG">
+          <processor Dclock="200000000"/>
+          <compile header="Device/Include/TMPM4NN.h" define="TMPM4NN"/>
+          <debug svd="SVD/M4NN.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00200000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00040000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Nx_code_2048.FLM" start="0x00000000" size="0x00200000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Nx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="14"      m="32"/>
+          <feature type="DMA"           n="3"                           name="DMA"/>
+          <feature type="UART"          n="3"/>
+          <feature type="I2C"           n="3"                           name="I2C"/>
+          <feature type="ADC"           n="16"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="9"/>
+          <feature type="IOs"           n="86"/>
+          <feature type="VCC"           n="2.70"    m="3.60"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="I2S"           n="2" />
+          <feature type="USBOTG"        n="1"/>
+          <feature type="QFP"           n="100" name="LQFP 100 14x14x0.5"/>
+        </device>
+        <!-- ***********************  Device 'TMPM4NNF15x'  ************************* -->
+        <device Dname="TMPM4NNF15FG">
+          <processor Dclock="200000000"/>
+          <compile header="Device/Include/TMPM4NN.h" define="TMPM4NN"/>
+          <debug svd="SVD/M4NN.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00180000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00040000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Nx_code_1536.FLM" start="0x00000000" size="0x00180000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Nx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="14"      m="32"/>
+          <feature type="DMA"           n="3"                           name="DMA"/>
+          <feature type="UART"          n="3"/>
+          <feature type="I2C"           n="3"                           name="I2C"/>
+          <feature type="ADC"           n="16"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="9"/>
+          <feature type="IOs"           n="86"/>
+          <feature type="VCC"           n="2.70"    m="3.60"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="I2S"           n="2" />
+          <feature type="USBOTG"        n="1"/>
+          <feature type="QFP"           n="100" name="LQFP 100 14x14x0.5"/>
+        </device>
+        <!-- ***********************  Device 'TMPM4NNF10x'  ************************* -->
+        <device Dname="TMPM4NNF10FG">
+          <processor Dclock="200000000"/>
+          <compile header="Device/Include/TMPM4NN.h" define="TMPM4NN"/>
+          <debug svd="SVD/M4NN.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00040000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Nx_code_1024.FLM" start="0x00000000" size="0x00100000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Nx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="14"      m="32"/>
+          <feature type="DMA"           n="3"                           name="DMA"/>
+          <feature type="UART"          n="3"/>
+          <feature type="I2C"           n="3"                           name="I2C"/>
+          <feature type="ADC"           n="16"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="9"/>
+          <feature type="IOs"           n="86"/>
+          <feature type="VCC"           n="2.70"    m="3.60"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="I2S"           n="2" />
+          <feature type="USBOTG"        n="1"/>
+          <feature type="QFP"           n="100" name="LQFP 100 14x14x0.5"/>
+        </device>
+        <!-- ***********************  Device 'TMPM4NNFDx'  ************************* -->
+        <device Dname="TMPM4NNFDFG">
+          <processor Dclock="200000000"/>
+          <compile header="Device/Include/TMPM4NN.h" define="TMPM4NN"/>
+          <debug svd="SVD/M4NN.svd"/>
+          <memory id="IROM1"                           start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00030000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM4Nx_code_512.FLM" start="0x00000000" size="0x00080000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+          <algorithm name="Flash/TMPM4Nx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"  RAMsize="0x2000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="WDT"           n="1"/>
+          <feature type="Timer"         n="14"      m="32"/>
+          <feature type="DMA"           n="3"                           name="DMA"/>
+          <feature type="UART"          n="3"/>
+          <feature type="I2C"           n="3"                           name="I2C"/>
+          <feature type="ADC"           n="16"     m="12"               name="AD converter"/>
+          <feature type="ExtInt"        n="9"/>
+          <feature type="IOs"           n="86"/>
+          <feature type="VCC"           n="2.70"    m="3.60"/>
+          <feature type="Temp"          n="-40"     m="85"/>
+          <feature type="I2S"           n="2" />
+          <feature type="USBOTG"        n="1"/>
+          <feature type="QFP"           n="100" name="LQFP 100 14x14x0.5"/>
+        </device>
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="TMPM4Nx Compiler">
+      <accept condition="Compiler ARMCC"/>
+      <accept condition="Compiler IAR"/>   
+    </condition>
+
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="Compiler IAR">
+      <require Tcompiler="IAR"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="TMPM4NRx CMSIS">
+      <description>Toshiba TMPM4NRx Devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM4NR*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM4NQx CMSIS">
+      <description>Toshiba TMPM4NQx Devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM4NQ*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM4NNx CMSIS">
+      <description>Toshiba TMPM4NNx Devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM4NN*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+  </conditions>
+
+  <components>
+
+    <!-- Startup TMPM4NRx -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM4NRx CMSIS">
+      <description>System Startup for Toshiba TMPM4NRx Devices</description>
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_DEVICE_STARTUP_TMPM4NRx      /* Device Startup for TMPM4NRx */
+      </RTE_Components_h>
+
+      <files>
+        <file category="include" name="Device/Include/" condition="TMPM4Nx Compiler"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM4NR.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/IAR/startup_TMPM4NR.s" attr="config" version="1.0.0" condition="Compiler IAR"/>
+        <file category="source"  name="Device/Source/system_TMPM4Nx.c"      attr="config" version="1.0.0" condition="TMPM4Nx Compiler"/>
+      </files>
+    </component>
+    <!-- Startup TMPM4NQx -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM4NQx CMSIS">
+      <description>System Startup for Toshiba TMPM4NQx Devices</description>
+      <files>
+        <file category="include" name="Device/Include/" condition="TMPM4Nx Compiler"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM4NQ.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/IAR/startup_TMPM4NQ.s" attr="config" version="1.0.0" condition="Compiler IAR"/>
+        <file category="source"  name="Device/Source/system_TMPM4Nx.c"      attr="config" version="1.0.0" condition="TMPM4Nx Compiler"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM4NNx -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM4NNx CMSIS">
+      <description>System Startup for Toshiba TMPM4NNx Devices</description>
+      <files>
+        <file category="include" name="Device/Include/" condition="TMPM4Nx Compiler"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM4NN.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/IAR/startup_TMPM4NN.s" attr="config" version="1.0.0" condition="Compiler IAR"/>
+        <file category="source"  name="Device/Source/system_TMPM4Nx.c"      attr="config" version="1.0.0" condition="TMPM4Nx Compiler"/>
+      </files>
+    </component>
+
+  </components>
+
+</package>

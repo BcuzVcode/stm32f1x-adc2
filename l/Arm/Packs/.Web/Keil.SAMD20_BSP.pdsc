@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Keil</vendor>
+  <name>SAMD20_BSP</name>
+  <description>Microchip SAMD20 Board Support Package</description>
+  <url>https://www.keil.com/pack/</url>
+
+  <requirements>
+    <packages>
+      <package vendor="Microchip" name="SAMD20_DFP"   version="3.1.33"/>
+    </packages>
+  </requirements>
+
+  <releases>
+    <release version="1.0.1" date="2023-09-04" deprecated="2023-09-04">
+	  This Software Pack is no longer maintained.
+	</release>
+    <release version="1.0.0" date="2020-10-21">
+      Initial release of SAMD20-XPRO board support pack.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Microchip</keyword>
+    <keyword>SAMD20</keyword>
+  </keywords>
+
+  <conditions>
+    <condition id="SAMD20-XPRO CMSIS">
+       <require Dvendor="Microchip:3" Dname="ATSAMD20*"/>
+       <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- SAMD20-XPRO Board Support -->
+    <bundle Cbundle="SAMD20-XPRO" Cclass="Board Support" Cversion="1.0.0">
+      <description>Microchip SAMD20-XPRO Board Support</description>
+      <doc></doc>
+      <component Cgroup="LED"     Capiversion="1.0.0" condition="SAMD20-XPRO CMSIS">
+      <description>LED driver for Microchip SAMD20-XPRO Board</description>
+        <files>
+          <file category="source" name="boards/Microchip/SAMD20-XPRO/Common/LED_SAMD20-XPRO.c"/>
+        </files>
+      </component>
+      <component Cgroup="Buttons" Capiversion="1.0.0" condition="SAMD20-XPRO CMSIS">
+      <description>Button driver for Microchip SAMD20-XPRO Board</description>
+        <files>
+          <file category="source" name="boards/Microchip/SAMD20-XPRO/Common/Buttons_SAMD20-XPRO.c"/>
+        </files>
+      </component>
+    </bundle>
+  </components>
+
+  <boards>
+    <board vendor="Microchip" name="SAMD20-XPRO" revision="Rev.A" salesContact="https://www.microchipdirect.com">
+      <description>Atmel SAM D20 Xplained Pro Evaluation Kit</description>
+      <image small="boards/Microchip/SAMD20-XPRO/Documents/SAMD20-XPRO_small.png"
+             large="boards/Microchip/SAMD20-XPRO/Documents/SAMD20-XPRO_large.png"/>
+      <book category="overview"  name="https://www.microchip.com/developmenttools/ProductDetails/ATSAMD20-XPRO"                        title="SAM D20 Xplained Pro Evaluation Kit"/>
+      <book category="manual"    name="http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-42102-SAMD20-Xplained-Pro_User-Guide.pdf" title="SAM D20 Xplained Pro User Guide"/>
+      <mountedDevice    deviceIndex="0" Dvendor="Microchip:3" Dname="ATSAMD20J18"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Microchip:3" Dfamily="SAMD20"/>
+	    <feature type="ODbg"      n="1"              name="Embedded Debugger USB"/>
+		<feature type="XTAL"      n="32768"/>
+	    <feature type="PWR"       n="5"              name="USB Powered (from the Debugger)"/>
+	    <feature type="PWR"       n="5"              name="External Power"/>
+	    <feature type="DIO"       n="3"              name="Xplained Pro Extension headers"/>
+	    <feature type="Button"    n="2"              name="Push-buttons: User and Reset"/>
+	    <feature type="LED"       n="1"              name="Yellow User LED"/>
+	    <feature type="USB"       n="1"              name="Target USB"/>
+	    <feature type="CustomFF"  n="60" m="100"/>
+      <debugInterface adapter="Embedded Debugger" connector="Micro-USB"/>
+    </board>
+  </boards>
+
+  <examples>
+    <!-- SAMD20-XPRO Board -->
+    <example name="CMSIS-RTOS2 Blinky" doc="Abstract.txt" folder="boards/Microchip/SAMD20-XPRO/RTOS2_KeilRTX5_Blinky">
+      <description>CMSIS-RTOS2 (Keil RTX5) based Blinky example</description>
+      <board name="SAMD20-XPRO" vendor="Microchip"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <category>Getting Started</category>
+        <category>CMSIS-RTX</category>
+      </attributes>
+    </example>
+  </examples>
+
+</package>

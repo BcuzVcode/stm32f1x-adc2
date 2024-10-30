@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.7.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>SiliconLabs</vendor>
+  <url>https://www.silabs.com/documents/public/cmsis-packs/</url>
+  <name>GeckoPlatform_EZR32LG_DFP</name>
+  <description>Silicon Labs EZR32LG EZR Leopard Gecko Series Device Support.</description>
+  <license>License/license.md</license>
+
+  <releases>
+    <release version="4.4.0" date="2024-02-08">
+      New device family EFM32PG28 and new OPNs for EFR32SG28, EFR32MG24, EFR32BG24, MGM21, RM21
+    </release>
+    <release version="4.3.0" date="2023-06-15">
+      New device families EFR32SG23, EFR32SG28 and new OPNs for EFR32MG27, EFR32MG24, EFR32FG25, EFR32BG24, MGM24
+    </release>
+    <release version="4.2.0" date="2022-11-25">
+      New device families EFR32ZG28, EFR32FG28 and EFR32MR21
+    </release>
+    <release version="4.1.1" date="2022-06-22">
+      Add TrustZone support for Series2 Devices
+    </release>
+    <release version="4.1.0" date="2022-06-03">
+      Update CMSIS version to 5.8.0. New device families EFR32BG27, EFR32MG27. Documentation updated for ZGM130S, MGM220P, EFR32PG23. Add Cortex-M33 Generic User Guide
+    </release>
+    <release version="4.0.2" date="2022-04-22">
+      New OPNs for modules MGM24, for SoC EFR32MG24. New device families EFR32FG25. Documentation updated for EFM32PG22, EFR32BG24, EFR32MG24 and WGM160.
+    </release>
+    <release version="4.0.0" date="2022-01-24">
+      New OPNs for modules MGM21 and MGM24, for SoC EFR32MG24. New device families EFR32BG24, BGM24. Documentation updated for EFR32FG23, EFR32ZG23 and EFM32PG23.
+    </release>
+    <release version="3.2.0" date="2021-06-16">
+      New MCU's families efr32mg24, mgm24, wgm160.
+    </release>
+    <release version="3.1.0" date="2020-12-11">
+      New MCU's families efr32pg22, efr32fg23, efr32zg23 and efm32pg23.
+    </release>
+    <release version="3.0.0" date="2020-09-14">
+      Addition of EFR32ZG13L, EFR32ZG13S and removal of EFR32BG14P device families.
+    </release>
+    <release version="2.7.3" date="2020-03-23">
+      The PRORTC timer peripheral has been added to EFR32xG13 and EFR32xG14 device families.
+    </release>
+    <release version="2.7.0" date="2019-11-12">
+      Changed pack names and version number sequence.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Silicon Labs</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Silicon Labs</keyword>
+    <keyword>EZR32LG</keyword>
+    <keyword>EZR32</keyword>
+    <keyword>EZR Leopard Gecko</keyword>
+    <keyword>Gecko</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="EZR32LG Series" Dvendor="Silicon Labs:21">
+      <processor Dcore="Cortex-M3" DcoreVersion="r2p1" Dfpu="NO_FPU" Dmpu="MPU" Dtz="NO_TZ" Ddsp="NO_DSP" Dendian="Little-endian" Dclock="48000000"/>
+      <book name="Documents/cortex_m3_dgug.pdf"      title="Cortex-M3 Generic User Guide"/>
+      <book name="Documents/efm32-cortex-m3-rm.pdf"  title="EFM32 Cortex-M3 Reference Manual"/>
+      <book name="Documents/EZR32LG-RM.pdf"  title="EZR32LG Reference Manual"/>
+      <description>
+- 32-bit ARM Cortex-M3 processor running at up to 48 MHz&#xD;&#xA;- Up to 256 kB Flash and 32 kB RAM memory&#xD;&#xA;- Energy efficient and autonomous peripherals&#xD;&#xA;- Ultra low power Energy Modes with sub-uA operation&#xD;&#xA;- Fast wake-up time of only 2 us&#xD;&#xA;&#xD;&#xA;The EFM32LG microcontroller series revolutionizes the 8- to 32-bit market with a combination of unmatched performance and ultra low power consumption in both active- and sleep modes. EFM32LG devices consume as little as 211 uA/MHz in run mode.
+      </description>
+
+      <subFamily DsubFamily="EZR32LG230">
+        <book         name="Documents/ezr32lg-errata.pdf"         title="EZR32LG230 Errata"/>
+        <!-- *************************  Device 'EZR32LG230F128R55'  ***************************** -->
+        <device Dname="EZR32LG230F128R55">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG230F128R55"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG230F128R55.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00020000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00020000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00020000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG230F128R60'  ***************************** -->
+        <device Dname="EZR32LG230F128R60">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG230F128R60"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG230F128R60.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00020000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00020000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00020000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG230F128R61'  ***************************** -->
+        <device Dname="EZR32LG230F128R61">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG230F128R61"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG230F128R61.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00020000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00020000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00020000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG230F128R63'  ***************************** -->
+        <device Dname="EZR32LG230F128R63">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG230F128R63"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG230F128R63.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00020000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00020000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00020000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG230F128R67'  ***************************** -->
+        <device Dname="EZR32LG230F128R67">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG230F128R67"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG230F128R67.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00020000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00020000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00020000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG230F128R68'  ***************************** -->
+        <device Dname="EZR32LG230F128R68">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG230F128R68"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG230F128R68.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00020000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00020000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00020000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG230F128R69'  ***************************** -->
+        <device Dname="EZR32LG230F128R69">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG230F128R69"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG230F128R69.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00020000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00020000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00020000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG230F256R55'  ***************************** -->
+        <device Dname="EZR32LG230F256R55">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG230F256R55"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG230F256R55.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00040000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00040000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00040000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG230F256R60'  ***************************** -->
+        <device Dname="EZR32LG230F256R60">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG230F256R60"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG230F256R60.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00040000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00040000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00040000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG230F256R61'  ***************************** -->
+        <device Dname="EZR32LG230F256R61">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG230F256R61"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG230F256R61.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00040000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00040000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00040000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG230F256R63'  ***************************** -->
+        <device Dname="EZR32LG230F256R63">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG230F256R63"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG230F256R63.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00040000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00040000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00040000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG230F256R67'  ***************************** -->
+        <device Dname="EZR32LG230F256R67">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG230F256R67"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG230F256R67.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00040000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00040000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00040000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG230F256R68'  ***************************** -->
+        <device Dname="EZR32LG230F256R68">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG230F256R68"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG230F256R68.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00040000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00040000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00040000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG230F256R69'  ***************************** -->
+        <device Dname="EZR32LG230F256R69">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG230F256R69"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG230F256R69.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00040000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00040000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00040000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG230F64R55'  ***************************** -->
+        <device Dname="EZR32LG230F64R55">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG230F64R55"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG230F64R55.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00010000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00010000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00010000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG230F64R60'  ***************************** -->
+        <device Dname="EZR32LG230F64R60">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG230F64R60"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG230F64R60.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00010000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00010000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00010000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG230F64R61'  ***************************** -->
+        <device Dname="EZR32LG230F64R61">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG230F64R61"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG230F64R61.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00010000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00010000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00010000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG230F64R63'  ***************************** -->
+        <device Dname="EZR32LG230F64R63">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG230F64R63"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG230F64R63.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00010000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00010000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00010000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG230F64R67'  ***************************** -->
+        <device Dname="EZR32LG230F64R67">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG230F64R67"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG230F64R67.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00010000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00010000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00010000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG230F64R68'  ***************************** -->
+        <device Dname="EZR32LG230F64R68">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG230F64R68"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG230F64R68.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00010000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00010000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00010000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG230F64R69'  ***************************** -->
+        <device Dname="EZR32LG230F64R69">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG230F64R69"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG230F64R69.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00010000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00010000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00010000"  default="0"   style="IAR"/>
+        </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="EZR32LG330">
+        <book         name="Documents/ezr32lg-errata.pdf"         title="EZR32LG330 Errata"/>
+        <!-- *************************  Device 'EZR32LG330F128R55'  ***************************** -->
+        <device Dname="EZR32LG330F128R55">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG330F128R55"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG330F128R55.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00020000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00020000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00020000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG330F128R60'  ***************************** -->
+        <device Dname="EZR32LG330F128R60">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG330F128R60"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG330F128R60.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00020000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00020000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00020000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG330F128R61'  ***************************** -->
+        <device Dname="EZR32LG330F128R61">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG330F128R61"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG330F128R61.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00020000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00020000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00020000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG330F128R63'  ***************************** -->
+        <device Dname="EZR32LG330F128R63">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG330F128R63"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG330F128R63.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00020000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00020000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00020000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG330F128R67'  ***************************** -->
+        <device Dname="EZR32LG330F128R67">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG330F128R67"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG330F128R67.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00020000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00020000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00020000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG330F128R68'  ***************************** -->
+        <device Dname="EZR32LG330F128R68">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG330F128R68"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG330F128R68.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00020000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00020000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00020000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG330F128R69'  ***************************** -->
+        <device Dname="EZR32LG330F128R69">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG330F128R69"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG330F128R69.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00020000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00020000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00020000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG330F256R55'  ***************************** -->
+        <device Dname="EZR32LG330F256R55">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG330F256R55"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG330F256R55.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00040000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00040000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00040000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG330F256R60'  ***************************** -->
+        <device Dname="EZR32LG330F256R60">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG330F256R60"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG330F256R60.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00040000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00040000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00040000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG330F256R61'  ***************************** -->
+        <device Dname="EZR32LG330F256R61">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG330F256R61"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG330F256R61.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00040000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00040000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00040000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG330F256R63'  ***************************** -->
+        <device Dname="EZR32LG330F256R63">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG330F256R63"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG330F256R63.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00040000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00040000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00040000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG330F256R67'  ***************************** -->
+        <device Dname="EZR32LG330F256R67">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG330F256R67"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG330F256R67.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00040000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00040000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00040000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG330F256R68'  ***************************** -->
+        <device Dname="EZR32LG330F256R68">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG330F256R68"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG330F256R68.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00040000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00040000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00040000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG330F256R69'  ***************************** -->
+        <device Dname="EZR32LG330F256R69">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG330F256R69"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG330F256R69.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00040000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00040000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00040000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG330F64R55'  ***************************** -->
+        <device Dname="EZR32LG330F64R55">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG330F64R55"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG330F64R55.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00010000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00010000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00010000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG330F64R60'  ***************************** -->
+        <device Dname="EZR32LG330F64R60">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG330F64R60"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG330F64R60.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00010000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00010000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00010000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG330F64R61'  ***************************** -->
+        <device Dname="EZR32LG330F64R61">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG330F64R61"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG330F64R61.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00010000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00010000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00010000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG330F64R63'  ***************************** -->
+        <device Dname="EZR32LG330F64R63">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG330F64R63"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG330F64R63.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00010000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00010000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00010000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG330F64R67'  ***************************** -->
+        <device Dname="EZR32LG330F64R67">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG330F64R67"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG330F64R67.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00010000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00010000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00010000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG330F64R68'  ***************************** -->
+        <device Dname="EZR32LG330F64R68">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG330F64R68"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG330F64R68.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00010000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00010000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00010000"  default="0"   style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EZR32LG330F64R69'  ***************************** -->
+        <device Dname="EZR32LG330F64R69">
+          <compile header="Device/SiliconLabs/EZR32LG/Include/em_device.h"  define="EZR32LG330F64R69"/>
+          <debug      svd="SVD/EZR32LG/EZR32LG330F64R69.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00010000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00008000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/EFM32LG.FLM"  start="0x00000000"  size="0x00010000"  default="1"   style="Keil"/>
+          <algorithm  name="Flash/FlashEFM32.flash"  start="0x00000000"  size="0x00010000"  default="0"   style="IAR"/>
+        </device>
+
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler GCC">
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="Compiler IAR">
+      <require Tcompiler="IAR"/>
+    </condition>
+
+    <!-- Device Conditions -->
+    <condition id="EZR32LG">
+      <description>Silicon Labs EZR32LG device series</description>
+      <require Dvendor="Silicon Labs:21" Dname="EZR32LG*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="4.4.0" condition="EZR32LG">
+      <description>System Startup for Silicon Labs EZR32LG device series</description>
+      <files>
+        <!-- include folder -->
+        <file category="include" name="Device/SiliconLabs/EZR32LG/Include/"/>
+        <file category="header"  name="Device/SiliconLabs/EZR32LG/Include/em_device.h"/>
+        <!-- startup files -->
+        <file category="source"  name="Device/SiliconLabs/EZR32LG/Source/GCC/startup_ezr32lg.S" condition="Compiler GCC"   attr="config" version="4.4.0"/>
+        <file category="source"  name="Device/SiliconLabs/EZR32LG/Source/IAR/startup_ezr32lg.s" condition="Compiler IAR"   attr="config" version="4.4.0"/>
+        <!-- linker command file -->
+        <file category="linkerScript"  name="Device/SiliconLabs/EZR32LG/Source/GCC/ezr32lg.ld" condition="Compiler GCC" attr="config" version="4.4.0"/>
+        <!-- system file -->
+        <file category="source"  name="Device/SiliconLabs/EZR32LG/Source/system_ezr32lg.c" attr="config" version="4.4.0"/>
+      </files>
+    </component>
+  </components>
+</package>

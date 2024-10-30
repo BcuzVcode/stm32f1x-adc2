@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>LPCXpresso55S28_AZURE_RTOS_Examples</name>
+  <vendor>NXP</vendor>
+  <description>Middleware azure_rtos Examples Pack for LPCXpresso55S28</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="2.0.0" date="2024-07-17">NXP CMSIS SBSP Packs based on MCUXpresso SDK 2.16.0</release>
+    <release version="1.0.0" date="2024-01-14">NXP CMSIS SBSP Packs based on MCUXpresso SDK 2.15.0</release>
+  </releases>
+  <keywords>
+    <keyword>Middleware Board Support Pack</keyword>
+  </keywords>
+  <requirements>
+    <packages>
+      <package name="LPCXpresso55S28_BSP" vendor="NXP" version="19.0.0"/>
+      <package name="AZURE_RTOS" vendor="NXP" version="2.0.0"/>
+      <package name="LPC55S28_DFP" vendor="NXP" version="19.0.0"/>
+      <package name="Component_OS_Abstraction_Layer" vendor="NXP" version="3.0.0"/>
+      <package name="CMSIS" vendor="ARM" version="5.9.0"/>
+      <package name="USB" vendor="NXP" version="3.0.0"/>
+      <package name="SDMMC" vendor="NXP" version="3.0.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <examples>
+    <example name="azure_iot_embedded_sdk" folder="boards/lpcxpresso55s28/azure_rtos_examples/azure_iot_embedded_sdk" doc="readme.md">
+      <description>A simple mqtt example with azure-sdk-for-c.</description>
+      <board name="LPCXpresso55S28" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/azure_iot_embedded_sdk.uvprojx"/>
+        <environment name="csolution" load="azure_iot_embedded_sdk.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="ethernet_over_usb" folder="boards/lpcxpresso55s28/azure_rtos_examples/ethernet_over_usb" doc="readme.md">
+      <description>The Ethernet Over USB example.</description>
+      <board name="LPCXpresso55S28" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/ethernet_over_usb.uvprojx"/>
+        <environment name="csolution" load="ethernet_over_usb.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="filex_levelx_spiflash" folder="boards/lpcxpresso55s28/azure_rtos_examples/filex_levelx_spiflash" doc="readme.md">
+      <description>The filex_levelx_spiflash example.</description>
+      <board name="LPCXpresso55S28" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/filex_levelx_spiflash.uvprojx"/>
+        <environment name="csolution" load="filex_levelx_spiflash.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="filex_ram_disk" folder="boards/lpcxpresso55s28/azure_rtos_examples/filex_ram_disk" doc="readme.md">
+      <description>The filex_ram_disk example.</description>
+      <board name="LPCXpresso55S28" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/filex_ram_disk.uvprojx"/>
+        <environment name="csolution" load="filex_ram_disk.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="filex_sdcard" folder="boards/lpcxpresso55s28/azure_rtos_examples/filex_sdcard" doc="readme.md">
+      <description>The filex_sdcard example.</description>
+      <board name="LPCXpresso55S28" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/filex_sdcard.uvprojx"/>
+        <environment name="csolution" load="filex_sdcard.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="i2c_example" folder="boards/lpcxpresso55s28/azure_rtos_examples/i2c_example" doc="readme.md">
+      <description>The example shows I2C communication between two I2C ports.</description>
+      <board name="LPCXpresso55S28" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/i2c_example.uvprojx"/>
+        <environment name="csolution" load="i2c_example.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="spi_example" folder="boards/lpcxpresso55s28/azure_rtos_examples/spi_example" doc="readme.md">
+      <description>The example shows SPI communication between two SPI ports.</description>
+      <board name="LPCXpresso55S28" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/spi_example.uvprojx"/>
+        <environment name="csolution" load="spi_example.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="threadx_demo" folder="boards/lpcxpresso55s28/azure_rtos_examples/threadx_demo" doc="readme.md">
+      <description>The ThreadX example.</description>
+      <board name="LPCXpresso55S28" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/threadx_demo.uvprojx"/>
+        <environment name="csolution" load="threadx_demo.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="uart_example" folder="boards/lpcxpresso55s28/azure_rtos_examples/uart_example" doc="readme.md">
+      <description>The example shows how to use the uart driver in Azure RTOS.</description>
+      <board name="LPCXpresso55S28" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/uart_example.uvprojx"/>
+        <environment name="csolution" load="uart_example.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="usbx_device_audio_loopback" folder="boards/lpcxpresso55s28/azure_rtos_examples/usbx_device_audio_loopback" doc="readme.md">
+      <description>The usbx_device_audio_loopback example.</description>
+      <board name="LPCXpresso55S28" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/usbx_device_audio_loopback.uvprojx"/>
+        <environment name="csolution" load="usbx_device_audio_loopback.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="usbx_device_cdc_acm" folder="boards/lpcxpresso55s28/azure_rtos_examples/usbx_device_cdc_acm" doc="readme.md">
+      <description>The usbx_device_cdc_acm example.</description>
+      <board name="LPCXpresso55S28" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/usbx_device_cdc_acm.uvprojx"/>
+        <environment name="csolution" load="usbx_device_cdc_acm.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="usbx_device_composite_cdc_acm_cdc_acm" folder="boards/lpcxpresso55s28/azure_rtos_examples/usbx_device_composite_cdc_acm_cdc_acm" doc="readme.md">
+      <description>The usbx_device_composite_cdc_acm_cdc_acm example.</description>
+      <board name="LPCXpresso55S28" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/usbx_device_composite_cdc_acm_cdc_acm.uvprojx"/>
+        <environment name="csolution" load="usbx_device_composite_cdc_acm_cdc_acm.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="usbx_device_hid_keyboard" folder="boards/lpcxpresso55s28/azure_rtos_examples/usbx_device_hid_keyboard" doc="readme.md">
+      <description>The usbx_device_hid_keyboard example.</description>
+      <board name="LPCXpresso55S28" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/usbx_device_hid_keyboard.uvprojx"/>
+        <environment name="csolution" load="usbx_device_hid_keyboard.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="usbx_device_hid_mouse" folder="boards/lpcxpresso55s28/azure_rtos_examples/usbx_device_hid_mouse" doc="readme.md">
+      <description>The usbx_device_hid_mouse example.</description>
+      <board name="LPCXpresso55S28" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/usbx_device_hid_mouse.uvprojx"/>
+        <environment name="csolution" load="usbx_device_hid_mouse.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="usbx_device_mass_storage" folder="boards/lpcxpresso55s28/azure_rtos_examples/usbx_device_mass_storage" doc="readme.md">
+      <description>The usbx_device_mass_storage example.</description>
+      <board name="LPCXpresso55S28" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/usbx_device_mass_storage.uvprojx"/>
+        <environment name="csolution" load="usbx_device_mass_storage.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="usbx_host_cdc_acm" folder="boards/lpcxpresso55s28/azure_rtos_examples/usbx_host_cdc_acm" doc="readme.md">
+      <description>The usbx_host_cdc_acm example.</description>
+      <board name="LPCXpresso55S28" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/usbx_host_cdc_acm.uvprojx"/>
+        <environment name="csolution" load="usbx_host_cdc_acm.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="usbx_host_hid_keyboard" folder="boards/lpcxpresso55s28/azure_rtos_examples/usbx_host_hid_keyboard" doc="readme.md">
+      <description>The usbx_host_hid_keyboard example.</description>
+      <board name="LPCXpresso55S28" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/usbx_host_hid_keyboard.uvprojx"/>
+        <environment name="csolution" load="usbx_host_hid_keyboard.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="usbx_host_hid_mouse" folder="boards/lpcxpresso55s28/azure_rtos_examples/usbx_host_hid_mouse" doc="readme.md">
+      <description>The usbx_host_hid_mouse example.</description>
+      <board name="LPCXpresso55S28" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/usbx_host_hid_mouse.uvprojx"/>
+        <environment name="csolution" load="usbx_host_hid_mouse.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="usbx_host_mass_storage" folder="boards/lpcxpresso55s28/azure_rtos_examples/usbx_host_mass_storage" doc="readme.md">
+      <description>The usbx_host_mass_storage example.</description>
+      <board name="LPCXpresso55S28" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/usbx_host_mass_storage.uvprojx"/>
+        <environment name="csolution" load="usbx_host_mass_storage.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+  </examples>
+</package>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>LITTLEFS</name>
+  <vendor>NXP</vendor>
+  <description>Software Pack for littlefs</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="3.0.0" date="2024-07-17">NXP CMSIS SWP Packs based on MCUXpresso SDK 2.16.0</release>
+    <release version="2.0.0" date="2024-01-14">NXP CMSIS SWP Packs based on MCUXpresso SDK 2.15.0</release>
+    <release version="1.0.0" date="2023-07-27">NXP CMSIS SWP Packs based on MCUXpresso SDK 2.14.0</release>
+  </releases>
+  <keywords>
+    <keyword>Software Pack</keyword>
+  </keywords>
+  <requirements>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <components>
+    <component Cclass="File System" Cgroup="LittleFS File System" Csub="littlefs" Cversion="2.9.1">
+      <description>littlefs</description>
+      <files>
+        <file category="sourceC" name="middleware/littlefs/lfs.c" projectpath="littlefs"/>
+        <file category="sourceC" name="middleware/littlefs/lfs_util.c" projectpath="littlefs"/>
+        <file category="header" name="middleware/littlefs/lfs.h" projectpath="littlefs"/>
+        <file category="header" name="middleware/littlefs/lfs_util.h" projectpath="littlefs"/>
+        <file category="doc" name="middleware/littlefs/ChangeLogKSDK.txt" projectpath="littlefs"/>
+        <file category="include" name="middleware/littlefs/"/>
+      </files>
+    </component>
+  </components>
+</package>

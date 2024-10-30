@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>LPCXpresso54S018_FREERTOS-AWS_IOT_Examples</name>
+  <vendor>NXP</vendor>
+  <description>Middleware freertos-aws_iot Examples Pack for LPCXpresso54S018</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="2.0.0" date="2024-07-17">NXP CMSIS SBSP Packs based on MCUXpresso SDK 2.16.0</release>
+    <release version="1.0.0" date="2024-01-14">NXP CMSIS SBSP Packs based on MCUXpresso SDK 2.15.0</release>
+  </releases>
+  <keywords>
+    <keyword>Middleware Board Support Pack</keyword>
+  </keywords>
+  <requirements>
+    <packages>
+      <package name="LPCXpresso54S018_BSP" vendor="NXP" version="19.0.0"/>
+      <package name="LPC54S018_DFP" vendor="NXP" version="19.0.0"/>
+      <package name="MBEDTLS" vendor="NXP" version="3.0.0"/>
+      <package name="LWIP" vendor="NXP" version="3.0.0"/>
+      <package name="FREERTOS-AWS_IOT" vendor="NXP" version="2.0.0"/>
+      <package name="PKCS11" vendor="NXP" version="2.0.0"/>
+      <package name="FREERTOS-KERNEL" vendor="NXP" version="3.0.0"/>
+      <package name="CMSIS" vendor="ARM" version="5.9.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <examples>
+    <example name="aws_shadow_enet_qspi_xip" folder="boards/lpcxpresso54s018/aws_examples/shadow_enet_qspi_xip" doc="readme.md">
+      <description>Demo for showing how to use the Device Shadow library's API.</description>
+      <board name="LPCXpresso54S018" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/aws_shadow_enet_qspi_xip.uvprojx"/>
+        <environment name="csolution" load="aws_shadow_enet_qspi_xip.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+  </examples>
+</package>

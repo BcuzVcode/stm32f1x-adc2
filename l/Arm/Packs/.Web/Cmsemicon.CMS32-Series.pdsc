@@ -1,0 +1,1101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+	<vendor>Cmsemicon</vendor>
+	<name>CMS32-Series</name>
+	<description>Cmsemicon CMS32 Series Device Support</description>
+	<url>http://www.mcu.com.cn/pack/</url>
+	<releases>
+        <release version="1.1.0" date="2024-04-15">
+           Modified the CMS32F035 ADC0 software example code.
+           Add CMS32M57XX STB demo code.
+        </release>
+        <release version="1.0.9" date="2023-07-27">
+           Add enable and disable primask instruction in FLASH erase all, FLASH erase page and FLASH write API.
+        </release>
+         <release version="1.0.8" date="2023-05-15">
+            Modify OP and PGA format
+        </release>
+         <release version="1.0.7" date="2023-03-28">
+            Add cmsxx.h file to device for new project.
+        </release>
+         <release version="1.0.6" date="2023-01-05">
+            Fix bug
+        </release> 
+        <release version="1.0.5" date="2022-12-15">
+            Add CMS32M5717 chip
+        </release> 
+       <release version="1.0.4" date="2022-11-08">
+            Fix Bugs
+        </release> 
+        <release version="1.0.2" date="2021-01-08">
+            Add CMS32M5336/CMS32M5512/CMS32M5736/CMS32MEBIKE
+            Fix Bugs
+        </release> 
+        <release version="1.0.1" date="2020-09-28">
+            Update CMS32F033 Driver And Examples
+        </release>    
+		<release version="1.0.0" date="2020-07-16">
+            Initial Version
+        </release>    
+	</releases>
+	<keywords>
+		<!-- keywords for indexing -->
+		<keyword>Cmsemicon</keyword>
+		<keyword>CMS32 Series</keyword>
+		<keyword>CMS32</keyword>
+	</keywords>
+	<devices>
+		<family Dfamily="M0 Series" Dvendor="Cmsemicon:161">
+			<processor Dcore="Cortex-M0" DcoreVersion="r0p0"/>
+			<book name="Documents/dui0497a_cortex_m0_r0p0_generic_ug.pdf" title="Cortex-M0 Generic User Guide"/>
+			<subFamily DsubFamily="CMS32 Series">
+				<device Dname="CMS32F030">
+					<processor Dclock="32000000" /> 
+					<description>   
+                    CMS32F0 devices are high-speed and offer extensive communication peripherals. 
+                    </description>                    
+					<feature type="UART" n="2"/>
+					<feature type="I2C" n="1"/>
+					<feature type="SPI" n="1"/>
+					<feature type="Timer" n="4" m="32"/>
+					<feature type="ADC" n="8" m="10"/>
+					<feature type="UART" n="2" m="16"/>
+					<feature type="SPI" n="1" m="12000000" name="SPI"/>
+					<compile header="Device/CMS32F030/Include/CMS32F030.h" define="CMS32F030"/>
+					<debug svd="SVD/CMS32F030.svd"/>
+					<memory id="IROM1" start="0x00000000" size="0x8000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x1000" init="0" default="1"/>
+					<algorithm name="Flash/CMS32F030.FLM" start="0x00000000" size="0x8000" RAMstart="0x20000000" RAMsize="0x1000" default="1"/>
+				</device>
+				<device Dname="CMS32F033">
+					<processor Dclock="64000000"/>
+					<description>   
+Core
+ - ARM Cortex-M0 core runs up to 64 MHz
+ - One 24-bit system timer
+ - Supports low power Sleep/Deep sleep/Stop Mode
+ - A single-cycle 32-bit hardware multiplier
+ - A six-cycles 32-bit hardware divider
+Memory
+ - 32KB Flash memory for program memory and boot
+ - Independent 1KB Flash memory for data memory
+ - 8KB SRAM for internal scratch-pad RAM (SRAM)
+In-System Programming (ISP) &amp; In-Application Programming (IAP) &amp; In-Circuit Programming (ICP)
+Clock Control
+ - Programmable system clock source
+ - 48/64 MHz internal oscillator (HIRC) (1% accuracy at 25'C, 2.1 V to 5.5 V)
+ - 40 KHz internal low-power oscillator (LIRC) for watchdog and idle wakeup
+I/O Port
+ - Up to 30 General Purpose I/O (GPIO) pins
+Timer
+ - Two 16/32-bit Timers with 3-levels pre-scaler
+Watchdog Timer &amp; Window Watchdog Timer
+ - Programmable clock source and timeout period
+EPWM
+ - Built-in enhanced PWM up to six channels
+CCP
+ - Two groups CCP(Capture/Compare/PWM)
+UART
+ - Two UART devices
+SPI
+ - One SPI device
+I2C
+ - One I2C device
+ADC0
+ - 12-bit SAR ADC with 100K SPS
+ADC1
+ - 12-bit SAR ADC with 1.2M SPS
+Analog Comparator
+ - Two analog comparators
+Programmable Gain Amplifier
+ - Two programmable gain amplifiers
+Operation Amplifier
+ - Two operation amplifiers
+LVR
+ - Programmable 3 threshold levels: 2.6V/2.1V/1.9V
+LVD
+ - Programmable 6 threshold levels: 2.0V/2.2V/2.4V/2.7V/3.0V/3.7V
+96-bit unique ID
+128-bit user ID
+                    </description>
+					<feature type="UART" n="2"/>
+					<feature type="I2C" n="1"/>
+					<feature type="SPI" n="1"/>
+					<feature type="Timer" n="2" m="32"/>
+					<feature type="ADC" n="8" m="10"/>
+					<compile header="Device/CMS32F033/Include/CMS32F033.h" define="CMS32F033"/>
+					<debug svd="SVD/CMS32F033.svd"/>
+					<memory id="IROM1" start="0x00000000" size="0x8000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1"/>
+					<algorithm name="Flash/CMS32F033.FLM" start="0x00000000" size="0x8000" RAMstart="0x20000000" RAMsize="0x2000" default="1"/>
+				</device>
+				<device Dname="CMS32F035">
+					<processor Dclock="64000000"/>
+					<description>   
+Core
+ - ARM Cortex-M0 core runs up to 64 MHz
+ - One 24-bit system timer
+ - Supports low power Sleep/Deep sleep/Stop Mode
+ - A single-cycle 32-bit hardware multiplier
+Memory
+ - 64KB Flash memory for program memory and boot
+ - Independent 1KB Flash memory for data memory
+ - 8KB SRAM for internal scratch-pad RAM (SRAM)
+In-System Programming (ISP) &amp; In-Application Programming (IAP) &amp; In-Circuit Programming (ICP)
+Clock Control
+ - 64 MHz internal oscillator (HIRC) 
+ - 40 KHz internal low-power oscillator (LIRC)
+Timer
+ - Four Timers
+Watchdog Timer &amp; Window Watchdog Timer
+ - Programmable clock source and timeout period
+EPWM
+ - Built-in enhanced PWM up to four channels
+UART
+ - Two UART devices
+SPI
+ - One SPI device
+I2C
+ - One I2C device
+ADC0
+ - 12-bit SAR ADC with 100K SPS
+ADC1
+ - 12-bit SAR ADC with 1M SPS
+Analog Comparator
+ - Two analog comparators
+Operation Amplifier
+ - Two operation amplifiers
+Programmable Gain Amplifier
+ - Two programmable gain amplifiers
+LVR
+ - Programmable 3 threshold levels: 1.9V/2.1V/2.6V/3.5V
+LVD
+ - Programmable 8 threshold levels
+96-bit unique ID
+128-bit user ID
+            </description>
+					<feature type="UART" n="2"/>
+					<feature type="I2C" n="1"/>
+					<feature type="SPI" n="1"/>
+					<feature type="Timer" n="2" m="32"/>
+					<feature type="ADC" n="8" m="10"/>
+					<compile header="Device/CMS32F035/Include/CMS32F035.h" define="CMS32F035"/>
+					<debug svd="SVD/CMS32F035.svd"/>
+					<memory id="IROM1" start="0x00000000" size="0x10000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1"/>
+					<algorithm name="Flash/CMS32F035.FLM" start="0x00000000" size="0x10000" RAMstart="0x20000000" RAMsize="0x2000" default="1"/>
+				</device>                
+                <device Dname="CMS32M5310">
+					<processor Dclock="48000000"/>
+                    <description>   
+    Core
+     - ARM Cortex-M0 core runs up to 48 MHz
+     - One 24-bit system timer
+     - Supports low power Sleep/Deep sleep/Stop Mode
+     - A single-cycle 32-bit hardware multiplier
+     - A six-cycles 32-bit hardware divider
+    Memory
+     - 16KB Flash memory for program memory and boot
+     - Independent 1KB Flash memory for data memory
+     - 4KB SRAM for internal scratch-pad RAM (SRAM)
+    In-System Programming (ISP) &amp; In-Application Programming (IAP) &amp; In-Circuit Programming (ICP)
+    Clock Control
+     - Programmable system clock source
+     - 48 MHz internal oscillator (HIRC) (1% accuracy at 25'C, 2.1 V to 5.5 V)
+     - 40 KHz internal low-power oscillator (LIRC) for watchdog and idle wakeup
+    I/O Port
+     - Up to 30 General Purpose I/O (GPIO) pins
+    Timer
+     - Two 16/32-bit Timers with 3-levels pre-scaler
+    Watchdog Timer &amp; Window Watchdog Timer
+     - Programmable clock source and timeout period
+    EPWM
+     - Built-in enhanced PWM, up to six channels
+    CCP
+     - Two groups CCP(Capture/Compare/PWM)
+    UART
+     - Two UART devices
+    SPI
+     - One SPI device
+    I2C
+     - One I2C device
+    ADC1
+     - 12-bit SAR ADC with 1.2MSPS
+    Analog Comparator
+     - Two analog comparators
+    Operation Amplifier
+     - Two operation amplifiers
+    LVR
+     - Programmable 3 threshold levels: 1.9V/2.1V/2.6V
+    LVD
+     - Programmable 6 threshold levels: 2.0V/2.2V/2.4V/2.7V/3.0V/3.7V
+    96-bit unique ID
+    128-bit user ID
+                    </description>
+                    <compile header="Device/CMS32M53xx/Include/CMS32M53xx.h" define="CMS32M53xx"/>
+                    <debug svd="SVD/CMS32M53xx.svd"/>
+                    <memory id="IROM1" start="0x00000000" size="0x8000" startup="1" default="1"/>
+                    <memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1"/>
+                    <algorithm name="Flash/CMS32M53xx.FLM" start="0x00000000" size="0x8000" RAMstart="0x20000000" RAMsize="0x2000" default="1"/>
+                </device>          
+                <device Dname="CMS32M5332">
+					<processor Dclock="48000000"/>
+                    <description>   
+    Core
+     - ARM Cortex-M0 core runs up to 48 MHz
+     - One 24-bit system timer
+     - Supports low power Sleep/Deep sleep/Stop Mode
+     - A single-cycle 32-bit hardware multiplier
+     - A six-cycles 32-bit hardware divider
+    Memory
+     - 32KB Flash memory for program memory and boot
+     - Independent 1KB Flash memory for data memory
+     - 8KB SRAM for internal scratch-pad RAM (SRAM)
+    In-System Programming (ISP) &amp; In-Application Programming (IAP) &amp; In-Circuit Programming (ICP)
+    Clock Control
+     - Programmable system clock source
+     - 48 MHz internal oscillator (HIRC) (1% accuracy at 25'C, 2.1 V to 5.5 V)
+     - 40 KHz internal low-power oscillator (LIRC) for watchdog and idle wakeup
+    I/O Port
+     - Up to 30 General Purpose I/O (GPIO) pins
+    Timer
+     - Two 16/32-bit Timers with 3-levels pre-scaler
+    Watchdog Timer &amp; Window Watchdog Timer
+     - Programmable clock source and timeout period
+    EPWM
+     - Built-in enhanced PWM, up to six channels
+    CCP
+     - Two groups CCP(Capture/Compare/PWM)
+    UART
+     - Two UART devices
+    SPI
+     - One SPI device
+    I2C
+     - One I2C device
+    ADC1
+     - 12-bit SAR ADC with 1.2MSPS
+    Analog Comparator
+     - Two analog comparators
+    Operation Amplifier
+     - Two operation amplifiers
+    LVR
+     - Programmable 3 threshold levels: 1.9V/2.1V/2.6V
+    LVD
+     - Programmable 6 threshold levels: 2.0V/2.2V/2.4V/2.7V/3.0V/3.7V
+    96-bit unique ID
+    128-bit user ID
+                    </description>
+                    <compile header="Device/CMS32M53xx/Include/CMS32M53xx.h" define="CMS32M53xx"/>
+                    <debug svd="SVD/CMS32M53xx.svd"/>
+                    <memory id="IROM1" start="0x00000000" size="0x8000" startup="1" default="1"/>
+                    <memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1"/>
+                    <algorithm name="Flash/CMS32M53xx.FLM" start="0x00000000" size="0x8000" RAMstart="0x20000000" RAMsize="0x2000" default="1"/>
+                </device>                      
+				<device Dname="CMS32M5333">
+					<processor Dclock="48000000"/>
+					<description>   
+    Core
+     - ARM Cortex-M0 core runs up to 48 MHz
+     - One 24-bit system timer
+     - Supports low power Sleep/Deep sleep/Stop Mode
+     - A single-cycle 32-bit hardware multiplier
+     - A six-cycles 32-bit hardware divider
+    Memory
+     - 32KB Flash memory for program memory and boot
+     - Independent 1KB Flash memory for data memory
+     - 8KB SRAM for internal scratch-pad RAM (SRAM)
+    In-System Programming (ISP) &amp; In-Application Programming (IAP) &amp; In-Circuit Programming (ICP)
+    Clock Control
+     - Programmable system clock source
+     - 48 MHz internal oscillator (HIRC) (1% accuracy at 25'C, 2.1 V to 5.5 V)
+     - 40 KHz internal low-power oscillator (LIRC) for watchdog and idle wakeup
+    I/O Port
+     - Up to 30 General Purpose I/O (GPIO) pins
+    Timer
+     - Two 16/32-bit Timers with 3-levels pre-scaler
+    Watchdog Timer &amp; Window Watchdog Timer
+     - Programmable clock source and timeout period
+    EPWM
+     - Built-in enhanced PWM, up to six channels
+    CCP
+     - Two groups CCP(Capture/Compare/PWM)
+    UART
+     - Two UART devices
+    SPI
+     - One SPI device
+    I2C
+     - One I2C device
+    ADC1
+     - 12-bit SAR ADC with 1.2MSPS
+    Analog Comparator
+     - Two analog comparators
+    Operation Amplifier
+     - Two operation amplifiers
+    LVR
+     - Programmable 3 threshold levels: 1.9V/2.1V/2.6V
+    LVD
+     - Programmable 6 threshold levels: 2.0V/2.2V/2.4V/2.7V/3.0V/3.7V
+    96-bit unique ID
+    128-bit user ID
+                    </description>
+					<compile header="Device/CMS32M53xx/Include/CMS32M53xx.h" define="CMS32M53xx"/>
+					<debug svd="SVD/CMS32M53xx.svd"/>
+					<memory id="IROM1" start="0x00000000" size="0x8000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1"/>
+					<algorithm name="Flash/CMS32M53xx.FLM" start="0x00000000" size="0x8000" RAMstart="0x20000000" RAMsize="0x2000" default="1"/>
+				</device>
+                <device Dname="CMS32M5336">
+                    <processor Dclock="64000000"/>
+                    <description>   
+    Core
+     - ARM Cortex-M0 core runs up to 64 MHz
+     - One 24-bit system timer
+     - Supports low power Sleep/Deep sleep/Stop Mode
+     - A single-cycle 32-bit hardware multiplier
+     - A six-cycles 32-bit hardware divider
+    Memory
+     - 32KB Flash memory for program memory and boot
+     - Independent 1KB Flash memory for data memory
+     - 8KB SRAM for internal scratch-pad RAM (SRAM)
+    In-System Programming (ISP) &amp; In-Application Programming (IAP) &amp; In-Circuit Programming (ICP)
+    Clock Control
+     - Programmable system clock source
+     - 64 MHz internal oscillator (HIRC) (1% accuracy at 25'C, 2.1 V to 5.5 V)
+     - 40 KHz internal low-power oscillator (LIRC) for watchdog and idle wakeup
+    I/O Port
+     - Up to 24 General Purpose I/O (GPIO) pins
+    Timer
+     - Two 16/32-bit Timers with 3-levels pre-scaler
+    Watchdog Timer &amp; Window Watchdog Timer
+     - Programmable clock source and timeout period
+    EPWM
+     - Built-in enhanced PWM, up to six channels
+    CCP
+     - Two groups CCP(Capture/Compare/PWM)
+    UART
+     - Two UART devices
+    SPI
+     - One SPI device
+    I2C
+     - One I2C device
+    ADC0
+     - 12-bit SAR ADC with 100KSPS
+    ADC1
+     - 12-bit SAR ADC with 1.2MSPS
+    Analog Comparator
+     - Two analog comparators
+    Operation Amplifier
+     - Two operation amplifiers
+    LVR
+     - Programmable 3 threshold levels: 1.9V/2.1V/2.6V
+    LVD
+     - Programmable 6 threshold levels: 2.0V/2.2V/2.4V/2.7V/3.0V/3.7V
+    96-bit unique ID
+    128-bit user ID
+                    </description>
+                    <compile header="Device/CMS32M53xx/Include/CMS32M53xx.h" define="CMS32M53xx"/>
+                    <debug svd="SVD/CMS32M53xx.svd"/>
+                    <memory id="IROM1" start="0x00000000" size="0x8000" startup="1" default="1"/>
+                    <memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1"/>
+                    <algorithm name="Flash/CMS32M53xx.FLM" start="0x00000000" size="0x8000" RAMstart="0x20000000" RAMsize="0x2000" default="1"/>
+                </device>
+				<device Dname="CMS32M5510">
+					<processor Dclock="64000000"/>
+					<description>   
+    Core
+     - ARM Cortex-M0 core runs up to 64 MHz
+     - One 24-bit system timer
+     - Supports low power Sleep/Deep sleep/Stop Mode
+     - A single-cycle 32-bit hardware multiplier
+     - A six-cycles 32-bit hardware divider
+    Memory
+     - 32KB Flash memory for program memory and boot
+     - Independent 1KB Flash memory for data memory
+     - 8KB SRAM for internal scratch-pad RAM (SRAM)
+    In-System Programming (ISP) &amp; In-Application Programming (IAP) &amp; In-Circuit Programming (ICP)
+    Clock Control
+     - Programmable system clock source
+     - 48/64 MHz internal oscillator (HIRC) (1% accuracy at 25'C, 2.1 V to 5.5 V)
+     - 40 KHz internal low-power oscillator (LIRC) for watchdog and idle wakeup
+    I/O Port
+     - Up to 30 General Purpose I/O (GPIO) pins
+    Timer
+     - Two 16/32-bit Timers with 3-levels pre-scaler
+    Watchdog Timer &amp; Window Watchdog Timer
+     - Programmable clock source and timeout period
+    EPWM
+     - Built-in enhanced PWM, up to six channels
+    CCP
+     - Two groups CCP(Capture/Compare/PWM)
+    UART
+     - Two UART devices
+    SPI
+     - One SPI device
+    I2C
+     - One I2C device
+    ADC0
+     - 12-bit SAR ADC with 100K SPS
+    ADC1
+     - 12-bit SAR ADC with 1.2M SPS
+    Analog Comparator
+     - Two analog comparators
+    Programmable Gain Amplifier
+     - Two programmable gain amplifiers
+    Operation Amplifier
+     - Two operation amplifiers
+    LVR
+     - Programmable 3 threshold levels: 1.9V/2.1V/2.6V
+    LVD
+     - Programmable 6 threshold levels: 2.0V/2.2V/2.4V/2.7V/3.0V/3.7V
+    96-bit unique ID
+    128-bit user ID
+                        </description>
+					<compile header="Device/CMS32M55xx/Include/CMS32M55xx.h" define="CMS32M55xx"/>
+					<debug svd="SVD/CMS32M55xx.svd"/>
+					<memory id="IROM1" start="0x00000000" size="0x8000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1"/>
+					<algorithm name="Flash/CMS32M55xx.FLM" start="0x00000000" size="0x8000" RAMstart="0x20000000" RAMsize="0x2000" default="1"/>
+				</device>
+                <device Dname="CMS32M5512">
+                    <processor Dclock="64000000"/>
+                    <description>   
+    Core
+     - ARM Cortex-M0 core runs up to 64 MHz
+     - One 24-bit system timer
+     - Supports low power Sleep/Deep sleep/Stop Mode
+     - A single-cycle 32-bit hardware multiplier
+     - A six-cycles 32-bit hardware divider
+    Memory
+     - 32KB Flash memory for program memory and boot
+     - Independent 1KB Flash memory for data memory
+     - 8KB SRAM for internal scratch-pad RAM (SRAM)
+    In-System Programming (ISP) &amp; In-Application Programming (IAP) &amp; In-Circuit Programming (ICP)
+    Clock Control
+     - Programmable system clock source
+     - 48/64 MHz internal oscillator (HIRC) (1% accuracy at 25'C, 2.1 V to 5.5 V)
+     - 40 KHz internal low-power oscillator (LIRC) for watchdog and idle wakeup
+    I/O Port
+     - Up to 7 General Purpose I/O (GPIO) pins
+    Timer
+     - Two 16/32-bit Timers with 3-levels pre-scaler
+    Watchdog Timer &amp; Window Watchdog Timer
+     - Programmable clock source and timeout period
+    EPWM
+     - Built-in enhanced PWM, up to six channels
+    ADC0
+     - 12-bit SAR ADC with 100K SPS
+    Operation Amplifier
+     - Two operation amplifiers
+    LVR
+     - Programmable 3 threshold levels: 1.9V/2.1V/2.6V
+    LVD
+     - Programmable 6 threshold levels: 2.0V/2.2V/2.4V/2.7V/3.0V/3.7V
+    96-bit unique ID
+    128-bit user ID
+                        </description>
+                    <compile header="Device/CMS32M55xx/Include/CMS32M55xx.h" define="CMS32M55xx"/>
+                    <debug svd="SVD/CMS32M55xx.svd"/>
+                    <memory id="IROM1" start="0x00000000" size="0x4000" startup="1" default="1"/>
+                    <memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1"/>
+                    <algorithm name="Flash/CMS32M55xx.FLM" start="0x00000000" size="0x4000" RAMstart="0x20000000" RAMsize="0x2000" default="1"/>
+                </device>
+				<device Dname="CMS32M5524">
+					<processor Dclock="64000000"/>
+					<description>   
+    Core
+     - ARM Cortex-M0 core runs up to 64 MHz
+     - One 24-bit system timer
+     - Supports low power Sleep/Deep sleep/Stop Mode
+     - A single-cycle 32-bit hardware multiplier
+     - A six-cycles 32-bit hardware divider
+    Memory
+     - 32KB Flash memory for program memory and boot
+     - Independent 1KB Flash memory for data memory
+     - 8KB SRAM for internal scratch-pad RAM (SRAM)
+    In-System Programming (ISP) &amp; In-Application Programming (IAP) &amp; In-Circuit Programming (ICP)
+    Clock Control
+     - Programmable system clock source
+     - 48/64 MHz internal oscillator (HIRC) (1% accuracy at 25'C, 2.1 V to 5.5 V)
+     - 40 KHz internal low-power oscillator (LIRC) for watchdog and idle wakeup
+    I/O Port
+     - Up to 30 General Purpose I/O (GPIO) pins
+    Timer
+     - Two 16/32-bit Timers with 3-levels pre-scaler
+    Watchdog Timer &amp; Window Watchdog Timer
+     - Programmable clock source and timeout period
+    EPWM
+     - Built-in enhanced PWM, up to six channels
+    CCP
+     - Two groups CCP(Capture/Compare/PWM)
+    UART
+     - Two UART devices
+    SPI
+     - One SPI device
+    I2C
+     - One I2C device
+    ADC0
+     - 12-bit SAR ADC with 100K SPS
+    ADC1
+     - 12-bit SAR ADC with 1.2M SPS
+    Analog Comparator
+     - Two analog comparators
+    Programmable Gain Amplifier
+     - Two programmable gain amplifiers
+    Operation Amplifier
+     - Two operation amplifiers
+    LVR
+     - Programmable 3 threshold levels: 1.9V/2.1V/2.6V
+    LVD
+     - Programmable 6 threshold levels: 2.0V/2.2V/2.4V/2.7V/3.0V/3.7V
+    96-bit unique ID
+    128-bit user ID
+                        </description>
+					<compile header="Device/CMS32M55xx/Include/CMS32M55xx.h" define="CMS32M55xx"/>
+					<debug svd="SVD/CMS32M55xx.svd"/>
+					<memory id="IROM1" start="0x00000000" size="0x8000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1"/>
+					<algorithm name="Flash/CMS32M55xx.FLM" start="0x00000000" size="0x8000" RAMstart="0x20000000" RAMsize="0x2000" default="1"/>
+				</device>
+				<device Dname="CMS32M5533">
+					<processor Dclock="64000000"/>
+					<description>   
+    Core
+     - ARM Cortex-M0 core runs up to 64 MHz
+     - One 24-bit system timer
+     - Supports low power Sleep/Deep sleep/Stop Mode
+     - A single-cycle 32-bit hardware multiplier
+     - A six-cycles 32-bit hardware divider
+    Memory
+     - 32KB Flash memory for program memory and boot
+     - Independent 1KB Flash memory for data memory
+     - 8KB SRAM for internal scratch-pad RAM (SRAM)
+    In-System Programming (ISP) &amp; In-Application Programming (IAP) &amp; In-Circuit Programming (ICP)
+    Clock Control
+     - Programmable system clock source
+     - 48/64 MHz internal oscillator (HIRC) (1% accuracy at 25'C, 2.1 V to 5.5 V)
+     - 40 KHz internal low-power oscillator (LIRC) for watchdog and idle wakeup
+    I/O Port
+     - Up to 30 General Purpose I/O (GPIO) pins
+    Timer
+     - Two 16/32-bit Timers with 3-levels pre-scaler
+    Watchdog Timer &amp; Window Watchdog Timer
+     - Programmable clock source and timeout period
+    EPWM
+     - Built-in enhanced PWM, up to six channels
+    CCP
+     - Two groups CCP(Capture/Compare/PWM)
+    UART
+     - Two UART devices
+    SPI
+     - One SPI device
+    I2C
+     - One I2C device
+    ADC0
+     - 12-bit SAR ADC with 100K SPS
+    ADC1
+     - 12-bit SAR ADC with 1.2M SPS
+    Analog Comparator
+     - Two analog comparators
+    Programmable Gain Amplifier
+     - Two programmable gain amplifiers
+    Operation Amplifier
+     - Two operation amplifiers
+    LVR
+     - Programmable 3 threshold levels: 1.9V/2.1V/2.6V
+    LVD
+     - Programmable 6 threshold levels: 2.0V/2.2V/2.4V/2.7V/3.0V/3.7V
+    96-bit unique ID
+    128-bit user ID
+                        </description>
+					<compile header="Device/CMS32M55xx/Include/CMS32M55xx.h" define="CMS32M55xx"/>
+					<debug svd="SVD/CMS32M55xx.svd"/>
+					<memory id="IROM1" start="0x00000000" size="0x8000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1"/>
+					<algorithm name="Flash/CMS32M55xx.FLM" start="0x00000000" size="0x8000" RAMstart="0x20000000" RAMsize="0x2000" default="1"/>
+				</device>
+				<device Dname="CMS32M5710">
+					<processor Dclock="64000000"/>
+					<description>   
+Core
+ - ARM Cortex-M0 core runs up to 64 MHz
+ - One 24-bit system timer
+ - Supports low power Sleep/Deep sleep/Stop Mode
+ - A single-cycle 32-bit hardware multiplier
+ - A six-cycles 32-bit hardware divider
+Memory
+ - 64KB Flash memory for program memory and boot
+ - Independent 1KB Flash memory for data memory
+ - 8KB SRAM for internal scratch-pad RAM (SRAM)
+In-System Programming (ISP) &amp; In-Application Programming (IAP) &amp; In-Circuit Programming (ICP)
+Clock Control
+ - Programmable system clock source
+ - 48/64 MHz internal oscillator (HIRC) (1% accuracy at 25'C, 2.1 V to 5.5 V)
+ - 40 KHz internal low-power oscillator (LIRC) for watchdog and idle wakeup
+I/O Port
+ - Up to 30 General Purpose I/O (GPIO) pins
+Timer
+ - Four 16/32-bit Timers with 3-levels pre-scaler
+Watchdog Timer &amp; Window Watchdog Timer
+ - Programmable clock source and timeout period
+EPWM
+ - Built-in enhanced PWM, up to six channels
+CCP
+ - Two groups CCP(Capture/Compare/PWM)
+UART
+ - Two UART devices
+SPI
+ - One SPI device
+I2C
+ - One I2C device
+ADC0
+ - 12-bit SAR ADC with 100KSPS
+ADC1
+ - 12-bit SAR ADC with 1.2MSPS
+Analog Comparator
+ - Two analog comparators
+Programmable Gain Amplifier
+ - Two programmable gain amplifiers
+Operation Amplifier
+ - Two operation amplifiers
+Temperature sensor
+ - Built-in high precision temperature sensor
+LVR
+ - Programmable 3 threshold levels: 1.9V/2.1V/2.6V
+LVD
+ - Programmable 6 threshold levels: 2.0V/2.2V/2.4V/2.7V/3.0V/3.7V
+96-bit unique ID
+128-bit user ID
+                    </description>
+					<compile header="Device/CMS32M57xx/Include/CMS32M57xx.h" define="CMS32M57xx"/>
+					<debug svd="SVD/CMS32M57xx.svd"/>
+					<memory id="IROM1" start="0x00000000" size="0x10000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1"/>
+					<algorithm name="Flash/CMS32M57xx.FLM" start="0x00000000" size="0x10000" RAMstart="0x20000000" RAMsize="0x2000" default="1"/>
+				</device>
+					<device Dname="CMS32M5717">
+					<processor Dclock="64000000"/>
+					<description>   
+Core
+ - ARM Cortex-M0 core runs up to 64 MHz
+ - One 24-bit system timer
+ - Supports low power Sleep/Deep sleep/Stop Mode
+ - A single-cycle 32-bit hardware multiplier
+ - A six-cycles 32-bit hardware divider
+Memory
+ - 64KB Flash memory for program memory and boot
+ - Independent 1KB Flash memory for data memory
+ - 8KB SRAM for internal scratch-pad RAM (SRAM)
+In-System Programming (ISP) &amp; In-Application Programming (IAP) &amp; In-Circuit Programming (ICP)
+Clock Control
+ - Programmable system clock source
+ - 48/64 MHz internal oscillator (HIRC) (1% accuracy at 25'C, 2.1 V to 5.5 V)
+ - 40 KHz internal low-power oscillator (LIRC) for watchdog and idle wakeup
+I/O Port
+ - Up to 30 General Purpose I/O (GPIO) pins
+Timer
+ - Four 16/32-bit Timers with 3-levels pre-scaler
+Watchdog Timer &amp; Window Watchdog Timer
+ - Programmable clock source and timeout period
+EPWM
+ - Built-in enhanced PWM, up to six channels
+CCP
+ - Two groups CCP(Capture/Compare/PWM)
+UART
+ - Two UART devices
+SPI
+ - One SPI device
+I2C
+ - One I2C device
+ADC0
+ - 12-bit SAR ADC with 100KSPS
+ADC1
+ - 12-bit SAR ADC with 1.2MSPS
+Analog Comparator
+ - Two analog comparators
+Programmable Gain Amplifier
+ - Two programmable gain amplifiers
+Operation Amplifier
+ - Two operation amplifiers
+Temperature sensor
+ - Built-in high precision temperature sensor
+LVR
+ - Programmable 3 threshold levels: 1.9V/2.1V/2.6V
+LVD
+ - Programmable 6 threshold levels: 2.0V/2.2V/2.4V/2.7V/3.0V/3.7V
+96-bit unique ID
+128-bit user ID
+                    </description>
+					<compile header="Device/CMS32M57xx/Include/CMS32M57xx.h" define="CMS32M57xx"/>
+					<debug svd="SVD/CMS32M57xx.svd"/>
+					<memory id="IROM1" start="0x00000000" size="0x10000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1"/>
+					<algorithm name="Flash/CMS32M57xx.FLM" start="0x00000000" size="0x10000" RAMstart="0x20000000" RAMsize="0x2000" default="1"/>
+				</device>
+				<device Dname="CMS32M5733">
+					<processor Dclock="64000000"/>
+					<description>   
+Core
+ - ARM Cortex-M0 core runs up to 64 MHz
+ - One 24-bit system timer
+ - Supports low power Sleep/Deep sleep/Stop Mode
+ - A single-cycle 32-bit hardware multiplier
+ - A six-cycles 32-bit hardware divider
+Memory
+ - 64KB Flash memory for program memory and boot
+ - Independent 1KB Flash memory for data memory
+ - 8KB SRAM for internal scratch-pad RAM (SRAM)
+In-System Programming (ISP) &amp; In-Application Programming (IAP) &amp; In-Circuit Programming (ICP)
+Clock Control
+ - Programmable system clock source
+ - 48/64 MHz internal oscillator (HIRC) (1% accuracy at 25'C, 2.1 V to 5.5 V)
+ - 40 KHz internal low-power oscillator (LIRC) for watchdog and idle wakeup
+I/O Port
+ - Up to 30 General Purpose I/O (GPIO) pins
+Timer
+ - Four 16/32-bit Timers with 3-levels pre-scaler
+Watchdog Timer &amp; Window Watchdog Timer
+ - Programmable clock source and timeout period
+EPWM
+ - Built-in enhanced PWM, up to six channels
+CCP
+ - Two groups CCP(Capture/Compare/PWM)
+UART
+ - Two UART devices
+SPI
+ - One SPI device
+I2C
+ - One I2C device
+ADC0
+ - 12-bit SAR ADC with 100KSPS
+ADC1
+ - 12-bit SAR ADC with 1.2MSPS
+Analog Comparator
+ - Two analog comparators
+Programmable Gain Amplifier
+ - Two programmable gain amplifiers
+Operation Amplifier
+ - Two operation amplifiers
+Temperature sensor
+ - Built-in high precision temperature sensor
+LVR
+ - Programmable 3 threshold levels: 1.9V/2.1V/2.6V
+LVD
+ - Programmable 6 threshold levels: 2.0V/2.2V/2.4V/2.7V/3.0V/3.7V
+96-bit unique ID
+128-bit user ID
+                    </description>
+					<compile header="Device/CMS32M57xx/Include/CMS32M57xx.h" define="CMS32M57xx"/>
+					<debug svd="SVD/CMS32M57xx.svd"/>
+					<memory id="IROM1" start="0x00000000" size="0x10000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1"/>
+					<algorithm name="Flash/CMS32M57xx.FLM" start="0x00000000" size="0x10000" RAMstart="0x20000000" RAMsize="0x2000" default="1"/>
+				</device>
+                <device Dname="CMS32M5736">
+                    <processor Dclock="64000000"/>
+                    <description>   
+Core
+ - ARM Cortex-M0 core runs up to 64 MHz
+ - One 24-bit system timer
+ - Supports low power Sleep/Deep sleep/Stop Mode
+ - A single-cycle 32-bit hardware multiplier
+ - A six-cycles 32-bit hardware divider
+Memory
+ - 64KB Flash memory for program memory and boot
+ - Independent 1KB Flash memory for data memory
+ - 8KB SRAM for internal scratch-pad RAM (SRAM)
+In-System Programming (ISP) &amp; In-Application Programming (IAP) &amp; In-Circuit Programming (ICP)
+Clock Control
+ - Programmable system clock source
+ - 48/64 MHz internal oscillator (HIRC) (1% accuracy at 25'C, 2.1 V to 5.5 V)
+ - 40 KHz internal low-power oscillator (LIRC) for watchdog and idle wakeup
+I/O Port
+ - Up to 30 General Purpose I/O (GPIO) pins
+Timer
+ - Four 16/32-bit Timers with 3-levels pre-scaler
+Watchdog Timer &amp; Window Watchdog Timer
+ - Programmable clock source and timeout period
+EPWM
+ - Built-in enhanced PWM, up to six channels
+CCP
+ - Two groups CCP(Capture/Compare/PWM)
+UART
+ - Two UART devices
+SPI
+ - One SPI device
+I2C
+ - One I2C device
+ADC0
+ - 12-bit SAR ADC with 100KSPS
+ADC1
+ - 12-bit SAR ADC with 1.2MSPS
+Analog Comparator
+ - Two analog comparators
+Programmable Gain Amplifier
+ - Two programmable gain amplifiers
+Operation Amplifier
+ - Two operation amplifiers
+Temperature sensor
+ - Built-in high precision temperature sensor
+LVR
+ - Programmable 3 threshold levels: 1.9V/2.1V/2.6V
+LVD
+ - Programmable 6 threshold levels: 2.0V/2.2V/2.4V/2.7V/3.0V/3.7V
+96-bit unique ID
+128-bit user ID
+                    </description>
+                    <compile header="Device/CMS32M57xx/Include/CMS32M57xx.h" define="CMS32M57xx"/>
+                    <debug svd="SVD/CMS32M57xx.svd"/>
+                    <memory id="IROM1" start="0x00000000" size="0x10000" startup="1" default="1"/>
+                    <memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1"/>
+                    <algorithm name="Flash/CMS32M57xx.FLM" start="0x00000000" size="0x10000" RAMstart="0x20000000" RAMsize="0x2000" default="1"/>
+                </device>
+                <device Dname="CMS32MEBIKE">
+                    <processor Dclock="64000000"/>
+                    <description>   
+Core
+ - ARM Cortex-M0 core runs up to 64 MHz
+ - One 24-bit system timer
+ - Supports low power Sleep/Deep sleep/Stop Mode
+ - A single-cycle 32-bit hardware multiplier
+ - A six-cycles 32-bit hardware divider
+Memory
+ - 64KB Flash memory for program memory and boot
+ - Independent 1KB Flash memory for data memory
+ - 8KB SRAM for internal scratch-pad RAM (SRAM)
+In-System Programming (ISP) &amp; In-Application Programming (IAP) &amp; In-Circuit Programming (ICP)
+Clock Control
+ - Programmable system clock source
+ - 48/64 MHz internal oscillator (HIRC) (1% accuracy at 25'C, 2.1 V to 5.5 V)
+ - 40 KHz internal low-power oscillator (LIRC) for watchdog and idle wakeup
+Timer
+ - Four 16/32-bit Timers with 3-levels pre-scaler
+Watchdog Timer &amp; Window Watchdog Timer
+ - Programmable clock source and timeout period
+EPWM
+ - Built-in enhanced PWM up to four channels
+CCP
+ - Two groups CCP(Capture/Compare/PWM)
+UART
+ - Two UART devices
+SPI
+ - One SPI device
+I2C
+ - One I2C device
+ADC0
+ - 12-bit SAR ADC with 100KSPS
+ADC1
+ - 12-bit SAR ADC with 1.2MSPS
+Analog Comparator
+ - Two analog comparators
+Programmable Gain Amplifier
+ - Two programmable gain amplifiers
+Operation Amplifier
+ - Two operation amplifiers
+Temperature sensor
+ - Built-in high precision temperature sensor
+LVR
+ - Programmable 3 threshold levels: 1.9V/2.1V/2.6V
+LVD
+ - Programmable 6 threshold levels: 2.0V/2.2V/2.4V/2.7V/3.0V/3.7V
+96-bit unique ID
+128-bit user ID
+            </description>
+                    <feature type="UART" n="2"/>
+                    <feature type="I2C" n="1"/>
+                    <feature type="SPI" n="1"/>
+                    <feature type="Timer" n="2" m="32"/>
+                    <feature type="ADC" n="8" m="10"/>
+                    <compile header="Device/CMS32MEBIKE/Include/CMS32MEBIKE.h" define="CMS32MEBIKE"/>
+                    <debug svd="SVD/CMS32MEBIKE.svd"/>
+                    <memory id="IROM1" start="0x00000000" size="0x10000" startup="1" default="1"/>
+                    <memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1"/>
+                    <algorithm name="Flash/CMS32MEBIKE.FLM" start="0x00000000" size="0x10000" RAMstart="0x20000000" RAMsize="0x2000" default="1"/>
+                </device>
+			</subFamily>
+		</family>
+	</devices>
+	<conditions>
+		<!-- conditions are dependency rules that can apply to a component or an individual file -->
+		<condition id="Startup ARM">
+			<description>Startup assembler file for ARMCC</description>
+			<require Tcompiler="ARMCC"/>
+		</condition>
+		<condition id="CMS32 Series CMSIS-CORE">
+			<description>CMS CMS32 Series devices and CMSIS-CORE and ARMCC compiler</description>
+			<require condition="Startup ARM"/>
+			<require Cclass="CMSIS" Cgroup="CORE"/>
+			<require Dvendor="Cmsemicon:161" DsubFamily="CMS32 Series"/>
+		</condition>
+		<condition id="CMS32F030 CMSIS-CORE">
+			<description> CMS32F030 and CMSIS-CORE and ARMCC compiler</description>
+			<require condition="CMS32 Series CMSIS-CORE"/>
+			<accept Dname="CMS32F030"/>
+		</condition>
+		<condition id="CMS32F033 CMSIS-CORE">
+			<description> CMS32F033 and CMSIS-CORE and ARMCC compiler</description>
+			<require condition="CMS32 Series CMSIS-CORE"/>
+			<accept Dname="CMS32F033"/>
+		</condition>
+		<condition id="CMS32F035 CMSIS-CORE">
+			<description> CMS32F035 and CMSIS-CORE and ARMCC compiler</description>
+			<require condition="CMS32 Series CMSIS-CORE"/>
+			<accept Dname="CMS32F035"/>
+		</condition>
+		<condition id="CMS32M53xx CMSIS-CORE">
+			<description> CMS32M53xx and CMSIS-CORE and ARMCC compiler</description>
+			<require condition="CMS32 Series CMSIS-CORE"/>
+			<accept Dname="CMS32M5310"/>
+			<accept Dname="CMS32M5332"/>
+			<accept Dname="CMS32M5333"/>
+            <accept Dname="CMS32M5336"/>
+		</condition>
+		<condition id="CMS32M55xx CMSIS-CORE">
+			<description> CMS32M55xx and CMSIS-CORE and ARMCC compiler</description>
+			<require condition="CMS32 Series CMSIS-CORE"/>
+			<accept Dname="CMS32M5510"/>
+            <accept Dname="CMS32M5512"/>
+			<accept Dname="CMS32M5533"/>
+			<accept Dname="CMS32M5524"/>
+		</condition>
+		<condition id="CMS32M57xx CMSIS-CORE">
+			<description> CMS32M57xx and CMSIS-CORE and ARMCC compiler</description>
+			<require condition="CMS32 Series CMSIS-CORE"/>
+			<accept Dname="CMS32M5710"/>
+			<accept Dname="CMS32M5733"/>
+            <accept Dname="CMS32M5736"/>
+		</condition>
+        <condition id="CMS32MEBIKE CMSIS-CORE">
+            <description> CMS32F035 and CMSIS-CORE and ARMCC compiler</description>
+            <require condition="CMS32 Series CMSIS-CORE"/>
+            <accept Dname="CMS32MEBIKE"/>
+        </condition>
+	</conditions>
+	<components>
+		<!-- Startup CMS32F030 -->
+		<component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="CMS32F030 CMSIS-CORE">
+			<!-- Cversion is necessary -->
+			<description>System Startup for CMS CMS32F030 Series</description>
+			<!--RTE_Components_h>
+                #define RTE_DEVICE_STARTUP_CMS32F030     /* Device Startup for CMS32F030 */
+            </RTE_Components_h-->
+			<files>
+				<!-- include folder -->
+				<file category="include" name="Device/CMS32F030/Include/"/>
+				<file category="header" name="Device/CMS32F030/Include/CMS32F030.h"/>
+				<!-- startup files -->
+				<file category="source" name="Device/CMS32F030/Source/ARM/startup_CMS32F030.s" attr="config" condition="Startup ARM" version="1.0.0"/>
+				<!-- system file -->
+				<file category="source" name="Device/CMS32F030/Source/system_CMS32F030.c" attr="config" version="1.0.0"/>
+				<!-- device configuration required by drivers at the moment -->
+			</files>
+		</component>
+		<!-- Startup CMS32F033 -->
+		<component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="CMS32F033 CMSIS-CORE">
+			<!-- Cversion is necessary -->
+			<description>System Startup for CMS CMS32F033 Series</description>
+			<!--RTE_Components_h>
+                #define RTE_DEVICE_STARTUP_CMS32F033     /* Device Startup for CMS32F033 */
+            </RTE_Components_h-->
+			<files>
+				<!-- include folder -->
+				<file category="include" name="Device/CMS32F033/Include/"/>
+				<file category="header" name="Device/CMS32F033/Include/CMS32F033.h"/>
+				<!-- startup files -->
+				<file category="source" name="Device/CMS32F033/Source/ARM/startup_CMS32F033.s" attr="config" condition="Startup ARM" version="1.0.0"/>
+				<!-- system file -->
+				<file category="source" name="Device/CMS32F033/Source/system_CMS32F033.c" attr="config" version="1.0.0"/>
+				<!-- device configuration required by drivers at the moment -->
+			</files>
+		</component>
+		<!-- Startup CMS32F035 -->
+		<component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="CMS32F035 CMSIS-CORE">
+			<!-- Cversion is necessary -->
+			<description>System Startup for CMS CMS32F035 Series</description>
+			<!--RTE_Components_h>
+                #define RTE_DEVICE_STARTUP_CMS32F035     /* Device Startup for CMS32F035 */
+            </RTE_Components_h-->
+			<files>
+				<!-- include folder -->
+				<file category="include" name="Device/CMS32F035/Include/"/>
+				<file category="header" name="Device/CMS32F035/Include/CMS32F035.h"/>
+				<!-- startup files -->
+				<file category="source" name="Device/CMS32F035/Source/ARM/startup_CMS32F035.s" attr="config" condition="Startup ARM" version="1.0.0"/>
+				<!-- system file -->
+				<file category="source" name="Device/CMS32F035/Source/system_CMS32F035.c" attr="config" version="1.0.0"/>
+				<!-- device configuration required by drivers at the moment -->
+			</files>
+		</component>
+		<!-- Startup CMS32M53xx -->
+		<component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="CMS32M53xx CMSIS-CORE">
+			<!-- Cversion is necessary -->
+			<description>System Startup for CMS CMS32M53xx Series</description>
+			<!--RTE_Components_h>
+                #define RTE_DEVICE_STARTUP_CMS32M55xx     /* Device Startup for CMS32M55xx */
+            </RTE_Components_h-->
+			<files>
+				<!-- include folder -->
+				<file category="include" name="Device/CMS32M53xx/Include/"/>
+				<file category="header" name="Device/CMS32M53xx/Include/CMS32M53xx.h"/>
+				<!-- startup files -->
+				<file category="source" name="Device/CMS32M53xx/Source/ARM/startup_CMS32M53xx.s" attr="config" condition="Startup ARM" version="1.0.0"/>
+				<!-- system file -->
+				<file category="source" name="Device/CMS32M53xx/Source/system_CMS32M53xx.c" attr="config" version="1.0.0"/>
+				<!-- device configuration required by drivers at the moment -->
+			</files>
+		</component>
+		<!-- Startup CMS32M55xx -->
+		<component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="CMS32M55xx CMSIS-CORE">
+			<!-- Cversion is necessary -->
+			<description>System Startup for CMS CMS32M55xx Series</description>
+			<!--RTE_Components_h>
+                #define RTE_DEVICE_STARTUP_CMS32M55xx     /* Device Startup for CMS32M55xx */
+            </RTE_Components_h-->
+			<files>
+				<!-- include folder -->
+				<file category="include" name="Device/CMS32M55xx/Include/"/>
+				<file category="header" name="Device/CMS32M55xx/Include/CMS32M55xx.h"/>
+				<!-- startup files -->
+				<file category="source" name="Device/CMS32M55xx/Source/ARM/startup_CMS32M55xx.s" attr="config" condition="Startup ARM" version="1.0.0"/>
+				<!-- system file -->
+				<file category="source" name="Device/CMS32M55xx/Source/system_CMS32M55xx.c" attr="config" version="1.0.0"/>
+				<!-- device configuration required by drivers at the moment -->
+			</files>
+		</component>
+		<!-- Startup CMS32M57xx -->
+		<component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="CMS32M57xx CMSIS-CORE">
+			<!-- Cversion is necessary -->
+			<description>System Startup for CMS CMS32M57xx Series</description>
+			<!--RTE_Components_h>
+                #define RTE_DEVICE_STARTUP_CMS32M57xx     /* Device Startup for CMS32M57xx */
+            </RTE_Components_h-->
+			<files>
+				<!-- include folder -->
+				<file category="include" name="Device/CMS32M57xx/Include/"/>
+				<file category="header" name="Device/CMS32M57xx/Include/CMS32M57xx.h"/>
+				<!-- startup files -->
+				<file category="source" name="Device/CMS32M57xx/Source/ARM/startup_CMS32M57xx.s" attr="config" condition="Startup ARM" version="1.0.0"/>
+				<!-- system file -->
+				<file category="source" name="Device/CMS32M57xx/Source/system_CMS32M57xx.c" attr="config" version="1.0.0"/>
+				<!-- device configuration required by drivers at the moment -->
+			</files>
+		</component>
+        <!-- Startup CMS32MEBIKE -->
+        <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="CMS32MEBIKE CMSIS-CORE">
+            <!-- Cversion is necessary -->
+            <description>System Startup for CMS CMS32MEBIKE Series</description>
+            <!--RTE_Components_h>
+                #define RTE_DEVICE_STARTUP_CMS32F035     /* Device Startup for CMS32F035 */
+            </RTE_Components_h-->
+            <files>
+                <!-- include folder -->
+                <file category="include" name="Device/CMS32MEBIKE/Include/"/>
+                <file category="header" name="Device/CMS32MEBIKE/Include/CMS32MEBIKE.h"/>
+                <!-- startup files -->
+                <file category="source" name="Device/CMS32MEBIKE/Source/ARM/startup_CMS32MEBIKE.s" attr="config" condition="Startup ARM" version="1.0.0"/>
+                <!-- system file -->
+                <file category="source" name="Device/CMS32MEBIKE/Source/system_CMS32MEBIKE.c" attr="config" version="1.0.0"/>
+                <!-- device configuration required by drivers at the moment -->
+            </files>
+        </component>
+	</components>
+</package>

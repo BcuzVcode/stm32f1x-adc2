@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>MIMXRT1170-EVKB_LWIP_BSP</name>
+  <vendor>NXP</vendor>
+  <description>Middleware lwip Board Support Pack for MIMXRT1170-EVKB</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="1.0.1" date="2023-10-25" deprecated="2023-10-25" replacement="NXP.MIMXRT1170-EVKB_LWIP_Examples">This pack is no longer maintained. The new pack has been released with "_Examples" suffix instead of "_BSP".</release>
+    <release version="1.0.0" date="2023-07-27">NXP CMSIS SBSP Packs based on MCUXpresso SDK 2.14.0</release>
+  </releases>
+  <keywords>
+    <keyword>Middleware Board Support Pack</keyword>
+  </keywords>
+  <requirements>
+    <packages>
+      <package name="MIMXRT1176_DFP" vendor="NXP" version="18.0.0"/>
+      <package name="LWIP" vendor="NXP" version="1.0.1"/>
+      <package name="MIMXRT1170-EVKB_BSP" vendor="NXP" version="18.0.0"/>
+      <package name="CMSIS" vendor="ARM" version="5.8.0"/>
+      <package name="FREERTOS-KERNEL" vendor="NXP" version="1.0.1"/>
+      <package name="MBEDTLS" vendor="NXP" version="1.0.1"/>
+      <package name="USB" vendor="NXP" version="1.0.1"/>
+      <package name="Component_OS_Abstraction_Layer" vendor="NXP" version="1.0.1"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <boards>
+    <board vendor="NXP" name="MIMXRT1170-EVKB">
+      <description>i.MX RT1170 Evaluation Kit</description>
+      <image small="boards/evkbmimxrt1170/evkbmimxrt1170.png"/>
+      <mountedDevice Dname="MIMXRT1176xxxxx" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1171AVM8A" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1171CVM8A" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1171DVMAA" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1172AVM8A" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1172CVM8A" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1172DVMAA" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1173CVM8A" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1175AVM8A" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1175CVM8A" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1175DVMAA" Dvendor="NXP:11"/>
+    </board>
+  </boards>
+  <examples>
+    <example name="lwip_dhcp_bm_cm4" folder="boards/evkbmimxrt1170/lwip_examples/lwip_dhcp/bm/cm4" doc="readme.txt">
+      <description>The lwip_dhcp demo application demonstrates a DHCP demo on the lwIP TCP/IP stack.The application acts as a DHCP client and prints the status as it is progressing.Once the interface is being bound to an IP address obtained from DHCP server, address information is printed.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_dhcp_bm_cm4.uvprojx"/>
+        <environment name="csolution" load="lwip_dhcp_bm_cm4.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_dhcp_enet_qos_bm_cm4" folder="boards/evkbmimxrt1170/lwip_examples/lwip_dhcp_enet_qos/bm/cm4" doc="readme.txt">
+      <description>The lwip_dhcp demo application demonstrates a DHCP demo on the lwIP TCP/IP stack.The application acts as a DHCP client and prints the status as it is progressing.Once the interface is being bound to an IP address obtained from DHCP server, address information is printed.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_dhcp_enet_qos_bm_cm4.uvprojx"/>
+        <environment name="csolution" load="lwip_dhcp_enet_qos_bm_cm4.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_dhcp_freertos_cm4" folder="boards/evkbmimxrt1170/lwip_examples/lwip_dhcp/freertos/cm4" doc="readme.txt">
+      <description>The lwip_dhcp demo application demonstrates a DHCP demo on the lwIP TCP/IP stack.The application acts as a DHCP client and prints the status as it is progressing.Once the interface is being bound to an IP address obtained from DHCP server, address information is printed.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_dhcp_freertos_cm4.uvprojx"/>
+        <environment name="csolution" load="lwip_dhcp_freertos_cm4.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_dhcp_enet_qos_freertos_cm4" folder="boards/evkbmimxrt1170/lwip_examples/lwip_dhcp_enet_qos/freertos/cm4" doc="readme.txt">
+      <description>The lwip_dhcp demo application demonstrates a DHCP demo on the lwIP TCP/IP stack.The application acts as a DHCP client and prints the status as it is progressing.Once the interface is being bound to an IP address obtained from DHCP server, address information is printed.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_dhcp_enet_qos_freertos_cm4.uvprojx"/>
+        <environment name="csolution" load="lwip_dhcp_enet_qos_freertos_cm4.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_mqtt_freertos_cm4" folder="boards/evkbmimxrt1170/lwip_examples/lwip_mqtt/freertos/cm4" doc="readme.txt">
+      <description>The lwip_mqtt demo application demonstrates MQTT client connecting to MQTT broker via unsecured socket. The application obtains IP and DNS addresses from DHCP and resolves broker's hostname if needed. Then it connects to the broker and subscribes to the "lwip_topic/#" and "lwip_other/#" topics. Further it publishes five messages to the "lwip_topic/100" which are also received back as the board is subscribed to the "lwip_topic/#". Meanwhile it continues to receive messages published to the subscribed topics from other clients.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_mqtt_freertos_cm4.uvprojx"/>
+        <environment name="csolution" load="lwip_mqtt_freertos_cm4.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_mqtt_enet_qos_freertos_cm4" folder="boards/evkbmimxrt1170/lwip_examples/lwip_mqtt_enet_qos/freertos/cm4" doc="readme.txt">
+      <description>The lwip_mqtt demo application demonstrates MQTT client connecting to MQTT broker via unsecured socket. The application obtains IP and DNS addresses from DHCP and resolves broker's hostname if needed. Then it connects to the broker and subscribes to the "lwip_topic/#" and "lwip_other/#" topics. Further it publishes five messages to the "lwip_topic/100" which are also received back as the board is subscribed to the "lwip_topic/#". Meanwhile it continues to receive messages published to the subscribed topics from other clients.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_mqtt_enet_qos_freertos_cm4.uvprojx"/>
+        <environment name="csolution" load="lwip_mqtt_enet_qos_freertos_cm4.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_httpsrv_bm_cm4" folder="boards/evkbmimxrt1170/lwip_examples/lwip_httpsrv/bm/cm4" doc="readme.txt">
+      <description>The lwip_httpsrv demo application demonstrates an HTTPServer on the lwIP TCP/IP stack with bare metal SDK or FreeRTOS.The user uses an Internet browser to send a request for connection. The board acts as an HTTP server and sends a Webpage back to the PC.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_httpsrv_bm_cm4.uvprojx"/>
+        <environment name="csolution" load="lwip_httpsrv_bm_cm4.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_httpsrv_enet_qos_bm_cm4" folder="boards/evkbmimxrt1170/lwip_examples/lwip_httpsrv_enet_qos/bm/cm4" doc="readme.txt">
+      <description>The lwip_httpsrv demo application demonstrates an HTTPServer on the lwIP TCP/IP stack with bare metal SDK or FreeRTOS.The user uses an Internet browser to send a request for connection. The board acts as an HTTP server and sends a Webpage back to the PC.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_httpsrv_enet_qos_bm_cm4.uvprojx"/>
+        <environment name="csolution" load="lwip_httpsrv_enet_qos_bm_cm4.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_httpsrv_freertos_cm4" folder="boards/evkbmimxrt1170/lwip_examples/lwip_httpsrv/freertos/cm4" doc="readme.txt">
+      <description>The lwip_httpsrv demo application demonstrates an HTTPServer on the lwIP TCP/IP stack with bare metal SDK or FreeRTOS.The user uses an Internet browser to send a request for connection. The board acts as an HTTP server and sends a Webpage back to the PC.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_httpsrv_freertos_cm4.uvprojx"/>
+        <environment name="csolution" load="lwip_httpsrv_freertos_cm4.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_httpsrv_enet_qos_freertos_cm4" folder="boards/evkbmimxrt1170/lwip_examples/lwip_httpsrv_enet_qos/freertos/cm4" doc="readme.txt">
+      <description>The lwip_httpsrv demo application demonstrates an HTTPServer on the lwIP TCP/IP stack with bare metal SDK or FreeRTOS.The user uses an Internet browser to send a request for connection. The board acts as an HTTP server and sends a Webpage back to the PC.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_httpsrv_enet_qos_freertos_cm4.uvprojx"/>
+        <environment name="csolution" load="lwip_httpsrv_enet_qos_freertos_cm4.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_iperf_bm_cm4" folder="boards/evkbmimxrt1170/lwip_examples/lwip_iperf/bm/cm4" doc="readme.txt">
+      <description>This is the IPerf server example to check your bandwidth using the network performance measurement IPerf application on a PC as a client.It is currently a minimal implementation providing an IPv4 TCP server only.Instead of the command line IPerf application, for more convenience, it is recommended to use the JPerf2 graphical tool, which can be downloaded here: https://sourceforge.net/projects/iperf/files/jperf/jperf%202.0.0/jperf-2.0.0.zip/download</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_iperf_bm_cm4.uvprojx"/>
+        <environment name="csolution" load="lwip_iperf_bm_cm4.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_iperf_enet_qos_bm_cm4" folder="boards/evkbmimxrt1170/lwip_examples/lwip_iperf_enet_qos/bm/cm4" doc="readme.txt">
+      <description>This is the IPerf server example to check your bandwidth using the network performance measurement IPerf application on a PC as a client.It is currently a minimal implementation providing an IPv4 TCP server only.Instead of the command line IPerf application, for more convenience, it is recommended to use the JPerf2 graphical tool, which can be downloaded here: https://sourceforge.net/projects/iperf/files/jperf/jperf%202.0.0/jperf-2.0.0.zip/download</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_iperf_enet_qos_bm_cm4.uvprojx"/>
+        <environment name="csolution" load="lwip_iperf_enet_qos_bm_cm4.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_ping_bm_cm4" folder="boards/evkbmimxrt1170/lwip_examples/lwip_ping/bm/cm4" doc="readme.txt">
+      <description>The lwip_ping demo application demonstrates a Ping Demo on the lwIP TCP/IP stack, which uses the ICMP protocol. Theapplication periodically sends the ICMP echo request to a PC, and processes the PC reply. Type "ping $board_address"in the PC command window to send an ICMP echo request to the board. The lwIP stack sends the ICMP echo reply back to thePC.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_ping_bm_cm4.uvprojx"/>
+        <environment name="csolution" load="lwip_ping_bm_cm4.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_ping_enet_qos_bm_cm4" folder="boards/evkbmimxrt1170/lwip_examples/lwip_ping_enet_qos/bm/cm4" doc="readme.txt">
+      <description>The lwip_ping_enet_qos demo application demonstrates a Ping Demo on the lwIP TCP/IP stack, which uses the ICMP protocol. Theapplication periodically sends the ICMP echo request to a PC, and processes the PC reply. Type "ping $board_address"in the PC command window to send an ICMP echo request to the board. The lwIP stack sends the ICMP echo reply back to thePC.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_ping_enet_qos_bm_cm4.uvprojx"/>
+        <environment name="csolution" load="lwip_ping_enet_qos_bm_cm4.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_ping_freertos_cm4" folder="boards/evkbmimxrt1170/lwip_examples/lwip_ping/freertos/cm4" doc="readme.txt">
+      <description>The lwip_ping demo application demonstrates a Ping Demo on the lwIP TCP/IP stack which using the ICMP protocol. Theapplication periodically sends the ICMP echo request to a PC and processes the PC reply. Type the "ping $board_address"in the PC command window to send an ICMP echo request to the board. The lwIP stack sends the ICMP echo reply back to thePC.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_ping_freertos_cm4.uvprojx"/>
+        <environment name="csolution" load="lwip_ping_freertos_cm4.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_ping_enet_qos_freertos_cm4" folder="boards/evkbmimxrt1170/lwip_examples/lwip_ping_enet_qos/freertos/cm4" doc="readme.txt">
+      <description>The lwip_ping demo application demonstrates a Ping Demo on the lwIP TCP/IP stack which using the ICMP protocol. Theapplication periodically sends the ICMP echo request to a PC and processes the PC reply. Type the "ping $board_address"in the PC command window to send an ICMP echo request to the board. The lwIP stack sends the ICMP echo reply back to thePC.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_ping_enet_qos_freertos_cm4.uvprojx"/>
+        <environment name="csolution" load="lwip_ping_enet_qos_freertos_cm4.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_ipv4_ipv6_echo_freertos_cm4" folder="boards/evkbmimxrt1170/lwip_examples/lwip_ipv4_ipv6_echo/freertos/cm4" doc="readme.txt">
+      <description>The lwip_ipv4_ipv6_echo demo application demonstrates a TCP or UDP echo demo on the lwIP TCP/IP stack with FreeRTOS. The demo uses the TCP or UDP protocol over both IPv4 and IPv6 and acts as an echo server. The application sends back the received TCP or UDP packets from the PC, which can be used to test whether a TCP or UDP is available.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_ipv4_ipv6_echo_freertos_cm4.uvprojx"/>
+        <environment name="csolution" load="lwip_ipv4_ipv6_echo_freertos_cm4.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_ipv4_ipv6_echo_enet_qos_freertos_cm4" folder="boards/evkbmimxrt1170/lwip_examples/lwip_ipv4_ipv6_echo_enet_qos/freertos/cm4" doc="readme.txt">
+      <description>The lwip_ipv4_ipv6_echo demo application demonstrates a TCP or UDP echo demo on the lwIP TCP/IP stack with FreeRTOS. The demo uses the TCP or UDP protocol over both IPv4 and IPv6 and acts as an echo server. The application sends back the received TCP or UDP packets from the PC, which can be used to test whether a TCP or UDP is available.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_ipv4_ipv6_echo_enet_qos_freertos_cm4.uvprojx"/>
+        <environment name="csolution" load="lwip_ipv4_ipv6_echo_enet_qos_freertos_cm4.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_httpssrv_mbedTLS_bm_cm4" folder="boards/evkbmimxrt1170/lwip_examples/lwip_httpssrv_mbedTLS/bm/cm4" doc="readme.txt">
+      <description>The lwip_httpsrv_mbedTSL_bm demo application demonstrates an HTTPS Serverset up on lwIP TCP/IP and the mbedTLS stack with bare metal. The useruses an Internet browser to send an https request for connection.The board acts as an HTTPS server and sends a Web page back to the PC.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_httpssrv_mbedTLS_bm_cm4.uvprojx"/>
+        <environment name="csolution" load="lwip_httpssrv_mbedTLS_bm_cm4.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_httpssrv_mbedTLS_enet_qos_bm_cm4" folder="boards/evkbmimxrt1170/lwip_examples/lwip_httpssrv_mbedTLS_enet_qos/bm/cm4" doc="readme.txt">
+      <description>The lwip_httpsrv_mbedTSL_bm demo application demonstrates an HTTPS Serverset up on lwIP TCP/IP and the mbedTLS stack with bare metal. The useruses an Internet browser to send an https request for connection.The board acts as an HTTPS server and sends a Web page back to the PC.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_httpssrv_mbedTLS_enet_qos_bm_cm4.uvprojx"/>
+        <environment name="csolution" load="lwip_httpssrv_mbedTLS_enet_qos_bm_cm4.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_httpssrv_mbedTLS_freertos_cm4" folder="boards/evkbmimxrt1170/lwip_examples/lwip_httpssrv_mbedTLS/freertos/cm4" doc="readme.txt">
+      <description>The lwip_httpsrv_mbedTLS demo application demonstrates an HTTPServer set up on lwIP TCP/IP and the MbedTLS stack withFreeRTOS. The user uses an Internet browser to send an https request for connection. The board acts as an HTTP serverand sends a Web page back to the PC.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_httpssrv_mbedTLS_freertos_cm4.uvprojx"/>
+        <environment name="csolution" load="lwip_httpssrv_mbedTLS_freertos_cm4.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_httpssrv_mbedTLS_enet_qos_freertos_cm4" folder="boards/evkbmimxrt1170/lwip_examples/lwip_httpssrv_mbedTLS_enet_qos/freertos/cm4" doc="readme.txt">
+      <description>The lwip_httpsrv_mbedTLS demo application demonstrates an HTTPServer set up on lwIP TCP/IP and the MbedTLS stack withFreeRTOS. The user uses an Internet browser to send an https request for connection. The board acts as an HTTP serverand sends a Web page back to the PC.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_httpssrv_mbedTLS_enet_qos_freertos_cm4.uvprojx"/>
+        <environment name="csolution" load="lwip_httpssrv_mbedTLS_enet_qos_freertos_cm4.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_dhcp_bm_cm7" folder="boards/evkbmimxrt1170/lwip_examples/lwip_dhcp/bm/cm7" doc="readme.txt">
+      <description>The lwip_dhcp demo application demonstrates a DHCP demo on the lwIP TCP/IP stack.The application acts as a DHCP client and prints the status as it is progressing.Once the interface is being bound to an IP address obtained from DHCP server, address information is printed.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_dhcp_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="lwip_dhcp_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_dhcp_enet_qos_bm_cm7" folder="boards/evkbmimxrt1170/lwip_examples/lwip_dhcp_enet_qos/bm/cm7" doc="readme.txt">
+      <description>The lwip_dhcp demo application demonstrates a DHCP demo on the lwIP TCP/IP stack.The application acts as a DHCP client and prints the status as it is progressing.Once the interface is being bound to an IP address obtained from DHCP server, address information is printed.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_dhcp_enet_qos_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="lwip_dhcp_enet_qos_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_dhcp_usb_bm" folder="boards/evkbmimxrt1170/lwip_examples/lwip_dhcp_usb/bm/cm7" doc="readme.txt">
+      <description>The lwip_dhcp_usb demo application demonstrates a DHCP demo on the lwIP TCP/IP stack.The application acts as a DHCP client and prints the status as it is progressing.Once the interface is being bound to an IP address obtained from DHCP server, address information is printed.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_dhcp_usb_bm.uvprojx"/>
+        <environment name="csolution" load="lwip_dhcp_usb_bm.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_dhcp_freertos_cm7" folder="boards/evkbmimxrt1170/lwip_examples/lwip_dhcp/freertos/cm7" doc="readme.txt">
+      <description>The lwip_dhcp demo application demonstrates a DHCP demo on the lwIP TCP/IP stack.The application acts as a DHCP client and prints the status as it is progressing.Once the interface is being bound to an IP address obtained from DHCP server, address information is printed.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_dhcp_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="lwip_dhcp_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_dhcp_enet_qos_freertos_cm7" folder="boards/evkbmimxrt1170/lwip_examples/lwip_dhcp_enet_qos/freertos/cm7" doc="readme.txt">
+      <description>The lwip_dhcp demo application demonstrates a DHCP demo on the lwIP TCP/IP stack.The application acts as a DHCP client and prints the status as it is progressing.Once the interface is being bound to an IP address obtained from DHCP server, address information is printed.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_dhcp_enet_qos_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="lwip_dhcp_enet_qos_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_dhcp_usb_freertos" folder="boards/evkbmimxrt1170/lwip_examples/lwip_dhcp_usb/freertos/cm7" doc="readme.txt">
+      <description>The lwip_dhcp demo application demonstrates a DHCP demo on the lwIP TCP/IP stack.The application acts as a DHCP client and prints the status as it is progressing.Once the interface is being bound to an IP address obtained from DHCP server, address information is printed.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_dhcp_usb_freertos.uvprojx"/>
+        <environment name="csolution" load="lwip_dhcp_usb_freertos.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_mqtt_freertos_cm7" folder="boards/evkbmimxrt1170/lwip_examples/lwip_mqtt/freertos/cm7" doc="readme.txt">
+      <description>The lwip_mqtt demo application demonstrates MQTT client connecting to MQTT broker via unsecured socket. The application obtains IP and DNS addresses from DHCP and resolves broker's hostname if needed. Then it connects to the broker and subscribes to the "lwip_topic/#" and "lwip_other/#" topics. Further it publishes five messages to the "lwip_topic/100" which are also received back as the board is subscribed to the "lwip_topic/#". Meanwhile it continues to receive messages published to the subscribed topics from other clients.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_mqtt_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="lwip_mqtt_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_mqtt_enet_qos_freertos_cm7" folder="boards/evkbmimxrt1170/lwip_examples/lwip_mqtt_enet_qos/freertos/cm7" doc="readme.txt">
+      <description>The lwip_mqtt demo application demonstrates MQTT client connecting to MQTT broker via unsecured socket. The application obtains IP and DNS addresses from DHCP and resolves broker's hostname if needed. Then it connects to the broker and subscribes to the "lwip_topic/#" and "lwip_other/#" topics. Further it publishes five messages to the "lwip_topic/100" which are also received back as the board is subscribed to the "lwip_topic/#". Meanwhile it continues to receive messages published to the subscribed topics from other clients.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_mqtt_enet_qos_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="lwip_mqtt_enet_qos_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_httpsrv_bm_cm7" folder="boards/evkbmimxrt1170/lwip_examples/lwip_httpsrv/bm/cm7" doc="readme.txt">
+      <description>The lwip_httpsrv demo application demonstrates an HTTPServer on the lwIP TCP/IP stack with bare metal SDK or FreeRTOS.The user uses an Internet browser to send a request for connection. The board acts as an HTTP server and sends a Webpage back to the PC.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_httpsrv_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="lwip_httpsrv_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_httpsrv_enet_qos_bm_cm7" folder="boards/evkbmimxrt1170/lwip_examples/lwip_httpsrv_enet_qos/bm/cm7" doc="readme.txt">
+      <description>The lwip_httpsrv demo application demonstrates an HTTPServer on the lwIP TCP/IP stack with bare metal SDK or FreeRTOS.The user uses an Internet browser to send a request for connection. The board acts as an HTTP server and sends a Webpage back to the PC.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_httpsrv_enet_qos_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="lwip_httpsrv_enet_qos_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_httpsrv_freertos_cm7" folder="boards/evkbmimxrt1170/lwip_examples/lwip_httpsrv/freertos/cm7" doc="readme.txt">
+      <description>The lwip_httpsrv demo application demonstrates an HTTPServer on the lwIP TCP/IP stack with bare metal SDK or FreeRTOS.The user uses an Internet browser to send a request for connection. The board acts as an HTTP server and sends a Webpage back to the PC.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_httpsrv_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="lwip_httpsrv_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_httpsrv_enet_qos_freertos_cm7" folder="boards/evkbmimxrt1170/lwip_examples/lwip_httpsrv_enet_qos/freertos/cm7" doc="readme.txt">
+      <description>The lwip_httpsrv demo application demonstrates an HTTPServer on the lwIP TCP/IP stack with bare metal SDK or FreeRTOS.The user uses an Internet browser to send a request for connection. The board acts as an HTTP server and sends a Webpage back to the PC.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_httpsrv_enet_qos_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="lwip_httpsrv_enet_qos_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_iperf_bm_cm7" folder="boards/evkbmimxrt1170/lwip_examples/lwip_iperf/bm/cm7" doc="readme.txt">
+      <description>This is the IPerf server example to check your bandwidth using the network performance measurement IPerf application on a PC as a client.It is currently a minimal implementation providing an IPv4 TCP server only.Instead of the command line IPerf application, for more convenience, it is recommended to use the JPerf2 graphical tool, which can be downloaded here: https://sourceforge.net/projects/iperf/files/jperf/jperf%202.0.0/jperf-2.0.0.zip/download</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_iperf_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="lwip_iperf_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_iperf_enet_qos_bm_cm7" folder="boards/evkbmimxrt1170/lwip_examples/lwip_iperf_enet_qos/bm/cm7" doc="readme.txt">
+      <description>This is the IPerf server example to check your bandwidth using the network performance measurement IPerf application on a PC as a client.It is currently a minimal implementation providing an IPv4 TCP server only.Instead of the command line IPerf application, for more convenience, it is recommended to use the JPerf2 graphical tool, which can be downloaded here: https://sourceforge.net/projects/iperf/files/jperf/jperf%202.0.0/jperf-2.0.0.zip/download</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_iperf_enet_qos_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="lwip_iperf_enet_qos_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_ping_bm_cm7" folder="boards/evkbmimxrt1170/lwip_examples/lwip_ping/bm/cm7" doc="readme.txt">
+      <description>The lwip_ping demo application demonstrates a Ping Demo on the lwIP TCP/IP stack, which uses the ICMP protocol. Theapplication periodically sends the ICMP echo request to a PC, and processes the PC reply. Type "ping $board_address"in the PC command window to send an ICMP echo request to the board. The lwIP stack sends the ICMP echo reply back to thePC.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_ping_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="lwip_ping_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_ping_enet_qos_bm_cm7" folder="boards/evkbmimxrt1170/lwip_examples/lwip_ping_enet_qos/bm/cm7" doc="readme.txt">
+      <description>The lwip_ping_enet_qos demo application demonstrates a Ping Demo on the lwIP TCP/IP stack, which uses the ICMP protocol. Theapplication periodically sends the ICMP echo request to a PC, and processes the PC reply. Type "ping $board_address"in the PC command window to send an ICMP echo request to the board. The lwIP stack sends the ICMP echo reply back to thePC.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_ping_enet_qos_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="lwip_ping_enet_qos_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_ping_freertos_cm7" folder="boards/evkbmimxrt1170/lwip_examples/lwip_ping/freertos/cm7" doc="readme.txt">
+      <description>The lwip_ping demo application demonstrates a Ping Demo on the lwIP TCP/IP stack which using the ICMP protocol. Theapplication periodically sends the ICMP echo request to a PC and processes the PC reply. Type the "ping $board_address"in the PC command window to send an ICMP echo request to the board. The lwIP stack sends the ICMP echo reply back to thePC.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_ping_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="lwip_ping_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_ping_enet_qos_freertos_cm7" folder="boards/evkbmimxrt1170/lwip_examples/lwip_ping_enet_qos/freertos/cm7" doc="readme.txt">
+      <description>The lwip_ping demo application demonstrates a Ping Demo on the lwIP TCP/IP stack which using the ICMP protocol. Theapplication periodically sends the ICMP echo request to a PC and processes the PC reply. Type the "ping $board_address"in the PC command window to send an ICMP echo request to the board. The lwIP stack sends the ICMP echo reply back to thePC.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_ping_enet_qos_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="lwip_ping_enet_qos_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_ipv4_ipv6_echo_freertos_cm7" folder="boards/evkbmimxrt1170/lwip_examples/lwip_ipv4_ipv6_echo/freertos/cm7" doc="readme.txt">
+      <description>The lwip_ipv4_ipv6_echo demo application demonstrates a TCP or UDP echo demo on the lwIP TCP/IP stack with FreeRTOS. The demo uses the TCP or UDP protocol over both IPv4 and IPv6 and acts as an echo server. The application sends back the received TCP or UDP packets from the PC, which can be used to test whether a TCP or UDP is available.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_ipv4_ipv6_echo_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="lwip_ipv4_ipv6_echo_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_ipv4_ipv6_echo_enet_qos_freertos_cm7" folder="boards/evkbmimxrt1170/lwip_examples/lwip_ipv4_ipv6_echo_enet_qos/freertos/cm7" doc="readme.txt">
+      <description>The lwip_ipv4_ipv6_echo demo application demonstrates a TCP or UDP echo demo on the lwIP TCP/IP stack with FreeRTOS. The demo uses the TCP or UDP protocol over both IPv4 and IPv6 and acts as an echo server. The application sends back the received TCP or UDP packets from the PC, which can be used to test whether a TCP or UDP is available.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_ipv4_ipv6_echo_enet_qos_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="lwip_ipv4_ipv6_echo_enet_qos_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_httpssrv_mbedTLS_bm_cm7" folder="boards/evkbmimxrt1170/lwip_examples/lwip_httpssrv_mbedTLS/bm/cm7" doc="readme.txt">
+      <description>The lwip_httpsrv_mbedTSL_bm demo application demonstrates an HTTPS Serverset up on lwIP TCP/IP and the mbedTLS stack with bare metal. The useruses an Internet browser to send an https request for connection.The board acts as an HTTPS server and sends a Web page back to the PC.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_httpssrv_mbedTLS_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="lwip_httpssrv_mbedTLS_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_httpssrv_mbedTLS_enet_qos_bm_cm7" folder="boards/evkbmimxrt1170/lwip_examples/lwip_httpssrv_mbedTLS_enet_qos/bm/cm7" doc="readme.txt">
+      <description>The lwip_httpsrv_mbedTSL_bm demo application demonstrates an HTTPS Serverset up on lwIP TCP/IP and the mbedTLS stack with bare metal. The useruses an Internet browser to send an https request for connection.The board acts as an HTTPS server and sends a Web page back to the PC.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_httpssrv_mbedTLS_enet_qos_bm_cm7.uvprojx"/>
+        <environment name="csolution" load="lwip_httpssrv_mbedTLS_enet_qos_bm_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_httpssrv_mbedTLS_freertos_cm7" folder="boards/evkbmimxrt1170/lwip_examples/lwip_httpssrv_mbedTLS/freertos/cm7" doc="readme.txt">
+      <description>The lwip_httpsrv_mbedTLS demo application demonstrates an HTTPServer set up on lwIP TCP/IP and the MbedTLS stack withFreeRTOS. The user uses an Internet browser to send an https request for connection. The board acts as an HTTP serverand sends a Web page back to the PC.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_httpssrv_mbedTLS_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="lwip_httpssrv_mbedTLS_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="lwip_httpssrv_mbedTLS_enet_qos_freertos_cm7" folder="boards/evkbmimxrt1170/lwip_examples/lwip_httpssrv_mbedTLS_enet_qos/freertos/cm7" doc="readme.txt">
+      <description>The lwip_httpsrv_mbedTLS demo application demonstrates an HTTPServer set up on lwIP TCP/IP and the MbedTLS stack withFreeRTOS. The user uses an Internet browser to send an https request for connection. The board acts as an HTTP serverand sends a Web page back to the PC.</description>
+      <board name="MIMXRT1170-EVKB" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/lwip_httpssrv_mbedTLS_enet_qos_freertos_cm7.uvprojx"/>
+        <environment name="csolution" load="lwip_httpssrv_mbedTLS_enet_qos_freertos_cm7.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+  </examples>
+</package>

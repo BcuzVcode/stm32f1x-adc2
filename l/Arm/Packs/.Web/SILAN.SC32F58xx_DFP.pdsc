@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+	<vendor>SILAN</vendor>
+	<name>SC32F58xx_DFP</name>
+	<description>Silan SC32F58xx Device Family Pack</description>
+	<url>https://github.com/Silanpack/Pack/raw/main/</url>
+	<releases>
+		<release version="1.4.0" date="2021-04-13">Initial Version</release>
+	</releases>
+	<keywords>
+		<!-- keywords for indexing -->
+		<keyword>SILAN</keyword>
+		<keyword>SC32F58128</keyword>
+		<keyword>SC32F58256</keyword>
+		<keyword>SC32F58D128</keyword>
+	</keywords>
+	<!-- devices section (mandatory for Device Family Packs) -->
+	<devices>
+		<family Dfamily="SC32F58 Series" Dvendor="SILAN:164">
+			<!-- ************************  Subfamily 'SC32F58128'  **************************** -->
+			<subFamily DsubFamily="SC32F58128">
+				<processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+				<processor Dclock="80000000"/>
+				<feature type="Temp"    n="-40" m="105"/>
+				<feature type="VCC"     n="2.4" m="5.5"/>
+				<feature type="ADC"     n="16"  m="12"/>
+				<feature type="PWM"     n="16"  m="16"/>
+				<feature type="Timer"   n="3"   m="32"/>
+				<feature type="WDT"     n="2"/>
+				<feature type="UART"    n="3"/>
+				<feature type="SPI"     n="4"/>
+				<feature type="I2C"     n="1"/>
+				<feature type="CAN"     n="1"/>
+				<book name="Documents/dui0497a_cortex_m0_r0p0_generic_ug.pdf" title="Cortex-M0 Generic User Guide"/>
+				<compile header="Device/Include/SC32F58128.h"/>
+				<debug svd="SVD/SC32F58128.svd"/>
+				<!-- *************************  Device 'SC32F58128'  ***************************** -->
+				<device Dname="SC32F58128">
+					<memory id="IROM1" start="0x00000000" size="0x20000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x4000" init="0" default="1"/>
+					<algorithm name="Flash/SC32F58128_256kB_flash.FLM" start="0x00000000" size="0x40000" RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+					<algorithm name="Flash/SC32F58128.flash" start="0x00000000" size="0x40000" RAMstart="0x20000000" RAMsize="0x4000" default="true" style="IAR"/>
+					<description>
+SC32f58128 is designed intended for motor control and digital control power supply applications. It uses Cortex-M0 core with maximum operating frequency 80MHz. At the same time, it also has rich auxiliary operation function units, which can meet various complex function operation functions.
+SC32f58128 supports single power, and intigrates high precision high speed and low speed oscillators, and supports a variety of low power mode.The chip is integrated with multiple PWM, CAP, QEP, Timer, 12 bit ADC, DAC, CMPSS. It support configurable on-chip event interconnection function. Rich communication interfaces include UART, I2C, SPI, can, etc, can meet a variety of motor and power control system application requirements.
+					</description>
+				</device>
+				<!-- *************************  Device 'SC32F5256'  ***************************** -->
+				<device Dname="SC32F58256">
+					<memory id="IROM1" start="0x00000000" size="0x40000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x8000" init="0" default="1"/>
+					<algorithm name="Flash/SC32F58128_256kB_flash.FLM" start="0x00000000" size="0x40000" RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+					<algorithm name="Flash/SC32F58256.flash" start="0x00000000" size="0x40000" RAMstart="0x20000000" RAMsize="0x4000" default="true" style="IAR"/>
+					<description>
+SC32f58256 is designed intended for motor control and digital control power supply applications. It uses Cortex-M0 core with maximum operating frequency 80MHz. At the same time, it also has rich auxiliary operation function units, which can meet various complex function operation functions.
+SC32f58256 supports single power, and intigrates high precision high speed and low speed oscillators, and supports a variety of low power mode.The chip is integrated with multiple PWM, CAP, QEP, Timer, 12 bit ADC, DAC, CMPSS. It support configurable on-chip event interconnection function. Rich communication interfaces include UART, I2C, SPI, can, etc, can meet a variety of motor and power control system application requirements.
+					</description>
+				</device>
+				<!-- *************************  Device 'SC32F58D128'  ***************************** -->
+				<device Dname="SC32F58D128">
+					<memory id="IROM1" start="0x00000000" size="0x20000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x8000" init="0" default="1"/>
+					<algorithm name="Flash/SC32F58128_256kB_flash.FLM" start="0x00000000" size="0x40000" RAMstart="0x20000000" RAMsize="0x4000" default="1" style="Keil"/>
+					<algorithm name="Flash/SC32F58D128.flash" start="0x00000000" size="0x40000" RAMstart="0x20000000" RAMsize="0x4000" default="true" style="IAR"/>
+					<description>
+SC32f58D128 is designed intended for motor control and digital control power supply applications. It uses Cortex-M0 core with maximum operating frequency 80MHz. At the same time, it also has rich auxiliary operation function units, which can meet various complex function operation functions.
+SC32f58D128 supports single power, and intigrates high precision high speed and low speed oscillators, and supports a variety of low power mode.The chip is integrated with multiple PWM, CAP, QEP, Timer, 12 bit ADC, DAC, CMPSS. It support configurable on-chip event interconnection function. Rich communication interfaces include UART, I2C, SPI, can, etc, can meet a variety of motor and power control system application requirements.
+					</description>
+				</device>
+			</subFamily>
+		</family>
+	</devices>
+  
+	<conditions>
+		<!-- Compiler Conditions -->
+		<condition id="Compiler ARMCC">
+			<require Tcompiler="ARMCC"/>
+		</condition>
+		<condition id="SC32F58128">
+			<description>Silan SC32F58128 Series devices</description>
+			<require Cclass="CMSIS" Cgroup="CORE"/>
+			<require Dvendor="SILAN:164" Dname="SC32F58128"/>
+		</condition>
+		<condition id="SC32F58256">
+			<description>Silan SC32F58128 Series devices</description>
+			<require Cclass="CMSIS" Cgroup="CORE"/>
+			<require Dvendor="SILAN:164" Dname="SC32F58256"/>
+		</condition>
+		<condition id="SC32F58D128">
+			<description>Silan SC32F58128 Series devices</description>
+			<require Cclass="CMSIS" Cgroup="CORE"/>
+			<require Dvendor="SILAN:164" Dname="SC32F58D128"/>
+		</condition>
+		<condition id="Startup ARM">
+			<description>Startupassembler file for ARMCC</description>
+			<require Tcompiler="ARMCC"/>
+		</condition>
+		<condition id="Startup GCC">
+			<description>Startupassembler file for GCC</description>
+			<require Tcompiler="GCC"/>
+		</condition>
+		<condition id="Startup IAR">
+			<description>Startupassembler file for IAR</description>
+			<require Tcompiler="IAR"/>
+		</condition>
+		<condition id="Common_condition">
+			<description>Silan SC32F58xx Series device</description>
+			<require Cclass="CMSIS" Cgroup="CORE"/>
+			<require Dvendor="SILAN:164" DsubFamily="SC32F58128"/>
+		</condition>
+	</conditions>
+	<!-- component section (optional for all Software Packs)-->
+	<components>
+		<!-- Startup SC32F58xx Series -->
+		<component Cclass="Device" Cgroup="Startup" Cversion="2.0.0" condition="Common_condition">
+			<description>System Startup for Slian SC32F58xx Series</description>
+			<files>
+				<!-- include folder / file -->
+				<file category="include" name="Device/Include/"/>
+				<!-- startup / system file -->
+				<file category="include" name="Device/Include/" version="2.0.0"/>
+				<file category="source" name="Device/Source/ARM/startup_SC32F58128.s" version="2.0.0" condition="Startup ARM"/>
+				<file category="source" name="Device/Source/GCC/startup_SC32F58128.S" version="2.0.0" condition="Startup GCC"/>
+				<file category="source" name="Device/Source/IAR/startup_SC32F58128.s" version="2.0.0" condition="Startup IAR"/>
+				<file category="source" name="Device/Source/system_SC32F58128.c" version="2.0.0"/>
+			</files>
+		</component>
+		<!-- Peripheral Drivers for SC32F58xx -->
+		<component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="SystemClock" Cversion="2.0.0" condition="Common_condition">
+			<description>System clock Driver for Slian SC32F58xx series</description>
+			<files>
+				<file category="include" name="Driver/include/" version="2.0.0"/>
+				<file category="source" name="Driver/source/SC32F58128_SysClkCfg.c" version="2.0.0"/>
+			</files>
+		</component>
+		<component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="IAP" Cversion="2.0.0" condition="Common_condition">
+			<description>IAP Driver for Slian SC32F58xx series</description>
+			<files>
+				<file category="include" name="Driver/include/" version="2.0.0"/>
+				<file category="source" name="Driver/source/SC32F58128_iap.c" version="2.0.0"/>
+			</files>
+		</component>
+		<component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="PWM" Cversion="2.0.0" condition="Common_condition">
+			<description>PWM Driver for Slian SC32F58xx series</description>
+			<files>
+				<file category="include" name="Driver/include/" version="2.0.0"/>
+				<file category="source" name="Driver/source/SC32F58128_pwm.c" version="2.0.0"/>
+			</files>
+		</component>
+		<component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="TIMER" Cversion="2.0.0" condition="Common_condition">
+			<description>TIMER Driver for Slian SC32F58xx series</description>
+			<files>
+				<file category="include" name="Driver/include/" version="2.0.0"/>
+				<file category="source" name="Driver/source/SC32F58128_timer.c" version="2.0.0"/>
+			</files>
+		</component>
+		<component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="GPIO" Cversion="2.0.0" condition="Common_condition">
+			<description>GPIO Driver for Slian SC32F58xx series</description>
+			<files>
+				<file category="include" name="Driver/include/" version="2.0.0"/>
+				<file category="source" name="Driver/source/SC32F58128_gpio.c" version="2.0.0"/>
+			</files>
+		</component>
+		<component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="UART" Cversion="2.0.0" condition="Common_condition">
+			<description>UART Driver for Slian SC32F58xx series</description>
+			<files>
+				<file category="include" name="Driver/include/" version="2.0.0"/>
+				<file category="source" name="Driver/source/SC32F58128_uart.c" version="2.0.0"/>
+			</files>
+		</component>
+		<component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="IIC" Cversion="2.0.0" condition="Common_condition">
+			<description>IIC Driver for Slian SC32F58xx series</description>
+			<files>
+				<file category="include" name="Driver/include/" version="2.0.0"/>
+				<file category="source" name="Driver/source/SC32F58128_iic.c" version="2.0.0"/>
+			</files>
+		</component>
+		<component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="SPI" Cversion="2.0.0" condition="Common_condition">
+			<description>SPI Driver for Slian SC32F58xx series</description>
+			<files>
+				<file category="include" name="Driver/include/" version="2.0.0"/>
+				<file category="source" name="Driver/source/SC32F58128_spi.c" version="2.0.0"/>
+			</files>
+		</component>
+		<component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="DMA" Cversion="1.0.0" condition="Common_condition">
+			<description>DMA Driver for Slian SC32F58xx series</description>
+			<files>
+				<file category="include" name="Driver/include/" version="2.0.0"/>
+				<file category="source" name="Driver/source/SC32F58128_dma.c" version="2.0.0"/>
+			</files>
+		</component>
+		<component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="ADC" Cversion="2.0.0" condition="Common_condition">
+			<description>ADC Driver for Slian SC32F58xx series</description>
+			<files>
+				<file category="include" name="Driver/include/" version="2.0.0"/>
+				<file category="source" name="Driver/source/SC32F58128_adc.c" version="2.0.0"/>
+			</files>
+		</component>
+		<component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="QEP" Cversion="2.0.0" condition="Common_condition">
+			<description>QEP Driver for Slian SC32F58xx series</description>
+			<files>
+				<file category="include" name="Driver/include/" version="2.0.0"/>
+				<file category="source" name="Driver/source/SC32F58128_qep.c" version="2.0.0"/>
+			</files>
+		</component>
+		<component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="CAN" Cversion="2.0.0" condition="Common_condition">
+			<description>CAN Driver for Slian SC32F58xx series</description>
+			<files>
+				<file category="include" name="Driver/include/" version="2.0.0"/>
+				<file category="source" name="Driver/source/SC32F58128_can.c" version="2.0.0"/>
+			</files>
+		</component>
+		<component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="WDT" Cversion="2.0.0" condition="Common_condition">
+			<description>WDT Driver for Slian SC32F58xx series</description>
+			<files>
+				<file category="include" name="Driver/include/" version="2.0.0"/>
+				<file category="source" name="Driver/source/SC32F58128_wdt.c" version="2.0.0"/>
+			</files>
+		</component>
+		<component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="CMPSS" Cversion="2.0.0" condition="Common_condition">
+			<description>CMPSS Driver for Slian SC32F58xx series</description>
+			<files>
+				<file category="include" name="Driver/include/" version="2.0.0"/>
+				<file category="source" name="Driver/source/SC32F58128_cmpss.c" version="2.0.0"/>
+			</files>
+		</component>
+	</components>
+</package>

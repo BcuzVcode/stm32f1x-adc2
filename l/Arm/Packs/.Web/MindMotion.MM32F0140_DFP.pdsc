@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>MindMotion</vendor>
+  <url>http://www.mindmotion.com.cn/Download/MDK_KEIL/</url>  
+  <name>MM32F0140_DFP</name>
+  <description>MindMotion Cortex-Mx Series Device Family Pack</description>
+
+  <releases>
+  <release version="0.0.6" >
+       Release version of MM32F0140 Device Family Pack.
+    </release>
+
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>MindMotion</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package MindMotion</keyword>
+    <keyword>MM32F0140</keyword>
+    <keyword>MM32</keyword>
+  </keywords>
+
+<devices>
+    <!-- generated, do not modify this section! -->
+
+    <family Dfamily="MM32F0140 Series" Dvendor="MindMotion:132">
+    <processor Dcore="Cortex-M0"  DcoreVersion="r1p0" Dfpu="0" Dmpu = "0" Dendian="Little-endian"/>
+ 
+    <description>
+MM32F0140 Series
+    </description>
+
+
+    <!-- ************************  Subfamily 'MM32M0xx Series'  **************************** -->
+        <subFamily DsubFamily="MM32F0141B">
+            <description>
+Subfamily: MM32F0141B
+
+Frequency: 72MHz 
+Memory: 32 kB Flash, 8 kB RAM
+Communication: 3 x UART, 2 x SPI, 1 x I2C, 2 x I2S
+Analog : ADC,COMP
+Other :DIV
+power saving mode:stop, sleep, and standby mode
+
+            </description>
+            <device Dname="MM32F0141B4P">
+
+                <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="72000000" />
+                <debug svd="SVD/MM32F0140.svd" />
+                <memory id="IROM1" start="0x08000000" size="0x00008000" startup="1" default="1" />
+                <memory id="IRAM1" start="0x20000000" size="0x00002000" init="0" default="1" />
+                <algorithm name="Flash/MM32F0140_32.FLM" start="0x08000000" size="0x00008000" default="1" />                
+            </device>
+            <device Dname="MM32F0141B4Q">
+                <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="72000000" />
+                <debug svd="SVD/MM32F0140.svd" />
+                <memory id="IROM1" start="0x08000000" size="0x00008000" startup="1" default="1" />
+                <memory id="IRAM1" start="0x20000000" size="0x00002000" init="0" default="1" />
+                <algorithm name="Flash/MM32F0140_32.FLM" start="0x08000000" size="0x00008000" default="1" />                
+        
+            </device>
+            <device Dname="MM32F0141B6P">
+                <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="72000000" />
+                <debug svd="SVD/MM32F0140.svd" />
+                <memory id="IROM1" start="0x08000000" size="0x00008000" startup="1" default="1" />
+                <memory id="IRAM1" start="0x20000000" size="0x00002000" init="0" default="1" />
+                <algorithm name="Flash/MM32F0140_32.FLM" start="0x08000000" size="0x00008000" default="1" />                
+        
+            </device>
+        </subFamily>	
+        <subFamily DsubFamily="MM32F0144C">
+            <description>
+Subfamily: MM32F0144C
+
+Frequency: 72MHz 
+Memory: 64 kB Flash, 8 kB RAM
+Communication: 3 x UART, 2 x SPI, 1 x I2C, 2 x I2S, CAN(2.0B)
+Analog : ADC,COMP
+Other :DIV
+power saving mode:stop, sleep, and standby mode
+
+            </description>
+
+            <device Dname="MM32F0144C4P">
+
+                <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="72000000" />
+                <debug svd="SVD/MM32F0140.svd" />
+                <memory id="IROM1" start="0x08000000" size="0x00010000" startup="1" default="1" />
+                <memory id="IRAM1" start="0x20000000" size="0x00002000" init="0" default="1" />
+                <algorithm name="Flash/MM32F0140_64.FLM" start="0x08000000" size="0x00010000" default="1" />                
+            </device>
+            <device Dname="MM32F0144C4Q">
+                <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="72000000" />
+                <debug svd="SVD/MM32F0140.svd" />
+                <memory id="IROM1" start="0x08000000" size="0x00010000" startup="1" default="1" />
+                <memory id="IRAM1" start="0x20000000" size="0x00002000" init="0" default="1" />
+                <algorithm name="Flash/MM32F0140_64.FLM" start="0x08000000" size="0x00010000" default="1" />                
+        
+            </device>
+            <device Dname="MM32F0144C6P">
+                <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="72000000" />
+                <debug svd="SVD/MM32F0140.svd" />
+                <memory id="IROM1" start="0x08000000" size="0x00010000" startup="1" default="1" />
+                <memory id="IRAM1" start="0x20000000" size="0x00002000" init="0" default="1" />
+                <algorithm name="Flash/MM32F0140_64.FLM" start="0x08000000" size="0x00010000" default="1" />                
+        
+            </device>
+        </subFamily>
+    </family>
+</devices>
+
+</package>

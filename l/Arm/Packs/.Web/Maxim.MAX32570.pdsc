@@ -1,0 +1,1577 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+   <vendor>Maxim</vendor>
+   <name>MAX32570</name>
+   <url>http://www.mxim.net/microcontroller/pack/</url>
+   <description>Maxim Integrated MAX32570 Series Device Support, Board Support Package and Examples</description>
+   <supportContact>support@maximintegrated.com</supportContact>
+
+   <license>License/END_USER_LICENSE_AGREEMENT.rtf</license>
+
+   <releases>
+   
+      <release version="0.3.0" date="2022-03-29">
+      	-Fixed issues based on new Keil gen-pack Script files
+      </release> 
+   
+      <release version="0.2.0" date="2020-04-09">
+      	-SDK Released
+      </release> 
+ 
+      <release version="0.1.4" date="2020-04-05">
+      	-Initial Limited release of SDK
+      </release> 
+ 
+      <release version="0.1.3" date="2020-03-24">
+      	-Initial Limited release of SDK, some examples under construction
+      </release>  
+   
+      <release version="0.1.2" date="2020-03-16">
+      	-Initial Limited release of SDK, some examples still in construction
+      </release>
+   
+      <release version="0.1.1" date="2020-01-30">
+      	-Initial limited release of SDK
+      </release>
+   </releases>
+
+   <keywords>
+      <keyword>Maxim</keyword>
+      <keyword>MAX32570</keyword>
+      <keyword>MAX32571</keyword>	  
+      <keyword>MAX32570 Evaluation Kit</keyword>
+      <keyword>Maxim Device Support</keyword>
+      <keyword>Device Support</keyword>
+      <keyword>Device Family Package Maxim</keyword>
+      <keyword>Maxim Evaluation Kit</keyword>
+   </keywords>
+
+   <requirements>
+      <languages>
+         <language name="C" version="99" />
+      </languages>
+   </requirements>
+   
+   <devices>
+      <family Dfamily="MAX32570-71" Dvendor="Maxim:23">
+         <book name="Doc/MAX32570_datasheet.txt" title="MAX32570 Family Data Sheet"/>
+         <book name="Doc/MAX32570_userguide.txt" title="MAX32570 Family Users Guide"/>         
+         <!-- <compile header="Libraries/CMSIS/Device/Maxim/MAX32570/Include/max32570.h" /> -->
+         <compile header="Libraries/CMSIS/Device/Maxim/MAX32570/Include/max32570.h" define="MAX32570"/>
+         <memory name="IROM1" access="rx" start="0x10000000" size="0x00100000" startup="1" default="1"/>
+         <memory name="IRAM1" access="rwx" start="0x20000000" size="0x00080000" init="0" default="1"/>
+         <algorithm name="Flash/MAX32570.FLM" start="0x10000000" size="0x00100000" default="1"/>
+         <algorithm  name="FlashIAR/FlashMAX32570.flash" start="0x10000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00080000" default="0" style="IAR"/>
+         <description>
+         	DARWIN is a new breed of low-power microcontrollers built to thrive in the rapidly evolving Internet of Things (IoT). They are smart, with the biggest memories in their class, and a massively scalable memory architecture. They run forever, thanks to wearable-grade power technology. They are durable enough to withstand the most advanced cyberattacks. DARWIN microcontrollers are designed to run any application imaginable - in places where you would not dream of sending other microcontrollers. 
+         	Generation UB microcontrollers are designed to handle the increasingly complex applications demanded by today's advanced battery powered devices and wirelessly connected devices, while providing robust hardware security and Bluetooth(R) 5 Low Energy (BLE) radio connectivity.
+         	The MAX32570 UB class microcontrollers are advanced systems-on-chips featuring an Arm(R) Cortex(R)-M4 with FPU CPU for efficient computation of complex functions and algorithms with integrated power management. They also include the newest generation Bluetooth 5 Low Energy radio with support for long range (4x) and high throughput (2Mbps) and Maxim's best-in-class hardware security suite trust protection unit (TPU). The devices offer large on-board memory with 1MB flash and up to 560KB STAM that can be configured as 447KB SRAM with error correction coding (ECC). Split flash banks and 512KB each support seamless over the air upgrades, adding an additional degree of reliability. Memory scalability of data (SRAM) and code (flash) space is supported two SPI execute-in-place (SPIX) interfaces. 
+         	Multiple high-speed interfaces are supported included HS_USB, secure digital interface (SD, SDIO, MMC, SDHC, and microSD(tm)), SPI, UART, and I2C serial interfaces, and TDM interfaces. An 8-input 10-bit ADC is available to monitor analog inputs from external sensors and meters. The devices are available in 109-bump WLP (0.35mm pitch) and 121-bump CTBGA (0.65mm pitch) packages.
+         </description>     
+         <feature type="IOs" n="48"/>
+         <feature type="NVIC" n="110" name="NVIC"/>
+         <feature type="DMA" n="16" name="DMA"/>
+         <feature type="Timer" n="6" m="32" name="Timer Module"/>
+         <feature type="WDT" n="3"/>
+         <feature type="I2C" n="3" name="I2C"/>
+         <feature type="SPI" n="3" m="50000000" name="QSPI"/>
+         <feature type="UART" n="3" m="3000000" name="High-Speed UART Interface"/>
+         <feature type="USBD" n="1" name="High-Speed USB Device"/>
+         <debug svd="SVD/MAX32570/max32570.svd" />
+
+         <debugport __dp="0">
+            <swd idcode="0x2BA01477" />
+         </debugport>
+
+         <device Dname="MAX32570">
+            <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Pname="Cortex-M4" Punits="2" Dfpu="FPU" Dmpu="NO_MPU" Dendian="Little-endian" Dclock="96000000" />
+         </device>
+		 
+         <device Dname="MAX32571">
+            <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Pname="Cortex-M4" Punits="2" Dfpu="FPU" Dmpu="NO_MPU" Dendian="Little-endian" Dclock="96000000" />
+            <feature type="Crypto" n="128.256" name="HW Accelerated Trust Protection Unit"/>
+         </device>		 
+      </family>
+   </devices>
+
+   <!-- MAX32570 Evaluation Kit Board Support Package -->
+   <boards>  <!-- Faisal I am not sure what is going on here -->
+      <board vendor="Maxim" name="MAX32570 EvKit" revision="Rev A" salesContact="sales@maximintegrated.com">
+         <description>The MAX32570 Evaluation Kit provides a convenient platform for evaluating the capabilities of the MAX32570 Family of microcontrollers. The Evaluation Kit also provides a complete, functional system ideal for developing and debugging applications.
+         </description>
+         <book category="overview" name="Doc/MAX32570_EvKit.txt" title="MAX32570 EvKit Datasheet"/>
+         <book category="schematic" name="Doc/MAX32570_EvKitSchematic.txt" title="MAX32570 EvKit Schematic"/>
+         <feature type="PWR" n="5" name="USB Powered"/>
+         <feature type="MemCard" n="1" name="SD Card Holder"/>
+         <feature type="RAM" n="1" name="128kB SPIXR RAM"/>
+         <feature type="ROM" n="1" name="8 MB SPIXF NOR-Flash"/>
+         <feature type="USB" n="1" name="High-Speed USB Device, Micro-B receptacle"/>
+         <feature type="Button" n="3" name="Push-buttons: Reset, 2x User"/>
+         <feature type="LED" n="2" name="User LEDs"/>
+         <feature type="GLCD" n="1" m="128.128" name="1.3 inch SPI LCD"/>
+         <feature type="LineIn" n="1" name="TRS Audio Jack"/>
+         <feature type="LineOut" n="1" name="TRS Audio Jack"/>
+         <feature type="AIO" n="8" name="Analog Inputs"/>
+         <feature type="DIO" n="16" name="Digital IOs"/>
+         <mountedDevice Dvendor="Maxim:23" Dname="MAX32571"/>
+		 <mountedDevice Dvendor="Maxim:23" Dname="MAX32570"/>
+         <debugInterface adapter="CMSIS-DAP" connector="10-pin Cortex Debug Connector (0.05 inch connector)"/>
+         <debugInterface adapter="JTAG/SW" connector="20-pin Arm Standard JTAG Connector"/>
+      </board>
+   </boards>
+
+   <!-- Evaluation Kit Example Programs -->
+   <examples>
+      <example name="Hello_World" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/Hello_World">
+         <description>Hello World Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/Hello_World.ewp" />
+         <!--   <environment name="uv" load="ARM/Hello_World.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Timers"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+	  <example name="GPIO" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/GPIO">
+         <description>GPIO Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/GPIO.ewp" />
+         <!-- <environment name="uv" load="ARM/GPIO.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+	  <example name="ADC" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/ADC">
+         <description>Analog to Digital Converter Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/ADC.ewp" />
+        <!-- <environment name="uv" load="ARM/ADC.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="ADC"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example> 
+      <example name="AES" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/AES">
+         <description>AES Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/AES.ewp" />
+            <!-- <environment name="uv" load="ARM/AES.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="TPU"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>	  
+	  <example name="Barcode_Decoder" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/Barcode_Decoder">
+         <description>Barcode Decoder Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/AES.ewp" />
+            <!-- <environment name="uv" load="ARM/AES.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+      <example name="CameraIF" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/CameraIF">
+         <description>CameraIF Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/CameraIF.ewp" />
+         <!--   <environment name="uv" load="ARM/CameraIF.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Timers"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+      <example name="CRC" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/CRC">
+         <description>CRC Module Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/CRC.ewp" />
+         <!--  <environment name="uv" load="ARM/CRC.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="TPU"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+      <example name="DES" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/DES">
+         <description>DES Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/DES.ewp" />
+         <!--   <environment name="uv" load="ARM/DES.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Timers"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+      <example name="DMA" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/DMA">
+         <description>DMA Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/DMA.ewp" />
+         <!--   <environment name="uv" load="ARM/DMA.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Timers"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+      <example name="Flash" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/Flash">
+         <description>Flash Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/Flash.ewp" />
+         <!--   <environment name="uv" load="ARM/Flash.uvprojx" />  -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="FLC"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>	  
+      <example name="FreeRTOSDemo" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/FreeRTOSDemo">
+         <description>FreeRTOS Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/FreeRTOSDemo.ewp" />
+         <!--   <environment name="uv" load="ARM/FreeRTOSDemo.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Timers"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+      <example name="Hash" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/Hash">
+         <description>Hash Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/Hash.ewp" />
+         <!--   <environment name="uv" load="ARM/Hash.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Timers"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+      <example name="HTMR" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/HTMR">
+         <description>HTMR Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/HTMR.ewp" />
+         <!--   <environment name="uv" load="ARM/HTMR.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Timers"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+      <example name="I2C" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/I2C">
+         <description>I2C Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/I2C.ewp" />
+         <!--   <environment name="uv" load="ARM/I2C.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="I2C"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+      <example name="ICC" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/ICC">
+         <description>Instruction Cache Controller Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/ICC.ewp" />
+        <!-- <environment name="uv" load="ARM/ICC.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="ICC"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>      
+      <example name="LP" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/LP">
+         <description>Low Power Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/LP.ewp" />
+         <!--   <environment name="uv" load="ARM/LP.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Timers"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>	  
+      <example name="lwIP_Ping" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/lwIP_Ping">
+         <description>LwIP_Ping Ethernet</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/lwIP_Ping.ewp" />
+            <!-- <environment name="uv" load="ARM/lwIP_Ping.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Timers"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>	  
+      <example name="lwIP_TCP" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/lwIP_TCP">
+         <description>lwIP_TCP Ethernet</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/lwIP_TCP.ewp" />
+           <!-- <environment name="uv" load="ARM/lwIP_TCP.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Timers"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+      <example name="OWM" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/OWM">
+         <description>One Wire Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/OWM.ewp" />
+            <!-- <environment name="uv" load="ARM/OWM.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Timers"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+      <example name="Pulse_Train" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/Pulse_Train">
+         <description>Pulse Train Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/Pulse_Train.ewp" />
+         <!--   <environment name="uv" load="ARM/Pulse_Train.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Pulse Train"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+      <example name="RTC" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/RTC">
+         <description>RTC Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/RTC.ewp" />
+         <!--   <environment name="uv" load="ARM/RTC.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="RTC" />
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+      <example name="SDHC_FAT" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/SDHC_FAT">
+         <description>SCHC_FAT Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/SDHC_FAT.ewp" />
+         <!--   <environment name="uv" load="ARM/SDHC_FAT.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="SDHC" />
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+      <example name="SDHC_Raw" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/SDHC_Raw">
+         <description>SDHC_Raw Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/SDHC_Raw.ewp" />
+         <!--   <environment name="uv" load="ARM/SDHC_Raw.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="SDHC" />
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+      <example name="Semaphore" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/Semaphore">
+         <description>Semaphore Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/Semaphore.ewp" />
+         <!--   <environment name="uv" load="ARM/Semaphore.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Timers"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>	  
+      <example name="SKB" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/SKB">
+         <description>Secure Keyboard Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/SKB.ewp" />
+         <!--   <environment name="uv" load="ARM/SKB.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Timers"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+      <example name="SPI" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/SPI">
+         <description>SPI Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/SPI.ewp" />
+         <!--   <environment name="uv" load="ARM/SPI.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="SPI"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+      <example name="SPI_Touchscreen" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/SPI_Touchscreen">
+         <description>SPI Touchscreen Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/SPI_Touchscreen.ewp" />
+         <!--   <environment name="uv" load="ARM/SPI_Touchscreen.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="SPI"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+      <example name="SPIXF" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/SPIXF">
+         <description>SPIXF Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/SPIXF.ewp" />
+         <!--   <environment name="uv" load="ARM/SPIXF.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Timers"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+      <example name="SPIXR" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/SPIXR">
+         <description>SPIXR World Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/SPIXR.ewp" />
+         <!--   <environment name="uv" load="ARM/SPIXR.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Timers"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+      <example name="SRCC" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/SRCC">
+         <description>SPIXR Cache Controller Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/SRCC.ewp" />
+         <!--   <environment name="uv" load="ARM/SRCC.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Timers"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+      <example name="TMR" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/TMR">
+         <description>Timer Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/TMR.ewp" />
+         <!--   <environment name="uv" load="ARM/TMR.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Timers"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>	  
+      <example name="TRNG" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/TRNG">
+         <description>True Random Number Generator</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/TRNG.ewp" />
+         <!--   <environment name="uv" load="ARM/TRNG.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Timers"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>	  
+      <example name="UART" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/UART">
+         <description>UART Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/UART.ewp" />
+         <!--   <environment name="uv" load="ARM/UART.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Timers"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>	  
+      <example name="USB_CDCACM" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/USB_CDCACM">
+         <description>USB CDCACM Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/USB_CDCACM.ewp" />
+         <!--   <environment name="uv" load="ARM/USB_CDCACM.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Timers"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>	  
+      <example name="USB_CompositeDevice_MSC_CDC" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/USB_CompositeDevice_MSC_CDC">
+         <description>USB Composite Device MSC CDC Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/USB_CompositeDevice_MSC_CDC.ewp" />
+         <!--   <environment name="uv" load="ARM/USB_CompositeDevice_MSC_CDC.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Timers"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+      <example name="USB_CompositeDevice_MSC_HID" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/USB_CompositeDevice_MSC_HID">
+         <description>USB Composite Device MSC HIDDemo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/USB_CompositeDevice_MSC_HID.ewp" />
+         <!--   <environment name="uv" load="ARM/USB_CompositeDevice_MSC_HID.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Timers"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+      <example name="USB_HIDKeyboard" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/USB_HIDKeyboard">
+         <description>USB HID Keyboard Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/USB_HIDKeyboard.ewp" />
+         <!--   <environment name="uv" load="ARM/USB_HIDKeyboard.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Timers"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+      <example name="USB_MassStorage" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/USB_MassStorage">
+         <description>USB Mass Storage Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/USB_MassStorage.ewp" />
+         <!--   <environment name="uv" load="ARM/USB_MassStorage.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Timers"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>
+      <example name="Watchdog" doc="ARM/Abstract.txt" folder="Boards/Maxim/MAX32570_EVKIT/Watchdog">
+         <description>Watchdog Demo</description>
+         <board name="MAX32570 EvKit" vendor="Maxim"/>
+         <project>
+            <environment name="iar" load="IAR/Watchdog.ewp" />
+         <!--   <environment name="uv" load="ARM/Watchdog.uvprojx" /> -->
+         </project>
+         <attributes>
+            <category>Example Project</category>
+            <category>MAX32570 Evaluation Kit</category>
+            <component Cclass="CMSIS" Cgroup="CORE"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Startup"/>
+            <component Cbundle="Maxim API" Cclass="Device" Cgroup="Timers"/>
+            <component Cbundle="MAX32570 BSP" Cclass="BSP" Cgroup="Board Support"/>
+            <keyword>Getting Started</keyword>
+         </attributes>
+      </example>  
+   </examples>
+
+   <conditions>
+      <!-- MAX32570 Device Condition -->
+      <condition id="MAX32570 Family">
+         <description> Maxim Integrated MAX32570 device family</description>
+         <require Dvendor="Maxim:23"/>
+		 <require Dname="MAX3257*"/>		 
+         <!-- <require Dfamily="MAX32570-71"/> -->
+      </condition>
+
+      <!-- MAX32570 Device Condition - TPU Enabled Part -->
+      <condition id="MAX32570 Device">
+         <description> Maxim Integrated MAX32570 device family</description>
+         <require Dvendor="Maxim:23"/>
+         <require Dname="MAX32570"/>
+      </condition>
+
+      <!-- MAX32571 Device Condition - TPU Enabled Part -->
+      <condition id="MAX32571 Device">
+         <description> Maxim Integrated MAX32570 device family</description>
+         <require Dvendor="Maxim:23"/>
+         <require Dname="MAX32571"/>
+      </condition>
+
+      <!-- MAX32570/51/52 CMSIS-CORE Condition -->
+      <condition id="MAX32570 CMSIS-CORE">
+         <description>Maxim MAX32570 Series devices and CMSIS-CORE</description>
+         <require Cclass="CMSIS" Cgroup="CORE"/>
+         <require condition="MAX32570 Family"/>
+         <accept condition="MAX32571 Device"/>
+		 <accept condition="MAX32570 Device"/>
+         <require Cclass="Device" Cgroup="Startup"/>
+      </condition>
+
+      <!-- GNUC/Eclipse Compiler Condition -->
+      <condition id="Startup GCC">
+         <description>Startup files for the GNU C Toolchain</description>
+         <require Tcompiler="GCC"/>
+      </condition>
+
+      <!-- IAR Embedded Workbench Compiler Condition -->
+   <!--   <condition id="Startup ARM">
+         <description>Startup files for the KEIL Embedded Workbench Toolchain</description>
+         <require Tcompiler="ARMCC"/>
+      </condition> -->
+      <condition id="Startup IAR">
+         <description>Startup files for the IAR Embedded Workbench Toolchain</description>
+         <require Tcompiler="IAR"/>
+      </condition>
+
+      <!-- ADC Peripheral Condition -->
+      <condition id="MAX32570 CMSIS ADC">
+         <description>ADC Interface</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+      </condition>
+	  
+      <!-- CAMERAIF Peripheral Condition -->
+      <condition id="MAX32570 CMSIS CAMERAIF">
+         <description>CAMERAIF</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+      </condition>	
+	
+      <!-- CTB Peripheral Condition -->
+      <condition id="MAX32570 CMSIS CTB">
+         <description>CTB</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+      </condition>		  
+
+      <!-- EMAC Peripheral Condition -->
+      <condition id="MAX32570 CMSIS EMAC">
+         <description>EMAC</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+      </condition>	
+
+      <!-- Standard DMA Peripheral -->
+      <condition id="MAX32570 CMSIS DMA">
+         <description>Standard DMA</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+      </condition>
+
+      <!-- FLash Controller Peripheral -->
+      <condition id="MAX32570 CMSIS FLC">
+         <description>Internal Flash Controller</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+         <require condition="MAX32570 CMSIS ICC"/>
+      </condition>
+
+      <!-- I2C -->
+      <condition id="MAX32570 CMSIS I2C">
+         <description>I2C Interface</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+      </condition>
+
+      <!-- OWM -->
+      <condition id="MAX32570 CMSIS OWM">
+         <description>1-Wire Master Interface</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+      </condition>
+
+      <!-- PT -->
+      <condition id="MAX32570 CMSIS PT">
+         <description>Pulse Train Engine</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+      </condition>
+
+      <!-- RTC -->
+      <condition id="MAX32570 CMSIS RTC">
+         <description>Real-Time Clock</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+      </condition>
+
+      <!-- SDHC -->
+      <condition id="MAX32570 CMSIS SDHC">
+         <description>SD Host Controller</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+      </condition>
+
+      <!-- SFCC -->
+      <condition id="MAX32570 CMSIS SFCC">
+         <description>SFCC</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+      </condition>
+	  
+	  <!-- SKBD -->
+      <condition id="MAX32570 CMSIS SKBD">
+         <description>SKBD</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+      </condition>
+	  
+	  <!-- SMON -->
+      <condition id="MAX32570 CMSIS SMON">
+         <description>SMON</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+      </condition>
+
+      <!-- SPI Peripheral -->
+      <condition id="MAX32570 CMSIS SPI XIP RAM">
+         <description>SPI-XiP RAM (SPID) Interface</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+      </condition>
+
+      <!-- SRCC Peripheral -->
+      <condition id="MAX32570 CMSIS SRCC">
+         <description>SRCC</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+      </condition>      
+
+
+      <!-- SPI Peripheral -->
+      <condition id="MAX32570 CMSIS SPI XIP FLASH">
+         <description>SPI-XiP Flash (SPIX) Interface</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+      </condition>
+
+      <!-- SPI Peripheral -->
+      <condition id="MAX32570 CMSIS SPI">
+         <description>SPI Interface</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+      </condition>
+
+      <!-- Timer -->
+      <condition id="MAX32570 CMSIS TIMER">
+         <description>Timers</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+      </condition>
+
+      <!-- UART -->
+      <condition id="MAX32570 CMSIS UART">
+         <description>UART</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+      </condition>
+
+      <!-- WDT -->
+      <condition id="MAX32570 CMSIS WDT">
+         <description>Watchdog Timers</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+      </condition>
+
+      <!-- WUT -->
+ <!--     <condition id="MAX32570 CMSIS WUT">
+         <description>Wakeup Timers</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+      </condition> -->
+
+      <!-- Low Power -->
+      <condition id="MAX32570 CMSIS Low Power">
+         <description>Low Power API</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+      </condition>
+
+      <!-- SEMA -->
+      <condition id="MAX32570 CMSIS SEMA">
+         <description>Semaphore Module</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+      </condition>
+
+      <!-- GPIO -->
+      <condition id="MAX32570 CMSIS GPIO">
+         <description>GPIO</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+      </condition>
+
+      <!-- ICC -->
+      <condition id="MAX32570 CMSIS ICC">
+         <description>Instruction Cache Controller</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+      </condition>
+
+      <!-- HTMR -->
+      <condition id="MAX32570 CMSIS HTMR">
+         <description>HTimer</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+      </condition> 
+
+      <!-- SIMO -->
+ <!--     <condition id="MAX32570 CMSIS SIMO">
+         <description>Single Inductor Multiple Output DC/DC Converter</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+      </condition> -->
+
+      <!-- DualCore -->
+ <!--     <condition id="MAX32570 CMSIS DualCore">
+         <description>DualCore</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+         <accept condition="MAX32570 Device"/>
+		 <accept condition="MAX32571 Device"/>
+      </condition> -->
+
+ <!--     <condition id="MAX32570 CMSIS TPU">
+         <description>TPU Device Class</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+      </condition>      -->
+
+      <condition id="MAXUSB Core DEP">
+         <description>MAXUSB HS Core</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+      </condition>      
+
+      <condition id="MAXUSB DevClass DEP">
+         <description>MAXUSB Device Class</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+      </condition>        
+
+      <condition id="LWIP Core DEP">
+         <description>LWIP Freeware</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+      </condition>
+	
+
+ <!--     <condition id="FatFs DEP">
+         <description>FatFs Dependencies</description>
+         <require condition="MAX32570 CMSIS-CORE"/>
+      </condition>             -->
+
+      <condition id="MAX32570 BSP DEP">
+         <description>Board Support Package</description>
+         <!-- <require condition="MAX32570 CMSIS-CORE"/> -->
+         <accept condition="MAX32570 Family"/>
+         <require Cclass="Device" Cgroup="UART"/>
+         <require Cclass="Device" Cgroup="XiP Flash"/>
+         <require Cclass="Device" Cgroup="GPIO"/>
+      </condition>
+   </conditions>
+
+   <components>
+<!--   
+        <component Cgroup="Rev" Cclass="Target Rev" Cvariant="A1" Cversion="0.3.0" condition="MAX32570 Family">
+            <description>Target Rev A1 selected</description>
+            <RTE_Components_h>
+			 #define TARGET 32570   /* Target Device Part Number */
+             #define TARGET_REV 0x4131       /* A1 chip */
+            </RTE_Components_h>
+        </component>
+        <component Cgroup="Rev" Cclass="Target Rev" Cvariant="A2" Cversion="0.3.0" condition="MAX32570 Family">
+             <description>Target Rev A2 selected</description>
+             <RTE_Components_h>
+			 #define TARGET 32570   /* Target Device Part Number */
+             #define TARGET_REV 0x4132       /* A2 chip */
+             </RTE_Components_h>
+        </component>
+-->
+      <bundle Cbundle="Maxim API" Cclass="Device" Cversion="0.3.0">
+         <description>Maxim Developed Hardware Abstraction Layer</description>
+         <doc>Doc/SDK_Documentation/doxygen.txt</doc>
+
+         <!-- MAX32570 Device Selection -->
+         <component Cgroup="Startup" Cversion="0.3.0" condition="MAX32570 Family" >
+            <description>System Startup for Maxim MAX32570 Microcontroller</description>
+			
+		<!--	
+            <RTE_Components_h>
+                  #define TARGET 32570   /* Target Device Part Number */
+                  #define TARGET_REV 0x4131 /* Target Device Revision Number */
+            </RTE_Components_h>  -->
+			
+         <!--   <component Cclass="Target Rev" Cvariant="A1" Cversion="0.3.0">
+                 <description>Target Rev A1 selected</description>
+                 <RTE_Components_h>
+			      #define TARGET 32570   /* Target Device Part Number */
+                  #define TARGET_REV 0x4131       /* A1 chip */
+                 </RTE_Components_h>
+            </component>
+            <component Cclass="Target Rev" Cvariant="A2" Cversion="0.3.0">
+                 <description>Target Rev A2 selected</description>
+                 <RTE_Components_h>
+			     #define TARGET 32570   /* Target Device Part Number */
+                 #define TARGET_REV 0x4132       /* A2 chip */
+                 </RTE_Components_h>
+            </component>		          -->	
+			
+            <files>
+               <!-- Include paths for the tools -->
+               <file category="include" name="Libraries/CMSIS/Device/Maxim/MAX32570/Include/" version="0.3.0" />
+               <file category="include" name="Libraries/PeriphDrivers/Include/MAX32570/" version="0.3.0" />
+
+			   <file category="include" name="Libraries/PeriphDrivers/Source/ADC/" version="0.3.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/CAMERAIF/" version="0.3.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/CTB/" version="0.3.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/DMA/" version="0.3.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/EMAC/" version="0.3.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/FLC/" version="0.3.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/GPIO/" version="0.3.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/HTMR/" version="0.3.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/I2C/" version="0.3.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/ICC/" version="0.3.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/LP/" version="0.3.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/OWM/" version="0.3.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/PT/" version="0.3.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/RTC/" version="0.3.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/SDHC/" version="0.3.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/SEMA/" version="0.3.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/SFCC/" version="0.3.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/SMON/" version="0.3.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/SPI/" version="0.3.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/SPIXF/" version="0.3.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/SPIXR/" version="0.3.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/SRCC/" version="0.3.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/TMR/" version="0.3.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/UART/" version="0.3.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/WDT/" version="0.3.0"/>
+
+               <!-- Keil/ARM device startup file and sub_main to call SystemInit -->
+			   <!--
+               <file category="sourceAsm" attr="config" version="0.3.0" name="Libraries/CMSIS/Device/Maxim/MAX32570/Source/ARM/startup_max32570.s" condition="Startup ARM" />
+			   -->
+               
+               <!-- GNUC/Eclipse device startup file -->
+               <file category="sourceAsm" attr="config"  version="0.3.0" name="Libraries/CMSIS/Device/Maxim/MAX32570/Source/GCC/startup_max32570.S" condition="Startup GCC" />
+
+               <!-- IAR device startup file, low level init and cmain.s -->
+               <file category="sourceAsm" attr="config" name="Libraries/CMSIS/Device/Maxim/MAX32570/Source/IAR/startup_max32570.s" condition="Startup IAR" version="0.3.0" />
+               <file category="sourceC" attr="config"  version="0.3.0" name="Libraries/CMSIS/Device/Maxim/MAX32570/Source/IAR/low_level_init.c" condition="Startup IAR" />
+               <file category="sourceAsm" attr="config"  version="0.3.0" name="Libraries/CMSIS/Device/Maxim/MAX32570/Source/IAR/cmain.s" condition="Startup IAR" />
+               <file category="sourceC" attr="config"  version="0.3.0" name="Libraries/CMSIS/Device/Maxim/MAX32570/Source/sla_header.c" condition="Startup IAR" />
+
+               <!-- System, NVIC and device header files common to all platforms -->
+               <file category="sourceC" attr="config"  version="0.3.0" name="Libraries/CMSIS/Device/Maxim/MAX32570/Source/system_max32570.c" />
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SYS/nvic_table.c" version="0.3.0" />
+               <file category="header" attr="config" name="Libraries/CMSIS/Device/Maxim/MAX32570/Include/max32570.h" version="0.3.0" />
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SYS/mxc_assert.c"  version="0.3.0" />
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SYS/mxc_delay.c"  version="0.3.0" />
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SYS/mxc_lock.c"  version="0.3.0" />
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SYS/pins_me13.c"  version="0.3.0" />
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SYS/sys_me13.c"  version="0.3.0" />
+			   <!-- <file category="sourceC" name="Libraries/PeriphDrivers/Source/flc.c"  version="0.3.0" />        It has become flc_me13.c     --> 
+			   <!-- <file category="sourceC" name="Libraries/PeriphDrivers/Source/cipher.c"  version="0.3.0" />          -->	
+			   <!-- <file category="sourceC" name="Libraries/PeriphDrivers/Source/mem_utils.c"  version="0.3.0" />		-->		   
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SYS/nvic_table.c"  version="0.3.0" />
+			   
+			   <!-- Note:- sema.c should be turned on by check box and not by the stuff shown below -->
+			   <!-- <file category="sourceC" name="Libraries/PeriphDrivers/Source/sema.c" version="0.3.0"/>         It has become sema_me13.c -->
+
+
+
+			   
+			   
+            </files>
+         </component>
+
+         <component Cgroup="ADC" condition="MAX32570 CMSIS ADC" Cversion="0.3.0"> 
+         	 <description>ADC Interface</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/ADC/adc_me13.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/ADC/adc_common.c" version="0.3.0"/>
+	           <file category="sourceC" name="Libraries/PeriphDrivers/Source/ADC/adc_reva.c" version="0.3.0"/>			   
+            </files>
+         </component>
+		 
+		 <component Cgroup="CAMERAIF" condition="MAX32570 CMSIS CAMERAIF" Cversion="0.3.0"> 
+         	 <description>Camera Interface</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/CAMERAIF/cameraif_me13.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/CAMERAIF/cameraif_reva.c" version="0.3.0"/>
+            </files>
+         </component>
+		 
+		 <component Cgroup="CTB" condition="MAX32570 CMSIS CTB" Cversion="0.3.0"> 
+         	 <description>Crypto Tool Box</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/CTB/ctb_me13.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/CTB/ctb_common.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/CTB/ctb_reva.c" version="0.3.0"/>
+            </files>
+         </component>		 
+
+         <component Cgroup="DMA" condition="MAX32570 CMSIS DMA" Cversion="0.3.0">
+            <description>Standard DMA</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/DMA/dma_me13.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/DMA/dma_reva.c" version="0.3.0"/>
+            </files>
+         </component>
+
+         <component Cgroup="EMAC" condition="MAX32570 CMSIS EMAC" Cversion="0.3.0" >
+            <description> EMAC </description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/EMAC/emac_me13.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/EMAC/emac_reva.c" version="0.3.0"/>			   	   
+            </files>
+         </component>
+
+         <component Cgroup="FLC" condition="MAX32570 CMSIS FLC" Cversion="0.3.0">
+            <description>Flash Controller for Internal Flash Memory</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/FLC/flc_me13.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/FLC/flc_reva.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/FLC/flc_common.c" version="0.3.0"/>			   
+            </files>
+         </component>
+		 
+		 <component Cgroup="GPIO" condition="MAX32570 CMSIS GPIO" Cversion="0.3.0">
+            <description>General Purpose Input Ouptput</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/GPIO/gpio_me13.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/GPIO/gpio_reva.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/GPIO/gpio_common.c" version="0.3.0"/>		   
+            </files>
+         </component>
+
+         <component Cgroup="HTMR" condition="MAX32570 CMSIS HTMR" Cversion="0.3.0">
+            <description>HTimer API</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/HTMR/htmr_me13.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/HTMR/htmr_reva.c" version="0.3.0"/>
+            </files>
+         </component> 
+
+         <component Cgroup="I2C" condition="MAX32570 CMSIS I2C" Cversion="0.3.0">
+            <description>I2C Interface</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/I2C/i2c_me13.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/I2C/i2c_reva.c" version="0.3.0"/>			   
+            </files>
+         </component>
+
+         <component Cgroup="ICC" condition="MAX32570 CMSIS ICC" Cversion="0.3.0">
+            <description>Instruction Cache Controller</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/ICC/icc_me13.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/ICC/icc_reva.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/ICC/icc_common.c" version="0.3.0"/>			   
+            </files>
+         </component>
+		 
+         <component Cgroup="Low Power" condition="MAX32570 CMSIS Low Power" Cversion="0.3.0">
+            <description>Low Power API</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/LP/lp_me13.c" version="0.3.0"/>			   
+            </files>
+         </component>		 
+
+         <component Cgroup="1-Wire" condition="MAX32570 CMSIS OWM" Cversion="0.3.0">
+            <description>1-Wire Interface</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/OWM/owm_me13.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/OWM/owm_reva.c" version="0.3.0"/>
+			   
+            </files>
+         </component>
+
+         <component Cgroup="Pulse Train" condition="MAX32570 CMSIS PT" Cversion="0.3.0">
+            <description>Pulse Train Engine</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/PT/pt_me13.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/PT/pt_reva.c" version="0.3.0"/>			   
+            </files>
+         </component>
+
+         <component Cgroup="RTC" condition="MAX32570 CMSIS RTC" Cversion="0.3.0">
+            <description>Real-Time Clock</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/RTC/rtc_me13.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/RTC/rtc_reva.c" version="0.3.0"/>			   
+            </files>
+         </component>
+
+         <component Cgroup="SDHC" condition="MAX32570 CMSIS SDHC" Cversion="0.3.0">
+            <description>SD Host Controller</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SDHC/sdhc_me13.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/SDHC/sdhc_reva.c" version="0.3.0"/>			   
+            </files>
+         </component>
+
+         <component Cgroup="SEMA" condition="MAX32570 CMSIS SEMA" Cversion="0.3.0">
+            <description>Semaphore API</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SEMA/sema_me13.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/SEMA/sema_reva.c" version="0.3.0"/>			   
+            </files>
+         </component>
+		 
+         <component Cgroup="SFCC" condition="MAX32570 CMSIS SFCC" Cversion="0.3.0">
+            <description>SPIXF Cache Controller </description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SFCC/sfcc_me13.c" version="0.3.0"/>			   
+            </files>
+         </component>
+
+         <component Cgroup="SKBD" condition="MAX32570 CMSIS SKBD" Cversion="0.3.0">
+            <description>Secure Keyboard </description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SKBD/skbd_me13.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/SKBD/skbd_reva.c" version="0.3.0"/>
+			   <file category="include" name="Libraries/PeriphDrivers/Source/SKBD/" version="0.3.0"/>
+            </files>
+         </component>
+
+         <component Cgroup="SMON" condition="MAX32570 CMSIS SMON" Cversion="0.3.0">
+            <description>Security Monitor </description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SMON/smon_me13.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/SMON/smon_reva.c" version="0.3.0"/>			   
+            </files>
+         </component>
+
+         <component Cgroup="SPI" condition="MAX32570 CMSIS SPI" Cversion="0.3.0">
+            <description>SPI Interface</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SPI/spi_me13.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SPI/spi_reva.c" version="0.3.0"/>			   
+            </files>
+         </component>
+
+         <component Cgroup="XiP Flash" condition="MAX32570 CMSIS SPI XIP FLASH" Cversion="0.3.0">
+            <description>SPI eXecute In Place (XIP) Interface For External Code Execution</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SPIXF/spixf_me13.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SPIXF/spixf_reva.c" version="0.3.0"/>			   
+            </files>
+         </component>
+
+         <component Cgroup="XiP RAM" condition="MAX32570 CMSIS SPI XIP RAM" Cversion="0.3.0">
+            <description>SPI eXecute In Place (XIP) Interface</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SPIXR/spixr_me13.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SPIXR/spixr_reva.c" version="0.3.0"/>			   
+            </files>
+         </component>
+
+         <component Cgroup="SRCC" condition="MAX32570 CMSIS SRCC" Cversion="0.3.0">
+            <description>SPIXR Cache Controller </description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SRCC/srcc_me13.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/SRCC/srcc_reva.c" version="0.3.0"/>			  
+            </files>
+         </component>
+
+         <component Cgroup="Timers" condition="MAX32570 CMSIS TIMER" Cversion="0.3.0">
+            <description>32-Bit Timers</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/TMR/tmr_me13.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/TMR/tmr_reva.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/TMR/tmr_common.c" version="0.3.0"/>			   
+            </files>
+         </component>
+
+         <component Cgroup="UART" condition="MAX32570 CMSIS UART" Cversion="0.3.0">
+            <description>UART Interface</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/UART/uart_me13.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/UART/uart_reva.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/UART/uart_common.c" version="0.3.0"/>
+            </files>
+         </component>
+		 
+         <component Cgroup="WDT" condition="MAX32570 CMSIS WDT" Cversion="0.3.0">
+            <description>Watchdog Timers</description>
+            <files>
+               <file category="sourceC" name="Libraries/PeriphDrivers/Source/WDT/wdt_me13.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/WDT/wdt_reva.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/PeriphDrivers/Source/WDT/wdt_common.c" version="0.3.0"/>
+            </files>
+         </component>
+      </bundle>
+	  
+      <bundle Cbundle="MAXUSB" Cclass="USB" Cversion="0.3.0">
+         <description>Maxim Developed USB Device Stack</description>
+         <doc>Libraries/MAXUSB/readme.txt</doc>
+         <component Cgroup="Core" condition="MAXUSB Core DEP">
+            <description>MAXUSB Core Files</description>
+            <files>
+               <file category="include" name="Libraries/MAXUSB/include/core/musbhsfc/" version="0.3.0"/>
+               <file category="include" name="Libraries/MAXUSB/include/core/" version="0.3.0"/>
+               <file category="include" name="Libraries/MAXUSB/include/enumerate/" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/MAXUSB/src/core/musbhsfc/usb.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/MAXUSB/src/core/usb_event.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/MAXUSB/src/enumerate/enumerate.c" version="0.3.0"/>
+            </files>
+         </component>
+         <component Cgroup="Device Class" condition="MAXUSB DevClass DEP">
+            <description>MAXUSB Device Class Files</description>
+            <files>
+               <file category="include" name="Libraries/MAXUSB/include/devclass/" version="0.3.0"/>
+               <!-- <file category="include" name="Libraries/MAXUSB/include/util/" version="0.3.0"/> -->
+               <file category="sourceC" name="Libraries/MAXUSB/src/devclass/cdc_acm.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/MAXUSB/src/devclass/fifo.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/MAXUSB/src/devclass/hid_kbd.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/MAXUSB/src/devclass/hid_raw.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/MAXUSB/src/devclass/msc.c" version="0.3.0"/>
+            </files>
+         </component>
+      </bundle>
+	 
+
+      <bundle Cbundle="lwIP Bundle" Cclass="lwIP" Cversion="0.3.0">
+         <description>LWIP Freeware</description>
+		 <doc>Libraries/lwIP/Readme.txt</doc>
+         <component Cgroup="Core" condition="LWIP Core DEP">
+            <description>LWIP Core Files</description>
+            <files>
+             <!--  <file category="library" name="Libraries/lwIP/liblwip.a" version="0.3.0"/> -->
+			   <file category="include" name="Libraries/lwIP/include/" version="0.3.0"/>
+			   <file category="include" name="Libraries/lwIP/include/compat/" version="0.3.0"/>				   
+			   <file category="include" name="Libraries/lwIP/include/compat/posix/" version="0.3.0"/>			   
+			   <file category="include" name="Libraries/lwIP/include/compat/posix/arpa/" version="0.3.0"/>			   
+			   <file category="include" name="Libraries/lwIP/include/compat/posix/net/" version="0.3.0"/>
+			   <file category="include" name="Libraries/lwIP/include/compat/posix/sys/" version="0.3.0"/>
+			   <file category="include" name="Libraries/lwIP/include/compat/stdc/" version="0.3.0"/>			   
+			   <file category="include" name="Libraries/lwIP/include/lwip/" version="0.3.0"/>
+			   <file category="include" name="Libraries/lwIP/include/lwip/apps/" version="0.3.0"/>
+			   <file category="include" name="Libraries/lwIP/include/lwip/priv/" version="0.3.0"/>
+			   <file category="include" name="Libraries/lwIP/include/lwip/prot/" version="0.3.0"/>			   			   
+			   <file category="include" name="Libraries/lwIP/include/netif/" version="0.3.0"/>
+			   <file category="include" name="Libraries/lwIP/include/netif/ppp/" version="0.3.0"/>
+			   <file category="include" name="Libraries/lwIP/include/netif/ppp/polarssl/" version="0.3.0"/>			   
+			   <file category="include" name="Libraries/lwIP/include/Maxim/" version="0.3.0"/>
+			   <file category="include" name="Libraries/lwIP/include/Maxim/arch/" version="0.3.0"/>
+			   
+			   <file category="sourceC" name="Libraries/lwIP/api/api_lib.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/api/api_msg.c" version="0.3.0"/>			   		   			   
+			   <file category="sourceC" name="Libraries/lwIP/api/err.c" version="0.3.0"/>			   
+			   <file category="sourceC" name="Libraries/lwIP/api/if_api.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/api/netbuf.c" version="0.3.0"/>			   			   
+			   <file category="sourceC" name="Libraries/lwIP/api/netdb.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/api/netifapi.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/api/sockets.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/api/tcpip.c" version="0.3.0"/>
+			   
+			   <file category="sourceC" name="Libraries/lwIP/core/ipv4/autoip.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/lwIP/core/ipv4/dhcp.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/lwIP/core/ipv4/etharp.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/lwIP/core/ipv4/icmp.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/lwIP/core/ipv4/igmp.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/lwIP/core/ipv4/ip4.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/lwIP/core/ipv4/ip4_addr.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/lwIP/core/ipv4/ip4_frag.c" version="0.3.0"/>
+			   
+               <file category="sourceC" name="Libraries/lwIP/core/ipv6/dhcp6.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/core/ipv6/ethip6.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/core/ipv6/icmp6.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/core/ipv6/inet6.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/core/ipv6/ip6.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/core/ipv6/ip6_addr.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/core/ipv6/ip6_frag.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/core/ipv6/mld6.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/core/ipv6/nd6.c" version="0.3.0"/>
+			   
+			   <file category="sourceC" name="Libraries/lwIP/core/altcp.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/core/altcp_alloc.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/core/altcp_tcp.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/core/def.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/core/dns.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/core/inet_chksum.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/core/init.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/core/ip.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/core/mem.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/core/memp.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/core/netif.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/core/pbuf.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/core/raw.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/core/stats.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/core/sys.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/core/tcp.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/core/tcp_in.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/core/tcp_out.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/core/timeouts.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/core/udp.c" version="0.3.0"/>
+			  
+			   <file category="sourceC" name="Libraries/lwIP/netif/ppp/polarssl/arc4.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/ppp/polarssl/des.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/ppp/polarssl/md4.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/ppp/polarssl/md5.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/ppp/polarssl/sha1.c" version="0.3.0"/>
+
+			   <file category="sourceC" name="Libraries/lwIP/netif/ppp/auth.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/ppp/ccp.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/ppp/chap_ms.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/ppp/chap-md5.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/ppp/chap-new.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/ppp/demand.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/ppp/eap.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/ppp/ecp.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/ppp/eui64.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/ppp/fsm.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/ppp/ipcp.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/ppp/ipv6cp.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/ppp/lcp.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/ppp/magic.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/ppp/mppe.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/ppp/multilink.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/ppp/ppp.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/ppp/pppapi.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/ppp/pppcrypt.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/ppp/pppoe.c" version="0.3.0"/>			   
+			   <file category="sourceC" name="Libraries/lwIP/netif/ppp/pppol2tp.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/ppp/pppos.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/ppp/upap.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/ppp/utils.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/ppp/vj.c" version="0.3.0"/>
+			   
+			   <file category="sourceC" name="Libraries/lwIP/netif/bridgeif.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/bridgeif_fdb.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/ethernet.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/lowpan6.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/lowpan6_ble.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/lowpan6_common.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/slipif.c" version="0.3.0"/>
+			   <file category="sourceC" name="Libraries/lwIP/netif/zepif.c" version="0.3.0"/>
+
+			   <file category="sourceC" name="Libraries/lwIP/Maxim/mxc_eth.c" version="0.3.0"/>
+            </files>
+		
+         </component>
+      </bundle>
+	  
+	  
+     <!--
+      <bundle Cbundle="FatFs" Cclass="File System" Cversion="0.3.0">
+         <description>FatFs lightweight Fat filesystem module</description>
+         <doc>Libraries/SDHC/ff13/documents/00index_e.html</doc>
+         <component Cgroup="FatFs - SDHC" condition="FatFs DEP">
+            <description>FatFs File System with Maxim SDHC integration</description>
+            <files>
+               <file category="sourceC" name="Libraries/SDHC/ff13/Source/diskio.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/SDHC/ff13/Source/ff.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/SDHC/ff13/Source/ffsystem.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/SDHC/ff13/Source/ffunicode.c" version="0.3.0"/>
+               <file category="sourceC" name="Libraries/SDHC/Source/sdhc_lib.c" version="0.3.0"/>
+               <file category="include" name="Libraries/SDHC/Include/" version="0.3.0"/>
+               <file category="include" name="Libraries/SDHC/ff13/Source/" version="0.3.0"/>
+            </files>
+         </component>
+      </bundle>
+      -->
+	  
+      <bundle Cbundle="MAX32570 BSP" Cclass="BSP" Cversion="0.3.0">
+         <description>MAX32570 Evaluation Kit Board Support Package</description>
+         <doc>Doc/MAX32570_EvKit.txt</doc>
+            <component Cgroup="EvKit V1" condition="MAX32570 BSP DEP">
+            <description>MAX32570 Evaluation Kit Board Setup</description>
+            <RTE_Components_h>
+               #define BOARD MN_EvKit_V1 /* Target Board */
+            </RTE_Components_h>
+            <files>
+			   <file category="include" name="Boards/Maxim/MAX32570_EVKIT/Common/MN_EvKit_V1/Include/"/>
+               <file category="include" name="Boards/Maxim/MAX32570_EVKIT/Common/Include/"/>	
+               <file category="sourceC" name="Boards/Maxim/MAX32570_EVKIT/Common/MN_EvKit_V1/Source/board.c" version="0.3.0"/>
+			   <file category="sourceC" name="Boards/Maxim/MAX32570_EVKIT/Common/MN_EvKit_V1/Source/rom_stub.c" version="0.3.0"/>
+               <file category="sourceC" name="Boards/Maxim/MAX32570_EVKIT/Common/Source/led.c" version="0.3.0"/>
+               <file category="sourceC" name="Boards/Maxim/MAX32570_EVKIT/Common/Source/mx25.c" version="0.3.0"/>
+               <file category="sourceC" name="Boards/Maxim/MAX32570_EVKIT/Common/Source/pb.c" version="0.3.0"/>
+               <!-- <file category="sourceC" name="Boards/Maxim/MAX32570_EVKIT/Common/Source/s26k.c" version="0.3.0"/> -->
+               <file category="sourceC" name="Boards/Maxim/MAX32570_EVKIT/Common/Source/stdio.c" version="0.3.0"/>
+               <file category="sourceC" name="Boards/Maxim/MAX32570_EVKIT/Common/Source/touchscreen.c" version="0.3.0"/>
+           </files>
+         </component>
+      </bundle>
+	  
+   </components>
+</package>

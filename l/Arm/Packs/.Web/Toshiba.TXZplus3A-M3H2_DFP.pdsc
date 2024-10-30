@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <license>License/SOFTWARE_LICENSE_AGREEMENT.txt</license> 
+  <vendor>Toshiba</vendor>
+  <url>https://toshiba.semicon-storage.com/content/dam/toshiba-ss-v3/master/en/semiconductor/product/dl/device-family-pack/</url>
+
+  <name>TXZplus3A-M3H2_DFP</name>
+  <description>Toshiba TXZ+3A Series TMPM3H(2) Group Device Support</description>
+
+  <releases>
+    <release version="1.0.0" date="2023-06-26">
+      First Release version of TXZ+3A Series TMPM3H(2) Group Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Toshiba</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Toshiba</keyword>
+    <keyword>TMPM3H</keyword>
+    <keyword>TXZ3A+</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="TXZ3A+ Series" Dvendor="Toshiba:92">
+      <processor Dcore="Cortex-M3" DcoreVersion="r2p1" Dfpu="0" Dmpu="1" Dendian="Little-endian"/>
+      <description>
+The TXZ3A+ microcontroller series embeds an ARM Cortex-M3 core, which provides high code density and fast interrupt response times required for real-time applications.
+      </description>
+      <!-- ************************  Subfamily 'TMPM3Hx'  **************************** -->
+      <subFamily DsubFamily="M3H(2)">
+
+        <!-- ***********************  Device 'TMPM3HQF10BFG'  ************************* -->
+        <device Dname="TMPM3HQF10BFG">
+          <processor Dclock="120000000"/>
+          <compile header="Device/Include/TMPM3HQB.h" define="TMPM3HQB"/>
+          <debug svd="SVD/M3HQB.svd"/>
+
+          <memory id="IROM1"                           start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM3Hx_code_1024.FLM"  start="0x00000000" size="0x00100000"  RAMstart="0x20000000"  RAMsize="0x20000"  default="1"/>
+          <algorithm name="Flash/TMPM3Hx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x20000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="IOs"           n="134"                         name="I/O Ports (PORT)"/>
+          <feature type="ExtInt"        n="34"                          name="External interrupt (INT)"/>
+          <feature type="CoreOther"     n="34"                          name="Digital Noise Filter (DNF)"/>
+          <feature type="DMA"           n="64"                          name="Direct Memory Access Controllor (DMAC)"/>
+          <feature type="Timer"         n="8"      m="32"               name="32bit Timer Event counter (T32A)"/>
+          <feature type="RTC"           n="1"      m="32768"            name="Real Time Clock (RTC)"/>
+          <feature type="UART"          n="8"                           name="Universal Asynchronous Receiver Transmitter (UART)"/>
+          <feature type="I2C"           n="4"                           name="Inter-Integrated Circuit (I2C)"/>
+          <feature type="I2C"           n="4"                           name="Inter-Integrated Circuit Version A(EI2C)"/>
+          <feature type="SPI"           n="5"                           name="Toshiba Serial Peripheral Interface (TSPI/SIO)"/>
+          <feature type="ADC"           n="21"     m="12"               name="Analog to Digital Converter (ADC)"/>
+          <feature type="DAC"           n="2"      m="8"                name="Digital to Analog Converter (DAC)"/>
+          <feature type="CoreOther"     n="1"                           name="Advanced Encoder input Circuit (A-ENC)"/>
+          <feature type="CoreOther"     n="1"                           name="Programmable Motor Driver Plus (PMD+)"/>
+          <feature type="Other"         n="1"                           name="Remote control preprocessor (RMC)"/>
+          <feature type="LCD"           n="1"      m="4.40"             name="Segment LCD Controller(LCD)"/>
+          <feature type="PowerOther"    n="1"                           name="Low-Voltage Detector (LVD)"/>
+          <feature type="WDT"           n="1"                           name="Selectable clock Watch dog timer (SIWDT)"/>
+          <feature type="Other"         n="1"                           name="Oscillation Frequency Detector (OFD)"/>
+          <feature type="PowerOther"    n="1"                           name="Power-on Reset Circuit (POR)"/>
+          <feature type="VCC"           n="2.70"   m="5.50"/>
+          <feature type="Temp"          n="-40"    m="105"/>
+          <feature type="QFP"           n="144"                         name="P-LQFP144-2020-0.50-002"/>
+        </device>
+
+
+
+        <!-- ***********************  Device 'TMPM3HPF10BFG'  ************************* -->
+        <device Dname="TMPM3HPF10BFG">
+          <processor Dclock="120000000"/>
+          <compile header="Device/Include/TMPM3HPB.h" define="TMPM3HPB"/>
+          <debug svd="SVD/M3HPB.svd"/>
+
+          <memory id="IROM1"                           start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM3Hx_code_1024.FLM"  start="0x00000000" size="0x00100000"  RAMstart="0x20000000"  RAMsize="0x20000"  default="1"/>
+          <algorithm name="Flash/TMPM3Hx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x20000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="IOs"           n="118"                         name="I/O Ports (PORT)"/>
+          <feature type="ExtInt"        n="31"                          name="External interrupt (INT)"/>
+          <feature type="CoreOther"     n="31"                          name="Digital Noise Filter (DNF)"/>
+          <feature type="DMA"           n="64"                          name="Direct Memory Access Controllor (DMAC)"/>
+          <feature type="Timer"         n="8"      m="32"               name="32bit Timer Event counter (T32A)"/>
+          <feature type="RTC"           n="1"      m="32768"            name="Real Time Clock (RTC)"/>
+          <feature type="UART"          n="8"                           name="Universal Asynchronous Receiver Transmitter (UART)"/>
+          <feature type="I2C"           n="4"                           name="Inter-Integrated Circuit (I2C)"/>
+          <feature type="I2C"           n="4"                           name="Inter-Integrated Circuit Version A(EI2C)"/>
+          <feature type="SPI"           n="5"                           name="Toshiba Serial Peripheral Interface (TSPI/SIO)"/>
+          <feature type="ADC"           n="19"     m="12"               name="Analog to Digital Converter (ADC)"/>
+          <feature type="DAC"           n="2"      m="8"                name="Digital to Analog Converter (DAC)"/>
+          <feature type="CoreOther"     n="1"                           name="Advanced Encoder input Circuit (A-ENC)"/>
+          <feature type="CoreOther"     n="1"                           name="Programmable Motor Driver Plus (PMD+)"/>
+          <feature type="Other"         n="1"                           name="Remote control preprocessor (RMC)"/>
+          <feature type="LCD"           n="1"      m="4.40"             name="Segment LCD Controller(LCD)"/>
+          <feature type="PowerOther"    n="1"                           name="Low-Voltage Detector (LVD)"/>
+          <feature type="WDT"           n="1"                           name="Selectable clock Watch dog timer (SIWDT)"/>
+          <feature type="Other"         n="1"                           name="Oscillation Frequency Detector (OFD)"/>
+          <feature type="PowerOther"    n="1"                           name="Power-on Reset Circuit (POR)"/>
+          <feature type="VCC"           n="2.70"   m="5.50"/>
+          <feature type="Temp"          n="-40"    m="105"/>
+          <feature type="QFP"           n="128"                         name="P-LQFP128-1414-0.40-001"/>
+        </device>
+
+        <!-- ***********************  Device 'TMPM3HPF10BDFG'  ************************* -->
+        <device Dname="TMPM3HPF10BDFG">
+          <processor Dclock="120000000"/>
+          <compile header="Device/Include/TMPM3HPB.h" define="TMPM3HPB"/>
+          <debug svd="SVD/M3HPB.svd"/>
+
+          <memory id="IROM1"                           start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM3Hx_code_1024.FLM"  start="0x00000000" size="0x00100000"  RAMstart="0x20000000"  RAMsize="0x20000"  default="1"/>
+          <algorithm name="Flash/TMPM3Hx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x20000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="IOs"           n="118"                         name="I/O Ports (PORT)"/>
+          <feature type="ExtInt"        n="31"                          name="External interrupt (INT)"/>
+          <feature type="CoreOther"     n="31"                          name="Digital Noise Filter (DNF)"/>
+          <feature type="DMA"           n="64"                          name="Direct Memory Access Controllor (DMAC)"/>
+          <feature type="Timer"         n="8"      m="32"               name="32bit Timer Event counter (T32A)"/>
+          <feature type="RTC"           n="1"      m="32768"            name="Real Time Clock (RTC)"/>
+          <feature type="UART"          n="8"                           name="Universal Asynchronous Receiver Transmitter (UART)"/>
+          <feature type="I2C"           n="4"                           name="Inter-Integrated Circuit (I2C)"/>
+          <feature type="I2C"           n="4"                           name="Inter-Integrated Circuit Version A(EI2C)"/>
+          <feature type="SPI"           n="5"                           name="Toshiba Serial Peripheral Interface (TSPI/SIO)"/>
+          <feature type="ADC"           n="19"     m="12"               name="Analog to Digital Converter (ADC)"/>
+          <feature type="DAC"           n="2"      m="8"                name="Digital to Analog Converter (DAC)"/>
+          <feature type="CoreOther"     n="1"                           name="Advanced Encoder input Circuit (A-ENC)"/>
+          <feature type="CoreOther"     n="1"                           name="Programmable Motor Driver Plus (PMD+)"/>
+          <feature type="Other"         n="1"                           name="Remote control preprocessor (RMC)"/>
+          <feature type="LCD"           n="1"      m="4.40"             name="Segment LCD Controller(LCD)"/>
+          <feature type="PowerOther"    n="1"                           name="Low-Voltage Detector (LVD)"/>
+          <feature type="WDT"           n="1"                           name="Selectable clock Watch dog timer (SIWDT)"/>
+          <feature type="Other"         n="1"                           name="Oscillation Frequency Detector (OFD)"/>
+          <feature type="PowerOther"    n="1"                           name="Power-on Reset Circuit (POR)"/>
+          <feature type="VCC"           n="2.70"   m="5.50"/>
+          <feature type="Temp"          n="-40"    m="105"/>
+          <feature type="QFP"           n="128"                         name="P-LQFP128-1420-0.50-001"/>
+        </device>
+
+        <!-- ***********************  Device 'TMPM3HNF10BFG'  ************************* -->
+        <device Dname="TMPM3HNF10BFG">
+          <processor Dclock="120000000"/>
+          <compile header="Device/Include/TMPM3HNB.h" define="TMPM3HNB"/>
+          <debug svd="SVD/M3HNB.svd"/>
+
+          <memory id="IROM1"                           start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM3Hx_code_1024.FLM"  start="0x00000000" size="0x00100000"  RAMstart="0x20000000"  RAMsize="0x20000"  default="1"/>
+          <algorithm name="Flash/TMPM3Hx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x20000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="IOs"           n="92"                         name="I/O Ports (PORT)"/>
+          <feature type="ExtInt"        n="19"                          name="External interrupt (INT)"/>
+          <feature type="CoreOther"     n="19"                          name="Digital Noise Filter (DNF)"/>
+          <feature type="DMA"           n="62"                          name="Direct Memory Access Controllor (DMAC)"/>
+          <feature type="Timer"         n="8"      m="32"               name="32bit Timer Event counter (T32A)"/>
+          <feature type="RTC"           n="1"      m="32768"            name="Real Time Clock (RTC)"/>
+          <feature type="UART"          n="8"                           name="Universal Asynchronous Receiver Transmitter (UART)"/>
+          <feature type="I2C"           n="3"                           name="Inter-Integrated Circuit (I2C)"/>
+          <feature type="I2C"           n="3"                           name="Inter-Integrated Circuit Version A(EI2C)"/>
+          <feature type="SPI"           n="4"                           name="Toshiba Serial Peripheral Interface (TSPI/SIO)"/>
+          <feature type="ADC"           n="17"     m="12"               name="Analog to Digital Converter (ADC)"/>
+          <feature type="DAC"           n="2"      m="8"                name="Digital to Analog Converter (DAC)"/>
+          <feature type="CoreOther"     n="1"                           name="Advanced Encoder input Circuit (A-ENC)"/>
+          <feature type="CoreOther"     n="1"                           name="Programmable Motor Driver Plus (PMD+)"/>
+          <feature type="Other"         n="1"                           name="Remote control preprocessor (RMC)"/>
+          <feature type="LCD"           n="1"      m="4.32"             name="Segment LCD Controller(LCD)"/>
+          <feature type="PowerOther"    n="1"                           name="Low-Voltage Detector (LVD)"/>
+          <feature type="WDT"           n="1"                           name="Selectable clock Watch dog timer (SIWDT)"/>
+          <feature type="Other"         n="1"                           name="Oscillation Frequency Detector (OFD)"/>
+          <feature type="PowerOther"    n="1"                           name="Power-on Reset Circuit (POR)"/>
+          <feature type="VCC"           n="2.70"   m="5.50"/>
+          <feature type="Temp"          n="-40"    m="105"/>
+          <feature type="QFP"           n="100"                         name="P-LQFP100-1414-0.50-002"/>
+        </device>
+
+        <!-- ***********************  Device 'TMPM3HNFDBFG'  ************************* --> 
+        <device Dname="TMPM3HNFDBFG">
+          <processor Dclock="120000000"/>
+          <compile header="Device/Include/TMPM3HNB.h" define="TMPM3HNB"/>
+          <debug svd="SVD/M3HNB.svd"/>
+
+          <memory id="IROM1"                           start="0x00000000" size="0x00080000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM3Hx_code_512.FLM"  start="0x00000000" size="0x00080000"  RAMstart="0x20000000"  RAMsize="0x20000"  default="1"/>
+          <algorithm name="Flash/TMPM3Hx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x20000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="IOs"           n="92"                         name="I/O Ports (PORT)"/>
+          <feature type="ExtInt"        n="19"                          name="External interrupt (INT)"/>
+          <feature type="CoreOther"     n="19"                          name="Digital Noise Filter (DNF)"/>
+          <feature type="DMA"           n="62"                          name="Direct Memory Access Controllor (DMAC)"/>
+          <feature type="Timer"         n="8"      m="32"               name="32bit Timer Event counter (T32A)"/>
+          <feature type="RTC"           n="1"      m="32768"            name="Real Time Clock (RTC)"/>
+          <feature type="UART"          n="8"                           name="Universal Asynchronous Receiver Transmitter (UART)"/>
+          <feature type="I2C"           n="3"                           name="Inter-Integrated Circuit (I2C)"/>
+          <feature type="I2C"           n="3"                           name="Inter-Integrated Circuit Version A(EI2C)"/>
+          <feature type="SPI"           n="4"                           name="Toshiba Serial Peripheral Interface (TSPI/SIO)"/>
+          <feature type="ADC"           n="17"     m="12"               name="Analog to Digital Converter (ADC)"/>
+          <feature type="DAC"           n="2"      m="8"                name="Digital to Analog Converter (DAC)"/>
+          <feature type="CoreOther"     n="1"                           name="Advanced Encoder input Circuit (A-ENC)"/>
+          <feature type="CoreOther"     n="1"                           name="Programmable Motor Driver Plus (PMD+)"/>
+          <feature type="Other"         n="1"                           name="Remote control preprocessor (RMC)"/>
+          <feature type="LCD"           n="1"      m="4.32"             name="Segment LCD Controller(LCD)"/>
+          <feature type="PowerOther"    n="1"                           name="Low-Voltage Detector (LVD)"/>
+          <feature type="WDT"           n="1"                           name="Selectable clock Watch dog timer (SIWDT)"/>
+          <feature type="Other"         n="1"                           name="Oscillation Frequency Detector (OFD)"/>
+          <feature type="PowerOther"    n="1"                           name="Power-on Reset Circuit (POR)"/>
+          <feature type="VCC"           n="2.70"   m="5.50"/>
+          <feature type="Temp"          n="-40"    m="105"/>
+          <feature type="QFP"           n="100"                         name="P-LQFP100-1414-0.50-002"/>
+        </device>
+
+        <!-- ***********************  Device 'TMPM3HNF10BDFG'  ************************* -->
+        <device Dname="TMPM3HNF10BDFG">
+          <processor Dclock="120000000"/>
+          <compile header="Device/Include/TMPM3HNB.h" define="TMPM3HNB"/>
+          <debug svd="SVD/M3HNB.svd"/>
+
+          <memory id="IROM1"                           start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM3Hx_code_1024.FLM"  start="0x00000000" size="0x00100000"  RAMstart="0x20000000"  RAMsize="0x20000"  default="1"/>
+          <algorithm name="Flash/TMPM3Hx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x20000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="IOs"           n="92"                         name="I/O Ports (PORT)"/>
+          <feature type="ExtInt"        n="19"                          name="External interrupt (INT)"/>
+          <feature type="CoreOther"     n="19"                          name="Digital Noise Filter (DNF)"/>
+          <feature type="DMA"           n="62"                          name="Direct Memory Access Controllor (DMAC)"/>
+          <feature type="Timer"         n="8"      m="32"               name="32bit Timer Event counter (T32A)"/>
+          <feature type="RTC"           n="1"      m="32768"            name="Real Time Clock (RTC)"/>
+          <feature type="UART"          n="8"                           name="Universal Asynchronous Receiver Transmitter (UART)"/>
+          <feature type="I2C"           n="3"                           name="Inter-Integrated Circuit (I2C)"/>
+          <feature type="I2C"           n="3"                           name="Inter-Integrated Circuit Version A(EI2C)"/>
+          <feature type="SPI"           n="4"                           name="Toshiba Serial Peripheral Interface (TSPI/SIO)"/>
+          <feature type="ADC"           n="17"     m="12"               name="Analog to Digital Converter (ADC)"/>
+          <feature type="DAC"           n="2"      m="8"                name="Digital to Analog Converter (DAC)"/>
+          <feature type="CoreOther"     n="1"                           name="Advanced Encoder input Circuit (A-ENC)"/>
+          <feature type="CoreOther"     n="1"                           name="Programmable Motor Driver Plus (PMD+)"/>
+          <feature type="Other"         n="1"                           name="Remote control preprocessor (RMC)"/>
+          <feature type="LCD"           n="1"      m="4.32"             name="Segment LCD Controller(LCD)"/>
+          <feature type="PowerOther"    n="1"                           name="Low-Voltage Detector (LVD)"/>
+          <feature type="WDT"           n="1"                           name="Selectable clock Watch dog timer (SIWDT)"/>
+          <feature type="Other"         n="1"                           name="Oscillation Frequency Detector (OFD)"/>
+          <feature type="PowerOther"    n="1"                           name="Power-on Reset Circuit (POR)"/>
+          <feature type="VCC"           n="2.70"   m="5.50"/>
+          <feature type="Temp"          n="-40"    m="105"/>
+          <feature type="QFP"           n="100"                         name="P-QFP100-1420-0.65-001"/>
+        </device>
+
+        <!-- ***********************  Device 'TMPM3HMF10BFG'  ************************* -->
+        <device Dname="TMPM3HMF10BFG">
+          <processor Dclock="120000000"/>
+          <compile header="Device/Include/TMPM3HMB.h" define="TMPM3HMB"/>
+          <debug svd="SVD/M3HMB.svd"/>
+
+          <memory id="IROM1"                           start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM3Hx_code_1024.FLM"  start="0x00000000" size="0x00100000"  RAMstart="0x20000000"  RAMsize="0x20000"  default="1"/>
+          <algorithm name="Flash/TMPM3Hx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x20000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="IOs"           n="72"                         name="I/O Ports (PORT)"/>
+          <feature type="ExtInt"        n="15"                          name="External interrupt (INT)"/>
+          <feature type="CoreOther"     n="15"                          name="Digital Noise Filter (DNF)"/>
+          <feature type="DMA"           n="64"                          name="Direct Memory Access Controllor (DMAC)"/>
+          <feature type="Timer"         n="8"      m="32"               name="32bit Timer Event counter (T32A)"/>
+          <feature type="RTC"           n="1"      m="32768"            name="Real Time Clock (RTC)"/>
+          <feature type="UART"          n="7"                           name="Universal Asynchronous Receiver Transmitter (UART)"/>
+          <feature type="I2C"           n="3"                           name="Inter-Integrated Circuit (I2C)"/>
+          <feature type="I2C"           n="3"                           name="Inter-Integrated Circuit Version A(EI2C)"/>
+          <feature type="SPI"           n="4"                           name="Toshiba Serial Peripheral Interface (TSPI/SIO)"/>
+          <feature type="ADC"           n="12"     m="12"               name="Analog to Digital Converter (ADC)"/>
+          <feature type="DAC"           n="2"      m="8"                name="Digital to Analog Converter (DAC)"/>
+          <feature type="CoreOther"     n="1"                           name="Advanced Encoder input Circuit (A-ENC)"/>
+          <feature type="CoreOther"     n="1"                           name="Programmable Motor Driver Plus (PMD+)"/>
+          <feature type="Other"         n="1"                           name="Remote control preprocessor (RMC)"/>
+          <feature type="LCD"           n="1"      m="4.26"             name="Segment LCD Controller(LCD)"/>
+          <feature type="PowerOther"    n="1"                           name="Low-Voltage Detector (LVD)"/>
+          <feature type="WDT"           n="1"                           name="Selectable clock Watch dog timer (SIWDT)"/>
+          <feature type="Other"         n="1"                           name="Oscillation Frequency Detector (OFD)"/>
+          <feature type="PowerOther"    n="1"                           name="Power-on Reset Circuit (POR)"/>
+          <feature type="VCC"           n="2.70"   m="5.50"/>
+          <feature type="Temp"          n="-40"    m="105"/>
+          <feature type="QFP"           n="80"                         name="P-LQFP80-1212-0.50-003"/>
+        </device>
+
+        <!-- ***********************  Device 'TMPM3HLF10BUG'  ************************* -->
+        <device Dname="TMPM3HLF10BUG">
+          <processor Dclock="120000000"/>
+          <compile header="Device/Include/TMPM3HLB.h" define="TMPM3HLB"/>
+          <debug svd="SVD/M3HLB.svd"/>
+
+          <memory id="IROM1"                           start="0x00000000" size="0x00100000" startup="1" default="1"/>
+          <memory id="IRAM1"                           start="0x20000000" size="0x00020000" init   ="0" default="1"/>
+          <algorithm name="Flash/TMPM3Hx_code_1024.FLM"  start="0x00000000" size="0x00100000"  RAMstart="0x20000000"  RAMsize="0x20000"  default="1"/>
+          <algorithm name="Flash/TMPM3Hx_data_32.FLM"  start="0x30000000" size="0x00008000"  RAMstart="0x20000000"   RAMsize="0x20000"  default="1"/>
+
+          <!--book name=""/-->
+
+          <feature type="IOs"           n="56"                         name="I/O Ports (PORT)"/>
+          <feature type="ExtInt"        n="12"                          name="External interrupt (INT)"/>
+          <feature type="CoreOther"     n="12"                          name="Digital Noise Filter (DNF)"/>
+          <feature type="DMA"           n="54"                          name="Direct Memory Access Controllor (DMAC)"/>
+          <feature type="Timer"         n="8"      m="32"               name="32bit Timer Event counter (T32A)"/>
+          <feature type="RTC"           n="1"      m="32768"            name="Real Time Clock (RTC)"/>
+          <feature type="UART"          n="7"                           name="Universal Asynchronous Receiver Transmitter (UART)"/>
+          <feature type="I2C"           n="2"                           name="Inter-Integrated Circuit (I2C)"/>
+          <feature type="I2C"           n="2"                           name="Inter-Integrated Circuit Version A(EI2C)"/>
+          <feature type="SPI"           n="1"                           name="Toshiba Serial Peripheral Interface (TSPI/SIO)"/>
+          <feature type="ADC"           n="12"     m="12"               name="Analog to Digital Converter (ADC)"/>
+          <feature type="DAC"           n="2"      m="8"                name="Digital to Analog Converter (DAC)"/>
+          <feature type="CoreOther"     n="1"                           name="Advanced Encoder input Circuit (A-ENC)"/>
+          <feature type="CoreOther"     n="1"                           name="Programmable Motor Driver Plus (PMD+)"/>
+          <feature type="Other"         n="1"                           name="Remote control preprocessor (RMC)"/>
+          <feature type="LCD"           n="0"                       name="Segment LCD Controller(LCD)"/>
+          <feature type="PowerOther"    n="1"                           name="Low-Voltage Detector (LVD)"/>
+          <feature type="WDT"           n="1"                           name="Selectable clock Watch dog timer (SIWDT)"/>
+          <feature type="Other"         n="1"                           name="Oscillation Frequency Detector (OFD)"/>
+          <feature type="PowerOther"    n="1"                           name="Power-on Reset Circuit (POR)"/>
+          <feature type="VCC"           n="2.70"   m="5.50"/>
+          <feature type="Temp"          n="-40"    m="105"/>
+          <feature type="QFP"           n="64"                         name="P-LQFP64-1010-0.50-003"/>
+        </device>
+
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="TMPM3HxA Compiler">
+      <accept condition="Compiler ARMCC"/>
+      <accept condition="Compiler IAR"/>
+    </condition>
+
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="Compiler IAR">
+      <require Tcompiler="IAR"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="TMPM3HQx CMSIS">
+      <description>Toshiba TMPM3HQx Devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM3HQ*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM3HPx CMSIS">
+      <description>Toshiba TMPM3HPx Devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM3HP*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM3HNx CMSIS">
+      <description>Toshiba TMPM3HNx Devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM3HN*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM3HMx CMSIS">
+      <description>Toshiba TMPM3HMx Devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM3HM*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="TMPM3HLx CMSIS">
+      <description>Toshiba TMPM3HLx Devices and CMSIS-CORE</description>
+      <require Dvendor="Toshiba:92" Dname="TMPM3HL*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+
+  </conditions>
+
+  <components>
+
+    <!-- Startup TMPM3HQx -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM3HQx CMSIS">
+      <description>System Startup for Toshiba TMPM3HQx Devices</description>
+      <files>
+        <file category="include" name="Device/Include/" condition="TMPM3HxA Compiler"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM3HQB.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/IAR/startup_TMPM3HQB.s" attr="config" version="1.0.0" condition="Compiler IAR"/>
+        <file category="source"  name="Device/Source/system_TMPM3HyB.c"      attr="config" version="1.0.0" condition="TMPM3HxA Compiler"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM3HPx -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM3HPx CMSIS">
+      <description>System Startup for Toshiba TMPM3HPx Devices</description>
+      <files>
+        <file category="include" name="Device/Include/" condition="TMPM3HxA Compiler"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM3HPB.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/IAR/startup_TMPM3HPB.s" attr="config" version="1.0.0" condition="Compiler IAR"/>
+        <file category="source"  name="Device/Source/system_TMPM3HyB.c"      attr="config" version="1.0.0" condition="TMPM3HxA Compiler"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM3HNx -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM3HNx CMSIS">
+      <description>System Startup for Toshiba TMPM3HNx Devices</description>
+      <files>
+        <file category="include" name="Device/Include/" condition="TMPM3HxA Compiler"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM3HNB.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/IAR/startup_TMPM3HNB.s" attr="config" version="1.0.0" condition="Compiler IAR"/>
+        <file category="source"  name="Device/Source/system_TMPM3HyB.c"      attr="config" version="1.0.0" condition="TMPM3HxA Compiler"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM3HMx -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM3HMx CMSIS">
+      <description>System Startup for Toshiba TMPM3HMx Devices</description>
+      <files>
+        <file category="include" name="Device/Include/" condition="TMPM3HxA Compiler"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM3HMB.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/IAR/startup_TMPM3HMB.s" attr="config" version="1.0.0" condition="Compiler IAR"/>
+        <file category="source"  name="Device/Source/system_TMPM3HyB.c"      attr="config" version="1.0.0" condition="TMPM3HxA Compiler"/>
+      </files>
+    </component>
+
+    <!-- Startup TMPM3HLx -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="TMPM3HLx CMSIS">
+      <description>System Startup for Toshiba TMPM3HLx Devices</description>
+      <files>
+        <file category="include" name="Device/Include/" condition="TMPM3HxA Compiler"/>
+        <file category="source"  name="Device/Source/ARM/startup_TMPM3HLB.s" attr="config" version="1.0.0" condition="Compiler ARMCC"/>
+        <file category="source"  name="Device/Source/IAR/startup_TMPM3HLB.s" attr="config" version="1.0.0" condition="Compiler IAR"/>
+        <file category="source"  name="Device/Source/system_TMPM3HyB.c"      attr="config" version="1.0.0" condition="TMPM3HxA Compiler"/>
+      </files>
+    </component>
+
+  </components>
+
+</package>

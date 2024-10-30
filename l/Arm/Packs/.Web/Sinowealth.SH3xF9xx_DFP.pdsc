@@ -1,0 +1,1899 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+	<vendor>Sinowealth</vendor>
+	<name>SH3xF9xx_DFP</name>
+	<description>Sinowealth SH3xF9xx Device Family Pack</description>
+	<url>http://www.sinowealth.com/Tools/ARM32/</url>
+	
+	<releases>
+
+		<release version="2.2.0" date="2022-10-12">
+			Added Chip SH30F9020
+			Added Chip SH30F9021
+			Added Chip SH30F9071
+			Added Chip SH30F9820
+			Added Chip SH30F9821
+			Added Chip SH30F9871
+			Added Chip SH32F9B00
+			Added Chip SH32F9002
+			Added Chip SH32F9062			
+		</release>
+
+		<release version="2.1.0" date="2021-11-26">
+			Update the system.c/.h file from the templates folder to the Startup folder to match the CMSIS Pack standard.		
+		</release>
+
+		<release version="2.0.0" date="2021-11-01">
+		  New Architecture
+			Added Chip SH32F9001
+			Added Chip SH32F9801
+			Added Chip SH32F9061
+			Added Chip SH32F9861			
+		</release>
+
+	</releases>
+  
+	<keywords>
+		<!-- keywords for indexing -->
+    <keyword>Sinowealth</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Sinowealth</keyword>
+	</keywords>
+
+  <requirements>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  
+	<!-- devices section (mandatory for Device Family Packs) -->
+	<devices>
+			<family Dfamily="SH3xF9xx Series" Dvendor="Sinowealth:149">
+    
+      <environment name="uv" >
+        <CMisc>--c99</CMisc>
+      </environment>    
+
+			<description>
+SH3xF9 is a high-performance 32-bit microcontroller based on ARM Cortex core.  It is especially suitable for the development of smart home, major appliances and motor control schemes.
+                                           
+      - Up to 120MHz
+      - Clock Security Monitor (CSM)
+      - System timer (SYSTICK)
+      - SRAM Detection Module (RAMBIST)
+      - External interrupt/event controller (EXTI)
+      - Serial peripheral interfaces (SPI)
+      - Two-wire serial interfaces (TWI)
+      - High performance ADC
+      - Timers/counters (TIMER)                            
+      - Pulse Width Modulation (PWM)                                      
+      - Watchdog Timer (WDT) 
+      - Cyclic Redundancy Check (CRC)                       
+      - Direct Memory Access (DMA)
+      - Programmable Counter Array (PCA)
+      - Uiversal asynchronous receiver transmitter (UART)      
+			</description>
+
+
+
+		<!-- ************************  Subfamily 'SH30F9xx_SA0'  ************************ -->
+			<subFamily DsubFamily="SH30F9xx_SA0">
+				<compile header="Device/SH30F9xx/SH30F9xx_SA0/Include/sh30f9xx_sa0.h"  define="SH30F9_SA0"/>
+	
+        <description>
+SH30F9xx_SA0 - ARM Cortex-M0+ Core
+  Frequency up to 48 MHz
+  32-bit hardware multiply unit
+  NVIC support 16 internal, 32 external interrupts, each has 4 priority levels
+
+Memories
+  Flash size up to 256KB
+  SRAM size up to 16KB
+  EEPROM size 4KB
+
+Low power management
+  Power saving mode: sleep mode, stop mode
+
+Advanced analog peripherals
+  1 x 12bit, up to 1us ADC (up to 28 chs)
+
+Integrated peripherals interface
+  Up to 4 x UART
+  Up to 2 x SPI
+  Up to 4 x PCA
+  Up to 4 x PWM
+  Up to 1 x TWI
+
+On-chip resources
+  3 x 16 bit Timer, 1 x 32 bit Timer, 1 x SysTick Timer, 2 x WDT
+  4-chs DMA support: UART, SPI, EXTI, TIMER, PCA, ADC, LED, PWM, TK
+  System supervisor and reset: POR, BOD, LVD
+  Up to 61 GPIO available, CSM, EXTI, NVIC, 
+  32-bit CRC, 96-bit unique ID, RAMBIST
+  On-chip clock: HSI (24MHz), LSI (128KHz)
+				</description>			
+			  
+				<!-- *****************************  Device 'SH30F9020'  ***************************** -->
+				<device Dname="SH30F9020">
+
+  	  		<processor Dcore="Cortex-M0+" DcoreVersion="r0p1" Dmpu="0" Dendian="Little-endian" Dclock="48000000"/>
+					<compile header="Device/SH30F9xx/SH30F9xx_SA0/Include/sh30f9020.h"  define="_SH30F9020"/>
+					<debug svd="SVD/sh30f9020.svd" default="1"/>
+        	<memory     id="IROM1"                      start="0x00000000"  size="0x40000"   startup="1"   default="1"/>
+       	 	<memory     id="IRAM1"                      start="0x20000000"  size="0x4000"    init   ="0"   default="1"/>
+       		<algorithm  name="Flash/SH30F9020.FLM"      start="0x00000000"  size="0x10000000"    RAMstart="0x20000000"  RAMsize="0x4000"  default="1"/>
+          
+          <environment name="iar">
+         		<file category="linkerfile" name="Device/SH30F9xx/SH30F9xx_SA0/Source/IAR/sh30f9020_iar.icf"/>
+          </environment> 
+          
+					<description>
+- Cortex-M0+
+- Up to 48MHz
+- Flash Size:256KB, SRAM:16KB, EEPROM:4KB, OTP:1KB
+- 1 x ADC (28CHs), 4 x PWM, CSM,  2 x WDT, NVIC, RAMBIST
+- 4 x Timer, 4 x UART, 4 x PCA, 2 x SPI, 1 x TWI
+- 4 channel DMA, 1 LED, 1 LCD, 16 x EXTI, 1 x CRC
+- Up to 61 GPIOs
+					</description>
+				</device>
+
+
+
+				<!-- *****************************  Device 'SH30F9021'  ***************************** -->
+				<device Dname="SH30F9021">
+
+  	  		<processor Dcore="Cortex-M0+" DcoreVersion="r0p1" Dmpu="0" Dendian="Little-endian" Dclock="48000000"/>
+					<compile header="Device/SH30F9xx/SH30F9xx_SA0/Include/sh30f9021.h"  define="_SH30F9021"/>
+					<debug svd="SVD/sh30f9021.svd" default="1"/>
+        	<memory     id="IROM1"                      start="0x00000000"  size="0x40000"   startup="1"   default="1"/>
+       	 	<memory     id="IRAM1"                      start="0x20000000"  size="0x4000"    init   ="0"   default="1"/>
+       		<algorithm  name="Flash/SH30F9021.FLM"      start="0x00000000"  size="0x10000000"    RAMstart="0x20000000"  RAMsize="0x4000"  default="1"/>
+          
+          <environment name="iar">
+         		<file category="linkerfile" name="Device/SH30F9xx/SH30F9xx_SA0/Source/IAR/sh30f9021_iar.icf"/>
+          </environment> 
+
+					<description>
+- Cortex-M0+
+- Up to 48MHz
+- Flash Size:256KB, SRAM:16KB, EEPROM:4KB, OTP:1KB
+- 1 x ADC (28CHs), 4 x PWM, CSM,  2 x WDT, NVIC, RAMBIST
+- 4 x Timer, 4 x UART, 4 x PCA, 2 x SPI, 1 x TWI
+- 4 channel DMA, 16 x EXTI, 1 x CRC
+- Up to 42 GPIOs
+					</description>
+				</device>
+
+
+
+				<!-- *****************************  Device 'SH30F9071'  ***************************** -->
+				<device Dname="SH30F9071">
+
+  	  		<processor Dcore="Cortex-M0+" DcoreVersion="r0p1" Dmpu="0" Dendian="Little-endian" Dclock="48000000"/>
+					<compile header="Device/SH30F9xx/SH30F9xx_SA0/Include/sh30f9071.h"  define="_SH30F9071"/>
+					<debug svd="SVD/sh30f9071.svd" default="1"/>
+        	<memory     id="IROM1"                      start="0x00000000"  size="0x40000"   startup="1"   default="1"/>
+       	 	<memory     id="IRAM1"                      start="0x20000000"  size="0x4000"    init   ="0"   default="1"/>
+       		<algorithm  name="Flash/SH30F9071.FLM"      start="0x00000000"  size="0x10000000"    RAMstart="0x20000000"  RAMsize="0x4000"  default="1"/>
+          
+          <environment name="iar">
+         		<file category="linkerfile" name="Device/SH30F9xx/SH30F9xx_SA0/Source/IAR/sh30f9071_iar.icf"/>
+          </environment> 
+
+					<description>
+- Cortex-M0+
+- Up to 48MHz
+- Flash Size:256KB, SRAM:16KB, EEPROM:4KB, OTP:1KB
+- 1 x ADC (28CHs), 4 x PWM, CSM,  2 x WDT, NVIC, RAMBIST
+- 4 x Timer, 4 x UART, 4 x PCA, 2 x SPI, 1 x TWI
+- 4 channel DMA, 1 LED, 1 LCD, 16 x EXTI, 1 x CRC
+- Up to 61 GPIOs,UP to 32-CHs TK
+					</description>
+				</device>
+
+
+				<!-- *****************************  Device 'SH30F9820'  ***************************** -->
+				<device Dname="SH30F9820">
+
+  	  		<processor Dcore="Cortex-M0+" DcoreVersion="r0p1" Dmpu="0" Dendian="Little-endian" Dclock="48000000"/>
+					<compile header="Device/SH30F9xx/SH30F9xx_SA0/Include/sh30f9820.h"  define="_SH30F9820"/>
+					<debug svd="SVD/sh30f9820.svd" default="1"/>
+        	<memory     id="IROM1"                      start="0x00000000"  size="0x20000"   startup="1"   default="1"/>
+       	 	<memory     id="IRAM1"                      start="0x20000000"  size="0x4000"    init   ="0"   default="1"/>
+       		<algorithm  name="Flash/SH30F9820.FLM"      start="0x00000000"  size="0x10000000"    RAMstart="0x20000000"  RAMsize="0x4000"  default="1"/>
+          
+          <environment name="iar">
+         		<file category="linkerfile" name="Device/SH30F9xx/SH30F9xx_SA0/Source/IAR/sh30f9820_iar.icf"/>
+          </environment> 
+
+					<description>
+- Cortex-M0+
+- Up to 48MHz
+- Flash Size:128KB, SRAM:16KB, EEPROM:4KB, OTP:1KB
+- 1 x ADC (28CHs), 4 x PWM, CSM,  2 x WDT, NVIC, RAMBIST
+- 4 x Timer, 4 x UART, 4 x PCA, 2 x SPI, 1 x TWI
+- 4 channel DMA, 1 LED, 1 LCD, 16 x EXTI, 1 x CRC
+- Up to 61 GPIOs
+					</description>
+				</device>
+
+
+
+				<!-- *****************************  Device 'SH30F9821'  ***************************** -->
+				<device Dname="SH30F9821">
+
+  	  		<processor Dcore="Cortex-M0+" DcoreVersion="r0p1" Dmpu="0" Dendian="Little-endian" Dclock="48000000"/>
+					<compile header="Device/SH30F9xx/SH30F9xx_SA0/Include/sh30f9821.h"  define="_SH30F9821"/>
+					<debug svd="SVD/sh30f9821.svd" default="1"/>
+        	<memory     id="IROM1"                      start="0x00000000"  size="0x20000"   startup="1"   default="1"/>
+       	 	<memory     id="IRAM1"                      start="0x20000000"  size="0x4000"    init   ="0"   default="1"/>
+       		<algorithm  name="Flash/SH30F9821.FLM"      start="0x00000000"  size="0x10000000"    RAMstart="0x20000000"  RAMsize="0x4000"  default="1"/>
+          
+          <environment name="iar">
+         		<file category="linkerfile" name="Device/SH30F9xx/SH30F9xx_SA0/Source/IAR/sh30f9821_iar.icf"/>
+          </environment> 
+
+					<description>
+- Cortex-M0+
+- Up to 48MHz
+- Flash Size:128KB, SRAM:16KB, EEPROM:4KB, OTP:1KB
+- 1 x ADC (28CHs), 4 x PWM, CSM,  2 x WDT, NVIC, RAMBIST
+- 4 x Timer, 4 x UART, 4 x PCA, 2 x SPI, 1 x TWI
+- 4 channel DMA, 16 x EXTI, 1 x CRC
+- Up to 42 GPIOs
+					</description>
+				</device>
+
+
+
+				<!-- *****************************  Device 'SH30F9871'  ***************************** -->
+				<device Dname="SH30F9871">
+
+  	  		<processor Dcore="Cortex-M0+" DcoreVersion="r0p1" Dmpu="0" Dendian="Little-endian" Dclock="48000000"/>
+					<compile header="Device/SH30F9xx/SH30F9xx_SA0/Include/sh30f9871.h"  define="_SH30F9871"/>
+					<debug svd="SVD/sh30f9871.svd" default="1"/>
+        	<memory     id="IROM1"                      start="0x00000000"  size="0x20000"   startup="1"   default="1"/>
+       	 	<memory     id="IRAM1"                      start="0x20000000"  size="0x4000"    init   ="0"   default="1"/>
+       		<algorithm  name="Flash/SH30F9871.FLM"      start="0x00000000"  size="0x10000000"    RAMstart="0x20000000"  RAMsize="0x4000"  default="1"/>
+          
+          <environment name="iar">
+         		<file category="linkerfile" name="Device/SH30F9xx/SH30F9xx_SA0/Source/IAR/sh30f9871_iar.icf"/>
+          </environment> 
+          
+					<description>
+- Cortex-M0+
+- Up to 48MHz
+- Flash Size:128KB, SRAM:16KB, EEPROM:4KB, OTP:1KB
+- 1 x ADC (28CHs), 4 x PWM, CSM,  2 x WDT, NVIC, RAMBIST
+- 4 x Timer, 4 x UART, 4 x PCA, 2 x SPI, 1 x TWI
+- 4 channel DMA, 1 LED, 1 LCD, 16 x EXTI, 1 x CRC
+- Up to 61 GPIOs,UP to 32-CHs TK
+					</description>
+				</device>
+			
+			</subFamily> 
+			
+<!-- *************************  End sub Family 'SH30F9xx_SA0'  ***************************** -->
+
+
+
+
+		<!-- ************************  Subfamily 'SH32F9xx_SB0'  ************************ -->
+			<subFamily DsubFamily="SH32F9xx_SB0">
+				<compile header="Device/SH32F9xx/SH32F9xx_SB0/Include/sh32f9xx_sb0.h"  define="SH32F9_SB0"/>
+	
+        <description>
+SH32F9xx_SB0 - ARM Cortex-M3 Core
+  Frequency up to 72 MHz
+  32-bit hardware multiply/divide unit
+  NVIC support 16 internal, 41 external interrupts, each has 4 priority levels
+
+Memories
+  Flash size up to 256KB
+  SRAM size up to 16KB 
+  CRAM size up to 16KB 
+  EEPROM size 6KB  
+
+Low power management
+  Power saving mode: sleep mode, stop mode
+
+Advanced analog peripherals
+  1 x 12bit, up to 1us ADC (up to 26 chs)
+
+Integrated peripherals interface
+  Up to 6 x UART
+  Up to 2 x SPI 
+  Up to 2 x TWI 
+  Up to 4 x PWM
+  Up to 8 x PCA
+
+On-chip resources
+  4 x 16 bit Timer, RAMBIST, 2 x WDG, CSM, AMOC, LED, LCD
+  8-chs DMA support: UART, SPI, EXTI, TIM, ADC, PCA, PWM, LCD, LED
+  System supervisor and reset: POR, BOD, LVR, SYSTICK
+  Up to 75 GPIO available, NVIC
+  32-bit CRC, 96-bit unique ID
+  On-chip clock: HSI (24MHz), LSI (128KHz)
+        </description>			
+			  
+				<!-- *****************************  Device 'SH32F9001'  ***************************** -->
+				<device Dname="SH32F9001">
+
+  	  		<processor Dcore="Cortex-M3" DcoreVersion="r2p1" Dmpu="MPU" Dendian="Little-endian" />
+					<compile header="Device/SH32F9xx/SH32F9xx_SB0/Include/sh32f9001.h"  define="_SH32F9001"/>
+					<debug svd="SVD/sh32f9001.svd" default="1"/>
+        	<memory     id="IROM1"                      start="0x00000000"  size="0x40000"   startup="1"   default="1"/>
+       	 	<memory     id="IRAM1"                      start="0x20000000"  size="0x4000"    init   ="1"   default="1"/>
+       	 	<memory     id="IRAM2"                      start="0x10000000"  size="0x4000"    init   ="0"   default="1"/>
+       		<algorithm  name="Flash/SH32F9001.FLM"      start="0x00000000"  size="0x10000000"    RAMstart="0x20000000"  RAMsize="0x4000"  default="1"/>
+          <environment name="iar">
+         		<file category="linkerfile" name="Device/SH32F9xx/SH32F9xx_SB0/Source/IAR/sh32f9001_iar.icf"/>
+          </environment> 
+					<description>
+- Cortex-M3
+- Up to 72MHz
+- Flash Size:256KB, SRAM:16KB, CRAM:16KB, EEPROM:6KB, OTP:1KB
+- 1 x ADC (26CHs), 4 x PWM, AMOC, CSM, 2 x WDT, LCD, LED
+- 4 x Timer, 6 x UART, 2 x SPI, 2 x TWI, 16 x EXTI, 1 x CRC
+- 8 channel DMA, 8 x PCA, NVIC, RAMBIST, SYSTICK     
+- Up to 75 GPIOs
+					</description>
+				</device>
+
+
+			  
+				<!-- *****************************  Device 'SH32F9002'  ***************************** -->
+				<device Dname="SH32F9002">
+
+  	  		<processor Dcore="Cortex-M3" DcoreVersion="r2p1" Dmpu="MPU" Dendian="Little-endian" />
+					<compile header="Device/SH32F9xx/SH32F9xx_SB0/Include/sh32f9002.h"  define="_SH32F9002"/>
+					<debug svd="SVD/sh32f9002.svd" default="1"/>
+        	<memory     id="IROM1"                      start="0x00000000"  size="0x40000"   startup="1"   default="1"/>
+       	 	<memory     id="IRAM1"                      start="0x20000000"  size="0x4000"    init   ="1"   default="1"/>
+       	 	<memory     id="IRAM2"                      start="0x10000000"  size="0x4000"    init   ="0"   default="1"/>
+       		<algorithm  name="Flash/SH32F9002.FLM"      start="0x00000000"  size="0x10000000"    RAMstart="0x20000000"  RAMsize="0x4000"  default="1"/>
+          <environment name="iar">
+         		<file category="linkerfile" name="Device/SH32F9xx/SH32F9xx_SB0/Source/IAR/sh32f9002_iar.icf"/>
+          </environment> 
+					<description>
+- Cortex-M3
+- Up to 72MHz
+- Flash Size:256KB, SRAM:16KB, CRAM:16KB, EEPROM:6KB, OTP:1KB
+- 1 x ADC (26CHs), 4 x PWM, AMOC, CSM, 2 x WDT, LCD, LED
+- 4 x Timer, 6 x UART, 2 x SPI, 2 x TWI, 16 x EXTI, 1 x CRC
+- 8 channel DMA, 8 x PCA, NVIC, RAMBIST, SYSTICK     
+- Up to 75 GPIOs
+					</description>
+				</device>
+
+
+				<!-- *****************************  Device 'SH32F9801'  ***************************** -->
+				<device Dname="SH32F9801">
+
+  	  		<processor Dcore="Cortex-M3" DcoreVersion="r2p1" Dmpu="MPU" Dendian="Little-endian" />
+					<compile header="Device/SH32F9xx/SH32F9xx_SB0/Include/sh32f9801.h"  define="_SH32F9801"/>
+					<debug svd="SVD/sh32f9801.svd" default="1"/>
+        	<memory     id="IROM1"                      start="0x00000000"  size="0x20000"   startup="1"   default="1"/>
+       	 	<memory     id="IRAM1"                      start="0x20000000"  size="0x4000"    init   ="1"   default="1"/>
+       	 	<memory     id="IRAM2"                      start="0x10000000"  size="0x4000"    init   ="0"   default="1"/>
+       		<algorithm  name="Flash/SH32F9801.FLM"      start="0x00000000"  size="0x10000000"    RAMstart="0x20000000"  RAMsize="0x4000"  default="1"/>
+            <environment name="iar">
+         		<file category="linkerfile" name="Device/SH32F9xx/SH32F9xx_SB0/Source/IAR/sh32f9801_iar.icf"/>
+            </environment> 
+					<description>
+- Cortex-M3
+- Up to 72MHz
+- Flash Size:128KB, SRAM:16KB, CRAM:16KB, EEPROM:6KB, OTP:1KB
+- 1 x ADC (26CHs), 4 x PWM, AMOC, CSM, 2 x WDT, LCD, LED
+- 4 x Timer, 6 x UART, 2 x SPI, 2 x TWI, 16 x EXTI, 1 x CRC
+- 8 channel DMA, 8 x PCA, NVIC, RAMBIST, SYSTICK     
+- Up to 75 GPIOs
+					</description>
+				</device>
+
+				<!-- *****************************  Device 'SH32F9061'  ***************************** -->
+				<device Dname="SH32F9061">
+
+  	  		<processor Dcore="Cortex-M3" DcoreVersion="r2p1" Dmpu="MPU" Dendian="Little-endian" />
+					<compile header="Device/SH32F9xx/SH32F9xx_SB0/Include/sh32f9061.h"  define="_SH32F9061"/>
+					<debug svd="SVD/sh32f9061.svd" default="1"/>
+        	<memory     id="IROM1"                      start="0x00000000"  size="0x40000"   startup="1"   default="1"/>
+       	 	<memory     id="IRAM1"                      start="0x20000000"  size="0x4000"    init   ="1"   default="1"/>
+       	 	<memory     id="IRAM2"                      start="0x10000000"  size="0x4000"    init   ="0"   default="1"/>
+       		<algorithm  name="Flash/SH32F9061.FLM"      start="0x00000000"  size="0x10000000"    RAMstart="0x20000000"  RAMsize="0x4000"  default="1"/>
+          <environment name="iar">
+         		<file category="linkerfile" name="Device/SH32F9xx/SH32F9xx_SB0/Source/IAR/sh32f9061_iar.icf"/>
+          </environment> 
+					<description>
+- Cortex-M3
+- Up to 72MHz
+- Flash Size:256KB, SRAM:16KB, CRAM:16KB, EEPROM:6KB, OTP:1KB
+- 1 x ADC (26CHs), 4 x PWM, AMOC, CSM, 2 x WDT, LCD, LED
+- 4 x Timer, 6 x UART, 2 x SPI, 2 x TWI, 16 x EXTI, 1 x CRC
+- 8 channel DMA, 8 x PCA, NVIC, RAMBIST, SYSTICK     
+- Up to 75 GPIOs, 24 channel Touchkey
+					</description>
+				</device>
+
+				<!-- *****************************  Device 'SH32F9062'  ***************************** -->
+				<device Dname="SH32F9062">
+
+  	  		<processor Dcore="Cortex-M3" DcoreVersion="r2p1" Dmpu="MPU" Dendian="Little-endian" />
+					<compile header="Device/SH32F9xx/SH32F9xx_SB0/Include/sh32f9062.h"  define="_SH32F9062"/>
+					<debug svd="SVD/sh32f9062.svd" default="1"/>
+        	<memory     id="IROM1"                      start="0x00000000"  size="0x40000"   startup="1"   default="1"/>
+       	 	<memory     id="IRAM1"                      start="0x20000000"  size="0x4000"    init   ="1"   default="1"/>
+       	 	<memory     id="IRAM2"                      start="0x10000000"  size="0x4000"    init   ="0"   default="1"/>
+       		<algorithm  name="Flash/SH32F9062.FLM"      start="0x00000000"  size="0x10000000"    RAMstart="0x20000000"  RAMsize="0x4000"  default="1"/>
+          <environment name="iar">
+         		<file category="linkerfile" name="Device/SH32F9xx/SH32F9xx_SB0/Source/IAR/sh32f9062_iar.icf"/>
+          </environment> 
+					<description>
+- Cortex-M3
+- Up to 72MHz
+- Flash Size:256KB, SRAM:16KB, CRAM:16KB, EEPROM:6KB, OTP:1KB
+- 1 x ADC (26CHs), 4 x PWM, AMOC, CSM, 2 x WDT, LCD, LED
+- 4 x Timer, 6 x UART, 2 x SPI, 2 x TWI, 16 x EXTI, 1 x CRC
+- 8 channel DMA, 8 x PCA, NVIC, RAMBIST, SYSTICK     
+- Up to 75 GPIOs, 24 channel Touchkey
+					</description>
+				</device>
+
+
+				<!-- *****************************  Device 'SH32F9861'  ***************************** -->
+				<device Dname="SH32F9861">
+
+  	  		<processor Dcore="Cortex-M3" DcoreVersion="r2p1" Dmpu="MPU" Dendian="Little-endian" />
+					<compile header="Device/SH32F9xx/SH32F9xx_SB0/Include/sh32f9861.h"  define="_SH32F9861"/>
+					<debug svd="SVD/sh32f9861.svd" default="1"/>
+        	<memory     id="IROM1"                      start="0x00000000"  size="0x20000"   startup="1"   default="1"/>
+       	 	<memory     id="IRAM1"                      start="0x20000000"  size="0x4000"    init   ="1"   default="1"/>
+       	 	<memory     id="IRAM2"                      start="0x10000000"  size="0x4000"    init   ="0"   default="1"/>
+       		<algorithm  name="Flash/SH32F9861.FLM"      start="0x00000000"  size="0x10000000"    RAMstart="0x20000000"  RAMsize="0x4000"  default="1"/>
+          <environment name="iar">
+         		<file category="linkerfile" name="Device/SH32F9xx/SH32F9xx_SB0/Source/IAR/sh32f9861_iar.icf"/>
+          </environment> 
+					<description>
+- Cortex-M3
+- Up to 72MHz
+- Flash Size:128KB, SRAM:16KB, CRAM:16KB, EEPROM:6KB, OTP:1KB
+- 1 x ADC (26CHs), 4 x PWM, AMOC, CSM, 2 x WDT, LCD, LED
+- 4 x Timer, 6 x UART, 2 x SPI, 2 x TWI, 16 x EXTI, 1 x CRC
+- 8 channel DMA, 8 x PCA, NVIC, RAMBIST, SYSTICK     
+- Up to 75 GPIOs, 24 channel Touchkey
+					</description>
+				</device>
+			
+			</subFamily> 
+			
+<!-- *************************  End sub Family 'SH32F9xx_SB0'  ***************************** -->
+
+
+
+           
+		<!-- ************************  Subfamily 'SH32F9xx_SC0'  ************************ -->
+			<subFamily DsubFamily="SH32F9xx_SC0">
+				<compile header="Device/SH32F9xx/SH32F9xx_SC0/Include/sh32f9xx_sc0.h"  define="SH32F9_SC0"/>
+	
+        <description>
+SH32F9xx_SC0 - ARM Cortex-M3 Core
+  Frequency up to 120 MHz
+  32-bit hardware multiply/divide unit
+  NVIC support 16 internal, 42 external interrupts, each has 4 priority levels
+
+Memories
+  Flash size up to 512KB
+  SRAM size up to 32KB 
+  CRAM size up to 32KB 
+  EEPROM size 8KB  
+
+Low power management
+  Power saving mode: sleep mode, stop mode
+
+Advanced analog peripherals
+  1 x 12bit, up to 0.5us ADC (up to 20 chs)
+
+Integrated peripherals interface
+  Up to 6 x UART
+  Up to 2 x SPI 
+  Up to 2 x TWI 
+  Up to 4 x GPT
+
+On-chip resources
+  4 x 16 bit Timer, 1 x SysTick Timer,  2 x WDG
+  24-chs Touchkey, CSM, EXTI, NVIC, RAMBIST
+  8-chs DMA support: UART, SPI, TK, EXTI, TIMER, ADC, GPT
+  System supervisor and reset: POR, LVR
+  Up to 73 GPIO available
+  32-bit CRC, 96-bit unique ID
+  On-chip clock: HSI (24MHz), LSI (32KHz)
+		</description>			
+			  
+				<!-- *****************************  Device 'SH32F9B00'  ***************************** -->
+				<device Dname="SH32F9B00">
+
+  	  		<processor Dcore="Cortex-M3" DcoreVersion="r2p1" Dmpu="MPU" Dendian="Little-endian" />
+					<compile header="Device/SH32F9xx/SH32F9xx_SC0/Include/sh32f9b00.h"  define="_SH32F9B00"/>
+					<debug svd="SVD/sh32f9b00.svd" default="1"/>
+        	<memory     id="IROM1"                      start="0x00000000"  size="0x80000"   startup="1"   default="1"/>
+       	 	<memory     id="IRAM1"                      start="0x10000000"  size="0x8000"    init   ="0"   default="1"/>
+       	 	<memory     id="IRAM2"                      start="0x20000000"  size="0x8000"    init   ="0"   default="1"/>
+       		<algorithm  name="Flash/SH32F9B00.FLM"      start="0x00000000"  size="0x10000000"    RAMstart="0x20000000"  RAMsize="0x8000"  default="1"/>
+          <environment name="iar">
+         		<file category="linkerfile" name="Device/SH32F9xx/SH32F9xx_SC0/Source/IAR/sh32f9b00_iar.icf"/>
+          </environment> 
+					<description>
+- Cortex-M3
+- Up to 120MHz
+- Flash Size:512KB, SRAM:32KB, CRAM:32KB, EEPROM:8KB, OTP:1KB
+- 2 x ADC(20CHs), 4 x GPT, CSM, 2 x WDT, RAMBIST, 24-chs Touchkey
+- 4 x Timer, 6 x UART, 2 x SPI, 2 x TWI, 16 x EXTI, 1 x CRC
+- 8 channel DMA, SYSTICK     
+- Up to 73 GPIOs
+					</description>
+				</device>
+			
+			</subFamily> 
+			
+<!-- *************************  End sub Family 'SH32F9xx_SC0'  ***************************** -->
+
+		</family>
+	</devices>
+	
+	<!-- conditions section (optional for all Software Packs)-->
+	<conditions>
+	
+		<!-- Compiler Conditions -->
+		
+			<condition id="ARMCC">
+				<require Tcompiler="ARMCC"/>
+			</condition>
+  		
+    	<condition id="IAR">
+     		<require Tcompiler="IAR"/>
+   		</condition>
+   		
+   		<condition id="GCC">
+      	<require Tcompiler="GCC"/>
+    	</condition>
+  	
+  	    	
+        	
+		<condition id="Startup ARM">
+			<description>Startup assembler file for ARMCC</description>
+			<require condition = "ARMCC" />
+		</condition>
+
+		<condition id="Startup GCC">
+			<description>Startup assembler file for GCC</description>
+			<require condition="GCC"/>
+		</condition>
+
+		<condition id="Startup IAR">
+			<description>Startup assembler file for IAR</description>
+			<require condition="IAR"/>
+		</condition>
+		    	
+
+
+
+		<!--  SH30F9 SA0 -->  
+		  <condition id="SH30F9020">
+				<require Dname="SH30F9020"/>	
+	  	  <require Cclass="CMSIS" Cgroup="CORE"/>						
+	      <accept condition="ARMCC"/>
+	      <accept condition="GCC" />
+	      <accept condition="IAR" />			
+	  </condition>
+
+		  <condition id="SH30F9021">
+				<require Dname="SH30F9021"/>	
+	  	  <require Cclass="CMSIS" Cgroup="CORE"/>						
+	      <accept condition="ARMCC"/>
+	      <accept condition="GCC" />
+	      <accept condition="IAR" />			
+	  </condition>
+
+		  <condition id="SH30F9071">
+				<require Dname="SH30F9071"/>	
+	  	  <require Cclass="CMSIS" Cgroup="CORE"/>						
+	      <accept condition="ARMCC"/>
+	      <accept condition="GCC" />
+	      <accept condition="IAR" />			
+	  </condition>
+
+		  <condition id="SH30F9820">
+				<require Dname="SH30F9820"/>	
+	  	  <require Cclass="CMSIS" Cgroup="CORE"/>						
+	      <accept condition="ARMCC"/>
+	      <accept condition="GCC" />
+	      <accept condition="IAR" />			
+	  </condition>
+
+		  <condition id="SH30F9821">
+				<require Dname="SH30F9821"/>	
+	  	  <require Cclass="CMSIS" Cgroup="CORE"/>						
+	      <accept condition="ARMCC"/>
+	      <accept condition="GCC" />
+	      <accept condition="IAR" />			
+	  </condition>
+
+		  <condition id="SH30F9871">
+				<require Dname="SH30F9871"/>	
+	  	  <require Cclass="CMSIS" Cgroup="CORE"/>						
+	      <accept condition="ARMCC"/>
+	      <accept condition="GCC" />
+	      <accept condition="IAR" />			
+	  </condition>
+
+	    <condition id="SH30F9_SA0">
+			<description>Sinowealth SH30F9_SA0 Series Device</description>	
+	      <accept condition="SH30F9020"/>                  
+	      <accept condition="SH30F9021"/>                  
+	      <accept condition="SH30F9071"/>                  
+	      <accept condition="SH30F9820"/>                  
+	      <accept condition="SH30F9821"/>                  
+	      <accept condition="SH30F9871"/>                  
+	    </condition>
+
+	    <condition id="SH30F9_SA0_LCD">
+			<description>Sinowealth SH30F9_SA0 Series Device with LCD</description>	    
+	      <accept condition="SH30F9020"/>          
+	      <accept condition="SH30F9071"/>          
+	      <accept condition="SH30F9820"/>          
+	      <accept condition="SH30F9871"/>          
+	    </condition>
+
+	    <condition id="SH30F9_SA0_LED">
+			<description>Sinowealth SH30F9_SA0 Series Device with LED</description>	    
+	      <accept condition="SH30F9020"/>          
+	      <accept condition="SH30F9071"/>          
+	      <accept condition="SH30F9820"/>          
+	      <accept condition="SH30F9871"/>          
+	    </condition>
+
+		<!--  SH32F9 SB0 -->  
+		  <condition id="SH32F9001">
+				<require Dname="SH32F9001"/>	
+	  	  <require Cclass="CMSIS" Cgroup="CORE"/>						
+	      <accept condition="ARMCC"/>
+	      <accept condition="GCC" />
+	      <accept condition="IAR" />			
+		  </condition>
+
+		  <condition id="SH32F9002">
+				<require Dname="SH32F9002"/>	
+	  	  <require Cclass="CMSIS" Cgroup="CORE"/>						
+	      <accept condition="ARMCC"/>
+	      <accept condition="GCC" />
+	      <accept condition="IAR" />			
+		  </condition>
+
+		  <condition id="SH32F9801">
+				<require Dname="SH32F9801"/>	
+	  	  <require Cclass="CMSIS" Cgroup="CORE"/>						
+	      <accept condition="ARMCC"/>
+	      <accept condition="GCC" />
+	      <accept condition="IAR" />			
+		  </condition>
+
+		  <condition id="SH32F9061">
+				<require Dname="SH32F9061"/>	
+	  	  <require Cclass="CMSIS" Cgroup="CORE"/>						
+	      <accept condition="ARMCC"/>
+	      <accept condition="GCC" />
+	      <accept condition="IAR" />			
+		  </condition>
+
+
+		  <condition id="SH32F9062">
+				<require Dname="SH32F9062"/>	
+	  	  <require Cclass="CMSIS" Cgroup="CORE"/>						
+	      <accept condition="ARMCC"/>
+	      <accept condition="GCC" />
+	      <accept condition="IAR" />			
+		  </condition>
+
+		  <condition id="SH32F9861">
+				<require Dname="SH32F9861"/>	
+	  	  <require Cclass="CMSIS" Cgroup="CORE"/>						
+	      <accept condition="ARMCC"/>
+	      <accept condition="GCC" />
+	      <accept condition="IAR" />			
+		  </condition>
+
+	    <condition id="SH32F9_SB0">
+			<description>Sinowealth SH32F9_SB0 Series Device</description>	
+	      <accept condition="SH32F9001"/>
+	      <accept condition="SH32F9002"/>                  
+	      <accept condition="SH32F9801"/>                  
+	      <accept condition="SH32F9061"/>  
+	      <accept condition="SH32F9062"/>                                  
+	      <accept condition="SH32F9861"/>  
+	    </condition>
+
+		  <condition id="SH32F9061_TouchKey">
+				<require condition="SH32F9061"/>	
+			  <require Cclass ="Sino_TouchKey" Cgroup="TouchKey" />
+		  </condition>
+
+		  <condition id="SH32F9062_TouchKey">
+				<require condition="SH32F9062"/>	
+			  <require Cclass ="Sino_TouchKey" Cgroup="TouchKey" />
+		  </condition>
+
+		  <condition id="SH32F9861_TouchKey">
+				<require condition="SH32F9861"/>	
+			  <require Cclass ="Sino_TouchKey" Cgroup="TouchKey" />
+		  </condition>
+
+	    <condition id="SH32F9_SB0_TouchKey">
+			<description>Sinowealth SH32F9_SB0 Series Device with TouchKey</description>	
+	      <accept condition="SH32F9061_TouchKey"/>                  
+	      <accept condition="SH32F9062_TouchKey"/>                  
+	      <accept condition="SH32F9861_TouchKey"/>                  
+	    </condition>
+
+
+		<!--  SH32F9 SC0 -->  
+		  <condition id="SH32F9B00">
+				<require Dname="SH32F9B00"/>	
+	  	  <require Cclass="CMSIS" Cgroup="CORE"/>						
+	      <accept condition="ARMCC"/>
+	      <accept condition="GCC" />
+	      <accept condition="IAR" />			
+	  </condition>
+
+	    <condition id="SH32F9_SC0">
+			<description>Sinowealth SH32F9_SC0 Series Device</description>	
+	      <accept condition="SH32F9B00"/>                  
+	    </condition>
+
+		  <condition id="SH32F9B00_TouchKey">
+				<require condition="SH32F9B00"/>	
+			  <require Cclass ="Sino_TouchKey" Cgroup="TouchKey" />
+		  </condition>
+
+	    <condition id="SH32F9_SC0_TouchKey">
+			<description>Sinowealth SH32F9_SC0 Series Device with TouchKey</description>	
+	      <accept condition="SH32F9B00_TouchKey"/>                  
+	    </condition>
+
+			<condition id="HA Stdlib TouchKey">
+			  <description>Sinowealth SH3xF9xx Series Touchkey Driver </description>
+			  <require Cclass="Sino32StdPeripherals" Cgroup="COMMON" />
+			  <accept  condition="SH32F9_SB0_TouchKey" />            
+			  <accept  condition="SH32F9_SC0_TouchKey" />            
+			</condition>
+
+	    <condition id="HA Stdlib TouchKey MDK">
+				<require condition = "ARMCC" />	
+	      <accept  condition="HA Stdlib TouchKey"/>                  
+	    </condition>
+
+	    <condition id="HA Stdlib TouchKey IAR">
+				<require condition = "IAR" />
+	      <accept  condition="HA Stdlib TouchKey"/>                  
+	    </condition>
+
+
+	    
+<!--  MODULE CONDITION --> 
+   
+   <condition id="HA Stdlib COMMON">
+      <description>Sinowealth SH3xF9xx Series COMMON Driver with CMSIS</description>
+	  	<require Cclass="CMSIS" Cgroup="CORE"/>						
+      <require Cclass ="Sino32StdPeripherals" Cgroup="IWDT" />
+      <accept condition="SH30F9_SA0" />
+      <accept condition="SH32F9_SB0" />            
+      <accept condition="SH32F9_SC0" />      
+   </condition>
+   
+   <condition id="HA Stdlib RCC">
+      <description>Sinowealth SH3xF9xx Series RCC Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="COMMON" />
+      <accept condition="SH30F9_SA0" />
+      <accept condition="SH32F9_SB0" />            
+      <accept condition="SH32F9_SC0" />      
+   </condition>
+   
+   <condition id="HA Stdlib GPIO">
+      <description>Sinowealth SH3xF9xx Series GPIO Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="RCC" />
+      <accept condition="SH30F9_SA0" />
+      <accept condition="SH32F9_SB0" />            
+      <accept condition="SH32F9_SC0" />      
+   </condition>
+
+   <condition id="HA Stdlib ADC">
+      <description>Sinowealth SH3xF9xx Series ADC Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="GPIO" />
+      <accept condition="SH30F9_SA0" />
+      <accept condition="SH32F9_SB0" />            
+      <accept condition="SH32F9_SC0" />      
+   </condition>   
+
+   <condition id="HA Stdlib AMOC">
+      <description>Sinowealth SH3xF9xx Series AMOC Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="GPIO" />
+      <accept condition="SH32F9_SB0" /> 
+      <accept condition="SH32F9_SC0" />                 
+   </condition> 
+
+   <condition id="HA Stdlib CRC">
+      <description>Sinowealth SH3xF9xx Series CRC Driver</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="RCC" />
+      <accept condition="SH30F9_SA0" />
+      <accept condition="SH32F9_SB0" />            
+      <accept condition="SH32F9_SC0" />      
+   </condition>
+
+   <condition id="HA Stdlib DMA">
+      <description>Sinowealth SH3xF9xx Series DMA Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="RCC" />
+      <accept condition="SH30F9_SA0" />
+      <accept condition="SH32F9_SB0" />            
+      <accept condition="SH32F9_SC0" />
+   </condition>
+
+   <condition id="HA Stdlib EXTI">
+      <description>Sinowealth SH3xF9xx Series EXTI Driver</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="GPIO" />
+      <accept condition="SH30F9_SA0" />
+      <accept condition="SH32F9_SB0" />            
+      <accept condition="SH32F9_SC0" />      
+   </condition>
+
+   <condition id="HA Stdlib FLASH">
+      <description>Sinowealth SH3xF9xx Series FLASH Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="COMMON" />
+      <accept condition="SH30F9_SA0" />
+      <accept condition="SH32F9_SB0" />            
+      <accept condition="SH32F9_SC0" />      
+   </condition>
+
+   <condition id="HA Stdlib GPT">
+     <description>Sinowealth SH3xF9xx Series GPT Driver with CMSIS</description>
+     <require Cclass ="Sino32StdPeripherals" Cgroup="GPIO" />
+     <accept condition="SH32F9_SC0" />      
+   </condition>
+   
+   <condition id="HA Stdlib IWDT">
+      <description>Sinowealth SH3xF9xx Series IWDT Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="COMMON" />
+      <accept condition="SH30F9_SA0" />
+      <accept condition="SH32F9_SB0" />            
+      <accept condition="SH32F9_SC0" />      
+   </condition>
+
+   <condition id="HA Stdlib LCD">
+      <description>Sinowealth SH3xF9xx Series LCD Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="GPIO" />
+      <accept condition="SH30F9_SA0" />
+      <accept condition="SH32F9_SB0" />            
+   </condition>
+
+   <condition id="HA Stdlib LED">
+      <description>Sinowealth SH3xF9xx Series LED Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="GPIO" />
+      <accept condition="SH30F9_SA0" />
+      <accept condition="SH32F9_SB0" />            
+   </condition>
+
+   <condition id="HA Stdlib NVIC">
+      <description>Sinowealth SH3xF9xx Series NVIC Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="COMMON" />
+      <accept condition="SH30F9_SA0" />
+      <accept condition="SH32F9_SB0" />            
+      <accept condition="SH32F9_SC0" />      
+   </condition>
+
+   <condition id="HA Stdlib PCA">
+      <description>Sinowealth SH3xF9xx Series PCA Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="GPIO" />
+      <accept condition="SH30F9_SA0" />
+      <accept condition="SH32F9_SB0" />            
+   </condition>
+
+   <condition id="HA Stdlib PWM">
+      <description>Sinowealth SH3xF9xx Series PWM Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="GPIO" />
+      <accept condition="SH30F9_SA0" />
+      <accept condition="SH32F9_SB0" />            
+   </condition>
+
+   <condition id="HA Stdlib RAMBIST">
+      <description>Sinowealth SH3xF9xx Series RAMBIST Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="RCC" />
+      <accept condition="SH30F9_SA0" />
+      <accept condition="SH32F9_SB0" />            
+      <accept condition="SH32F9_SC0" />
+   </condition>
+   
+   <condition id="HA Stdlib SPI">
+      <description>Sinowealth SH3xF9xx Series SPI Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="GPIO" />
+      <accept condition="SH30F9_SA0" />
+      <accept condition="SH32F9_SB0" />            
+      <accept condition="SH32F9_SC0" />
+   </condition>
+
+   <condition id="HA Stdlib SYSCFG">
+      <description>Sinowealth SH3xF9xx Series SYSCFG Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="RCC" />
+      <accept condition="SH30F9_SA0" />
+      <accept condition="SH32F9_SB0" />            
+      <accept condition="SH32F9_SC0" />      
+   </condition>
+
+   <condition id="HA Stdlib TIMER">
+      <description>Sinowealth SH3xF9xx Series TIMER Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="RCC" />
+      <accept condition="SH30F9_SA0" />
+      <accept condition="SH32F9_SB0" />            
+      <accept condition="SH32F9_SC0" />      
+  </condition>
+
+   <condition id="HA Stdlib TWI">
+      <description>Sinowealth SH3xF9xx Series TWI Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="GPIO" />
+      <accept condition="SH30F9_SA0" />
+      <accept condition="SH32F9_SB0" />            
+      <accept condition="SH32F9_SC0" />      
+    </condition>
+
+   <condition id="HA Stdlib UART">
+      <description>Sinowealth SH3xF9xx Series UART Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="GPIO" />
+      <accept condition="SH30F9_SA0" />
+      <accept condition="SH32F9_SB0" />            
+      <accept condition="SH32F9_SC0" />      
+   </condition>
+
+   <condition id="HA Stdlib WWDT">
+      <description>Sinowealth SH3xF9xx Series WWDT Driver with CMSIS</description>
+      <require Cclass ="Sino32StdPeripherals" Cgroup="RCC" />
+      <accept condition="SH30F9_SA0" />
+      <accept condition="SH32F9_SB0" />            
+      <accept condition="SH32F9_SC0" />      
+   </condition>
+
+	</conditions>
+
+		
+	<!-- component section (optional for all Software Packs)-->
+	<components>
+
+		<!-- Startup SH30F9020 -->
+		<component Cclass="Device" Cgroup="Startup"  Cversion="2.2.0"  condition="SH30F9020">
+			<description>System Startup for SH30F9020 </description>
+		
+				<files>
+        <!-- header file -->
+		    <file category="header" name="Device/SH30F9xx/SH30F9xx_SA0/Include/sh30f9020.h" />
+		              
+        <!-- startup files -->
+				<file category="source" name="Device/SH30F9xx/SH30F9xx_SA0/Source/ARM/startup_sh30f9020_keil.s"   attr="config" version="1.0.0" condition="Startup ARM"/>
+				<!--file category="source" name="Device/SH30F9xx/SH30F9xx_SA0/Source/GCC/startup_sh30f9020_gcc.S" attr="config" version="1.0.0" condition="Startup GCC"/-->
+				<file category="source" name="Device/SH30F9xx/SH30F9xx_SA0/Source/IAR/startup_sh30f9020_iar.s" attr="config" version="1.0.0" condition="Startup IAR"/>
+				
+        <!-- linker files -->
+        <file category="linkerScript"  name="Device/SH30F9xx/SH30F9xx_SA0/Source/ARM/sh30f9020_keil.sct" attr="config" version="1.0.0" condition="Startup ARM"/>
+        <!--file category="linkerScript"  name="Device/SH30F9xx/SH30F9xx_SA0/Source/GCC/sh30f9020_gcc.ld"   attr="config" version="1.0.0" condition="Startup GCC"/ -->
+        <file category="linkerScript"  name="Device/SH30F9xx/SH30F9xx_SA0/Source/IAR/sh30f9020_iar.icf"  attr="config" version="1.0.0" condition="Startup IAR"/>
+
+        <!-- system files -->
+        <file category="source"  name="Device/SH30F9xx/SH30F9xx_SA0/Source/system_sh30f9xx_sa0.c"     attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/SH30F9xx/SH30F9xx_SA0/Include/system_sh30f9xx_sa0.h"    attr="config" version="1.1.0"/>
+
+			</files>
+		</component>
+
+		<!-- Startup SH30F9021 -->
+		<component Cclass="Device" Cgroup="Startup"  Cversion="2.2.0"  condition="SH30F9021">
+			<description>System Startup for SH30F9021 </description>
+		
+				<files>
+        <!-- header file -->
+		    <file category="header" name="Device/SH30F9xx/SH30F9xx_SA0/Include/sh30f9021.h" />
+		              
+        <!-- startup files -->
+				<file category="source" name="Device/SH30F9xx/SH30F9xx_SA0/Source/ARM/startup_sh30f9021_keil.s"   attr="config" version="1.0.0" condition="Startup ARM"/>
+				<!--file category="source" name="Device/SH30F9xx/SH30F9xx_SA0/Source/GCC/startup_sh30f9021_gcc.S" attr="config" version="1.0.0" condition="Startup GCC"/-->
+				<file category="source" name="Device/SH30F9xx/SH30F9xx_SA0/Source/IAR/startup_sh30f9021_iar.s" attr="config" version="1.0.0" condition="Startup IAR"/>
+				
+        <!-- linker files -->
+        <file category="linkerScript"  name="Device/SH30F9xx/SH30F9xx_SA0/Source/ARM/sh30f9021_keil.sct" attr="config" version="1.0.0" condition="Startup ARM"/>
+        <!--file category="linkerScript"  name="Device/SH30F9xx/SH30F9xx_SA0/Source/GCC/sh30f9021_gcc.ld"   attr="config" version="1.0.0" condition="Startup GCC"/ -->
+        <file category="linkerScript"  name="Device/SH30F9xx/SH30F9xx_SA0/Source/IAR/sh30f9021_iar.icf"  attr="config" version="1.0.0" condition="Startup IAR"/>
+
+        <!-- system files -->
+        <file category="source"  name="Device/SH30F9xx/SH30F9xx_SA0/Source/system_sh30f9xx_sa0.c"     attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/SH30F9xx/SH30F9xx_SA0/Include/system_sh30f9xx_sa0.h"    attr="config" version="1.1.0"/>
+
+			</files>
+		</component>
+
+		<!-- Startup SH30F9071 -->
+		<component Cclass="Device" Cgroup="Startup"  Cversion="2.2.0"  condition="SH30F9071">
+			<description>System Startup for SH30F9071 </description>
+		
+				<files>
+        <!-- header file -->
+		    <file category="header" name="Device/SH30F9xx/SH30F9xx_SA0/Include/sh30f9071.h" />
+		              
+        <!-- startup files -->
+				<file category="source" name="Device/SH30F9xx/SH30F9xx_SA0/Source/ARM/startup_sh30f9071_keil.s"   attr="config" version="1.0.0" condition="Startup ARM"/>
+				<!--file category="source" name="Device/SH30F9xx/SH30F9xx_SA0/Source/GCC/startup_sh30f9071_gcc.S" attr="config" version="1.0.0" condition="Startup GCC"/-->
+				<file category="source" name="Device/SH30F9xx/SH30F9xx_SA0/Source/IAR/startup_sh30f9071_iar.s" attr="config" version="1.0.0" condition="Startup IAR"/>
+				
+        <!-- linker files -->
+        <file category="linkerScript"  name="Device/SH30F9xx/SH30F9xx_SA0/Source/ARM/sh30f9071_keil.sct" attr="config" version="1.0.0" condition="Startup ARM"/>
+        <!--file category="linkerScript"  name="Device/SH30F9xx/SH30F9xx_SA0/Source/GCC/sh30f9071_gcc.ld"   attr="config" version="1.0.0" condition="Startup GCC"/ -->
+        <file category="linkerScript"  name="Device/SH30F9xx/SH30F9xx_SA0/Source/IAR/sh30f9071_iar.icf"  attr="config" version="1.0.0" condition="Startup IAR"/>
+
+        <!-- system files -->
+        <file category="source"  name="Device/SH30F9xx/SH30F9xx_SA0/Source/system_sh30f9xx_sa0.c"     attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/SH30F9xx/SH30F9xx_SA0/Include/system_sh30f9xx_sa0.h"    attr="config" version="1.1.0"/>
+
+			</files>
+		</component>
+
+		<!-- Startup SH30F9820 -->
+		<component Cclass="Device" Cgroup="Startup"  Cversion="2.2.0"  condition="SH30F9820">
+			<description>System Startup for SH30F9820 </description>
+		
+				<files>
+        <!-- header file -->
+		    <file category="header" name="Device/SH30F9xx/SH30F9xx_SA0/Include/sh30f9820.h" />
+		              
+        <!-- startup files -->
+				<file category="source" name="Device/SH30F9xx/SH30F9xx_SA0/Source/ARM/startup_sh30f9820_keil.s"   attr="config" version="1.0.0" condition="Startup ARM"/>
+				<!--file category="source" name="Device/SH30F9xx/SH30F9xx_SA0/Source/GCC/startup_sh30f9820_gcc.S" attr="config" version="1.0.0" condition="Startup GCC"/-->
+				<file category="source" name="Device/SH30F9xx/SH30F9xx_SA0/Source/IAR/startup_sh30f9820_iar.s" attr="config" version="1.0.0" condition="Startup IAR"/>
+				
+        <!-- linker files -->
+        <file category="linkerScript"  name="Device/SH30F9xx/SH30F9xx_SA0/Source/ARM/sh30f9820_keil.sct" attr="config" version="1.0.0" condition="Startup ARM"/>
+        <!--file category="linkerScript"  name="Device/SH30F9xx/SH30F9xx_SA0/Source/GCC/sh30f9820_gcc.ld"   attr="config" version="1.0.0" condition="Startup GCC"/ -->
+        <file category="linkerScript"  name="Device/SH30F9xx/SH30F9xx_SA0/Source/IAR/sh30f9820_iar.icf"  attr="config" version="1.0.0" condition="Startup IAR"/>
+
+        <!-- system files -->
+        <file category="source"  name="Device/SH30F9xx/SH30F9xx_SA0/Source/system_sh30f9xx_sa0.c"     attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/SH30F9xx/SH30F9xx_SA0/Include/system_sh30f9xx_sa0.h"    attr="config" version="1.1.0"/>
+
+			</files>
+		</component>
+
+		<!-- Startup SH30F9821 -->
+		<component Cclass="Device" Cgroup="Startup"  Cversion="2.2.0"  condition="SH30F9821">
+			<description>System Startup for SH30F9821 </description>
+		
+				<files>
+        <!-- header file -->
+		    <file category="header" name="Device/SH30F9xx/SH30F9xx_SA0/Include/sh30f9821.h" />
+		              
+        <!-- startup files -->
+				<file category="source" name="Device/SH30F9xx/SH30F9xx_SA0/Source/ARM/startup_sh30f9821_keil.s"   attr="config" version="1.0.0" condition="Startup ARM"/>
+				<!--file category="source" name="Device/SH30F9xx/SH30F9xx_SA0/Source/GCC/startup_sh30f9821_gcc.S" attr="config" version="1.0.0" condition="Startup GCC"/-->
+				<file category="source" name="Device/SH30F9xx/SH30F9xx_SA0/Source/IAR/startup_sh30f9821_iar.s" attr="config" version="1.0.0" condition="Startup IAR"/>
+				
+        <!-- linker files -->
+        <file category="linkerScript"  name="Device/SH30F9xx/SH30F9xx_SA0/Source/ARM/sh30f9821_keil.sct" attr="config" version="1.0.0" condition="Startup ARM"/>
+        <!--file category="linkerScript"  name="Device/SH30F9xx/SH30F9xx_SA0/Source/GCC/sh30f9821_gcc.ld"   attr="config" version="1.0.0" condition="Startup GCC"/ -->
+        <file category="linkerScript"  name="Device/SH30F9xx/SH30F9xx_SA0/Source/IAR/sh30f9821_iar.icf"  attr="config" version="1.0.0" condition="Startup IAR"/>
+
+        <!-- system files -->
+        <file category="source"  name="Device/SH30F9xx/SH30F9xx_SA0/Source/system_sh30f9xx_sa0.c"     attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/SH30F9xx/SH30F9xx_SA0/Include/system_sh30f9xx_sa0.h"    attr="config" version="1.1.0"/>
+
+			</files>
+		</component>
+
+		<!-- Startup SH30F9871 -->
+		<component Cclass="Device" Cgroup="Startup"  Cversion="2.2.0"  condition="SH30F9871">
+			<description>System Startup for SH30F9871 </description>
+		
+				<files>
+        <!-- header file -->
+		    <file category="header" name="Device/SH30F9xx/SH30F9xx_SA0/Include/sh30f9871.h" />
+		              
+        <!-- startup files -->
+				<file category="source" name="Device/SH30F9xx/SH30F9xx_SA0/Source/ARM/startup_sh30f9871_keil.s"   attr="config" version="1.0.0" condition="Startup ARM"/>
+				<!--file category="source" name="Device/SH30F9xx/SH30F9xx_SA0/Source/GCC/startup_sh30f9871_gcc.S" attr="config" version="1.0.0" condition="Startup GCC"/-->
+				<file category="source" name="Device/SH30F9xx/SH30F9xx_SA0/Source/IAR/startup_sh30f9871_iar.s" attr="config" version="1.0.0" condition="Startup IAR"/>
+				
+        <!-- linker files -->
+        <file category="linkerScript"  name="Device/SH30F9xx/SH30F9xx_SA0/Source/ARM/sh30f9871_keil.sct" attr="config" version="1.0.0" condition="Startup ARM"/>
+        <!--file category="linkerScript"  name="Device/SH30F9xx/SH30F9xx_SA0/Source/GCC/sh30f9871_gcc.ld"   attr="config" version="1.0.0" condition="Startup GCC"/ -->
+        <file category="linkerScript"  name="Device/SH30F9xx/SH30F9xx_SA0/Source/IAR/sh30f9871_iar.icf"  attr="config" version="1.0.0" condition="Startup IAR"/>
+
+        <!-- system files -->
+        <file category="source"  name="Device/SH30F9xx/SH30F9xx_SA0/Source/system_sh30f9xx_sa0.c"     attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/SH30F9xx/SH30F9xx_SA0/Include/system_sh30f9xx_sa0.h"    attr="config" version="1.1.0"/>
+
+			</files>
+		</component>
+
+
+		<!-- Startup SH32F9001 -->
+		<component Cclass="Device" Cgroup="Startup"  Cversion="2.2.0"  condition="SH32F9001">
+			<description>System Startup for SH32F9001 </description>
+		
+				<files>
+        <!-- header file -->
+		    <file category="header" name="Device/SH32F9xx/SH32F9xx_SB0/Include/sh32f9001.h" />
+		              
+        <!-- startup files -->
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SB0/Source/ARM/startup_sh32f9001_keil.s"   attr="config" version="1.0.0" condition="Startup ARM"/>
+				<!--file category="source" name="Device/SH32F9xx/SH32F9xx_SB0/Source/GCC/startup_sh32f9001_gcc.S" attr="config" version="1.0.0" condition="Startup GCC"/-->
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SB0/Source/IAR/startup_sh32f9001_iar.s" attr="config" version="1.0.0" condition="Startup IAR"/>
+				
+        <!-- linker files -->
+        <file category="linkerScript"  name="Device/SH32F9xx/SH32F9xx_SB0/Source/ARM/sh32f9001_keil.sct" attr="config" version="1.0.0" condition="Startup ARM"/>
+        <!--file category="linkerScript"  name="Device/SH32F9xx/SH32F9xx_SB0/Source/GCC/sh32f9001_gcc.ld"   attr="config" version="1.0.0" condition="Startup GCC"/ -->
+        <file category="linkerScript"  name="Device/SH32F9xx/SH32F9xx_SB0/Source/IAR/sh32f9001_iar.icf"  attr="config" version="1.0.0" condition="Startup IAR"/>
+
+        <!-- system files -->
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SB0/Source/system_sh32f9xx_sb0.c"     attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/SH32F9xx/SH32F9xx_SB0/Include/system_sh32f9xx_sb0.h"    attr="config" version="1.1.0"/>
+
+			</files>
+		</component>
+
+
+		<!-- Startup SH32F9002 -->
+		<component Cclass="Device" Cgroup="Startup"  Cversion="2.2.0"  condition="SH32F9002">
+			<description>System Startup for SH32F9002 </description>
+		
+				<files>
+        <!-- header file -->
+		    <file category="header" name="Device/SH32F9xx/SH32F9xx_SB0/Include/sh32f9002.h" />
+		              
+        <!-- startup files -->
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SB0/Source/ARM/startup_sh32f9002_keil.s"   attr="config" version="1.0.0" condition="Startup ARM"/>
+				<!--file category="source" name="Device/SH32F9xx/SH32F9xx_SB0/Source/GCC/startup_sh32f9002_gcc.S" attr="config" version="1.0.0" condition="Startup GCC"/-->
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SB0/Source/IAR/startup_sh32f9002_iar.s" attr="config" version="1.0.0" condition="Startup IAR"/>
+				
+        <!-- linker files -->
+        <file category="linkerScript"  name="Device/SH32F9xx/SH32F9xx_SB0/Source/ARM/sh32f9002_keil.sct" attr="config" version="1.0.0" condition="Startup ARM"/>
+        <!--file category="linkerScript"  name="Device/SH32F9xx/SH32F9xx_SB0/Source/GCC/sh32f9002_gcc.ld"   attr="config" version="1.0.0" condition="Startup GCC"/ -->
+        <file category="linkerScript"  name="Device/SH32F9xx/SH32F9xx_SB0/Source/IAR/sh32f9002_iar.icf"  attr="config" version="1.0.0" condition="Startup IAR"/>
+
+        <!-- system files -->
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SB0/Source/system_sh32f9xx_sb0.c"     attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/SH32F9xx/SH32F9xx_SB0/Include/system_sh32f9xx_sb0.h"    attr="config" version="1.1.0"/>
+
+			</files>
+		</component>
+
+
+		<!-- Startup SH32F9801 -->
+		<component Cclass="Device" Cgroup="Startup"  Cversion="2.2.0"  condition="SH32F9801">
+			<description>System Startup for SH32F9801 </description>
+		
+				<files>
+        <!-- header file -->
+		    <file category="header" name="Device/SH32F9xx/SH32F9xx_SB0/Include/sh32f9801.h" />
+		              
+        <!-- startup files -->
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SB0/Source/ARM/startup_sh32f9801_keil.s"   attr="config" version="1.0.0" condition="Startup ARM"/>
+				<!--file category="source" name="Device/SH32F9xx/SH32F9xx_SB0/Source/GCC/startup_sh32f9801_gcc.S" attr="config" version="1.0.0" condition="Startup GCC"/-->
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SB0/Source/IAR/startup_sh32f9801_iar.s" attr="config" version="1.0.0" condition="Startup IAR"/>
+				
+        <!-- linker files -->
+        <file category="linkerScript"  name="Device/SH32F9xx/SH32F9xx_SB0/Source/ARM/sh32f9801_keil.sct" attr="config" version="1.0.0" condition="Startup ARM"/>
+        <!--file category="linkerScript"  name="Device/SH32F9xx/SH32F9xx_SB0/Source/GCC/sh32f9801_gcc.ld"   attr="config" version="1.0.0" condition="Startup GCC"/ -->
+        <file category="linkerScript"  name="Device/SH32F9xx/SH32F9xx_SB0/Source/IAR/sh32f9801_iar.icf"  attr="config" version="1.0.0" condition="Startup IAR"/>
+
+        <!-- system files -->
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SB0/Source/system_sh32f9xx_sb0.c"     attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/SH32F9xx/SH32F9xx_SB0/Include/system_sh32f9xx_sb0.h"    attr="config" version="1.1.0"/>
+
+			</files>
+		</component>
+
+
+		<!-- Startup SH32F9061 -->
+		<component Cclass="Device" Cgroup="Startup"  Cversion="2.2.0"  condition="SH32F9061">
+			<description>System Startup for SH32F9061 </description>
+		
+				<files>
+        <!-- header file -->
+		    <file category="header" name="Device/SH32F9xx/SH32F9xx_SB0/Include/sh32f9061.h" />
+		              
+        <!-- startup files -->
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SB0/Source/ARM/startup_sh32f9061_keil.s"   attr="config" version="1.0.0" condition="Startup ARM"/>
+				<!--file category="source" name="Device/SH32F9xx/SH32F9xx_SB0/Source/GCC/startup_sh32f9061_gcc.S" attr="config" version="1.0.0" condition="Startup GCC"/-->
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SB0/Source/IAR/startup_sh32f9061_iar.s" attr="config" version="1.0.0" condition="Startup IAR"/>
+				
+        <!-- linker files -->
+        <file category="linkerScript"  name="Device/SH32F9xx/SH32F9xx_SB0/Source/ARM/sh32f9061_keil.sct" attr="config" version="1.0.0" condition="Startup ARM"/>
+        <!--file category="linkerScript"  name="Device/SH32F9xx/SH32F9xx_SB0/Source/GCC/sh32f9061_gcc.ld"   attr="config" version="1.0.0" condition="Startup GCC"/ -->
+        <file category="linkerScript"  name="Device/SH32F9xx/SH32F9xx_SB0/Source/IAR/sh32f9061_iar.icf"  attr="config" version="1.0.0" condition="Startup IAR"/>
+
+        <!-- system files -->
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SB0/Source/system_sh32f9xx_sb0.c"     attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/SH32F9xx/SH32F9xx_SB0/Include/system_sh32f9xx_sb0.h"    attr="config" version="1.1.0"/>
+
+			</files>
+		</component>
+
+
+		<!-- Startup SH32F9062 -->
+		<component Cclass="Device" Cgroup="Startup"  Cversion="2.2.0"  condition="SH32F9062">
+			<description>System Startup for SH32F9062 </description>
+		
+				<files>
+        <!-- header file -->
+		    <file category="header" name="Device/SH32F9xx/SH32F9xx_SB0/Include/sh32f9062.h" />
+		              
+        <!-- startup files -->
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SB0/Source/ARM/startup_sh32f9062_keil.s"   attr="config" version="1.0.0" condition="Startup ARM"/>
+				<!--file category="source" name="Device/SH32F9xx/SH32F9xx_SB0/Source/GCC/startup_sh32f9062_gcc.S" attr="config" version="1.0.0" condition="Startup GCC"/-->
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SB0/Source/IAR/startup_sh32f9062_iar.s" attr="config" version="1.0.0" condition="Startup IAR"/>
+				
+        <!-- linker files -->
+        <file category="linkerScript"  name="Device/SH32F9xx/SH32F9xx_SB0/Source/ARM/sh32f9062_keil.sct" attr="config" version="1.0.0" condition="Startup ARM"/>
+        <!--file category="linkerScript"  name="Device/SH32F9xx/SH32F9xx_SB0/Source/GCC/sh32f9062_gcc.ld"   attr="config" version="1.0.0" condition="Startup GCC"/ -->
+        <file category="linkerScript"  name="Device/SH32F9xx/SH32F9xx_SB0/Source/IAR/sh32f9062_iar.icf"  attr="config" version="1.0.0" condition="Startup IAR"/>
+
+        <!-- system files -->
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SB0/Source/system_sh32f9xx_sb0.c"     attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/SH32F9xx/SH32F9xx_SB0/Include/system_sh32f9xx_sb0.h"    attr="config" version="1.1.0"/>
+
+			</files>
+		</component>
+
+
+		<!-- Startup SH32F9861 -->
+		<component Cclass="Device" Cgroup="Startup"  Cversion="2.2.0"  condition="SH32F9861">
+			<description>System Startup for SH32F9861 </description>
+		
+				<files>
+        <!-- header file -->
+		    <file category="header" name="Device/SH32F9xx/SH32F9xx_SB0/Include/sh32f9861.h" />
+		              
+        <!-- startup files -->
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SB0/Source/ARM/startup_sh32f9861_keil.s"   attr="config" version="1.0.0" condition="Startup ARM"/>
+				<!--file category="source" name="Device/SH32F9xx/SH32F9xx_SB0/Source/GCC/startup_sh32f9861_gcc.S" attr="config" version="1.0.0" condition="Startup GCC"/-->
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SB0/Source/IAR/startup_sh32f9861_iar.s" attr="config" version="1.0.0" condition="Startup IAR"/>
+				
+        <!-- linker files -->
+        <file category="linkerScript"  name="Device/SH32F9xx/SH32F9xx_SB0/Source/ARM/sh32f9861_keil.sct" attr="config" version="1.0.0" condition="Startup ARM"/>
+        <!--file category="linkerScript"  name="Device/SH32F9xx/SH32F9xx_SB0/Source/GCC/sh32f9861_gcc.ld"   attr="config" version="1.0.0" condition="Startup GCC"/ -->
+        <file category="linkerScript"  name="Device/SH32F9xx/SH32F9xx_SB0/Source/IAR/sh32f9861_iar.icf"  attr="config" version="1.0.0" condition="Startup IAR"/>
+
+        <!-- system files -->
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SB0/Source/system_sh32f9xx_sb0.c"     attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/SH32F9xx/SH32F9xx_SB0/Include/system_sh32f9xx_sb0.h"    attr="config" version="1.1.0"/>
+
+			</files>
+		</component>
+
+
+		<!-- Startup SH32F9B00 -->
+		<component Cclass="Device" Cgroup="Startup"  Cversion="2.2.0"  condition="SH32F9B00">
+			<description>System Startup for SH32F9B00 </description>
+		
+				<files>
+        <!-- header file -->
+		    <file category="header" name="Device/SH32F9xx/SH32F9xx_SC0/Include/sh32f9b00.h" />
+		              
+        <!-- startup files -->
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SC0/Source/ARM/startup_sh32f9b00_keil.s"   attr="config" version="1.0.0" condition="Startup ARM"/>
+				<!--file category="source" name="Device/SH32F9xx/SH32F9xx_SC0/Source/GCC/startup_sh32f9b00_gcc.S" attr="config" version="1.0.0" condition="Startup GCC"/-->
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SC0/Source/IAR/startup_sh32f9b00_iar.s" attr="config" version="1.0.0" condition="Startup IAR"/>
+				
+        <!-- linker files -->
+        <file category="linkerScript"  name="Device/SH32F9xx/SH32F9xx_SC0/Source/ARM/sh32f9b00_keil.sct" attr="config" version="1.0.0" condition="Startup ARM"/>
+        <!--file category="linkerScript"  name="Device/SH32F9xx/SH32F9xx_SC0/Source/GCC/sh32f9b00_gcc.ld"   attr="config" version="1.0.0" condition="Startup GCC"/ -->
+        <file category="linkerScript"  name="Device/SH32F9xx/SH32F9xx_SC0/Source/IAR/sh32f9b00_iar.icf"  attr="config" version="1.0.0" condition="Startup IAR"/>
+
+        <!-- system files -->
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SC0/Source/system_sh32f9xx_sc0.c"     attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/SH32F9xx/SH32F9xx_SC0/Include/system_sh32f9xx_sc0.h"    attr="config" version="1.1.0"/>
+
+			</files>
+		</component>
+		
+	
+			<component Cclass="Sino32StdPeripherals" Cgroup="COMMON" Cversion="2.2.0" condition="HA Stdlib COMMON">
+			<description>COMMON driver of Sino32 Stdlib</description>
+
+			<files>
+				<file category="header" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/inc/sh30f9xx_sa0_libcfg.h" attr="config" version="1.0.0" condition="SH30F9_SA0"/>
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/inc/sh32f9xx_sb0_libcfg.h" attr="config" version="1.0.0" condition="SH32F9_SB0"/>
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/inc/sh32f9xx_sc0_libcfg.h" attr="config" version="1.0.0" condition="SH32F9_SC0"/>
+			</files>
+		</component>
+
+		
+		<component Cclass="Sino32StdPeripherals" Cgroup="ADC" Cversion="2.2.0" condition="HA Stdlib ADC">
+			<description>ADC driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_ADC
+      </RTE_Components_h>
+			<files>
+				<file category="header" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/inc/sh30f9xx_sa0_adc.h"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+				<file category="source" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/src/sh30f9xx_sa0_adc.c"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/inc/sh32f9xx_sb0_adc.h"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/src/sh32f9xx_sb0_adc.c"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/inc/sh32f9xx_sc0_adc.h"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/src/sh32f9xx_sc0_adc.c"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+
+			</files>
+		</component>
+
+		<component Cclass="Sino32StdPeripherals" Cgroup="AMOC" Cversion="2.2.0" condition="HA Stdlib AMOC">
+			<description>AMOC driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_AMOC
+      </RTE_Components_h>
+			<files>
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/inc/sh32f9xx_sb0_amoc.h"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/src/sh32f9xx_sb0_amoc.c"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/inc/sh32f9xx_sc0_amoc.h"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/src/sh32f9xx_sc0_amoc.c"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+			</files>
+		</component>
+		
+		<component Cclass="Sino32StdPeripherals" Cgroup="CRC" Cversion="2.2.0" condition="HA Stdlib CRC">
+			<description>Cyclic-redundancy-check (CRC) driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_CRC
+      </RTE_Components_h>
+			<files>
+				<file category="header" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/inc/sh30f9xx_sa0_crc.h"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+				<file category="source" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/src/sh30f9xx_sa0_crc.c"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/inc/sh32f9xx_sb0_crc.h"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/src/sh32f9xx_sb0_crc.c"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/inc/sh32f9xx_sc0_crc.h"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/src/sh32f9xx_sc0_crc.c"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+			</files>
+		</component>
+
+		<component Cclass="Sino32StdPeripherals" Cgroup="DMA" Cversion="2.2.0" condition="HA Stdlib DMA">
+			<description>DMA driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_DMA
+      </RTE_Components_h>
+			<files>
+				<file category="header" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/inc/sh30f9xx_sa0_dma.h"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+				<file category="source" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/src/sh30f9xx_sa0_dma.c"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/inc/sh32f9xx_sb0_dma.h"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/src/sh32f9xx_sb0_dma.c"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/inc/sh32f9xx_sc0_dma.h"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/src/sh32f9xx_sc0_dma.c"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+			</files>
+		</component>
+
+		<component Cclass="Sino32StdPeripherals" Cgroup="EXTI" Cversion="2.2.0" condition="HA Stdlib EXTI">
+			<description>External-Interrupt (EXTI) driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_EXTI
+      </RTE_Components_h>
+			<files>
+				<file category="header" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/inc/sh30f9xx_sa0_exti.h"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+				<file category="source" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/src/sh30f9xx_sa0_exti.c"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/inc/sh32f9xx_sb0_exti.h"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/src/sh32f9xx_sb0_exti.c"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/inc/sh32f9xx_sc0_exti.h"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/src/sh32f9xx_sc0_exti.c"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+			</files>
+		</component>
+		
+		<component Cclass="Sino32StdPeripherals" Cgroup="FLASH" Cversion="2.2.0" condition="HA Stdlib FLASH">
+			<description>Flash memory programming driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_FLASH
+      </RTE_Components_h>
+			<files>
+				<file category="header" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/inc/sh30f9xx_sa0_flash.h"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+				<file category="source" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/src/sh30f9xx_sa0_flash.c"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/inc/sh32f9xx_sb0_flash.h"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/src/sh32f9xx_sb0_flash.c"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/inc/sh32f9xx_sc0_flash.h"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/src/sh32f9xx_sc0_flash.c"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+			</files>
+		</component>
+
+		<component Cclass="Sino32StdPeripherals" Cgroup="GPIO" Cversion="2.2.0" condition="HA Stdlib GPIO">
+			<description>General-purpose-input-and-output (GPIO) driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_GPIO
+      </RTE_Components_h>
+			<files>
+				<file category="header" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/inc/sh30f9xx_sa0_gpio.h"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+				<file category="source" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/src/sh30f9xx_sa0_gpio.c"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/inc/sh32f9xx_sb0_gpio.h"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/src/sh32f9xx_sb0_gpio.c"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/inc/sh32f9xx_sc0_gpio.h"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/src/sh32f9xx_sc0_gpio.c"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+			</files>
+		</component>
+
+		<component Cclass="Sino32StdPeripherals" Cgroup="GPT" Cversion="2.2.0" condition="HA Stdlib GPT">
+			<description>GPT driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_GPT
+      </RTE_Components_h>
+			<files>
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/inc/sh32f9xx_sc0_gpt.h"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/src/sh32f9xx_sc0_gpt.c"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+			</files>
+		</component>
+
+		<component Cclass="Sino32StdPeripherals" Cgroup="IWDT" Cversion="2.2.0" condition="HA Stdlib IWDT">
+			<description>Independent-watchdog-timer (IWDT) driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_IWDT
+      </RTE_Components_h>
+			<files>
+				<file category="header" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/inc/sh30f9xx_sa0_iwdt.h"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+				<file category="source" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/src/sh30f9xx_sa0_iwdt.c"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/inc/sh32f9xx_sb0_iwdt.h"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/src/sh32f9xx_sb0_iwdt.c"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/inc/sh32f9xx_sc0_iwdt.h"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/src/sh32f9xx_sc0_iwdt.c"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+			</files>
+		</component>
+
+		<component Cclass="Sino32StdPeripherals" Cgroup="LCD" Cversion="2.2.0" condition="HA Stdlib LCD">
+			<description>LCD driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_LCD
+      </RTE_Components_h>
+			<files>
+				<file category="header" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/inc/sh30f9xx_sa0_lcd.h"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+				<file category="source" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/src/sh30f9xx_sa0_lcd.c"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/inc/sh32f9xx_sb0_lcd.h"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/src/sh32f9xx_sb0_lcd.c"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+			</files>
+		</component>
+
+		<component Cclass="Sino32StdPeripherals" Cgroup="LED" Cversion="2.2.0" condition="HA Stdlib LED">
+			<description>LED driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_LED
+      </RTE_Components_h>
+			<files>
+				<file category="header" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/inc/sh30f9xx_sa0_led.h"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+				<file category="source" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/src/sh30f9xx_sa0_led.c"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/inc/sh32f9xx_sb0_led.h"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/src/sh32f9xx_sb0_led.c"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+			</files>
+		</component>
+
+		<component Cclass="Sino32StdPeripherals" Cgroup="NVIC" Cversion="2.2.0" condition="HA Stdlib NVIC">
+			<description>Additional Nested-vectored-interrupt-controller (NVIC) driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_NVIC
+      </RTE_Components_h>
+			<files>
+				<file category="header" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/inc/sh30f9xx_sa0_nvic.h"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+				<file category="source" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/src/sh30f9xx_sa0_nvic.c"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/inc/sh32f9xx_sb0_nvic.h"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/src/sh32f9xx_sb0_nvic.c"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/inc/sh32f9xx_sc0_nvic.h"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/src/sh32f9xx_sc0_nvic.c"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+			</files>
+		</component>
+
+		<component Cclass="Sino32StdPeripherals" Cgroup="PCA" Cversion="2.2.0" condition="HA Stdlib PCA">
+			<description>PCA driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_PCA
+      </RTE_Components_h>
+			<files>
+				<file category="header" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/inc/sh30f9xx_sa0_pca.h"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+				<file category="source" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/src/sh30f9xx_sa0_pca.c"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/inc/sh32f9xx_sb0_pca.h"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/src/sh32f9xx_sb0_pca.c"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+			</files>
+		</component>
+
+		<component Cclass="Sino32StdPeripherals" Cgroup="PWM" Cversion="2.2.0" condition="HA Stdlib PWM">
+			<description>PWM driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_PWM
+      </RTE_Components_h>
+			<files>
+				<file category="header" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/inc/sh30f9xx_sa0_pwm.h"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+				<file category="source" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/src/sh30f9xx_sa0_pwm.c"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/inc/sh32f9xx_sb0_pwm.h"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/src/sh32f9xx_sb0_pwm.c"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+			</files>
+		</component>
+
+		<component Cclass="Sino32StdPeripherals" Cgroup="RAMBIST" Cversion="2.2.0" condition="HA Stdlib RAMBIST">
+			<description>RAMBIST driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_RAMBIST
+      </RTE_Components_h>
+			<files>
+				<file category="header" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/inc/sh30f9xx_sa0_rambist.h"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+				<file category="source" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/src/sh30f9xx_sa0_rambist.c"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/inc/sh32f9xx_sb0_rambist.h"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/src/sh32f9xx_sb0_rambist.c"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/inc/sh32f9xx_sc0_rambist.h"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/src/sh32f9xx_sc0_rambist.c"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+			</files>
+		</component>
+
+		<component Cclass="Sino32StdPeripherals" Cgroup="RCC" Cversion="2.2.0" condition="HA Stdlib RCC">
+			<description>Reset-and-clock-control (RCC) driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_RCC
+      </RTE_Components_h>
+			<files>
+				<file category="header" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/inc/sh30f9xx_sa0_rcc.h"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+				<file category="source" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/src/sh30f9xx_sa0_rcc.c"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/inc/sh32f9xx_sb0_rcc.h"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/src/sh32f9xx_sb0_rcc.c"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/inc/sh32f9xx_sc0_rcc.h"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/src/sh32f9xx_sc0_rcc.c"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+			</files>
+		</component>
+
+		<component Cclass="Sino32StdPeripherals" Cgroup="SPI" Cversion="2.2.0" condition="HA Stdlib SPI">
+			<description>Serial Peripheral Interface (SPI) driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_SPI
+      </RTE_Components_h>
+			<files>
+				<file category="header" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/inc/sh30f9xx_sa0_spi.h"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+				<file category="source" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/src/sh30f9xx_sa0_spi.c"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/inc/sh32f9xx_sb0_spi.h"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/src/sh32f9xx_sb0_spi.c"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/inc/sh32f9xx_sc0_spi.h"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/src/sh32f9xx_sc0_spi.c"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+			</files>
+		</component>
+
+		<component Cclass="Sino32StdPeripherals" Cgroup="SYSCFG" Cversion="2.2.0" condition="HA Stdlib SYSCFG">
+			<description>System configuration (SYSCFG) driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_SYSCFG
+      </RTE_Components_h>
+			<files>
+				<file category="header" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/inc/sh30f9xx_sa0_syscfg.h"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+				<file category="source" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/src/sh30f9xx_sa0_syscfg.c"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/inc/sh32f9xx_sb0_syscfg.h"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/src/sh32f9xx_sb0_syscfg.c"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/inc/sh32f9xx_sc0_syscfg.h"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/src/sh32f9xx_sc0_syscfg.c"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+			</files>
+		</component>		
+
+		<component Cclass="Sino32StdPeripherals" Cgroup="TIMER" Cversion="2.2.0" condition="HA Stdlib TIMER">
+			<description>General Timer driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_TIMER
+      </RTE_Components_h>
+			<files>
+				<file category="header" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/inc/sh30f9xx_sa0_timer.h"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+				<file category="source" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/src/sh30f9xx_sa0_timer.c"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/inc/sh32f9xx_sb0_timer.h"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/src/sh32f9xx_sb0_timer.c"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/inc/sh32f9xx_sc0_timer.h"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/src/sh32f9xx_sc0_timer.c"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+			</files>
+		</component>		
+
+		<component Cclass="Sino32StdPeripherals" Cgroup="TWI" Cversion="2.2.0" condition="HA Stdlib TWI">
+			<description>Two-wire-serial-interface (TWI) driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_TWI
+      </RTE_Components_h>
+			<files>
+				<file category="header" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/inc/sh30f9xx_sa0_twi.h"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+				<file category="source" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/src/sh30f9xx_sa0_twi.c"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/inc/sh32f9xx_sb0_twi.h"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/src/sh32f9xx_sb0_twi.c"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/inc/sh32f9xx_sc0_twi.h"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/src/sh32f9xx_sc0_twi.c"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+			</files>
+		</component>
+
+		<component Cclass="Sino32StdPeripherals" Cgroup="UART" Cversion="2.2.0" condition="HA Stdlib UART">
+			<description>Universal-asynchronous-receiver-transmitter (UART) driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_UART
+      </RTE_Components_h>
+			<files>
+				<file category="header" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/inc/sh30f9xx_sa0_uart.h"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+				<file category="source" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/src/sh30f9xx_sa0_uart.c"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/inc/sh32f9xx_sb0_uart.h"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/src/sh32f9xx_sb0_uart.c"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/inc/sh32f9xx_sc0_uart.h"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/src/sh32f9xx_sc0_uart.c"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+			</files>
+		</component>
+		
+		<component Cclass="Sino32StdPeripherals" Cgroup="WWDT" Cversion="2.2.0" condition="HA Stdlib WWDT">
+			<description>Window-watchdog-timer (WWDT) driver of Sino32 Stdlib</description>
+			<RTE_Components_h>
+        	#define RTE_MODULE_WWDT
+      </RTE_Components_h>
+			<files>
+				<file category="header" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/inc/sh30f9xx_sa0_wwdt.h"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+				<file category="source" name="Device/SH30F9xx/SH30F9xx_SA0_StdPeriph_Driver/src/sh30f9xx_sa0_wwdt.c"   attr="config"  version="1.1.0"   condition="SH30F9_SA0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/inc/sh32f9xx_sb0_wwdt.h"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SB0_StdPeriph_Driver/src/sh32f9xx_sb0_wwdt.c"   attr="config"  version="1.1.0"   condition="SH32F9_SB0"/>
+
+				<file category="header" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/inc/sh32f9xx_sc0_wwdt.h"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+				<file category="source" name="Device/SH32F9xx/SH32F9xx_SC0_StdPeriph_Driver/src/sh32f9xx_sc0_wwdt.c"   attr="config"  version="1.1.0"   condition="SH32F9_SC0"/>
+			</files>
+		</component> 
+
+		<!-- END: Sino_HA Standard Peripherals Drivers -->
+
+			
+		<!-- END: Project Config  -->
+			
+		<!-- START: Project Template  -->	
+
+		<component Cclass="Project" Cgroup="Project Template" Cversion="1.1.0" condition="SH30F9020">
+			<description>Project Template for SH30F9020 </description>
+			<files>      
+				<file category="include" name="Device/SH32F9xx/SH30F9xx_SA0/templates/SH30F9020/" condition="SH30F9020"/>				      
+        <file category="source"  name="Device/SH30F9xx/SH30F9xx_SA0/templates/SH30F9020/sh30f9020_interrupt.c"     attr="config" version="1.1.0"/>
+        <file category="source"  name="Device/SH30F9xx/SH30F9xx_SA0/templates/SH30F9020/sh30f9020_main.c"          attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/SH30F9xx/SH30F9xx_SA0/templates/SH30F9020/sh30f9xx_sa0_retarget.h"   attr="config" version="1.0.0"/>
+        <file category="source"  name="Device/SH30F9xx/SH30F9xx_SA0/templates/SH30F9020/sh30f9xx_sa0_retarget.c"   attr="config" version="1.0.0"/>
+     </files>
+		</component>
+
+		<component Cclass="Project" Cgroup="Project Template" Cversion="1.1.0" condition="SH30F9021">
+			<description>Project Template for SH30F9021 </description>
+			<files>      
+				<file category="include" name="Device/SH32F9xx/SH30F9xx_SA0/templates/SH30F9021/" condition="SH30F9021"/>				      
+        <file category="source"  name="Device/SH30F9xx/SH30F9xx_SA0/templates/SH30F9021/sh30f9021_interrupt.c"     attr="config" version="1.1.0"/>
+        <file category="source"  name="Device/SH30F9xx/SH30F9xx_SA0/templates/SH30F9021/sh30f9021_main.c"          attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/SH30F9xx/SH30F9xx_SA0/templates/SH30F9021/sh30f9xx_sa0_retarget.h"   attr="config" version="1.0.0"/>
+        <file category="source"  name="Device/SH30F9xx/SH30F9xx_SA0/templates/SH30F9021/sh30f9xx_sa0_retarget.c"   attr="config" version="1.0.0"/>
+     </files>
+		</component>
+
+		<component Cclass="Project" Cgroup="Project Template" Cversion="1.1.0" condition="SH30F9071">
+			<description>Project Template for SH30F9071 </description>
+			<files>      
+				<file category="include" name="Device/SH32F9xx/SH30F9xx_SA0/templates/SH30F9071/" condition="SH30F9071"/>				      
+        <file category="source"  name="Device/SH30F9xx/SH30F9xx_SA0/templates/SH30F9071/sh30f9071_interrupt.c"     attr="config" version="1.1.0"/>
+        <file category="source"  name="Device/SH30F9xx/SH30F9xx_SA0/templates/SH30F9071/sh30f9071_main.c"          attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/SH30F9xx/SH30F9xx_SA0/templates/SH30F9071/sh30f9xx_sa0_retarget.h"   attr="config" version="1.0.0"/>
+        <file category="source"  name="Device/SH30F9xx/SH30F9xx_SA0/templates/SH30F9071/sh30f9xx_sa0_retarget.c"   attr="config" version="1.0.0"/>
+     </files>
+		</component>
+
+		<component Cclass="Project" Cgroup="Project Template" Cversion="1.1.0" condition="SH30F9820">
+			<description>Project Template for SH30F9820 </description>
+			<files>      
+				<file category="include" name="Device/SH32F9xx/SH30F9xx_SA0/templates/SH30F9820/" condition="SH30F9820"/>				      
+        <file category="source"  name="Device/SH30F9xx/SH30F9xx_SA0/templates/SH30F9820/sh30f9820_interrupt.c"     attr="config" version="1.1.0"/>
+        <file category="source"  name="Device/SH30F9xx/SH30F9xx_SA0/templates/SH30F9820/sh30f9820_main.c"          attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/SH30F9xx/SH30F9xx_SA0/templates/SH30F9820/sh30f9xx_sa0_retarget.h"   attr="config" version="1.0.0"/>
+        <file category="source"  name="Device/SH30F9xx/SH30F9xx_SA0/templates/SH30F9820/sh30f9xx_sa0_retarget.c"   attr="config" version="1.0.0"/>
+     </files>
+		</component>
+
+		<component Cclass="Project" Cgroup="Project Template" Cversion="1.1.0" condition="SH30F9821">
+			<description>Project Template for SH30F9821 </description>
+			<files>      
+				<file category="include" name="Device/SH32F9xx/SH30F9xx_SA0/templates/SH30F9821/" condition="SH30F9821"/>				      
+        <file category="source"  name="Device/SH30F9xx/SH30F9xx_SA0/templates/SH30F9821/sh30f9821_interrupt.c"     attr="config" version="1.1.0"/>
+        <file category="source"  name="Device/SH30F9xx/SH30F9xx_SA0/templates/SH30F9821/sh30f9821_main.c"          attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/SH30F9xx/SH30F9xx_SA0/templates/SH30F9821/sh30f9xx_sa0_retarget.h"   attr="config" version="1.0.0"/>
+        <file category="source"  name="Device/SH30F9xx/SH30F9xx_SA0/templates/SH30F9821/sh30f9xx_sa0_retarget.c"   attr="config" version="1.0.0"/>
+     </files>
+		</component>
+
+		<component Cclass="Project" Cgroup="Project Template" Cversion="1.1.0" condition="SH30F9871">
+			<description>Project Template for SH30F9871 </description>
+			<files>      
+				<file category="include" name="Device/SH32F9xx/SH30F9xx_SA0/templates/SH30F9871/" condition="SH30F9871"/>				      
+        <file category="source"  name="Device/SH30F9xx/SH30F9xx_SA0/templates/SH30F9871/sh30f9871_interrupt.c"     attr="config" version="1.1.0"/>
+        <file category="source"  name="Device/SH30F9xx/SH30F9xx_SA0/templates/SH30F9871/sh30f9871_main.c"          attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/SH30F9xx/SH30F9xx_SA0/templates/SH30F9871/sh30f9xx_sa0_retarget.h"   attr="config" version="1.0.0"/>
+        <file category="source"  name="Device/SH30F9xx/SH30F9xx_SA0/templates/SH30F9871/sh30f9xx_sa0_retarget.c"   attr="config" version="1.0.0"/>
+     </files>
+		</component>
+	
+		<component Cclass="Project" Cgroup="Project Template" Cversion="1.1.0" condition="SH32F9001">
+			<description>Project Template for SH32F9001 </description>
+			<files>      
+				<file category="include" name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9001/" condition="SH32F9001"/>				      
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9001/sh32f9001_interrupt.c"     attr="config" version="1.1.0"/>
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9001/sh32f9001_main.c"          attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9001/sh32f9xx_sb0_retarget.h"   attr="config" version="1.1.0"/>
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9001/sh32f9xx_sb0_retarget.c"   attr="config" version="1.1.0"/>
+     </files>
+		</component>
+
+		<component Cclass="Project" Cgroup="Project Template" Cversion="1.1.0" condition="SH32F9002">
+			<description>Project Template for SH32F9002 </description>
+			<files>      
+				<file category="include" name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9002/" condition="SH32F9002"/>				      
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9002/sh32f9002_interrupt.c"     attr="config" version="1.1.0"/>
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9002/sh32f9002_main.c"          attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9002/sh32f9xx_sb0_retarget.h"   attr="config" version="1.1.0"/>
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9002/sh32f9xx_sb0_retarget.c"   attr="config" version="1.1.0"/>
+     </files>
+		</component>
+		
+		<component Cclass="Project" Cgroup="Project Template" Cversion="1.1.0" condition="SH32F9801">
+			<description>Project Template for SH32F9801 </description>
+			<files>      
+				<file category="include" name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9801/" condition="SH32F9801"/>				      
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9801/sh32f9801_interrupt.c"     attr="config" version="1.1.0"/>
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9801/sh32f9801_main.c"          attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9801/sh32f9xx_sb0_retarget.h"   attr="config" version="1.1.0"/>
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9801/sh32f9xx_sb0_retarget.c"   attr="config" version="1.1.0"/>
+     </files>
+		</component>
+		
+		<component Cclass="Project" Cgroup="Project Template" Cversion="1.1.0" condition="SH32F9061">
+			<description>Project Template for SH32F9061 </description>
+			<files>      
+				<file category="include" name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9061/" condition="SH32F9061"/>				      
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9061/sh32f9061_interrupt.c"     attr="config" version="1.1.0"/>
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9061/sh32f9061_main.c"          attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9061/sh32f9xx_sb0_retarget.h"   attr="config" version="1.1.0"/>
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9061/sh32f9xx_sb0_retarget.c"   attr="config" version="1.1.0"/>
+     </files>
+		</component>
+
+		<component Cclass="Project" Cgroup="Project Template" Cversion="1.1.0" condition="SH32F9062">
+			<description>Project Template for SH32F9062 </description>
+			<files>      
+				<file category="include" name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9062/" condition="SH32F9062"/>				      
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9062/sh32f9062_interrupt.c"     attr="config" version="1.1.0"/>
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9062/sh32f9062_main.c"          attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9062/sh32f9xx_sb0_retarget.h"   attr="config" version="1.1.0"/>
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9062/sh32f9xx_sb0_retarget.c"   attr="config" version="1.1.0"/>
+     </files>
+		</component>
+		
+		<component Cclass="Project" Cgroup="Project Template" Cversion="1.1.0" condition="SH32F9861">
+			<description>Project Template for SH32F9861 </description>
+			<files>
+				<file category="include" name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9861/" condition="SH32F9861"/>				      
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9861/sh32f9861_interrupt.c"     attr="config" version="1.1.0"/>
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9861/sh32f9861_main.c"          attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9861/sh32f9xx_sb0_retarget.h"   attr="config" version="1.1.0"/>
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9861/sh32f9xx_sb0_retarget.c"   attr="config" version="1.1.0"/>
+     </files>
+		</component>
+
+		<component Cclass="Project" Cgroup="Project Template With TouchKey" Cversion="1.1.0" condition="SH32F9061_TouchKey">
+			<description>Project Template With TouchKey for SH32F9061 </description>
+			<files>      
+				<file category="include" name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9061/" condition="SH32F9061_TouchKey"/>				      
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9061/sh32f9061_interrupt.c"     attr="config" version="1.1.0"/>
+        <file category="source"  name="Device/TouchKey_C/sh32f9061_main.c"                                         attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9061/sh32f9xx_sb0_retarget.h"   attr="config" version="1.1.0"/>
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9061/sh32f9xx_sb0_retarget.c"   attr="config" version="1.1.0"/>
+     </files>
+		</component>
+
+		<component Cclass="Project" Cgroup="Project Template With TouchKey" Cversion="1.1.0" condition="SH32F9062_TouchKey">
+			<description>Project Template With TouchKey for SH32F9062 </description>
+			<files>      
+				<file category="include" name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9062/" condition="SH32F9062_TouchKey"/>				      
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9062/sh32f9062_interrupt.c"     attr="config" version="1.1.0"/>
+        <file category="source"  name="Device/TouchKey_C/sh32f9062_main.c"                                         attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9062/sh32f9xx_sb0_retarget.h"   attr="config" version="1.1.0"/>
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9062/sh32f9xx_sb0_retarget.c"   attr="config" version="1.1.0"/>
+     </files>
+		</component>
+		
+		<component Cclass="Project" Cgroup="Project Template With TouchKey" Cversion="1.1.0" condition="SH32F9861_TouchKey">
+			<description>Project Template With TouchKey for SH32F9861 </description>
+			<files>
+				<file category="include" name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9861/" condition="SH32F9861_TouchKey"/>				      
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9861/sh32f9861_interrupt.c"     attr="config" version="1.1.0"/>
+        <file category="source"  name="Device/TouchKey_C/sh32f9861_main.c"                                         attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9861/sh32f9xx_sb0_retarget.h"   attr="config" version="1.1.0"/>
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SB0/templates/SH32F9861/sh32f9xx_sb0_retarget.c"   attr="config" version="1.1.0"/>
+     </files>
+		</component>
+		
+		<component Cclass="Project" Cgroup="Project Template" Cversion="1.1.0" condition="SH32F9B00">
+			<description>Project Template for SH32F9B00 </description>
+			<files>      
+				<file category="include" name="Device/SH32F9xx/SH32F9xx_SC0/templates/SH32F9B00/" condition="SH32F9B00"/>				      
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SC0/templates/SH32F9B00/sh32f9b00_interrupt.c"     attr="config" version="1.1.0"/>
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SC0/templates/SH32F9B00/sh32f9b00_main.c"          attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/SH32F9xx/SH32F9xx_SC0/templates/SH32F9B00/sh32f9xx_sc0_retarget.h"   attr="config" version="1.1.0"/>
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SC0/templates/SH32F9B00/sh32f9xx_sc0_retarget.c"   attr="config" version="1.1.0"/>
+     </files>
+		</component>
+
+		<component Cclass="Project" Cgroup="Project Template With TouchKey" Cversion="1.1.0" condition="SH32F9B00_TouchKey">
+			<description>Project Template With TouchKey for SH32F9B00 </description>
+			<files>
+				<file category="include" name="Device/SH32F9xx/SH32F9xx_SC0/templates/SH32F9B00/" condition="SH32F9B00_TouchKey"/>				      
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SC0/templates/SH32F9B00/sh32f9b00_interrupt.c"     attr="config" version="1.1.0"/>
+        <file category="source"  name="Device/TouchKey_C/sh32f9B00_main.c"                                         attr="config" version="1.1.0"/>
+        <file category="header"  name="Device/SH32F9xx/SH32F9xx_SC0/templates/SH32F9B00/sh32f9xx_sc0_retarget.h"   attr="config" version="1.1.0"/>
+        <file category="source"  name="Device/SH32F9xx/SH32F9xx_SC0/templates/SH32F9B00/sh32f9xx_sc0_retarget.c"   attr="config" version="1.1.0"/>
+     </files>
+		</component>
+
+									
+		<!-- END: Project Template -->				
+
+
+		<!-- TouchKey -->
+		<component Cclass="Sino_TouchKey" Cgroup="TouchKey"  Cversion="1.3.1"  condition="HA Stdlib TouchKey">
+			<description>TouchKey driver for Sino32 Stdlib</description>
+		
+			<RTE_Components_h>
+        	#define RTE_MODULE_TouchKey
+      </RTE_Components_h>
+			<files>
+
+				<file category="include" name="Device/TouchKey_C/Sino_touchkey/Inc"  																																								condition="HA Stdlib TouchKey"/>
+				<file category="library" name="Device/TouchKey_C/Sino_touchkey/Lib/SH3xF9xxx_TouchKey_C_V1.3.1.lib"                attr="config"  version="1.1.0"   condition="HA Stdlib TouchKey MDK"/>
+				<file category="library" name="Device/TouchKey_C/Sino_touchkey/Lib/SH3xF9xxx_TouchKey_C_V1.3.1.a"                  attr="config"  version="1.1.0"   condition="HA Stdlib TouchKey IAR"/>
+				<file category="source"  name="Device/TouchKey_C/Sino_touchkey/Lib/sino_tk_isr.c"                                  attr="config"  version="1.1.0"   condition="HA Stdlib TouchKey"/>
+				<file category="source"  name="Device/TouchKey_C/Sino_touchkey/Lib/sino_uart.c"                                    attr="config"  version="1.1.0"   condition="HA Stdlib TouchKey"/>
+
+				<file category="source"  name="Device/TouchKey_C/Sino_touchkey/Tk_sh32f9xx_sb0_bsp/tk_sh32f9xx_sb0_bsp.c"          attr="config"  version="1.1.0"   condition="SH32F9_SB0_TouchKey"/>
+				<file category="header"  name="Device/TouchKey_C/Sino_touchkey/Tk_sh32f9xx_sb0_bsp/tk_sh32f9xx_sb0_bsp.h"          attr="config"  version="1.1.0"   condition="SH32F9_SB0_TouchKey"/>
+
+				<file category="source"  name="Device/TouchKey_C/Sino_touchkey/Tk_sh32f9xx_sc0_bsp/tk_sh32f9xx_sc0_bsp.c"          attr="config"  version="1.1.0"   condition="SH32F9_SC0_TouchKey"/>
+				<file category="header"  name="Device/TouchKey_C/Sino_touchkey/Tk_sh32f9xx_sc0_bsp/tk_sh32f9xx_sc0_bsp.h"          attr="config"  version="1.1.0"   condition="SH32F9_SC0_TouchKey"/>
+
+				<file category="header"  name="Device/TouchKey_C/Sino_touchkey/Inc/sino_touchkey.h"          attr="config"  version="1.1.0"   condition="HA Stdlib TouchKey"/>
+				<file category="header"  name="Device/TouchKey_C/Sino_touchkey/Inc/sino_uart.h"              attr="config"  version="1.1.0"   condition="HA Stdlib TouchKey"/>
+				<file category="header"  name="Device/TouchKey_C/Sino_touchkey/Inc/tk_conf.h"                attr="config"  version="1.1.0"   condition="HA Stdlib TouchKey"/>
+				<file category="header"  name="Device/TouchKey_C/Sino_touchkey/Inc/tk_conf_add.h"            attr="config"  version="1.1.0"   condition="HA Stdlib TouchKey"/>
+				<file category="header"  name="Device/TouchKey_C/Sino_touchkey/Inc/tk_error_information.h"   attr="config"  version="1.1.0"   condition="HA Stdlib TouchKey"/>
+				<file category="header"  name="Device/TouchKey_C/Sino_touchkey/Inc/tk_include.h"             attr="config"  version="1.1.0"   condition="HA Stdlib TouchKey"/>
+
+			</files>
+		</component>
+
+										
+	</components>
+		
+        
+</package>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>COREHTTP</name>
+  <vendor>NXP</vendor>
+  <description>Software Pack for corehttp</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="2.0.0" date="2024-07-17">NXP CMSIS SWP Packs based on MCUXpresso SDK 2.16.0</release>
+    <release version="1.0.0" date="2024-01-14">NXP CMSIS SWP Packs based on MCUXpresso SDK 2.15.0</release>
+  </releases>
+  <keywords>
+    <keyword>Software Pack</keyword>
+  </keywords>
+  <requirements>
+    <packages>
+      <package name="LLHTTP" vendor="NXP" version="2.0.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <conditions>
+    <condition id="middleware.freertos.corehttp.condition_id">
+      <require condition="allOf.middleware.llhttp.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.llhttp.internal_condition">
+      <require Cclass="AWS IoT" Cgroup="llhttp" Csub="llhttp"/>
+    </condition>
+  </conditions>
+  <components>
+    <component Cclass="FreeRTOS" Cgroup="coreHTTP" Cversion="3.0.0" condition="middleware.freertos.corehttp.condition_id">
+      <description>Client implementation of the HTTP/1.1 specification for embedded devices.</description>
+      <files>
+        <file category="sourceC" name="rtos/freertos/corehttp/source/core_http_client.c" projectpath="freertos/corehttp/source"/>
+        <file category="header" name="rtos/freertos/corehttp/source/include/core_http_client.h" projectpath="freertos/corehttp/source/include"/>
+        <file category="header" name="rtos/freertos/corehttp/source/include/core_http_client_private.h" projectpath="freertos/corehttp/source/include"/>
+        <file category="header" name="rtos/freertos/corehttp/source/include/core_http_config_defaults.h" projectpath="freertos/corehttp/source/include"/>
+        <file category="header" name="rtos/freertos/corehttp/source/interface/transport_interface.h" projectpath="freertos/corehttp/source/interface"/>
+        <file category="include" name="rtos/freertos/corehttp/source/include/"/>
+        <file category="include" name="rtos/freertos/corehttp/source/interface/"/>
+      </files>
+    </component>
+  </components>
+</package>

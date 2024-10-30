@@ -1,0 +1,774 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package schemaVersion="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>ABOV</vendor>
+  <name>A34M41x_Series</name>
+  <description>ABOV Semiconductor A33M11x Series Device Support, Drivers and Examples</description>
+  <url>https://www.abov.co.kr/data/mds/PACK/</url>
+  <supportContact>abov_fae@abov.co.kr</supportContact>
+  <releases>
+    <release version="1.1.0" date="2020-04-21">
+	- First Release version of ABOV A34M4xx Series Pack
+	- Added device : A34M418, A34M416, A34M414
+    </release>
+  </releases>
+  <keywords>
+    <keyword>ABOV</keyword>
+    <keyword>A34M41x Series</keyword>
+    <keyword>Motor</keyword>
+  </keywords>
+  <devices>
+    <family Dfamily="A34M41x Series" Dvendor="ABOV Semiconductor:126">
+      <processor Dcore="Cortex-M4" DcoreVersion="r0p0" Dfpu="1" Dmpu="0" Dendian="Little-endian" />
+      <description>The ABOV M4 Series device family with a versatile set of on-chip peripherals
+            </description>
+      <!-- Subfamily : A34M41x *********************************************************-->
+      <subFamily DsubFamily="A34M41x">
+        <processor Dclock="120000000" />
+        <compile header="A34M41x\Core\Device\ABOV\A34M41x\Include\A34M41x.h" />
+        <debug svd="A34M41x\SVD\A34M41x.svd" />
+        <!-- <book name="A34M41x\Doc\UM_A34M41x_V1.0.0_EN.pdf" title="A34M41x Series Data Sheet" /> -->
+        <algorithm name="A34M41x\Flashloader\A34M41x_CFLASH.FLM" start="0x00000000" size="0x80000" default="1" />
+		<algorithm name="A34M41x\Flashloader\A34M41x_DFLASH.FLM" start="0x0E000000" size="0x8000" default="1" />
+        <feature type="VCC" n="2.70" m="5.50" />
+        <feature type="Temp" n="-40" m="85" />
+        <memory id="IROM1" start="0x00000000" size="0x80000" startup="1" default="1" />
+        <memory id="IRAM1" start="0x20000000" size="0x10000" init="0" default="1" />
+        <feature type="WDT" n="1" m="32" name="Watchdog Timer" />
+        <feature type="Other" n="2" m="32" name="FRT" />
+        <feature type="Timer" n="10" m="16" name="Timer" />
+        <feature type="MPWM" n="2" m="16" name="MPWM" />
+        <feature type="CAN" n="1" name="CAN" />
+
+        <!-- Device : A34M418 -->
+        <device Dname="A34M418">
+          <description>Package type 120LQFP</description>
+          <feature type="IOs" n="108" name="Inputs/Outputs" />
+          <feature type="QFP" n="120" name="LQFP" />
+		  <feature type="ADC" n="3" m="24" name="ADC" />
+          <feature type="I2C" n="2" name="I2C" />
+          <feature type="UART" n="6" name="UART" />
+          <feature type="SPI" n="3" name="SPI" />
+        </device>
+
+        <!-- Device : A34M416 -->
+        <device Dname="A34M416">
+          <description>Package type 100LQFP</description>
+          <memory id="IROM1" start="0x00000000" size="0x40000" startup="1" default="1" />
+          <feature type="IOs" n="90" name="Inputs/Outputs" />
+          <feature type="QFP" n="100" name="LQFP" />
+		  <feature type="ADC" n="3" m="24" name="ADC" />
+          <feature type="I2C" n="2" name="I2C" />
+          <feature type="UART" n="6" name="UART" />
+          <feature type="SPI" n="2" name="SPI" />
+        </device>
+
+        <!-- Device : A34M414 -->
+        <device Dname="A34M414">
+          <description>Package type 64LQFP</description>
+          <memory id="IROM1" start="0x00000000" size="0x20000" startup="1" default="1" />
+          <memory id="IRAM1" start="0x20000000" size="0x8000" init="0" default="1" />
+          <feature type="IOs" n="52" name="Inputs/Outputs" />
+          <feature type="QFP" n="64" name="LQFP" />
+		  <feature type="ADC" n="3" m="16" name="ADC" />
+          <feature type="I2C" n="1" name="I2C" />
+          <feature type="UART" n="3" name="UART" />
+          <feature type="SPI" n="1" name="SPI" />
+        </device>
+      </subFamily>
+    </family>
+  </devices>
+  <conditions>
+    <!-- condition : A34M41x ********************************************************-->
+    <condition id="A34M41x CMSIS">
+      <description>A34M418, A34M416, A34M414 device and CMSIS-Core</description>
+      <require Tcompiler="ARMCC" />
+      <require Cclass="CMSIS" Cgroup="CORE" />
+      <accept Dvendor="ABOV Semiconductor:126" Dname="A34M418" />
+      <accept Dvendor="ABOV Semiconductor:126" Dname="A34M416" />
+	  <accept Dvendor="ABOV Semiconductor:126" Dname="A34M414" />
+    </condition>
+  </conditions>
+  <components>
+    <!-- component : A34M41x *************************************************************-->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="A34M41x CMSIS">
+      <description>System Startup for ABOV A34M41x devices</description>
+      <files>
+        <file category="include" name="A34M41x\Core\Device\ABOV\A34M41x\Include\" />
+        <file category="include" name="A34M41x\Drivers\Include\" />
+        <file category="header" version="1.0.0" name="A34M41x\Core\Device\ABOV\A34M41x\Include\A34M41x.h" attr="config" />
+        <file category="source" version="1.0.0" name="A34M41x\Core\Device\ABOV\A34M41x\Source\ARM\startup_A34M41x.s" attr="config" />
+        <file category="header" version="1.0.0" name="A34M41x\Core\Device\ABOV\A34M41x\Include\system_A34M41x.h" attr="config" />
+        <file category="source" version="1.0.0" name="A34M41x\Core\Device\ABOV\A34M41x\Source\system_A34M41x.c" attr="config" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="Debug_frameWork" Cversion="1.0.0" condition="A34M41x CMSIS">
+      <description>A34M41x debug framework</description>
+      <files>
+        <file category="header" name="A34M41x\Drivers\Include\A34M41x_debug_frmwrk.h" />
+        <file category="source" name="A34M41x\Drivers\Source\A34M41x_debug_frmwrk.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="ADC" Cversion="1.0.0" condition="A34M41x CMSIS">
+      <description>A34M41x ADC control</description>
+      <files>
+        <file category="header" name="A34M41x\Drivers\Include\A34M41x_hal_adc.h" />
+        <file category="source" name="A34M41x\Drivers\Source\A34M41x_hal_adc.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="CFMC" Cversion="1.0.0" condition="A34M41x CMSIS">
+      <description>A34M41x Flash Memory Controller</description>
+      <files>
+        <file category="header" name="A34M41x\Drivers\Include\A34M41x_hal_cfmc.h" />
+        <file category="source" name="A34M41x\Drivers\Source\A34M41x_hal_cfmc.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="DFMC" Cversion="1.0.0" condition="A34M41x CMSIS">
+      <description>A34M41x Data Flash Memory Controller</description>
+      <files>
+        <file category="header" name="A34M41x\Drivers\Include\A34M41x_hal_dfmc.h" />
+        <file category="source" name="A34M41x\Drivers\Source\A34M41x_hal_dfmc.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="DMA" Cversion="1.0.0" condition="A34M41x CMSIS">
+      <description>A34M41x Direct Memory Access Controller</description>
+      <files>
+        <file category="header" name="A34M41x\Drivers\Include\A34M41x_hal_dma.h" />
+        <file category="source" name="A34M41x\Drivers\Source\A34M41x_hal_dma.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="FRT" Cversion="1.0.0" condition="A34M41x CMSIS">
+      <description>A34M41x 32-bit Free-Run Timer control</description>
+      <files>
+        <file category="header" name="A34M41x\Drivers\Include\A34M41x_hal_frt.h" />
+        <file category="source" name="A34M41x\Drivers\Source\A34M41x_hal_frt.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="I2C" Cversion="1.0.0" condition="A34M41x CMSIS">
+      <description>A34M41x I2C control</description>
+      <files>
+        <file category="header" name="A34M41x\Drivers\Include\A34M41x_hal_i2c.h" />
+        <file category="source" name="A34M41x\Drivers\Source\A34M41x_hal_i2c.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="PCU" Cversion="1.0.0" condition="A34M41x CMSIS">
+      <description>A34M41x Port Map controller</description>
+      <files>
+        <file category="header" name="A34M41x\Drivers\Include\A34M41x_hal_pcu.h" />
+        <file category="source" name="A34M41x\Drivers\Source\A34M41x_hal_pcu.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="SCU" Cversion="1.0.0" condition="A34M41x CMSIS">
+      <description>A34M41x Power Management Unit</description>
+      <files>
+        <file category="header" name="A34M41x\Drivers\Include\A34M41x_hal_scu.h" />
+        <file category="source" name="A34M41x\Drivers\Source\A34M41x_hal_scu.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="MPWM" Cversion="1.0.0" condition="A34M41x CMSIS">
+      <description>A34M41x MPWM control</description>
+      <files>
+        <file category="header" name="A34M41x\Drivers\Include\A34M41x_hal_mpwm.h" />
+        <file category="source" name="A34M41x\Drivers\Source\A34M41x_hal_mpwm.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="SPI" Cversion="1.0.0" condition="A34M41x CMSIS">
+      <description>A34M41x SPI control</description>
+      <files>
+        <file category="header" name="A34M41x\Drivers\Include\A34M41x_hal_spi.h" />
+        <file category="source" name="A34M41x\Drivers\Source\A34M41x_hal_spi.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="QEI" Cversion="1.0.0" condition="A34M41x CMSIS">
+      <description>A34M41x QEI control</description>
+      <files>
+        <file category="header" name="A34M41x\Drivers\Include\A34M41x_hal_qei.h" />
+        <file category="source" name="A34M41x\Drivers\Source\A34M41x_hal_qei.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="PGA" Cversion="1.0.0" condition="A34M41x CMSIS">
+      <description>A34M41x PGA control</description>
+      <files>
+        <file category="header" name="A34M41x\Drivers\Include\A34M41x_hal_pga.h" />
+        <file category="source" name="A34M41x\Drivers\Source\A34M41x_hal_pga.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="COMP" Cversion="1.0.0" condition="A34M41x CMSIS">
+      <description>A34M41x Comparator control</description>
+      <files>
+        <file category="header" name="A34M41x\Drivers\Include\A34M41x_hal_comp.h" />
+        <file category="source" name="A34M41x\Drivers\Source\A34M41x_hal_comp.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="AES128" Cversion="1.0.0" condition="A34M41x CMSIS">
+      <description>A34M41x AES128 control</description>
+      <files>
+        <file category="header" name="A34M41x\Drivers\Include\A34M41x_hal_aes128.h" />
+        <file category="source" name="A34M41x\Drivers\Source\A34M41x_hal_aes128.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="RNG" Cversion="1.0.0" condition="A34M41x CMSIS">
+      <description>A34M41x RNG control</description>
+      <files>
+        <file category="header" name="A34M41x\Drivers\Include\A34M41x_hal_rng.h" />
+        <file category="source" name="A34M41x\Drivers\Source\A34M41x_hal_rng.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="CRC" Cversion="1.0.0" condition="A34M41x CMSIS">
+      <description>A34M41x CRC control</description>
+      <files>
+        <file category="header" name="A34M41x\Drivers\Include\A34M41x_hal_crc.h" />
+        <file category="source" name="A34M41x\Drivers\Source\A34M41x_hal_crc.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="UART" Cversion="1.0.0" condition="A34M41x CMSIS">
+      <description>A34M41x UART control</description>
+      <files>
+        <file category="header" name="A34M41x\Drivers\Include\A34M41x_hal_uart.h" />
+        <file category="source" name="A34M41x\Drivers\Source\A34M41x_hal_uart.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="WDT" Cversion="1.0.0" condition="A34M41x CMSIS">
+      <description>A34M41x WDT control</description>
+      <files>
+        <file category="header" name="A34M41x\Drivers\Include\A34M41x_hal_wdt.h" />
+        <file category="source" name="A34M41x\Drivers\Source\A34M41x_hal_wdt.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="Timer" Cversion="1.0.0" condition="A34M41x CMSIS">
+      <description>A34M41x Timer control</description>
+      <files>
+        <file category="header" name="A34M41x\Drivers\Include\A34m41x_hal_timer.h" />
+        <file category="source" name="A34M41x\Drivers\Source\A34M41x_hal_timer.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="PWR" Cversion="1.0.0" condition="A34M41x CMSIS">
+      <description>A34M41x PWR control</description>
+      <files>
+        <file category="header" name="A34M41x\Drivers\Include\A34M41x_hal_pwr.h" />
+        <file category="source" name="A34M41x\Drivers\Source\A34M41x_hal_pwr.c" />
+      </files>
+    </component>
+  </components>
+  <boards>
+    <!-- component : A34M41x *************************************************************-->
+    <board vendor="ABOV" name="StarterKit-A34M418VLN" revision="V1.1">
+      <description>StarterKit-A34M418VLN</description>
+      <mountedDevice deviceIndex="0" Dvendor="ABOV Semiconductor:126" Dname="A34M418"/>
+      <compatibleDevice deviceIndex="0" Dvendor="ABOV Semiconductor:126" Dname="A34M416"/>
+	  <compatibleDevice deviceIndex="0" Dvendor="ABOV Semiconductor:126" Dname="A34M414"/>
+      <feature type="XTAL" n="8000000" />
+      <feature type="PWR" n="5" name="USB Powered" />
+      <feature type="PWR" n="3" m="5" name="External Supply" />
+      <feature type="Button" n="2" name="Tact-buttons: User and Reset" />
+      <feature type="LED" n="6" name="LEDs : D101~D106" />
+	  <debugInterface adapter="A-Link (CMSIS-DAP)" connector="USB Mini 5 pin"/>
+    </board>
+  </boards>
+  <examples>
+    <!-- example : A34M41x **********************************************************-->
+    <example name="ABOV ADC Burst Test" doc="Abstract.txt" folder="A34M41x\Examples\ADC\ADC_Burst">
+      <description>ADC Burst Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\ADC_Burst.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV ADC Interrupt Test" doc="Abstract.txt" folder="A34M41x\Examples\ADC\ADC_Interrupt">
+      <description>ADC Interrupt Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\ADC_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV ADC Multiple Test" doc="Abstract.txt" folder="A34M41x\Examples\ADC\ADC_Multiple">
+      <description>ADC Multiple Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\ADC_Multiple.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV ADC Polling Test" doc="Abstract.txt" folder="A34M41x\Examples\ADC\ADC_Polling">
+      <description>ADC Polling Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\ADC_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV ADC Sequence Test" doc="Abstract.txt" folder="A34M41x\Examples\ADC\ADC_Seq">
+      <description>ADC Sequence Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\ADC_Seq.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV AES128 Interrupt Test" doc="Abstract.txt" folder="A34M41x\Examples\AES128\AES128_interrupt">
+      <description>AES128 Interrupt Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\AES128_interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV AES128 Polling Test" doc="Abstract.txt" folder="A34M41x\Examples\AES128\AES128_polling">
+      <description>AES128 Polling Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\AES128_polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Comparator Interrupt Test" doc="Abstract.txt" folder="A34M41x\Examples\COMP\COMP_interrupt">
+      <description>Comparator Interrupt Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\COMP_interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Comparator Polling Test" doc="Abstract.txt" folder="A34M41x\Examples\COMP\COMP_polling">
+      <description>Comparator Polling Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\Comp_polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV CRC Test" doc="Abstract.txt" folder="A34M41x\Examples\CRC\CRC">
+      <description>CRC Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\CRC.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV DMA Test" doc="Abstract.txt" folder="A34M41x\Examples\DMA\DMA_Test">
+      <description>DMA Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\DMA_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+	<example name="ABOV DMA ADC Test" doc="Abstract.txt" folder="A34M41x\Examples\DMA\DMA_ADC_Test">
+      <description>DMA ADC Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\DMA_ADC_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+	<example name="ABOV DMA SPI Polling Test" doc="Abstract.txt" folder="A34M41x\Examples\DMA\DMA_SPI_Polling">
+      <description>DMA SPI Polling Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\DMA_SPI_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Flash Memory Controller Test" doc="Abstract.txt" folder="A34M41x\Examples\FMC\CFMC_WriteErase">
+      <description>Flash Memory Controller Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\CFMC_WriteErase.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Data Flash Memory Controller Test" doc="Abstract.txt" folder="A34M41x\Examples\FMC\DFMC_WriteErase">
+      <description>Data Flash Memory Controller Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\DFMC_WriteErase.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Floating Point Unit Test" doc="Abstract.txt" folder="A34M41x\Examples\FPU\FPU Test">
+      <description>Floating Point Unit Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\FPU_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Free-run Timer Test" doc="Abstract.txt" folder="A34M41x\Examples\FRT\FRT_Test">
+      <description>Free-run Timer Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\FRT_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV GPIO External Interrupt Test" doc="Abstract.txt" folder="A34M41x\Examples\GPIO\Gpio_ExtInt">
+      <description>GPIO External Interrupt Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\Gpio_ExtInt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV GPIO Input Test" doc="Abstract.txt" folder="A34M41x\Examples\GPIO\Gpio_Input">
+      <description>GPIO Input Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\Gpio_Input.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV GPIO LED Blinky Test" doc="Abstract.txt" folder="A34M41x\Examples\GPIO\Gpio_LedBlinky">
+      <description>GPIO LED Blinky Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\Gpio_LedBlinky.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV I2C Test" doc="Abstract.txt" folder="A34M41x\Examples\I2C\I2C_MasterSlave">
+      <description>I2C Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\I2C_MasterSlave.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV MPWM Test" doc="Abstract.txt" folder="A34M41x\Examples\MPWM\MPWM_Test">
+      <description>MPWM Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\MPWM_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV PGA Test" doc="Abstract.txt" folder="A34M41x\Examples\PGA\PGA_test">
+      <description>PGA Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\PGA_test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV LVI Test" doc="Abstract.txt" folder="A34M41x\Examples\PWR\LVI">
+      <description>LVI Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\LVI.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV DeepSleep Test" doc="Abstract.txt" folder="A34M41x\Examples\PWR\PWR_DeepSleep">
+      <description>DeepSleep Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\PWR_DeepSleep.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV Sleep Test" doc="Abstract.txt" folder="A34M41x\Examples\PWR\PWR_Sleep">
+      <description>Sleep Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\PWR_Sleep.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV QEI Test" doc="Abstract.txt" folder="A34M41x\Examples\QEI\QEI_Test">
+      <description>QEI Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\QEI_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV RNG Test" doc="Abstract.txt" folder="A34M41x\Examples\RNG\RNG">
+      <description>RNG Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\RNG_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV SPI Interrupt Test" doc="Abstract.txt" folder="A34M41x\Examples\SPI\SPI_Interrupt">
+      <description>SPI Interrupt Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\SPI_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV SPI Polling Test" doc="Abstract.txt" folder="A34M41x\Examples\SPI\SPI_Polling">
+      <description>SPI Polling Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\SPI_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV SRAM Test" doc="Abstract.txt" folder="A34M41x\Examples\SRAM\SRAM_WriteErase">
+      <description>SRAM Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\SRAM_WriteErase.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="Starter Kit - Gpio_LedBlinky" doc="Abstract.txt" folder="A34M41x\Examples\StarterKit\Gpio_LedBlinky">
+      <description>Starter Kit - Gpio_LedBlinky (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\Gpio_LedBlinky.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV TIMER Capture Test" doc="Abstract.txt" folder="A34M41x\Examples\TIMER\Timer_Capture">
+      <description>TIMER Capture Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\Timer_Capture.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV TIMER MatchInterrupt Test" doc="Abstract.txt" folder="A34M41x\Examples\TIMER\Timer_MatchInterrupt">
+      <description>TIMER Match Interrupt Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\Timer_MatchInterrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV TIMER MatchPolling Test" doc="Abstract.txt" folder="A34M41x\Examples\TIMER\Timer_MatchPolling">
+      <description>TIMER Match Polling Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\Timer_MatchPolling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV TIMER OneShot Test" doc="Abstract.txt" folder="A34M41x\Examples\TIMER\Timer_OneShot">
+      <description>TIMER OneShot Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\Timer_OneShot.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV TIMER PWM Test" doc="Abstract.txt" folder="A34M41x\Examples\TIMER\Timer_PWM">
+      <description>TIMER PWM Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\Timer_PWM.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV TIMER SYNC Test" doc="Abstract.txt" folder="A34M41x\Examples\TIMER\Timer_SYNC">
+      <description>TIMER SYNC Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\Timer_SYNC.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV UART Interrupt Test" doc="Abstract.txt" folder="A34M41x\Examples\UART\UART_Interrupt">
+      <description>UART Interrupt Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\UART_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV UART Polling Test" doc="Abstract.txt" folder="A34M41x\Examples\UART\UART_Polling">
+      <description>UART Polling Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\UART_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV WDT Interrupt Test" doc="Abstract.txt" folder="A34M41x\Examples\WDT\WDT_Interrupt">
+      <description>WDT Interrupt Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\WDT_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV WDT Reset Test" doc="Abstract.txt" folder="A34M41x\Examples\WDT\WDT_Reset">
+      <description>WDT Interrupt Test example (A34M418/416/414)</description>
+      <board name="StarterKit-A34M418VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\WDT_Reset.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+  </examples>
+</package>

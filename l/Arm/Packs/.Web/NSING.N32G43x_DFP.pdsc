@@ -1,0 +1,867 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.4.0" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>NSING</vendor>
+    <url>https://www.nsing.com.sg/uploadfile/file/pack/</url>
+    <name>N32G43x_DFP</name>
+    <description>Nsing N32G43x Series Device Support, Drivers and Examples</description>
+
+    <releases>
+		<release date="2024-08-14" version="0.9.6">		    
+            First release of N32G401_DFP
+        </release>
+    </releases>
+
+    <keywords>
+        <keyword>NSING</keyword>
+        <keyword>Device Support</keyword>
+        <keyword>N32G43x</keyword>
+		<keyword>N32</keyword>
+    </keywords>
+
+    <devices>
+        <family Dfamily="N32G43x Series" Dvendor="NSING:185">
+			<processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="1" Dmpu="0" Dendian="Little-endian"/>
+			<description>
+The N32G432 series utilizes a 32-bit ARM Cortex-M4F core with operating frequency up to 108MHz. 
+
+- Up to 128KB embedded encrypted Flash memory.
+- 32KB SRAM, 52x PIO(MAX)
+- 1x 12bit 5Msps ADC, 1x 12bit DAC, 28x PWM(MAX)
+- 5x USART,1x LPUART, 2x I2C, 2x SPI, 1x DMA,  1x OPA and 2x Beeper	
+- RTC, 8x Timer, 30+1 GPOs, USB2.0, 1x CAN, 1x DMA.
+- Hardware Cryptographics Engine.
+			</description>
+			<subFamily DsubFamily="N32G432">		  
+				<processor Dclock="108000000"/>		   
+				<compile header="firmware/CMSIS/device/n32g43x.h" define="N32G43X USE_STDPERIPH_DRIVER"/>
+				<feature type="XTAL"     n="4000000"     m="32000000" name="External Crystal Oscillator"/>		   
+				<feature type="VCC"      n="1.80"        m="3.60"/>		
+				<feature type="Temp"     n="-40"        m="105"/>	
+				<feature type="RTC"      n="1"/>		   
+				<!-- *************************  Device 'N32G401C8L7'  ***************************** -->
+				<device Dname="N32G432K8"> 
+					<description>
+- Package:LQFP32
+- LPUART: 1x		
+					</description>					
+						<feature type="Memory"   n="64" 	name="64KB Flash"/>	
+						<feature type="Memory"   n="24" 	name="24KB SRAM"/>	
+						<feature type="IOs"      n="26"     name="Input and Output Ports"/>
+						<feature type="Timer"    n="9"/>
+						<feature type="PWM"      n="14"/>				
+						<feature type="ADC"      n="10"    	m="12"  name="10-ch 12bit ADC"/>	
+						<feature type="DAC"      n="1"/>
+						<feature type="USART"    n="2"/>
+						<feature type="UART"     n="2"/>	
+						<feature type="SPI"      n="2"/>	
+						<feature type="I2C"      n="2"/>	
+						<feature type="USBD"     n="1"/>	
+						<feature type="CAN"      n="1"/>				
+						<feature type="DMA"      n="8"/>			
+						
+						<memory id="IRAM1"   start="0x20000000" size="0x6000" default="1" init="0"/>
+						<memory id="IROM1"   start="0x08000000" size="0x10000" default="1" startup="1"/>
+						<algorithm name="Flash/N32G43x.FLM" start="0x08000000" size="0x10000" default="1"/>
+						<debug svd="svd/N32G432.svd"/>
+					</device>	
+				<!-- *************************  Device 'N32G432KB'  ***************************** -->		  
+					<device Dname="N32G432KB"> 
+						<description>
+- Package:LQFP32
+- LPUART: 1x		
+						</description>					
+						<feature type="Memory"   n="128" 	name="128KB Flash"/>	
+						<feature type="Memory"   n="32" 	name="32KB SRAM"/>	
+						<feature type="IOs"      n="26"     name="Input and Output Ports"/>
+						<feature type="Timer"    n="9"/>
+						<feature type="PWM"      n="14"/>				
+						<feature type="ADC"      n="10"    	m="12"  name="10-ch 12bit ADC"/>	
+						<feature type="DAC"      n="1"/>
+						<feature type="USART"    n="2"/>
+						<feature type="UART"     n="2"/>	
+						<feature type="SPI"      n="2"/>	
+						<feature type="I2C"      n="2"/>
+						<feature type="USBD"     n="1"/>	
+						<feature type="CAN"      n="1"/>				
+						<feature type="DMA"      n="8"/>			
+							
+						<memory id="IRAM1"   start="0x20000000" size="0x8000" default="1" init="0"/>
+						<memory id="IROM1"   start="0x08000000" size="0x20000" default="1" startup="1"/>
+						<algorithm name="Flash/N32G43x.FLM" start="0x08000000" size="0x20000" default="1"/>
+						<debug svd="svd/N32G432.svd"/>
+					 </device>
+		  <!-- *************************  Device 'N32G432C8'  ***************************** -->		  
+		  <device Dname="N32G432C8"> 
+			<description>
+- Package:LQFP48
+- LPUART: 1x		
+			</description>					
+		    <feature type="Memory"   n="64" 	name="64KB Flash"/>	
+		    <feature type="Memory"   n="24" 	name="24KB SRAM"/>	
+			<feature type="IOs"      n="38"     name="Input and Output Ports"/>
+			<feature type="Timer"    n="9"/>
+			<feature type="PWM"      n="24"/>				
+			<feature type="ADC"      n="10"    	m="12"  name="10-ch 12bit ADC"/>	
+			<feature type="DAC"      n="1"/>
+			<feature type="USART"    n="3"/>
+			<feature type="UART"     n="2"/>	
+		    <feature type="SPI"      n="2"/>	
+			<feature type="I2C"      n="2"/>
+			<feature type="USBD"     n="1"/>		
+			<feature type="CAN"      n="1"/>
+ 			<feature type="DMA"      n="8"/>	
+			
+			<memory id="IRAM1"   start="0x20000000" size="0x6000" default="1" init="0"/>
+			<memory id="IROM1"   start="0x08000000" size="0x10000" default="1" startup="1"/>
+			<algorithm name="Flash/N32G43x.FLM" start="0x08000000" size="0x10000" default="1"/>
+			<debug svd="svd/N32G432.svd"/>
+          </device>
+		  <!-- *************************  Device 'N32G432CB'  ***************************** -->		  
+		  <device Dname="N32G432CB"> 
+			<description>
+- Package:LQFP48
+- LPUART: 1x		
+			</description>					
+		    <feature type="Memory"   n="128" 	name="128KB Flash"/>	
+		    <feature type="Memory"   n="32" 	name="32KB SRAM"/>	
+			<feature type="IOs"      n="38"     name="Input and Output Ports"/>
+			<feature type="Timer"    n="9"/>
+			<feature type="PWM"      n="24"/>				
+			<feature type="ADC"      n="10"    	m="12"  name="10-ch 12bit ADC"/>	
+			<feature type="DAC"      n="1"/>
+			<feature type="USART"    n="3"/>
+			<feature type="UART"     n="2"/>	
+		    <feature type="SPI"      n="2"/>	
+			<feature type="I2C"      n="2"/>
+			<feature type="USBD"     n="1"/>
+			<feature type="CAN"      n="1"/>
+			<feature type="DMA"      n="8"/>	
+			
+			<memory id="IRAM1"   start="0x20000000" size="0x8000" default="1" init="0"/>
+			<memory id="IROM1"   start="0x08000000" size="0x20000" default="1" startup="1"/>
+			<algorithm name="Flash/N32G43x.FLM" start="0x08000000" size="0x20000" default="1"/>
+			<debug svd="svd/N32G432.svd"/>
+          </device>
+		  <!-- *************************  Device 'N32G432R8'  ***************************** -->		  
+		  <device Dname="N32G432R8"> 
+			<description>
+- Package:LQFP64
+- LPUART: 1x		
+			</description>					
+		    <feature type="Memory"   n="64" 	name="64KB Flash"/>	
+		    <feature type="Memory"   n="24" 	name="24KB SRAM"/>	
+			<feature type="IOs"      n="52"     name="Input and Output Ports"/>
+			<feature type="Timer"    n="9"/>
+			<feature type="PWM"      n="28"/>				
+			<feature type="ADC"      n="16"    	m="12"  name="16-ch 12bit ADC"/>	
+			<feature type="DAC"      n="1"/>
+			<feature type="USART"    n="3"/>
+			<feature type="UART"     n="2"/>	
+		    <feature type="SPI"      n="2"/>	
+			<feature type="I2C"      n="2"/>
+			<feature type="USBD"     n="1"/>	
+			<feature type="CAN"      n="1"/>
+ 			<feature type="DMA"      n="8"/>	
+			
+			<memory id="IRAM1"   start="0x20000000" size="0x6000" default="1" init="0"/>
+			<memory id="IROM1"   start="0x08000000" size="0x10000" default="1" startup="1"/>
+			<algorithm name="Flash/N32G43x.FLM" start="0x08000000" size="0x10000" default="1"/>
+			<debug svd="svd/N32G432.svd"/>
+          </device>
+		  <!-- *************************  Device 'N32G432RB'  ***************************** -->		  
+		  <device Dname="N32G432RB"> 
+			<description>
+- Package:LQFP64
+- LPUART: 1x		
+			</description>					
+		    <feature type="Memory"   n="128" 	name="128KB Flash"/>	
+		    <feature type="Memory"   n="32" 	name="32KB SRAM"/>	
+			<feature type="IOs"      n="52"     name="Input and Output Ports"/>
+			<feature type="Timer"    n="9"/>
+			<feature type="PWM"      n="28"/>				
+			<feature type="ADC"      n="16"    	m="12"  name="16-ch 12bit ADC"/>	
+			<feature type="DAC"      n="1"/>
+			<feature type="USART"    n="3"/>
+			<feature type="UART"     n="2"/>	
+		    <feature type="SPI"      n="2"/>	
+			<feature type="I2C"      n="2"/>
+			<feature type="USBD"     n="1"/>		
+			<feature type="CAN"      n="1"/>
+			<feature type="DMA"      n="8"/>	
+			
+			<memory id="IRAM1"   start="0x20000000" size="0x8000" default="1" init="0"/>
+			<memory id="IROM1"   start="0x08000000" size="0x20000" default="1" startup="1"/>
+			<algorithm name="Flash/N32G43x.FLM" start="0x08000000" size="0x20000" default="1"/>
+			<debug svd="svd/N32G432.svd"/>
+          </device> 
+		  
+			</subFamily>
+			<subFamily DsubFamily="N32G435">
+				<description>
+The N32G435 series utilizes a 32-bit ARM Cortex-M4F core with operating frequency up to 108MHz. 
+
+- Up to 128KB embedded encrypted Flash memory.
+- 32KB SRAM, 52x GPIO(MAX)
+- 1x 12bit 5Msps ADC, 1x 12bit DAC, 1x COMP, 2x OPAMP, TSC, 
+- 5x USART,1x LPUART, 2x I2C, 2x SPI, 3x COMP, 1x DMA, 22x PWM, 1x OPA 
+- RTC, 8x Timer, 30+1 GPOs, USB2.0, 1x CAN, 1x DMA, 1x CAN
+- Hardware Cryptographics Engine.
+				</description>		  
+				<!--processor Dclock="108000000"/ -->	   
+				<compile header="firmware/CMSIS/device/n32g43x.h" define="N32G43X N32G435 USE_STDPERIPH_DRIVER"/>
+				<feature type="XTAL"     n="4000000"     m="32000000" name="External Crystal Oscillator"/>		   
+				<feature type="VCC"      n="1.80"        m="3.60"/>		
+				<feature type="Temp"     n="-40"        m="105"/>	
+				<feature type="RTC"      n="1"/>		   
+				<!-- *************************  Device 'N32G435G8'  ***************************** -->
+				<device Dname="N32G435G8"> 
+				<description>
+- Package:LQFP48
+- LPUART: 1x	
+- OPAMP: 2x	
+- COMP: 2x
+- TSC: 1x
+				</description>					
+				<feature type="Memory"   n="64" 	name="64KB Flash"/>	
+				<feature type="Memory"   n="16" 	name="16KB SRAM"/>	
+				<feature type="IOs"      n="24"     name="Input and Output Ports"/>
+				<feature type="Timer"    n="9"/>
+				<feature type="PWM"      n="14"/>				
+				<feature type="ADC"      n="10"    	m="12"  name="10-ch 12bit ADC"/>	
+				<feature type="DAC"      n="1"/>
+				<feature type="USART"    n="2"/>
+				<feature type="UART"     n="2"/>	
+				<feature type="SPI"      n="1"/>	
+				<feature type="I2C"      n="2"/>	
+				<feature type="USBD"     n="0"/>	
+				<feature type="CAN"      n="0"/>				
+				<feature type="DMA"      n="8"/>			
+			
+			<memory id="IRAM1"   start="0x20000000" size="0x4000" default="1" init="0"/>
+			<memory id="IROM1"   start="0x08000000" size="0x10000" default="1" startup="1"/>
+			<algorithm name="Flash/N32G43x.FLM" start="0x08000000" size="0x10000" default="1"/>
+			<debug svd="svd/N32G435.svd"/>
+          </device>			
+		  <!-- *************************  Device 'N32G435GB'  ***************************** -->
+		  <device Dname="N32G435GB"> 
+			<description>
+- Package:LQFP48
+- LPUART: 1x	
+- OPAMP: 2x	
+- COMP: 2x
+- TSC: 8x
+			</description>					
+		    <feature type="Memory"   n="128" 	name="128KB Flash"/>	
+		    <feature type="Memory"   n="32" 	name="32KB SRAM"/>	
+			<feature type="IOs"      n="24"     name="Input and Output Ports"/>
+			<feature type="Timer"    n="9"/>
+			<feature type="PWM"      n="14"/>				
+			<feature type="ADC"      n="10"    	m="12"  name="10-ch 12bit ADC"/>	
+			<feature type="DAC"      n="1"/>
+			<feature type="USART"    n="2"/>
+			<feature type="UART"     n="2"/>	
+		    <feature type="SPI"      n="1"/>	
+			<feature type="I2C"      n="2"/>	
+			<feature type="USBD"     n="0"/>	
+			<feature type="CAN"      n="0"/>				
+			<feature type="DMA"      n="8"/>			
+			
+			<memory id="IRAM1"   start="0x20000000" size="0x8000" default="1" init="0"/>
+			<memory id="IROM1"   start="0x08000000" size="0x20000" default="1" startup="1"/>
+			<algorithm name="Flash/N32G43x.FLM" start="0x08000000" size="0x20000" default="1"/>
+			<debug svd="svd/N32G435.svd"/>
+          </device>	
+		  <!-- *************************  Device 'N32G435K8'  ***************************** -->
+		  <device Dname="N32G435K8"> 
+			<description>
+- Package:LQFP48
+- LPUART: 1x	
+- OPAMP: 2x	
+- COMP: 2x
+- TSC: 12x
+			</description>					
+		    <feature type="Memory"   n="64" 	name="64KB Flash"/>	
+		    <feature type="Memory"   n="16" 	name="16KB SRAM"/>	
+			<feature type="IOs"      n="24"     name="Input and Output Ports"/>
+			<feature type="Timer"    n="9"/>
+			<feature type="PWM"      n="14"/>				
+			<feature type="ADC"      n="10"    	m="12"  name="10-ch 12bit ADC"/>	
+			<feature type="DAC"      n="1"/>
+			<feature type="USART"    n="2"/>
+			<feature type="UART"     n="2"/>	
+		    <feature type="SPI"      n="1"/>	
+			<feature type="I2C"      n="2"/>	
+			<feature type="USBD"     n="1"/>	
+			<feature type="CAN"      n="1"/>				
+			<feature type="DMA"      n="8"/>			
+			
+			<memory id="IRAM1"   start="0x20000000" size="0x4000" default="1" init="0"/>
+			<memory id="IROM1"   start="0x08000000" size="0x10000" default="1" startup="1"/>
+			<algorithm name="Flash/N32G43x.FLM" start="0x08000000" size="0x10000" default="1"/>
+			<debug svd="svd/N32G435.svd"/>
+          </device>			  
+		  <!-- *************************  Device 'N32G435KB'  ***************************** -->
+		  <device Dname="N32G435KB"> 
+			<description>
+- Package:LQFP48
+- LPUART: 1x	
+- OPAMP: 2x	
+- COMP: 2x
+- TSC: 12x
+			</description>					
+		    <feature type="Memory"   n="128" 	name="128KB Flash"/>	
+		    <feature type="Memory"   n="32" 	name="32KB SRAM"/>	
+			<feature type="IOs"      n="24"     name="Input and Output Ports"/>
+			<feature type="Timer"    n="9"/>
+			<feature type="PWM"      n="14"/>				
+			<feature type="ADC"      n="10"    	m="12"  name="10-ch 12bit ADC"/>	
+			<feature type="DAC"      n="1"/>
+			<feature type="USART"    n="2"/>
+			<feature type="UART"     n="2"/>	
+		    <feature type="SPI"      n="2"/>	
+			<feature type="I2C"      n="2"/>	
+			<feature type="USBD"     n="1"/>	
+			<feature type="CAN"      n="1"/>				
+			<feature type="DMA"      n="8"/>			
+			
+			<memory id="IRAM1"   start="0x20000000" size="0x8000" default="1" init="0"/>
+			<memory id="IROM1"   start="0x08000000" size="0x20000" default="1" startup="1"/>
+			<algorithm name="Flash/N32G43x.FLM" start="0x08000000" size="0x20000" default="1"/>
+			<debug svd="svd/N32G435.svd"/>
+          </device>		
+		  <!-- *************************  Device 'N32G435T8'  ***************************** -->
+		  <device Dname="N32G435T8"> 
+			<description>
+- Package:LQFP36
+- LPUART: 1x	
+- OPAMP: 2x	
+- COMP: 2x
+- TSC: 16x
+			</description>					
+		    <feature type="Memory"   n="64" 	name="64KB Flash"/>	
+		    <feature type="Memory"   n="24" 	name="24KB SRAM"/>	
+			<feature type="IOs"      n="27"     name="Input and Output Ports"/>
+			<feature type="Timer"    n="9"/>
+			<feature type="PWM"      n="24"/>				
+			<feature type="ADC"      n="10"    	m="12"  name="10-ch 12bit ADC"/>	
+			<feature type="DAC"      n="1"/>
+			<feature type="USART"    n="2"/>
+			<feature type="UART"     n="2"/>	
+		    <feature type="SPI"      n="2"/>	
+			<feature type="I2C"      n="2"/>	
+			<feature type="USBD"     n="1"/>	
+			<feature type="CAN"      n="1"/>				
+			<feature type="DMA"      n="8"/>			
+			
+			<memory id="IRAM1"   start="0x20000000" size="0x6000" default="1" init="0"/>
+			<memory id="IROM1"   start="0x08000000" size="0x10000" default="1" startup="1"/>
+			<algorithm name="Flash/N32G43x.FLM" start="0x08000000" size="0x10000" default="1"/>
+			<debug svd="svd/N32G435.svd"/>
+          </device>
+		  <!-- *************************  Device 'N32G435C8'  ***************************** -->
+		  <device Dname="N32G435C8"> 
+			<description>
+- Package:LQFP48
+- LPUART: 1x	
+- OPAMP: 2x	
+- COMP: 2x
+- TSC: 16x
+			</description>					
+		    <feature type="Memory"   n="64" 	name="64KB Flash"/>	
+		    <feature type="Memory"   n="24" 	name="24KB SRAM"/>	
+			<feature type="IOs"      n="38"     name="Input and Output Ports"/>
+			<feature type="Timer"    n="9"/>
+			<feature type="PWM"      n="24"/>				
+			<feature type="ADC"      n="10"    	m="12"  name="10-ch 12bit ADC"/>	
+			<feature type="DAC"      n="1"/>
+			<feature type="USART"    n="2"/>
+			<feature type="UART"     n="2"/>	
+		    <feature type="SPI"      n="2"/>	
+			<feature type="I2C"      n="2"/>	
+			<feature type="USBD"     n="1"/>	
+			<feature type="CAN"      n="1"/>				
+			<feature type="DMA"      n="8"/>			
+			
+			<memory id="IRAM1"   start="0x20000000" size="0x6000" default="1" init="0"/>
+			<memory id="IROM1"   start="0x08000000" size="0x10000" default="1" startup="1"/>
+			<algorithm name="Flash/N32G43x.FLM" start="0x08000000" size="0x10000" default="1"/>
+			<debug svd="svd/N32G435.svd"/>
+          </device>		  
+		  <!-- *************************  Device 'N32G435CB'  ***************************** -->
+		  <device Dname="N32G435CB"> 
+			<description>
+- Package:LQFP48
+- LPUART: 1x	
+- OPAMP: 2x	
+- COMP: 2x
+- TSC: 16x
+			</description>					
+		    <feature type="Memory"   n="128" 	name="128KB Flash"/>	
+		    <feature type="Memory"   n="32" 	name="32KB SRAM"/>	
+			<feature type="IOs"      n="38"     name="Input and Output Ports"/>
+			<feature type="Timer"    n="9"/>
+			<feature type="PWM"      n="24"/>				
+			<feature type="ADC"      n="10"    	m="12"  name="10-ch 12bit ADC"/>	
+			<feature type="DAC"      n="1"/>
+			<feature type="USART"    n="3"/>
+			<feature type="UART"     n="2"/>	
+		    <feature type="SPI"      n="2"/>	
+			<feature type="I2C"      n="2"/>	
+			<feature type="USBD"     n="1"/>	
+			<feature type="CAN"      n="1"/>				
+			<feature type="DMA"      n="8"/>			
+			
+			<memory id="IRAM1"   start="0x20000000" size="0x8000" default="1" init="0"/>
+			<memory id="IROM1"   start="0x08000000" size="0x20000" default="1" startup="1"/>
+			<algorithm name="Flash/N32G43x.FLM" start="0x08000000" size="0x20000" default="1"/>
+			<debug svd="svd/N32G435.svd"/>
+          </device>			  
+		  <!-- *************************  Device 'N32G435R8'  ***************************** -->
+		  <device Dname="N32G435R8"> 
+			<description>
+- Package:LQFP64
+- LPUART: 1x	
+- OPAMP: 2x	
+- COMP: 2x
+- TSC: 20x
+			</description>					
+		    <feature type="Memory"   n="64" 	name="64KB Flash"/>	
+		    <feature type="Memory"   n="24" 	name="24KB SRAM"/>	
+			<feature type="IOs"      n="52"     name="Input and Output Ports"/>
+			<feature type="Timer"    n="9"/>
+			<feature type="PWM"      n="24"/>				
+			<feature type="ADC"      n="16"    	m="12"  name="16-ch 12bit ADC"/>	
+			<feature type="DAC"      n="1"/>
+			<feature type="USART"    n="3"/>
+			<feature type="UART"     n="2"/>	
+		    <feature type="SPI"      n="2"/>	
+			<feature type="I2C"      n="2"/>	
+			<feature type="USBD"     n="1"/>	
+			<feature type="CAN"      n="1"/>				
+			<feature type="DMA"      n="8"/>			
+			
+			<memory id="IRAM1"   start="0x20000000" size="0x6000" default="1" init="0"/>
+			<memory id="IROM1"   start="0x08000000" size="0x10000" default="1" startup="1"/>
+			<algorithm name="Flash/N32G43x.FLM" start="0x08000000" size="0x10000" default="1"/>
+			<debug svd="svd/N32G435.svd"/>
+          </device>	
+		  <!-- *************************  Device 'N32G435RB'  ***************************** -->
+		  <device Dname="N32G435RB"> 
+			<description>
+- Package:LQFP64
+- LPUART: 1x	
+- OPAMP: 2x	
+- COMP: 2x
+- TSC: 20x
+			</description>					
+		    <feature type="Memory"   n="128" 	name="128KB Flash"/>	
+		    <feature type="Memory"   n="32" 	name="32KB SRAM"/>	
+			<feature type="IOs"      n="52"     name="Input and Output Ports"/>
+			<feature type="Timer"    n="9"/>
+			<feature type="PWM"      n="28"/>				
+			<feature type="ADC"      n="16"    	m="12"  name="16-ch 12bit ADC"/>	
+			<feature type="DAC"      n="1"/>
+			<feature type="USART"    n="3"/>
+			<feature type="UART"     n="2"/>	
+		    <feature type="SPI"      n="2"/>	
+			<feature type="I2C"      n="2"/>	
+			<feature type="USBD"     n="1"/>	
+			<feature type="CAN"      n="1"/>				
+			<feature type="DMA"      n="8"/>			
+			
+			<memory id="IRAM1"   start="0x20000000" size="0x8000" default="1" init="0"/>
+			<memory id="IROM1"   start="0x08000000" size="0x20000" default="1" startup="1"/>
+			<algorithm name="Flash/N32G43x.FLM" start="0x08000000" size="0x20000" default="1"/>
+			<debug svd="svd/N32G435.svd"/>
+          </device>	
+		</subFamily>
+		  
+        </family>
+    </devices> 
+
+    <conditions>   
+		
+		<!-- Device Conditions -->
+		<condition id="N32G43x">
+		  <description>NSING N32G43x Devices</description> 
+		  <require Dvendor="NSING:185" Dname="N32*"/> 
+		</condition>
+		
+		<!-- Device + CMSIS Conditions -->
+        <condition id="N32G43x CMSIS">            
+		    <description>NSING N32G43x Device and the ARM compiler</description>
+		    <require condition="N32G43x"/>
+		    <require Tcompiler="ARMCC"/>
+        </condition>
+
+		<!-- N32G43x STDPERIPHERALS MISC Conditions -->
+        <condition id="N32G43x STDPERIPHERALS">
+            <description>NSING N32G43x Standard Peripherals drivers</description>
+            <require condition="N32G43x CMSIS"/>
+            <require Cclass="Device" Cgroup="N32G43x_StdPeripherals" Csub="MISC"/>
+        </condition>
+		
+		<!-- N32G43x STDPERIPHERALS RCC Conditions -->
+        <condition id="N32G43x STDPERIPHERALS RCC">
+            <description>NSING N32G43x Standard Peripherals driver with RCC</description>
+            <require condition="N32G43x STDPERIPHERALS"/>
+            <require Cclass="Device" Cgroup="N32G43x_StdPeripherals" Csub="RCC"/>
+        </condition>
+
+        <condition id="N32G43x Algorithm Common" >
+            <description> Nsing N32G43x Series Algorithm Libraries Common Functions.</description>
+            <require condition="N32G43x CMSIS"/>
+            <require Cclass ="Device" Cgroup="Algorithm Libs" Csub="Common"/>
+        </condition>
+    </conditions>
+
+    <components>
+		<component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="N32G43x CMSIS">
+            <description>Startup File for Nsing N32G43x Series</description>
+            <files>
+                <file category="include" name="firmware/CMSIS/device/"/>
+				<file category="header" name="firmware/CMSIS/device/n32g43x.h"/>
+				<!-- startup file -->				
+                <file category="source" name="firmware/CMSIS/device/startup/startup_n32g43x.s" attr="config"  version="1.0.0" condition="N32G43x CMSIS"/>
+				<!-- system file -->
+                <file category="source" name="firmware/CMSIS/device/system_n32g43x.c" attr="config" version="1.0.0"/>
+				
+            </files>
+        </component>
+		
+	    <!-- N32G401_StdPeripherals -->		
+        <component Cclass="Device" Cgroup="N32G43x_StdPeripherals" Csub="MISC" Cversion="1.0.0" condition="N32G43x CMSIS">
+            <description>Standard Peripherals Drivers Framework</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_FRAMEWORK
+            </RTE_Components_h>
+            <files>
+                <file category="include" name="firmware/n32g43x_std_periph_driver/inc/"/>
+                <file category="source" name="firmware/n32g43x_std_periph_driver/src/misc.c"/>
+            </files>
+        </component>
+		
+        <component Cclass="Device" Cgroup="N32G43x_StdPeripherals" Csub="ADC" Cversion="1.0.0" condition="N32G43x STDPERIPHERALS RCC">
+            <description>Analog-to-digital converter (ADC) driver for N32G43x</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_ADC
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g43x_std_periph_driver/inc/n32g43x_adc.h"/>
+                <file category="source" name="firmware/n32g43x_std_periph_driver/src/n32g43x_adc.c"/>
+            </files>
+        </component>		
+
+        <component Cclass="Device" Cgroup="N32G43x_StdPeripherals" Csub="CAN" Cversion="1.0.0" condition="N32G43x STDPERIPHERALS RCC">
+            <description>CAN driver for N32G43x</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_CAN
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g43x_std_periph_driver/inc/n32g43x_can.h"/>
+                <file category="source" name="firmware/n32g43x_std_periph_driver/src/n32g43x_can.c"/>
+            </files>
+        </component>
+		
+        <component Cclass="Device" Cgroup="N32G43x_StdPeripherals" Csub="COMP" Cversion="1.0.0" condition="N32G43x STDPERIPHERALS RCC">
+            <description>Comparator (COMP) driver for N32G43x</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_COMP
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g43x_std_periph_driver/inc/n32g43x_comp.h"/>
+                <file category="source" name="firmware/n32g43x_std_periph_driver/src/n32g43x_comp.c"/>
+            </files>
+        </component>
+		
+        <component Cclass="Device" Cgroup="N32G43x_StdPeripherals" Csub="CRC" Cversion="1.0.0" condition="N32G43x STDPERIPHERALS RCC">
+            <description>CRC calculation unit (CRC) driver for N32G43x</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_CRC
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g43x_std_periph_driver/inc/n32g43x_crc.h"/>
+                <file category="source" name="firmware/n32g43x_std_periph_driver/src/n32g43x_crc.c"/>
+            </files>
+        </component>
+
+       <component Cclass="Device" Cgroup="N32G43x_StdPeripherals" Csub="DAC" Cversion="1.0.0" condition="N32G43x STDPERIPHERALS RCC">
+            <description>DAC driver for N32G43x</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_DAC
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g43x_std_periph_driver/inc/n32g43x_dac.h"/>
+                <file category="source" name="firmware/n32g43x_std_periph_driver/src/n32g43x_dac.c"/>
+            </files>
+        </component>
+		
+       <component Cclass="Device" Cgroup="N32G43x_StdPeripherals" Csub="DBG" Cversion="1.0.0" condition="N32G43x STDPERIPHERALS RCC">
+            <description>MCU debug component (DBG) driver for N32G43x</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_DBG
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g43x_std_periph_driver/inc/n32g43x_dbg.h"/>
+                <file category="source" name="firmware/n32g43x_std_periph_driver/src/n32g43x_dbg.c"/>
+            </files>
+        </component>
+ 
+        <component Cclass="Device" Cgroup="N32G43x_StdPeripherals" Csub="DMA" Cversion="1.0.0" condition="N32G43x STDPERIPHERALS RCC">
+            <description>DMA controller (DMA) driver for N32G43x</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_DMA
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g43x_std_periph_driver/inc/n32g43x_dma.h"/>
+                <file category="source" name="firmware/n32g43x_std_periph_driver/src/n32g43x_dma.c"/>
+            </files>
+        </component>
+		
+        <component Cclass="Device" Cgroup="N32G43x_StdPeripherals" Csub="EXTI" Cversion="1.0.0" condition="N32G43x STDPERIPHERALS RCC">
+            <description>External interrupt/event controller (EXTI) driver for N32G43x</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_EXTI
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g43x_std_periph_driver/inc/n32g43x_exti.h"/>
+                <file category="source" name="firmware/n32g43x_std_periph_driver/src/n32g43x_exti.c"/>
+            </files>
+        </component>
+
+        <component Cclass="Device" Cgroup="N32G43x_StdPeripherals" Csub="FLASH" Cversion="1.0.0" condition="N32G43x STDPERIPHERALS RCC">
+            <description>Embedded Flash memory (FLASH) driver for N32G43x</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_FLASH
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g43x_std_periph_driver/inc/n32g43x_flash.h"/>
+                <file category="source" name="firmware/n32g43x_std_periph_driver/src/n32g43x_flash.c"/>
+            </files>
+        </component>
+
+        <component Cclass="Device" Cgroup="N32G43x_StdPeripherals" Csub="GPIO" Cversion="1.0.0" condition="N32G43x STDPERIPHERALS RCC">
+            <description>General-purpose I/O (GPIO) driver for N32G43x</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_GPIO
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g43x_std_periph_driver/inc/n32g43x_gpio.h"/>
+                <file category="source" name="firmware/n32g43x_std_periph_driver/src/n32g43x_gpio.c"/>
+            </files>
+        </component>
+		
+        <component Cclass="Device" Cgroup="N32G43x_StdPeripherals" Csub="I2C" Cversion="1.0.0" condition="N32G43x STDPERIPHERALS RCC">
+            <description>Inter-integrated circuit (I2C) interface driver for N32G43x</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_I2C
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g43x_std_periph_driver/inc/n32g43x_i2c.h"/>
+                <file category="source" name="firmware/n32g43x_std_periph_driver/src/n32g43x_i2c.c"/>
+            </files>
+        </component>
+
+        <component Cclass="Device" Cgroup="N32G43x_StdPeripherals" Csub="IWDG" Cversion="1.0.0" condition="N32G43x STDPERIPHERALS RCC">
+            <description>Independent watchdog (IWDG) driver for N32G43x</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_IWDG
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g43x_std_periph_driver/inc/n32g43x_iwdg.h"/>
+                <file category="source" name="firmware/n32g43x_std_periph_driver/src/n32g43x_iwdg.c"/>
+            </files>
+        </component>
+
+        <component Cclass="Device" Cgroup="N32G43x_StdPeripherals" Csub="LPTIM" Cversion="1.0.0" condition="N32G43x STDPERIPHERALS RCC">
+            <description>Low Power Timers (LPTIM) driver for N32G43x</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_LPTIM
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g43x_std_periph_driver/inc/n32g43x_lptim.h"/>
+                <file category="source" name="firmware/n32g43x_std_periph_driver/src/n32g43x_lptim.c"/>
+            </files>
+        </component>
+
+        <component Cclass="Device" Cgroup="N32G43x_StdPeripherals" Csub="LPUART" Cversion="1.0.0" condition="N32G43x STDPERIPHERALS RCC">
+            <description>Low Power Universal asynchronous receiver transmitter (LPUART) driver for N32G43x</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_LPUART
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g43x_std_periph_driver/inc/n32g43x_lpuart.h"/>
+                <file category="source" name="firmware/n32g43x_std_periph_driver/src/n32g43x_lpuart.c"/>
+            </files>
+        </component>
+
+        <component Cclass="Device" Cgroup="N32G43x_StdPeripherals" Csub="OPAMP" Cversion="1.0.0" condition="N32G43x STDPERIPHERALS RCC">
+            <description>Operational amplifier (OPAMP) driver for N32G43x</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_OPAMP
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g43x_std_periph_driver/inc/n32g43x_opamp.h"/>
+                <file category="source" name="firmware/n32g43x_std_periph_driver/src/n32g43x_opamp.c"/>
+            </files>
+        </component>
+		
+        <component Cclass="Device" Cgroup="N32G43x_StdPeripherals" Csub="PWR" Cversion="1.0.0" condition="N32G43x STDPERIPHERALS RCC">
+            <description>Power controller (PWR) driver for N32G43x</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_PWR
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g43x_std_periph_driver/inc/n32g43x_pwr.h"/>
+                <file category="source" name="firmware/n32g43x_std_periph_driver/src/n32g43x_pwr.c"/>
+            </files>
+        </component>
+
+        <component Cclass="Device" Cgroup="N32G43x_StdPeripherals" Csub="RCC" Cversion="1.0.0" condition="N32G43x STDPERIPHERALS RCC">
+            <description>Reset and clock control (RCC) driver for N32G43x</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_RCC
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g43x_std_periph_driver/inc/n32g43x_rcc.h"/>
+                <file category="source" name="firmware/n32g43x_std_periph_driver/src/n32g43x_rcc.c"/>
+            </files>
+        </component>
+
+        <component Cclass="Device" Cgroup="N32G43x_StdPeripherals" Csub="RTC" Cversion="1.0.0" condition="N32G43x STDPERIPHERALS RCC">
+            <description>Real-time clock (RTC) driver for N32G43x</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_RTC
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g43x_std_periph_driver/inc/n32g43x_rtc.h"/>
+                <file category="source" name="firmware/n32g43x_std_periph_driver/src/n32g43x_rtc.c"/>
+            </files>
+        </component>
+		
+        <component Cclass="Device" Cgroup="N32G43x_StdPeripherals" Csub="SPI" Cversion="1.0.0" condition="N32G43x STDPERIPHERALS RCC">
+            <description>Serial peripheral interface (SPI) driver for N32G43x</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_SPI
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g43x_std_periph_driver/inc/n32g43x_spi.h"/>
+                <file category="source" name="firmware/n32g43x_std_periph_driver/src/n32g43x_spi.c"/>
+            </files>
+        </component>
+		
+        <component Cclass="Device" Cgroup="N32G43x_StdPeripherals" Csub="TIMER" Cversion="1.0.0" condition="N32G43x STDPERIPHERALS RCC">
+            <description>Timers (TIMER) driver for N32G43x</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_TIM
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g43x_std_periph_driver/inc/n32g43x_tim.h"/>
+                <file category="source" name="firmware/n32g43x_std_periph_driver/src/n32g43x_tim.c"/>
+            </files>
+        </component>
+		
+        <component Cclass="Device" Cgroup="N32G43x_StdPeripherals" Csub="USART" Cversion="1.0.0" condition="N32G43x STDPERIPHERALS RCC">
+            <description>Universal asynchronous receiver transmitter (USART) driver for N32G43x</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_USART
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g43x_std_periph_driver/inc/n32g43x_usart.h"/>
+                <file category="source" name="firmware/n32g43x_std_periph_driver/src/n32g43x_usart.c"/>
+            </files>
+        </component>
+		
+        <component Cclass="Device" Cgroup="N32G43x_StdPeripherals" Csub="WWDG" Cversion="1.0.0" condition="N32G43x STDPERIPHERALS RCC">
+            <description>Window watchdog (WWDG) driver for N32G43x</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_WWDG
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g43x_std_periph_driver/inc/n32g43x_wwdg.h"/>
+                <file category="source" name="firmware/n32g43x_std_periph_driver/src/n32g43x_wwdg.c"/>
+            </files>
+        </component>		
+
+        <component Cclass="Device" Cgroup="N32G43x_StdPeripherals" Csub="USBDEV" Cversion="1.0.0" condition="N32G43x STDPERIPHERALS RCC">
+            <description>USB device (USBDEV) driver for N32G43x</description>
+            <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPH_USBDEV
+            </RTE_Components_h>
+            <files>
+                <file category="include" name="firmware/n32g43x_usbfs_driver/inc/"/>
+                <file category="header" name="firmware/n32g43x_usbfs_driver/inc/usb_core.h"/>
+                <file category="header" name="firmware/n32g43x_usbfs_driver/inc/usb_def.h"/>
+                <file category="header" name="firmware/n32g43x_usbfs_driver/inc/usb_init.h"/>
+                <file category="header" name="firmware/n32g43x_usbfs_driver/inc/usb_int.h"/>
+                <file category="header" name="firmware/n32g43x_usbfs_driver/inc/usb_lib.h"/>
+                <file category="header" name="firmware/n32g43x_usbfs_driver/inc/usb_mem.h"/>
+                <file category="header" name="firmware/n32g43x_usbfs_driver/inc/usb_regs.h"/>
+                <file category="header" name="firmware/n32g43x_usbfs_driver/inc/usb_sil.h"/>
+                <file category="header" name="firmware/n32g43x_usbfs_driver/inc/usb_type.h"/>
+                <file category="source" name="firmware/n32g43x_usbfs_driver/src/usb_core.c"/>
+                <file category="source" name="firmware/n32g43x_usbfs_driver/src/usb_init.c"/>
+                <file category="source" name="firmware/n32g43x_usbfs_driver/src/usb_int.c"/>
+                <file category="source" name="firmware/n32g43x_usbfs_driver/src/usb_mem.c"/>
+                <file category="source" name="firmware/n32g43x_usbfs_driver/src/usb_regs.c"/>
+                <file category="source" name="firmware/n32g43x_usbfs_driver/src/usb_sil.c"/>
+            </files>
+        </component>
+
+       <component Cclass="Device" Cgroup="Algorithm Libs" Csub="Common" Cversion="1.0.0" condition="N32G43x CMSIS">
+            <description>algo common driver for N32G43x</description>	   
+            <RTE_Components_h>
+        #define RTE_DEVICE_ALGO_COMMON
+            </RTE_Components_h>
+            <files>
+                <file category="include" name="firmware/n32g43x_algo_lib/inc/"/>
+                <file category="header" name="firmware/n32g43x_algo_lib/inc/n32g43x_algo_common.h"/>
+                <file category="source" name="firmware/n32g43x_algo_lib/lib/n32g43x_algo_common.lib"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="Algorithm Libs" Csub="AES" Cversion="1.0.0" condition="N32G43x Algorithm Common">
+            <description>AES driver for N32G43x</description>		
+            <RTE_Components_h>
+        #define RTE_DEVICE_ALGO_AES
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g43x_algo_lib/inc/n32g43x_aes.h"/>
+                <file category="source" name="firmware/n32g43x_algo_lib/lib/n32g43x_aes.lib"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="Algorithm Libs" Csub="DES" Cversion="1.0.0" condition="N32G43x Algorithm Common">
+            <description>DES driver for N32G43x</description>		
+            <RTE_Components_h>
+        #define RTE_DEVICE_ALGO_DES
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g43x_algo_lib/inc/n32g43x_des.h"/>
+                <file category="source" name="firmware/n32g43x_algo_lib/lib/n32g43x_des.lib"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="Algorithm Libs" Csub="HASH" Cversion="1.0.0" condition="N32G43x Algorithm Common">
+            <description>HASH driver for N32G43x</description>		
+            <RTE_Components_h>
+        #define RTE_DEVICE_ALGO_HASH
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g43x_algo_lib/inc/n32g43x_hash.h"/>
+                <file category="source" name="firmware/n32g43x_algo_lib/lib/n32g43x_hash.lib"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="Algorithm Libs" Csub="RNG" Cversion="1.0.0" condition="N32G43x Algorithm Common">
+            <description>GNG driver for N32G43x</description>		
+            <RTE_Components_h>
+        #define RTE_DEVICE_ALGO_RNG
+            </RTE_Components_h>
+            <files>
+                <file category="header" name="firmware/n32g43x_algo_lib/inc/n32g43x_rng.h"/>
+                <file category="source" name="firmware/n32g43x_algo_lib/lib/n32g43x_rng.lib"/>
+            </files>
+        </component> 
+
+		
+    </components>
+</package>

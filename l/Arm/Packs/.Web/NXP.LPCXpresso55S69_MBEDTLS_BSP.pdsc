@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>LPCXpresso55S69_MBEDTLS_BSP</name>
+  <vendor>NXP</vendor>
+  <description>Middleware mbedtls Board Support Pack for LPCXpresso55S69</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="1.0.1" date="2023-10-25" deprecated="2023-10-25" replacement="NXP.LPCXpresso55S69_MBEDTLS_Examples">This pack is no longer maintained. The new pack has been released with "_Examples" suffix instead of "_BSP".</release>
+    <release version="1.0.0" date="2023-07-27">NXP CMSIS SBSP Packs based on MCUXpresso SDK 2.14.0</release>
+  </releases>
+  <keywords>
+    <keyword>Middleware Board Support Pack</keyword>
+  </keywords>
+  <requirements>
+    <packages>
+      <package name="LPC55S69_DFP" vendor="NXP" version="18.0.0"/>
+      <package name="MBEDTLS" vendor="NXP" version="1.0.1"/>
+      <package name="CMSIS" vendor="ARM" version="5.8.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <boards>
+    <board vendor="NXP" name="LPCXpresso55S69">
+      <description>LPCXpresso Development Board for LPC55S6x family of MCUs</description>
+      <image small="boards/lpcxpresso55s69/lpcxpresso55s69.png"/>
+      <mountedDevice Dname="LPC55S69" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC55S66JBD100" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC55S66JBD64" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="LPC55S66JEV98" Dvendor="NXP:11"/>
+    </board>
+  </boards>
+  <examples>
+    <example name="mbedtls_selftest" folder="boards/lpcxpresso55s69/mbedtls_examples/mbedtls_selftest/cm33_core0" doc="readme.txt">
+      <description>The mbdedTLS SelfTest program performs cryptographic algorithm testing and prints results to the terminal.</description>
+      <board name="LPCXpresso55S69" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/mbedtls_selftest.uvprojx"/>
+        <environment name="iar" load="iar/mbedtls_selftest.ewp"/>
+        <environment name="csolution" load="mbedtls_selftest.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="mbedtls_benchmark" folder="boards/lpcxpresso55s69/mbedtls_examples/mbedtls_benchmark/cm33_core0" doc="readme.txt">
+      <description>The mbdedTLS Benchmark demo application performs cryptographic algorithm benchmarking and prints results to the terminal.</description>
+      <board name="LPCXpresso55S69" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/mbedtls_benchmark.uvprojx"/>
+        <environment name="iar" load="iar/mbedtls_benchmark.ewp"/>
+        <environment name="csolution" load="mbedtls_benchmark.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+  </examples>
+</package>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>Component_OS_Abstraction_Layer</name>
+  <vendor>NXP</vendor>
+  <description>Software Pack for osa</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="3.0.0" date="2024-07-17">NXP CMSIS SWP Packs based on MCUXpresso SDK 2.16.0</release>
+    <release version="2.0.0" date="2024-01-14">NXP CMSIS SWP Packs based on MCUXpresso SDK 2.15.0</release>
+    <release version="1.0.0" date="2023-07-27">NXP CMSIS SWP Packs based on MCUXpresso SDK 2.14.0</release>
+  </releases>
+  <keywords>
+    <keyword>Software Pack</keyword>
+  </keywords>
+  <requirements>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <conditions>
+    <condition id="component.common_task.condition_id">
+      <require condition="allOf.driver.common, component.osa.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.osa.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="NXP Component" Cgroup="OS Abstraction Layer" Csub="osa"/>
+    </condition>
+    <condition id="component.osa.condition_id">
+      <require condition="allOf.driver.common, component.lists.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.lists.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+    </condition>
+    <condition id="allOf.components=middleware.baremetal.condition_id">
+      <require condition="components.middleware.baremetal.internal_condition"/>
+    </condition>
+    <condition id="components.middleware.baremetal.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Utilities" Csub="baremetal"/>
+    </condition>
+    <condition id="allOf.components=middleware.freertos-kernel.condition_id">
+      <require condition="components.middleware.freertos-kernel.internal_condition"/>
+    </condition>
+    <condition id="components.middleware.freertos-kernel.internal_condition">
+      <accept Cclass="RTOS" Cgroup="Core"/>
+    </condition>
+    <condition id="component.osa_bm.condition_id">
+      <require condition="allOf.driver.common, component.lists, component.osa_interface.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.lists, component.osa_interface.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+      <require Cclass="NXP Component" Cgroup="OS Abstraction Layer" Csub="osa_interface"/>
+    </condition>
+    <condition id="component.osa_free_rtos.condition_id">
+      <require condition="allOf.middleware.freertos-kernel, driver.common, component.lists, component.osa_interface.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.freertos-kernel, driver.common, component.lists, component.osa_interface.internal_condition">
+      <require Cclass="RTOS" Cgroup="Core"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+      <require Cclass="NXP Component" Cgroup="OS Abstraction Layer" Csub="osa_interface"/>
+    </condition>
+    <condition id="component.osa_interface.condition_id">
+      <require condition="allOf.driver.common, component.lists.internal_condition"/>
+    </condition>
+    <condition id="component.osa_thread.condition_id">
+      <require condition="allOf.driver.common, component.lists, component.osa_interface, anyOf=middleware.azure_rtos.tx, middleware.azure_rtos.tx.sp.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.lists, component.osa_interface, anyOf=middleware.azure_rtos.tx, middleware.azure_rtos.tx.sp.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+      <require Cclass="NXP Component" Cgroup="OS Abstraction Layer" Csub="osa_interface"/>
+      <require condition="anyOf.middleware.azure_rtos.tx, middleware.azure_rtos.tx.sp.internal_condition"/>
+    </condition>
+    <condition id="anyOf.middleware.azure_rtos.tx, middleware.azure_rtos.tx.sp.internal_condition">
+      <accept Cclass="RTOS" Cgroup="Azure RTOS ThreadX" Csub="ThreadX Core"/>
+      <accept Cclass="RTOS" Cgroup="Azure RTOS ThreadX" Csub="tx fpu"/>
+    </condition>
+  </conditions>
+  <components>
+    <component Cclass="NXP Component" Cgroup="OS Abstraction Layer" Csub="common_task" Cversion="1.0.0" condition="component.common_task.condition_id">
+      <description>Component common_task</description>
+      <files>
+        <file category="header" name="components/common_task/fsl_component_common_task.h" projectpath="component/common_task"/>
+        <file category="sourceC" name="components/common_task/fsl_component_common_task.c" projectpath="component/common_task"/>
+        <file category="include" name="components/common_task/"/>
+      </files>
+    </component>
+    <component Cclass="NXP Component" Cgroup="OS Abstraction Layer" Csub="osa" Cversion="1.0.0" condition="component.osa.condition_id">
+      <description>Component osa</description>
+      <files>
+        <file category="header" name="components/osa/fsl_os_abstraction.h" projectpath="component/osa"/>
+        <file category="header" name="components/osa/fsl_os_abstraction_config.h" projectpath="component/osa"/>
+        <file condition="allOf.components=middleware.baremetal.condition_id" category="header" name="components/osa/fsl_os_abstraction_bm.h" projectpath="component/osa"/>
+        <file condition="allOf.components=middleware.baremetal.condition_id" category="sourceC" name="components/osa/fsl_os_abstraction_bm.c" projectpath="component/osa"/>
+        <file condition="allOf.components=middleware.freertos-kernel.condition_id" category="header" name="components/osa/fsl_os_abstraction_free_rtos.h" projectpath="component/osa"/>
+        <file condition="allOf.components=middleware.freertos-kernel.condition_id" category="sourceC" name="components/osa/fsl_os_abstraction_free_rtos.c" projectpath="component/osa"/>
+        <file category="include" name="components/osa/"/>
+      </files>
+    </component>
+    <component Cclass="NXP Component" Cgroup="OS Abstraction Layer" Csub="osa_bm" Cversion="1.0.0" condition="component.osa_bm.condition_id">
+      <description>Component osa_bm</description>
+      <files>
+        <file category="header" name="components/osa/fsl_os_abstraction_bm.h" projectpath="component/osa"/>
+        <file category="sourceC" name="components/osa/fsl_os_abstraction_bm.c" projectpath="component/osa"/>
+        <file category="include" name="components/osa/"/>
+      </files>
+    </component>
+    <component Cclass="NXP Component" Cgroup="OS Abstraction Layer" Csub="osa_free_rtos" Cversion="1.0.0" condition="component.osa_free_rtos.condition_id">
+      <description>Component osa_free_rtos</description>
+      <files>
+        <file category="header" name="components/osa/fsl_os_abstraction_free_rtos.h" projectpath="component/osa"/>
+        <file category="sourceC" name="components/osa/fsl_os_abstraction_free_rtos.c" projectpath="component/osa"/>
+        <file category="include" name="components/osa/"/>
+      </files>
+    </component>
+    <component Cclass="NXP Component" Cgroup="OS Abstraction Layer" Csub="osa_interface" Cversion="1.0.0" condition="component.osa_interface.condition_id">
+      <description>Component osa interface</description>
+      <files>
+        <file category="header" name="components/osa/fsl_os_abstraction.h" projectpath="component/osa"/>
+        <file category="header" name="components/osa/fsl_os_abstraction_config.h" projectpath="component/osa"/>
+        <file category="include" name="components/osa/"/>
+      </files>
+    </component>
+    <component Cclass="NXP Component" Cgroup="OS Abstraction Layer" Csub="osa_thread" Cversion="1.0.0" condition="component.osa_thread.condition_id">
+      <description>Component osa thread</description>
+      <files>
+        <file category="sourceC" name="components/osa/fsl_os_abstraction_threadx.c" projectpath="component/osa"/>
+        <file category="header" name="components/osa/fsl_os_abstraction_threadx.h" projectpath="component/osa"/>
+        <file category="include" name="components/osa/"/>
+      </files>
+    </component>
+    <component Cclass="NXP Component" Cgroup="OS Abstraction Layer" Csub="osa_zephyr" Cversion="1.0.0">
+      <description>Component osa_zephyr</description>
+      <files>
+        <file category="header" name="components/osa/fsl_os_abstraction_zephyr.h" projectpath="component/osa"/>
+        <file category="sourceC" name="components/osa/fsl_os_abstraction_zephyr.c" projectpath="component/osa"/>
+        <file category="include" name="components/osa/"/>
+      </files>
+    </component>
+  </components>
+</package>

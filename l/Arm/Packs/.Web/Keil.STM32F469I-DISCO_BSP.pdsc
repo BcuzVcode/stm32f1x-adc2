@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.7.36" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.36/schema/PACK.xsd">
+  <name>STM32F469I-DISCO_BSP</name>
+  <vendor>Keil</vendor>
+  <description overview="Documents/OVERVIEW.md">STMicroelectronics STM32F4 Series STM32F469I-DISCO Board Support Pack</description>
+  <url>https://www.keil.com/pack/</url>
+  <repository type="git">https://github.com/Open-CMSIS-Pack/STM32F469I-DISCO_BSP.git</repository>
+  <license>LICENSE</license>
+  <licenseSets>
+    <licenseSet id="all" default="true" gating="true">
+      <license name="LICENSE" title="Apache 2.0 open-source license" spdx="Apache-2.0"/>
+    </licenseSet>
+  </licenseSets>
+
+  <releases>
+    <release version="1.0.0" date="2024-10-11" tag="v1.0.0">
+      Prepared for new CMSIS-Toolbox CubeMX integration
+      Board description for STM32F469I-DISCO
+      Default Board Layer
+      Blinky example (CMSIS Solution)
+      CMSIS-Drivers:
+      - CMSIS-Driver VIO
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>ST</keyword>
+    <keyword>Board Support Pack</keyword>
+    <keyword>STM32F4</keyword>
+    <keyword>STM32F469I-DISCO</keyword>
+  </keywords>
+
+  <requirements>
+    <packages>
+      <package vendor="Keil" name="STM32F4xx_DFP"      version="3.0.0-0"/>
+      <package vendor="ARM"  name="CMSIS"              version="6.0.0-0"/>
+      <package vendor="ARM"  name="CMSIS-Driver_STM32" version="1.0.0-0"/>
+    </packages>
+  </requirements>
+
+  <conditions>
+    <!-- Board Condition -->
+    <condition id="STM32F469I-DISCO">
+      <description>STMicroelectronics STM32F469I-DISCO Board</description>
+      <require Bvendor="STMicroelectronics" Bname="STM32F469I-DISCO"/>
+    </condition>
+
+    <!-- Board Condition + CMSIS Driver GPIO-->
+    <condition id="STM32F469I-DISCO GPIO">
+      <description>STMicroelectronics STM32F469I-DISCO Board with CMSIS Driver GPIO</description>
+      <require condition="STM32F469I-DISCO"/>
+      <require Cclass="CMSIS Driver" Cgroup="GPIO"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- CMSIS VIO Driver component for STM32F469I-DISCO -->
+    <component Cclass="CMSIS Driver" Cgroup="VIO" Csub="Board" Cversion="1.0.0" Capiversion="1.0.0" condition="STM32F469I-DISCO GPIO">
+      <description>I/O implementation for STM32F469I-DISCO</description>
+      <RTE_Components_h>
+        #define RTE_VIO_BOARD
+        #define RTE_VIO_STM32F469I_DISCO
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="CMSIS/Driver/vio_STM32F469I-DISCO.c"/>
+      </files>
+    </component>
+  </components>
+
+  <csolution>
+    <clayer type="Board" path="Layers/Default" file="Board.clayer.yml" copy-to="Board/STM32F469I-DISCO" condition="STM32F469I-DISCO"/>
+  </csolution>
+
+  <boards>
+    <!-- STM32F469I-DISCO -->
+    <board vendor="STMicroelectronics" name="STM32F469I-DISCO" revision="Rev.B"
+           salesContact="https://www.st.com/content/st_com/en/contact-us.html">
+      <description>STM32 Discovery development board with STM32F469NIHx MCU</description>
+      <image small="Images/stm32f469i-disco_small.png"
+             large="Images/stm32f469i-disco_large.png"/>
+      <book category="overview"  name="https://www.st.com/en/evaluation-tools/32f469idiscovery.html" title="STM32F469I-DISCO Board"/>
+      <book category="overview"  name="https://www.st.com/resource/en/data_brief/32f469idiscovery.pdf" title="Data Brief"/>
+      <book category="manual"    name="https://www.st.com/resource/en/user_manual/um1932-discovery-kit-with-stm32f469ni-mcu-stmicroelectronics.pdf" title="User Manual"/>
+      <book category="schematic" name="https://www.st.com/resource/en/schematic_pack/mb1189-f469nih6-b08_schematic.pdf" title="Schematics"/>
+      <book category="other"     name="Documents/README.md" title="Guide"/>
+      <mountedDevice    deviceIndex="0" Dvendor="STMicroelectronics:13" Dname="STM32F469NIHx"/>
+      <compatibleDevice deviceIndex="0" Dvendor="STMicroelectronics:13" DsubFamily="STM32F469"/>
+      <feature type="ODbg"      n="1"              name="On-board ST-LINK/V2"/>
+      <feature type="XTAL"      n="32768"          name="32.768 kHz Crystal Oscillator"/>
+      <feature type="XTAL"      n="8000000"        name="8 MHz Crystal Oscillator"/>
+      <feature type="PWR"       n="5" m="5"        name="USB ST-Link"/>
+      <feature type="PWR"       n="5" m="5"        name="USB FS"/>
+      <feature type="PWR"       n="5" m="5"        name="External Supply (E5V)"/>
+      <feature type="RAM"       n="1"              name="4M x 32bit SDRAM SDRAM"/>
+      <feature type="ROM"       n="1"              name="128-Mbit Quad-SPI Flash memory"/>
+      <feature type="MemCard"   n="1"              name="microSD card holder"/>
+      <feature type="DIO"       n="32"             name="Expansion connectors and Arduino UNO V3 connectors"/>
+      <feature type="LineOut"   n="2"              name="SAI Audio DAC, with a stereo headphone output jack "/>
+      <feature type="MIC"       n="2"              name="ST MEMS microphones"/>
+      <feature type="USB"       n="1"              name="USB OTG FS with micro-AB Connector"/>
+      <feature type="Button"    n="2"              name="Push-buttons: User and Reset"/>
+      <feature type="LED"       n="8"              name="LEDs: COM, Power, 4 user, Two USB OTG LEDs"/>
+      <feature type="GLCD"      n="1"  m="800.480" name="4 inches 800x480 pixel TFT"/>
+      <feature type="ArduinoFF" n="1"              name="Arduino Uno 3V connectors"/>
+      <debugInterface adapter="ST-Link" connector="Micro-USB"/>
+      <debugProbe connector="Micro-USB" debugClock="10000000" debugLink="swd" name="ST-Link"/>
+    </board>
+  </boards>
+
+  <examples>
+    <example name="Blinky" folder="Examples/Blinky" doc="README.md">
+      <description>CMSIS-RTOS2 Blinky example with VIO</description>
+      <board name="STM32F469I-DISCO" vendor="STMicroelectronics"/>
+      <project>
+        <environment name="csolution" load="Blinky.csolution.yml"/>
+      </project>
+    </example>
+  </examples>
+</package>

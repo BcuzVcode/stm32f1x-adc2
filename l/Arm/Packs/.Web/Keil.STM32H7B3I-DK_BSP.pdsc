@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.7.36" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.36/schema/PACK.xsd">
+  <name>STM32H7B3I-DK_BSP</name>
+  <vendor>Keil</vendor>
+  <description overview="Documents/OVERVIEW.md">STMicroelectronics STM32H7 Series STM32H7B3I-DK Board Support Pack</description>
+  <url>https://www.keil.com/pack/</url>
+  <repository type="git">https://github.com/Open-CMSIS-Pack/STM32H7B3I-DK_BSP.git</repository>
+  <license>LICENSE</license>
+  <licenseSets>
+    <licenseSet id="all" default="true" gating="true">
+      <license name="LICENSE" title="Apache 2.0 open-source license" spdx="Apache-2.0"/>
+    </licenseSet>
+  </licenseSets>
+
+  <releases>
+    <release version="2.0.0" date="2024-10-11" tag="v2.0.0">
+      Updated for new CMSIS-Toolbox CubeMX integration
+      Removed BSP drivers
+      Removed MDK-Middleware examples
+      Migrated Blinky example to CMSIS Solution
+      Added Default Board Layer
+      CMSIS Drivers:
+      - Updated VIO driver to API 1.0.0
+      Pack Description:
+      - Added LICENSE file
+      - Updated schemaVersion (1.7.36)
+    </release>
+    <release version="1.0.0" date="2022-04-08">
+      Board description and documentation for STM32H7B3I-DK
+      Synchronize with Keil:STM32H7xx_DFP.3.0.0
+      CMSIS:
+      - CMSIS-VIO driver
+      Drivers:
+      - Board Drivers, Components, Config files
+      Utilities:
+      - LCD Utility Drivers
+      Example projects:
+      - CMSIS-RTOS2 Blinky (verify the basic tool setup)
+      - CMSIS-RTOS2 Platform (configure the board hardware)
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>ST</keyword>
+    <keyword>Board Support Pack</keyword>
+    <keyword>STM32H7</keyword>
+    <keyword>STM32H7B3I-DK</keyword>
+  </keywords>
+
+  <requirements>
+    <packages>
+      <package vendor="Keil" name="STM32H7xx_DFP"      version="4.0.0-0"/>
+      <package vendor="ARM"  name="CMSIS"              version="6.0.0-0"/>
+      <package vendor="ARM"  name="CMSIS-Driver_STM32" version="1.0.0-0"/>
+    </packages>
+  </requirements>
+
+  <conditions>
+    <!-- Board Condition -->
+    <condition id="STM32H7B3I-DK">
+      <description>STMicroelectronics STM32H7B3I-DK Board</description>
+      <require Bvendor="STMicroelectronics" Bname="STM32H7B3I-DK"/>
+    </condition>
+
+    <!-- Board Condition + CMSIS Driver GPIO-->
+    <condition id="STM32H7B3I-DK GPIO">
+      <description>STMicroelectronics STM32H7B3I-DK Board with CMSIS Driver GPIO</description>
+      <require condition="STM32H7B3I-DK"/>
+      <require Cclass="CMSIS Driver" Cgroup="GPIO"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- CMSIS VIO Driver component for STM32H7B3I-DK -->
+    <component Cclass="CMSIS Driver" Cgroup="VIO" Csub="Board" Cversion="2.0.0" Capiversion="1.0.0" condition="STM32H7B3I-DK GPIO">
+      <description>I/O implementation for STM32H7B3I-DK</description>
+      <RTE_Components_h>
+        #define RTE_VIO_BOARD
+        #define RTE_VIO_STM32H7B3I_DK
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="CMSIS/Driver/vio_STM32H7B3I-DK.c"/>
+      </files>
+    </component>
+  </components>
+
+  <csolution>
+    <clayer type="Board" path="Layers/Default" file="Board.clayer.yml" copy-to="Board/STM32H7B3I-DK" condition="STM32H7B3I-DK"/>
+  </csolution>
+
+  <boards>
+    <!-- STM32H7B3I-DK -->
+    <board vendor="STMicroelectronics" name="STM32H7B3I-DK" revision="Rev.C"
+           salesContact="https://www.st.com/content/st_com/en/contact-us.html">
+      <description>STMicroelectronics STM32H7B3I-DK Board</description>
+      <image small="Images/stm32h7b3i-dk_small.png"
+             large="Images/stm32h7b3i-dk_large.png"/>
+      <book category="overview"  name="https://www.st.com/en/evaluation-tools/stm32h7b3i-dk.html" title="STM32H7B3I-DK Board"/>
+      <book category="overview"  name="https://www.st.com/resource/en/data_brief/stm32h7b3i-dk.pdf" title="Data Brief"/>
+      <book category="manual"    name="https://www.st.com/resource/en/user_manual/um2569-discovery-kit-with-stm32h7b3li-mcu-stmicroelectronics.pdf" title="User Manual"/>
+      <book category="schematic" name="https://www.st.com/resource/en/schematic_pack/mb1332-h7b3i-c02_schematic.pdf" title="Schematics"/>
+      <book category="other"     name="Documents/README.md" title="Guide"/>
+      <mountedDevice    deviceIndex="0" Dvendor="STMicroelectronics:13" Dname="STM32H7B3LIHxQ"/>
+      <compatibleDevice deviceIndex="0" Dvendor="STMicroelectronics:13" DsubFamily="STM32H7B3x"/>
+      <feature type="ODbg"         n="1"              name="On-board ST-LINK-V3E"/>
+      <feature type="XTAL"         n="32768"          name="32.768 kHz Crystal Oscillator"/>
+      <feature type="XTAL"         n="24000000"       name="24 MHz Crystal Oscillator"/>
+      <feature type="PWR"          n="5" m="5"        name="USB ST-Link"/>
+      <feature type="PWR"          n="5" m="5"        name="External Supply (E5V)"/>
+      <feature type="PWR"          n="5" m="5"        name="USB HS"/>
+      <feature type="PWR"          n="7" m="12"       name="External Supply (VIN)"/>
+      <feature type="PWR"          n="5" m="5"        name="USB charger"/>
+      <feature type="ROM"          n="1"              name="512-Mbit Octal-SPI NOR Flash memory"/>
+      <feature type="RAM"          n="1"              name="128-MBit SDRAM"/>
+      <feature type="MemCard"      n="1"              name="microSD Card Holder"/>
+      <feature type="USB"          n="1"              name="USB OTG HS with Micro-AB connector"/>
+      <feature type="I2C"          n="1"              name="8-Pin socket, 2.54 mm pitch"/>
+      <feature type="CAN"          n="1"              name="2-Pin header, 2.54 mm pitch"/>
+      <feature type="LineIn"       n="1"              name="3.5 mm Stereo jack"/>
+      <feature type="LineOut"      n="1"              name="3.5 mm Stereo jack"/>
+      <feature type="Button"       n="2"              name="Push-buttons: User and Reset"/>
+      <feature type="CustomFF"                        name="STMod+ connector"/>
+      <feature type="ArduinoFF"    n="1"              name="Arduino Uno V3 connector"/>
+      <feature type="LED"          n="2"              name="2 User LEDs"/>
+      <feature type="GLCD"         n="1" m="480.272"  name="480 x 272 Pixel 4.3 inch Color TFT LCD with capacitive touchscreen "/>
+      <feature type="Other"        n="1"              name="802.11 b/g/n compliant WiFi module"/>
+      <feature type="ConnOther"    n="1"              name="30-pin Camera connector"/>
+      <feature type="ConnOther"    n="1"              name="2 x 10 pin male 1.27 mm-pitch Audio connector"/>
+      <feature type="ConnOther"    n="1"              name="50-pin TFT LCD touchscreen connector"/>
+      <debugInterface adapter="ST-Link" connector="Micro-USB"/>
+      <debugInterface adapter="JTAG/SW" connector="10-pin Cortex Debug connector (0.05 inch connector)"/>
+      <debugInterface adapter="JTAG/SW" connector="10 pin Cortex Debug connector (TAG-Connect footprint)"/>
+      <debugProbe connector="Micro-USB" debugClock="10000000" debugLink="swd" name="ST-Link"/>
+    </board>
+  </boards>
+
+  <examples>
+    <example name="Blinky" folder="Examples/Blinky" doc="README.md">
+      <description>CMSIS-RTOS2 Blinky example with VIO</description>
+      <board name="STM32H7B3I-DK" vendor="STMicroelectronics"/>
+      <project>
+        <environment name="csolution" load="Blinky.csolution.yml"/>
+      </project>
+    </example>
+  </examples>
+</package>

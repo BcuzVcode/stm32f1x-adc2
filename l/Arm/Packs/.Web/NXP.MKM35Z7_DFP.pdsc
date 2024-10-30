@@ -1,0 +1,1245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>MKM35Z7_DFP</name>
+  <vendor>NXP</vendor>
+  <description>Device Family Pack for MKM35Z7</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="19.0.0" date="2024-07-17">NXP CMSIS Packs based on MCUXpresso SDK 2.16.0</release>
+    <release version="18.0.0" date="2024-01-14">NXP CMSIS Packs based on MCUXpresso SDK 2.15.0</release>
+    <release version="17.0.0" date="2023-07-27">NXP CMSIS Packs based on MCUXpresso SDK 2.14.0</release>
+    <release version="16.0.0" date="2023-01-16">NXP CMSIS Packs based on MCUXpresso SDK 2.13.0</release>
+    <release version="15.0.0" date="2022-07-13">NXP CMSIS Packs based on MCUXpresso SDK 2.12.0</release>
+    <release version="14.0.0" date="2022-01-05">NXP CMSIS Packs based on MCUXpresso SDK 2.11.0</release>
+    <release version="13.1.0" date="2021-07-13">NXP CMSIS Packs based on MCUXpresso SDK 2.10.0</release>
+    <release version="13.0.0" date="2021-02-05">NXP CMSIS Packs based on MCUXpresso SDK 2.9.0 with restructured startup component files</release>
+    <release version="12.2.0" date="2021-01-14">NXP CMSIS Packs based on MCUXpresso SDK 2.9.0</release>
+    <release version="12.1.0" date="2020-07-20">NXP CMSIS Packs based on MCUXpresso SDK 2.8.0</release>
+    <release version="12.0.0" date="2020-03-30">NXP CMSIS Packs based on MCUXpresso SDK 2.7.1</release>
+  </releases>
+  <keywords>
+    <keyword>Device Family Pack</keyword>
+  </keywords>
+  <requirements>
+    <packages>
+      <package name="CMSIS" vendor="ARM" version="5.9.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <devices>
+    <family Dfamily="MKM35Z7" Dvendor="NXP:11">
+      <description>Kinetis KM3x-50–75 MHz Precision Metrology with Segment LCD MCUs based on ARM Cortex-M0+</description>
+      <device Dname="MKM35Z512xxx7">
+        <processor Dcore="Cortex-M0+" Dfpu="NO_FPU" Dmpu="NO_MPU" Dendian="Little-endian" Dclock="75000000"/>
+        <environment name="iar">
+          <file category="linkerfile" name="devices/MKM35Z7/iar/MKM35Z512xxx7_flash.icf"/>
+        </environment>
+        <memory name="PROGRAM_FLASH" start="0x00000000" size="0x080000" access="rx" default="1" startup="1"/>
+        <memory name="SRAM" start="0x1fffc000" size="0x010000" access="rw" default="1"/>
+        <algorithm name="devices/MKM35Z7/arm/MKMP512_2KB.FLM" start="0x00000000" size="0x00080000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+        <debug svd="devices/MKM35Z7/MKM35Z7.xml"/>
+        <variant Dvariant="MKM35Z512VLQ7">
+          <compile header="devices/MKM35Z7/fsl_device_registers.h" define="CPU_MKM35Z512VLQ7"/>
+        </variant>
+        <variant Dvariant="MKM35Z512VLL7">
+          <compile header="devices/MKM35Z7/fsl_device_registers.h" define="CPU_MKM35Z512VLL7"/>
+        </variant>
+        <variant Dvariant="MKM35Z512VLQ7R">
+          <compile header="devices/MKM35Z7/fsl_device_registers.h" define="CPU_MKM35Z512VLQ7R"/>
+        </variant>
+        <variant Dvariant="MKM35Z512VLL7R">
+          <compile header="devices/MKM35Z7/fsl_device_registers.h" define="CPU_MKM35Z512VLL7R"/>
+        </variant>
+      </device>
+      <device Dname="MKM35Z256xxx7">
+        <processor Dcore="Cortex-M0+" Dfpu="NO_FPU" Dmpu="NO_MPU" Dendian="Little-endian" Dclock="75000000"/>
+        <environment name="iar">
+          <file category="linkerfile" name="devices/MKM35Z7/iar/MKM35Z256xxx7_flash.icf"/>
+        </environment>
+        <memory name="PROGRAM_FLASH" start="0x00000000" size="0x040000" access="rx" default="1" startup="1"/>
+        <memory name="SRAM" start="0x1fffc000" size="0x010000" access="rw" default="1"/>
+        <algorithm name="devices/MKM35Z7/arm/MKMP512_2KB.FLM" start="0x00000000" size="0x00040000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+        <debug svd="devices/MKM35Z7/MKM35Z7.xml"/>
+        <variant Dvariant="MKM35Z256VLQ7">
+          <compile header="devices/MKM35Z7/fsl_device_registers.h" define="CPU_MKM35Z256VLQ7"/>
+        </variant>
+        <variant Dvariant="MKM35Z256VLL7">
+          <compile header="devices/MKM35Z7/fsl_device_registers.h" define="CPU_MKM35Z256VLL7"/>
+        </variant>
+        <variant Dvariant="MKM35Z256VLQ7R">
+          <compile header="devices/MKM35Z7/fsl_device_registers.h" define="CPU_MKM35Z256VLQ7R"/>
+        </variant>
+        <variant Dvariant="MKM35Z256VLL7R">
+          <compile header="devices/MKM35Z7/fsl_device_registers.h" define="CPU_MKM35Z256VLL7R"/>
+        </variant>
+      </device>
+    </family>
+  </devices>
+  <conditions>
+    <condition id="device_id.MKM35Z512xxx7, MKM35Z256xxx7.internal_condition">
+      <accept Dname="MKM35Z512VLL7" Dvendor="NXP:11"/>
+      <accept Dname="MKM35Z512VLL7R" Dvendor="NXP:11"/>
+      <accept Dname="MKM35Z512VLQ7" Dvendor="NXP:11"/>
+      <accept Dname="MKM35Z512VLQ7R" Dvendor="NXP:11"/>
+      <accept Dname="MKM35Z256VLL7" Dvendor="NXP:11"/>
+      <accept Dname="MKM35Z256VLL7R" Dvendor="NXP:11"/>
+      <accept Dname="MKM35Z256VLQ7" Dvendor="NXP:11"/>
+      <accept Dname="MKM35Z256VLQ7R" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="DEVICES_Project_Template.MKM35Z7.condition_id">
+      <require condition="allOf.component.uart_adapter, device_id=MKM35Z512xxx7, MKM35Z256xxx7, device.MKM35Z7_startup, driver.clock, driver.common, driver.gpio, driver.irtc, driver.port, driver.smc, driver.uart, anyOf=allOf=component.serial_manager, utility.assert, utility.debug_console, allOf=utility.assert_lite, utility.debug_console_lite.internal_condition"/>
+    </condition>
+    <condition id="allOf.component.uart_adapter, device_id=MKM35Z512xxx7, MKM35Z256xxx7, device.MKM35Z7_startup, driver.clock, driver.common, driver.gpio, driver.irtc, driver.port, driver.smc, driver.uart, anyOf=allOf=component.serial_manager, utility.assert, utility.debug_console, allOf=utility.assert_lite, utility.debug_console_lite.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart_adapter"/>
+      <require condition="device_id.MKM35Z512xxx7, MKM35Z256xxx7.internal_condition"/>
+      <require Cclass="Device" Cgroup="Startup" Csub=""/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="rtc"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="port"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="smc"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+      <require condition="anyOf.allOf=component.serial_manager, utility.assert, utility.debug_console, allOf=utility.assert_lite, utility.debug_console_lite.internal_condition"/>
+    </condition>
+    <condition id="anyOf.allOf=component.serial_manager, utility.assert, utility.debug_console, allOf=utility.assert_lite, utility.debug_console_lite.internal_condition">
+      <accept condition="allOf.component.serial_manager, utility.assert, utility.debug_console.internal_condition"/>
+      <accept condition="allOf.utility.assert_lite, utility.debug_console_lite.internal_condition"/>
+    </condition>
+    <condition id="allOf.component.serial_manager, utility.assert, utility.debug_console.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="assert"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+    </condition>
+    <condition id="allOf.utility.assert_lite, utility.debug_console_lite.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="assert_lite"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite"/>
+    </condition>
+    <condition id="RTE_Device.condition_id">
+      <require condition="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.dma, driver.dmamux.internal_condition"/>
+    </condition>
+    <condition id="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.dma, driver.dmamux.internal_condition">
+      <require condition="device_id.MKM35Z512xxx7, MKM35Z256xxx7.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dmamux"/>
+    </condition>
+    <condition id="device.MKM35Z7.internal_condition">
+      <accept Dname="MKM35Z512VLL7" Dvendor="NXP:11"/>
+      <accept Dname="MKM35Z512VLL7R" Dvendor="NXP:11"/>
+      <accept Dname="MKM35Z512VLQ7" Dvendor="NXP:11"/>
+      <accept Dname="MKM35Z512VLQ7R" Dvendor="NXP:11"/>
+      <accept Dname="MKM35Z256VLL7" Dvendor="NXP:11"/>
+      <accept Dname="MKM35Z256VLL7R" Dvendor="NXP:11"/>
+      <accept Dname="MKM35Z256VLQ7" Dvendor="NXP:11"/>
+      <accept Dname="MKM35Z256VLQ7R" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="cmake_toolchain.condition_id">
+      <require condition="allOf.device=MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="allOf.device=MKM35Z7.internal_condition">
+      <require condition="device.MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="component.config_tools.condition_id">
+      <require condition="allOf.device=MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="component.flash_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.flash, device=MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.flash, device=MKM35Z7.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flash"/>
+      <require condition="device.MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="component.lists.condition_id">
+      <require condition="allOf.driver.common, device=MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, device=MKM35Z7.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="device.MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="component.log.condition_id">
+      <require condition="allOf.driver.common, utility.str, device=MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, utility.str, device=MKM35Z7.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="str"/>
+      <require condition="device.MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="component.log.backend.debugconsole.condition_id">
+      <require condition="allOf.driver.common, component.log, utility.debug_console, device=MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.log, utility.debug_console, device=MKM35Z7.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="log"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+      <require condition="device.MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="component.log.backend.debugconsole_lite.condition_id">
+      <require condition="allOf.driver.common, component.log, utility.debug_console_lite, device=MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.log, utility.debug_console_lite, device=MKM35Z7.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="log"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite"/>
+      <require condition="device.MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="component.log.backend.ringbuffer.condition_id">
+      <require condition="allOf.driver.common, component.log, device=MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.log, device=MKM35Z7.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="log"/>
+      <require condition="device.MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="component.lptmr_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.lptmr, device=MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.lptmr, device=MKM35Z7.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lptmr"/>
+      <require condition="device.MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="component.lpuart_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.lpuart, device=MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.lpuart, device=MKM35Z7.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+      <require condition="device.MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="component.pit_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.pit, device=MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.pit, device=MKM35Z7.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="pit"/>
+      <require condition="device.MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="component.serial_manager.condition_id">
+      <require condition="allOf.driver.common, component.lists, anyOf=component.serial_manager_uart, component.serial_manager_virtual, device=MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, component.lists, anyOf=component.serial_manager_uart, component.serial_manager_virtual, device=MKM35Z7.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+      <require condition="anyOf.component.serial_manager_uart, component.serial_manager_virtual.internal_condition"/>
+      <require condition="device.MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="anyOf.component.serial_manager_uart, component.serial_manager_virtual.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_uart"/>
+      <accept Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_virtual"/>
+    </condition>
+    <condition id="component.serial_manager_uart.condition_id">
+      <require condition="allOf.component.uart_adapter, component.serial_manager, anyOf=driver.lpuart, driver.uart, device=MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="allOf.component.uart_adapter, component.serial_manager, anyOf=driver.lpuart, driver.uart, device=MKM35Z7.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart_adapter"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require condition="anyOf.driver.lpuart, driver.uart.internal_condition"/>
+      <require condition="device.MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="anyOf.driver.lpuart, driver.uart.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+    </condition>
+    <condition id="component.serial_manager_virtual.condition_id">
+      <require condition="allOf.component.serial_manager, driver.common, device=MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="allOf.component.serial_manager, driver.common, device=MKM35Z7.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="device.MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="component.uart_adapter.condition_id">
+      <require condition="allOf.driver.common, driver.uart, device=MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, driver.uart, device=MKM35Z7.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+      <require condition="device.MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="device.MKM35Z7_CMSIS.condition_id">
+      <require condition="allOf.CMSIS_Include_core_cm, device_id=MKM35Z512xxx7, MKM35Z256xxx7.internal_condition"/>
+    </condition>
+    <condition id="allOf.CMSIS_Include_core_cm, device_id=MKM35Z512xxx7, MKM35Z256xxx7.internal_condition">
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require condition="device_id.MKM35Z512xxx7, MKM35Z256xxx7.internal_condition"/>
+    </condition>
+    <condition id="device.MKM35Z7_linker.condition_id">
+      <require condition="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7.internal_condition"/>
+    </condition>
+    <condition id="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7.internal_condition">
+      <require condition="device_id.MKM35Z512xxx7, MKM35Z256xxx7.internal_condition"/>
+    </condition>
+    <condition id="device_ids.MKM35Z256xxx7.internal_condition">
+      <accept Dname="MKM35Z256VLL7" Dvendor="NXP:11"/>
+      <accept Dname="MKM35Z256VLL7R" Dvendor="NXP:11"/>
+      <accept Dname="MKM35Z256VLQ7" Dvendor="NXP:11"/>
+      <accept Dname="MKM35Z256VLQ7R" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="allOf.toolchains=mdk, device_ids=MKM35Z256xxx7.condition_id">
+      <require condition="toolchains.mdk.internal_condition"/>
+      <require condition="device_ids.MKM35Z256xxx7.internal_condition"/>
+    </condition>
+    <condition id="toolchains.mdk.internal_condition">
+      <accept Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="allOf.toolchains=armgcc, device_ids=MKM35Z256xxx7.condition_id">
+      <require condition="toolchains.armgcc.internal_condition"/>
+      <require condition="device_ids.MKM35Z256xxx7.internal_condition"/>
+    </condition>
+    <condition id="toolchains.armgcc.internal_condition">
+      <accept Tcompiler="GCC"/>
+    </condition>
+    <condition id="allOf.toolchains=iar, device_ids=MKM35Z256xxx7.condition_id">
+      <require condition="toolchains.iar.internal_condition"/>
+      <require condition="device_ids.MKM35Z256xxx7.internal_condition"/>
+    </condition>
+    <condition id="toolchains.iar.internal_condition">
+      <accept Tcompiler="IAR"/>
+    </condition>
+    <condition id="device_ids.MKM35Z512xxx7.internal_condition">
+      <accept Dname="MKM35Z512VLL7" Dvendor="NXP:11"/>
+      <accept Dname="MKM35Z512VLL7R" Dvendor="NXP:11"/>
+      <accept Dname="MKM35Z512VLQ7" Dvendor="NXP:11"/>
+      <accept Dname="MKM35Z512VLQ7R" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="allOf.toolchains=mdk, device_ids=MKM35Z512xxx7.condition_id">
+      <require condition="toolchains.mdk.internal_condition"/>
+      <require condition="device_ids.MKM35Z512xxx7.internal_condition"/>
+    </condition>
+    <condition id="allOf.toolchains=armgcc, device_ids=MKM35Z512xxx7.condition_id">
+      <require condition="toolchains.armgcc.internal_condition"/>
+      <require condition="device_ids.MKM35Z512xxx7.internal_condition"/>
+    </condition>
+    <condition id="allOf.toolchains=iar, device_ids=MKM35Z512xxx7.condition_id">
+      <require condition="toolchains.iar.internal_condition"/>
+      <require condition="device_ids.MKM35Z512xxx7.internal_condition"/>
+    </condition>
+    <condition id="device.MKM35Z7_startup.condition_id">
+      <require condition="allOf.device.MKM35Z7_system, device=MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="allOf.device.MKM35Z7_system, device=MKM35Z7.internal_condition">
+      <require Cclass="Device" Cgroup="CMSIS" Csub="MKM35Z7_system"/>
+      <require condition="device.MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="allOf.toolchains=iar.condition_id">
+      <require condition="toolchains.iar.internal_condition"/>
+    </condition>
+    <condition id="allOf.toolchains=armgcc.condition_id">
+      <require condition="toolchains.armgcc.internal_condition"/>
+    </condition>
+    <condition id="allOf.toolchains=mdk.condition_id">
+      <require condition="toolchains.mdk.internal_condition"/>
+    </condition>
+    <condition id="device.MKM35Z7_system.condition_id">
+      <require condition="allOf.device.MKM35Z7_CMSIS, device=MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="allOf.device.MKM35Z7_CMSIS, device=MKM35Z7.internal_condition">
+      <require Cclass="Device" Cgroup="CMSIS" Csub="MKM35Z7_header"/>
+      <require condition="device.MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="driver.adc16.condition_id">
+      <require condition="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.common.internal_condition"/>
+    </condition>
+    <condition id="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.common.internal_condition">
+      <require condition="device_id.MKM35Z512xxx7, MKM35Z256xxx7.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="driver.afe.condition_id">
+      <require condition="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.clock.condition_id">
+      <require condition="allOf.driver.common, device=MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="driver.cmp.condition_id">
+      <require condition="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.cmsis_i2c.condition_id">
+      <require condition="allOf.driver.i2c_dma, device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.i2c, CMSIS_Driver_Include.I2C, RTE_Device.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.i2c_dma, device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.i2c, CMSIS_Driver_Include.I2C, RTE_Device.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c_dma"/>
+      <require condition="device_id.MKM35Z512xxx7, MKM35Z256xxx7.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c"/>
+      <require Cclass="CMSIS Driver" Cgroup="I2C" Capiversion="2.4.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+    </condition>
+    <condition id="driver.cmsis_spi.condition_id">
+      <require condition="allOf.driver.spi_dma, device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.spi, CMSIS_Driver_Include.SPI, RTE_Device.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.spi_dma, device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.spi, CMSIS_Driver_Include.SPI, RTE_Device.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="spi_dma"/>
+      <require condition="device_id.MKM35Z512xxx7, MKM35Z256xxx7.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="spi"/>
+      <require Cclass="CMSIS Driver" Cgroup="SPI" Capiversion="2.3.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+    </condition>
+    <condition id="driver.cmsis_uart.condition_id">
+      <require condition="allOf.driver.uart_dma, device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.uart, CMSIS_Driver_Include.USART, RTE_Device.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.uart_dma, device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.uart, CMSIS_Driver_Include.USART, RTE_Device.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart_dma"/>
+      <require condition="device_id.MKM35Z512xxx7, MKM35Z256xxx7.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+      <require Cclass="CMSIS Driver" Cgroup="USART" Capiversion="2.4.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+    </condition>
+    <condition id="driver.common.condition_id">
+      <require condition="allOf.driver.clock, device.MKM35Z7_CMSIS, device=MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.clock, device.MKM35Z7_CMSIS, device=MKM35Z7.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="CMSIS" Csub="MKM35Z7_header"/>
+      <require condition="device.MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="allOf.cores=cm0p.condition_id">
+      <require condition="cores.cm0p.internal_condition"/>
+    </condition>
+    <condition id="cores.cm0p.internal_condition">
+      <accept Dcore="Cortex-M0+"/>
+    </condition>
+    <condition id="driver.crc.condition_id">
+      <require condition="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.dma.condition_id">
+      <require condition="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.dmamux, driver.common.internal_condition"/>
+    </condition>
+    <condition id="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.dmamux, driver.common.internal_condition">
+      <require condition="device_id.MKM35Z512xxx7, MKM35Z256xxx7.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dmamux"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="driver.dmamux.condition_id">
+      <require condition="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.ewm.condition_id">
+      <require condition="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.flash.condition_id">
+      <require condition="allOf.driver.common, device=MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="driver.gpio.condition_id">
+      <require condition="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.i2c.condition_id">
+      <require condition="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.i2c_dma.condition_id">
+      <require condition="allOf.driver.dma, driver.i2c, device=MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.dma, driver.i2c, device=MKM35Z7.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c"/>
+      <require condition="device.MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="driver.irtc.condition_id">
+      <require condition="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.llwu.condition_id">
+      <require condition="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.lptmr.condition_id">
+      <require condition="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.lpuart.condition_id">
+      <require condition="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.lpuart_dma.condition_id">
+      <require condition="allOf.driver.dma, driver.lpuart, device=MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.dma, driver.lpuart, device=MKM35Z7.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+      <require condition="device.MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="driver.mmau.condition_id">
+      <require condition="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.pdb.condition_id">
+      <require condition="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.pit.condition_id">
+      <require condition="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.pmc.condition_id">
+      <require condition="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.port.condition_id">
+      <require condition="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.qtmr_2.condition_id">
+      <require condition="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.rcm.condition_id">
+      <require condition="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.rnga.condition_id">
+      <require condition="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.sim.condition_id">
+      <require condition="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.slcd.condition_id">
+      <require condition="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.slcd_engine.condition_id">
+      <require condition="anyOf.driver.slcd_gdh_1247wp.internal_condition"/>
+      <require condition="allOf.device=MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="anyOf.driver.slcd_gdh_1247wp.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="slcd_gdh_1247wp"/>
+    </condition>
+    <condition id="driver.slcd_gdh_1247wp.condition_id">
+      <require condition="allOf.board=twrkm35z75m, device=MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="allOf.board=twrkm35z75m, device=MKM35Z7.internal_condition">
+      <require condition="board.twrkm35z75m.internal_condition"/>
+      <require condition="device.MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="board.twrkm35z75m.internal_condition">
+      <accept condition="device.MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="driver.smc.condition_id">
+      <require condition="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.spi.condition_id">
+      <require condition="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.spi_dma.condition_id">
+      <require condition="allOf.driver.dma, driver.spi, device=MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.dma, driver.spi, device=MKM35Z7.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="spi"/>
+      <require condition="device.MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="driver.sysmpu.condition_id">
+      <require condition="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.uart.condition_id">
+      <require condition="allOf.driver.common, device_id=MKM35Z512xxx7, MKM35Z256xxx7.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.common, device_id=MKM35Z512xxx7, MKM35Z256xxx7.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="device_id.MKM35Z512xxx7, MKM35Z256xxx7.internal_condition"/>
+    </condition>
+    <condition id="driver.uart_dma.condition_id">
+      <require condition="allOf.driver.dma, driver.uart, device=MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.dma, driver.uart, device=MKM35Z7.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+      <require condition="device.MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="driver.vref.condition_id">
+      <require condition="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.wdog.condition_id">
+      <require condition="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.common.internal_condition"/>
+    </condition>
+    <condition id="driver.xbar.condition_id">
+      <require condition="allOf.device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.common.internal_condition"/>
+    </condition>
+    <condition id="middleware.baremetal.condition_id">
+      <require condition="allOf.device=MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="utilities.misc_utilities.condition_id">
+      <require condition="allOf.device=MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="utility.assert.condition_id">
+      <require condition="allOf.utility.debug_console, driver.common, device=MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="allOf.utility.debug_console, driver.common, device=MKM35Z7.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="device.MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="utility.assert_lite.condition_id">
+      <require condition="allOf.utility.debug_console_lite, driver.common, device=MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="allOf.utility.debug_console_lite, driver.common, device=MKM35Z7.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="device.MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="utility.debug_console.condition_id">
+      <require condition="allOf.component.serial_manager, driver.common, utility.str, device=MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="allOf.component.serial_manager, driver.common, utility.str, device=MKM35Z7.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="str"/>
+      <require condition="device.MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="utility.debug_console_lite.condition_id">
+      <require condition="allOf.component.uart_adapter, device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.common, utility.str.internal_condition"/>
+    </condition>
+    <condition id="allOf.component.uart_adapter, device_id=MKM35Z512xxx7, MKM35Z256xxx7, driver.common, utility.str.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart_adapter"/>
+      <require condition="device_id.MKM35Z512xxx7, MKM35Z256xxx7.internal_condition"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="str"/>
+    </condition>
+    <condition id="utility.notifier.condition_id">
+      <require condition="allOf.driver.common, device=MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="utility.shell.condition_id">
+      <require condition="allOf.utility.str, component.lists, driver.common, device=MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="allOf.utility.str, component.lists, driver.common, device=MKM35Z7.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="str"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require condition="device.MKM35Z7.internal_condition"/>
+    </condition>
+    <condition id="utility.str.condition_id">
+      <require condition="allOf.driver.common, device=MKM35Z7.internal_condition"/>
+    </condition>
+  </conditions>
+  <components>
+    <component Cclass="Board Support" Cgroup="SDK Project Template" Csub="project_template" Cvariant="MKM35Z7" Cversion="1.0.0" condition="DEVICES_Project_Template.MKM35Z7.condition_id" isDefaultVariant="1">
+      <description>Devices_project_template MKM35Z7</description>
+      <files>
+        <file category="header" attr="config" name="devices/MKM35Z7/project_template/board.h" version="1.0.0" projectpath="board"/>
+        <file category="sourceC" attr="config" name="devices/MKM35Z7/project_template/board.c" version="1.0.0" projectpath="board"/>
+        <file category="header" attr="config" name="devices/MKM35Z7/project_template/clock_config.h" version="1.0.0" projectpath="board"/>
+        <file category="sourceC" attr="config" name="devices/MKM35Z7/project_template/clock_config.c" version="1.0.0" projectpath="board"/>
+        <file category="header" attr="config" name="devices/MKM35Z7/project_template/pin_mux.h" version="1.0.0" projectpath="board"/>
+        <file category="sourceC" attr="config" name="devices/MKM35Z7/project_template/pin_mux.c" version="1.0.0" projectpath="board"/>
+        <file category="header" attr="config" name="devices/MKM35Z7/project_template/peripherals.h" version="1.0.0" projectpath="board"/>
+        <file category="sourceC" attr="config" name="devices/MKM35Z7/project_template/peripherals.c" version="1.0.0" projectpath="board"/>
+        <file category="include" name="devices/MKM35Z7/project_template/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device" Cversion="1.0.0" condition="RTE_Device.condition_id">
+      <description>Rte_device</description>
+      <files>
+        <file category="header" attr="config" name="devices/MKM35Z7/template/RTE_Device.h" version="1.0.0" projectpath="board"/>
+        <file category="include" name="devices/MKM35Z7/template/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="cmake_toolchain" Cversion="1.0.0" condition="cmake_toolchain.condition_id">
+      <description>Cmake_toolchain</description>
+      <files>
+        <file category="other" name="tools/cmake_toolchain_files/armgcc.cmake" projectpath="cmake_toolchain_files"/>
+        <file category="other" name="tools/cmake_toolchain_files/xcc.cmake" projectpath="cmake_toolchain_files"/>
+        <file category="other" name="tools/cmake_toolchain_files/xclang.cmake" projectpath="cmake_toolchain_files"/>
+        <file category="other" name="tools/cmake_toolchain_files/armgcc_force_cpp.cmake" projectpath="cmake_toolchain_files"/>
+        <file category="other" name="tools/cmake_toolchain_files/mcux_config.cmake" projectpath="cmake_toolchain_files"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Config Tools" Csub="Init" Cversion="1.0.0" condition="component.config_tools.condition_id" generator="MCUXpressoConfig">
+      <description>Initialization generated by MCUXpresso Config Tools</description>
+      <files>
+        <file category="doc" name="https://www.nxp.com/configtools"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flash_adapter" Cversion="1.0.0" condition="component.flash_adapter.condition_id">
+      <description>Component flash_adapter</description>
+      <files>
+        <file category="header" name="components/internal_flash/fsl_adapter_flash.h" projectpath="component/internal_flash"/>
+        <file category="sourceC" name="components/internal_flash/fsl_adapter_flash.c" projectpath="component/internal_flash"/>
+        <file category="include" name="components/internal_flash/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lists" Cversion="1.0.0" condition="component.lists.condition_id">
+      <description>Component lists</description>
+      <files>
+        <file category="header" name="components/lists/fsl_component_generic_list.h" projectpath="component/lists"/>
+        <file category="sourceC" name="components/lists/fsl_component_generic_list.c" projectpath="component/lists"/>
+        <file category="include" name="components/lists/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="log" Cversion="1.0.0" condition="component.log.condition_id">
+      <description>Component log</description>
+      <files>
+        <file category="header" name="components/log/fsl_component_log.h" projectpath="component/log"/>
+        <file category="header" name="components/log/fsl_component_log_config.h" projectpath="component/log"/>
+        <file category="sourceC" name="components/log/fsl_component_log.c" projectpath="component/log"/>
+        <file category="include" name="components/log/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="debugconsole" Cversion="1.0.0" condition="component.log.backend.debugconsole.condition_id">
+      <description>Component log backend debug console</description>
+      <files>
+        <file category="sourceC" name="components/log/fsl_component_log_backend_debugconsole.c" projectpath="component/log"/>
+        <file category="header" name="components/log/fsl_component_log_backend_debugconsole.h" projectpath="component/log"/>
+        <file category="include" name="components/log/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="debugconsole_lite" Cversion="1.0.0" condition="component.log.backend.debugconsole_lite.condition_id">
+      <description>Component log backend debug console lite</description>
+      <files>
+        <file category="sourceC" name="components/log/fsl_component_log_backend_debugconsole.c" projectpath="component/log"/>
+        <file category="header" name="components/log/fsl_component_log_backend_debugconsole.h" projectpath="component/log"/>
+        <file category="include" name="components/log/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ringbuffer" Cversion="1.0.0" condition="component.log.backend.ringbuffer.condition_id">
+      <description>Component log backend ring buffer</description>
+      <files>
+        <file category="sourceC" name="components/log/fsl_component_log_backend_ringbuffer.c" projectpath="component/log"/>
+        <file category="header" name="components/log/fsl_component_log_backend_ringbuffer.h" projectpath="component/log"/>
+        <file category="include" name="components/log/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lptmr_adapter" Cversion="1.0.0" condition="component.lptmr_adapter.condition_id">
+      <description>Component lptmr_adapter</description>
+      <RTE_Components_h>
+#ifndef TIMER_PORT_TYPE_LPTMR
+#define TIMER_PORT_TYPE_LPTMR 1
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/timer/fsl_adapter_timer.h" projectpath="component/timer"/>
+        <file category="sourceC" name="components/timer/fsl_adapter_lptmr.c" projectpath="component/timer"/>
+        <file category="include" name="components/timer/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart_adapter" Cversion="1.0.0" condition="component.lpuart_adapter.condition_id">
+      <description>Component lpuart_adapter</description>
+      <files>
+        <file category="header" name="components/uart/fsl_adapter_uart.h" projectpath="component/uart"/>
+        <file category="sourceC" name="components/uart/fsl_adapter_lpuart.c" projectpath="component/uart"/>
+        <file category="include" name="components/uart/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pit_adapter" Cversion="1.0.0" condition="component.pit_adapter.condition_id">
+      <description>Component pit_adapter</description>
+      <RTE_Components_h>
+#ifndef TIMER_PORT_TYPE_PIT
+#define TIMER_PORT_TYPE_PIT 1
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/timer/fsl_adapter_timer.h" projectpath="component/timer"/>
+        <file category="sourceC" name="components/timer/fsl_adapter_pit.c" projectpath="component/timer"/>
+        <file category="include" name="components/timer/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager" Cversion="1.0.1" condition="component.serial_manager.condition_id">
+      <description>Component serial_manager</description>
+      <files>
+        <file category="header" name="components/serial_manager/fsl_component_serial_manager.h" projectpath="component/serial_manager"/>
+        <file category="header" name="components/serial_manager/fsl_component_serial_port_internal.h" projectpath="component/serial_manager"/>
+        <file category="sourceC" name="components/serial_manager/fsl_component_serial_manager.c" projectpath="component/serial_manager"/>
+        <file category="include" name="components/serial_manager/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_uart" Cversion="1.0.0" condition="component.serial_manager_uart.condition_id">
+      <description>Component serial_manager_uart</description>
+      <RTE_Components_h>
+#ifndef SERIAL_PORT_TYPE_UART
+#define SERIAL_PORT_TYPE_UART 1
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/serial_manager/fsl_component_serial_port_uart.h" projectpath="component/serial_manager"/>
+        <file category="sourceC" name="components/serial_manager/fsl_component_serial_port_uart.c" projectpath="component/serial_manager"/>
+        <file category="include" name="components/serial_manager/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_virtual" Cversion="1.0.0" condition="component.serial_manager_virtual.condition_id">
+      <description>Component serial_manager_virtual</description>
+      <RTE_Components_h>
+#ifndef SERIAL_PORT_TYPE_VIRTUAL
+#define SERIAL_PORT_TYPE_VIRTUAL 1
+#endif
+#ifndef DEBUG_CONSOLE_TRANSFER_NON_BLOCKING
+#define DEBUG_CONSOLE_TRANSFER_NON_BLOCKING 
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/serial_manager/fsl_component_serial_port_virtual.h" projectpath="component/serial_manager"/>
+        <file category="sourceC" name="components/serial_manager/fsl_component_serial_port_virtual.c" projectpath="component/serial_manager"/>
+        <file category="include" name="components/serial_manager/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="uart_adapter" Cversion="1.0.0" condition="component.uart_adapter.condition_id">
+      <description>Component uart_adapter</description>
+      <files>
+        <file category="header" name="components/uart/fsl_adapter_uart.h" projectpath="component/uart"/>
+        <file category="sourceC" name="components/uart/fsl_adapter_uart.c" projectpath="component/uart"/>
+        <file category="include" name="components/uart/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="CMSIS" Csub="MKM35Z7_header" Cversion="1.0.0" condition="device.MKM35Z7_CMSIS.condition_id">
+      <description>Device MKM35Z7_cmsis</description>
+      <files>
+        <file category="header" name="devices/MKM35Z7/fsl_device_registers.h" projectpath="device"/>
+        <file category="header" name="devices/MKM35Z7/MKM35Z7.h" projectpath="device"/>
+        <file category="header" name="devices/MKM35Z7/MKM35Z7_features.h" projectpath="device"/>
+        <file category="include" name="devices/MKM35Z7/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="MKM35Z7_linker" Cversion="1.0.0" condition="device.MKM35Z7_linker.condition_id">
+      <description>Device MKM35Z7_linker</description>
+      <files>
+        <file condition="allOf.toolchains=mdk, device_ids=MKM35Z256xxx7.condition_id" category="linkerScript" attr="config" name="devices/MKM35Z7/arm/MKM35Z256xxx7_flash.scf" version="1.0.0" projectpath="MKM35Z7/arm"/>
+        <file condition="allOf.toolchains=mdk, device_ids=MKM35Z256xxx7.condition_id" category="linkerScript" attr="config" name="devices/MKM35Z7/arm/MKM35Z256xxx7_ram.scf" version="1.0.0" projectpath="MKM35Z7/arm"/>
+        <file condition="allOf.toolchains=armgcc, device_ids=MKM35Z256xxx7.condition_id" category="linkerScript" attr="config" name="devices/MKM35Z7/gcc/MKM35Z256xxx7_flash.ld" version="1.0.0" projectpath="MKM35Z7/gcc"/>
+        <file condition="allOf.toolchains=armgcc, device_ids=MKM35Z256xxx7.condition_id" category="linkerScript" attr="config" name="devices/MKM35Z7/gcc/MKM35Z256xxx7_ram.ld" version="1.0.0" projectpath="MKM35Z7/gcc"/>
+        <file condition="allOf.toolchains=iar, device_ids=MKM35Z256xxx7.condition_id" category="linkerScript" attr="config" name="devices/MKM35Z7/iar/MKM35Z256xxx7_flash.icf" version="1.0.0" projectpath="MKM35Z7/iar"/>
+        <file condition="allOf.toolchains=iar, device_ids=MKM35Z256xxx7.condition_id" category="linkerScript" attr="config" name="devices/MKM35Z7/iar/MKM35Z256xxx7_ram.icf" version="1.0.0" projectpath="MKM35Z7/iar"/>
+        <file condition="allOf.toolchains=mdk, device_ids=MKM35Z512xxx7.condition_id" category="linkerScript" attr="config" name="devices/MKM35Z7/arm/MKM35Z512xxx7_flash.scf" version="1.0.0" projectpath="MKM35Z7/arm"/>
+        <file condition="allOf.toolchains=mdk, device_ids=MKM35Z512xxx7.condition_id" category="linkerScript" attr="config" name="devices/MKM35Z7/arm/MKM35Z512xxx7_ram.scf" version="1.0.0" projectpath="MKM35Z7/arm"/>
+        <file condition="allOf.toolchains=armgcc, device_ids=MKM35Z512xxx7.condition_id" category="linkerScript" attr="config" name="devices/MKM35Z7/gcc/MKM35Z512xxx7_flash.ld" version="1.0.0" projectpath="MKM35Z7/gcc"/>
+        <file condition="allOf.toolchains=armgcc, device_ids=MKM35Z512xxx7.condition_id" category="linkerScript" attr="config" name="devices/MKM35Z7/gcc/MKM35Z512xxx7_ram.ld" version="1.0.0" projectpath="MKM35Z7/gcc"/>
+        <file condition="allOf.toolchains=iar, device_ids=MKM35Z512xxx7.condition_id" category="linkerScript" attr="config" name="devices/MKM35Z7/iar/MKM35Z512xxx7_flash.icf" version="1.0.0" projectpath="MKM35Z7/iar"/>
+        <file condition="allOf.toolchains=iar, device_ids=MKM35Z512xxx7.condition_id" category="linkerScript" attr="config" name="devices/MKM35Z7/iar/MKM35Z512xxx7_ram.icf" version="1.0.0" projectpath="MKM35Z7/iar"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Csub="" Cversion="1.1.0" condition="device.MKM35Z7_startup.condition_id">
+      <description>Device MKM35Z7_startup</description>
+      <files>
+        <file condition="allOf.toolchains=iar.condition_id" category="sourceAsm" attr="config" name="devices/MKM35Z7/iar/startup_MKM35Z7.s" version="1.1.0" projectpath="startup"/>
+        <file condition="allOf.toolchains=armgcc.condition_id" category="sourceAsm" attr="config" name="devices/MKM35Z7/gcc/startup_MKM35Z7.S" version="1.1.0" projectpath="startup"/>
+        <file condition="allOf.toolchains=mdk.condition_id" category="sourceAsm" attr="config" name="devices/MKM35Z7/arm/startup_MKM35Z7.S" version="1.1.0" projectpath="startup"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="CMSIS" Csub="MKM35Z7_system" Cversion="1.0.0" condition="device.MKM35Z7_system.condition_id">
+      <description>Device MKM35Z7_system</description>
+      <files>
+        <file category="sourceC" name="devices/MKM35Z7/system_MKM35Z7.c" projectpath="device"/>
+        <file category="header" name="devices/MKM35Z7/system_MKM35Z7.h" projectpath="device"/>
+        <file category="include" name="devices/MKM35Z7/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="adc" Cversion="2.3.0" condition="driver.adc16.condition_id">
+      <description>ADC16 Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_adc16.c" projectpath="drivers"/>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_adc16.h" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="afe" Cversion="2.0.2" condition="driver.afe.condition_id">
+      <description>AFE Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_afe.c" projectpath="drivers"/>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_afe.h" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="clock" Cversion="2.2.1" condition="driver.clock.condition_id">
+      <description>Clock Driver</description>
+      <files>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_clock.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_clock.c" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="cmp" Cversion="2.0.3" condition="driver.cmp.condition_id">
+      <description>CMP Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_cmp.c" projectpath="drivers"/>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_cmp.h" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="I2C" Csub="i2c_cmsis" Cversion="2.2.0" Capiversion="2.3.0" condition="driver.cmsis_i2c.condition_id">
+      <description>I2C CMSIS Driver</description>
+      <files>
+        <file category="header" name="devices/MKM35Z7/cmsis_drivers/fsl_i2c_cmsis.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MKM35Z7/cmsis_drivers/fsl_i2c_cmsis.c" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/cmsis_drivers/"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="SPI" Csub="spi_cmsis" Cversion="2.3.0" Capiversion="2.2.0" condition="driver.cmsis_spi.condition_id">
+      <description>SPI CMSIS Driver</description>
+      <files>
+        <file category="header" name="devices/MKM35Z7/cmsis_drivers/fsl_spi_cmsis.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MKM35Z7/cmsis_drivers/fsl_spi_cmsis.c" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/cmsis_drivers/"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="USART" Csub="uart_cmsis" Cversion="2.2.0" Capiversion="2.3.0" condition="driver.cmsis_uart.condition_id">
+      <description>UART CMSIS Driver</description>
+      <files>
+        <file category="header" name="devices/MKM35Z7/cmsis_drivers/fsl_uart_cmsis.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MKM35Z7/cmsis_drivers/fsl_uart_cmsis.c" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/cmsis_drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="common" Cversion="2.4.1" condition="driver.common.condition_id">
+      <description>COMMON Driver</description>
+      <files>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_common.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_common.c" projectpath="drivers"/>
+        <file condition="allOf.cores=cm0p.condition_id" category="sourceC" name="devices/MKM35Z7/drivers/fsl_common_arm.c" projectpath="drivers"/>
+        <file condition="allOf.cores=cm0p.condition_id" category="header" name="devices/MKM35Z7/drivers/fsl_common_arm.h" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="crc" Cversion="2.0.4" condition="driver.crc.condition_id">
+      <description>CRC Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_crc.c" projectpath="drivers"/>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_crc.h" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dma" Cversion="2.1.2" condition="driver.dma.condition_id">
+      <description>DMA Driver</description>
+      <files>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_dma.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_dma.c" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dmamux" Cversion="2.1.0" condition="driver.dmamux.condition_id">
+      <description>DMAMUX Driver</description>
+      <files>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_dmamux.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_dmamux.c" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ewm" Cversion="2.0.3" condition="driver.ewm.condition_id">
+      <description>EWM Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_ewm.c" projectpath="drivers"/>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_ewm.h" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flash" Cversion="3.1.3" condition="driver.flash.condition_id">
+      <description>Flash Driver</description>
+      <files>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_ftfx_adapter.h" projectpath="drivers"/>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_ftfx_utilities.h" projectpath="drivers"/>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_ftfx_features.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_ftfx_controller.c" projectpath="drivers"/>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_ftfx_controller.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_ftfx_flash.c" projectpath="drivers"/>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_ftfx_flash.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_ftfx_cache.c" projectpath="drivers"/>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_ftfx_cache.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_ftfx_flexnvm.c" projectpath="drivers"/>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_ftfx_flexnvm.h" projectpath="drivers"/>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_flash.h" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="gpio" Cversion="2.7.3" condition="driver.gpio.condition_id">
+      <description>GPIO Driver</description>
+      <files>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_gpio.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_gpio.c" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="i2c" Cversion="2.0.9" condition="driver.i2c.condition_id">
+      <description>I2C Driver</description>
+      <files>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_i2c.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_i2c.c" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="i2c_dma" Cversion="2.0.9" condition="driver.i2c_dma.condition_id">
+      <description>I2C Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_i2c_dma.c" projectpath="drivers"/>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_i2c_dma.h" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="rtc" Cversion="2.3.1" condition="driver.irtc.condition_id">
+      <description>IRTC Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_irtc.c" projectpath="drivers"/>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_irtc.h" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="llwu" Cversion="2.0.5" condition="driver.llwu.condition_id">
+      <description>LLWU Driver</description>
+      <files>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_llwu.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_llwu.c" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lptmr" Cversion="2.2.0" condition="driver.lptmr.condition_id">
+      <description>LPTMR Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_lptmr.c" projectpath="drivers"/>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_lptmr.h" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart" Cversion="2.8.2" condition="driver.lpuart.condition_id">
+      <description>LPUART Driver</description>
+      <files>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_lpuart.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_lpuart.c" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart_dma" Cversion="2.6.0" condition="driver.lpuart_dma.condition_id">
+      <description>LPUART Driver</description>
+      <files>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_lpuart_dma.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_lpuart_dma.c" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mmau" Cversion="2.0.1" condition="driver.mmau.condition_id">
+      <description>MMAU Driver</description>
+      <files>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_mmau.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_mmau.c" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pdb" Cversion="2.0.4" condition="driver.pdb.condition_id">
+      <description>PDB Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_pdb.c" projectpath="drivers"/>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_pdb.h" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pit" Cversion="2.0.5" condition="driver.pit.condition_id">
+      <description>PIT Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_pit.c" projectpath="drivers"/>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_pit.h" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pmc" Cversion="2.0.3" condition="driver.pmc.condition_id">
+      <description>PMC Driver</description>
+      <files>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_pmc.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_pmc.c" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="port" Cversion="2.5.0" condition="driver.port.condition_id">
+      <description>PORT Driver</description>
+      <files>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_port.h" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="qtmr" Cversion="2.0.1" condition="driver.qtmr_2.condition_id">
+      <description>QTMR Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_qtmr.c" projectpath="drivers"/>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_qtmr.h" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="rcm" Cversion="2.0.4" condition="driver.rcm.condition_id">
+      <description>RCM Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_rcm.c" projectpath="drivers"/>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_rcm.h" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="rnga" Cversion="2.0.2" condition="driver.rnga.condition_id">
+      <description>RNGA Driver</description>
+      <files>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_rnga.c" projectpath="drivers"/>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_rnga.h" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sim" Cversion="2.1.3" condition="driver.sim.condition_id">
+      <description>SIM Driver</description>
+      <files>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_sim.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_sim.c" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="slcd" Cversion="2.0.4" condition="driver.slcd.condition_id">
+      <description>SLCD Driver</description>
+      <files>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_slcd.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_slcd.c" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="slcd_engine" Cversion="1.0.2" condition="driver.slcd_engine.condition_id">
+      <description>Driver slcd_engine</description>
+      <files>
+        <file category="sourceC" name="components/slcd_engine/slcd_engine.c" projectpath="slcd"/>
+        <file category="header" name="components/slcd_engine/slcd_engine.h" projectpath="slcd"/>
+        <file category="header" name="components/slcd_engine/slcd_panel.h" projectpath="slcd"/>
+        <file category="include" name="components/slcd_engine/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="slcd_gdh_1247wp" Cversion="1.0.1" condition="driver.slcd_gdh_1247wp.condition_id">
+      <description>Driver slcd_gdh_1247wp</description>
+      <RTE_Components_h>
+#ifndef SLCD_PANEL_GDH_1247WP_H
+#define SLCD_PANEL_GDH_1247WP_H 
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="sourceC" name="components/slcd_engine/GDH-1247WP/GDH-1247WP.c" projectpath="slcd"/>
+        <file category="header" name="components/slcd_engine/GDH-1247WP/GDH-1247WP.h" projectpath="slcd"/>
+        <file category="include" name="components/slcd_engine/GDH-1247WP/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="smc" Cversion="2.0.7" condition="driver.smc.condition_id">
+      <description>SMC Driver</description>
+      <files>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_smc.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_smc.c" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="spi" Cversion="2.1.3" condition="driver.spi.condition_id">
+      <description>SPI Driver</description>
+      <files>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_spi.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_spi.c" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="spi_dma" Cversion="2.1.2" condition="driver.spi_dma.condition_id">
+      <description>SPI Driver</description>
+      <files>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_spi_dma.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_spi_dma.c" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sysmpu" Cversion="2.2.3" condition="driver.sysmpu.condition_id">
+      <description>SYSMPU Driver</description>
+      <files>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_sysmpu.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_sysmpu.c" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="uart" Cversion="2.5.1" condition="driver.uart.condition_id">
+      <description>UART Driver</description>
+      <files>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_uart.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_uart.c" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="uart_dma" Cversion="2.5.0" condition="driver.uart_dma.condition_id">
+      <description>UART Driver</description>
+      <files>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_uart_dma.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_uart_dma.c" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="vref" Cversion="2.1.2" condition="driver.vref.condition_id">
+      <description>VREF Driver</description>
+      <files>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_vref.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_vref.c" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="wdog" Cversion="2.0.1" condition="driver.wdog.condition_id">
+      <description>WDOG Driver</description>
+      <files>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_wdog.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_wdog.c" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="xbar" Cversion="2.1.0" condition="driver.xbar.condition_id">
+      <description>XBAR Driver</description>
+      <files>
+        <file category="header" name="devices/MKM35Z7/drivers/fsl_xbar.h" projectpath="drivers"/>
+        <file category="sourceC" name="devices/MKM35Z7/drivers/fsl_xbar.c" projectpath="drivers"/>
+        <file category="include" name="devices/MKM35Z7/drivers/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="baremetal" Cversion="1.0.0" condition="middleware.baremetal.condition_id">
+      <description>Middleware baremetal</description>
+      <RTE_Components_h>
+#ifndef SDK_OS_BAREMETAL
+#define SDK_OS_BAREMETAL 
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="doc" name="middleware/bm/readme.txt" projectpath="middleware/bm"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="misc_utilities" Cversion="1.1.1" condition="utilities.misc_utilities.condition_id">
+      <description>Utilities which is needed for particular toolchain like the SBRK function required to address limitation between HEAP and STACK in GCC toolchain library.</description>
+      <files>
+        <file condition="allOf.toolchains=armgcc.condition_id" category="sourceC" name="devices/MKM35Z7/utilities/fsl_sbrk.c" projectpath="utilities"/>
+        <file condition="allOf.toolchains=armgcc.condition_id" category="sourceC" name="devices/MKM35Z7/utilities/fsl_syscall_stub.c" projectpath="utilities"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="assert" Cversion="1.0.0" condition="utility.assert.condition_id">
+      <description>Utility assert</description>
+      <files>
+        <file category="sourceC" name="devices/MKM35Z7/utilities/fsl_assert.c" projectpath="utilities"/>
+        <file category="header" name="devices/MKM35Z7/utilities/fsl_assert.h" projectpath="utilities"/>
+        <file category="include" name="devices/MKM35Z7/utilities/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="assert_lite" Cversion="1.0.0" condition="utility.assert_lite.condition_id">
+      <description>Utility assert_lite</description>
+      <files>
+        <file category="sourceC" name="devices/MKM35Z7/utilities/debug_console_lite/fsl_assert.c" projectpath="utilities"/>
+        <file category="header" name="devices/MKM35Z7/utilities/debug_console_lite/fsl_assert.h" projectpath="utilities"/>
+        <file category="include" name="devices/MKM35Z7/utilities/debug_console_lite/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console" Cversion="1.0.1" condition="utility.debug_console.condition_id">
+      <description>Utility debug_console</description>
+      <files>
+        <file category="sourceC" name="devices/MKM35Z7/utilities/debug_console/fsl_debug_console.c" projectpath="utilities"/>
+        <file category="header" name="devices/MKM35Z7/utilities/debug_console/fsl_debug_console.h" projectpath="utilities"/>
+        <file category="header" name="devices/MKM35Z7/utilities/debug_console/fsl_debug_console_conf.h" projectpath="utilities"/>
+        <file category="include" name="devices/MKM35Z7/utilities/debug_console/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite" Cversion="1.0.0" condition="utility.debug_console_lite.condition_id">
+      <description>Utility debug_console_lite</description>
+      <files>
+        <file category="sourceC" name="devices/MKM35Z7/utilities/debug_console_lite/fsl_debug_console.c" projectpath="utilities"/>
+        <file category="header" name="devices/MKM35Z7/utilities/debug_console_lite/fsl_debug_console.h" projectpath="utilities"/>
+        <file category="include" name="devices/MKM35Z7/utilities/debug_console_lite/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="notifier" Cversion="1.0.0" condition="utility.notifier.condition_id">
+      <description>Utility notifier</description>
+      <files>
+        <file category="sourceC" name="devices/MKM35Z7/utilities/fsl_notifier.c" projectpath="utilities/utilities"/>
+        <file category="header" name="devices/MKM35Z7/utilities/fsl_notifier.h" projectpath="utilities/utilities"/>
+        <file category="include" name="devices/MKM35Z7/utilities/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="shell" Cversion="1.0.0" condition="utility.shell.condition_id">
+      <description>Utility shell</description>
+      <RTE_Components_h>
+#ifndef DEBUG_CONSOLE_RX_ENABLE
+#define DEBUG_CONSOLE_RX_ENABLE 0
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="sourceC" name="devices/MKM35Z7/utilities/shell/fsl_shell.c" projectpath="utilities"/>
+        <file category="header" name="devices/MKM35Z7/utilities/shell/fsl_shell.h" projectpath="utilities"/>
+        <file category="include" name="devices/MKM35Z7/utilities/shell/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="str" Cversion="1.0.0" condition="utility.str.condition_id">
+      <description>Utility str</description>
+      <files>
+        <file category="sourceC" name="devices/MKM35Z7/utilities/str/fsl_str.c" projectpath="utilities"/>
+        <file category="header" name="devices/MKM35Z7/utilities/str/fsl_str.h" projectpath="utilities"/>
+        <file category="include" name="devices/MKM35Z7/utilities/str/"/>
+      </files>
+    </component>
+  </components>
+</package>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<package schemaVersion="1.7.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="PACK.xsd">
+  <name>AWS_IoT_SigV4</name>
+
+  <description>library for generating authentication headers and signatures according to the specifications of the AWS Signature Version 4 signing process.</description>
+
+  <vendor>AWS</vendor>
+
+  <license>LICENSE</license>
+
+  <url>https://d1pm0k3vkcievw.cloudfront.net/</url>
+
+  <releases>
+    <release date="2023-06-23" version="1.0.1">Re-release of the last version due to hosting changes. Based on the https://github.com/aws/SigV4-for-AWS-IoT-embedded-sdk/tree/v1.2.0 repository.</release>
+    <release date="2023-02-23" version="1.0.0">Based on the https://github.com/aws/SigV4-for-AWS-IoT-embedded-sdk/tree/v1.2.0 repository.</release>
+  </releases>
+
+  <components>
+    <component Cclass="AWS IoT" Cgroup="AWS IoT SigV4" Cversion="1.2.0">
+      <description>library for generating authentication headers and signatures according to the specifications of the AWS Signature Version 4 signing process.</description>
+      <files>
+        <file category="source" name="SigV4-for-AWS-IoT-embedded-sdk/source/sigv4.c"/>
+        <file category="source" name="SigV4-for-AWS-IoT-embedded-sdk/source/sigv4_quicksort.c"/>
+        <file category="include" name="SigV4-for-AWS-IoT-embedded-sdk/source/include/"/>
+      </files>
+    </component>
+  </components>
+</package>
+

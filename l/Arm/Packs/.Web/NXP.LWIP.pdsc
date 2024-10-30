@@ -1,0 +1,765 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>LWIP</name>
+  <vendor>NXP</vendor>
+  <description>Software Pack for lwip</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="3.0.0" date="2024-07-17">NXP CMSIS SWP Packs based on MCUXpresso SDK 2.16.0</release>
+    <release version="2.0.0" date="2024-01-14">NXP CMSIS SWP Packs based on MCUXpresso SDK 2.15.0</release>
+    <release version="1.0.0" date="2023-07-27">NXP CMSIS SWP Packs based on MCUXpresso SDK 2.14.0</release>
+  </releases>
+  <keywords>
+    <keyword>Software Pack</keyword>
+  </keywords>
+  <taxonomy>
+    <description Cclass="Network">lwIP NXP</description>
+  </taxonomy>
+  <requirements>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <conditions>
+    <condition id="middleware.lwip.condition_id">
+      <require condition="allOf.middleware.lwip.template, anyOf=middleware.lwip.usb_ethernetif, middleware.lwip.enet_ethernetif, middleware.lwip.kinetis_ethernetif, middleware.lwip.netc_ethernetif, middleware.lwip.empty_ethernetif, middleware.lwip.eoe_ethernetif, middleware.lwip.mcx_ethernetif, middleware.wifi.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.lwip.template, anyOf=middleware.lwip.usb_ethernetif, middleware.lwip.enet_ethernetif, middleware.lwip.kinetis_ethernetif, middleware.lwip.netc_ethernetif, middleware.lwip.empty_ethernetif, middleware.lwip.eoe_ethernetif, middleware.lwip.mcx_ethernetif, middleware.wifi.internal_condition">
+      <require Cclass="Network" Cgroup="lwIP TCPIP Networking Stack" Csub="template"/>
+      <require condition="anyOf.middleware.lwip.usb_ethernetif, middleware.lwip.enet_ethernetif, middleware.lwip.kinetis_ethernetif, middleware.lwip.netc_ethernetif, middleware.lwip.empty_ethernetif, middleware.lwip.eoe_ethernetif, middleware.lwip.mcx_ethernetif, middleware.wifi.internal_condition"/>
+    </condition>
+    <condition id="anyOf.middleware.lwip.usb_ethernetif, middleware.lwip.enet_ethernetif, middleware.lwip.kinetis_ethernetif, middleware.lwip.netc_ethernetif, middleware.lwip.empty_ethernetif, middleware.lwip.eoe_ethernetif, middleware.lwip.mcx_ethernetif, middleware.wifi.internal_condition">
+      <accept Cclass="Network" Cgroup="lwIP TCPIP Networking Stack" Csub="usb_ethernetif"/>
+      <accept Cclass="Network" Cgroup="lwIP TCPIP Networking Stack" Csub="enet_ethernetif"/>
+      <accept Cclass="Network" Cgroup="lwIP TCPIP Networking Stack" Csub="kinetis_ethernetif"/>
+      <accept Cclass="Network" Cgroup="lwIP TCPIP Networking Stack" Csub="netc_ethernetif"/>
+      <accept Cclass="Network" Cgroup="lwIP TCPIP Networking Stack" Csub="empty_ethernetif"/>
+      <accept Cclass="Network" Cgroup="lwIP TCPIP Networking Stack" Csub="eoe_ethernetif"/>
+      <accept Cclass="Network" Cgroup="lwIP TCPIP Networking Stack" Csub="mcx_ethernetif"/>
+      <accept Cclass="Wireless" Cgroup="NXP Wi-Fi" Csub="wifi"/>
+    </condition>
+    <condition id="middleware.lwip.apps.httpd.condition_id">
+      <require condition="allOf.middleware.lwip, middleware.lwip.apps.httpd.support.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.lwip, middleware.lwip.apps.httpd.support.internal_condition">
+      <require Cclass="Network" Cgroup="lwIP TCPIP Networking Stack" Csub="lwip"/>
+      <require Cclass="Network" Cgroup="lwIP TCPIP Application protocols" Csub="support"/>
+    </condition>
+    <condition id="middleware.lwip.apps.httpd.support.condition_id">
+      <require condition="allOf.middleware.lwip.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.lwip.internal_condition">
+      <require Cclass="Network" Cgroup="lwIP TCPIP Networking Stack" Csub="lwip"/>
+    </condition>
+    <condition id="middleware.lwip.apps.httpsrv.condition_id">
+      <require condition="allOf.middleware.lwip, middleware.freertos-kernel.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.lwip, middleware.freertos-kernel.internal_condition">
+      <require Cclass="Network" Cgroup="lwIP TCPIP Networking Stack" Csub="lwip"/>
+      <require Cclass="RTOS" Cgroup="Core"/>
+    </condition>
+    <condition id="middleware.lwip.apps.httpssrv.condition_id">
+      <require condition="allOf.middleware.lwip.apps.httpsrv, middleware.mbedtls.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.lwip.apps.httpsrv, middleware.mbedtls.internal_condition">
+      <require Cclass="Network" Cgroup="lwIP TCPIP Application protocols" Csub="httpsrv"/>
+      <require Cclass="Security" Cgroup="mbedTLS library" Csub="mbedtls"/>
+    </condition>
+    <condition id="middleware.lwip.apps.lwiperf.condition_id">
+      <require condition="allOf.middleware.lwip, anyOf=middleware.freertos-kernel, middleware.baremetal.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.lwip, anyOf=middleware.freertos-kernel, middleware.baremetal.internal_condition">
+      <require Cclass="Network" Cgroup="lwIP TCPIP Networking Stack" Csub="lwip"/>
+      <require condition="anyOf.middleware.freertos-kernel, middleware.baremetal.internal_condition"/>
+    </condition>
+    <condition id="anyOf.middleware.freertos-kernel, middleware.baremetal.internal_condition">
+      <accept Cclass="RTOS" Cgroup="Core"/>
+      <accept Cclass="Device" Cgroup="SDK Utilities" Csub="baremetal"/>
+    </condition>
+    <condition id="middleware.lwip.apps.mdns.condition_id">
+      <require condition="allOf.middleware.lwip.internal_condition"/>
+    </condition>
+    <condition id="middleware.lwip.apps.mqtt.condition_id">
+      <require condition="allOf.middleware.lwip.internal_condition"/>
+    </condition>
+    <condition id="middleware.lwip.apps.sntp.condition_id">
+      <require condition="allOf.middleware.lwip.internal_condition"/>
+    </condition>
+    <condition id="middleware.lwip.contrib.ping.condition_id">
+      <require condition="allOf.middleware.lwip.internal_condition"/>
+    </condition>
+    <condition id="middleware.lwip.contrib.tcpecho.condition_id">
+      <require condition="allOf.middleware.lwip.internal_condition"/>
+    </condition>
+    <condition id="middleware.lwip.contrib.tcpecho_raw.condition_id">
+      <require condition="allOf.middleware.lwip.internal_condition"/>
+    </condition>
+    <condition id="middleware.lwip.contrib.udpecho.condition_id">
+      <require condition="allOf.middleware.lwip.internal_condition"/>
+    </condition>
+    <condition id="middleware.lwip.contrib.udpecho_raw.condition_id">
+      <require condition="allOf.middleware.lwip.internal_condition"/>
+    </condition>
+    <condition id="middleware.lwip.enet_ethernetif.condition_id">
+      <require condition="allOf.middleware.lwip, middleware.lwip.template, driver.phy-common, anyOf=component.rt_gpio_adapter, component.lpc_gpio_adapter, component.igpio_adapter, component.rgpio_adapter, component.gpio_adapter, anyOf=driver.lpc_enet, driver.enet_qos.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.lwip, middleware.lwip.template, driver.phy-common, anyOf=component.rt_gpio_adapter, component.lpc_gpio_adapter, component.igpio_adapter, component.rgpio_adapter, component.gpio_adapter, anyOf=driver.lpc_enet, driver.enet_qos.internal_condition">
+      <require Cclass="Network" Cgroup="lwIP TCPIP Networking Stack" Csub="lwip"/>
+      <require Cclass="Network" Cgroup="lwIP TCPIP Networking Stack" Csub="template"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="phy-common"/>
+      <require condition="anyOf.component.rt_gpio_adapter, component.lpc_gpio_adapter, component.igpio_adapter, component.rgpio_adapter, component.gpio_adapter.internal_condition"/>
+      <require condition="anyOf.driver.lpc_enet, driver.enet_qos.internal_condition"/>
+    </condition>
+    <condition id="anyOf.component.rt_gpio_adapter, component.lpc_gpio_adapter, component.igpio_adapter, component.rgpio_adapter, component.gpio_adapter.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="rt_gpio_adapter"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="lpc_gpio_adapter"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="igpio_adapter"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="rgpio_adapter"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="gpio_adapter"/>
+    </condition>
+    <condition id="anyOf.driver.lpc_enet, driver.enet_qos.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="lpc_enet"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="enet_qos"/>
+    </condition>
+    <condition id="allOf.components=driver.lpc_enet.condition_id">
+      <require condition="components.driver.lpc_enet.internal_condition"/>
+    </condition>
+    <condition id="components.driver.lpc_enet.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="lpc_enet"/>
+    </condition>
+    <condition id="allOf.components=driver.enet_qos.condition_id">
+      <require condition="components.driver.enet_qos.internal_condition"/>
+    </condition>
+    <condition id="components.driver.enet_qos.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="enet_qos"/>
+    </condition>
+    <condition id="middleware.lwip.eoe_ethernetif.condition_id">
+      <require condition="allOf.middleware.lwip, middleware.lwip.template, middleware.freertos-kernel.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.lwip, middleware.lwip.template, middleware.freertos-kernel.internal_condition">
+      <require Cclass="Network" Cgroup="lwIP TCPIP Networking Stack" Csub="lwip"/>
+      <require Cclass="Network" Cgroup="lwIP TCPIP Networking Stack" Csub="template"/>
+      <require Cclass="RTOS" Cgroup="Core"/>
+    </condition>
+    <condition id="middleware.lwip.kinetis_ethernetif.condition_id">
+      <require condition="allOf.middleware.lwip, middleware.lwip.template, driver.phy-common, driver.enet, anyOf=component.rt_gpio_adapter, component.lpc_gpio_adapter, component.igpio_adapter, component.rgpio_adapter, component.gpio_adapter.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.lwip, middleware.lwip.template, driver.phy-common, driver.enet, anyOf=component.rt_gpio_adapter, component.lpc_gpio_adapter, component.igpio_adapter, component.rgpio_adapter, component.gpio_adapter.internal_condition">
+      <require Cclass="Network" Cgroup="lwIP TCPIP Networking Stack" Csub="lwip"/>
+      <require Cclass="Network" Cgroup="lwIP TCPIP Networking Stack" Csub="template"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="phy-common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="enet"/>
+      <require condition="anyOf.component.rt_gpio_adapter, component.lpc_gpio_adapter, component.igpio_adapter, component.rgpio_adapter, component.gpio_adapter.internal_condition"/>
+    </condition>
+    <condition id="middleware.lwip.mcx_ethernetif.condition_id">
+      <require condition="allOf.middleware.lwip, middleware.lwip.template, driver.phy-common, driver.mcx_enet, anyOf=component.rt_gpio_adapter, component.lpc_gpio_adapter, component.igpio_adapter, component.rgpio_adapter, component.gpio_adapter.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.lwip, middleware.lwip.template, driver.phy-common, driver.mcx_enet, anyOf=component.rt_gpio_adapter, component.lpc_gpio_adapter, component.igpio_adapter, component.rgpio_adapter, component.gpio_adapter.internal_condition">
+      <require Cclass="Network" Cgroup="lwIP TCPIP Networking Stack" Csub="lwip"/>
+      <require Cclass="Network" Cgroup="lwIP TCPIP Networking Stack" Csub="template"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="phy-common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="mcx_enet"/>
+      <require condition="anyOf.component.rt_gpio_adapter, component.lpc_gpio_adapter, component.igpio_adapter, component.rgpio_adapter, component.gpio_adapter.internal_condition"/>
+    </condition>
+    <condition id="middleware.lwip.netc_ethernetif.condition_id">
+      <require condition="allOf.middleware.lwip, middleware.lwip.template, driver.phy-common, driver.netc, driver.msgintr, anyOf=component.rt_gpio_adapter, component.lpc_gpio_adapter, component.igpio_adapter, component.rgpio_adapter, component.gpio_adapter.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.lwip, middleware.lwip.template, driver.phy-common, driver.netc, driver.msgintr, anyOf=component.rt_gpio_adapter, component.lpc_gpio_adapter, component.igpio_adapter, component.rgpio_adapter, component.gpio_adapter.internal_condition">
+      <require Cclass="Network" Cgroup="lwIP TCPIP Networking Stack" Csub="lwip"/>
+      <require Cclass="Network" Cgroup="lwIP TCPIP Networking Stack" Csub="template"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="phy-common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="netc"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="msgintr"/>
+      <require condition="anyOf.component.rt_gpio_adapter, component.lpc_gpio_adapter, component.igpio_adapter, component.rgpio_adapter, component.gpio_adapter.internal_condition"/>
+    </condition>
+    <condition id="middleware.lwip.usb_ethernetif.condition_id">
+      <require condition="allOf.middleware.lwip, middleware.usb.host.cdc, anyOf=middleware.usb.host.cdc_ecm, middleware.usb.host.cdc_rndis, anyOf=middleware.usb.host.khci, middleware.usb.host.ehci, middleware.usb.host.ohci.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.lwip, middleware.usb.host.cdc, anyOf=middleware.usb.host.cdc_ecm, middleware.usb.host.cdc_rndis, anyOf=middleware.usb.host.khci, middleware.usb.host.ehci, middleware.usb.host.ohci.internal_condition">
+      <require Cclass="Network" Cgroup="lwIP TCPIP Networking Stack" Csub="lwip"/>
+      <require Cclass="USB" Cgroup="USB Host" Csub="cdc"/>
+      <require condition="anyOf.middleware.usb.host.cdc_ecm, middleware.usb.host.cdc_rndis.internal_condition"/>
+      <require condition="anyOf.middleware.usb.host.khci, middleware.usb.host.ehci, middleware.usb.host.ohci.internal_condition"/>
+    </condition>
+    <condition id="anyOf.middleware.usb.host.cdc_ecm, middleware.usb.host.cdc_rndis.internal_condition">
+      <accept Cclass="USB" Cgroup="USB Host" Csub="cdc_ecm"/>
+      <accept Cclass="USB" Cgroup="USB Host" Csub="cdc_rndis"/>
+    </condition>
+    <condition id="anyOf.middleware.usb.host.khci, middleware.usb.host.ehci, middleware.usb.host.ohci.internal_condition">
+      <accept Cclass="USB" Cgroup="USB Host" Csub="khci"/>
+      <accept Cclass="USB" Cgroup="USB Host" Csub="ehci"/>
+      <accept Cclass="USB" Cgroup="USB Host" Csub="ohci"/>
+    </condition>
+    <condition id="allOf.components=middleware.baremetal.condition_id">
+      <require condition="components.middleware.baremetal.internal_condition"/>
+    </condition>
+    <condition id="components.middleware.baremetal.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Utilities" Csub="baremetal"/>
+    </condition>
+    <condition id="allOf.components=middleware.freertos-kernel.condition_id">
+      <require condition="components.middleware.freertos-kernel.internal_condition"/>
+    </condition>
+    <condition id="components.middleware.freertos-kernel.internal_condition">
+      <accept Cclass="RTOS" Cgroup="Core"/>
+    </condition>
+  </conditions>
+  <components>
+    <bundle Cbundle="lwIP NXP" Cclass="Network" Cversion="2.2.0-rev10">
+      <description>lwIP NXP</description>
+      <doc>middleware/lwip/lwIP NXP_dummy.txt</doc>
+      <component Cgroup="lwIP TCPIP Networking Stack" Csub="lwip" Cversion="2.2.0-rev10" condition="middleware.lwip.condition_id">
+        <description>lwIP - A Lightweight TCP/IP Stack</description>
+        <files>
+          <file category="doc" name="middleware/lwip/BUILDING" projectpath="lwip"/>
+          <file category="doc" name="middleware/lwip/CHANGELOG" projectpath="lwip"/>
+          <file category="doc" name="middleware/lwip/COPYING" projectpath="lwip"/>
+          <file category="doc" name="middleware/lwip/FEATURES" projectpath="lwip"/>
+          <file category="doc" name="middleware/lwip/FILES" projectpath="lwip"/>
+          <file category="doc" name="middleware/lwip/README" projectpath="lwip"/>
+          <file category="doc" name="middleware/lwip/UPGRADING" projectpath="lwip"/>
+          <file category="doc" name="middleware/lwip/ChangeLogKSDK.txt" projectpath="lwip"/>
+          <file category="doc" name="middleware/lwip/doc/contrib.txt" projectpath="lwip/doc"/>
+          <file category="doc" name="middleware/lwip/doc/mdns.txt" projectpath="lwip/doc"/>
+          <file category="doc" name="middleware/lwip/doc/mqtt_client.txt" projectpath="lwip/doc"/>
+          <file category="doc" name="middleware/lwip/doc/ppp.txt" projectpath="lwip/doc"/>
+          <file category="doc" name="middleware/lwip/doc/savannah.txt" projectpath="lwip/doc"/>
+          <file category="doc" name="middleware/lwip/doc/NO_SYS_SampleCode.c" projectpath="lwip/doc"/>
+          <file category="doc" name="middleware/lwip/doc/ZeroCopyRx.c" projectpath="lwip/doc"/>
+          <file category="doc" name="middleware/lwip/doc/FILES" projectpath="lwip/doc"/>
+          <file category="doc" name="middleware/lwip/doc/doxygen/generate.bat" projectpath="lwip/doc/doxygen"/>
+          <file category="doc" name="middleware/lwip/doc/doxygen/generate.sh" projectpath="lwip/doc/doxygen"/>
+          <file category="doc" name="middleware/lwip/doc/doxygen/lwip.Doxyfile" projectpath="lwip/doc/doxygen"/>
+          <file category="doc" name="middleware/lwip/doc/doxygen/lwip.Doxyfile.cmake.in" projectpath="lwip/doc/doxygen"/>
+          <file category="doc" name="middleware/lwip/doc/doxygen/main_page.h" projectpath="lwip/doc/doxygen"/>
+          <file category="doc" name="middleware/lwip/doc/doxygen/output/index.html" projectpath="lwip/doc/doxygen/output"/>
+          <file category="sourceC" name="middleware/lwip/port/sys_arch.c" projectpath="lwip/port"/>
+          <file category="header" name="middleware/lwip/port/arch/cc.h" projectpath="lwip/port/arch" path="middleware/lwip/port"/>
+          <file category="header" name="middleware/lwip/port/arch/perf.h" projectpath="lwip/port/arch" path="middleware/lwip/port"/>
+          <file category="header" name="middleware/lwip/port/arch/sys_arch.h" projectpath="lwip/port/arch" path="middleware/lwip/port"/>
+          <file category="doc" name="middleware/lwip/src/FILES" projectpath="lwip/src"/>
+          <file category="sourceC" name="middleware/lwip/src/api/api_lib.c" projectpath="lwip/src/api"/>
+          <file category="sourceC" name="middleware/lwip/src/api/api_msg.c" projectpath="lwip/src/api"/>
+          <file category="sourceC" name="middleware/lwip/src/api/err.c" projectpath="lwip/src/api"/>
+          <file category="sourceC" name="middleware/lwip/src/api/if_api.c" projectpath="lwip/src/api"/>
+          <file category="sourceC" name="middleware/lwip/src/api/netbuf.c" projectpath="lwip/src/api"/>
+          <file category="sourceC" name="middleware/lwip/src/api/netdb.c" projectpath="lwip/src/api"/>
+          <file category="sourceC" name="middleware/lwip/src/api/netifapi.c" projectpath="lwip/src/api"/>
+          <file category="sourceC" name="middleware/lwip/src/api/sockets.c" projectpath="lwip/src/api"/>
+          <file category="sourceC" name="middleware/lwip/src/api/tcpip.c" projectpath="lwip/src/api"/>
+          <file category="sourceC" name="middleware/lwip/src/core/altcp.c" projectpath="lwip/src/core"/>
+          <file category="sourceC" name="middleware/lwip/src/core/altcp_alloc.c" projectpath="lwip/src/core"/>
+          <file category="sourceC" name="middleware/lwip/src/core/altcp_tcp.c" projectpath="lwip/src/core"/>
+          <file category="sourceC" name="middleware/lwip/src/core/def.c" projectpath="lwip/src/core"/>
+          <file category="sourceC" name="middleware/lwip/src/core/dns.c" projectpath="lwip/src/core"/>
+          <file category="sourceC" name="middleware/lwip/src/core/inet_chksum.c" projectpath="lwip/src/core"/>
+          <file category="sourceC" name="middleware/lwip/src/core/init.c" projectpath="lwip/src/core"/>
+          <file category="sourceC" name="middleware/lwip/src/core/ip.c" projectpath="lwip/src/core"/>
+          <file category="sourceC" name="middleware/lwip/src/core/ipv4/acd.c" projectpath="lwip/src/core/ipv4"/>
+          <file category="sourceC" name="middleware/lwip/src/core/ipv4/autoip.c" projectpath="lwip/src/core/ipv4"/>
+          <file category="sourceC" name="middleware/lwip/src/core/ipv4/dhcp.c" projectpath="lwip/src/core/ipv4"/>
+          <file category="sourceC" name="middleware/lwip/src/core/ipv4/etharp.c" projectpath="lwip/src/core/ipv4"/>
+          <file category="sourceC" name="middleware/lwip/src/core/ipv4/icmp.c" projectpath="lwip/src/core/ipv4"/>
+          <file category="sourceC" name="middleware/lwip/src/core/ipv4/igmp.c" projectpath="lwip/src/core/ipv4"/>
+          <file category="sourceC" name="middleware/lwip/src/core/ipv4/ip4.c" projectpath="lwip/src/core/ipv4"/>
+          <file category="sourceC" name="middleware/lwip/src/core/ipv4/ip4_addr.c" projectpath="lwip/src/core/ipv4"/>
+          <file category="sourceC" name="middleware/lwip/src/core/ipv4/ip4_frag.c" projectpath="lwip/src/core/ipv4"/>
+          <file category="sourceC" name="middleware/lwip/src/core/ipv6/dhcp6.c" projectpath="lwip/src/core/ipv6"/>
+          <file category="sourceC" name="middleware/lwip/src/core/ipv6/ethip6.c" projectpath="lwip/src/core/ipv6"/>
+          <file category="sourceC" name="middleware/lwip/src/core/ipv6/icmp6.c" projectpath="lwip/src/core/ipv6"/>
+          <file category="sourceC" name="middleware/lwip/src/core/ipv6/inet6.c" projectpath="lwip/src/core/ipv6"/>
+          <file category="sourceC" name="middleware/lwip/src/core/ipv6/ip6.c" projectpath="lwip/src/core/ipv6"/>
+          <file category="sourceC" name="middleware/lwip/src/core/ipv6/ip6_addr.c" projectpath="lwip/src/core/ipv6"/>
+          <file category="sourceC" name="middleware/lwip/src/core/ipv6/ip6_frag.c" projectpath="lwip/src/core/ipv6"/>
+          <file category="sourceC" name="middleware/lwip/src/core/ipv6/mld6.c" projectpath="lwip/src/core/ipv6"/>
+          <file category="sourceC" name="middleware/lwip/src/core/ipv6/nd6.c" projectpath="lwip/src/core/ipv6"/>
+          <file category="sourceC" name="middleware/lwip/src/core/mem.c" projectpath="lwip/src/core"/>
+          <file category="sourceC" name="middleware/lwip/src/core/memp.c" projectpath="lwip/src/core"/>
+          <file category="sourceC" name="middleware/lwip/src/core/netif.c" projectpath="lwip/src/core"/>
+          <file category="sourceC" name="middleware/lwip/src/core/pbuf.c" projectpath="lwip/src/core"/>
+          <file category="sourceC" name="middleware/lwip/src/core/raw.c" projectpath="lwip/src/core"/>
+          <file category="sourceC" name="middleware/lwip/src/core/stats.c" projectpath="lwip/src/core"/>
+          <file category="sourceC" name="middleware/lwip/src/core/sys.c" projectpath="lwip/src/core"/>
+          <file category="sourceC" name="middleware/lwip/src/core/tcp.c" projectpath="lwip/src/core"/>
+          <file category="sourceC" name="middleware/lwip/src/core/tcp_in.c" projectpath="lwip/src/core"/>
+          <file category="sourceC" name="middleware/lwip/src/core/tcp_out.c" projectpath="lwip/src/core"/>
+          <file category="sourceC" name="middleware/lwip/src/core/timeouts.c" projectpath="lwip/src/core"/>
+          <file category="sourceC" name="middleware/lwip/src/core/udp.c" projectpath="lwip/src/core"/>
+          <file category="header" name="middleware/lwip/src/include/compat/posix/arpa/inet.h" projectpath="lwip/src/include/compat/posix/arpa" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/compat/posix/net/if.h" projectpath="lwip/src/include/compat/posix/net" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/compat/posix/netdb.h" projectpath="lwip/src/include/compat/posix" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/compat/posix/sys/socket.h" projectpath="lwip/src/include/compat/posix/sys" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/compat/stdc/errno.h" projectpath="lwip/src/include/compat/stdc" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/acd.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/altcp.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/altcp_tcp.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/altcp_tls.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/api.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/arch.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/autoip.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/debug.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/def.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/dhcp.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/dhcp6.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/dns.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/err.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/errno.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/etharp.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/ethip6.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/icmp.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/icmp6.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/if_api.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/igmp.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/inet.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/inet_chksum.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/init.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/ip.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/ip4.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/ip4_addr.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/ip4_frag.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/ip6.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/ip6_addr.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/ip6_frag.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/ip6_zone.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/ip_addr.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/mem.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/memp.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/mld6.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/nd6.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/netbuf.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/netdb.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/netif.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/netifapi.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/opt.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/pbuf.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/raw.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/sio.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/snmp.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/sockets.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/stats.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/sys.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/tcp.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/tcpbase.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/tcpip.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/timeouts.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/udp.h" projectpath="lwip/src/include/lwip" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/priv/altcp_priv.h" projectpath="lwip/src/include/lwip/priv" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/priv/api_msg.h" projectpath="lwip/src/include/lwip/priv" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/priv/mem_priv.h" projectpath="lwip/src/include/lwip/priv" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/priv/memp_priv.h" projectpath="lwip/src/include/lwip/priv" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/priv/memp_std.h" projectpath="lwip/src/include/lwip/priv" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/priv/nd6_priv.h" projectpath="lwip/src/include/lwip/priv" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/priv/raw_priv.h" projectpath="lwip/src/include/lwip/priv" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/priv/sockets_priv.h" projectpath="lwip/src/include/lwip/priv" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/priv/tcp_priv.h" projectpath="lwip/src/include/lwip/priv" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/priv/tcpip_priv.h" projectpath="lwip/src/include/lwip/priv" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/prot/acd.h" projectpath="lwip/src/include/lwip/prot" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/prot/autoip.h" projectpath="lwip/src/include/lwip/prot" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/prot/dhcp.h" projectpath="lwip/src/include/lwip/prot" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/prot/dhcp6.h" projectpath="lwip/src/include/lwip/prot" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/prot/dns.h" projectpath="lwip/src/include/lwip/prot" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/prot/etharp.h" projectpath="lwip/src/include/lwip/prot" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/prot/ethernet.h" projectpath="lwip/src/include/lwip/prot" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/prot/iana.h" projectpath="lwip/src/include/lwip/prot" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/prot/icmp.h" projectpath="lwip/src/include/lwip/prot" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/prot/icmp6.h" projectpath="lwip/src/include/lwip/prot" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/prot/ieee.h" projectpath="lwip/src/include/lwip/prot" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/prot/igmp.h" projectpath="lwip/src/include/lwip/prot" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/prot/ip.h" projectpath="lwip/src/include/lwip/prot" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/prot/ip4.h" projectpath="lwip/src/include/lwip/prot" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/prot/ip6.h" projectpath="lwip/src/include/lwip/prot" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/prot/mld6.h" projectpath="lwip/src/include/lwip/prot" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/prot/nd6.h" projectpath="lwip/src/include/lwip/prot" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/prot/tcp.h" projectpath="lwip/src/include/lwip/prot" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/prot/udp.h" projectpath="lwip/src/include/lwip/prot" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/bridgeif.h" projectpath="lwip/src/include/netif" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/bridgeif_opts.h" projectpath="lwip/src/include/netif" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/etharp.h" projectpath="lwip/src/include/netif" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/ethernet.h" projectpath="lwip/src/include/netif" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/ieee802154.h" projectpath="lwip/src/include/netif" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/lowpan6.h" projectpath="lwip/src/include/netif" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/lowpan6_ble.h" projectpath="lwip/src/include/netif" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/lowpan6_common.h" projectpath="lwip/src/include/netif" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/lowpan6_opts.h" projectpath="lwip/src/include/netif" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/ppp/ccp.h" projectpath="lwip/src/include/netif/ppp" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/ppp/chap-md5.h" projectpath="lwip/src/include/netif/ppp" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/ppp/chap-new.h" projectpath="lwip/src/include/netif/ppp" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/ppp/chap_ms.h" projectpath="lwip/src/include/netif/ppp" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/ppp/eap.h" projectpath="lwip/src/include/netif/ppp" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/ppp/ecp.h" projectpath="lwip/src/include/netif/ppp" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/ppp/eui64.h" projectpath="lwip/src/include/netif/ppp" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/ppp/fsm.h" projectpath="lwip/src/include/netif/ppp" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/ppp/ipcp.h" projectpath="lwip/src/include/netif/ppp" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/ppp/ipv6cp.h" projectpath="lwip/src/include/netif/ppp" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/ppp/lcp.h" projectpath="lwip/src/include/netif/ppp" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/ppp/magic.h" projectpath="lwip/src/include/netif/ppp" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/ppp/mppe.h" projectpath="lwip/src/include/netif/ppp" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/ppp/polarssl/arc4.h" projectpath="lwip/src/include/netif/ppp/polarssl" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/ppp/polarssl/des.h" projectpath="lwip/src/include/netif/ppp/polarssl" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/ppp/polarssl/md4.h" projectpath="lwip/src/include/netif/ppp/polarssl" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/ppp/polarssl/md5.h" projectpath="lwip/src/include/netif/ppp/polarssl" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/ppp/polarssl/sha1.h" projectpath="lwip/src/include/netif/ppp/polarssl" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/ppp/ppp.h" projectpath="lwip/src/include/netif/ppp" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/ppp/ppp_impl.h" projectpath="lwip/src/include/netif/ppp" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/ppp/ppp_opts.h" projectpath="lwip/src/include/netif/ppp" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/ppp/pppapi.h" projectpath="lwip/src/include/netif/ppp" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/ppp/pppcrypt.h" projectpath="lwip/src/include/netif/ppp" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/ppp/pppdebug.h" projectpath="lwip/src/include/netif/ppp" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/ppp/pppoe.h" projectpath="lwip/src/include/netif/ppp" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/ppp/pppol2tp.h" projectpath="lwip/src/include/netif/ppp" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/ppp/pppos.h" projectpath="lwip/src/include/netif/ppp" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/ppp/upap.h" projectpath="lwip/src/include/netif/ppp" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/ppp/vj.h" projectpath="lwip/src/include/netif/ppp" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/slipif.h" projectpath="lwip/src/include/netif" path="middleware/lwip/src"/>
+          <file category="header" name="middleware/lwip/src/include/netif/zepif.h" projectpath="lwip/src/include/netif" path="middleware/lwip/src"/>
+          <file category="sourceC" name="middleware/lwip/src/netif/bridgeif.c" projectpath="lwip/src/netif"/>
+          <file category="sourceC" name="middleware/lwip/src/netif/bridgeif_fdb.c" projectpath="lwip/src/netif"/>
+          <file category="sourceC" name="middleware/lwip/src/netif/ethernet.c" projectpath="lwip/src/netif"/>
+          <file category="sourceC" name="middleware/lwip/src/netif/lowpan6.c" projectpath="lwip/src/netif"/>
+          <file category="sourceC" name="middleware/lwip/src/netif/lowpan6_ble.c" projectpath="lwip/src/netif"/>
+          <file category="sourceC" name="middleware/lwip/src/netif/lowpan6_common.c" projectpath="lwip/src/netif"/>
+          <file category="sourceC" name="middleware/lwip/src/netif/slipif.c" projectpath="lwip/src/netif"/>
+          <file category="sourceC" name="middleware/lwip/src/netif/zepif.c" projectpath="lwip/src/netif"/>
+          <file category="doc" name="middleware/lwip/src/netif/FILES" projectpath="lwip/src/netif"/>
+          <file category="sourceC" name="middleware/lwip/src/netif/ppp/auth.c" projectpath="lwip/src/netif/ppp"/>
+          <file category="sourceC" name="middleware/lwip/src/netif/ppp/ccp.c" projectpath="lwip/src/netif/ppp"/>
+          <file category="sourceC" name="middleware/lwip/src/netif/ppp/chap-md5.c" projectpath="lwip/src/netif/ppp"/>
+          <file category="sourceC" name="middleware/lwip/src/netif/ppp/chap-new.c" projectpath="lwip/src/netif/ppp"/>
+          <file category="sourceC" name="middleware/lwip/src/netif/ppp/chap_ms.c" projectpath="lwip/src/netif/ppp"/>
+          <file category="sourceC" name="middleware/lwip/src/netif/ppp/demand.c" projectpath="lwip/src/netif/ppp"/>
+          <file category="sourceC" name="middleware/lwip/src/netif/ppp/eap.c" projectpath="lwip/src/netif/ppp"/>
+          <file category="sourceC" name="middleware/lwip/src/netif/ppp/ecp.c" projectpath="lwip/src/netif/ppp"/>
+          <file category="sourceC" name="middleware/lwip/src/netif/ppp/eui64.c" projectpath="lwip/src/netif/ppp"/>
+          <file category="sourceC" name="middleware/lwip/src/netif/ppp/fsm.c" projectpath="lwip/src/netif/ppp"/>
+          <file category="sourceC" name="middleware/lwip/src/netif/ppp/ipcp.c" projectpath="lwip/src/netif/ppp"/>
+          <file category="sourceC" name="middleware/lwip/src/netif/ppp/ipv6cp.c" projectpath="lwip/src/netif/ppp"/>
+          <file category="sourceC" name="middleware/lwip/src/netif/ppp/lcp.c" projectpath="lwip/src/netif/ppp"/>
+          <file category="sourceC" name="middleware/lwip/src/netif/ppp/magic.c" projectpath="lwip/src/netif/ppp"/>
+          <file category="sourceC" name="middleware/lwip/src/netif/ppp/mppe.c" projectpath="lwip/src/netif/ppp"/>
+          <file category="sourceC" name="middleware/lwip/src/netif/ppp/multilink.c" projectpath="lwip/src/netif/ppp"/>
+          <file category="sourceC" name="middleware/lwip/src/netif/ppp/ppp.c" projectpath="lwip/src/netif/ppp"/>
+          <file category="sourceC" name="middleware/lwip/src/netif/ppp/pppapi.c" projectpath="lwip/src/netif/ppp"/>
+          <file category="sourceC" name="middleware/lwip/src/netif/ppp/pppcrypt.c" projectpath="lwip/src/netif/ppp"/>
+          <file category="sourceC" name="middleware/lwip/src/netif/ppp/pppoe.c" projectpath="lwip/src/netif/ppp"/>
+          <file category="sourceC" name="middleware/lwip/src/netif/ppp/pppol2tp.c" projectpath="lwip/src/netif/ppp"/>
+          <file category="sourceC" name="middleware/lwip/src/netif/ppp/pppos.c" projectpath="lwip/src/netif/ppp"/>
+          <file category="sourceC" name="middleware/lwip/src/netif/ppp/upap.c" projectpath="lwip/src/netif/ppp"/>
+          <file category="sourceC" name="middleware/lwip/src/netif/ppp/utils.c" projectpath="lwip/src/netif/ppp"/>
+          <file category="sourceC" name="middleware/lwip/src/netif/ppp/vj.c" projectpath="lwip/src/netif/ppp"/>
+          <file category="doc" name="middleware/lwip/src/netif/ppp/PPPD_FOLLOWUP" projectpath="lwip/src/netif/ppp"/>
+          <file category="doc" name="middleware/lwip/src/netif/ppp/polarssl/README" projectpath="lwip/src/netif/ppp/polarssl"/>
+          <file category="include" name="middleware/lwip/port/"/>
+          <file category="include" name="middleware/lwip/src/"/>
+          <file category="include" name="middleware/lwip/src/include/"/>
+        </files>
+      </component>
+      <component Cgroup="lwIP TCPIP Application protocols" Csub="httpd" Cversion="2.2.0-rev10" condition="middleware.lwip.apps.httpd.condition_id">
+        <description>lwIP HTTP Daemon</description>
+        <files>
+          <file category="sourceC" name="middleware/lwip/src/apps/http/httpd.c" projectpath="lwip/src/apps/http"/>
+        </files>
+      </component>
+      <component Cgroup="lwIP TCPIP Application protocols" Csub="support" Cversion="2.2.0-rev10" condition="middleware.lwip.apps.httpd.support.condition_id">
+        <description>lwIP HTTP Daemon Implementation Support Files</description>
+        <files>
+          <file category="sourceC" name="middleware/lwip/src/apps/http/fs.c" projectpath="lwip/src/apps/http"/>
+          <file category="header" name="middleware/lwip/src/apps/http/fsdata.h" projectpath="lwip/src/apps/http"/>
+          <file category="header" name="middleware/lwip/src/apps/http/httpd_structs.h" projectpath="lwip/src/apps/http"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/apps/fs.h" projectpath="lwip/src/include/lwip/apps"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/apps/httpd.h" projectpath="lwip/src/include/lwip/apps"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/apps/httpd_opts.h" projectpath="lwip/src/include/lwip/apps"/>
+          <file category="doc" name="middleware/lwip/src/apps/http/makefsdata/readme.txt" projectpath="lwip/src/apps/http/makefsdata"/>
+          <file category="include" name="middleware/lwip/src/apps/http/"/>
+          <file category="include" name="middleware/lwip/src/include/lwip/apps/"/>
+        </files>
+      </component>
+      <component Cgroup="lwIP TCPIP Application protocols" Csub="httpsrv" Cversion="2.2.0-rev10" condition="middleware.lwip.apps.httpsrv.condition_id">
+        <description>lwIP HTTP Server Implementation</description>
+        <Pre_Include_Global_h>
+#ifndef USE_RTOS
+#define USE_RTOS 1
+#endif
+</Pre_Include_Global_h>
+        <files>
+          <file category="sourceC" name="middleware/lwip/src/apps/httpsrv/httpsrv.c" projectpath="lwip/src/apps/httpsrv"/>
+          <file category="header" name="middleware/lwip/src/apps/httpsrv/httpsrv.h" projectpath="lwip/src/apps/httpsrv"/>
+          <file category="sourceC" name="middleware/lwip/src/apps/httpsrv/httpsrv_base64.c" projectpath="lwip/src/apps/httpsrv"/>
+          <file category="header" name="middleware/lwip/src/apps/httpsrv/httpsrv_base64.h" projectpath="lwip/src/apps/httpsrv"/>
+          <file category="header" name="middleware/lwip/src/apps/httpsrv/httpsrv_config.h" projectpath="lwip/src/apps/httpsrv"/>
+          <file category="sourceC" name="middleware/lwip/src/apps/httpsrv/httpsrv_fs.c" projectpath="lwip/src/apps/httpsrv"/>
+          <file category="header" name="middleware/lwip/src/apps/httpsrv/httpsrv_fs.h" projectpath="lwip/src/apps/httpsrv"/>
+          <file category="header" name="middleware/lwip/src/apps/httpsrv/httpsrv_port.h" projectpath="lwip/src/apps/httpsrv"/>
+          <file category="header" name="middleware/lwip/src/apps/httpsrv/httpsrv_prv.h" projectpath="lwip/src/apps/httpsrv"/>
+          <file category="sourceC" name="middleware/lwip/src/apps/httpsrv/httpsrv_script.c" projectpath="lwip/src/apps/httpsrv"/>
+          <file category="header" name="middleware/lwip/src/apps/httpsrv/httpsrv_script.h" projectpath="lwip/src/apps/httpsrv"/>
+          <file category="sourceC" name="middleware/lwip/src/apps/httpsrv/httpsrv_sha1.c" projectpath="lwip/src/apps/httpsrv"/>
+          <file category="header" name="middleware/lwip/src/apps/httpsrv/httpsrv_sha1.h" projectpath="lwip/src/apps/httpsrv"/>
+          <file category="sourceC" name="middleware/lwip/src/apps/httpsrv/httpsrv_supp.c" projectpath="lwip/src/apps/httpsrv"/>
+          <file category="header" name="middleware/lwip/src/apps/httpsrv/httpsrv_supp.h" projectpath="lwip/src/apps/httpsrv"/>
+          <file category="sourceC" name="middleware/lwip/src/apps/httpsrv/httpsrv_task.c" projectpath="lwip/src/apps/httpsrv"/>
+          <file category="sourceC" name="middleware/lwip/src/apps/httpsrv/httpsrv_tls.c" projectpath="lwip/src/apps/httpsrv"/>
+          <file category="header" name="middleware/lwip/src/apps/httpsrv/httpsrv_tls.h" projectpath="lwip/src/apps/httpsrv"/>
+          <file category="sourceC" name="middleware/lwip/src/apps/httpsrv/httpsrv_utf8.c" projectpath="lwip/src/apps/httpsrv"/>
+          <file category="header" name="middleware/lwip/src/apps/httpsrv/httpsrv_utf8.h" projectpath="lwip/src/apps/httpsrv"/>
+          <file category="sourceC" name="middleware/lwip/src/apps/httpsrv/httpsrv_ws.c" projectpath="lwip/src/apps/httpsrv"/>
+          <file category="header" name="middleware/lwip/src/apps/httpsrv/httpsrv_ws.h" projectpath="lwip/src/apps/httpsrv"/>
+          <file category="sourceC" name="middleware/lwip/src/apps/httpsrv/httpsrv_ws_api.c" projectpath="lwip/src/apps/httpsrv"/>
+          <file category="header" name="middleware/lwip/src/apps/httpsrv/httpsrv_ws_prv.h" projectpath="lwip/src/apps/httpsrv"/>
+          <file category="include" name="middleware/lwip/src/apps/httpsrv/"/>
+        </files>
+      </component>
+      <component Cgroup="lwIP TCPIP Application protocols" Csub="httpssrv" Cversion="2.2.0-rev10" condition="middleware.lwip.apps.httpssrv.condition_id">
+        <description>lwIP HTTPS Server Implementation</description>
+        <Pre_Include_Global_h>
+#ifndef MBEDTLS_THREADING_C
+#define MBEDTLS_THREADING_C 
+#endif
+#ifndef MBEDTLS_THREADING_ALT
+#define MBEDTLS_THREADING_ALT 
+#endif
+</Pre_Include_Global_h>
+        <files>
+          <file category="doc" name="middleware/lwip/README" projectpath="lwip"/>
+          <file category="include" name="middleware/lwip/src/apps/httpsrv/"/>
+        </files>
+      </component>
+      <component Cgroup="lwIP TCPIP Application protocols" Csub="lwiperf" Cversion="2.2.0-rev10" condition="middleware.lwip.apps.lwiperf.condition_id">
+        <description>lwIP IPERF Implementation</description>
+        <Pre_Include_Global_h>
+#ifndef SO_REUSE
+#define SO_REUSE 1
+#endif
+</Pre_Include_Global_h>
+        <files>
+          <file category="sourceC" name="middleware/lwip/src/apps/lwiperf/lwiperf.c" projectpath="lwip/src/apps/lwiperf"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/apps/lwiperf.h" projectpath="lwip/src/include/lwip/apps"/>
+          <file category="include" name="middleware/lwip/src/include/lwip/apps/"/>
+        </files>
+      </component>
+      <component Cgroup="lwIP TCPIP Application protocols" Csub="mdns" Cversion="2.2.0-rev10" condition="middleware.lwip.apps.mdns.condition_id">
+        <description>lwIP mDNS Implementation</description>
+        <files>
+          <file category="sourceC" name="middleware/lwip/src/apps/mdns/mdns.c" projectpath="lwip/src/apps/mdns"/>
+          <file category="sourceC" name="middleware/lwip/src/apps/mdns/mdns_domain.c" projectpath="lwip/src/apps/mdns"/>
+          <file category="sourceC" name="middleware/lwip/src/apps/mdns/mdns_out.c" projectpath="lwip/src/apps/mdns"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/apps/mdns.h" projectpath="lwip/src/include/lwip/apps"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/apps/mdns_domain.h" projectpath="lwip/src/include/lwip/apps"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/apps/mdns_priv.h" projectpath="lwip/src/include/lwip/apps"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/apps/mdns_opts.h" projectpath="lwip/src/include/lwip/apps"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/apps/mdns_out.h" projectpath="lwip/src/include/lwip/apps"/>
+          <file category="include" name="middleware/lwip/src/include/lwip/apps/"/>
+        </files>
+      </component>
+      <component Cgroup="lwIP TCPIP Application protocols" Csub="mqtt" Cversion="2.2.0-rev10" condition="middleware.lwip.apps.mqtt.condition_id">
+        <description>lwIP MQTT Client</description>
+        <files>
+          <file category="sourceC" name="middleware/lwip/src/apps/mqtt/mqtt.c" projectpath="lwip/src/apps/mqtt"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/apps/mqtt.h" projectpath="lwip/src/include/lwip/apps"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/apps/mqtt_opts.h" projectpath="lwip/src/include/lwip/apps"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/apps/mqtt_priv.h" projectpath="lwip/src/include/lwip/apps"/>
+          <file category="include" name="middleware/lwip/src/include/lwip/apps/"/>
+        </files>
+      </component>
+      <component Cgroup="lwIP TCPIP Application protocols" Csub="sntp" Cversion="2.2.0-rev10" condition="middleware.lwip.apps.sntp.condition_id">
+        <description>lwIP SNTP</description>
+        <files>
+          <file category="header" name="middleware/lwip/src/include/lwip/apps/sntp.h" projectpath="lwip/src/include/lwip/apps"/>
+          <file category="header" name="middleware/lwip/src/include/lwip/apps/sntp_opts.h" projectpath="lwip/src/include/lwip/apps"/>
+          <file category="sourceC" name="middleware/lwip/src/apps/sntp/sntp.c" projectpath="lwip/src/apps/sntp"/>
+          <file category="include" name="middleware/lwip/src/include/lwip/apps/"/>
+        </files>
+      </component>
+      <component Cgroup="lwIP TCPIP Application protocols" Csub="ping" Cversion="2.2.0-rev10" condition="middleware.lwip.contrib.ping.condition_id">
+        <description>lwIP Ping Sender contrib</description>
+        <files>
+          <file category="sourceC" name="middleware/lwip/contrib/apps/ping/ping.c" projectpath="lwip/contrib/apps/ping"/>
+          <file category="header" name="middleware/lwip/contrib/apps/ping/ping.h" projectpath="lwip/contrib/apps/ping"/>
+          <file category="include" name="middleware/lwip/contrib/apps/ping/"/>
+        </files>
+      </component>
+      <component Cgroup="lwIP TCPIP Application protocols" Csub="tcpecho" Cversion="2.2.0-rev10" condition="middleware.lwip.contrib.tcpecho.condition_id">
+        <description>lwIP TCP Echo contrib</description>
+        <files>
+          <file category="sourceC" name="middleware/lwip/contrib/apps/tcpecho/tcpecho.c" projectpath="lwip/contrib/apps/tcpecho"/>
+          <file category="header" name="middleware/lwip/contrib/apps/tcpecho/tcpecho.h" projectpath="lwip/contrib/apps/tcpecho"/>
+          <file category="include" name="middleware/lwip/contrib/apps/tcpecho/"/>
+        </files>
+      </component>
+      <component Cgroup="lwIP TCPIP Application protocols" Csub="tcpecho_raw" Cversion="2.2.0-rev10" condition="middleware.lwip.contrib.tcpecho_raw.condition_id">
+        <description>lwIP TCP Echo Raw API contrib</description>
+        <files>
+          <file category="sourceC" name="middleware/lwip/contrib/apps/tcpecho_raw/tcpecho_raw.c" projectpath="lwip/contrib/apps/tcpecho_raw"/>
+          <file category="header" name="middleware/lwip/contrib/apps/tcpecho_raw/tcpecho_raw.h" projectpath="lwip/contrib/apps/tcpecho_raw"/>
+          <file category="include" name="middleware/lwip/contrib/apps/tcpecho_raw/"/>
+        </files>
+      </component>
+      <component Cgroup="lwIP TCPIP Application protocols" Csub="udpecho" Cversion="2.2.0-rev10" condition="middleware.lwip.contrib.udpecho.condition_id">
+        <description>lwIP UDP Echo contrib</description>
+        <files>
+          <file category="sourceC" name="middleware/lwip/contrib/apps/udpecho/udpecho.c" projectpath="lwip/contrib/apps/udpecho"/>
+          <file category="header" name="middleware/lwip/contrib/apps/udpecho/udpecho.h" projectpath="lwip/contrib/apps/udpecho"/>
+          <file category="include" name="middleware/lwip/contrib/apps/udpecho/"/>
+        </files>
+      </component>
+      <component Cgroup="lwIP TCPIP Application protocols" Csub="udpecho_raw" Cversion="2.2.0-rev10" condition="middleware.lwip.contrib.udpecho_raw.condition_id">
+        <description>lwIP UDP Echo Raw API contrib</description>
+        <files>
+          <file category="sourceC" name="middleware/lwip/contrib/apps/udpecho_raw/udpecho_raw.c" projectpath="lwip/contrib/apps/udpecho_raw"/>
+          <file category="header" name="middleware/lwip/contrib/apps/udpecho_raw/udpecho_raw.h" projectpath="lwip/contrib/apps/udpecho_raw"/>
+          <file category="include" name="middleware/lwip/contrib/apps/udpecho_raw/"/>
+        </files>
+      </component>
+      <component Cgroup="lwIP TCPIP Networking Stack" Csub="empty_ethernetif" Cversion="2.2.0-rev10">
+        <description>Empty ethernet interface</description>
+        <files>
+          <file category="doc" name="middleware/lwip/README" projectpath="lwip"/>
+          <file category="include" name="middleware/lwip/port/"/>
+        </files>
+      </component>
+      <component Cgroup="lwIP TCPIP Networking Stack" Csub="enet_ethernetif" Cversion="2.2.0-rev10" condition="middleware.lwip.enet_ethernetif.condition_id">
+        <description>Enet ethernet interface</description>
+        <Pre_Include_Global_h>
+#ifndef LWIP_DISABLE_PBUF_POOL_SIZE_SANITY_CHECKS
+#define LWIP_DISABLE_PBUF_POOL_SIZE_SANITY_CHECKS 1
+#endif
+</Pre_Include_Global_h>
+        <files>
+          <file category="sourceC" name="middleware/lwip/port/enet_ethernetif.c" projectpath="lwip/port"/>
+          <file category="sourceC" name="middleware/lwip/port/ethernetif.c" projectpath="lwip/port"/>
+          <file category="header" name="middleware/lwip/port/ethernetif.h" projectpath="lwip/port"/>
+          <file category="sourceC" name="middleware/lwip/port/ethernetif_mmac.c" projectpath="lwip/port"/>
+          <file category="header" name="middleware/lwip/port/ethernetif_mmac.h" projectpath="lwip/port"/>
+          <file category="header" name="middleware/lwip/port/ethernetif_priv.h" projectpath="lwip/port"/>
+          <file category="header" name="middleware/lwip/port/enet_configchecks.h" projectpath="lwip/port"/>
+          <file condition="allOf.components=driver.lpc_enet.condition_id" category="sourceC" name="middleware/lwip/port/enet_ethernetif_lpc.c" projectpath="lwip/port"/>
+          <file condition="allOf.components=driver.enet_qos.condition_id" category="sourceC" name="middleware/lwip/port/enet_ethernetif_qos.c" projectpath="lwip/port"/>
+          <file category="include" name="middleware/lwip/port/"/>
+        </files>
+      </component>
+      <component Cgroup="lwIP TCPIP Networking Stack" Csub="eoe_ethernetif" Cversion="2.2.0-rev10" condition="middleware.lwip.eoe_ethernetif.condition_id">
+        <description>EtherCAT EOE ethernet interface</description>
+        <Pre_Include_Global_h>
+#ifndef CHECKSUM_GEN_IP
+#define CHECKSUM_GEN_IP 1
+#endif
+#ifndef CHECKSUM_GEN_UDP
+#define CHECKSUM_GEN_UDP 1
+#endif
+#ifndef CHECKSUM_GEN_TCP
+#define CHECKSUM_GEN_TCP 1
+#endif
+#ifndef CHECKSUM_GEN_ICMP
+#define CHECKSUM_GEN_ICMP 1
+#endif
+#ifndef CHECKSUM_CHECK_ICMP
+#define CHECKSUM_CHECK_ICMP 1
+#endif
+</Pre_Include_Global_h>
+        <files>
+          <file category="sourceC" name="middleware/lwip/port/eoe_ethernetif.c" projectpath="lwip/port"/>
+          <file category="header" name="middleware/lwip/port/eoe_ethernetif.h" projectpath="lwip/port"/>
+          <file category="include" name="middleware/lwip/port/"/>
+        </files>
+      </component>
+      <component Cgroup="lwIP TCPIP Networking Stack" Csub="kinetis_ethernetif" Cversion="2.2.0-rev10" condition="middleware.lwip.kinetis_ethernetif.condition_id">
+        <description>Kinetis ethernet interface</description>
+        <Pre_Include_Global_h>
+#ifndef LWIP_DISABLE_PBUF_POOL_SIZE_SANITY_CHECKS
+#define LWIP_DISABLE_PBUF_POOL_SIZE_SANITY_CHECKS 1
+#endif
+#ifndef CHECKSUM_GEN_ICMP6
+#define CHECKSUM_GEN_ICMP6 1
+#endif
+#ifndef CHECKSUM_CHECK_ICMP6
+#define CHECKSUM_CHECK_ICMP6 1
+#endif
+</Pre_Include_Global_h>
+        <files>
+          <file category="sourceC" name="middleware/lwip/port/enet_ethernetif.c" projectpath="lwip/port"/>
+          <file category="sourceC" name="middleware/lwip/port/ethernetif.c" projectpath="lwip/port"/>
+          <file category="header" name="middleware/lwip/port/ethernetif.h" projectpath="lwip/port"/>
+          <file category="sourceC" name="middleware/lwip/port/ethernetif_mmac.c" projectpath="lwip/port"/>
+          <file category="header" name="middleware/lwip/port/ethernetif_mmac.h" projectpath="lwip/port"/>
+          <file category="header" name="middleware/lwip/port/ethernetif_priv.h" projectpath="lwip/port"/>
+          <file category="header" name="middleware/lwip/port/kinetis_configchecks.h" projectpath="lwip/port"/>
+          <file category="sourceC" name="middleware/lwip/port/enet_ethernetif_kinetis.c" projectpath="lwip/port"/>
+          <file category="include" name="middleware/lwip/port/"/>
+        </files>
+      </component>
+      <component Cgroup="lwIP TCPIP Networking Stack" Csub="mcx_ethernetif" Cversion="2.2.0-rev10" condition="middleware.lwip.mcx_ethernetif.condition_id">
+        <description>MCX ethernet interface</description>
+        <Pre_Include_Global_h>
+#ifndef LWIP_DISABLE_PBUF_POOL_SIZE_SANITY_CHECKS
+#define LWIP_DISABLE_PBUF_POOL_SIZE_SANITY_CHECKS 1
+#endif
+</Pre_Include_Global_h>
+        <files>
+          <file category="sourceC" name="middleware/lwip/port/enet_ethernetif.c" projectpath="lwip/port"/>
+          <file category="sourceC" name="middleware/lwip/port/ethernetif.c" projectpath="lwip/port"/>
+          <file category="header" name="middleware/lwip/port/ethernetif.h" projectpath="lwip/port"/>
+          <file category="sourceC" name="middleware/lwip/port/ethernetif_mmac.c" projectpath="lwip/port"/>
+          <file category="header" name="middleware/lwip/port/ethernetif_mmac.h" projectpath="lwip/port"/>
+          <file category="header" name="middleware/lwip/port/ethernetif_priv.h" projectpath="lwip/port"/>
+          <file category="header" name="middleware/lwip/port/enet_configchecks.h" projectpath="lwip/port"/>
+          <file category="sourceC" name="middleware/lwip/port/enet_ethernetif_lpc.c" projectpath="lwip/port"/>
+          <file category="include" name="middleware/lwip/port/"/>
+        </files>
+      </component>
+      <component Cgroup="lwIP TCPIP Networking Stack" Csub="netc_ethernetif" Cversion="2.2.0-rev10" condition="middleware.lwip.netc_ethernetif.condition_id">
+        <description>NETC ethernet interface</description>
+        <Pre_Include_Global_h>
+#ifndef LWIP_DISABLE_PBUF_POOL_SIZE_SANITY_CHECKS
+#define LWIP_DISABLE_PBUF_POOL_SIZE_SANITY_CHECKS 1
+#endif
+#ifndef CHECKSUM_GEN_IP
+#define CHECKSUM_GEN_IP 1
+#endif
+#ifndef CHECKSUM_GEN_UDP
+#define CHECKSUM_GEN_UDP 1
+#endif
+#ifndef CHECKSUM_GEN_TCP
+#define CHECKSUM_GEN_TCP 1
+#endif
+#ifndef CHECKSUM_GEN_ICMP
+#define CHECKSUM_GEN_ICMP 1
+#endif
+#ifndef CHECKSUM_GEN_ICMP6
+#define CHECKSUM_GEN_ICMP6 1
+#endif
+#ifndef CHECKSUM_CHECK_ICMP
+#define CHECKSUM_CHECK_ICMP 1
+#endif
+#ifndef CHECKSUM_CHECK_ICMP6
+#define CHECKSUM_CHECK_ICMP6 1
+#endif
+</Pre_Include_Global_h>
+        <files>
+          <file category="sourceC" name="middleware/lwip/port/ethernetif.c" projectpath="lwip/port"/>
+          <file category="header" name="middleware/lwip/port/ethernetif.h" projectpath="lwip/port"/>
+          <file category="header" name="middleware/lwip/port/ethernetif_mmac.h" projectpath="lwip/port"/>
+          <file category="sourceC" name="middleware/lwip/port/ethernetif_mmac.c" projectpath="lwip/port"/>
+          <file category="header" name="middleware/lwip/port/ethernetif_priv.h" projectpath="lwip/port"/>
+          <file category="header" name="middleware/lwip/port/netc_configchecks.h" projectpath="lwip/port"/>
+          <file category="sourceC" name="middleware/lwip/port/netc_ethernetif.c" projectpath="lwip/port"/>
+          <file category="include" name="middleware/lwip/port/"/>
+        </files>
+      </component>
+      <component Cgroup="lwIP TCPIP Networking Stack" Csub="template" Cversion="2.2.0-rev10">
+        <description>lwIP Template</description>
+        <files>
+          <file category="header" attr="config" name="middleware/lwip/template/lwipopts.h" version="2.2.0-rev10" projectpath="lwip/template"/>
+          <file category="doc" name="middleware/lwip/lwIP NXP_dummy.txt"/>
+        </files>
+      </component>
+      <component Cgroup="lwIP TCPIP Networking Stack" Csub="usb_ethernetif" Cversion="2.2.0-rev10" condition="middleware.lwip.usb_ethernetif.condition_id">
+        <description>USB network layer</description>
+        <files>
+          <file condition="allOf.components=middleware.baremetal.condition_id" category="sourceC" name="middleware/lwip/port/usb_ethernetif_bm.c" projectpath="lwip/port"/>
+          <file condition="allOf.components=middleware.freertos-kernel.condition_id" category="sourceC" name="middleware/lwip/port/usb_ethernetif_freertos.c" projectpath="lwip/port"/>
+          <file category="header" name="middleware/lwip/port/usb_ethernetif.h" projectpath="lwip/port"/>
+          <file category="include" name="middleware/lwip/port/"/>
+        </files>
+      </component>
+    </bundle>
+  </components>
+</package>

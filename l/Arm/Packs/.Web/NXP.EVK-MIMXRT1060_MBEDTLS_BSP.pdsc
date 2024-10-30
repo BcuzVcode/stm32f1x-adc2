@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>EVK-MIMXRT1060_MBEDTLS_BSP</name>
+  <vendor>NXP</vendor>
+  <description>Middleware mbedtls Board Support Pack for EVK-MIMXRT1060</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="1.0.1" date="2023-10-25" deprecated="2023-10-25" replacement="NXP.EVK-MIMXRT1060_MBEDTLS_Examples">This pack is no longer maintained. The new pack has been released with "_Examples" suffix instead of "_BSP".</release>
+    <release version="1.0.0" date="2023-07-27">NXP CMSIS SBSP Packs based on MCUXpresso SDK 2.14.0</release>
+  </releases>
+  <keywords>
+    <keyword>Middleware Board Support Pack</keyword>
+  </keywords>
+  <requirements>
+    <packages>
+      <package name="MIMXRT1062_DFP" vendor="NXP" version="18.0.0"/>
+      <package name="MBEDTLS" vendor="NXP" version="1.0.1"/>
+      <package name="EVK-MIMXRT1060_BSP" vendor="NXP" version="18.0.0"/>
+      <package name="CMSIS" vendor="ARM" version="5.8.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <boards>
+    <board vendor="NXP" name="EVK-MIMXRT1060">
+      <description>MIMXRT1060-EVK: i.MX RT1060 Evaluation Kit</description>
+      <image small="boards/evkmimxrt1060/evkmimxrt1060.png"/>
+      <mountedDevice Dname="MIMXRT1062xxxxA" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1061CVJ5A" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1061CVL5A" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1061DVJ6A" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1061DVL6A" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1061CVJ5B" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1061CVL5B" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1061DVJ6B" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1061DVL6B" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1061XVN5B" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1062CVJ5B" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1062CVL5B" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1062DVJ6B" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1062DVL6B" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1062DVN6B" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1062XVN5B" Dvendor="NXP:11"/>
+    </board>
+  </boards>
+  <examples>
+    <example name="mbedtls_selftest" folder="boards/evkmimxrt1060/mbedtls_examples/mbedtls_selftest" doc="readme.txt">
+      <description>The mbedTLS SelfTest program performs cryptographic algorithm testing and prints results to the terminal.</description>
+      <board name="EVK-MIMXRT1060" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/mbedtls_selftest.uvprojx"/>
+        <environment name="iar" load="iar/mbedtls_selftest.ewp"/>
+        <environment name="csolution" load="mbedtls_selftest.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="mbedtls_benchmark" folder="boards/evkmimxrt1060/mbedtls_examples/mbedtls_benchmark" doc="readme.txt">
+      <description>The mbdedTLS Benchmark demo application performs cryptographic algorithm benchmarking and prints results to the terminal.</description>
+      <board name="EVK-MIMXRT1060" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/mbedtls_benchmark.uvprojx"/>
+        <environment name="iar" load="iar/mbedtls_benchmark.ewp"/>
+        <environment name="csolution" load="mbedtls_benchmark.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+  </examples>
+</package>

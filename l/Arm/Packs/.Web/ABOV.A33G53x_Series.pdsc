@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package schemaVersion="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>ABOV</vendor>
+  <name>A33G53x_Series</name>
+  <description>ABOV Semiconductor A33G53x Series Device Support, Drivers and Examples</description>
+  <url>https://www.abov.co.kr/data/mds/PACK/</url>
+  <supportContact>abov_fae@abov.co.kr</supportContact>
+  <releases>
+    <release version="1.0.0" date="2023-11-06">
+            First Release version of ABOV A33G53x Series DeviceFamilyPack.
+            - A33G53x Seriesdevice : A33G539/A33G538
+    </release>
+  </releases>
+  <keywords>
+    <keyword>ABOV</keyword>
+    <keyword>A33G53x Series</keyword>
+    <keyword>General Purpose</keyword>
+  </keywords>
+  <devices>
+    <family Dfamily="A33G53x Series" Dvendor="ABOV Semiconductor:126">
+      <processor Dcore="Cortex-M3" DcoreVersion="r1p0" Dfpu="0" Dmpu="0" Dendian="Little-endian" />
+      <description>The ABOV A33G53x Series device family contains an ARM Cortex-M3 processor with a versatile set of on-chip peripherals.</description>
+      <!-- Subfamily : A33G539 *********************************************************-->
+      <subFamily DsubFamily="A33G53x">
+        <processor Dclock="75000000" />
+        <compile header="A33G53x\Core\Include\A33G53x.h" />
+        <debug svd="A33G53x\SVD\A33G53x.svd" />
+        <feature type="VCC" n="3.00" m="5.50" />
+        <feature type="Temp" n="-40" m="85" />
+		<!-- use for all devices of the family  -->
+        <memory id="IROM1" start="0x00000000" size="0xC0000" startup="1" default="1" />
+        <memory id="IRAM1" start="0x20000000" size="0x6000" init="0" default="1" />
+        <feature type="WDT" n="1" m="32" name="Watchdog Timer" />
+        <feature type="Other" n="1" m="32" name="FRT" />
+        <feature type="Timer" n="10" m="16" name="Timer" />
+        <feature type="PWM" n="8" m="16" name="PWM" />
+        <feature type="I2C" n="2" name="I2C" />
+        <feature type="UART" n="4" name="UART" />
+        <feature type="SPI" n="2" name="SPI" />
+
+        <!-- Device : A33G539 -->
+        <device Dname="A33G539">
+    	  <!-- finally, this is the default for the device -->
+          <description>768KB Code Flash, Package type 100MQFP/100LQFP</description>
+          <algorithm name="A33G53x\Flashloader\A33G539_Code_Flashloader.FLM" start="0x00000000" size="0xC0000" default="1" />
+		  <algorithm name="A33G53x\Flashloader\A33G539_Data_Flashloader.FLM" start="0x0F000000" size="0x8000" default="1" />
+          <memory id="IROM1" start="0x00000000" size="0xC0000" startup="1" default="1" />
+          <feature type="IOs" n="90" name="Inputs/Outputs" />
+          <feature type="QFP" n="100" name="MQFP" />
+		  <feature type="ADC" n="1" m="16" name="ADC" />
+        </device>
+        <!-- Device : A33G538 -->
+        <device Dname="A33G538">
+          <description>512KB Code Flash, Package type 64LQFP/</description>
+		  <!-- finally, this is the default for the device -->
+          <algorithm name="A33G53x\Flashloader\A33G538_Code_Flashloader.FLM" start="0x00000000" size="0x80000" default="1" />
+		  <algorithm name="A33G53x\Flashloader\A33G538_Data_Flashloader.FLM" start="0x0F000000" size="0x8000" default="1" />
+          <memory id="IROM1" start="0x00000000" size="0x80000" startup="1" default="1" />
+          <feature type="IOs" n="60" name="Inputs/Outputs" />
+          <feature type="QFP" n="64" name="LQFP" />
+		  <feature type="ADC" n="1" m="10" name="ADC" />
+        </device>
+      </subFamily>
+    </family>
+  </devices>
+  <conditions>
+     <!-- condition : A33G539/538 ********************************************************-->
+    <condition id="A33G53x CMSIS">
+      <description>A33G539, A33G538 device and CMSIS-Core</description>
+      <require Tcompiler="ARMCC" />
+      <require Cclass="CMSIS" Cgroup="CORE" />
+      <accept Dvendor="ABOV Semiconductor:126" Dname="A33G539" />
+      <accept Dvendor="ABOV Semiconductor:126" Dname="A33G538" />
+    </condition>
+  </conditions>
+  <components>
+    <!-- component : A33G539/538 *************************************************************-->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="A33G53x CMSIS">
+      <description>System Startup for ABOV A33G53x devices</description>
+      <files>
+        <file category="include" name="A33G53x\Core\Include\" />
+        <file category="include" name="A33G53x\Drivers\Include\" />
+        <file category="header" version="1.0.0" name="A33G53x\Core\Include\A33G53x.h" attr="config" />
+        <file category="source" version="1.0.0" name="A33G53x\Core\Source\ARM\startup_A33G53x.s" attr="config" />
+        <file category="header" version="1.0.0" name="A33G53x\Core\Include\system_A33G53x.h" attr="config" />
+        <file category="source" version="1.0.0" name="A33G53x\Core\Source\system_A33G53x.c" attr="config" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="Debug_frameWork" Cversion="1.0.0" condition="A33G53x CMSIS">
+      <description>A33G53x debug framework</description>
+      <files>
+        <file category="header" name="A33G53x\Drivers\Include\debug_frmwrk.h" />
+        <file category="source" name="A33G53x\Drivers\Source\debug_frmwrk.c" />
+		<file category="header" name="A33G53x\Drivers\Include\debug_cmd.h" />
+        <file category="source" name="A33G53x\Drivers\Source\debug_cmd.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="ADC" Cversion="1.0.0" condition="A33G53x CMSIS">
+      <description>A33G53x ADC control</description>
+      <files>
+        <file category="header" name="A33G53x\Drivers\Include\A33G53x_adc.h" />
+        <file category="source" name="A33G53x\Drivers\Source\A33G53x_adc.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="FMC" Cversion="1.0.0" condition="A33G53x CMSIS">
+      <description>A33G53x Flash Memory Controller</description>
+      <files>
+        <file category="header" name="A33G53x\Drivers\Include\A33G53x_flash.h" />
+        <file category="source" name="A33G53x\Drivers\Source\A33G53x_flash.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="FRT" Cversion="1.0.0" condition="A33G53x CMSIS">
+      <description>A33G53x 32-bit Free-Run Timer control</description>
+      <files>
+        <file category="header" name="A33G53x\Drivers\Include\A33G53x_frt.h" />
+        <file category="source" name="A33G53x\Drivers\Source\A33G53x_frt.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="GPIO" Cversion="1.0.0" condition="A33G53x CMSIS">
+      <description>A33G53x GPIO control</description>
+      <files>
+        <file category="header" name="A33G53x\Drivers\Include\A33G53x_gpio.h" />
+        <file category="source" name="A33G53x\Drivers\Source\A33G53x_gpio.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="I2C" Cversion="1.0.0" condition="A33G53x CMSIS">
+      <description>A33G53x I2C control</description>
+      <files>
+        <file category="header" name="A33G53x\Drivers\Include\A33G53x_i2c.h" />
+        <file category="source" name="A33G53x\Drivers\Source\A33G53x_i2c.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="PCU" Cversion="1.0.0" condition="A33G53x CMSIS">
+      <description>A33G53x Port Map controller</description>
+      <files>
+        <file category="header" name="A33G53x\Drivers\Include\A33G53x_pcu.h" />
+        <file category="source" name="A33G53x\Drivers\Source\A33G53x_pcu.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="PMU" Cversion="1.0.0" condition="A33G53x CMSIS">
+      <description>A33G53x Power Management Unit</description>
+      <files>
+        <file category="header" name="A33G53x\Drivers\Include\A33G53x_pmu.h" />
+        <file category="source" name="A33G53x\Drivers\Source\A33G53x_pmu.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="PWM" Cversion="1.0.0" condition="A33G53x CMSIS">
+      <description>A33G53x PWM control</description>
+      <files>
+        <file category="header" name="A33G53x\Drivers\Include\A33G53x_pwm.h" />
+        <file category="source" name="A33G53x\Drivers\Source\A33G53x_pwm.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="SPI" Cversion="1.0.0" condition="A33G53x CMSIS">
+      <description>A33G53x SPI control</description>
+      <files>
+        <file category="header" name="A33G53x\Drivers\Include\A33G53x_spi.h" />
+        <file category="source" name="A33G53x\Drivers\Source\A33G53x_spi.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="TIMER" Cversion="1.0.0" condition="A33G53x CMSIS">
+      <description>A33G53x Timer control</description>
+      <files>
+        <file category="header" name="A33G53x\Drivers\Include\A33G53x_timer.h" />
+        <file category="source" name="A33G53x\Drivers\Source\A33G53x_timer.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="UART" Cversion="1.0.0" condition="A33G53x CMSIS">
+      <description>A33G53x UART control</description>
+      <files>
+        <file category="header" name="A33G53x\Drivers\Include\A33G53x_uart.h" />
+        <file category="source" name="A33G53x\Drivers\Source\A33G53x_uart.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="WDT" Cversion="1.0.0" condition="A33G53x CMSIS">
+      <description>A33G53x WDT control</description>
+      <files>
+        <file category="header" name="A33G53x\Drivers\Include\A33G53x_wdt.h" />
+        <file category="source" name="A33G53x\Drivers\Source\A33G53x_wdt.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="NVIC" Cversion="1.0.0" condition="A33G53x CMSIS">
+      <description>A33G53x NVIC Control</description>
+      <files>
+        <file category="header" name="A33G53x\Drivers\Include\A33G53x_nvic.h" />
+        <file category="source" name="A33G53x\Drivers\Source\A33G53x_nvic.c" />
+      </files>
+    </component>
+  </components>
+  <boards>
+    <!-- component : A33G53x *************************************************************-->
+    <board vendor="ABOV" name="StarterKit-A33G539VLN" revision="V1.1">
+      <description>StarterKit-A33G539VLN</description>
+	  <mountedDevice deviceIndex="0" Dvendor="ABOV Semiconductor:126" Dname="A33G539" />
+      <compatibleDevice deviceIndex="0" Dvendor="ABOV Semiconductor:126" Dname="A33G538" />
+      <feature type="XTAL" n="8000000" />
+      <feature type="PWR" n="5" name="USB Powered" />
+      <feature type="PWR" n="3" m="5" name="External Supply" />
+      <feature type="Button" n="3" name="Tact-switch: User and nReset" />
+      <feature type="LED" n="6" name="LEDs : D101 ~ D106" />
+      <debugInterface adapter="A-Link (CMSIS-DAP)" connector="USB C TYPE"/>
+    </board>
+  </boards>
+  <examples>
+    <!-- example : A33G53x **********************************************************-->
+    <example name="Starter Kit - Gpio_LedBlinky" doc="Abstract.txt" folder="A33G53x\Examples\StarterKit\GPIO_LedBlinky_Test">
+      <description>Starter Kit - Gpio_LedBlinky (A33G539/538)</description>
+      <board name="StarterKit-A33G539VLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\GPIO_LedBlinky_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+  </examples>
+</package>

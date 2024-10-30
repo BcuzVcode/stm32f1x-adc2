@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020-2021 ARM Limited
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+ <package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>ARM</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <supportContact>support-subsystem-iot@arm.com</supportContact>
+  <name>V2M_MPS3_SSE_300_TFM-PF</name>
+  <description>
+    ARM V2M-MPS3 TF-M Platform Support pack.
+  </description>
+  <releases>
+    <release version="1.0.0" date="2021-03-19">
+      TF-M Platform Support for V2M_MPS3_SSE_300, based on TF-M pack V2.1.0:
+        - Memory Map
+        - SPM HAL
+        - Boot HAL
+        - System Template
+        - Test
+      TF-M Test Project:
+        - IPC Mode, Isolation Level 1
+        - With and without Bootloader
+    </release>
+  </releases>
+
+  <requirements>
+    <packages>
+      <package vendor="ARM" name="TFM" version="2.1.0-0"/>
+      <package vendor="ARM" name="V2M_MPS3_SSE_300_BSP" version="1.1.0-0"/>
+    </packages>
+  </requirements>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>ARM</keyword>
+    <keyword>TF-M Platform Support Pack for V2M-MPS3-SSE-300</keyword>
+    <keyword>SSE-300-MPS3</keyword>
+    <keyword>SSE-300</keyword>
+    <keyword>Corstone-300</keyword>
+  </keywords>
+
+  <conditions>
+    <condition id="ARMCC6">
+      <accept Tcompiler="ARMCC" Toptions="AC6"/>
+      <accept Tcompiler="ARMCC" Toptions="AC6LTO"/>
+    </condition>
+
+    <condition id="TZ Secure">
+      <description>TrustZone (Secure)</description>
+      <require Dtz="TZ"/>
+      <require Dsecure="Secure"/>
+    </condition>
+
+    <condition id="Non Secure">
+      <description>Non Secure</description>
+      <deny Dsecure="Secure"/>
+    </condition>
+
+    <condition id="ARMCC6 Non Secure">
+      <description>ARMCC6 Non-Secure</description>
+      <require condition="ARMCC6"/>
+      <require condition="Non Secure"/>
+    </condition>
+
+    <condition id="SSE-300-MPS3 Device">
+      <description>SSE-300-MPS3 device and CMSIS-Core</description>
+      <require Dvendor="ARM:82" Dname="SSE-300-MPS3"/>
+      <require Cclass="CMSIS" Cgroup="CORE" Cversion="5.4.0"/>
+    </condition>
+
+    <!-- TF-M Platform -->
+    <condition id="TFM Platform SSE-300">
+      <description>TF-M Platform for SSE-300</description>
+      <require condition="SSE-300-MPS3 Device"/>
+      <require Cclass="Device" Cgroup="Definition"/>
+    </condition>
+    <condition id="TFM Platform SSE-300 Core">
+      <description>TF-M Platform for SSE-300 Core</description>
+      <require condition="TFM Platform SSE-300"/>
+      <require Cclass="TFM" Cgroup="Core"/>
+    </condition>
+    <condition id="TFM Platform SSE-300 BL2">
+      <description>TF-M Platform for SSE-300 Core</description>
+      <require condition="TFM Platform SSE-300"/>
+      <require Cclass="TFM" Cgroup="Bootloader"/>
+    </condition>
+    <condition id="TFM Platform SPM HAL SSE-300">
+      <description>TF-M Platform SPM HAL for SSE-300</description>
+      <require condition="TFM Platform SSE-300 Core"/>
+      <require condition="TZ Secure"/>
+      <require Cclass="TFM Platform" Cgroup="Memory Map"/>
+      <require Cclass="Native Driver" Cgroup="MPU"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+    </condition>
+    <condition id="TFM Platform System SSE-300">
+      <description>TF-M Platform System for SSE-300</description>
+      <require condition="TFM Platform SSE-300"/>
+      <require Cclass="TFM" Cgroup="Core"/>
+      <require condition="TZ Secure"/>
+    </condition>
+    <condition id="TFM Platform Test SSE-300">
+      <description>TF-M Platform Test for SSE-300</description>
+      <require condition="TFM Platform SSE-300"/>
+      <require Cclass="TFM" Cgroup="Core"/>
+      <require condition="TZ Secure"/>
+    </condition>
+  </conditions>
+
+  <components>
+
+    <!-- SSE-300 Startup -->
+    <component Cclass="Device" Cgroup="Startup" Cvariant="TFM" Cversion="1.1.0" condition="TFM Platform SSE-300 Core">
+      <description>System and Startup for ARM SSE-300-MPS3 CMSIS</description>
+      <files>
+        <!-- startup / system file -->
+        <file category="linkerScript" name="TFM/startup/armclang/fvp_sse300_mps3_ns.sct" attr="config" version="1.1.1" condition="ARMCC6 Non Secure"/>
+        <file category="source" name="TFM/startup/startup_fvp_sse300_mps3_s.c" attr="config" version="1.1.0" condition="TZ Secure"/>
+        <file category="source" name="TFM/startup/startup_fvp_sse300_mps3_ns.c" attr="config" version="1.1.0" condition="Non Secure"/>
+        <!-- device configuration -->
+        <file category="header" name="TFM/startup/device_cfg.h" attr="config" version="1.1.1"/>
+        <file category="header" name="TFM/startup/cmsis_driver_config.h" attr="config" version="1.1.1"/>
+        <file category="header" name="TFM/startup/RTE_Device.h" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Startup" Cvariant="BL2" Cversion="1.1.0" condition="TFM Platform SSE-300 BL2">
+      <description>System and Startup for ARM SSE-300-MPS3 CMSIS</description>
+      <RTE_Components_h>
+        #define BL2
+      </RTE_Components_h>
+      <files>
+        <file category="preIncludeGlobal" name="TFM/rte/preinclude.h"/>
+        <!-- startup / system file -->
+        <file category="linkerScript" name="TFM/startup/armclang/fvp_sse300_mps3_bl2.sct" attr="config" version="1.1.1" condition="TZ Secure"/>
+        <file category="source" name="TFM/startup/startup_fvp_sse300_mps3_bl2.c" attr="config" version="1.1.0" condition="TZ Secure"/>
+        <!-- device configuration -->
+        <file category="header" name="TFM/startup/device_cfg.h" attr="config" version="1.1.1"/>
+        <file category="header" name="TFM/startup/cmsis_driver_config.h" attr="config" version="1.1.1"/>
+        <file category="header" name="TFM/startup/RTE_Device.h" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- TF-M Platform -->
+    <component Cclass="TFM Platform" Cgroup="Memory Map" Cversion="1.0.0" condition="TFM Platform SSE-300">
+      <description>TF-M Platform Memory Map for SSE-300</description>
+      <RTE_Components_h>
+        #define RTE_TFM_IF_PLATFORM_MEMORY_MAP  /* TF-M Platform Memory Map */
+      </RTE_Components_h>
+      <files>
+        <file category="header"  name="TFM/partition/flash_layout.h" attr="config" version="1.1.1"/>
+        <file category="header"  name="TFM/partition/region_defs.h"  attr="config" version="1.1.1"/>
+      </files>
+    </component>
+    <component Cclass="TFM Platform" Cgroup="SPM HAL" Csub="Platform" Capiversion="1.2.0" Cversion="1.0.0" condition="TFM Platform SPM HAL SSE-300">
+      <description>TF-M Platform SPM HAL for SSE-300</description>
+      <RTE_Components_h>
+        #define RTE_TFM_IF_PLATFORM_SPM_HAL     /* TF-M Platform SPM HAL */
+      </RTE_Components_h>
+      <files>
+        <file category="preIncludeLocal"
+                                 name="TFM/rte/preinclude.h"/>
+        <file category="include" name="TFM/"/>
+        <file category="source"  name="TFM/spm_hal.c" version="1.1.0"/>
+        <file category="header"  name="TFM/target_cfg.h" attr="config" version="1.1.1"/>
+        <file category="source"  name="TFM/target_cfg.c" attr="config" version="1.1.2"/>
+        <file category="source"  name="TFM/tfm_hal_isolation.c"/>
+      </files>
+    </component>
+    <component Cclass="TFM Platform" Cgroup="System" Csub="Template" Capiversion="1.0.0" Cversion="1.0.0" condition="TFM Platform System SSE-300">
+      <description>TF-M Platform System Template for ST SSE-300</description>
+      <RTE_Components_h>
+        #define RTE_TFM_PLATFORM_SYSTEM         /* TF-M Platform System */
+      </RTE_Components_h>
+      <files>
+        <file category="preIncludeLocal"
+                                 name="TFM/rte/preinclude.h"/>
+        <file category="source"  name="TFM/services/src/tfm_platform_system.c" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <component Cclass="TFM Platform" Cgroup="Test" Csub="Platform" Capiversion="1.0.0" Cversion="1.0.0" condition="TFM Platform Test SSE-300">
+      <description>TF-M Platform Test for ST SSE-300</description>
+      <RTE_Components_h>
+        #define RTE_TFM_PLATFORM_TEST           /* TF-M Platform Test */
+      </RTE_Components_h>
+      <files>
+        <file category="preIncludeLocal"
+                                 name="TFM/rte/preinclude.h"/>
+        <file category="source"  name="TFM/plat_test.c"/>
+      </files>
+    </component>
+    <component Cclass="TFM Platform" Cgroup="Boot HAL" Csub="Platform" Capiversion="1.2.0" Cversion="1.0.0" condition="TFM Platform SSE-300">
+      <description>TF-M Platform Boot HAL for ST SSE-300</description>
+      <RTE_Components_h>
+        #define RTE_TFM_PLATFORM_BOOT_HAL       /* TF-M Platform Boot HAL */
+      </RTE_Components_h>
+      <files>
+        <file category="preIncludeLocal"
+                                 name="TFM/rte/preinclude.h"/>
+        <file category="source"  name="TFM/boot_hal.c" attr="config" version="1.1.1"/>
+      </files>
+    </component>
+  </components>
+
+  <examples>
+    <example name="TF-M Test IPC Level 1" doc="Abstract.txt" folder="TFM/examples/sse_300_test_ipcl1">
+      <description>TF-M Regression Test (SSE-300 MPS3) - IPC Mode, Isolation Level 1</description>
+      <board name="V2M-MPS3-SSE-300-FVP" vendor="ARM"/>
+      <project>
+        <environment name="uv" load="sse_300_test_ipcl1.uvmpw"/>
+      </project>
+      <attributes>
+        <component Cclass="TFM"/>
+        <component Cclass="TFM Platform"/>
+        <category>TF-M</category>
+      </attributes>
+    </example>
+    <example name="TF-M BL2 Test IPC Level 1" doc="Abstract.txt" folder="TFM/examples/sse_300_bl2_test_ipcl1">
+      <description>TF-M Regression Test (SSE-300 MPS3) - IPC Mode, Isolation Level 1, using Bootloader</description>
+      <board name="V2M-MPS3-SSE-300-FVP" vendor="ARM"/>
+      <project>
+        <environment name="uv" load="sse_300_bl2_test_ipcl1.uvmpw"/>
+      </project>
+      <attributes>
+        <component Cclass="TFM"/>
+        <component Cclass="TFM Platform"/>
+        <category>TF-M</category>
+      </attributes>
+    </example>
+  </examples>
+ </package>

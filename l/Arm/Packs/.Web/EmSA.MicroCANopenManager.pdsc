@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.7.7" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.7/schema/PACK.xsd">
+  <vendor>EmSA</vendor>
+  <name>MicroCANopenManager</name>
+  <description>Manager application using MicroCANopen Plus library, NXP i.MX RT or LPC5xxx derivatives with CAN interface.</description>
+  <url>https://em-sa.com/pack/</url>
+  <supportContact>libsupport@em-sa.com</supportContact>
+  <license>License.txt</license>
+  
+  <releases>
+    <release version="1.0.1" date="2023-09-15">
+      Updated Micro CANopen version to 7.16.
+    </release>
+    <release version="1.0.0" date="2023-07-18">
+      Initial release in PACK format.
+    </release>
+ </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>CAN</keyword>
+    <keyword>CAN FD</keyword>
+    <keyword>CANFD</keyword>
+    <keyword>CANopen</keyword>
+    <keyword>CANopen FD</keyword>
+  </keywords>
+
+  <!-- apis section (optional - for Application Programming Interface descriptions) -->
+  <!-- 
+  <apis>
+      <api Cclass="EmSA" Cgroup="Micro CANopen" Capiversion="1.0.1" condition="Supported">
+      <description>Manager Base API</description>
+      <files>
+      </files>
+    </api>
+</apis>
+  -->
+
+  <!-- boards section (mandatory for Board Support Packs) -->
+  <!-- 
+  <boards>
+  </boards>
+  -->
+
+  <!-- devices section (mandatory for Device Family Packs) -->
+  <!--
+  <devices>
+  </devices>
+  -->
+
+  <!-- examples section (optional for all Software Packs)-->
+  <!--
+  <examples>
+  </examples>
+  -->
+  
+  <!-- conditions section (optional for all Software Packs)-->
+  <conditions>
+    <condition id="Arm Compiler">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="GCC Compiler">
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="IAR Compiler">
+      <require Tcompiler="IAR"/>
+    </condition>
+    <condition id="IMXRT">
+      <description>i.MX RT device</description>
+      <require Dvendor="NXP:11"/>
+      <require Dname="*IMXRT*"/>
+    </condition>
+    <condition id="LPC54">
+      <description>LPC54xxx device</description>
+      <require Dvendor="NXP:11"/>
+      <require Dname="LPC54*"/>
+    </condition>
+    <condition id="LPC55">
+      <description>LPC55(S)xx device</description>
+      <require Dvendor="NXP:11"/>
+      <require Dname="LPC55*"/>
+    </condition>
+    <condition id="LPC5">
+      <description>LPC54xxx or LPC55(S)xx device</description>
+      <accept condition="LPC54"/>
+      <accept condition="LPC55"/>
+    </condition>
+    <condition id="Arm with IMXRT">
+      <description>Arm compiler with i.MX RT device</description>
+      <require condition="Arm Compiler"/>
+      <require condition="IMXRT"/>
+    </condition>
+    <condition id="Arm with LPC54">
+      <description>Arm compiler with LPC54xxx device</description>
+      <require condition="Arm Compiler"/>
+      <require condition="LPC54"/>
+    </condition>
+    <condition id="Arm with LPC55">
+      <description>Arm compiler with LPC55(S)xx device</description>
+      <require condition="Arm Compiler"/>
+      <require condition="LPC55"/>
+    </condition>
+    <condition id="GCC with IMXRT">
+      <description>GCC compiler with i.MX RT device</description>
+      <require condition="GCC Compiler"/>
+      <require condition="IMXRT"/>
+    </condition>
+    <condition id="GCC with LPC54">
+      <description>GCC compiler with LPC54xxx device</description>
+      <require condition="GCC Compiler"/>
+      <require condition="LPC54"/>
+    </condition>
+    <condition id="GCC with LPC55">
+      <description>GCC compiler with LPC55(S)xx device</description>
+      <require condition="GCC Compiler"/>
+      <require condition="LPC55"/>
+    </condition>
+    <condition id="IAR with IMXRT">
+      <description>IAR compiler with i.MX RT device</description>
+      <require condition="IAR Compiler"/>
+      <require condition="IMXRT"/>
+    </condition>
+    <condition id="IAR with LPC54">
+      <description>IAR compiler with LPC54xxx device</description>
+      <require condition="IAR Compiler"/>
+      <require condition="LPC54"/>
+    </condition>
+    <condition id="IAR with LPC55">
+      <description>IAR compiler with LPC55(S)xx device</description>
+      <require condition="IAR Compiler"/>
+      <require condition="LPC55"/>
+    </condition>
+    <condition id="Supported">
+      <require Cclass="EmSA" Cgroup="Micro CANopen" Csub="Target Library (Manager)"/>
+      <deny Cclass="EmSA" Cgroup="Micro CANopen" Csub="Device Base"/>
+      <accept condition="Arm with IMXRT"/>
+      <accept condition="Arm with LPC54"/>
+      <accept condition="Arm with LPC55"/>
+      <accept condition="GCC with IMXRT"/>
+      <accept condition="GCC with LPC54"/>
+      <accept condition="GCC with LPC55"/>
+      <accept condition="IAR with IMXRT"/>
+      <accept condition="IAR with LPC54"/>
+      <accept condition="IAR with LPC55"/>
+    </condition>
+    <condition id="Target Lib LPC54">
+      <require condition="LPC54"/>
+      <require Cclass="EmSA" Cgroup="Micro CANopen" Csub="Manager Base"/>
+      <deny Cclass="EmSA" Cgroup="Micro CANopen" Csub="Target Library (Device)"/>
+    </condition>
+    <condition id="Target Lib LPC55">
+      <require condition="LPC55"/>
+      <require Cclass="EmSA" Cgroup="Micro CANopen" Csub="Manager Base"/>
+      <deny Cclass="EmSA" Cgroup="Micro CANopen" Csub="Target Library (Device)"/>
+    </condition>
+    <condition id="Target Lib IMXRT">
+      <require condition="IMXRT"/>
+      <require Cclass="EmSA" Cgroup="Micro CANopen" Csub="Manager Base"/>
+      <deny Cclass="EmSA" Cgroup="Micro CANopen" Csub="Target Library (Device)"/>
+    </condition>
+    <condition id="non-FD">
+      <accept Cclass="EmSA" Cgroup="Micro CANopen" Csub="Target Library (Manager)" Cvariant="LPC54xxx/CAN0"/>
+      <accept Cclass="EmSA" Cgroup="Micro CANopen" Csub="Target Library (Manager)" Cvariant="LPC55(S)xx/CAN0"/>
+      <accept Cclass="EmSA" Cgroup="Micro CANopen" Csub="Target Library (Manager)" Cvariant="IMXRT/CAN1"/>
+      <accept Cclass="EmSA" Cgroup="Micro CANopen" Csub="Target Library (Manager)" Cvariant="IMXRT/CAN2"/>
+    </condition>
+    <condition id="FD">
+      <accept Cclass="EmSA" Cgroup="Micro CANopen" Csub="Target Library (Manager)" Cvariant="LPC54xxx/CANFD0"/>
+      <accept Cclass="EmSA" Cgroup="Micro CANopen" Csub="Target Library (Manager)" Cvariant="LPC55(S)xx/CANFD0"/>
+      <accept Cclass="EmSA" Cgroup="Micro CANopen" Csub="Target Library (Manager)" Cvariant="IMXRT/CANFD1"/>
+      <accept Cclass="EmSA" Cgroup="Micro CANopen" Csub="Target Library (Manager)" Cvariant="IMXRT/CANFD2"/>
+      <accept Cclass="EmSA" Cgroup="Micro CANopen" Csub="Target Library (Manager)" Cvariant="IMXRT/CANFD3"/>
+    </condition>
+  </conditions>
+  
+  <!-- component section (optional for all Software Packs)-->
+  <components>
+    <component Cclass="EmSA" Cgroup="Micro CANopen" Csub="Manager Base" Cversion="1.0.1" condition="Supported">
+      <description>Micro CANopen Manager Base</description>
+      <files>
+        <file category="doc"    name="DOC/CANopen_NXP_SDK.pdf"/>
+        <file category="source" name="LICENSE.INFO"/>
+        <file category="source" condition="IMXRT" name="DOC/read_me_imxrt.txt"/>
+        <file category="source" condition="LPC5" name="DOC/read_me_lpc5.txt"/>
+        <file category="header" name="MCO/comgr.h"/>
+        <file category="header" name="MCO/concisedcf.h"/>
+        <file category="header" name="MCO/mco.h"/>
+        <file category="header" name="MCO/mcohw.h"/>
+        <file category="header" name="MCO/mcop.h"/>
+        <file category="header" name="MCO/mcop_inc.h"/>
+        <file category="header" name="MCO/mcop_xod_inc.h"/>
+        <file category="header" name="MCO/raccess.h"/>
+        <file category="header" name="MCO/racrc.h"/>
+        <file category="header" name="MCO/raserial.h"/>
+        <file category="header" name="MCO/sdoclnt.h"/>
+        <file category="header" name="MCO/usdo.h"/>
+        <file category="header" name="MCO/usdoclnt.h"/>
+        <file category="header" name="MCO-Config/nodecfg.h" attr="config" version="1.0.1"/>
+        <file category="header" name="MCO-Config/procimg.h" attr="config" version="1.0.1"/>
+        <file category="source" name="MCO-Config/user_cbdata.c" attr="config" version="1.0.1"/>
+        <file category="source" name="MCO-Config/user_mgr_401.c" attr="config" version="1.0.1"/>
+        <file category="source" name="MCO-Config/user_od.c" attr="config" version="1.0.1"/>
+        <file category="other" name="MCO-Config/EDS/CANopen_NXP_SDK_MgrLib.cax" attr="config" version="1.0.1" condition="non-FD"/>
+        <file category="other" name="MCO-Config/EDS/CANopen_NXP_SDK_MgrLib.caxe" attr="config" version="1.0.1" condition="non-FD"/>
+        <file category="other" name="MCO-Config/EDS/CANopenNXPSDK_Mgr.eds" attr="config" version="1.0.1" condition="non-FD"/>
+        <file category="other" name="MCO-Config/EDS/CANopenNXPSDK_Mgr.pdf" attr="config" version="1.0.1" condition="non-FD"/>
+        <file category="other" name="MCO-Config/EDS/CANopenNXPSDK_Mgr.docx" attr="config" version="1.0.1" condition="non-FD"/>
+        <file category="header" name="MCO-Config/EDS/entriesandreplies.h" attr="config" version="1.0.1" condition="non-FD"/>
+        <file category="header" name="MCO-Config/EDS/pimg.h" attr="config" version="1.0.1" condition="non-FD"/>
+        <file category="header" name="MCO-Config/EDS/stackinit.h" attr="config" version="1.0.1" condition="non-FD"/>
+        <file category="other" name="MCO-Config/EDS-FD/CANopen_NXP_SDK_MgrLib.cax" attr="config" version="1.0.1" condition="FD"/>
+        <file category="other" name="MCO-Config/EDS-FD/CANopen_NXP_SDK_MgrLib.caxe" attr="config" version="1.0.1" condition="FD"/>
+        <file category="other" name="MCO-Config/EDS-FD/CANopenFDNXPSDK_Mgr.xdd" attr="config" version="1.0.1" condition="FD"/>
+        <file category="other" name="MCO-Config/EDS-FD/CANopenFDNXPSDK_Mgr.pdf" attr="config" version="1.0.1" condition="FD"/>
+        <file category="other" name="MCO-Config/EDS-FD/CANopenFDNXPSDK_Mgr.docx" attr="config" version="1.0.1" condition="FD"/>
+        <file category="header" name="MCO-Config/EDS-FD/entriesandreplies.h" attr="config" version="1.0.1" condition="FD"/>
+        <file category="header" name="MCO-Config/EDS-FD/pimg.h" attr="config" version="1.0.1" condition="FD"/>
+        <file category="header" name="MCO-Config/EDS-FD/stackinit.h" attr="config" version="1.0.1" condition="FD"/>
+        <file category="source" name="source_IMXRT/mcohw_com_generic.c" condition="IMXRT"/>
+        <file category="header" name="source_IMXRT/mco_types.h" condition="IMXRT"/>
+        <file category="header" name="source_IMXRT/mcoinst.h" condition="IMXRT"/>
+        <file category="source" name="source_IMXRT/main.c" attr="template" select="Main module for LPC5xx" condition="IMXRT"/>
+        <file category="source" name="source_IMXRT/mco_libcb.c" attr="config" version="1.0.1" condition="IMXRT"/>
+        <file category="source" name="source_IMXRT/mcohw_nvol_sim.c" attr="config" version="1.0.1" condition="IMXRT"/>
+        <file category="source" name="source_IMXRT/user_IMXRT10xx.c" attr="config" version="1.0.1" condition="IMXRT"/>
+        <file category="header" name="source_IMXRT/mcohw_cfg.h" attr="config" version="1.0.1" condition="IMXRT"/>
+        <file category="header" name="source_IMXRT/mcohw_LEDs.h" attr="config" version="1.0.1" condition="IMXRT"/>
+        <file category="source" name="source_LPC5/mcohw_com_generic.c" condition="LPC5"/>
+        <file category="header" name="source_LPC5/mco_types.h" condition="LPC5"/>
+        <file category="header" name="source_LPC5/mcoinst.h" condition="LPC5"/>
+        <file category="source" name="source_LPC5/main.c" attr="template" select="Main module for LPC5xx" condition="LPC5"/>
+        <file category="source" name="source_LPC5/mco_libcb.c" attr="config" version="1.0.1" condition="LPC5"/>
+        <file category="source" name="source_LPC5/mcohw_nvol_sim.c" attr="config" version="1.0.1" condition="LPC5"/>
+        <file category="source" name="source_LPC5/user_LPC5xxxx.c" attr="config" version="1.0.1" condition="LPC5"/>
+        <file category="header" name="source_LPC5/mcohw_cfg.h" attr="config" version="1.0.1" condition="LPC5"/>
+        <file category="header" name="source_LPC5/mcohw_LEDs.h" attr="config" version="1.0.1" condition="LPC5"/>
+      </files>
+      <Pre_Include_Global_h>
+// using debug console
+#if !defined(DEBUG_CONSOLE)
+#define DEBUG_CONSOLE 1
+#endif
+      </Pre_Include_Global_h>
+    </component>
+    <component Cclass="EmSA" Cgroup="Micro CANopen" Csub="Target Library (Manager)" Cversion="1.0.1" Cvariant="LPC54xxx/CAN0" condition="Target Lib LPC54">
+      <description>Target Library (Manager) LPC54xxx/CAN0</description>
+      <files>
+        <file category="library" condition="GCC with LPC54" name="mcolib/libMCO_MGR_LPC54xxx_SDK.a"/>
+        <file category="library" condition="Arm with LPC54" name="mcolib/libMCO_MGR_LPC54xxx_KSDK.a"/>
+      </files>
+      <Pre_Include_Global_h>
+// using legacy CAN and CANopen
+#define USE_CANOPEN_FD 0
+      </Pre_Include_Global_h>
+    </component>
+    <component Cclass="EmSA" Cgroup="Micro CANopen" Csub="Target Library (Manager)" Cversion="1.0.1" Cvariant="LPC55(S)xx/CAN0" condition="Target Lib LPC55">
+      <description>Target Library (Manager) LPC55(S)xx/CAN0</description>
+      <files>
+        <file category="library" condition="GCC with LPC55" name="mcolib/libMCO_MGR_LPC55xx_SDK.a"/>
+        <file category="library" condition="Arm with LPC55" name="mcolib/libMCO_MGR_LPC55xx_KSDK.a"/>
+      </files>
+      <Pre_Include_Global_h>
+// using legacy CAN and CANopen
+#define USE_CANOPEN_FD 0
+      </Pre_Include_Global_h>
+    </component>
+    <component Cclass="EmSA" Cgroup="Micro CANopen" Csub="Target Library (Manager)" Cversion="1.0.1" Cvariant="LPC54xxx/CANFD0" condition="Target Lib LPC54">
+      <description>Target Library (Manager) LPC54xxx/CANFD0</description>
+      <files>
+        <file category="library" condition="GCC with LPC54" name="mcolib/libMCOFD_MGR_LPC54xxx_SDK.a"/>
+        <file category="library" condition="Arm with LPC54" name="mcolib/libMCOFD_MGR_LPC54xxx_KSDK.a"/>
+      </files>
+      <Pre_Include_Global_h>
+// using legacy CAN and CANopen
+#define USE_CANOPEN_FD 1
+      </Pre_Include_Global_h>
+    </component>
+    <component Cclass="EmSA" Cgroup="Micro CANopen" Csub="Target Library (Manager)" Cversion="1.0.1" Cvariant="LPC55(S)xx/CANFD0" condition="Target Lib LPC55">
+      <description>Target Library (Manager) LPC55(S)xx/CANFD0</description>
+      <files>
+        <file category="library" condition="GCC with LPC55" name="mcolib/libMCOFD_MGR_LPC55xx_SDK.a"/>
+        <file category="library" condition="Arm with LPC55" name="mcolib/libMCOFD_MGR_LPC55xx_KSDK.a"/>
+      </files>
+      <Pre_Include_Global_h>
+// using legacy CAN and CANopen
+#define USE_CANOPEN_FD 1
+      </Pre_Include_Global_h>
+    </component>
+    <component Cclass="EmSA" Cgroup="Micro CANopen" Csub="Target Library (Manager)" Cversion="1.0.1" Cvariant="IMXRT/CAN1" condition="Target Lib IMXRT">
+      <description>Target Library (Manager) i.MX RT/CAN1</description>
+      <files>
+        <file category="library" condition="GCC with IMXRT" name="mcolib/libMCO_MGR_IMXRT10xx_SDK_1.a"/>
+        <file category="library" condition="Arm with IMXRT" name="mcolib/libMCO_MGR_IMXRT10xx_KSDK_1.a"/>
+      </files>
+      <Pre_Include_Global_h>
+// using legacy CAN and CANopen
+#define USE_CANOPEN_FD 0
+      </Pre_Include_Global_h>
+    </component>
+    <component Cclass="EmSA" Cgroup="Micro CANopen" Csub="Target Library (Manager)" Cversion="1.0.1" Cvariant="IMXRT/CAN2" condition="Target Lib IMXRT">
+      <description>Target Library (Manager) i.MX RT/CAN2</description>
+      <files>
+        <file category="library" condition="GCC with IMXRT" name="mcolib/libMCO_MGR_IMXRT10xx_SDK_2.a"/>
+        <file category="library" condition="Arm with IMXRT" name="mcolib/libMCO_MGR_IMXRT10xx_KSDK_2.a"/>
+      </files>
+      <Pre_Include_Global_h>
+// using legacy CAN and CANopen
+#define USE_CANOPEN_FD 0
+      </Pre_Include_Global_h>
+    </component>
+    <component Cclass="EmSA" Cgroup="Micro CANopen" Csub="Target Library (Manager)" Cversion="1.0.1" Cvariant="IMXRT/CANFD1" condition="Target Lib IMXRT">
+      <description>Target Library (Manager) i.MX RT/CANFD1</description>
+      <files>
+        <file category="library" condition="GCC with IMXRT" name="mcolib/libMCOFD_MGR_IMXRT10xx_SDK_1.a"/>
+        <file category="library" condition="Arm with IMXRT" name="mcolib/libMCOFD_MGR_IMXRT10xx_KSDK_1.a"/>
+      </files>
+      <Pre_Include_Global_h>
+// using legacy CAN and CANopen
+#define USE_CANOPEN_FD 1
+      </Pre_Include_Global_h>
+    </component>
+    <component Cclass="EmSA" Cgroup="Micro CANopen" Csub="Target Library (Manager)" Cversion="1.0.1" Cvariant="IMXRT/CANFD2" condition="Target Lib IMXRT">
+      <description>Target Library (Manager) i.MX RT/CANFD2</description>
+      <files>
+        <file category="library" condition="GCC with IMXRT" name="mcolib/libMCOFD_MGR_IMXRT10xx_SDK_2.a"/>
+        <file category="library" condition="Arm with IMXRT" name="mcolib/libMCOFD_MGR_IMXRT10xx_KSDK_2.a"/>
+      </files>
+      <Pre_Include_Global_h>
+// using legacy CAN and CANopen
+#define USE_CANOPEN_FD 1
+      </Pre_Include_Global_h>
+    </component>
+    <component Cclass="EmSA" Cgroup="Micro CANopen" Csub="Target Library (Manager)" Cversion="1.0.1" Cvariant="IMXRT/CANFD3" condition="Target Lib IMXRT">
+      <description>Target Library (Manager) i.MX RT/CANFD3</description>
+      <files>
+        <file category="library" condition="GCC with IMXRT" name="mcolib/libMCOFD_MGR_IMXRT10xx_SDK_3.a"/>
+        <file category="library" condition="Arm with IMXRT" name="mcolib/libMCOFD_MGR_IMXRT10xx_KSDK_3.a"/>
+      </files>
+      <Pre_Include_Global_h>
+// using legacy CAN and CANopen
+#define USE_CANOPEN_FD 1
+      </Pre_Include_Global_h>
+    </component>
+</components>
+  
+  <!-- optional taxonomy section for defining new component Class and Group names -->
+  <taxonomy>
+    <description Cclass="EmSA" Cgroup="Micro CANopen" doc="DOC/CANopen_NXP_SDK.pdf">Protocol Handler</description>
+  </taxonomy>
+  
+</package>

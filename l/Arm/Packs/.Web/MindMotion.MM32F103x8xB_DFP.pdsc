@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>MindMotion</vendor>
+  <url>http://www.mindmotion.com.cn/Download/MDK_KEIL/</url>
+  <name>MM32F103x8xB_DFP</name>
+  <description>MindMotion MM32F103 Series Device Support, Drivers and Examples</description>
+
+  <releases>
+		<release version="1.4.8" date="2021-04-25">
+       Release version of MM32F103x8xB Device Family Pack.
+		</release>
+
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>MindMotion</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package MindMotion</keyword>
+    <keyword>MM32F103x8xB</keyword>
+    <keyword>MM32</keyword>
+  </keywords>
+
+  <devices>
+    <!-- generated, do not modify this section! -->
+
+    <family Dfamily="MM32F103 Series" Dvendor="MindMotion:132">
+      <processor Dcore="Cortex-M3"  DcoreVersion="r1p0" Dfpu="0" Dmpu = "0" Dendian="Little-endian"/>
+ 
+            <description>
+MM32F103 Series
+        </description>
+
+
+      <!-- ************************  Subfamily 'MM32F103xB'  **************************** -->
+      <subFamily DsubFamily="MM32F103xB">
+        <processor Dclock="96000000"/>
+        <description>
+Subfamily: MM32F103xB
+
+Frequency: 96MHz 
+Memory: 128 kB Flash, 20 kB RAM
+Communication: up to 3 x UART, up to 2 x SPI, up to 2 x I2C,CAN, USB
+Analog : ADC
+power saving mode:stop, sleep, and standby mode
+Other: RTC
+        </description>
+      <!-- *************************  Device 'MM32F103xB'  ***************************** -->
+      <device Dname="MM32F103RBT">
+
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="96000000"/>
+        <compile header="Device/MM32F103x8xB/Include/HAL_device.h"  define="MM32F103RBT"/>
+        <debug      svd="SVD/MM32F103x8xB.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x20000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x5000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/MM32F103x_128.FLM"   start="0x08000000"  size="0x20000"                  default="1"/>
+        
+        
+
+      </device>
+	  
+	  <device Dname="MM32F103CBT">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="96000000"/>
+        <compile header="Device/MM32F103x8xB/Include/HAL_device.h"  define="MM32F103CBT"/>
+        <debug      svd="SVD/MM32F103x8xB.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x20000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x5000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/MM32F103x_128.FLM"   start="0x08000000"  size="0x20000"                  default="1"/>
+        
+        
+
+      </device>
+	  
+	  <device Dname="MM32F103KBT">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="96000000"/>
+        <compile header="Device/MM32F103x8xB/Include/HAL_device.h"  define="MM32F103KBT"/>
+        <debug      svd="SVD/MM32F103x8xB.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x20000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x5000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/MM32F103x_128.FLM"   start="0x08000000"  size="0x20000"                  default="1"/>
+        
+        
+
+      </device>
+	  
+	  <device Dname="MM32F103KBU">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="96000000"/>
+        <compile header="Device/MM32F103x8xB/Include/HAL_device.h"  define="MM32F103KBU"/>
+        <debug      svd="SVD/MM32F103x8xB.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x20000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x5000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/MM32F103x_128.FLM"   start="0x08000000"  size="0x20000"                  default="1"/>
+        
+        
+		
+      </device>
+     </subFamily>
+	  
+	  <!-- ************************  Subfamily 'MM32F103x8'  **************************** -->	
+	  <subFamily DsubFamily="MM32F103x8">
+        <processor Dclock="96000000"/>
+        <description>
+Subfamily: MM32F103x8
+
+Frequency: 96MHz 
+Memory: 64 kB Flash, 20 kB RAM
+Communication: up to 3 x UART, up to 2 x SPI, up to 2 x I2C,CAN, USB
+Analog : ADC
+power saving mode:stop, sleep, and standby mode
+Other: RTC
+        </description>        
+      <!-- *************************  Device 'MM32F103x8'  ***************************** -->
+      <device Dname="MM32F103R8T">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="96000000"/>
+        <compile header="Device/MM32F103x8xB/Include/HAL_device.h"  define="MM32F103R8T"/>
+        <debug      svd="SVD/MM32F103x8xB.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x10000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x5000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/MM32F103x_64.FLM"   start="0x08000000"  size="0x10000"                  default="1"/>
+        
+        
+
+      </device>
+	  
+	  <device Dname="MM32F103C8T">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="96000000"/>
+        <compile header="Device/MM32F103x8xB/Include/HAL_device.h"  define="MM32F103C8T"/>
+        <debug      svd="SVD/MM32F103x8xB.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x10000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x5000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/MM32F103x_64.FLM"   start="0x08000000"  size="0x10000"                  default="1"/>
+        
+        
+
+      </device>
+	  
+	  <device Dname="MM32F103K8T">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="96000000"/>
+        <compile header="Device/MM32F103x8xB/Include/HAL_device.h"  define="MM32F103K8T"/>
+        <debug      svd="SVD/MM32F103x8xB.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x10000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x5000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/MM32F103x_64.FLM"   start="0x08000000"  size="0x10000"                  default="1"/>
+        
+        
+
+      </device>
+	  
+	  <device Dname="MM32F103K8U">
+        <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="96000000"/>
+        <compile header="Device/MM32F103x8xB/Include/HAL_device.h"  define="MM32F103K8U"/>
+        <debug      svd="SVD/MM32F103x8xB.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x10000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x5000"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/MM32F103x_64.FLM"   start="0x08000000"  size="0x10000"                  default="1"/>
+        
+        
+
+      </device>
+	  </subFamily>
+	  	  
+    </family>
+  </devices>
+
+
+
+  
+  
+  
+  <conditions>  
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+	
+	<condition id="ARMCM3 CMSIS MM32F103x8">
+      <description>ARMCM3 CMSIS processor and device specific Startup files</description>
+        <require Cclass="CMSIS" Cgroup="CORE"/>
+		<require Dvendor="MindMotion:132" DsubFamily="MM32F103x8" /> 
+    </condition>      
+
+	<condition id="ARMCM3 CMSIS MM32F103xB">
+      <description>ARMCM3 CMSIS processor and device specific Startup files</description>
+        <require Cclass="CMSIS" Cgroup="CORE"/>
+		<require Dvendor="MindMotion:132" DsubFamily="MM32F103xB" /> 
+    </condition>     
+	
+  </conditions>  
+  <components>
+   
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.4.3" condition="ARMCM3 CMSIS MM32F103x8">
+      <description>System Startup for MindMotion MM32F103x8xB Series devices</description>
+      <files>
+		<file category="header"  name="Device/MM32F103x8xB/Include/HAL_device.h"/>
+		<file category="header"  name="Device/MM32F103x8xB/Source/system_MM32F103x8xB.h"/>
+		<file category="sourceC" name="Device/MM32F103x8xB/Source/system_MM32F103x8xB.c" attr="config"  version="1.0.4"/>    
+        <file category="sourceAsm" name="Device/MM32F103x8xB/Source/KEIL_StartAsm/startup_MM32F103x8xB.s" attr="config" version="1.4.3" condition="Compiler ARMCC"/>
+      </files>
+    </component> 
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.4.3" condition="ARMCM3 CMSIS MM32F103xB">
+      <description>System Startup for MindMotion MM32F103x8xB Series  devices</description>
+      <files>
+		<file category="header"  name="Device/MM32F103x8xB/Include/HAL_device.h"/>
+		<file category="header"  name="Device/MM32F103x8xB/Source/system_MM32F103x8xB.h"/>
+		<file category="sourceC" name="Device/MM32F103x8xB/Source/system_MM32F103x8xB.c" attr="config"  version="1.0.4"/>    
+        <file category="sourceAsm" name="Device/MM32F103x8xB/Source/KEIL_StartAsm/startup_MM32F103x8xB.s" attr="config" version="1.4.3" condition="Compiler ARMCC"/>
+      </files>
+    </component> 
+  		    <component Cclass="Board" Cgroup="Samples" Csub="LED" Cversion="1.4.3" condition="ARMCM3 CMSIS MM32F103x8"> 
+      <description>LED sample for MindMotion MBF103R_Boardreg Series </description>
+      <files>
+        <file category="header"  name="Boards/MBF103R_Boardreg/RegSample/GPIO_LED/HARDWARE/LED/led.h"/>
+        <file category="sourceC"  name="Boards/MBF103R_Boardreg/RegSample/GPIO_LED/HARDWARE/LED/led.c" attr="config"  version="1.4.3"/>
+        <file category="sourceC" name="Boards/MBF103R_Boardreg/RegSample/GPIO_LED/USER/test.c" attr="config"  version="1.4.3"/>    
+      </files>
+    </component> 
+  		    <component Cclass="Board" Cgroup="Samples" Csub="LED" Cversion="1.4.3" condition="ARMCM3 CMSIS MM32F103xB"> 
+      <description>LED sample for MindMotion MBF103R_Boardreg Series </description>
+      <files>
+        <file category="header"  name="Boards/MBF103R_Boardreg/RegSample/GPIO_LED/HARDWARE/LED/led.h"/>
+        <file category="sourceC"  name="Boards/MBF103R_Boardreg/RegSample/GPIO_LED/HARDWARE/LED/led.c" attr="config"  version="1.4.3"/>
+        <file category="sourceC" name="Boards/MBF103R_Boardreg/RegSample/GPIO_LED/USER/test.c" attr="config"  version="1.4.3"/>    
+      </files>
+    </component> 
+
+ 
+
+  </components>
+  
+
+  <examples>
+    <!-- MM32_MBF103C_Board Core Board -->
+
+
+	
+	<example name="MM32_MBF103CBT_Board GPIO LED blinky" doc="README.TXT" folder="Boards/MBF103R_Boardreg/RegSample/GPIO_LED">
+		<description>MM32_MBF103CBT_Board Blinky example</description>
+		<board name="MM32_MBF103CBT_Board" vendor="MindMotion"/>
+		<project>
+			<environment name="uv" load="KEILPRJ/BLINK.uvprojx"/>
+		</project>
+		<attributes>
+			<component Cclass="CMSIS"     Cgroup="CORE"/>
+			<component Cclass="Device"    Cgroup="Startup"/>
+			<category>Getting Started</category>
+		</attributes>
+	</example>
+	
+  </examples>
+  
+  
+  <boards>
+    <board vendor="MindMotion" name="MM32_MBF103CBT_Board" revision="Ver 1.0" >
+      <description>MindMotion MM32_MBF103CBT_Board Development Board</description>
+    			<book category="manual" name="Documents/boards/f103reference.pdf" title="MM32_f103  Manual"/>
+      <mountedDevice    deviceIndex="0" Dvendor="MindMotion:132" Dname="MM32F103CBT"/>
+      <compatibleDevice deviceIndex="0" Dvendor="MindMotion:132" DsubFamily="MM32F103xB"/>	  
+	  <compatibleDevice deviceIndex="0" Dvendor="MindMotion:132" DsubFamily="MM32F103x8"/>	  
+	  <feature type="XTAL"      n="8000000"/>
+      <feature type="PWR"       n="5"              name="USB Powered"/>
+      <feature type="PWR"       n="3"  m="5"       name="External Supply"/>
+      <feature type="Button"    n="1"              name="Push-buttons: Reset"/>
+      <feature type="LED"       n="2"              name="LEDs: Power, One user"/>
+      <debugInterface adapter="JTAG/SW" connector="20 pin JTAG (0.1 inch connector)"/>
+
+    </board>
+  </boards>
+  
+  
+</package>

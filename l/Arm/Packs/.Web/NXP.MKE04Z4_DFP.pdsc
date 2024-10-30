@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>MKE04Z4_DFP</name>
+  <vendor>NXP</vendor>
+  <description>Device Family Pack for MKE04Z4</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="14.0.0" date="2022-01-05">NXP CMSIS Packs based on MCUXpresso SDK 2.11.0</release>
+    <release version="13.1.0" date="2021-07-13">NXP CMSIS Packs based on MCUXpresso SDK 2.10.0</release>
+    <release version="13.0.0" date="2021-02-05">NXP CMSIS Packs based on MCUXpresso SDK 2.9.0 with restructured startup component files</release>
+    <release version="12.3.0" date="2021-01-14">NXP CMSIS Packs based on MCUXpresso SDK 2.9.0</release>
+    <release version="12.2.0" date="2020-07-20">NXP CMSIS Packs based on MCUXpresso SDK 2.8.0</release>
+    <release version="12.1.0" date="2019-12-19">NXP CMSIS Packs based on MCUXpresso SDK 2.7.0</release>
+    <release version="12.0.0" date="2019-06-10">NXP CMSIS packs based on MCUXpresso SDK 2.6.0</release>
+    <release version="11.0.1" date="2019-04-26">Removed invalid entries from Software Content Register</release>
+    <release version="11.0.0" date="2018-12-19">NXP CMSIS packs based on MCUXpresso SDK 2.5.0</release>
+    <release version="10.0.3" date="2018-07-16">A problem with missing components from some example the projects were dependent on was fixed (KEX-4241); Incorrect path to linked libraries were fixed: a pack version was a static part of the path and hadn’t worked for pack versions other than v10.0.0 (KEX-4373); A problem with incorrectly defined XIP_BOOT_HEADER_ENABLE, XIP_BOOT_HEADER_DCD_ENABLE and XIP_EXTERNAL_FLASH preprocessor symbols was fixed (KEX-4553); Missing flash algorithms for MK27, MK28, LPC802 and LPC804 device family packs were added (KEX-4659).</release>
+    <release version="10.0.2" date="2018-05-25">NXP CMSIS packs based on MCUXpresso SDK 2.4.0</release>
+    <release version="10.0.1" date="2018-04-04">NXP CMSIS packs based on MCUXpresso SDK 2.3.1</release>
+    <release version="10.0.0" date="2018-01-19">NXP CMSIS packs with updated Clear BSD license, based on MCUXpresso SDK 2.3.0. NXP CMSIS pack will maintain independent versioning starting with 10.0.0</release>
+    <release version="2.3.0" date="2017-11-17">NXP MCUXpresso SDK 2.3.0 CMSIS packs with updated Clear BSD license</release>
+  </releases>
+  <keywords>
+    <keyword>Device Family Pack</keyword>
+  </keywords>
+  <taxonomy>
+    <description Cclass="Board Support" Cgroup="SDK Project Template">NXP MCUXpresso SDK Project Template</description>
+    <description Cclass="Device" Cgroup="SDK Project Template">NXP MCUXpresso SDK RTE Device Project Template</description>
+    <description Cclass="Device" Cgroup="SDK Drivers">NXP MCUXpresso SDK Peripheral Drivers</description>
+    <description Cclass="Device" Cgroup="Startup">NXP MCUXpresso SDK Start up</description>
+    <description Cclass="CMSIS Driver">NXP MCUXpresso SDK Peripheral CMSIS Drivers</description>
+    <description Cclass="Device" Cgroup="SDK Utilities">NXP MCUXpresso SDK Utilities</description>
+  </taxonomy>
+  <requirements>
+    <packages>
+      <package name="CMSIS" vendor="ARM" version="5.6.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <devices>
+    <family Dfamily="MKE04Z4" Dvendor="NXP:11">
+      <description>Kinetis KE04-48 MHz, mainstream Microcontrollers (MCUs) based on ARM Cortex-M0+ Core</description>
+      <device Dname="MKE04Z8xxx4">
+        <processor Dcore="Cortex-M0+" Dfpu="NO_FPU" Dmpu="NO_MPU" Dendian="Little-endian" Dclock="48000000"/>
+        <environment name="iar">
+          <file category="linkerfile" name="iar/MKE04Z8xxx4_flash.icf"/>
+        </environment>
+        <memory name="PROGRAM_FLASH" start="0x00000000" size="0x2000" access="rx" default="1" startup="1"/>
+        <memory name="SRAM" start="0x1fffff00" size="0x0400" access="rw" default="1"/>
+        <algorithm name="arm/MKE04Zxxx_P8KB.FLM" start="0x00000000" size="0x00002000" RAMstart="0x1fffff00" RAMsize="0x00000400" default="1"/>
+        <debug svd="MKE04Z4.xml"/>
+        <variant Dvariant="MKE04Z8VTG4">
+          <compile header="fsl_device_registers.h" define="CPU_MKE04Z8VTG4"/>
+        </variant>
+        <variant Dvariant="MKE04Z8VWJ4">
+          <compile header="fsl_device_registers.h" define="CPU_MKE04Z8VWJ4"/>
+        </variant>
+        <variant Dvariant="MKE04Z8VFK4">
+          <compile header="fsl_device_registers.h" define="CPU_MKE04Z8VFK4"/>
+        </variant>
+      </device>
+    </family>
+  </devices>
+  <conditions>
+    <condition id="device.MKE04Z4">
+      <accept Dname="MKE04Z8xxx4" Dvariant="MKE04Z8VTG4" Dvendor="NXP:11"/>
+      <accept Dname="MKE04Z8VTG4" Dvendor="NXP:11"/>
+      <accept Dname="MKE04Z8xxx4" Dvariant="MKE04Z8VWJ4" Dvendor="NXP:11"/>
+      <accept Dname="MKE04Z8VWJ4" Dvendor="NXP:11"/>
+      <accept Dname="MKE04Z8xxx4" Dvariant="MKE04Z8VFK4" Dvendor="NXP:11"/>
+      <accept Dname="MKE04Z8VFK4" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="device.MKE04Z4_AND_component.uart_adapter_AND_device.MKE04Z4_startup_AND_driver.clock_AND_driver.common_AND_driver.gpio_1_AND_driver.port_ke04_AND_driver.uart_AND_utility.debug_console_lite">
+      <require condition="device.MKE04Z4"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart_adapter"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="port"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+    </condition>
+    <condition id="device.MKE04Z4_AND_component.osa_AND_driver.common">
+      <require condition="device.MKE04Z4"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="osa"/>
+    </condition>
+    <condition id="device.MKE04Z4_AND_driver.common_AND_driver.ftm">
+      <require condition="device.MKE04Z4"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="ftm"/>
+    </condition>
+    <condition id="device.MKE04Z4_AND_driver.common">
+      <require condition="device.MKE04Z4"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="device.MKE04Z4_AND_component.lists_AND_driver.common">
+      <require condition="device.MKE04Z4"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+    </condition>
+    <condition id="device.MKE04Z4_AND_driver.common_AND_driver.pit">
+      <require condition="device.MKE04Z4"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="pit"/>
+    </condition>
+    <condition id="device.MKE04Z4_AND_driver.common_AND_driver.tpm">
+      <require condition="device.MKE04Z4"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="tpm"/>
+    </condition>
+    <condition id="component.ftm_adapter_OR_component.pit_adapter_OR_component.tpm_adapter">
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="tpm_adapter"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="pit_adapter"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="ftm_adapter"/>
+    </condition>
+    <condition id="device.MKE04Z4_AND__component.ftm_adapter_OR_component.pit_adapter_OR_component.tpm_adapter__AND_component.lists_AND_driver.common">
+      <require condition="device.MKE04Z4"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+      <require condition="component.ftm_adapter_OR_component.pit_adapter_OR_component.tpm_adapter"/>
+    </condition>
+    <condition id="device.MKE04Z4_AND_driver.common_AND_driver.uart">
+      <require condition="device.MKE04Z4"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+    </condition>
+    <condition id="device.MKE04Z4_AND_CMSIS_Include_core_cm">
+      <require condition="device.MKE04Z4"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="armclang_OR_iar">
+      <accept Tcompiler="ARMCC"/>
+      <accept Tcompiler="IAR"/>
+    </condition>
+    <condition id="device.MKE04Z4_AND__armclang_OR_iar__AND_device.MKE04Z4_system">
+      <require condition="device.MKE04Z4"/>
+      <require Cclass="Device" Cgroup="CMSIS" Csub="MKE04Z4_system"/>
+      <require condition="armclang_OR_iar"/>
+    </condition>
+    <condition id="iar">
+      <require Tcompiler="IAR"/>
+    </condition>
+    <condition id="mdk">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="device.MKE04Z4_AND_device.MKE04Z4_CMSIS">
+      <require condition="device.MKE04Z4"/>
+      <require Cclass="Device" Cgroup="CMSIS" Csub="MKE04Z4_header"/>
+    </condition>
+    <condition id="device.MKE04Z4_AND_CMSIS_Driver_Include.I2C_AND_RTE_Device_AND_driver.i2c">
+      <require condition="device.MKE04Z4"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c"/>
+      <require Cclass="CMSIS Driver" Cgroup="I2C" Csub="Custom" Capiversion="2.3.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+    </condition>
+    <condition id="device.MKE04Z4_AND_CMSIS_Driver_Include.SPI_AND_RTE_Device_AND_driver.spi">
+      <require condition="device.MKE04Z4"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="spi"/>
+      <require Cclass="CMSIS Driver" Cgroup="SPI" Csub="Custom" Capiversion="2.2.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+    </condition>
+    <condition id="device.MKE04Z4_AND_CMSIS_Driver_Include.USART_AND_RTE_Device_AND_driver.uart">
+      <require condition="device.MKE04Z4"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+      <require Cclass="CMSIS Driver" Cgroup="USART" Csub="Custom" Capiversion="2.3.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+    </condition>
+    <condition id="device.MKE04Z4_AND_device.MKE04Z4_CMSIS_AND_driver.clock">
+      <require condition="device.MKE04Z4"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="CMSIS" Csub="MKE04Z4_header"/>
+    </condition>
+    <condition id="core_type.cm0p">
+      <require Dcore="Cortex-M0+" Dfpu="NO_FPU"/>
+    </condition>
+    <condition id="device.MKE04Z4_AND_component.uart_adapter_AND_utility.debug_console_lite">
+      <require condition="device.MKE04Z4"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart_adapter"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite"/>
+    </condition>
+    <condition id="device.MKE04Z4_AND_component.uart_adapter_AND_driver.common">
+      <require condition="device.MKE04Z4"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart_adapter"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+  </conditions>
+  <components>
+    <component Cclass="Board Support" Cgroup="SDK Project Template" Csub="project_template" Cvariant="MKE04Z4" Cversion="1.0.0" condition="device.MKE04Z4_AND_component.uart_adapter_AND_device.MKE04Z4_startup_AND_driver.clock_AND_driver.common_AND_driver.gpio_1_AND_driver.port_ke04_AND_driver.uart_AND_utility.debug_console_lite" isDefaultVariant="1">
+      <description>Devices_project_template MKE04Z4; {for-development:SDK-Manifest-ID: project_template.MKE04Z4.MKE04Z4}</description>
+      <files>
+        <file category="header" attr="config" name="project_template/board.h" version="1.0.0"/>
+        <file category="sourceC" attr="config" name="project_template/board.c" version="1.0.0"/>
+        <file category="header" attr="config" name="project_template/clock_config.h" version="1.0.0"/>
+        <file category="sourceC" attr="config" name="project_template/clock_config.c" version="1.0.0"/>
+        <file category="header" attr="config" name="project_template/pin_mux.h" version="1.0.0"/>
+        <file category="sourceC" attr="config" name="project_template/pin_mux.c" version="1.0.0"/>
+        <file category="header" attr="config" name="project_template/peripherals.h" version="1.0.0"/>
+        <file category="sourceC" attr="config" name="project_template/peripherals.c" version="1.0.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device" Cversion="1.0.0" condition="device.MKE04Z4">
+      <description>Rte_device; {for-development:SDK-Manifest-ID: RTE_Device.MKE04Z4}</description>
+      <files>
+        <file category="header" attr="config" name="template/RTE_Device.h" version="1.0.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="common_task" Cversion="1.0.0" condition="device.MKE04Z4_AND_component.osa_AND_driver.common">
+      <description>Component common_task; {for-development:SDK-Manifest-ID: component.common_task.MKE04Z4}</description>
+      <files>
+        <file category="header" name="components/common_task/fsl_component_common_task.h"/>
+        <file category="sourceC" name="components/common_task/fsl_component_common_task.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ftm_adapter" Cversion="1.0.0" condition="device.MKE04Z4_AND_driver.common_AND_driver.ftm">
+      <description>Component ftm_adapter; {for-development:SDK-Manifest-ID: component.ftm_adapter.MKE04Z4}</description>
+      <files>
+        <file category="header" name="components/timer/fsl_adapter_timer.h"/>
+        <file category="sourceC" name="components/timer/fsl_adapter_ftm.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lists" Cversion="1.0.0" condition="device.MKE04Z4_AND_driver.common">
+      <description>Component lists; {for-development:SDK-Manifest-ID: component.lists.MKE04Z4}</description>
+      <files>
+        <file category="header" name="components/lists/fsl_component_generic_list.h"/>
+        <file category="sourceC" name="components/lists/fsl_component_generic_list.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mem_manager" Cversion="1.0.0" condition="device.MKE04Z4_AND_component.lists_AND_driver.common">
+      <description>Component mem_manager; {for-development:SDK-Manifest-ID: component.mem_manager.MKE04Z4}</description>
+      <files>
+        <file category="header" name="components/mem_manager/fsl_component_mem_manager.h"/>
+        <file category="sourceC" name="components/mem_manager/fsl_component_mem_manager.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mem_manager_light" Cversion="1.0.0" condition="device.MKE04Z4_AND_component.lists_AND_driver.common">
+      <description>Component mem_manager_light; {for-development:SDK-Manifest-ID: component.mem_manager_light.MKE04Z4}</description>
+      <files>
+        <file category="header" name="components/mem_manager/fsl_component_mem_manager.h"/>
+        <file category="sourceC" name="components/mem_manager/fsl_component_mem_manager_light.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="osa" Cversion="1.0.0" condition="device.MKE04Z4_AND_component.lists_AND_driver.common">
+      <description>Component osa; {for-development:SDK-Manifest-ID: component.osa.MKE04Z4}</description>
+      <files>
+        <file category="header" name="components/osa/fsl_os_abstraction.h"/>
+        <file category="header" name="components/osa/fsl_os_abstraction_config.h"/>
+        <file category="header" name="components/osa/fsl_os_abstraction_bm.h"/>
+        <file category="sourceC" name="components/osa/fsl_os_abstraction_bm.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="osa_bm" Cversion="1.0.0" condition="device.MKE04Z4_AND_component.lists_AND_driver.common">
+      <description>Component osa_bm; {for-development:SDK-Manifest-ID: component.osa_bm.MKE04Z4}</description>
+      <files>
+        <file category="header" name="components/osa/fsl_os_abstraction.h"/>
+        <file category="header" name="components/osa/fsl_os_abstraction_bm.h"/>
+        <file category="header" name="components/osa/fsl_os_abstraction_config.h"/>
+        <file category="sourceC" name="components/osa/fsl_os_abstraction_bm.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="osa_thread" Cversion="1.0.0" condition="device.MKE04Z4_AND_component.lists_AND_driver.common">
+      <description>Component osa thread; {for-development:SDK-Manifest-ID: component.osa_thread.MKE04Z4}</description>
+      <files>
+        <file category="header" name="components/osa/fsl_os_abstraction.h"/>
+        <file category="header" name="components/osa/fsl_os_abstraction_config.h"/>
+        <file category="sourceC" name="components/osa/fsl_os_abstraction_threadx.c"/>
+        <file category="header" name="components/osa/fsl_os_abstraction_threadx.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pit_adapter" Cversion="1.0.0" condition="device.MKE04Z4_AND_driver.common_AND_driver.pit">
+      <description>Component pit_adapter; {for-development:SDK-Manifest-ID: component.pit_adapter.MKE04Z4}</description>
+      <files>
+        <file category="header" name="components/timer/fsl_adapter_timer.h"/>
+        <file category="sourceC" name="components/timer/fsl_adapter_pit.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pwm_ftm_adapter" Cversion="1.0.0" condition="device.MKE04Z4_AND_driver.common_AND_driver.ftm">
+      <description>Component pwm_ftm_adapter; {for-development:SDK-Manifest-ID: component.pwm_ftm_adapter.MKE04Z4}</description>
+      <files>
+        <file category="header" name="components/pwm/fsl_adapter_pwm.h"/>
+        <file category="sourceC" name="components/pwm/fsl_adapter_pwm_ftm.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pwm_tpm_adapter" Cversion="1.0.0" condition="device.MKE04Z4_AND_driver.common_AND_driver.tpm">
+      <description>Component pwm_tpm_adapter; {for-development:SDK-Manifest-ID: component.pwm_tpm_adapter.MKE04Z4}</description>
+      <files>
+        <file category="header" name="components/pwm/fsl_adapter_pwm.h"/>
+        <file category="sourceC" name="components/pwm/fsl_adapter_pwm_tpm.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="software_crc_adapter" Cversion="1.0.0" condition="device.MKE04Z4_AND_driver.common">
+      <description>Component software_crc_adapter; {for-development:SDK-Manifest-ID: component.software_crc_adapter.MKE04Z4}</description>
+      <files>
+        <file category="header" name="components/crc/fsl_adapter_crc.h"/>
+        <file category="sourceC" name="components/crc/fsl_adapter_software_crc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="software_rng_adapter" Cversion="1.0.0" condition="device.MKE04Z4_AND_driver.common">
+      <description>Component software_rng_adapter; {for-development:SDK-Manifest-ID: component.software_rng_adapter.MKE04Z4}</description>
+      <files>
+        <file category="header" name="components/rng/fsl_adapter_rng.h"/>
+        <file category="sourceC" name="components/rng/fsl_adapter_software_rng.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="timer_manager" Cversion="1.0.0" condition="device.MKE04Z4_AND__component.ftm_adapter_OR_component.pit_adapter_OR_component.tpm_adapter__AND_component.lists_AND_driver.common">
+      <description>Component timer_manager; {for-development:SDK-Manifest-ID: component.timer_manager.MKE04Z4}</description>
+      <files>
+        <file category="header" name="components/timer_manager/fsl_component_timer_manager.h"/>
+        <file category="sourceC" name="components/timer_manager/fsl_component_timer_manager.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="tpm_adapter" Cversion="1.0.0" condition="device.MKE04Z4_AND_driver.common_AND_driver.tpm">
+      <description>Component tpm_adapter; {for-development:SDK-Manifest-ID: component.tpm_adapter.MKE04Z4}</description>
+      <files>
+        <file category="header" name="components/timer/fsl_adapter_timer.h"/>
+        <file category="sourceC" name="components/timer/fsl_adapter_tpm.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="uart_adapter" Cversion="1.0.0" condition="device.MKE04Z4_AND_driver.common_AND_driver.uart">
+      <description>Component uart_adapter; {for-development:SDK-Manifest-ID: component.uart_adapter.MKE04Z4}</description>
+      <files>
+        <file category="header" name="components/uart/fsl_adapter_uart.h"/>
+        <file category="sourceC" name="components/uart/fsl_adapter_uart.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="CMSIS" Csub="MKE04Z4_header" Cversion="1.0.0" condition="device.MKE04Z4_AND_CMSIS_Include_core_cm">
+      <description>Device MKE04Z4_cmsis; {for-development:SDK-Manifest-ID: device.MKE04Z4_CMSIS.MKE04Z4}</description>
+      <files>
+        <file category="header" name="fsl_device_registers.h"/>
+        <file category="header" name="MKE04Z4.h"/>
+        <file category="header" name="MKE04Z4_features.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.1.0" condition="device.MKE04Z4_AND__armclang_OR_iar__AND_device.MKE04Z4_system">
+      <description>Device MKE04Z4_startup; {for-development:SDK-Manifest-ID: device.MKE04Z4_startup.MKE04Z4}</description>
+      <files>
+        <file condition="iar" category="sourceAsm" attr="config" name="iar/startup_MKE04Z4.s" version="1.1.0"/>
+        <file condition="mdk" category="sourceAsm" attr="config" name="arm/startup_MKE04Z4.S" version="1.1.0"/>
+        <file condition="mdk" category="linkerScript" attr="config" name="arm/MKE04Z8xxx4_flash.scf" version="1.1.0"/>
+        <file condition="mdk" category="linkerScript" attr="config" name="arm/MKE04Z8xxx4_ram.scf" version="1.1.0"/>
+        <file condition="iar" category="linkerScript" attr="config" name="iar/MKE04Z8xxx4_flash.icf" version="1.1.0"/>
+        <file condition="iar" category="linkerScript" attr="config" name="iar/MKE04Z8xxx4_ram.icf" version="1.1.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="CMSIS" Csub="MKE04Z4_system" Cversion="1.0.0" condition="device.MKE04Z4_AND_device.MKE04Z4_CMSIS">
+      <description>Device MKE04Z4_system; {for-development:SDK-Manifest-ID: device.MKE04Z4_system.MKE04Z4}</description>
+      <files>
+        <file category="sourceC" name="system_MKE04Z4.c"/>
+        <file category="header" name="system_MKE04Z4.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="acmp" Cversion="2.0.2" condition="device.MKE04Z4_AND_driver.common">
+      <description>ACMP Driver; {for-development:SDK-Manifest-ID: platform.drivers.acmp_1.MKE04Z4}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_acmp.c"/>
+        <file category="header" name="drivers/fsl_acmp.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="adc" Cversion="2.1.0" condition="device.MKE04Z4_AND_driver.common">
+      <description>ADC12 Driver; {for-development:SDK-Manifest-ID: platform.drivers.adc.MKE04Z4}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_adc.c"/>
+        <file category="header" name="drivers/fsl_adc.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="clock" Cversion="2.2.1" condition="device.MKE04Z4_AND_driver.common">
+      <description>Clock Driver; {for-development:SDK-Manifest-ID: platform.drivers.clock.MKE04Z4}</description>
+      <files>
+        <file category="header" name="drivers/fsl_clock.h"/>
+        <file category="sourceC" name="drivers/fsl_clock.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="I2C" Csub="i2c_cmsis" Cversion="2.2.0" Capiversion="2.3.0" condition="device.MKE04Z4_AND_CMSIS_Driver_Include.I2C_AND_RTE_Device_AND_driver.i2c">
+      <description>I2C CMSIS Driver; {for-development:SDK-Manifest-ID: platform.drivers.i2c_cmsis.MKE04Z4}</description>
+      <files>
+        <file category="header" name="cmsis_drivers/fsl_i2c_cmsis.h"/>
+        <file category="sourceC" name="cmsis_drivers/fsl_i2c_cmsis.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="SPI" Csub="spi_cmsis" Cversion="2.3.0" Capiversion="2.2.0" condition="device.MKE04Z4_AND_CMSIS_Driver_Include.SPI_AND_RTE_Device_AND_driver.spi">
+      <description>SPI CMSIS Driver; {for-development:SDK-Manifest-ID: platform.drivers.spi_cmsis.MKE04Z4}</description>
+      <files>
+        <file category="header" name="cmsis_drivers/fsl_spi_cmsis.h"/>
+        <file category="sourceC" name="cmsis_drivers/fsl_spi_cmsis.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="USART" Csub="uart_cmsis" Cversion="2.1.0" Capiversion="2.3.0" condition="device.MKE04Z4_AND_CMSIS_Driver_Include.USART_AND_RTE_Device_AND_driver.uart">
+      <description>UART CMSIS Driver; {for-development:SDK-Manifest-ID: platform.drivers.uart_cmsis.MKE04Z4}</description>
+      <files>
+        <file category="header" name="cmsis_drivers/fsl_uart_cmsis.h"/>
+        <file category="sourceC" name="cmsis_drivers/fsl_uart_cmsis.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="common" Cversion="2.3.1" condition="device.MKE04Z4_AND_device.MKE04Z4_CMSIS_AND_driver.clock">
+      <description>COMMON Driver; {for-development:SDK-Manifest-ID: platform.drivers.common.MKE04Z4}</description>
+      <files>
+        <file category="header" name="drivers/fsl_common.h"/>
+        <file category="sourceC" name="drivers/fsl_common.c"/>
+        <file condition="core_type.cm0p" category="sourceC" name="drivers/fsl_common_arm.c"/>
+        <file condition="core_type.cm0p" category="header" name="drivers/fsl_common_arm.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flash" Cversion="2.0.0" condition="device.MKE04Z4_AND_driver.common">
+      <description>Flash Driver; {for-development:SDK-Manifest-ID: platform.drivers.flash.MKE04Z4}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_flash.c"/>
+        <file category="header" name="drivers/fsl_flash.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ftm" Cversion="2.5.0" condition="device.MKE04Z4_AND_driver.common">
+      <description>FTM Driver; {for-development:SDK-Manifest-ID: platform.drivers.ftm.MKE04Z4}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_ftm.c"/>
+        <file category="header" name="drivers/fsl_ftm.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="gpio" Cversion="2.1.1" condition="device.MKE04Z4_AND_driver.common">
+      <description>GPIO Driver; {for-development:SDK-Manifest-ID: platform.drivers.gpio_1.MKE04Z4}</description>
+      <files>
+        <file category="header" name="drivers/fsl_gpio.h"/>
+        <file category="sourceC" name="drivers/fsl_gpio.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="i2c" Cversion="2.0.9" condition="device.MKE04Z4_AND_driver.common">
+      <description>I2C Driver; {for-development:SDK-Manifest-ID: platform.drivers.i2c.MKE04Z4}</description>
+      <files>
+        <file category="header" name="drivers/fsl_i2c.h"/>
+        <file category="sourceC" name="drivers/fsl_i2c.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="irq" Cversion="2.0.2" condition="device.MKE04Z4_AND_driver.common">
+      <description>IRQ Driver; {for-development:SDK-Manifest-ID: platform.drivers.irq.MKE04Z4}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_irq.c"/>
+        <file category="header" name="drivers/fsl_irq.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="kbi" Cversion="2.0.3" condition="device.MKE04Z4_AND_driver.common">
+      <description>KBI Driver; {for-development:SDK-Manifest-ID: platform.drivers.kbi.MKE04Z4}</description>
+      <files>
+        <file category="header" name="drivers/fsl_kbi.h"/>
+        <file category="sourceC" name="drivers/fsl_kbi.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pit" Cversion="2.0.4" condition="device.MKE04Z4_AND_driver.common">
+      <description>PIT Driver; {for-development:SDK-Manifest-ID: platform.drivers.pit.MKE04Z4}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_pit.c"/>
+        <file category="header" name="drivers/fsl_pit.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="port" Cversion="2.0.2" condition="device.MKE04Z4_AND_driver.common">
+      <description>PORT Driver; {for-development:SDK-Manifest-ID: platform.drivers.port_ke04.MKE04Z4}</description>
+      <files>
+        <file category="header" name="drivers/fsl_port.h"/>
+        <file category="sourceC" name="drivers/fsl_port.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pwt" Cversion="2.0.1" condition="device.MKE04Z4_AND_driver.common">
+      <description>PWT Driver; {for-development:SDK-Manifest-ID: platform.drivers.pwt_1.MKE04Z4}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_pwt.c"/>
+        <file category="header" name="drivers/fsl_pwt.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="rtc" Cversion="2.0.3" condition="device.MKE04Z4_AND_driver.common">
+      <description>RTC Driver; {for-development:SDK-Manifest-ID: platform.drivers.rtc_1.MKE04Z4}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_rtc.c"/>
+        <file category="header" name="drivers/fsl_rtc.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="spi" Cversion="2.1.1" condition="device.MKE04Z4_AND_driver.common">
+      <description>SPI Driver; {for-development:SDK-Manifest-ID: platform.drivers.spi.MKE04Z4}</description>
+      <files>
+        <file category="header" name="drivers/fsl_spi.h"/>
+        <file category="sourceC" name="drivers/fsl_spi.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="tpm" Cversion="2.2.0" condition="device.MKE04Z4_AND_driver.common">
+      <description>TPM Driver; {for-development:SDK-Manifest-ID: platform.drivers.tpm.MKE04Z4}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_tpm.c"/>
+        <file category="header" name="drivers/fsl_tpm.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="uart" Cversion="2.5.1" condition="device.MKE04Z4_AND_driver.common">
+      <description>UART Driver; {for-development:SDK-Manifest-ID: platform.drivers.uart.MKE04Z4}</description>
+      <files>
+        <file category="header" name="drivers/fsl_uart.h"/>
+        <file category="sourceC" name="drivers/fsl_uart.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="wdog" Cversion="2.0.1" condition="device.MKE04Z4_AND_driver.common">
+      <description>WDOG Driver; {for-development:SDK-Manifest-ID: platform.drivers.wdog8.MKE04Z4}</description>
+      <files>
+        <file category="header" name="drivers/fsl_wdog8.h"/>
+        <file category="sourceC" name="drivers/fsl_wdog8.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="assert_lite" Cversion="1.0.0" condition="device.MKE04Z4_AND_component.uart_adapter_AND_utility.debug_console_lite">
+      <description>Utility assert_lite; {for-development:SDK-Manifest-ID: platform.utilities.assert_lite.MKE04Z4}</description>
+      <files>
+        <file category="sourceC" name="utilities/debug_console_lite/fsl_assert.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite" Cversion="1.0.0" condition="device.MKE04Z4_AND_component.uart_adapter_AND_driver.common">
+      <description>Utility debug_console_lite; {for-development:SDK-Manifest-ID: utility.debug_console_lite.MKE04Z4}</description>
+      <files>
+        <file category="sourceC" name="utilities/debug_console_lite/fsl_debug_console.c"/>
+        <file category="header" name="utilities/debug_console_lite/fsl_debug_console.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="notifier" Cversion="1.0.0" condition="device.MKE04Z4_AND_driver.common">
+      <description>Utility notifier; {for-development:SDK-Manifest-ID: platform.utilities.notifier.MKE04Z4}</description>
+      <files>
+        <file category="sourceC" name="utilities/fsl_notifier.c"/>
+        <file category="header" name="utilities/fsl_notifier.h"/>
+      </files>
+    </component>
+  </components>
+</package>

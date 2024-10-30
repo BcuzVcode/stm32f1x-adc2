@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>RD-RW612-BGA_SE_HOSTLIB_Examples</name>
+  <vendor>NXP</vendor>
+  <description>Middleware se_hostlib Examples Pack for RD-RW612-BGA</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="1.0.0" date="2024-07-17">NXP CMSIS SBSP Packs based on MCUXpresso SDK 2.16.0</release>
+  </releases>
+  <keywords>
+    <keyword>Middleware Board Support Pack</keyword>
+  </keywords>
+  <requirements>
+    <packages>
+      <package name="RD-RW612-BGA_BSP" vendor="NXP" version="19.0.0"/>
+      <package name="RW612_DFP" vendor="NXP" version="19.0.0"/>
+      <package name="SE_HOSTLIB" vendor="NXP" version="2.0.0"/>
+      <package name="CMSIS" vendor="ARM" version="5.9.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <examples>
+    <example name="el2go_claimcode_encryption" folder="boards/rdrw612bga/se_hostlib_examples/el2go_claimcode_encryption" doc="readme.md">
+      <description>The EdgeLock 2GO claimcode encryption demo demonstrates how to encrypt a claimcode for onboarding a device with the EdgeLock 2GO cloud service.</description>
+      <board name="RD-RW612-BGA" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/el2go_claimcode_encryption.uvprojx"/>
+        <environment name="csolution" load="el2go_claimcode_encryption.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+  </examples>
+</package>

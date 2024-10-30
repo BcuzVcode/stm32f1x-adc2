@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<package schemaVersion="1.7.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="PACK.xsd">
+  <name>coreMQTT_Agent</name>
+
+  <description>The coreMQTT Agent library is a high level API that adds thread safety to the coreMQTT library.</description>
+
+  <vendor>AWS</vendor>
+
+  <license>LICENSE</license>
+
+  <url>https://d1pm0k3vkcievw.cloudfront.net/</url>
+
+  <requirements>
+    <packages>
+      <package name="coreMQTT" vendor="AWS" version="5.0.1"/>
+    </packages>
+  </requirements>
+
+  <releases>
+    <release date="2023-06-23" version="5.0.1">Re-release of the last version due to hosting changes. Based on the https://github.com/FreeRTOS/coreMQTT-Agent/tree/v1.2.0/ repository.</release>
+    <release date="2023-02-23" version="5.0.0">Based on the https://github.com/FreeRTOS/coreMQTT-Agent/tree/v1.2.0/ repository.</release>
+    <release date="2022-06-16" version="4.0.0">Based on the https://github.com/FreeRTOS/coreMQTT-Agent/tree/v1.1.0/ repository.</release>
+    <release date="2020-12-15" version="1.0.1-Beta">Based on the https://github.com/FreeRTOS/coreMQTT-Agent/tree/v1.0.1/ repository.</release>
+  </releases>
+
+  <conditions>
+    <condition id="core_mqtt_agent_library Condition">
+      <require Cclass="FreeRTOS" Cgroup="coreMQTT" Cversion="2.1.1"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <component Cclass="FreeRTOS" Cgroup="coreMQTT Agent" Cversion="1.2.0" condition="core_mqtt_agent_library Condition">
+      <description>The coreMQTT Agent library is a high level API that adds thread safety to the coreMQTT library.</description>
+      <files>
+        <file category="source" name="coreMQTT-Agent/source/core_mqtt_agent.c"/>
+        <file category="source" name="coreMQTT-Agent/source/core_mqtt_agent_command_functions.c"/>
+        <file category="include" name="coreMQTT-Agent/source/include/"/>
+      </files>
+    </component>
+  </components>
+</package>
+

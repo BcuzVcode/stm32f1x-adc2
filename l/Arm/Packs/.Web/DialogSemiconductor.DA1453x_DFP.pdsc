@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  
+    <name>DA1453x_DFP</name>
+    <description>Dialog Semiconductor BLE ARM DA1453x devices Device Family Pack.</description>
+    <vendor>DialogSemiconductor</vendor>
+    <url>https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/CMSIS/</url>
+    <supportContact>DLG-bluetooth.support@dm.renesas.com</supportContact>
+	<license>License/license.txt</license>
+
+    <keywords>
+        <keyword>DeviceFamilyPack</keyword>
+        <keyword>Dialog</keyword>
+        <keyword>Dialog Semiconductor</keyword>
+        <keyword>DA14531</keyword>
+        <keyword>BLE</keyword>
+        <keyword>ANT</keyword>
+    </keywords>
+
+  
+  <releases>
+    <release version="1.0.4" date="2022-05-23">
+      Date: 23.05.2022
+      wrong url 
+      new support mail address
+    </release>
+    <release version="1.0.3" date="2022-05-20">
+      Date: 20.05.2022
+      new repro url
+    </release>
+    <release version="1.0.2" date="2021-07-23">
+      Date: 23.07.2021
+      Updated startup files
+    </release>
+    <release version="1.0.1" date="2021-03-29">
+      Date: 29.03.2021
+      Updated datsheet to V3.3
+    </release>
+    <release version="1.0.0" date="2020-03-26">
+      Date: 26.03.2020
+      first official release
+    </release>
+    <release version="0.0.8" date="2019-11-05">
+      Date: 15.11.2019
+      V 2.1 datesheet
+      Released
+    </release>
+    <release version="0.0.7" date="2019-03-25">
+      Date: 25.03.2019
+      added per_ex_hard_fault
+    </release>
+    <release version="0.0.6" date="2019-03-18">
+      Date: 18.03.2019
+      added ANA_STATUS+REG to SVD
+    </release>
+    <release version="0.0.5" date="2019-03-15">
+      Date: 15.03.2019
+      put test registers in seperate include file
+    </release>
+    <release version="0.0.4" date="2019-03-13">
+      Date: 13.03.2019
+      Added rfcu and test mode registers definitions
+    </release>
+    <release version="0.0.3" date="2019-03-07">
+      Date: 07.03.2019
+      Adapted to SDK6
+    </release>
+  </releases>
+  
+  <!-- devices section (mandatory for Device Family Packs) -->
+  <devices>
+
+	<family Dfamily="DA1453x Series" Dvendor="Dialog Semiconductor:113">
+	 
+    	<processor  Dcore="Cortex-M0+"
+                    DcoreVersion="r0p2"
+                    Dendian="Little-endian"
+                    Dclock="16000000"
+                    Dfpu="0"
+                    Dmpu="0" />
+
+                <description>The DA1453x series are a System-on-Chip with a fully integrated radio transceiver and baseband processor for Bluetooth ® low energy 4.2 The DA1453x family supports a flexible memory architecture for storing Bluetooth profiles and custom application code, which can be updated over the air (OTA). The qualified Bluetooth low energy protocol stack is stored in a dedicated ROM. All software runs on the ARM® Cortex®-M0 processor via a simple scheduler. The Bluetooth low energy firmware includes the L2CAP service layer protocols, Security Manager (SM), Attribute Protocol (ATT), the Generic Attribute Profile (GATT) and the Generic Access Profile (GAP). All profiles published by the Bluetooth SIG as well as custom profiles are supported.</description>
+				
+                <device Dname="DA14531">
+                <book name="http://infocenter.arm.com/help/topic/com.arm.doc.dui0497a/index.html" title="Cortex-M0 Device Generic Users Guide"/>
+				<book name="Documents/DA14531.pdf" title="DA14531 - Data Sheet"/>  
+				<debug svd="Device/SVD/DA14531.svd"/>
+				<description>The DA14531 is an ultra-low power SoC integrating a 2.4 GHz transceiver and an ARM® Cortex-M0+TM microcontroller with 48 kB of RAM and 32 kB of One-Time Programmable (OTP) memory. It can be used as a standalone application processor or as a data pump in hosted systems.</description>
+				<compile header="Device/Include/DA14531.h"/>
+				<memory name="IRAM1" access ="rw" start="0x07fc0000" size="0x0c000"  init="0" default="1"/>
+				<memory name="IROM1" access ="rx" start="0x00000000" size="0x024000" startup="1" default="1"/>
+				</device>
+			
+		</family>
+		
+  </devices>
+  <!-- conditions section (optional for all Software Packs)-->
+  
+    <conditions>
+	<!-- Compiler Conditions -->
+        <condition id="ARM Compiler">
+            <require Tcompiler="ARMCC"/>
+        </condition>
+
+		<condition id="GCC Compiler">
+            <require Tcompiler="GCC"/>
+        </condition>
+
+        <condition id="IAR Compiler">
+            <require Tcompiler="IAR"/>
+        </condition>
+
+		<condition id="DA1453x">
+			<!-- conditions selecting Devices -->
+			<description>Dialog Semiconductor DA1458x Series devices</description>
+			<accept Dvendor="Dialog Semiconductor:113" Dname="DA14531"/>
+		</condition>		
+
+		<condition id="DA1453x CMSIS-Core">
+		<!-- conditions selecting Devices -->
+		<description>Dialog Semiconductor DA1458x Series devices and CMSIS-Core (Cortex-M)</description>
+		<require condition="DA1453x"/>
+		<require Cclass="CMSIS" Cgroup="CORE"/>
+		</condition>		
+		
+  	    <!-- DA14531 Conditions -->
+		<condition id="DA14531 device and CMSIS">
+			<description>Dialog Semiconductor DA14531 CMSIS device</description>
+            <require condition="DA1453x CMSIS-Core"/>
+			<require Dvendor="Dialog Semiconductor:113" Dname="DA1453*"/>
+        </condition>
+
+     </conditions>
+
+  <!-- component section (optional for all Software Packs)-->
+  
+	<components>
+
+   		<component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="DA14531 device and CMSIS">
+			<description>System startup for Dialog Semiconductor DA14531 devices</description>
+
+			<files>
+		        <!--  include folder -->
+				<file category="include" name="Device/Include/"/>
+
+				<!-- common device header file -->
+                <file category="header"  name="Device/Include/DialogDevices.h"                        version="1.0.0"/>
+                <file category="header"  name="Device/Include/DA14531.h"                              version="1.0.0"/>
+                <file category="header"  name="Device/Include/rfcu_531.h"                             version="1.0.0"/>
+			
+				<!-- startup files -->
+				<!-- ARM Compiler Toolchain -->
+                <file category="source"  name="Device/Source/ARM/arm_startup_DA14531.S" attr="config" version="1.0.0" condition="ARM Compiler"/>
+
+				<!-- IAR Compiler Toolchain -->
+                <file category="source"  name="Device/Source/IAR/iar_startup_DA14531.S" attr="config" version="1.0.0" condition="IAR Compiler"/>
+				
+				<!-- GCC Compiler Toolchain -->
+                <file category="source"  name="Device/Source/GCC/gcc_startup_DA14531.S" attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_ivtable_DA14531.S" attr="config" version="1.0.0" condition="GCC Compiler"/>
+				
+		        <!-- system file -->
+                <file category="sourceC" name="Device/Source/per_ex_hard_fault.c"          attr="config" version="1.0.0"/>
+                <file category="sourceC" name="Device/Source/system_DA14531.c"          attr="config" version="1.0.0"/>
+                <file category="header"  name="Device/Include/system_DA14531.h" 	                  version="1.0.0"/>
+				
+                <!-- Data Access Macro's -->
+                <file category="header"  name="Device/Include/DataAccess.h" 	                  version="1.0.0"/>
+                				
+			</files>		
+		</component>
+       
+   </components>
+</package>

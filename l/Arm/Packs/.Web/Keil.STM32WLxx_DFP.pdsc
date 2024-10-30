@@ -1,0 +1,1307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.28/schema/PACK.xsd" schemaVersion="1.7.28">
+  <vendor>Keil</vendor>
+  <name>STM32WLxx_DFP</name>
+  <description>STMicroelectronics STM32WL Series Device Support</description>
+  <url>https://www.keil.com/pack/</url>
+  <license>LICENSE</license>
+
+  <releases>
+    <release version="1.2.0" date="2024-02-02">
+      Updated Pack to STM32Cube_FW_WL Firmware Package version V1.3.0 (using HAL Drivers V1.3.0).
+      STM32CubeMX integration:
+      - Synchronized versions of generated component ::Device:STM32Cube Framework:STM32CubeMX (in gpdsc) and its bootstrap (in pdsc).
+      Package Description (pdsc):
+      - Added RAMstart/size attributes to algorithm elements.
+      - Added new Device STM32WL5MOCHx.
+      Device Support:
+      - Aligned devices with CubeMX DB (V6.8.0).
+      - Updated documentation.
+    </release>
+    <release version="1.1.0" date="2020-12-08">
+      Device Support:
+      - Aligned devices with CubeMX DB (V6.1.0).
+      - Updated Pack to STM32CubeWL Firmware Package version V1.0.0 (using HAL Drivers V1.0.0.).
+      - Added Cube HAL support.
+      - Added CubeMX support for single core devices.
+      -- Note: Projects for dual core devices need to be initiated from within STM32CubeMX generating the uVision projects.
+      - Updated SVD files.
+      - Updated documentation.
+      - Updated flash programming algorithms.
+    </release>
+    <release version="1.0.0" date="2020-01-23" >
+      Initial Release of basic device support for STM32WL device series.
+      - STM32WLE5JCIx,STM32WLE5JBIx,STM32WLE5J8Ix
+      (does not include STM32Cube FW Library deliverables i.e. HAL, contact ST for STM32Cube WL FW Library)
+    </release>
+  </releases>
+
+  <keywords>
+    <keyword>ST</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package STMicroelectronics</keyword>
+    <keyword>STM32WL_DFP</keyword>
+    <keyword>STM32WLxx</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="STM32WL Series" Dvendor="STMicroelectronics:13">
+
+      <!-- ************************  Subfamily 'STM32WL55 Dual Core'  **************************** -->
+      <subFamily DsubFamily="STM32WL55">
+        <processor Pname="CM4"  Dcore="Cortex-M4"  DcoreVersion="r0p1" Dmpu="MPU"    Dfpu="NO_FPU" Dendian="Little-endian" Dclock="48000000"/>
+        <processor Pname="CM0P" Dcore="Cortex-M0+" DcoreVersion="r0p1" Dmpu="NO_MPU" Dfpu="NO_FPU" Dendian="Little-endian" Dclock="48000000"/>
+        <debug Pname="CM4"  svd="CMSIS/SVD/STM32WL5x_CM4.svd"/>
+        <debug Pname="CM0P" svd="CMSIS/SVD/STM32WL5x_CM0P.svd"/>
+        <compile Pname="CM4"  header="Drivers/CMSIS/Device/ST/STM32WLxx/Include/stm32wlxx.h" define="STM32WL55xx" Pdefine="CORE_CM4"/>
+        <compile Pname="CM0P" header="Drivers/CMSIS/Device/ST/STM32WLxx/Include/stm32wlxx.h" define="STM32WL55xx" Pdefine="CORE_CM0PLUS"/>
+
+        <book Pname="CM4"  name="Documentation/DUI0553B_cortex_m4_dgug.pdf"       title="Cortex-M4 Generic User Guide"/>
+        <book Pname="CM0P" name="Documentation/DUI0662B_cortex_m0p_r0p1_dgug.pdf" title="Cortex-M0+ Generic User Guide"/>
+        <book name="Documentation/RM0453.pdf"  title="STM32WL5x Reference Manual"/>
+        <book name="Documentation/DS13293.pdf" title="STM32WL55xx STM32WL54xx Data Sheet"/>
+
+        <description>
+          The STM32WL5xx is a Dual core (ARMCortex-M4 + ARM Cortex-M0+) microcontroller where the ARM Cortex-M0+ can be configured as a secure co-processor.
+          The dual core option enables Secure Firmware Install (SFI), secure Firmware Update(SFU), Secure Key Storage (SKS), and secure subGHz radio communication.
+          The main features:
+            - Multiprotocol LPWAN dual core 32-bit Arm Cortex-M4/M0+ MCUs LoRa,
+            -(G)FSK, (G)MSK, BPSK,
+            - up to 256KB Flash,
+            - 64 KB SRAM
+        </description>
+        <description Pname="CM4">
+          The Cortex-M4 processor is an entry-level 32-bit ARM Cortex processor designed for a broad range of embedded applications.
+          It offers significant benefits to developers, including:
+            - simple, easy-to-use programmers model.
+            - highly efficient ultra-low power operation.
+            - excellent code density.
+            - deterministic, high-performance interrupt handling.
+            - upward compatibility with the rest of the Cortex-M processor family.
+        </description>
+        <description Pname="CM0P">
+          The Cortex-M0+ processor is an entry-level 32-bit ARM Cortex processor designed for a broad range of embedded applications.
+          It offers significant benefits to developers, including:
+            - A simple architecture that is easy to learn and program.
+            - Ultra-low power, energy-efficient operation.
+            - Excellent code density.
+            - Deterministic, high-performance interrupt handling.
+            - Upward compatibility with Cortex-M processor family.
+            - Platform security robustness, with optional integrated Memory Protection Unit (MPU).
+        </description>
+
+        <!-- ################################### 256 KB ################################## -->
+        <!-- *************************  Device 'STM32WL5MOCHx'  ***************************** -->
+        <device Dname="STM32WL5MOCHx">
+          <memory name="SRAM1" access="rwx"                             start="0x20000000" size="0x00008000" default="1" init="0" />
+          <memory name="SRAM2" access="rwx"                             start="0x20008000" size="0x00008000" default="1" init="0" />
+          <memory name="FLASH" access="rx"                              start="0x08000000" size="0x00040000" default="1" startup="1" />
+          <algorithm Pname="CM4"  name="CMSIS/Flash/STM32WLxx_CM4.FLM"  start="0x08000000" size="0x00040000" RAMstart="0x20000000" RAMsize="0x8000" default="1" />
+          <algorithm Pname="CM0P" name="CMSIS/Flash/STM32WLxx_CM0+.FLM" start="0x08000000" size="0x00040000" RAMstart="0x20000000" RAMsize="0x8000" default="1" />
+
+          <feature type="PackageOther" n="92" name="LGA"/>
+        </device>
+
+        <!-- *************************  Device 'STM32WL55CCUx'  ***************************** -->
+        <device Dname="STM32WL55CCUx">
+          <memory name="SRAM1" access="rwx"                             start="0x20000000" size="0x00008000" default="1" init="0" />
+          <memory name="SRAM2" access="rwx"                             start="0x20008000" size="0x00008000" default="1" init="0" />
+          <memory name="FLASH" access="rx"                              start="0x08000000" size="0x00040000" default="1" startup="1" />
+          <algorithm Pname="CM4"  name="CMSIS/Flash/STM32WLxx_CM4.FLM"  start="0x08000000" size="0x00040000" RAMstart="0x20000000" RAMsize="0x8000" default="1" />
+          <algorithm Pname="CM0P" name="CMSIS/Flash/STM32WLxx_CM0+.FLM" start="0x08000000" size="0x00040000" RAMstart="0x20000000" RAMsize="0x8000" default="1" />
+
+          <feature type="QFP" n="48"/>
+        </device>
+
+        <!-- *************************  Device 'STM32WL55JCIx'  ***************************** -->
+        <device Dname="STM32WL55JCIx">
+          <memory name="SRAM1" access="rwx"                             start="0x20000000" size="0x00008000" default="1" init="0" />
+          <memory name="SRAM2" access="rwx"                             start="0x20008000" size="0x00008000" default="1" init="0" />
+          <memory name="FLASH" access="rx"                              start="0x08000000" size="0x00040000" default="1" startup="1" />
+          <algorithm Pname="CM4"  name="CMSIS/Flash/STM32WLxx_CM4.FLM"  start="0x08000000" size="0x00040000" RAMstart="0x20000000" RAMsize="0x8000" default="1" />
+          <algorithm Pname="CM0P" name="CMSIS/Flash/STM32WLxx_CM0+.FLM" start="0x08000000" size="0x00040000" RAMstart="0x20000000" RAMsize="0x8000" default="1" />
+
+          <feature type="BGA" n="73"/>
+        </device>
+
+        <!-- *************************  Device 'STM32WL55UCYx'  *****************************
+        <device Dname="STM32WL55UCYx">
+          <memory name="SRAM1" access="rwx"                             start="0x20000000" size="0x00008000" default="1" init="0" />
+          <memory name="SRAM2" access="rwx"                             start="0x20008000" size="0x00008000" default="1" init="0" />
+          <memory name="FLASH" access="rx"                              start="0x08000000" size="0x00040000" default="1" startup="1" />
+          <algorithm Pname="CM4"  name="CMSIS/Flash/STM32WLxx_CM4.FLM"  start="0x08000000" size="0x00040000" RAMstart="0x20000000" RAMsize="0x8000" default="1" />
+          <algorithm Pname="CM0P" name="CMSIS/Flash/STM32WLxx_CM0+.FLM" start="0x08000000" size="0x00040000" RAMstart="0x20000000" RAMsize="0x8000" default="1" />
+
+          <feature type="CSP" n="59"/>
+        </device>-->
+      </subFamily>
+
+      <!-- ************************  Subfamily 'STM32WL54 Dual Core'  **************************** -->
+      <subFamily DsubFamily="STM32WL54">
+        <processor Pname="CM4"  Dcore="Cortex-M4"  DcoreVersion="r0p1" Dmpu="MPU"    Dfpu="NO_FPU" Dendian="Little-endian" Dclock="48000000"/>
+        <processor Pname="CM0P" Dcore="Cortex-M0+" DcoreVersion="r0p1" Dmpu="NO_MPU" Dfpu="NO_FPU" Dendian="Little-endian" Dclock="48000000"/>
+        <debug Pname="CM4"  svd="CMSIS/SVD/STM32WL5x_CM4.svd"/>
+        <debug Pname="CM0P" svd="CMSIS/SVD/STM32WL5x_CM0P.svd"/>
+        <compile Pname="CM4"  header="Drivers/CMSIS/Device/ST/STM32WLxx/Include/stm32wlxx.h" define="STM32WL54xx" Pdefine="CORE_CM4"/>
+        <compile Pname="CM0P" header="Drivers/CMSIS/Device/ST/STM32WLxx/Include/stm32wlxx.h" define="STM32WL54xx" Pdefine="CORE_CM0PLUS"/>
+
+        <book Pname="CM4"  name="Documentation/DUI0553B_cortex_m4_dgug.pdf"       title="Cortex-M4 Generic User Guide"/>
+        <book Pname="CM0P" name="Documentation/DUI0662B_cortex_m0p_r0p1_dgug.pdf" title="Cortex-M0+ Generic User Guide"/>
+        <book name="Documentation/RM0453.pdf"  title="STM32WL5x Reference Manual"/>
+        <book name="Documentation/DS13293.pdf" title="STM32WL55xx STM32WL54xx Data Sheet"/>
+
+        <description>
+          The STM32WL5xx is a Dual core (ARMCortex-M4 + ARM Cortex-M0+) microcontroller where the ARM Cortex-M0+ can be configured as a secure co-processor.
+          The dual core option enables Secure Firmware Install (SFI), secure Firmware Update(SFU), Secure Key Storage (SKS), and secure subGHz radio communication.
+          The main features:
+            - Multiprotocol LPWAN dual core 32-bit Arm Cortex-M4/M0+ MCUs LoRa,
+            -(G)FSK, (G)MSK, BPSK,
+            - up to 256KB Flash,
+            - 64 KB SRAM
+        </description>
+        <description Pname="CM4">
+          The Cortex-M4 processor is an entry-level 32-bit ARM Cortex processor designed for a broad range of embedded applications.
+          It offers significant benefits to developers, including:
+            - simple, easy-to-use programmers model.
+            - highly efficient ultra-low power operation.
+            - excellent code density.
+            - deterministic, high-performance interrupt handling.
+            - upward compatibility with the rest of the Cortex-M processor family.
+        </description>
+        <description Pname="CM0P">
+          The Cortex-M0+ processor is an entry-level 32-bit ARM Cortex processor designed for a broad range of embedded applications.
+          It offers significant benefits to developers, including:
+            - A simple architecture that is easy to learn and program.
+            - Ultra-low power, energy-efficient operation.
+            - Excellent code density.
+            - Deterministic, high-performance interrupt handling.
+            - Upward compatibility with Cortex-M processor family.
+            - Platform security robustness, with optional integrated Memory Protection Unit (MPU).
+        </description>
+
+        <!-- ################################### 256 KB ################################## -->
+        <!-- *************************  Device 'STM32WL54CCUx'  ***************************** -->
+        <device Dname="STM32WL54CCUx">
+          <memory name="SRAM1" access="rwx"                             start="0x20000000" size="0x00008000" default="1" init="0" />
+          <memory name="SRAM2" access="rwx"                             start="0x20008000" size="0x00008000" default="1" init="0" />
+          <memory name="FLASH" access="rx"                              start="0x08000000" size="0x00040000" default="1" startup="1" />
+          <algorithm Pname="CM4"  name="CMSIS/Flash/STM32WLxx_CM4.FLM"  start="0x08000000" size="0x00040000" RAMstart="0x20000000" RAMsize="0x8000" default="1" />
+          <algorithm Pname="CM0P" name="CMSIS/Flash/STM32WLxx_CM0+.FLM" start="0x08000000" size="0x00040000" RAMstart="0x20000000" RAMsize="0x8000" default="1" />
+
+          <feature type="QFP" n="48"/>
+        </device>
+
+        <!-- *************************  Device 'STM32WL54JCIx'  ***************************** -->
+        <device Dname="STM32WL54JCIx">
+          <memory name="SRAM1" access="rwx"                             start="0x20000000" size="0x00008000" default="1" init="0" />
+          <memory name="SRAM2" access="rwx"                             start="0x20008000" size="0x00008000" default="1" init="0" />
+          <memory name="FLASH" access="rx"                              start="0x08000000" size="0x00040000" default="1" startup="1" />
+          <algorithm Pname="CM4"  name="CMSIS/Flash/STM32WLxx_CM4.FLM"  start="0x08000000" size="0x00040000" RAMstart="0x20000000" RAMsize="0x8000" default="1" />
+          <algorithm Pname="CM0P" name="CMSIS/Flash/STM32WLxx_CM0+.FLM" start="0x08000000" size="0x00040000" RAMstart="0x20000000" RAMsize="0x8000" default="1" />
+
+          <feature type="BGA" n="73"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Subfamily 'STM32WLE5 Single Core'  ************************** -->
+      <subFamily DsubFamily="STM32WLE5">
+        <processor  Dcore="Cortex-M4"  DcoreVersion="r0p1" Dfpu="NO_FPU" Dmpu="MPU" Dendian="Little-endian" Dclock="48000000"/>
+        <debug svd="CMSIS/SVD/STM32WLE5_CM4.svd"/>
+        <compile header="Drivers/CMSIS/Device/ST/STM32WLxx/Include/stm32wlxx.h" define="STM32WLE5xx"/>
+
+        <book name="Documentation/DUI0553B_cortex_m4_dgug.pdf" title="Cortex-M4 Generic User Guide"/>
+        <book name="Documentation/RM0461.pdf"  title="STM32WLEx Reference Manual"/>
+        <book name="Documentation/DS13105.pdf" title="STM32WLE5xx STM32WLE4xx Data Sheet"/>
+
+        <description >
+          The STM32WLE5xx dvices are based on ARM Cortex-M4 processor which is an entry-level 32-bit ARM Cortex processor designed for a broad range of embedded applications.
+          The Cortex-M4 processor is an entry-level 32-bit ARM Cortex processor designed for a broad range of embedded applications.
+          It offers significant benefits to developers, including:
+            - simple, easy-to-use programmers model
+            - highly efficient ultra-low power operation
+            - excellent code density
+            - deterministic, high-performance interrupt handling
+            - upward compatibility with the rest of the Cortex-M processor family.
+          </description>
+
+        <!-- ################################### 256 KB ################################## -->
+        <!-- *************************  Device 'STM32WLE5JCIx  *************************** -->
+        <device Dname="STM32WLE5JCIx">
+          <memory name="SRAM1" access="rwx"                start="0x20000000" size="0x00008000" default="1" init="0" />
+          <memory name="SRAM2" access="rwx"                start="0x20008000" size="0x00008000" default="1" init="0" />
+          <memory name="FLASH" access="rx"                 start="0x08000000" size="0x00040000" default="1" startup="1" />
+          <algorithm name="CMSIS/Flash/STM32WLxx_CM4.FLM"  start="0x08000000" size="0x00040000" RAMstart="0x20000000" RAMsize="0x8000" default="1" />
+
+          <feature type="BGA" n="73"/>
+        </device>
+
+        <!-- *************************  Device 'STM32WLE5CCUx  *************************** -->
+        <device Dname="STM32WLE5CCUx">
+          <memory name="SRAM1" access="rwx"                start="0x20000000" size="0x00008000" default="1" init="0" />
+          <memory name="SRAM2" access="rwx"                start="0x20008000" size="0x00008000" default="1" init="0" />
+          <memory name="FLASH" access="rx"                 start="0x08000000" size="0x00040000" default="1" startup="1" />
+          <algorithm name="CMSIS/Flash/STM32WLxx_CM4.FLM"  start="0x08000000" size="0x00040000" RAMstart="0x20000000" RAMsize="0x8000" default="1" />
+
+          <feature type="QFP" n="48"/>
+        </device>
+
+        <!-- ################################### 128 KB ################################## -->
+        <!-- *************************  Device 'STM32WLE5CBUx'  ************************** -->
+        <device Dname="STM32WLE5CBUx">
+          <memory name="SRAM1" access="rwx"                start="0x20000000" size="0x00004000" default="1" init="0" />
+          <memory name="SRAM2" access="rwx"                start="0x20008000" size="0x00008000" default="1" init="0" />
+          <memory name="FLASH" access="rx"                 start="0x08000000" size="0x00020000" default="1" startup="1" />
+          <algorithm name="CMSIS/Flash/STM32WLExx_128.FLM" start="0x08000000" size="0x00020000" RAMstart="0x20008000" RAMsize="0x8000" default="1" />
+
+          <feature type="QFP" n="48"/>
+        </device>
+
+        <!-- *************************  Device 'STM32WLE5JBIx'  ************************** -->
+        <device Dname="STM32WLE5JBIx">
+          <memory name="SRAM1" access="rwx"                start="0x20000000" size="0x00004000" default="1" init="0" />
+          <memory name="SRAM2" access="rwx"                start="0x20008000" size="0x00008000" default="1" init="0" />
+          <memory name="FLASH" access="rx"                 start="0x08000000" size="0x00020000" default="1" startup="1" />
+          <algorithm name="CMSIS/Flash/STM32WLExx_128.FLM" start="0x08000000" size="0x00020000" RAMstart="0x20008000" RAMsize="0x8000" default="1" />
+
+          <feature type="BGA" n="73"/>
+        </device>
+
+        <!-- *************************  Device 'STM32WLE5UBYx'  **************************
+        <device Dname="STM32WLE5UBYx">
+          <memory name="SRAM1" access="rwx"                start="0x20000000" size="0x00004000" default="1" init="0" />
+          <memory name="SRAM2" access="rwx"                start="0x20008000" size="0x00008000" default="1" init="0" />
+          <memory name="FLASH" access="rx"                 start="0x08000000" size="0x00020000" default="1" startup="1" />
+          <algorithm name="CMSIS/Flash/STM32WLExx_128.FLM" start="0x08000000" size="0x00020000" RAMstart="0x20008000" RAMsize="0x8000" default="1" />
+
+          <feature type="CSP" n="59"/>
+        </device>-->
+
+        <!-- ################################### 64 KB ################################### -->
+        <!-- *************************  Device 'STM32WLE5C8Ux'  ************************** -->
+        <device Dname="STM32WLE5C8Ux">
+          <memory name="SRAM2" access="rwx"                start="0x20008000" size="0x00005000" default="1" init="0" />
+          <memory name="FLASH" access="rx"                 start="0x08000000" size="0x00010000" default="1" startup="1" />
+          <algorithm name="CMSIS/Flash/STM32WLExx_64.FLM"  start="0x08000000" size="0x00010000" RAMstart="0x20008000" RAMsize="0x5000" default="1" />
+
+          <feature type="QFP" n="48"/>
+        </device>
+
+        <!-- *************************  Device 'STM32WLE5J8Ix'  ************************** -->
+        <device Dname="STM32WLE5J8Ix">
+          <memory name="SRAM2" access="rwx"                start="0x20008000" size="0x00005000" default="1" init="0" />
+          <memory name="FLASH" access="rx"                 start="0x08000000" size="0x00010000" default="1" startup="1" />
+          <algorithm name="CMSIS/Flash/STM32WLExx_64.FLM"  start="0x08000000" size="0x00010000" RAMstart="0x20008000" RAMsize="0x5000" default="1" />
+
+          <feature type="BGA" n="73"/>
+        </device>
+
+        <!-- *************************  Device 'STM32WLE5U8Yx'  **************************
+        <device Dname="STM32WLE5U8Yx">
+          <memory name="SRAM2" access="rwx"                start="0x20008000" size="0x00005000" default="1" init="0" />
+          <memory name="FLASH" access="rx"                 start="0x08000000" size="0x00010000" default="1" startup="1" />
+          <algorithm name="CMSIS/Flash/STM32WLExx_64.FLM"  start="0x08000000" size="0x00010000" RAMstart="0x20008000" RAMsize="0x5000" default="1" />
+
+          <feature type="CSP" n="59"/>
+        </device>-->
+      </subFamily>
+
+      <!-- ************************  Subfamily 'STM32WLE4 Single Core'  ************************** -->
+      <subFamily DsubFamily="STM32WLE4">
+        <processor Dcore="Cortex-M4"  DcoreVersion="r0p1" Dfpu="NO_FPU" Dmpu="MPU" Dendian="Little-endian" Dclock="48000000"/>
+        <debug svd="CMSIS/SVD/STM32WLE5_CM4.svd"/>
+        <compile header="Drivers/CMSIS/Device/ST/STM32WLxx/Include/stm32wlxx.h" define="STM32WLE4xx"/>
+
+        <book name="Documentation/DUI0553B_cortex_m4_dgug.pdf" title="Cortex-M4 Generic User Guide"/>
+        <book name="Documentation/RM0461.pdf"  title="STM32WLEx Reference Manual"/>
+        <book name="Documentation/DS13105.pdf" title="STM32WLE5xx STM32WLE4xx Data Sheet"/>
+
+        <description >
+          The STM32WLE4xx dvices are based on ARM Cortex-M4 processor which is an entry-level 32-bit ARM Cortex processor designed for a broad range of embedded applications.
+          The Cortex-M4 processor is an entry-level 32-bit ARM Cortex processor designed for a broad range of embedded applications.
+          It offers significant benefits to developers, including:
+            - simple, easy-to-use programmers model.
+            - highly efficient ultra-low power operation.
+            - excellent code density.
+            - deterministic, high-performance interrupt handling.
+            - upward compatibility with the rest of the Cortex-M processor family.
+        </description>
+
+        <!-- ################################### 256 KB ################################## -->
+        <!-- *************************  Device 'STM32WLE4JCIx  *************************** -->
+        <device Dname="STM32WLE4JCIx">
+          <memory name="SRAM1" access="rwx"                start="0x20000000" size="0x00008000" default="1" init="0" />
+          <memory name="SRAM2" access="rwx"                start="0x20008000" size="0x00008000" default="1" init="0" />
+          <memory name="FLASH" access="rx"                 start="0x08000000" size="0x00040000" default="1" startup="1" />
+          <algorithm name="CMSIS/Flash/STM32WLxx_CM4.FLM"  start="0x08000000" size="0x00040000" RAMstart="0x20000000" RAMsize="0x8000" default="1" />
+
+          <feature type="BGA" n="73"/>
+        </device>
+
+        <!-- *************************  Device 'STM32WLE4CCUx  *************************** -->
+        <device Dname="STM32WLE4CCUx">
+          <memory name="SRAM1" access="rwx"                start="0x20000000" size="0x00008000" default="1" init="0" />
+          <memory name="SRAM2" access="rwx"                start="0x20008000" size="0x00008000" default="1" init="0" />
+          <memory name="FLASH" access="rx"                 start="0x08000000" size="0x00040000" default="1" startup="1" />
+          <algorithm name="CMSIS/Flash/STM32WLxx_CM4.FLM"  start="0x08000000" size="0x00040000" RAMstart="0x20000000" RAMsize="0x8000" default="1" />
+
+          <feature type="QFP" n="48"/>
+        </device>
+
+        <!-- ################################### 128 KB ################################## -->
+        <!-- *************************  Device 'STM32WLE4CBUx'  ************************** -->
+        <device Dname="STM32WLE4CBUx">
+          <memory name="SRAM1" access="rwx"                start="0x20000000" size="0x00004000" default="1" init="0" />
+          <memory name="SRAM2" access="rwx"                start="0x20008000" size="0x00008000" default="1" init="0" />
+          <memory name="FLASH" access="rx"                 start="0x08000000" size="0x00020000" default="1" startup="1" />
+          <algorithm name="CMSIS/Flash/STM32WLExx_128.FLM" start="0x08000000" size="0x00020000" RAMstart="0x20008000" RAMsize="0x8000" default="1" />
+
+          <feature type="QFP" n="48"/>
+         </device>
+
+        <!-- *************************  Device 'STM32WLE4JBIx'  ************************** -->
+        <device Dname="STM32WLE4JBIx">
+          <memory name="SRAM1" access="rwx"                start="0x20000000" size="0x00004000" default="1" init="0" />
+          <memory name="SRAM2" access="rwx"                start="0x20008000" size="0x00008000" default="1" init="0" />
+          <memory name="FLASH" access="rx"                 start="0x08000000" size="0x00020000" default="1" startup="1" />
+          <algorithm name="CMSIS/Flash/STM32WLExx_128.FLM" start="0x08000000" size="0x00020000" RAMstart="0x20008000" RAMsize="0x8000" default="1" />
+
+          <feature type="BGA" n="73"/>
+        </device>
+
+        <!-- ################################### 64 KB ################################### -->
+        <!-- *************************  Device 'STM32WLE4C8Ux'  ************************** -->
+        <device Dname="STM32WLE4C8Ux">
+          <memory name="SRAM2" access="rwx"                start="0x20008000" size="0x00005000" default="1" init="0" />
+          <memory name="FLASH" access="rx"                 start="0x08000000" size="0x00010000" default="1" startup="1" />
+          <algorithm name="CMSIS/Flash/STM32WLExx_64.FLM"  start="0x08000000" size="0x00010000" RAMstart="0x20008000" RAMsize="0x5000" default="1" />
+
+          <feature type="QFP" n="48"/>
+        </device>
+
+        <!-- *************************  Device 'STM32WLE4J8Ix'  ************************** -->
+        <device Dname="STM32WLE4J8Ix">
+          <memory name="SRAM2" access="rwx"                start="0x20008000" size="0x00005000" default="1" init="0" />
+          <memory name="FLASH" access="rx"                 start="0x08000000" size="0x00010000" default="1" startup="1" />
+          <algorithm name="CMSIS/Flash/STM32WLExx_64.FLM"  start="0x08000000" size="0x00010000" RAMstart="0x20008000" RAMsize="0x5000" default="1" />
+
+          <feature type="BGA" n="73"/>
+        </device>
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="Compiler GCC">
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="Compiler IAR">
+      <require Tcompiler="IAR"/>
+    </condition>
+
+    <!-- Device Conditions -->
+    <condition id="STM32WL">
+      <description>STMicroelectronics STM32WL Devices</description>
+      <require Dvendor="STMicroelectronics:13" Dname="STM32WL*"/>
+    </condition>
+
+    <condition id="STM32WL5M">
+      <description>STMicroelectronics STM32WL5M Devices</description>
+      <require Dvendor="STMicroelectronics:13" Dname="STM32WL5M*"/>
+    </condition>
+    <condition id="STM32WL5M_M4">
+      <description>STMicroelectronics STM32WL5M Devices (M4 Core)</description>
+      <require condition="STM32WL5M"/>
+      <require Dcore="Cortex-M4"/>
+    </condition>
+    <condition id="STM32WL5M_M0+">
+      <description>STMicroelectronics STM32WL5M Devices (M0+ Core)</description>
+      <require condition="STM32WL5M"/>
+      <require Dcore="Cortex-M0+"/>
+    </condition>
+    <condition id="STM32WL55">
+      <description>STMicroelectronics STM32WL55 Devices</description>
+      <require Dvendor="STMicroelectronics:13" Dname="STM32WL55*"/>
+    </condition>
+    <condition id="STM32WL55_M4">
+      <description>STMicroelectronics STM32WL55 Devices (M4 Core)</description>
+      <require condition="STM32WL55"/>
+      <require Dcore="Cortex-M4"/>
+    </condition>
+    <condition id="STM32WL55_M0+">
+      <description>STMicroelectronics STM32WL55 Devices (M0+ Core)</description>
+      <require condition="STM32WL55"/>
+      <require Dcore="Cortex-M0+"/>
+    </condition>
+    <condition id="STM32WL54">
+      <description>STMicroelectronics STM32WL54 Devices</description>
+      <require Dvendor="STMicroelectronics:13" Dname="STM32WL54*"/>
+    </condition>
+    <condition id="STM32WL54_M4">
+      <description>STMicroelectronics STM32WL54 Devices (M4 Core)</description>
+      <require condition="STM32WL54"/>
+      <require Dcore="Cortex-M4"/>
+    </condition>
+    <condition id="STM32WL54_M0+">
+      <description>STMicroelectronics STM32WL54 Devices (M0+ Core)</description>
+      <require condition="STM32WL54"/>
+      <require Dcore="Cortex-M0+"/>
+    </condition>
+    <condition id="STM32WLE5">
+      <description>STMicroelectronics STM32WLE5 Devices</description>
+      <require Dvendor="STMicroelectronics:13" Dname="STM32WLE5*"/>
+    </condition>
+    <condition id="STM32WLE4">
+      <description>STMicroelectronics STM32WLE4 Devices</description>
+      <require Dvendor="STMicroelectronics:13" Dname="STM32WLE4*"/>
+    </condition>
+
+    <condition id="STM32WL_SC">
+      <description>STMicroelectronics STM32WL Single Core devices</description>
+      <accept condition="STM32WLE5"/>
+      <accept condition="STM32WLE4"/>
+    </condition>
+    <condition id="STM32WL_DC">
+      <description>STMicroelectronics STM32WL Dual Core devices</description>
+      <accept condition="STM32WL5M"/>
+      <accept condition="STM32WL55"/>
+      <accept condition="STM32WL54"/>
+    </condition>
+
+    <!-- Device + Compiler Conditions (ARMCC) -->
+    <condition id="STM32WL5M_M4 ARMCC">
+      <description>STMicroelectronics STM32WL5M Devices (M4 Core) and ARMCC Compiler</description>
+      <require condition="STM32WL5M_M4"/>
+      <require condition="Compiler ARMCC"/>
+    </condition>
+    <condition id="STM32WL5M_M0+ ARMCC">
+      <description>STMicroelectronics STM32WL5M Devices (M0+ Core) and ARMCC Compiler</description>
+      <require condition="STM32WL5M_M0+"/>
+      <require condition="Compiler ARMCC"/>
+    </condition>
+    <condition id="STM32WL55_M4 ARMCC">
+      <description>STMicroelectronics STM32WL55 Devices (M4 Core) and ARMCC Compiler</description>
+      <require condition="STM32WL55_M4"/>
+      <require condition="Compiler ARMCC"/>
+    </condition>
+    <condition id="STM32WL55_M0+ ARMCC">
+      <description>STMicroelectronics STM32WL55 Devices (M0+ Core) and ARMCC Compiler</description>
+      <require condition="STM32WL55_M0+"/>
+      <require condition="Compiler ARMCC"/>
+    </condition>
+    <condition id="STM32WL54_M4 ARMCC">
+      <description>STMicroelectronics STM32WL54 Devices (M4 Core) and ARMCC Compiler</description>
+      <require condition="STM32WL54_M4"/>
+      <require condition="Compiler ARMCC"/>
+    </condition>
+    <condition id="STM32WL54_M0+ ARMCC">
+      <description>STMicroelectronics STM32WL54 Devices (M0+ Core) and ARMCC Compiler</description>
+      <require condition="STM32WL54_M0+"/>
+      <require condition="Compiler ARMCC"/>
+    </condition>
+    <condition id="STM32WLE5 ARMCC">
+      <description>STMicroelectronics STM32WLE5 Devices and ARMCC Compiler</description>
+      <require condition="STM32WLE5"/>
+      <require condition="Compiler ARMCC"/>
+    </condition>
+    <condition id="STM32WLE4 ARMCC">
+      <description>STMicroelectronics STM32WLE4 Devices and ARMCC Compiler</description>
+      <require condition="STM32WLE4"/>
+      <require condition="Compiler ARMCC"/>
+    </condition>
+
+    <!-- Device + Compiler Conditions (GCC) -->
+    <condition id="STM32WL5M_M4 GCC">
+      <description>STMicroelectronics STM32WL5M Devices (M4 Core) and GCC Compiler</description>
+      <require condition="STM32WL5M_M4"/>
+      <require condition="Compiler GCC"/>
+    </condition>
+    <condition id="STM32WL5M_M0+ GCC">
+      <description>STMicroelectronics STM32WL5M Devices (M0+ Core) and GCC Compiler</description>
+      <require condition="STM32WL5M_M0+"/>
+      <require condition="Compiler GCC"/>
+    </condition>
+    <condition id="STM32WL55_M4 GCC">
+      <description>STMicroelectronics STM32WL55 Devices (M4 Core) and GCC Compiler</description>
+      <require condition="STM32WL55_M4"/>
+      <require condition="Compiler GCC"/>
+    </condition>
+    <condition id="STM32WL55_M0+ GCC">
+      <description>STMicroelectronics STM32WL55 Devices (M0+ Core) and GCC Compiler</description>
+      <require condition="STM32WL55_M0+"/>
+      <require condition="Compiler GCC"/>
+    </condition>
+    <condition id="STM32WL54_M4 GCC">
+      <description>STMicroelectronics STM32WL54 Devices (M4 Core) and GCC Compiler</description>
+      <require condition="STM32WL54_M4"/>
+      <require condition="Compiler GCC"/>
+    </condition>
+    <condition id="STM32WL54_M0+ GCC">
+      <description>STMicroelectronics STM32WL54 Devices (M0+ Core) and GCC Compiler</description>
+      <require condition="STM32WL54_M0+"/>
+      <require condition="Compiler GCC"/>
+    </condition>
+    <condition id="STM32WLE5 GCC">
+      <description>STMicroelectronics STM32WLE5 Devices and GCC Compiler</description>
+      <require condition="STM32WLE5"/>
+      <require condition="Compiler GCC"/>
+    </condition>
+    <condition id="STM32WLE4 GCC">
+      <description>STMicroelectronics STM32WLE4 Devices and GCC Compiler</description>
+      <require condition="STM32WLE4"/>
+      <require condition="Compiler GCC"/>
+    </condition>
+
+    <!-- Device + Compiler Conditions (IAR) -->
+    <condition id="STM32WL5M_M4 IAR">
+      <description>STMicroelectronics STM32WL5M Devices (M4 Core) and IAR Compiler</description>
+      <require condition="STM32WL5M_M4"/>
+      <require condition="Compiler IAR"/>
+    </condition>
+    <condition id="STM32WL5M_M0+ IAR">
+      <description>STMicroelectronics STM32WL5M Devices (M0+ Core) and IAR Compiler</description>
+      <require condition="STM32WL5M_M0+"/>
+      <require condition="Compiler IAR"/>
+    </condition>
+    <condition id="STM32WL55_M4 IAR">
+      <description>STMicroelectronics STM32WL55 Devices (M4 Core) and IAR Compiler</description>
+      <require condition="STM32WL55_M4"/>
+      <require condition="Compiler IAR"/>
+    </condition>
+    <condition id="STM32WL55_M0+ IAR">
+      <description>STMicroelectronics STM32WL55 Devices (M0+ Core) and IAR Compiler</description>
+      <require condition="STM32WL55_M0+"/>
+      <require condition="Compiler IAR"/>
+    </condition>
+    <condition id="STM32WL54_M4 IAR">
+      <description>STMicroelectronics STM32WL54 Devices (M4 Core) and IAR Compiler</description>
+      <require condition="STM32WL54_M4"/>
+      <require condition="Compiler IAR"/>
+    </condition>
+    <condition id="STM32WL54_M0+ IAR">
+      <description>STMicroelectronics STM32WL54 Devices (M0+ Core) and IAR Compiler</description>
+      <require condition="STM32WL54_M0+"/>
+      <require condition="Compiler IAR"/>
+    </condition>
+    <condition id="STM32WLE5 IAR">
+      <description>STMicroelectronics STM32WLE5 Devices and IAR Compiler</description>
+      <require condition="STM32WLE5"/>
+      <require condition="Compiler IAR"/>
+    </condition>
+    <condition id="STM32WLE4 IAR">
+      <description>STMicroelectronics STM32WLE4 Devices and IAR Compiler</description>
+      <require condition="STM32WLE4"/>
+      <require condition="Compiler IAR"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="STM32WL CMSIS">
+      <description>STMicroelectronics STM32WL Device and CMSIS-CORE</description>
+      <require condition="STM32WL"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="Common"/>
+    </condition>
+
+    <!-- HAL Conditions -->
+    <condition id="STM32WL HAL">
+      <description>STMicroelectronics STM32WL Device and HAL</description>
+      <require condition="STM32WL"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="Common"/>
+    </condition>
+    <condition id="STM32WL HAL Common SC">
+      <description>STMicroelectronics STM32WL Device and HAL Common</description>
+      <require condition="STM32WL_SC"/>
+      <require Cclass="CMSIS"  Cgroup="CORE"/>
+      <require Cclass="Device" Cgroup="STM32Cube Framework"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="Common"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="Cortex"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="RCC"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="Flash"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="PWR"/>
+    </condition>
+    <condition id="STM32WL HAL Common DC">
+      <description>STMicroelectronics STM32WL Device and HAL Common Dual Core</description>
+      <require condition="STM32WL_DC"/>
+      <require Cclass="CMSIS"  Cgroup="CORE"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="Common"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="Cortex"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="RCC"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="Flash"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="PWR"/>
+    </condition>
+    <condition id="STM32WL HAL GPIO">
+      <description>STMicroelectronics STM32WL Device and HAL with GPIO</description>
+      <require condition="STM32WL"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="Common"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="GPIO"/>
+    </condition>
+    <condition id="STM32WL HAL DMA">
+      <description>STMicroelectronics STM32WL Device and HAL with DMA</description>
+      <require condition="STM32WL"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="Common"/>
+      <require Cclass="Device" Cgroup="STM32Cube HAL" Csub="DMA"/>
+    </condition>
+
+    <!-- LL driver Conditions -->
+    <condition id="STM32WL LL">
+      <description>STMicroelectronics STM32WL Device and LL</description>
+      <require condition="STM32WL"/>
+      <require Cclass="Device" Cgroup="STM32Cube LL" Csub="Common"/>
+    </condition>
+    <condition id="STM32WL LL Common">
+      <description>STMicroelectronics STM32WL Device and LL</description>
+      <require condition="STM32WL"/>
+      <require Cclass="CMSIS"  Cgroup="CORE"/>
+   <!--require Cclass="Device" Cgroup="STM32Cube Framework"/-->
+      <require Cclass="Device" Cgroup="STM32Cube LL" Csub="UTILS"/>
+      <require Cclass="Device" Cgroup="STM32Cube LL" Csub="RCC"/>
+      <require Cclass="Device" Cgroup="STM32Cube LL" Csub="PWR"/>
+    </condition>
+
+  </conditions>
+
+  <generators>
+    <!-- This generator is launched if any component referencing this generator by 'id' is selected and the specified <gpdsc> file does not exist -->
+    <generator id="STM32CubeMX">
+      <description>ST Microelectronics: STCubeMX Environment</description>
+      <command>MDK/CubeMX/STM32CubeMxLauncher.exe</command> <!-- path is specified either absolute or relative to PDSC or GPDSC file -->
+      <workingDir>$PRTE/Device</workingDir> <!-- path is specified either absolute or relative to PDSC or GPDSC file. If not specified it is the project directory configured by the environment -->
+      <arguments>
+        <!-- D = Device (Dname/Dvariant as configured by environment) -->
+        <argument>$D</argument>
+        <!-- Project path and project name (as configured by environment) -->
+        <argument>#P</argument>
+        <!-- absolute or relative to workingDir. $S = Device Family Pack base folder -->
+        <argument>$S</argument>
+      </arguments>
+      <!-- path is either absolute or relative to working directory -->
+      <gpdsc name="$PRTE/Device/$D/FrameworkCubeMX.gpdsc"/>
+    </generator>
+  </generators>
+
+  <taxonomy>
+    <description Cclass="Device" Cgroup="STM32Cube HAL" doc="Drivers/STM32WLxx_HAL_Driver/STM32WL55xx_User_Manual.chm"
+                 condition="STM32WL">STM32WLxx Hardware Abstraction Layer (HAL) Drivers</description>
+  </taxonomy>
+
+  <apis>
+    <api Cclass="Device" Cgroup="STM32Cube Framework" Capiversion="1.1.0" exclusive="1" condition="STM32WL">
+      <description>STM32Cube Framework</description>
+      <files>
+        <file category="doc" name="MDK/CubeMX/Documentation/index.html"/>
+      </files>
+    </api>
+  </apis>
+
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.2.0" condition="STM32WL CMSIS">
+      <description>System Startup for STMicroelectronics STM32WLE5 Series</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STARTUP_STM32WLXX    /* Device Startup for STM32WL */
+      </RTE_Components_h>
+
+      <files>
+        <!--  include folder -->
+        <file category="include" name="Drivers/CMSIS/Device/ST/STM32WLxx/Include/"/>
+
+        <!-- Flash Option Bytes templates -->
+
+        <!-- common device header file -->
+        <file category="header" name="Drivers/CMSIS/Device/ST/STM32WLxx/Include/stm32wlxx.h"/>
+
+        <!-- startup files -->
+        <!-- ARM Compiler Toolchain -->
+        <file category="source"       condition="STM32WL5M_M4 ARMCC"  name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/arm/startup_stm32wl5mxx_cm4.s"            attr="config" version="1.0.0"/>
+        <file category="source"       condition="STM32WL5M_M0+ ARMCC" name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/arm/startup_stm32wl5mxx_cm0plus.s"        attr="config" version="1.0.0"/>
+        <file category="source"       condition="STM32WL55_M4 ARMCC"  name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/arm/startup_stm32wl55xx_cm4.s"            attr="config" version="1.0.0"/>
+        <file category="source"       condition="STM32WL55_M0+ ARMCC" name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/arm/startup_stm32wl55xx_cm0plus.s"        attr="config" version="1.0.0"/>
+        <file category="source"       condition="STM32WL54_M4 ARMCC"  name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/arm/startup_stm32wl54xx_cm4.s"            attr="config" version="1.0.0"/>
+        <file category="source"       condition="STM32WL54_M0+ ARMCC" name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/arm/startup_stm32wl54xx_cm0plus.s"        attr="config" version="1.0.0"/>
+        <file category="source"       condition="STM32WLE5 ARMCC"     name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/arm/startup_stm32wle5xx.s"                attr="config" version="1.0.0"/>
+        <file category="source"       condition="STM32WLE4 ARMCC"     name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/arm/startup_stm32wle4xx.s"                attr="config" version="1.0.0"/>
+        <file category="linkerScript" condition="STM32WL5M_M4 ARMCC"  name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/arm/linker/stm32wl5mxx_flash_cm4.sct"     attr="config" version="1.0.0"/>
+        <file category="linkerScript" condition="STM32WL5M_M0+ ARMCC" name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/arm/linker/stm32wl5mxx_flash_cm0plus.sct" attr="config" version="1.0.0"/>
+        <file category="linkerScript" condition="STM32WL55_M4 ARMCC"  name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/arm/linker/stm32wl55xx_flash_cm4.sct"     attr="config" version="1.0.0"/>
+        <file category="linkerScript" condition="STM32WL55_M0+ ARMCC" name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/arm/linker/stm32wl55xx_flash_cm0plus.sct" attr="config" version="1.0.0"/>
+        <file category="linkerScript" condition="STM32WL54_M4 ARMCC"  name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/arm/linker/stm32wl54xx_flash_cm4.sct"     attr="config" version="1.0.0"/>
+        <file category="linkerScript" condition="STM32WL54_M0+ ARMCC" name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/arm/linker/stm32wl54xx_flash_cm0plus.sct" attr="config" version="1.0.0"/>
+        <file category="linkerScript" condition="STM32WLE5 ARMCC"     name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/arm/linker/stm32wle5xx_flash.sct"         attr="config" version="1.0.0"/>
+        <file category="linkerScript" condition="STM32WLE4 ARMCC"     name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/arm/linker/stm32wle4xx_flash.sct"         attr="config" version="1.0.0"/>
+
+        <!-- GCC Toolchain -->
+        <file category="source"       condition="STM32WL5M_M4 GCC"    name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/gcc/startup_stm32wl5mxx_cm4.S"            attr="config" version="1.0.0"/>
+        <file category="source"       condition="STM32WL5M_M0+ GCC"   name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/gcc/startup_stm32wl5mxx_cm0plus.S"        attr="config" version="1.0.0"/>
+        <file category="source"       condition="STM32WL55_M4 GCC"    name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/gcc/startup_stm32wl55xx_cm4.S"            attr="config" version="1.0.0"/>
+        <file category="source"       condition="STM32WL55_M0+ GCC"   name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/gcc/startup_stm32wl55xx_cm0plus.S"        attr="config" version="1.0.0"/>
+        <file category="source"       condition="STM32WL54_M4 GCC"    name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/gcc/startup_stm32wl54xx_cm4.S"            attr="config" version="1.0.0"/>
+        <file category="source"       condition="STM32WL54_M0+ GCC"   name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/gcc/startup_stm32wl54xx_cm0plus.S"        attr="config" version="1.0.0"/>
+        <file category="source"       condition="STM32WLE5 GCC"       name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/gcc/startup_stm32wle5xx.S"                attr="config" version="1.0.0"/>
+        <file category="source"       condition="STM32WLE4 GCC"       name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/gcc/startup_stm32wle4xx.S"                attr="config" version="1.0.0"/>
+        <file category="linkerScript" condition="STM32WL5M_M4 GCC"    name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/gcc/linker/STM32WL5MXX_FLASH_CM4.ld"      attr="config" version="1.0.0"/>
+        <file category="linkerScript" condition="STM32WL5M_M0+ GCC"   name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/gcc/linker/STM32WL5MXX_FLASH_CM0PLUS.ld"  attr="config" version="1.0.0"/>
+        <file category="linkerScript" condition="STM32WL55_M4 GCC"    name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/gcc/linker/STM32WL55XX_FLASH_CM4.ld"      attr="config" version="1.0.0"/>
+        <file category="linkerScript" condition="STM32WL55_M0+ GCC"   name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/gcc/linker/STM32WL55XX_FLASH_CM0PLUS.ld"  attr="config" version="1.0.0"/>
+        <file category="linkerScript" condition="STM32WL54_M4 GCC"    name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/gcc/linker/STM32WL54XX_FLASH_CM4.ld"      attr="config" version="1.0.0"/>
+        <file category="linkerScript" condition="STM32WL54_M0+ GCC"   name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/gcc/linker/STM32WL54XX_FLASH_CM0PLUS.ld"  attr="config" version="1.0.0"/>
+        <file category="linkerScript" condition="STM32WLE5 GCC"       name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/gcc/linker/STM32WLE5XX_FLASH.ld"          attr="config" version="1.0.0"/>
+        <file category="linkerScript" condition="STM32WLE4 GCC"       name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/gcc/linker/STM32WLE4XX_FLASH.ld"          attr="config" version="1.0.0"/>
+
+        <!-- IAR Toolchain -->
+        <file category="source"       condition="STM32WL5M_M4 IAR"    name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/iar/startup_stm32wl5mxx_cm4.s"            attr="config" version="1.0.0"/>
+        <file category="source"       condition="STM32WL5M_M0+ IAR"   name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/iar/startup_stm32wl5mxx_cm0plus.s"        attr="config" version="1.0.0"/>
+        <file category="source"       condition="STM32WL55_M4 IAR"    name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/iar/startup_stm32wl55xx_cm4.s"            attr="config" version="1.0.0"/>
+        <file category="source"       condition="STM32WL55_M0+ IAR"   name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/iar/startup_stm32wl55xx_cm0plus.s"        attr="config" version="1.0.0"/>
+        <file category="source"       condition="STM32WL54_M4 IAR"    name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/iar/startup_stm32wl54xx_cm4.s"            attr="config" version="1.0.0"/>
+        <file category="source"       condition="STM32WL54_M0+ IAR"   name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/iar/startup_stm32wl54xx_cm0plus.s"        attr="config" version="1.0.0"/>
+        <file category="source"       condition="STM32WLE5 IAR"       name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/iar/startup_stm32wle5xx.s"                attr="config" version="1.0.0"/>
+        <file category="source"       condition="STM32WLE4 IAR"       name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/iar/startup_stm32wle4xx.s"                attr="config" version="1.0.0"/>
+        <file category="linkerScript" condition="STM32WL5M_M4 IAR"    name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/iar/linker/stm32wl5mxx_flash_cm4.icf"     attr="config" version="1.0.0"/>
+        <file category="linkerScript" condition="STM32WL5M_M0+ IAR"   name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/iar/linker/stm32wl5mxx_flash_cm0plus.icf" attr="config" version="1.0.0"/>
+        <file category="linkerScript" condition="STM32WL55_M4 IAR"    name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/iar/linker/stm32wl55xx_flash_cm4.icf"     attr="config" version="1.0.0"/>
+        <file category="linkerScript" condition="STM32WL55_M0+ IAR"   name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/iar/linker/stm32wl55xx_flash_cm0plus.icf" attr="config" version="1.0.0"/>
+        <file category="linkerScript" condition="STM32WL54_M4 IAR"    name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/iar/linker/stm32wl54xx_flash_cm4.icf"     attr="config" version="1.0.0"/>
+        <file category="linkerScript" condition="STM32WL54_M0+ IAR"   name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/iar/linker/stm32wl54xx_flash_cm0plus.icf" attr="config" version="1.0.0"/>
+        <file category="linkerScript" condition="STM32WLE5 IAR"       name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/iar/linker/stm32wle5xx_flash.icf"         attr="config" version="1.0.0"/>
+        <file category="linkerScript" condition="STM32WLE4 IAR"       name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/iar/linker/stm32wle4xx_flash.icf"         attr="config" version="1.0.0"/>
+
+        <!-- system file -->
+        <file category="source"                                       name="Drivers/CMSIS/Device/ST/STM32WLxx/Source/Templates/system_stm32wlxx.c"                       attr="config" version="1.0.0"/>
+
+        <!-- STM32CubeWL HAL config file -->
+        <file category="header"       condition="STM32WL_DC"          name="MDK/Templates/Inc/stm32wlxx_hal_conf.h" attr="config" version="1.0.0"/>
+
+      </files>
+    </component>
+
+    <component generator="STM32CubeMX" Cclass="Device" Cgroup="STM32Cube Framework" Csub="STM32CubeMX" Cversion="1.3.0" Capiversion="1.0.0" condition="STM32WL_SC">
+      <description>Configuration via STM32CubeMX</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_FRAMEWORK_CUBE_MX
+      </RTE_Components_h>
+      <files>
+        <file category="doc"     name="MDK/CubeMX/Documentation/cubemx.html"/>
+        <file category="source"  name="MDK/CubeMX/run_STM32CubeMX.c" version="1.0.0"/>
+        <file category="other"   name="MDK/CubeMX/FrameworkCubeMX_gpdsc.ftl" version="1.0.0"/>
+        <file category="other"   name="MDK/CubeMX/MX_Device_h.ftl" version ="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- START: STMicroelectronics STM32CubeWL HAL Single Core -->
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="Common"    Cversion="1.3.0" condition="STM32WL HAL Common SC">
+      <description>Common HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_COMMON
+      </RTE_Components_h>
+      <Pre_Include_Global_h>
+        #define USE_HAL_DRIVER
+      </Pre_Include_Global_h>
+      <files>
+        <file category="include" name="Drivers/STM32WLxx_HAL_Driver/Inc/"/>
+        <file category="header"  name="Drivers/STM32WLxx_HAL_Driver/Inc/stm32wlxx_hal.h"/>
+        <file category="source"  name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal.c"/>
+      </files>
+    </component>
+    <!-- START: STMicroelectronics STM32CubeWL HAL Dual Core -->
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="Common"    Cversion="1.3.0" condition="STM32WL HAL Common DC">
+      <description>Common HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_COMMON
+      </RTE_Components_h>
+      <files>
+        <file category="include" name="Drivers/STM32WLxx_HAL_Driver/Inc/"/>
+        <file category="header"  name="Drivers/STM32WLxx_HAL_Driver/Inc/stm32wlxx_hal.h"/>
+        <file category="source"  name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="ADC"       Cversion="1.3.0" condition="STM32WL HAL DMA">
+      <description>Analog-to-digital converter (ADC) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_ADC
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_adc.c"/>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_adc_ex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="COMP"      Cversion="1.3.0" condition="STM32WL HAL">
+      <description>Analog Comparator (CRC) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_COMP
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_comp.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="Cortex"    Cversion="1.3.0" condition="STM32WL HAL">
+      <description>Cortex HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_CORTEX
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_cortex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="CRC"       Cversion="1.3.0" condition="STM32WL HAL">
+      <description>CRC calculation unit (CRC) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_CRC
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_crc.c"/>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_crc_ex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="CRYP"      Cversion="1.3.0" condition="STM32WL HAL DMA">
+      <description>Cryptographic processor (CRYP) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_CRYP
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_cryp.c"/>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_cryp_ex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="DAC"       Cversion="1.3.0" condition="STM32WL HAL DMA">
+      <description>Digital-to-analog converter (DAC) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_DAC
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_dac.c"/>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_dac_ex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="DMA"       Cversion="1.3.0" condition="STM32WL HAL">
+      <description>DMA controller (DMA) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_DMA
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_dma.c"/>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_dma_ex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="EXTI"      Cversion="1.3.0" condition="STM32WL HAL">
+      <description>EXTI HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_EXTI
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_exti.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="Flash"     Cversion="1.3.0" condition="STM32WL HAL">
+      <description>Embedded Flash memory HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_FLASH
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_flash.c"/>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_flash_ex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="GPIO"      Cversion="1.3.0" condition="STM32WL HAL">
+      <description>General-purpose I/O (GPIO) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_GPIO
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_gpio.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="GTZC"      Cversion="1.3.0" condition="STM32WL HAL">
+      <description>Global TrustZone controller (GTZC) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_GTZC
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_gtzc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="HSEM"      Cversion="1.3.0" condition="STM32WL HAL">
+      <description>Hardware semaphore (HSEM) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_HSEM
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_hsem.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="I2C"       Cversion="1.3.0" condition="STM32WL HAL DMA">
+      <description>Inter-integrated circuit (I2C) interface HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_I2C
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_i2c.c"/>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_i2c_ex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="I2S"       Cversion="1.3.0" condition="STM32WL HAL DMA">
+      <description>I2S HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_I2S
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_i2s.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="IPCC"      Cversion="1.3.0" condition="STM32WL HAL">
+      <description>Interprocessor Communication I/O (IPCC) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_IPCC
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_ipcc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="IRDA"      Cversion="1.3.0" condition="STM32WL HAL DMA">
+      <description>IrDA HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_IRDA
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_irda.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="IWDG"      Cversion="1.3.0" condition="STM32WL HAL">
+      <description>Independent watchdog (IWDG) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_IWDG
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_iwdg.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="LPTIM"     Cversion="1.3.0" condition="STM32WL HAL">
+      <description>Low-power timer (LPTIM) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_LPTIM
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_lptim.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="PKA"       Cversion="1.3.0" condition="STM32WL HAL">
+      <description>Public Key Accelerator (PKA) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_PKA
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_pka.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="PWR"       Cversion="1.3.0" condition="STM32WL HAL">
+      <description>Power controller (PWR) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_PWR
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_pwr.c"/>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_pwr_ex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="RCC"       Cversion="1.3.0" condition="STM32WL HAL GPIO">
+      <description>Reset and clock control (RCC) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_RCC
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_rcc.c"/>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_rcc_ex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="RNG"       Cversion="1.3.0" condition="STM32WL HAL">
+      <description>Random number generator (RNG) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_RNG
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_rng.c"/>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_rng_ex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="RTC"       Cversion="1.3.0" condition="STM32WL HAL">
+      <description>Real-time clock (RTC) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_RTC
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_rtc.c"/>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_rtc_ex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="Smartcard" Cversion="1.3.0" condition="STM32WL HAL DMA">
+      <description>Smartcard HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_SMARTCARD
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_smartcard.c"/>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_smartcard_ex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="SMBUS"     Cversion="1.3.0" condition="STM32WL HAL">
+      <description>System Management Bus (SMBus) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_SMBUS
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_smbus.c"/>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_smbus_ex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="SPI"       Cversion="1.3.0" condition="STM32WL HAL DMA">
+      <description>Serial peripheral interface (SPI) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_SPI
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_spi.c"/>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_spi_ex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="SUBGHZ"    Cversion="1.3.0" condition="STM32WL HAL">
+      <description>Sub-GHz radio (SUBGHZ) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_SUBGHZ
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_subghz.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="TIM"       Cversion="1.3.0" condition="STM32WL HAL DMA">
+      <description>Timers (TIM) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_TIM
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_tim.c"/>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_tim_ex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="UART"      Cversion="1.3.0" condition="STM32WL HAL DMA">
+      <description>Universal asynchronous receiver transmitter (UART) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_UART
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_uart.c"/>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_uart_ex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="USART"     Cversion="1.3.0" condition="STM32WL HAL DMA">
+      <description>Universal synchronous asynchronous receiver transmitter (USART) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_USART
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_usart.c"/>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_usart_ex.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="WWDG"      Cversion="1.3.0" condition="STM32WL HAL">
+      <description>Window watchdog (WWDG) HAL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_HAL_WWDG
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_wwdg.c"/>
+      </files>
+    </component>
+    <!-- END: STMicroelectronics STM32CubeWL HAL -->
+
+    <!-- START: STMicroelectronics STM32CubeWL LL -->
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="Common" Cversion="1.3.0" condition="STM32WL LL Common">
+      <description>Common LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_COMMON
+      </RTE_Components_h>
+      <Pre_Include_Global_h>
+        #define USE_FULL_LL_DRIVER
+      </Pre_Include_Global_h>
+      <files>
+        <file category="include" name="Drivers/STM32WLxx_HAL_Driver/Inc/"/>
+        <file category="include" name="Drivers/STM32WLxx_HAL_Driver/Inc/Legacy/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="ADC"    Cversion="1.3.0" condition="STM32WL LL">
+      <description>Analog-to-digital converter (ADC) LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_ADC
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_ll_adc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="COMP"   Cversion="1.3.0" condition="STM32WL LL">
+      <description>Analog Comparator (CRC) LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_COMP
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_ll_comp.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="CRC"    Cversion="1.3.0" condition="STM32WL LL">
+      <description>CRC calculation unit (CRC) LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_CRC
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_ll_crc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="DAC"    Cversion="1.3.0" condition="STM32WL LL">
+      <description>Digital-to-analog converter (DAC) LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_DAC
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_ll_dac.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="DMA"    Cversion="1.3.0" condition="STM32WL LL">
+      <description>DMA controller (DMA) LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_DMA
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_ll_dma.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="EXTI"   Cversion="1.3.0" condition="STM32WL LL">
+      <description>Extended interrupts and events controler (EXTI) LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_EXTI
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_ll_exti.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="GPIO"   Cversion="1.3.0" condition="STM32WL LL">
+      <description>General-purpose I/O (GPIO) LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_GPIO
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_ll_gpio.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="I2C"    Cversion="1.3.0" condition="STM32WL LL">
+      <description>Inter-integrated circuit (I2C) interface LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_I2C
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_ll_i2c.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="LPTIM"  Cversion="1.3.0" condition="STM32WL LL">
+      <description>Low-power timer (LPTIM) interface LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_LPTIM
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_ll_lptim.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="LPUART" Cversion="1.3.0" condition="STM32WL LL">
+      <description>Low-power universal asynchronous receiver transmitter (LPUART) LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_LPUART
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_ll_lpuart.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="PKA"    Cversion="1.3.0" condition="STM32WL LL">
+      <description>Public Key Accelerator (PKA) LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_PKA
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_ll_pka.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="PWR"    Cversion="1.3.0" condition="STM32WL LL">
+      <description>Power controller (PWR) LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_PWR
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_ll_pwr.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="RCC"    Cversion="1.3.0" condition="STM32WL LL">
+      <description>Reset and clock control (RCC) LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_RCC
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_ll_rcc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="RNG"    Cversion="1.3.0" condition="STM32WL LL">
+      <description>Random number generator (RNG) LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_RNG
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_ll_rng.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="RTC"    Cversion="1.3.0" condition="STM32WL LL">
+      <description>Real-time clock (RTC) LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_RTC
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_ll_rtc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="SPI"    Cversion="1.3.0" condition="STM32WL LL">
+      <description>Serial peripheral interface (SPI) LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_SPI
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_ll_spi.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="TIM"    Cversion="1.3.0" condition="STM32WL LL">
+      <description>Timers (TIM) LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_TIM
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_ll_tim.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="USART"  Cversion="1.3.0" condition="STM32WL LL">
+      <description>Universal synchronous asynchronous receiver transmitter (USART) LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_USART
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_ll_usart.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="STM32Cube LL" Csub="UTILS"  Cversion="1.3.0" condition="STM32WL">
+      <description>UTILS LL driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_LL_UTILS
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_ll_utils.c"/>
+      </files>
+    </component>
+    <!-- END: STMicroelectronics STM32CubeWL LL -->
+
+  </components>
+</package>

@@ -1,0 +1,741 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>FREERTOS-KERNEL</name>
+  <vendor>NXP</vendor>
+  <description>Software Pack for freertos-kernel</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="3.0.0" date="2024-07-17">NXP CMSIS SWP Packs based on MCUXpresso SDK 2.16.0</release>
+    <release version="2.0.0" date="2024-01-14">NXP CMSIS SWP Packs based on MCUXpresso SDK 2.15.0</release>
+    <release version="1.0.0" date="2023-07-27">NXP CMSIS SWP Packs based on MCUXpresso SDK 2.14.0</release>
+  </releases>
+  <keywords>
+    <keyword>Software Pack</keyword>
+  </keywords>
+  <taxonomy>
+    <description Cclass="RTOS">FreeRTOS NXP</description>
+  </taxonomy>
+  <requirements>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <conditions>
+    <condition id="middleware.freertos-kernel.condition_id">
+      <require condition="allOf.middleware.freertos-kernel.template, middleware.freertos-kernel.extension.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.freertos-kernel.template, middleware.freertos-kernel.extension.internal_condition">
+      <require Cclass="RTOS" Cgroup="freertos template"/>
+      <require Cclass="RTOS" Cgroup="TAD extension"/>
+    </condition>
+    <condition id="allOf.compilers=armclang, gcc, cores=cm0p, toolchains=armgcc, mdk.condition_id">
+      <require condition="compilers.armclang, gcc.internal_condition"/>
+      <require condition="cores.cm0p.internal_condition"/>
+      <require condition="toolchains.armgcc, mdk.internal_condition"/>
+    </condition>
+    <condition id="compilers.armclang, gcc.internal_condition">
+      <accept Tcompiler="ARMCC"/>
+      <accept Tcompiler="GCC"/>
+    </condition>
+    <condition id="cores.cm0p.internal_condition">
+      <accept Dcore="Cortex-M0+"/>
+    </condition>
+    <condition id="toolchains.armgcc, mdk.internal_condition">
+      <accept Tcompiler="GCC"/>
+      <accept Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="allOf.compilers=armclang, gcc, cores=cm4f, cm7f, toolchains=armgcc, mdk.condition_id">
+      <require condition="compilers.armclang, gcc.internal_condition"/>
+      <require condition="cores.cm4f, cm7f.internal_condition"/>
+      <require condition="toolchains.armgcc, mdk.internal_condition"/>
+    </condition>
+    <condition id="cores.cm4f, cm7f.internal_condition">
+      <accept Dcore="Cortex-M4"/>
+      <accept Dcore="Cortex-M7"/>
+    </condition>
+    <condition id="allOf.cores=cm0p, toolchains=iar.condition_id">
+      <require condition="cores.cm0p.internal_condition"/>
+      <require condition="toolchains.iar.internal_condition"/>
+    </condition>
+    <condition id="toolchains.iar.internal_condition">
+      <accept Tcompiler="IAR"/>
+    </condition>
+    <condition id="allOf.cores=cm4f, cm7f, toolchains=iar.condition_id">
+      <require condition="cores.cm4f, cm7f.internal_condition"/>
+      <require condition="toolchains.iar.internal_condition"/>
+    </condition>
+    <condition id="middleware.freertos-kernel.cm33_non_trustzone.condition_id">
+      <require condition="allOf.middleware.freertos-kernel, anyOf=middleware.freertos-kernel.template, not=middleware.freertos-kernel.template, core=cm33, not=middleware.freertos-kernel.cm33_trustzone.non_secure, not=middleware.freertos-kernel.cm33_trustzone.secure.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.freertos-kernel, anyOf=middleware.freertos-kernel.template, not=middleware.freertos-kernel.template, core=cm33, not=middleware.freertos-kernel.cm33_trustzone.non_secure, not=middleware.freertos-kernel.cm33_trustzone.secure.internal_condition">
+      <require Cclass="RTOS" Cgroup="Core"/>
+      <require condition="anyOf.middleware.freertos-kernel.template, not=middleware.freertos-kernel.template.internal_condition"/>
+      <require condition="core.cm33.internal_condition"/>
+      <require condition="not.middleware.freertos-kernel.cm33_trustzone.non_secure.internal_condition"/>
+      <require condition="not.middleware.freertos-kernel.cm33_trustzone.secure.internal_condition"/>
+    </condition>
+    <condition id="anyOf.middleware.freertos-kernel.template, not=middleware.freertos-kernel.template.internal_condition">
+      <accept Cclass="RTOS" Cgroup="freertos template"/>
+      <accept condition="not.middleware.freertos-kernel.template.internal_condition"/>
+    </condition>
+    <condition id="not.middleware.freertos-kernel.template.internal_condition">
+      <deny Cclass="RTOS" Cgroup="freertos template"/>
+    </condition>
+    <condition id="core.cm33.internal_condition">
+      <accept Dcore="Cortex-M33"/>
+    </condition>
+    <condition id="not.middleware.freertos-kernel.cm33_trustzone.non_secure.internal_condition">
+      <deny Cclass="RTOS" Cgroup="cm33_secure_port"/>
+    </condition>
+    <condition id="not.middleware.freertos-kernel.cm33_trustzone.secure.internal_condition">
+      <deny Cclass="RTOS" Cgroup="cm33 secure port"/>
+    </condition>
+    <condition id="allOf.cores=cm33, fpu=NO_FPU, SP_FPU, toolchains=armgcc, mdk.condition_id">
+      <require condition="cores.cm33.internal_condition"/>
+      <require condition="fpu.NO_FPU, SP_FPU.internal_condition"/>
+      <require condition="toolchains.armgcc, mdk.internal_condition"/>
+    </condition>
+    <condition id="cores.cm33.internal_condition">
+      <accept Dcore="Cortex-M33"/>
+    </condition>
+    <condition id="fpu.NO_FPU, SP_FPU.internal_condition">
+      <accept Dfpu="NO_FPU"/>
+      <accept Dfpu="SP_FPU"/>
+    </condition>
+    <condition id="allOf.cores=cm33, fpu=NO_FPU, SP_FPU, toolchains=iar.condition_id">
+      <require condition="cores.cm33.internal_condition"/>
+      <require condition="fpu.NO_FPU, SP_FPU.internal_condition"/>
+      <require condition="toolchains.iar.internal_condition"/>
+    </condition>
+    <condition id="middleware.freertos-kernel.cm33_trustzone.non_secure.condition_id">
+      <require condition="allOf.middleware.freertos-kernel, middleware.freertos-kernel.mpu_wrappers_v2, middleware.freertos-kernel.cm33_trustzone.secure.context, core=cm33, not=middleware.freertos-kernel.cm33_non_trustzone.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.freertos-kernel, middleware.freertos-kernel.mpu_wrappers_v2, middleware.freertos-kernel.cm33_trustzone.secure.context, core=cm33, not=middleware.freertos-kernel.cm33_non_trustzone.internal_condition">
+      <require Cclass="RTOS" Cgroup="Core"/>
+      <require Cclass="RTOS" Cgroup="MPU wrappers V2"/>
+      <require Cclass="RTOS" Cgroup="cm33 trustzone secure context"/>
+      <require condition="core.cm33.internal_condition"/>
+      <require condition="not.middleware.freertos-kernel.cm33_non_trustzone.internal_condition"/>
+    </condition>
+    <condition id="not.middleware.freertos-kernel.cm33_non_trustzone.internal_condition">
+      <deny Cclass="RTOS" Cgroup="cm33_non_trustzone_port"/>
+    </condition>
+    <condition id="middleware.freertos-kernel.cm33_trustzone.secure.condition_id">
+      <require condition="allOf.middleware.freertos-kernel.cm33_trustzone.secure.context, anyOf=middleware.freertos-kernel.template, not=middleware.freertos-kernel.template, core=cm33.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.freertos-kernel.cm33_trustzone.secure.context, anyOf=middleware.freertos-kernel.template, not=middleware.freertos-kernel.template, core=cm33.internal_condition">
+      <require Cclass="RTOS" Cgroup="cm33 trustzone secure context"/>
+      <require condition="anyOf.middleware.freertos-kernel.template, not=middleware.freertos-kernel.template.internal_condition"/>
+      <require condition="core.cm33.internal_condition"/>
+    </condition>
+    <condition id="allOf.toolchains=armgcc, mdk.condition_id">
+      <require condition="toolchains.armgcc, mdk.internal_condition"/>
+    </condition>
+    <condition id="allOf.toolchains=iar.condition_id">
+      <require condition="toolchains.iar.internal_condition"/>
+    </condition>
+    <condition id="middleware.freertos-kernel.cm33_trustzone.secure.context.condition_id">
+      <require condition="allOf.core=cm33.internal_condition"/>
+    </condition>
+    <condition id="allOf.core=cm33.internal_condition">
+      <require condition="core.cm33.internal_condition"/>
+    </condition>
+    <condition id="allOf.toolchains=armgcc, mdk, cores=cm33, fpu=NO_FPU, SP_FPU.condition_id">
+      <require condition="toolchains.armgcc, mdk.internal_condition"/>
+      <require condition="cores.cm33.internal_condition"/>
+      <require condition="fpu.NO_FPU, SP_FPU.internal_condition"/>
+    </condition>
+    <condition id="allOf.toolchains=iar, cores=cm33, fpu=NO_FPU, SP_FPU.condition_id">
+      <require condition="toolchains.iar.internal_condition"/>
+      <require condition="cores.cm33.internal_condition"/>
+      <require condition="fpu.NO_FPU, SP_FPU.internal_condition"/>
+    </condition>
+    <condition id="allOf.cores=cm33, toolchains=armgcc, mdk, fpu=NO_FPU, SP_FPU.condition_id">
+      <require condition="cores.cm33.internal_condition"/>
+      <require condition="toolchains.armgcc, mdk.internal_condition"/>
+      <require condition="fpu.NO_FPU, SP_FPU.internal_condition"/>
+    </condition>
+    <condition id="allOf.cores=cm33, toolchains=iar, fpu=NO_FPU, SP_FPU.condition_id">
+      <require condition="cores.cm33.internal_condition"/>
+      <require condition="toolchains.iar.internal_condition"/>
+      <require condition="fpu.NO_FPU, SP_FPU.internal_condition"/>
+    </condition>
+    <condition id="middleware.freertos-kernel.heap_1.condition_id">
+      <require condition="allOf.middleware.freertos-kernel, not=middleware.freertos-kernel.heap_2, not=middleware.freertos-kernel.heap_3, not=middleware.freertos-kernel.heap_4, not=middleware.freertos-kernel.heap_5.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.freertos-kernel, not=middleware.freertos-kernel.heap_2, not=middleware.freertos-kernel.heap_3, not=middleware.freertos-kernel.heap_4, not=middleware.freertos-kernel.heap_5.internal_condition">
+      <require Cclass="RTOS" Cgroup="Core"/>
+      <require condition="not.middleware.freertos-kernel.heap_2.internal_condition"/>
+      <require condition="not.middleware.freertos-kernel.heap_3.internal_condition"/>
+      <require condition="not.middleware.freertos-kernel.heap_4.internal_condition"/>
+      <require condition="not.middleware.freertos-kernel.heap_5.internal_condition"/>
+    </condition>
+    <condition id="not.middleware.freertos-kernel.heap_2.internal_condition">
+      <deny Cclass="RTOS" Cgroup="Heap" Cvariant="Heap_2"/>
+    </condition>
+    <condition id="not.middleware.freertos-kernel.heap_3.internal_condition">
+      <deny Cclass="RTOS" Cgroup="Heap" Cvariant="Heap_3"/>
+    </condition>
+    <condition id="not.middleware.freertos-kernel.heap_4.internal_condition">
+      <deny Cclass="RTOS" Cgroup="Heap" Cvariant="Heap_4"/>
+    </condition>
+    <condition id="not.middleware.freertos-kernel.heap_5.internal_condition">
+      <deny Cclass="RTOS" Cgroup="Heap" Cvariant="Heap_5"/>
+    </condition>
+    <condition id="middleware.freertos-kernel.heap_2.condition_id">
+      <require condition="allOf.middleware.freertos-kernel, not=middleware.freertos-kernel.heap_1, not=middleware.freertos-kernel.heap_3, not=middleware.freertos-kernel.heap_4, not=middleware.freertos-kernel.heap_5.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.freertos-kernel, not=middleware.freertos-kernel.heap_1, not=middleware.freertos-kernel.heap_3, not=middleware.freertos-kernel.heap_4, not=middleware.freertos-kernel.heap_5.internal_condition">
+      <require Cclass="RTOS" Cgroup="Core"/>
+      <require condition="not.middleware.freertos-kernel.heap_1.internal_condition"/>
+      <require condition="not.middleware.freertos-kernel.heap_3.internal_condition"/>
+      <require condition="not.middleware.freertos-kernel.heap_4.internal_condition"/>
+      <require condition="not.middleware.freertos-kernel.heap_5.internal_condition"/>
+    </condition>
+    <condition id="not.middleware.freertos-kernel.heap_1.internal_condition">
+      <deny Cclass="RTOS" Cgroup="Heap" Cvariant="Heap_1"/>
+    </condition>
+    <condition id="middleware.freertos-kernel.heap_3.condition_id">
+      <require condition="allOf.middleware.freertos-kernel, not=middleware.freertos-kernel.heap_1, not=middleware.freertos-kernel.heap_2, not=middleware.freertos-kernel.heap_4, not=middleware.freertos-kernel.heap_5.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.freertos-kernel, not=middleware.freertos-kernel.heap_1, not=middleware.freertos-kernel.heap_2, not=middleware.freertos-kernel.heap_4, not=middleware.freertos-kernel.heap_5.internal_condition">
+      <require Cclass="RTOS" Cgroup="Core"/>
+      <require condition="not.middleware.freertos-kernel.heap_1.internal_condition"/>
+      <require condition="not.middleware.freertos-kernel.heap_2.internal_condition"/>
+      <require condition="not.middleware.freertos-kernel.heap_4.internal_condition"/>
+      <require condition="not.middleware.freertos-kernel.heap_5.internal_condition"/>
+    </condition>
+    <condition id="middleware.freertos-kernel.heap_4.condition_id">
+      <require condition="allOf.middleware.freertos-kernel, not=middleware.freertos-kernel.heap_1, not=middleware.freertos-kernel.heap_2, not=middleware.freertos-kernel.heap_3, not=middleware.freertos-kernel.heap_5.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.freertos-kernel, not=middleware.freertos-kernel.heap_1, not=middleware.freertos-kernel.heap_2, not=middleware.freertos-kernel.heap_3, not=middleware.freertos-kernel.heap_5.internal_condition">
+      <require Cclass="RTOS" Cgroup="Core"/>
+      <require condition="not.middleware.freertos-kernel.heap_1.internal_condition"/>
+      <require condition="not.middleware.freertos-kernel.heap_2.internal_condition"/>
+      <require condition="not.middleware.freertos-kernel.heap_3.internal_condition"/>
+      <require condition="not.middleware.freertos-kernel.heap_5.internal_condition"/>
+    </condition>
+    <condition id="middleware.freertos-kernel.heap_5.condition_id">
+      <require condition="allOf.middleware.freertos-kernel, not=middleware.freertos-kernel.heap_1, not=middleware.freertos-kernel.heap_2, not=middleware.freertos-kernel.heap_3, not=middleware.freertos-kernel.heap_4.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.freertos-kernel, not=middleware.freertos-kernel.heap_1, not=middleware.freertos-kernel.heap_2, not=middleware.freertos-kernel.heap_3, not=middleware.freertos-kernel.heap_4.internal_condition">
+      <require Cclass="RTOS" Cgroup="Core"/>
+      <require condition="not.middleware.freertos-kernel.heap_1.internal_condition"/>
+      <require condition="not.middleware.freertos-kernel.heap_2.internal_condition"/>
+      <require condition="not.middleware.freertos-kernel.heap_3.internal_condition"/>
+      <require condition="not.middleware.freertos-kernel.heap_4.internal_condition"/>
+    </condition>
+    <condition id="middleware.freertos-kernel.mpu_wrappers.condition_id">
+      <require condition="allOf.middleware.freertos-kernel.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.freertos-kernel.internal_condition">
+      <require Cclass="RTOS" Cgroup="Core"/>
+    </condition>
+    <condition id="middleware.freertos-kernel.mpu_wrappers_v2.condition_id">
+      <require condition="allOf.middleware.freertos-kernel.internal_condition"/>
+    </condition>
+    <condition id="allOf.cores=cm0p.condition_id">
+      <require condition="cores.cm0p.internal_condition"/>
+    </condition>
+    <condition id="device_ids.LPC5502, LPC5504, LPC5506, LPC5512, LPC5514, LPC5516, LPC5526, LPC5528, LPC5534, LPC5536, LPC55S04, LPC55S06, LPC55S14, LPC55S16, LPC55S26, LPC55S28, LPC55S36, LPC55S66, LPC55S69, MCXA142, MCXA143, MCXA144, MCXA145, MCXA146, MCXA152, MCXA153, MCXA154, MCXA155, MCXA156, MCXN235, MCXN236, MCXN546, MCXN547, MCXN946, MCXN947, MIMXRT1181xxxxx, MIMXRT1182xxxxx, MIMXRT1187xxxxx, MIMXRT1189xxxxx, MIMXRT533S, MIMXRT555S, MIMXRT595S, MIMXRT633S, MIMXRT685S, RW610, RW612.internal_condition">
+      <accept Dname="LPC5502JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC5502JHI48" Dvendor="NXP:11"/>
+      <accept Dname="LPC5504JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC5504JHI48" Dvendor="NXP:11"/>
+      <accept Dname="LPC5506JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC5506JHI48" Dvendor="NXP:11"/>
+      <accept Dname="LPC5512JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC5512JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC5514JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC5514JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC5514JEV59" Dvendor="NXP:11"/>
+      <accept Dname="LPC5516JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC5516JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC5516JEV59" Dvendor="NXP:11"/>
+      <accept Dname="LPC5516JEV98" Dvendor="NXP:11"/>
+      <accept Dname="LPC5526JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC5526JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC5526JEV98" Dvendor="NXP:11"/>
+      <accept Dname="LPC5528JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC5528JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC5528JEV59" Dvendor="NXP:11"/>
+      <accept Dname="LPC5528JEV98" Dvendor="NXP:11"/>
+      <accept Dname="LPC5534JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC5534JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC5534JHI48" Dvendor="NXP:11"/>
+      <accept Dname="LPC5536JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC5536JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC5536JHI48" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S04JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S04JHI48" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S06JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S06JHI48" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S14JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S14JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S14JEV59" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S16JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S16JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S16JEV59" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S16JEV98" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S26JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S26JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S26JEV98" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S28JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S28JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S28JEV59" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S28JEV98" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S36JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S36JHI48" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S66JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S66JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S66JEV98" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S69JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S69JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S69JEV59" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S69JEV98" Dvendor="NXP:11"/>
+      <accept Dname="MCXA142VFM" Dvendor="NXP:11"/>
+      <accept Dname="MCXA142VFT" Dvendor="NXP:11"/>
+      <accept Dname="MCXA142VLF" Dvendor="NXP:11"/>
+      <accept Dname="MCXA142VLH" Dvendor="NXP:11"/>
+      <accept Dname="MCXA143VFM" Dvendor="NXP:11"/>
+      <accept Dname="MCXA143VFT" Dvendor="NXP:11"/>
+      <accept Dname="MCXA143VLF" Dvendor="NXP:11"/>
+      <accept Dname="MCXA143VLH" Dvendor="NXP:11"/>
+      <accept Dname="MCXA144VFT" Dvendor="NXP:11"/>
+      <accept Dname="MCXA144VLH" Dvendor="NXP:11"/>
+      <accept Dname="MCXA144VLL" Dvendor="NXP:11"/>
+      <accept Dname="MCXA144VMP" Dvendor="NXP:11"/>
+      <accept Dname="MCXA144VPJ" Dvendor="NXP:11"/>
+      <accept Dname="MCXA145VFT" Dvendor="NXP:11"/>
+      <accept Dname="MCXA145VLH" Dvendor="NXP:11"/>
+      <accept Dname="MCXA145VLL" Dvendor="NXP:11"/>
+      <accept Dname="MCXA145VMP" Dvendor="NXP:11"/>
+      <accept Dname="MCXA145VPJ" Dvendor="NXP:11"/>
+      <accept Dname="MCXA146VFT" Dvendor="NXP:11"/>
+      <accept Dname="MCXA146VLH" Dvendor="NXP:11"/>
+      <accept Dname="MCXA146VLL" Dvendor="NXP:11"/>
+      <accept Dname="MCXA146VMP" Dvendor="NXP:11"/>
+      <accept Dname="MCXA146VPJ" Dvendor="NXP:11"/>
+      <accept Dname="MCXA152VFM" Dvendor="NXP:11"/>
+      <accept Dname="MCXA152VFT" Dvendor="NXP:11"/>
+      <accept Dname="MCXA152VLF" Dvendor="NXP:11"/>
+      <accept Dname="MCXA152VLH" Dvendor="NXP:11"/>
+      <accept Dname="MCXA153VFM" Dvendor="NXP:11"/>
+      <accept Dname="MCXA153VFT" Dvendor="NXP:11"/>
+      <accept Dname="MCXA153VLF" Dvendor="NXP:11"/>
+      <accept Dname="MCXA153VLH" Dvendor="NXP:11"/>
+      <accept Dname="MCXA154VFT" Dvendor="NXP:11"/>
+      <accept Dname="MCXA154VLH" Dvendor="NXP:11"/>
+      <accept Dname="MCXA154VLL" Dvendor="NXP:11"/>
+      <accept Dname="MCXA154VMP" Dvendor="NXP:11"/>
+      <accept Dname="MCXA154VPJ" Dvendor="NXP:11"/>
+      <accept Dname="MCXA155VFT" Dvendor="NXP:11"/>
+      <accept Dname="MCXA155VLH" Dvendor="NXP:11"/>
+      <accept Dname="MCXA155VLL" Dvendor="NXP:11"/>
+      <accept Dname="MCXA155VMP" Dvendor="NXP:11"/>
+      <accept Dname="MCXA155VPJ" Dvendor="NXP:11"/>
+      <accept Dname="MCXA156VFT" Dvendor="NXP:11"/>
+      <accept Dname="MCXA156VLH" Dvendor="NXP:11"/>
+      <accept Dname="MCXA156VLL" Dvendor="NXP:11"/>
+      <accept Dname="MCXA156VMP" Dvendor="NXP:11"/>
+      <accept Dname="MCXA156VPJ" Dvendor="NXP:11"/>
+      <accept Dname="MCXN235VDF" Dvendor="NXP:11"/>
+      <accept Dname="MCXN235VNL" Dvendor="NXP:11"/>
+      <accept Dname="MCXN236VDF" Dvendor="NXP:11"/>
+      <accept Dname="MCXN236VNL" Dvendor="NXP:11"/>
+      <accept Dname="MCXN546VDF" Dvendor="NXP:11"/>
+      <accept Dname="MCXN546VNL" Dvendor="NXP:11"/>
+      <accept Dname="MCXN546VPB" Dvendor="NXP:11"/>
+      <accept Dname="MCXN547VDF" Dvendor="NXP:11"/>
+      <accept Dname="MCXN547VNL" Dvendor="NXP:11"/>
+      <accept Dname="MCXN547VPB" Dvendor="NXP:11"/>
+      <accept Dname="MCXN946VDF" Dvendor="NXP:11"/>
+      <accept Dname="MCXN946VNL" Dvendor="NXP:11"/>
+      <accept Dname="MCXN946VPB" Dvendor="NXP:11"/>
+      <accept Dname="MCXN947VDF" Dvendor="NXP:11"/>
+      <accept Dname="MCXN947VNL" Dvendor="NXP:11"/>
+      <accept Dname="MCXN947VPB" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1181CVP2B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1181XVP2B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1182CVP2B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1182XVP2B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1187AVM8B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1187CVM8B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1187XVM8B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1189CVM8B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1189XVM8B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT533SFAWC" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT533SFFOC" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT555SFAWC" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT555SFFOC" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT595SFAWC" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT595SFFOC" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT633SFAWBR" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT633SFFOB" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT633SFVKB" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT685SFAWBR" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT685SFFOB" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT685SFVKB" Dvendor="NXP:11"/>
+      <accept Dname="RW610ETA2I" Dvendor="NXP:11"/>
+      <accept Dname="RW610HNA2I" Dvendor="NXP:11"/>
+      <accept Dname="RW610UKA2I" Dvendor="NXP:11"/>
+      <accept Dname="RW612ETA2I" Dvendor="NXP:11"/>
+      <accept Dname="RW612HNA2I" Dvendor="NXP:11"/>
+      <accept Dname="RW612UKA2I" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="allOf.cores=cm33, fpu=NO_FPU, SP_FPU, device_ids=LPC5502, LPC5504, LPC5506, LPC5512, LPC5514, LPC5516, LPC5526, LPC5528, LPC5534, LPC5536, LPC55S04, LPC55S06, LPC55S14, LPC55S16, LPC55S26, LPC55S28, LPC55S36, LPC55S66, LPC55S69, MCXA142, MCXA143, MCXA144, MCXA145, MCXA146, MCXA152, MCXA153, MCXA154, MCXA155, MCXA156, MCXN235, MCXN236, MCXN546, MCXN547, MCXN946, MCXN947, MIMXRT1181xxxxx, MIMXRT1182xxxxx, MIMXRT1187xxxxx, MIMXRT1189xxxxx, MIMXRT533S, MIMXRT555S, MIMXRT595S, MIMXRT633S, MIMXRT685S, RW610, RW612.condition_id">
+      <require condition="cores.cm33.internal_condition"/>
+      <require condition="fpu.NO_FPU, SP_FPU.internal_condition"/>
+      <require condition="device_ids.LPC5502, LPC5504, LPC5506, LPC5512, LPC5514, LPC5516, LPC5526, LPC5528, LPC5534, LPC5536, LPC55S04, LPC55S06, LPC55S14, LPC55S16, LPC55S26, LPC55S28, LPC55S36, LPC55S66, LPC55S69, MCXA142, MCXA143, MCXA144, MCXA145, MCXA146, MCXA152, MCXA153, MCXA154, MCXA155, MCXA156, MCXN235, MCXN236, MCXN546, MCXN547, MCXN946, MCXN947, MIMXRT1181xxxxx, MIMXRT1182xxxxx, MIMXRT1187xxxxx, MIMXRT1189xxxxx, MIMXRT533S, MIMXRT555S, MIMXRT595S, MIMXRT633S, MIMXRT685S, RW610, RW612.internal_condition"/>
+    </condition>
+    <condition id="device_ids.LPC54005, LPC54016, LPC54018, LPC54018J2M, LPC54018J4M, LPC54605J256, LPC54605J512, LPC54606J256, LPC54606J512, LPC54607J256, LPC54607J512, LPC54608J512, LPC54616J256, LPC54616J512, LPC54618J512, LPC54628J512, LPC54S005, LPC54S016, LPC54S018, LPC54S018J2M, LPC54S018J4M.internal_condition">
+      <accept Dname="LPC54005JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54005JET100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54016JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54016JBD208" Dvendor="NXP:11"/>
+      <accept Dname="LPC54016JET100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54016JET180" Dvendor="NXP:11"/>
+      <accept Dname="LPC54018JBD208" Dvendor="NXP:11"/>
+      <accept Dname="LPC54018JET180" Dvendor="NXP:11"/>
+      <accept Dname="LPC54018J2MET180" Dvendor="NXP:11"/>
+      <accept Dname="LPC54018J4MET180" Dvendor="NXP:11"/>
+      <accept Dname="LPC54605J256BD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54605J256ET100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54605J256ET180" Dvendor="NXP:11"/>
+      <accept Dname="LPC54605J512BD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54605J512ET100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54605J512ET180" Dvendor="NXP:11"/>
+      <accept Dname="LPC54606J256BD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54606J256ET100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54606J256ET180" Dvendor="NXP:11"/>
+      <accept Dname="LPC54606J512BD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54606J512BD208" Dvendor="NXP:11"/>
+      <accept Dname="LPC54606J512ET100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54607J256BD208" Dvendor="NXP:11"/>
+      <accept Dname="LPC54607J256ET180" Dvendor="NXP:11"/>
+      <accept Dname="LPC54607J512ET180" Dvendor="NXP:11"/>
+      <accept Dname="LPC54608J512BD208" Dvendor="NXP:11"/>
+      <accept Dname="LPC54608J512ET180" Dvendor="NXP:11"/>
+      <accept Dname="LPC54616J256ET180" Dvendor="NXP:11"/>
+      <accept Dname="LPC54616J512BD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54616J512BD208" Dvendor="NXP:11"/>
+      <accept Dname="LPC54616J512ET100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54618J512BD208" Dvendor="NXP:11"/>
+      <accept Dname="LPC54618J512ET180" Dvendor="NXP:11"/>
+      <accept Dname="LPC54628J512ET180" Dvendor="NXP:11"/>
+      <accept Dname="LPC54S005JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54S005JET100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54S016JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54S016JBD208" Dvendor="NXP:11"/>
+      <accept Dname="LPC54S016JET100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54S016JET180" Dvendor="NXP:11"/>
+      <accept Dname="LPC54S018JBD208" Dvendor="NXP:11"/>
+      <accept Dname="LPC54S018JET180" Dvendor="NXP:11"/>
+      <accept Dname="LPC54S018J2MET180" Dvendor="NXP:11"/>
+      <accept Dname="LPC54S018J4MET180" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="allOf.cores=cm4f, device_ids=LPC54005, LPC54016, LPC54018, LPC54018J2M, LPC54018J4M, LPC54605J256, LPC54605J512, LPC54606J256, LPC54606J512, LPC54607J256, LPC54607J512, LPC54608J512, LPC54616J256, LPC54616J512, LPC54618J512, LPC54628J512, LPC54S005, LPC54S016, LPC54S018, LPC54S018J2M, LPC54S018J4M.condition_id">
+      <require condition="cores.cm4f.internal_condition"/>
+      <require condition="device_ids.LPC54005, LPC54016, LPC54018, LPC54018J2M, LPC54018J4M, LPC54605J256, LPC54605J512, LPC54606J256, LPC54606J512, LPC54607J256, LPC54607J512, LPC54608J512, LPC54616J256, LPC54616J512, LPC54618J512, LPC54628J512, LPC54S005, LPC54S016, LPC54S018, LPC54S018J2M, LPC54S018J4M.internal_condition"/>
+    </condition>
+    <condition id="cores.cm4f.internal_condition">
+      <accept Dcore="Cortex-M4"/>
+    </condition>
+    <condition id="device_ids.K32L3A60xxx, MIMXRT1011xxxxx, MIMXRT1015xxxxx, MIMXRT1021xxxxx, MIMXRT1024xxxxx, MIMXRT1041xxxxB, MIMXRT1042xxxxB, MIMXRT1051xxxxB, MIMXRT1052xxxxB, MIMXRT1061xxxxA, MIMXRT1061xxxxB, MIMXRT1062xxxxA, MIMXRT1062xxxxB, MIMXRT1064xxxxA, MIMXRT1165xxxxx, MIMXRT1166xxxxx, MIMXRT1171xxxxx, MIMXRT1172xxxxx, MIMXRT1173xxxxx, MIMXRT1175xxxxx, MIMXRT1176xxxxx, MIMXRT1187xxxxx, MIMXRT1189xxxxx, MK02FN128xxx10, MK02FN64xxx10, MK22FN128xxx12, MK22FN256xxx12, MK22FN512xxx12.internal_condition">
+      <accept Dname="K32L3A60VPJ1A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1011CAE4A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1011DAE5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1015CAF4A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1015CAF4B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1015DAF5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1015DAF5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1021CAF4A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1021CAF4B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1021CAG4A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1021CAG4B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1021DAF5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1021DAF5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1021DAG5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1021DAG5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1024CAG4A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1024CAG4B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1024DAG5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1024DAG5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1041DFP6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1041DJM6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1041XFP5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1041XJM5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1042DFP6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1042DJM6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1042XFP5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1042XJM5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1051CVJ5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1051CVL5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1051DVJ6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1051DVL6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1052CVJ5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1052CVL5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1052DVJ6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1052DVL6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1061CVJ5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1061CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1061DVJ6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1061DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1061CVJ5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1061CVL5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1061DVJ6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1061DVL6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1061XVN5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1062CVJ5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1062CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1062DVJ6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1062DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1062CVJ5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1062CVL5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1062DVJ6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1062DVL6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1062DVN6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1062XVN5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064CVJ5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064DVJ6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1165CVM5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1165DVM6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1165XVM5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1166CVM5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1166DVM6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1166XVM5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1171AVM8A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1171CVM8A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1171DVMAA" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1172AVM8A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1172CVM8A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1172DVMAA" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1173CVM8A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1175AVM8A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1175CVM8A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1175DVMAA" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1176AVM8A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1176CVM8A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1176DVMAA" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1187AVM8B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1187CVM8B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1187XVM8B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1189CVM8B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1189XVM8B" Dvendor="NXP:11"/>
+      <accept Dname="MK02FN128VFM10" Dvendor="NXP:11"/>
+      <accept Dname="MK02FN128VLF10" Dvendor="NXP:11"/>
+      <accept Dname="MK02FN128VLH10" Dvendor="NXP:11"/>
+      <accept Dname="MK02FN64VFM10" Dvendor="NXP:11"/>
+      <accept Dname="MK02FN64VLF10" Dvendor="NXP:11"/>
+      <accept Dname="MK02FN64VLH10" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN128CAH12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN256CAH12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN256VDC12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN256VLH12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN256VLL12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN256VMP12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN512CAP12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN512VDC12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN512VFX12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN512VLH12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN512VLL12" Dvendor="NXP:11"/>
+      <accept Dname="MK22FN512VMP12" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="allOf.cores=cm4f, cm7f, device_ids=K32L3A60xxx, MIMXRT1011xxxxx, MIMXRT1015xxxxx, MIMXRT1021xxxxx, MIMXRT1024xxxxx, MIMXRT1041xxxxB, MIMXRT1042xxxxB, MIMXRT1051xxxxB, MIMXRT1052xxxxB, MIMXRT1061xxxxA, MIMXRT1061xxxxB, MIMXRT1062xxxxA, MIMXRT1062xxxxB, MIMXRT1064xxxxA, MIMXRT1165xxxxx, MIMXRT1166xxxxx, MIMXRT1171xxxxx, MIMXRT1172xxxxx, MIMXRT1173xxxxx, MIMXRT1175xxxxx, MIMXRT1176xxxxx, MIMXRT1187xxxxx, MIMXRT1189xxxxx, MK02FN128xxx10, MK02FN64xxx10, MK22FN128xxx12, MK22FN256xxx12, MK22FN512xxx12.condition_id">
+      <require condition="cores.cm4f, cm7f.internal_condition"/>
+      <require condition="device_ids.K32L3A60xxx, MIMXRT1011xxxxx, MIMXRT1015xxxxx, MIMXRT1021xxxxx, MIMXRT1024xxxxx, MIMXRT1041xxxxB, MIMXRT1042xxxxB, MIMXRT1051xxxxB, MIMXRT1052xxxxB, MIMXRT1061xxxxA, MIMXRT1061xxxxB, MIMXRT1062xxxxA, MIMXRT1062xxxxB, MIMXRT1064xxxxA, MIMXRT1165xxxxx, MIMXRT1166xxxxx, MIMXRT1171xxxxx, MIMXRT1172xxxxx, MIMXRT1173xxxxx, MIMXRT1175xxxxx, MIMXRT1176xxxxx, MIMXRT1187xxxxx, MIMXRT1189xxxxx, MK02FN128xxx10, MK02FN64xxx10, MK22FN128xxx12, MK22FN256xxx12, MK22FN512xxx12.internal_condition"/>
+    </condition>
+  </conditions>
+  <components>
+    <bundle Cbundle="FreeRTOS NXP" Cclass="RTOS" Cversion="1.0.0">
+      <description>FreeRTOS NXP</description>
+      <doc>rtos/freertos/freertos-kernel/FreeRTOS NXP_dummy.txt</doc>
+      <component Cgroup="Core" Cversion="11.0.1" condition="middleware.freertos-kernel.condition_id">
+        <description>FreeRTOS kernel</description>
+        <Pre_Include_Global_h>
+#ifndef SDK_OS_FREE_RTOS
+#define SDK_OS_FREE_RTOS 
+#endif
+</Pre_Include_Global_h>
+        <files>
+          <file category="sourceC" name="rtos/freertos/freertos-kernel/croutine.c" projectpath="freertos/freertos-kernel"/>
+          <file category="sourceC" name="rtos/freertos/freertos-kernel/event_groups.c" projectpath="freertos/freertos-kernel"/>
+          <file category="header" name="rtos/freertos/freertos-kernel/include/atomic.h" projectpath="freertos/freertos-kernel/include"/>
+          <file category="header" name="rtos/freertos/freertos-kernel/include/croutine.h" projectpath="freertos/freertos-kernel/include"/>
+          <file category="header" name="rtos/freertos/freertos-kernel/include/deprecated_definitions.h" projectpath="freertos/freertos-kernel/include"/>
+          <file category="header" name="rtos/freertos/freertos-kernel/include/event_groups.h" projectpath="freertos/freertos-kernel/include"/>
+          <file category="header" name="rtos/freertos/freertos-kernel/include/FreeRTOS.h" projectpath="freertos/freertos-kernel/include"/>
+          <file category="header" name="rtos/freertos/freertos-kernel/include/list.h" projectpath="freertos/freertos-kernel/include"/>
+          <file category="header" name="rtos/freertos/freertos-kernel/include/message_buffer.h" projectpath="freertos/freertos-kernel/include"/>
+          <file category="header" name="rtos/freertos/freertos-kernel/include/mpu_prototypes.h" projectpath="freertos/freertos-kernel/include"/>
+          <file category="header" name="rtos/freertos/freertos-kernel/include/mpu_syscall_numbers.h" projectpath="freertos/freertos-kernel/include"/>
+          <file category="header" name="rtos/freertos/freertos-kernel/include/mpu_wrappers.h" projectpath="freertos/freertos-kernel/include"/>
+          <file category="header" name="rtos/freertos/freertos-kernel/include/newlib-freertos.h" projectpath="freertos/freertos-kernel/include"/>
+          <file category="header" name="rtos/freertos/freertos-kernel/include/picolibc-freertos.h" projectpath="freertos/freertos-kernel/include"/>
+          <file category="header" name="rtos/freertos/freertos-kernel/include/portable.h" projectpath="freertos/freertos-kernel/include"/>
+          <file category="header" name="rtos/freertos/freertos-kernel/include/projdefs.h" projectpath="freertos/freertos-kernel/include"/>
+          <file category="header" name="rtos/freertos/freertos-kernel/include/queue.h" projectpath="freertos/freertos-kernel/include"/>
+          <file category="header" name="rtos/freertos/freertos-kernel/include/semphr.h" projectpath="freertos/freertos-kernel/include"/>
+          <file category="header" name="rtos/freertos/freertos-kernel/include/stack_macros.h" projectpath="freertos/freertos-kernel/include"/>
+          <file category="header" name="rtos/freertos/freertos-kernel/include/StackMacros.h" projectpath="freertos/freertos-kernel/include"/>
+          <file category="doc" name="rtos/freertos/freertos-kernel/include/stdint.readme" projectpath="freertos/freertos-kernel/include"/>
+          <file category="header" name="rtos/freertos/freertos-kernel/include/stream_buffer.h" projectpath="freertos/freertos-kernel/include"/>
+          <file category="header" name="rtos/freertos/freertos-kernel/include/task.h" projectpath="freertos/freertos-kernel/include"/>
+          <file category="header" name="rtos/freertos/freertos-kernel/include/timers.h" projectpath="freertos/freertos-kernel/include"/>
+          <file category="sourceC" name="rtos/freertos/freertos-kernel/list.c" projectpath="freertos/freertos-kernel"/>
+          <file condition="allOf.compilers=armclang, gcc, cores=cm0p, toolchains=armgcc, mdk.condition_id" category="sourceC" name="rtos/freertos/freertos-kernel/portable/GCC/ARM_CM0/port.c" projectpath="freertos/freertos-kernel/portable/GCC/ARM_CM0"/>
+          <file condition="allOf.compilers=armclang, gcc, cores=cm0p, toolchains=armgcc, mdk.condition_id" category="header" name="rtos/freertos/freertos-kernel/portable/GCC/ARM_CM0/portmacro.h" projectpath="freertos/freertos-kernel/portable/GCC/ARM_CM0"/>
+          <file condition="allOf.compilers=armclang, gcc, cores=cm4f, cm7f, toolchains=armgcc, mdk.condition_id" category="sourceC" name="rtos/freertos/freertos-kernel/portable/GCC/ARM_CM4F/port.c" projectpath="freertos/freertos-kernel/portable/GCC/ARM_CM4F"/>
+          <file condition="allOf.compilers=armclang, gcc, cores=cm4f, cm7f, toolchains=armgcc, mdk.condition_id" category="header" name="rtos/freertos/freertos-kernel/portable/GCC/ARM_CM4F/portmacro.h" projectpath="freertos/freertos-kernel/portable/GCC/ARM_CM4F"/>
+          <file condition="allOf.cores=cm0p, toolchains=iar.condition_id" category="sourceC" name="rtos/freertos/freertos-kernel/portable/IAR/ARM_CM0/port.c" projectpath="freertos/freertos-kernel/portable/IAR/ARM_CM0"/>
+          <file condition="allOf.cores=cm0p, toolchains=iar.condition_id" category="sourceAsm" name="rtos/freertos/freertos-kernel/portable/IAR/ARM_CM0/portasm.s" projectpath="freertos/freertos-kernel/portable/IAR/ARM_CM0"/>
+          <file condition="allOf.cores=cm0p, toolchains=iar.condition_id" category="header" name="rtos/freertos/freertos-kernel/portable/IAR/ARM_CM0/portmacro.h" projectpath="freertos/freertos-kernel/portable/IAR/ARM_CM0"/>
+          <file condition="allOf.cores=cm4f, cm7f, toolchains=iar.condition_id" category="sourceC" name="rtos/freertos/freertos-kernel/portable/IAR/ARM_CM4F/port.c" projectpath="freertos/freertos-kernel/portable/IAR/ARM_CM4F"/>
+          <file condition="allOf.cores=cm4f, cm7f, toolchains=iar.condition_id" category="sourceAsm" name="rtos/freertos/freertos-kernel/portable/IAR/ARM_CM4F/portasm.s" projectpath="freertos/freertos-kernel/portable/IAR/ARM_CM4F"/>
+          <file condition="allOf.cores=cm4f, cm7f, toolchains=iar.condition_id" category="header" name="rtos/freertos/freertos-kernel/portable/IAR/ARM_CM4F/portmacro.h" projectpath="freertos/freertos-kernel/portable/IAR/ARM_CM4F"/>
+          <file category="other" name="rtos/freertos/freertos-kernel/portable/MemMang/ReadMe.url" projectpath="freertos/freertos-kernel/portable/MemMang"/>
+          <file category="doc" name="rtos/freertos/freertos-kernel/portable/readme.txt" projectpath="freertos/freertos-kernel/portable"/>
+          <file category="sourceC" name="rtos/freertos/freertos-kernel/queue.c" projectpath="freertos/freertos-kernel"/>
+          <file category="sourceC" name="rtos/freertos/freertos-kernel/stream_buffer.c" projectpath="freertos/freertos-kernel"/>
+          <file category="sourceC" name="rtos/freertos/freertos-kernel/tasks.c" projectpath="freertos/freertos-kernel"/>
+          <file category="sourceC" name="rtos/freertos/freertos-kernel/timers.c" projectpath="freertos/freertos-kernel"/>
+          <file category="include" name="rtos/freertos/freertos-kernel/include/"/>
+          <file condition="allOf.compilers=armclang, gcc, cores=cm0p, toolchains=armgcc, mdk.condition_id" category="include" name="rtos/freertos/freertos-kernel/portable/GCC/ARM_CM0/"/>
+          <file condition="allOf.compilers=armclang, gcc, cores=cm4f, cm7f, toolchains=armgcc, mdk.condition_id" category="include" name="rtos/freertos/freertos-kernel/portable/GCC/ARM_CM4F/"/>
+          <file condition="allOf.cores=cm0p, toolchains=iar.condition_id" category="include" name="rtos/freertos/freertos-kernel/portable/IAR/ARM_CM0/"/>
+          <file condition="allOf.cores=cm4f, cm7f, toolchains=iar.condition_id" category="include" name="rtos/freertos/freertos-kernel/portable/IAR/ARM_CM4F/"/>
+        </files>
+      </component>
+      <component Cgroup="cm33_non_trustzone_port" Cversion="11.0.1" condition="middleware.freertos-kernel.cm33_non_trustzone.condition_id">
+        <description>FreeRTOS cm33 non trustzone port</description>
+        <files>
+          <file condition="allOf.cores=cm33, fpu=NO_FPU, SP_FPU, toolchains=armgcc, mdk.condition_id" category="sourceC" name="rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33_NTZ/non_secure/mpu_wrappers_v2_asm.c" projectpath="freertos/freertos-kernel/portable/GCC/ARM_CM33_NTZ/non_secure"/>
+          <file condition="allOf.cores=cm33, fpu=NO_FPU, SP_FPU, toolchains=armgcc, mdk.condition_id" category="sourceC" name="rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33_NTZ/non_secure/port.c" projectpath="freertos/freertos-kernel/portable/GCC/ARM_CM33_NTZ/non_secure"/>
+          <file condition="allOf.cores=cm33, fpu=NO_FPU, SP_FPU, toolchains=armgcc, mdk.condition_id" category="sourceC" name="rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33_NTZ/non_secure/portasm.c" projectpath="freertos/freertos-kernel/portable/GCC/ARM_CM33_NTZ/non_secure"/>
+          <file condition="allOf.cores=cm33, fpu=NO_FPU, SP_FPU, toolchains=armgcc, mdk.condition_id" category="header" name="rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33_NTZ/non_secure/portasm.h" projectpath="freertos/freertos-kernel/portable/GCC/ARM_CM33_NTZ/non_secure"/>
+          <file condition="allOf.cores=cm33, fpu=NO_FPU, SP_FPU, toolchains=armgcc, mdk.condition_id" category="header" name="rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33_NTZ/non_secure/portmacro.h" projectpath="freertos/freertos-kernel/portable/GCC/ARM_CM33_NTZ/non_secure"/>
+          <file condition="allOf.cores=cm33, fpu=NO_FPU, SP_FPU, toolchains=armgcc, mdk.condition_id" category="header" name="rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33_NTZ/non_secure/portmacrocommon.h" projectpath="freertos/freertos-kernel/portable/GCC/ARM_CM33_NTZ/non_secure"/>
+          <file condition="allOf.cores=cm33, fpu=NO_FPU, SP_FPU, toolchains=iar.condition_id" category="sourceAsm" name="rtos/freertos/freertos-kernel/portable/IAR/ARM_CM33_NTZ/non_secure/mpu_wrappers_v2_asm.S" projectpath="freertos/freertos-kernel/portable/IAR/ARM_CM33_NTZ/non_secure"/>
+          <file condition="allOf.cores=cm33, fpu=NO_FPU, SP_FPU, toolchains=iar.condition_id" category="sourceC" name="rtos/freertos/freertos-kernel/portable/IAR/ARM_CM33_NTZ/non_secure/port.c" projectpath="freertos/freertos-kernel/portable/IAR/ARM_CM33_NTZ/non_secure"/>
+          <file condition="allOf.cores=cm33, fpu=NO_FPU, SP_FPU, toolchains=iar.condition_id" category="header" name="rtos/freertos/freertos-kernel/portable/IAR/ARM_CM33_NTZ/non_secure/portasm.h" projectpath="freertos/freertos-kernel/portable/IAR/ARM_CM33_NTZ/non_secure"/>
+          <file condition="allOf.cores=cm33, fpu=NO_FPU, SP_FPU, toolchains=iar.condition_id" category="sourceAsm" name="rtos/freertos/freertos-kernel/portable/IAR/ARM_CM33_NTZ/non_secure/portasm.s" projectpath="freertos/freertos-kernel/portable/IAR/ARM_CM33_NTZ/non_secure"/>
+          <file condition="allOf.cores=cm33, fpu=NO_FPU, SP_FPU, toolchains=iar.condition_id" category="header" name="rtos/freertos/freertos-kernel/portable/IAR/ARM_CM33_NTZ/non_secure/portmacro.h" projectpath="freertos/freertos-kernel/portable/IAR/ARM_CM33_NTZ/non_secure"/>
+          <file condition="allOf.cores=cm33, fpu=NO_FPU, SP_FPU, toolchains=iar.condition_id" category="header" name="rtos/freertos/freertos-kernel/portable/IAR/ARM_CM33_NTZ/non_secure/portmacrocommon.h" projectpath="freertos/freertos-kernel/portable/IAR/ARM_CM33_NTZ/non_secure"/>
+          <file condition="allOf.cores=cm33, fpu=NO_FPU, SP_FPU, toolchains=iar.condition_id" category="include" name="rtos/freertos/freertos-kernel/portable/IAR/ARM_CM33_NTZ/non_secure/"/>
+          <file condition="allOf.cores=cm33, fpu=NO_FPU, SP_FPU, toolchains=armgcc, mdk.condition_id" category="include" name="rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33_NTZ/non_secure/"/>
+        </files>
+      </component>
+      <component Cgroup="cm33_secure_port" Cversion="11.0.1" condition="middleware.freertos-kernel.cm33_trustzone.non_secure.condition_id">
+        <description>FreeRTOS cm33 secure port</description>
+        <files>
+          <file condition="allOf.cores=cm33, fpu=NO_FPU, SP_FPU, toolchains=armgcc, mdk.condition_id" category="sourceC" name="rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33/non_secure/mpu_wrappers_v2_asm.c" projectpath="freertos/freertos-kernel/portable/GCC/ARM_CM33/non_secure"/>
+          <file condition="allOf.cores=cm33, fpu=NO_FPU, SP_FPU, toolchains=armgcc, mdk.condition_id" category="sourceC" name="rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33/non_secure/port.c" projectpath="freertos/freertos-kernel/portable/GCC/ARM_CM33/non_secure"/>
+          <file condition="allOf.cores=cm33, fpu=NO_FPU, SP_FPU, toolchains=armgcc, mdk.condition_id" category="sourceC" name="rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33/non_secure/portasm.c" projectpath="freertos/freertos-kernel/portable/GCC/ARM_CM33/non_secure"/>
+          <file condition="allOf.cores=cm33, fpu=NO_FPU, SP_FPU, toolchains=armgcc, mdk.condition_id" category="header" name="rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33/non_secure/portasm.h" projectpath="freertos/freertos-kernel/portable/GCC/ARM_CM33/non_secure"/>
+          <file condition="allOf.cores=cm33, fpu=NO_FPU, SP_FPU, toolchains=armgcc, mdk.condition_id" category="header" name="rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33/non_secure/portmacro.h" projectpath="freertos/freertos-kernel/portable/GCC/ARM_CM33/non_secure"/>
+          <file condition="allOf.cores=cm33, fpu=NO_FPU, SP_FPU, toolchains=armgcc, mdk.condition_id" category="header" name="rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33/non_secure/portmacrocommon.h" projectpath="freertos/freertos-kernel/portable/GCC/ARM_CM33/non_secure"/>
+          <file condition="allOf.cores=cm33, fpu=NO_FPU, SP_FPU, toolchains=iar.condition_id" category="sourceAsm" name="rtos/freertos/freertos-kernel/portable/IAR/ARM_CM33/non_secure/mpu_wrappers_v2_asm.S" projectpath="freertos/freertos-kernel/portable/IAR/ARM_CM33/non_secure"/>
+          <file condition="allOf.cores=cm33, fpu=NO_FPU, SP_FPU, toolchains=iar.condition_id" category="sourceC" name="rtos/freertos/freertos-kernel/portable/IAR/ARM_CM33/non_secure/port.c" projectpath="freertos/freertos-kernel/portable/IAR/ARM_CM33/non_secure"/>
+          <file condition="allOf.cores=cm33, fpu=NO_FPU, SP_FPU, toolchains=iar.condition_id" category="header" name="rtos/freertos/freertos-kernel/portable/IAR/ARM_CM33/non_secure/portasm.h" projectpath="freertos/freertos-kernel/portable/IAR/ARM_CM33/non_secure"/>
+          <file condition="allOf.cores=cm33, fpu=NO_FPU, SP_FPU, toolchains=iar.condition_id" category="sourceAsm" name="rtos/freertos/freertos-kernel/portable/IAR/ARM_CM33/non_secure/portasm.s" projectpath="freertos/freertos-kernel/portable/IAR/ARM_CM33/non_secure"/>
+          <file condition="allOf.cores=cm33, fpu=NO_FPU, SP_FPU, toolchains=iar.condition_id" category="header" name="rtos/freertos/freertos-kernel/portable/IAR/ARM_CM33/non_secure/portmacro.h" projectpath="freertos/freertos-kernel/portable/IAR/ARM_CM33/non_secure"/>
+          <file condition="allOf.cores=cm33, fpu=NO_FPU, SP_FPU, toolchains=iar.condition_id" category="header" name="rtos/freertos/freertos-kernel/portable/IAR/ARM_CM33/non_secure/portmacrocommon.h" projectpath="freertos/freertos-kernel/portable/IAR/ARM_CM33/non_secure"/>
+          <file condition="allOf.cores=cm33, fpu=NO_FPU, SP_FPU, toolchains=iar.condition_id" category="include" name="rtos/freertos/freertos-kernel/portable/IAR/ARM_CM33/non_secure/"/>
+          <file condition="allOf.cores=cm33, fpu=NO_FPU, SP_FPU, toolchains=armgcc, mdk.condition_id" category="include" name="rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33/non_secure/"/>
+        </files>
+      </component>
+      <component Cgroup="cm33 secure port" Cversion="11.0.1" condition="middleware.freertos-kernel.cm33_trustzone.secure.condition_id">
+        <description>FreeRTOS Secure Context</description>
+        <files>
+          <file condition="allOf.toolchains=armgcc, mdk.condition_id" category="sourceC" name="rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33/secure/secure_context.c" projectpath="freertos/freertos-kernel/portable/GCC/ARM_CM33/secure"/>
+          <file condition="allOf.toolchains=armgcc, mdk.condition_id" category="sourceC" name="rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33/secure/secure_context_port.c" projectpath="freertos/freertos-kernel/portable/GCC/ARM_CM33/secure"/>
+          <file condition="allOf.toolchains=armgcc, mdk.condition_id" category="sourceC" name="rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33/secure/secure_heap.c" projectpath="freertos/freertos-kernel/portable/GCC/ARM_CM33/secure"/>
+          <file condition="allOf.toolchains=armgcc, mdk.condition_id" category="header" name="rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33/secure/secure_heap.h" projectpath="freertos/freertos-kernel/portable/GCC/ARM_CM33/secure"/>
+          <file condition="allOf.toolchains=armgcc, mdk.condition_id" category="sourceC" name="rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33/secure/secure_init.c" projectpath="freertos/freertos-kernel/portable/GCC/ARM_CM33/secure"/>
+          <file condition="allOf.toolchains=armgcc, mdk.condition_id" category="header" name="rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33/secure/secure_port_macros.h" projectpath="freertos/freertos-kernel/portable/GCC/ARM_CM33/secure"/>
+          <file condition="allOf.toolchains=iar.condition_id" category="sourceC" name="rtos/freertos/freertos-kernel/portable/IAR/ARM_CM33/secure/secure_context.c" projectpath="freertos/freertos-kernel/portable/IAR/ARM_CM33/secure"/>
+          <file condition="allOf.toolchains=iar.condition_id" category="sourceAsm" name="rtos/freertos/freertos-kernel/portable/IAR/ARM_CM33/secure/secure_context_port_asm.s" projectpath="freertos/freertos-kernel/portable/IAR/ARM_CM33/secure"/>
+          <file condition="allOf.toolchains=iar.condition_id" category="sourceC" name="rtos/freertos/freertos-kernel/portable/IAR/ARM_CM33/secure/secure_heap.c" projectpath="freertos/freertos-kernel/portable/IAR/ARM_CM33/secure"/>
+          <file condition="allOf.toolchains=iar.condition_id" category="header" name="rtos/freertos/freertos-kernel/portable/IAR/ARM_CM33/secure/secure_heap.h" projectpath="freertos/freertos-kernel/portable/IAR/ARM_CM33/secure"/>
+          <file condition="allOf.toolchains=iar.condition_id" category="sourceC" name="rtos/freertos/freertos-kernel/portable/IAR/ARM_CM33/secure/secure_init.c" projectpath="freertos/freertos-kernel/portable/IAR/ARM_CM33/secure"/>
+          <file condition="allOf.toolchains=iar.condition_id" category="header" name="rtos/freertos/freertos-kernel/portable/IAR/ARM_CM33/secure/secure_port_macros.h" projectpath="freertos/freertos-kernel/portable/IAR/ARM_CM33/secure"/>
+          <file condition="allOf.toolchains=iar.condition_id" category="include" name="rtos/freertos/freertos-kernel/portable/IAR/ARM_CM33/secure/"/>
+          <file condition="allOf.toolchains=armgcc, mdk.condition_id" category="include" name="rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33/secure/"/>
+        </files>
+      </component>
+      <component Cgroup="cm33 trustzone secure context" Cversion="11.0.1" condition="middleware.freertos-kernel.cm33_trustzone.secure.context.condition_id">
+        <description>FreeRTOS cm33 TrustZone secure port</description>
+        <files>
+          <file condition="allOf.toolchains=armgcc, mdk, cores=cm33, fpu=NO_FPU, SP_FPU.condition_id" category="header" name="rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33/secure/secure_context.h" projectpath="freertos/freertos-kernel/portable/GCC/ARM_CM33/secure"/>
+          <file condition="allOf.toolchains=armgcc, mdk, cores=cm33, fpu=NO_FPU, SP_FPU.condition_id" category="header" name="rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33/secure/secure_init.h" projectpath="freertos/freertos-kernel/portable/GCC/ARM_CM33/secure"/>
+          <file condition="allOf.toolchains=iar, cores=cm33, fpu=NO_FPU, SP_FPU.condition_id" category="header" name="rtos/freertos/freertos-kernel/portable/IAR/ARM_CM33/secure/secure_context.h" projectpath="freertos/freertos-kernel/portable/IAR/ARM_CM33/secure"/>
+          <file condition="allOf.toolchains=iar, cores=cm33, fpu=NO_FPU, SP_FPU.condition_id" category="header" name="rtos/freertos/freertos-kernel/portable/IAR/ARM_CM33/secure/secure_init.h" projectpath="freertos/freertos-kernel/portable/IAR/ARM_CM33/secure"/>
+          <file condition="allOf.cores=cm33, toolchains=armgcc, mdk, fpu=NO_FPU, SP_FPU.condition_id" category="include" name="rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33/secure/"/>
+          <file condition="allOf.cores=cm33, toolchains=iar, fpu=NO_FPU, SP_FPU.condition_id" category="include" name="rtos/freertos/freertos-kernel/portable/IAR/ARM_CM33/secure/"/>
+        </files>
+      </component>
+      <component Cgroup="TAD extension" Cversion="11.0.1">
+        <description>FreeRTOS NXP extension</description>
+        <files>
+          <file category="header" name="rtos/freertos/freertos-kernel/include/freertos_tasks_c_additions.h" projectpath="freertos/freertos-kernel/include"/>
+          <file category="doc" name="rtos/freertos/freertos-kernel/FreeRTOS NXP_dummy.txt"/>
+          <file category="include" name="rtos/freertos/freertos-kernel/include/"/>
+        </files>
+      </component>
+      <component Cgroup="Heap" Cvariant="Heap_1" Cversion="11.0.1" condition="middleware.freertos-kernel.heap_1.condition_id">
+        <description>FreeRTOS heap 1</description>
+        <files>
+          <file category="sourceC" name="rtos/freertos/freertos-kernel/portable/MemMang/heap_1.c" projectpath="freertos/freertos-kernel/portable/MemMang"/>
+        </files>
+      </component>
+      <component Cgroup="Heap" Cvariant="Heap_2" Cversion="11.0.1" condition="middleware.freertos-kernel.heap_2.condition_id">
+        <description>FreeRTOS heap 2</description>
+        <files>
+          <file category="sourceC" name="rtos/freertos/freertos-kernel/portable/MemMang/heap_2.c" projectpath="freertos/freertos-kernel/portable/MemMang"/>
+        </files>
+      </component>
+      <component Cgroup="Heap" Cvariant="Heap_3" Cversion="11.0.1" condition="middleware.freertos-kernel.heap_3.condition_id">
+        <description>FreeRTOS heap 3</description>
+        <files>
+          <file category="sourceC" name="rtos/freertos/freertos-kernel/portable/MemMang/heap_3.c" projectpath="freertos/freertos-kernel/portable/MemMang"/>
+        </files>
+      </component>
+      <component Cgroup="Heap" Cvariant="Heap_4" Cversion="11.0.1" condition="middleware.freertos-kernel.heap_4.condition_id" isDefaultVariant="1">
+        <description>FreeRTOS heap 4</description>
+        <files>
+          <file category="sourceC" name="rtos/freertos/freertos-kernel/portable/MemMang/heap_4.c" projectpath="freertos/freertos-kernel/portable/MemMang"/>
+        </files>
+      </component>
+      <component Cgroup="Heap" Cvariant="Heap_5" Cversion="11.0.1" condition="middleware.freertos-kernel.heap_5.condition_id">
+        <description>FreeRTOS heap 5</description>
+        <files>
+          <file category="sourceC" name="rtos/freertos/freertos-kernel/portable/MemMang/heap_5.c" projectpath="freertos/freertos-kernel/portable/MemMang"/>
+        </files>
+      </component>
+      <component Cgroup="MPU wrappers" Cversion="11.0.1" condition="middleware.freertos-kernel.mpu_wrappers.condition_id">
+        <description>old FreeRTOS MPU wrappers used before V10.6.0</description>
+        <files>
+          <file category="sourceC" name="rtos/freertos/freertos-kernel/portable/Common/mpu_wrappers.c" projectpath="freertos/freertos-kernel/portable/Common"/>
+        </files>
+      </component>
+      <component Cgroup="MPU wrappers V2" Cversion="11.0.1" condition="middleware.freertos-kernel.mpu_wrappers_v2.condition_id">
+        <description>new V2 FreeRTOS MPU wrappers introduced in V10.6.0</description>
+        <files>
+          <file category="sourceC" name="rtos/freertos/freertos-kernel/portable/Common/mpu_wrappers_v2.c" projectpath="freertos/freertos-kernel/portable/Common"/>
+        </files>
+      </component>
+      <component Cgroup="freertos template" Cversion="11.0.1">
+        <description>Template configuration file to be edited by user. Provides also memory allocator (heap_x), change variant if needed.</description>
+        <files>
+          <file condition="allOf.cores=cm0p.condition_id" category="header" attr="config" name="rtos/freertos/freertos-kernel/template/ARM_CM0/FreeRTOSConfig.h" version="11.0.1" projectpath="source"/>
+          <file condition="allOf.cores=cm33, fpu=NO_FPU, SP_FPU, device_ids=LPC5502, LPC5504, LPC5506, LPC5512, LPC5514, LPC5516, LPC5526, LPC5528, LPC5534, LPC5536, LPC55S04, LPC55S06, LPC55S14, LPC55S16, LPC55S26, LPC55S28, LPC55S36, LPC55S66, LPC55S69, MCXA142, MCXA143, MCXA144, MCXA145, MCXA146, MCXA152, MCXA153, MCXA154, MCXA155, MCXA156, MCXN235, MCXN236, MCXN546, MCXN547, MCXN946, MCXN947, MIMXRT1181xxxxx, MIMXRT1182xxxxx, MIMXRT1187xxxxx, MIMXRT1189xxxxx, MIMXRT533S, MIMXRT555S, MIMXRT595S, MIMXRT633S, MIMXRT685S, RW610, RW612.condition_id" category="header" attr="config" name="rtos/freertos/freertos-kernel/template/ARM_CM33_3_priority_bits/FreeRTOSConfig.h" version="11.0.1" projectpath="source"/>
+          <file condition="allOf.cores=cm4f, device_ids=LPC54005, LPC54016, LPC54018, LPC54018J2M, LPC54018J4M, LPC54605J256, LPC54605J512, LPC54606J256, LPC54606J512, LPC54607J256, LPC54607J512, LPC54608J512, LPC54616J256, LPC54616J512, LPC54618J512, LPC54628J512, LPC54S005, LPC54S016, LPC54S018, LPC54S018J2M, LPC54S018J4M.condition_id" category="header" attr="config" name="rtos/freertos/freertos-kernel/template/ARM_CM4F_3_priority_bits/FreeRTOSConfig.h" version="11.0.1" projectpath="source"/>
+          <file condition="allOf.cores=cm4f, cm7f, device_ids=K32L3A60xxx, MIMXRT1011xxxxx, MIMXRT1015xxxxx, MIMXRT1021xxxxx, MIMXRT1024xxxxx, MIMXRT1041xxxxB, MIMXRT1042xxxxB, MIMXRT1051xxxxB, MIMXRT1052xxxxB, MIMXRT1061xxxxA, MIMXRT1061xxxxB, MIMXRT1062xxxxA, MIMXRT1062xxxxB, MIMXRT1064xxxxA, MIMXRT1165xxxxx, MIMXRT1166xxxxx, MIMXRT1171xxxxx, MIMXRT1172xxxxx, MIMXRT1173xxxxx, MIMXRT1175xxxxx, MIMXRT1176xxxxx, MIMXRT1187xxxxx, MIMXRT1189xxxxx, MK02FN128xxx10, MK02FN64xxx10, MK22FN128xxx12, MK22FN256xxx12, MK22FN512xxx12.condition_id" category="header" attr="config" name="rtos/freertos/freertos-kernel/template/ARM_CM4F_4_priority_bits/FreeRTOSConfig.h" version="11.0.1" projectpath="source"/>
+        </files>
+      </component>
+    </bundle>
+  </components>
+</package>

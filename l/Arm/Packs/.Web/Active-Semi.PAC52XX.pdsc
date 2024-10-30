@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Active-Semi</vendor>
+  <name>PAC52XX</name>
+  <description>PAC52XX Family of Power Application Controllers</description>
+  <url>http://www.qorvo.com/extra/keil_pack/</url>
+  <supportContact>sales@active-semi.com</supportContact>
+  <releases>
+    <release version="2.1.0" date="2019-10-11">
+     v2.1.0 Release
+     - Added all production PAC52xx devices
+       o To use new devices with J-Link debugger, install latest PAC J-Link Support from link below
+          https://active-semi.com/products/intelligent-motor-control/pac5223#et_pb_tab_4
+       o If desired device is not in the list, use PAC52XX or PAC5223
+    </release>
+    <release version="2.0.0">
+      v2.0.0 Release
+      - Removed PAC52xx SDK, which should now be included manually
+    </release>
+  </releases>
+  <keywords>
+    <keyword>Active-Semi</keyword>
+    <keyword>PAC52XX</keyword>
+    <keyword>PAC5210</keyword>
+    <keyword>PAC5220</keyword>
+    <keyword>PAC5222</keyword>    
+    <keyword>PAC5223</keyword>
+    <keyword>PAC5225</keyword>    
+    <keyword>PAC5232</keyword>    
+    <keyword>PAC5250</keyword>
+    <keyword>PAC5253</keyword>
+    <keyword>PAC5255</keyword>    
+    <keyword>PAC5256</keyword>    
+  </keywords>
+  <devices>
+    <family Dfamily="PAC52XX Series" Dvendor="Active-Semi:140">
+      <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian" />
+      <compile header="Device/Include/PAC52XX_device.h" />
+      <debug svd="SVD/PAC52XX.svd" />
+      <description>
+			The PAC52XX device family contains an ARM Cortex-M0 processor, running up to 50MHz with a set of analog and digital peripherals for power and motor control applications.
+		</description>
+      <!-- ************************  Sub-family 'PAC52XX'  **************************** -->
+      <subFamily DsubFamily="PAC52XX">
+        <processor Dclock="50000000" />
+        <!-- *************************  Device 'PAC52XX'  ***************************** -->
+        <device Dname="PAC52XX">
+          <memory id="IROM1" start="0x00000000" size="0x8000" startup="1" default="1" />
+          <memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1" />
+          <algorithm name="Flash/PAC52XX.FLM" start="0x00000000" size="0x8000" default="1" />
+        </device>
+        <!-- *************************  Device 'PAC5210'  ***************************** -->
+        <device Dname="PAC5210">
+          <memory id="IROM1" start="0x00000000" size="0x8000" startup="1" default="1" />
+          <memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1" />
+          <algorithm name="Flash/PAC52XX.FLM" start="0x00000000" size="0x8000" default="1" />
+        </device>
+        <!-- *************************  Device 'PAC5220'  ***************************** -->
+        <device Dname="PAC5220">
+          <memory id="IROM1" start="0x00000000" size="0x8000" startup="1" default="1" />
+          <memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1" />
+          <algorithm name="Flash/PAC52XX.FLM" start="0x00000000" size="0x8000" default="1" />
+        </device>
+        <!-- *************************  Device 'PAC5222'  ***************************** -->
+        <device Dname="PAC5222">
+          <memory id="IROM1" start="0x00000000" size="0x8000" startup="1" default="1" />
+          <memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1" />
+          <algorithm name="Flash/PAC52XX.FLM" start="0x00000000" size="0x8000" default="1" />
+        </device>
+        <!-- *************************  Device 'PAC5223'  ***************************** -->
+        <device Dname="PAC5223">
+          <memory id="IROM1" start="0x00000000" size="0x8000" startup="1" default="1" />
+          <memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1" />
+          <algorithm name="Flash/PAC52XX.FLM" start="0x00000000" size="0x8000" default="1" />
+        </device>
+        <!-- *************************  Device 'PAC5225'  ***************************** -->
+        <device Dname="PAC5225">
+          <memory id="IROM1" start="0x00000000" size="0x8000" startup="1" default="1" />
+          <memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1" />
+          <algorithm name="Flash/PAC52XX.FLM" start="0x00000000" size="0x8000" default="1" />
+        </device>
+        <!-- *************************  Device 'PAC5232'  ***************************** -->
+        <device Dname="PAC5232">
+          <memory id="IROM1" start="0x00000000" size="0x8000" startup="1" default="1" />
+          <memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1" />
+          <algorithm name="Flash/PAC52XX.FLM" start="0x00000000" size="0x8000" default="1" />
+        </device>
+        <!-- *************************  Device 'PAC5250'  ***************************** -->
+        <device Dname="PAC5250">
+          <memory id="IROM1" start="0x00000000" size="0x8000" startup="1" default="1" />
+          <memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1" />
+          <algorithm name="Flash/PAC52XX.FLM" start="0x00000000" size="0x8000" default="1" />
+        </device>
+        <!-- *************************  Device 'PAC5253'  ***************************** -->
+        <device Dname="PAC5253">
+          <memory id="IROM1" start="0x00000000" size="0x8000" startup="1" default="1" />
+          <memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1" />
+          <algorithm name="Flash/PAC52XX.FLM" start="0x00000000" size="0x8000" default="1" />
+        </device>
+        <!-- *************************  Device 'PAC5255'  ***************************** -->
+        <device Dname="PAC5255">
+          <memory id="IROM1" start="0x00000000" size="0x8000" startup="1" default="1" />
+          <memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1" />
+          <algorithm name="Flash/PAC52XX.FLM" start="0x00000000" size="0x8000" default="1" />
+        </device>
+        <!-- *************************  Device 'PAC5256'  ***************************** -->
+        <device Dname="PAC5256">
+          <memory id="IROM1" start="0x00000000" size="0x8000" startup="1" default="1" />
+          <memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1" />
+          <algorithm name="Flash/PAC52XX.FLM" start="0x00000000" size="0x8000" default="1" />
+        </device>
+      </subFamily>
+    </family>
+  </devices>
+  <conditions>
+    <condition id="PAC52XX CMSIS-CORE">
+      <description>Active-Semi PAC52XX Series devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE" />
+      <require Dvendor="Active-Semi:140" Dname="PAC52*" />
+    </condition>
+    <condition id="Startup ARM">
+      <description>Startup assembler file for ARMCC</description>
+      <require Tcompiler="ARMCC" />
+    </condition>
+  </conditions>
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="2.0.0" condition="PAC52XX CMSIS-CORE">
+      <description>System Startup for Active-Semi PAC52XX Series</description>
+      <files>
+        <file category="include" name="Device/Include/" />
+        <file category="source" name="Device/Source/startup_pac52XX_keil.s" attr="config" condition="Startup ARM" version="2.0.0" />
+        <file category="source" name="Device/Source/system_pac52XX.c" attr="config" version="2.0.0" />
+      </files>
+    </component>
+  </components>
+  <boards>
+    <board vendor="Active-Semi" name="PAC52XX EVK" revision="1" salesContact="sales@active-semi.com" orderForm="http://www.active-semi.com">
+      <description>Active-Semi EVK</description>
+      <mountedDevice deviceIndex="0" Dvendor="Active-Semi:140" Dname="PAC52XX" />
+      <compatibleDevice deviceIndex="0" Dvendor="Active-Semi:140" Dfamily="PAC52XX" />
+    </board>
+  </boards>
+  <examples>
+    <example name="gpio_toggle" folder="Examples/gpio_toggle" doc="abstract.txt">
+      <description>GPIO Toggle Example Project</description>
+      <board vendor="Active-Semi" name="PAC52XX EVK" />
+      <project>
+        <environment name="uv" load="keil_proj/gpio_toggle.uvprojx" />
+      </project>
+      <attributes>
+        <keyword>Getting Started</keyword>
+      </attributes>
+    </example>
+  </examples>
+</package>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <name>MM32F003_DFP</name>
+  <description>MindMotion MM32F003 Series Device Support, Drivers and Examples</description>
+  <vendor>MindMotion</vendor>
+  <url>http://www.mindmotion.com.cn/Download/MDK_KEIL/</url>  
+
+  <releases>
+
+    <release version="1.0.5"  date="2021-04-18">
+      Release version of MM32F003 Device Family Pack.
+    </release>
+  </releases>
+
+  <devices>
+
+    <!-- generated, do not modify this section! -->
+
+    <family Dfamily="MM32F003 Series" Dvendor="MindMotion:132">
+    <processor Dcore="Cortex-M0"  DcoreVersion="r1p0" Dfpu="0" Dmpu = "0" Dendian="Little-endian" Dclock="48000000"/>
+ 
+    <description>
+MM32F003 Series
+    </description>
+
+
+      <!-- ************************  Subfamily 'MM32F003'  **************************** -->
+      <subFamily DsubFamily="MM32F003">
+      <description>
+Subfamily: MM32F003
+
+Frequency: 48MHz 
+Memory: 16 kB Flash, 2 kB RAM
+Communication: 1 x UART, 1 x SPI, 1 x I2C
+Analog : ADC
+power saving mode:stop, sleep, and standby mode
+
+  </description>
+        <device Dname="MM32F003TW">
+
+        <compile header="Device/MM32F003/Include/HAL_device.h"  define="MM32F003TW"/>
+        <debug      svd="SVD/MM32F003.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x00004000" startup="1" default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x00000800" init   ="0" default="1"/>
+        <algorithm  name="Flash/MM32F003_16.FLM"   start="0x08000000"  size="0x00004000"              default="1"/>
+        </device>
+        <device Dname="MM32F003NW">
+
+        <compile header="Device/MM32F003/Include/HAL_device.h"  define="MM32F003NW"/>
+        <debug      svd="SVD/MM32F003.svd"/>
+        <memory     id="IROM1"                      start="0x08000000"  size="0x4000"    startup="1"   default="1"/>
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x800"     init   ="0"   default="1"/>
+        <algorithm  name="Flash/MM32F003_16.FLM"    start="0x08000000"  size="0x4000"                  default="1"/>
+        
+        </device>
+      </subFamily>
+    </family>
+  </devices>
+
+
+
+  
+  
+  
+  <conditions>   
+    <!-- compiler -->
+
+    <condition id="ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- conditions selecting single devices and CMSIS Core -->
+    <condition id="ARMCM0 CMSIS">
+      <description>Generic Arm Cortex-M0 device startup and depends on CMSIS Core</description>
+        <require Dvendor="MindMotion:132"  Dname="MM32F003*"/> 
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+  </conditions>
+  
+<components>
+
+                 <!-- Cortex-M Device Startup -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.4" condition="ARMCM0 CMSIS"> 
+      <description>System Startup for MindMotion MM32F003 Series devices</description>
+      <files>
+        <file category="header"  name="Device/MM32F003/Include/HAL_device.h"/>
+<!--         <file category="header"  name="Device/MM32F003/Source/system_MM32F003.h"/> -->
+        <file category="sourceC" name="Device/MM32F003/Source/system_MM32F003.c" attr="config"  version="1.0.4"/>    
+        <file category="sourceAsm" name="Device/MM32F003/Source/KEIL_StartAsm/startup_MM32F003.s" attr="config" version="1.0.4"  condition="ARMCC"/> 
+      </files>
+    </component> 
+
+    <component Cclass="Board" Cgroup="Samples" Csub="LED" Cversion="1.0.4" condition="ARMCM0 CMSIS"> 
+      <description>Toggle for MindMotion MM32F003 board</description>
+      <files>
+        <file category="header"  name="Boards/MBF003_Boardreg/RegSample/GPIO_LED/HARDWARE/LED/led.h"/>
+        <file category="sourceC"  name="Boards/MBF003_Boardreg/RegSample/GPIO_LED/HARDWARE/LED/led.c" attr="config"  version="1.0.4"/>
+        <file category="sourceC" name="Boards/MBF003_Boardreg/RegSample/GPIO_LED/USER/test.c" attr="config"  version="1.0.4"/>    
+      </files>
+    </component> 
+
+</components>
+ 
+   <examples>
+    <example name="MM32_MBF003xx_Board GPIO LED blinky" doc="README.TXT" folder="Boards/MBF003_Boardreg/RegSample/GPIO_LED">
+        <description>MM32_MBF003xx_Board Blinky example</description>           
+        <board name="MM32_MBF003xx_Board" vendor="MindMotion"/>
+        <project>   
+            <environment name="uv" load="KEILPRJ/BLINK.uvprojx"/>
+        </project>                      
+        <attributes>
+            <component Cclass="CMSIS"     Cgroup="CORE"/>
+            <component Cclass="Device"    Cgroup="Startup"/>
+            <category>Getting Started</category>
+        </attributes>
+    </example>
+  </examples>  
+  
+ <boards>
+    <board vendor="MindMotion" name="MM32_MBF003xx_Board" revision="Ver 1.0" >
+      <description>MindMotion MM32_MBF003xx_Board Development Board</description>
+      <image small="Images/MiniBoard_small.jpg" large="Images/MiniBoard_big.jpg"/>
+            <book category="manual" name="Documents/boards/Reference.pdf" title="MM32_MBF003  Manual"/>
+      <mountedDevice    deviceIndex="0" Dvendor="MindMotion:132" Dname="MM32F003TW"/>
+      <compatibleDevice deviceIndex="0" Dvendor="MindMotion:132" DsubFamily="MM32F003"/>      
+
+              
+      <feature type="XTAL"      n="8000000"/>
+      <feature type="PWR"       n="5"              name="USB Powered"/>
+      <feature type="PWR"       n="3"  m="5"       name="External Supply"/>
+      <feature type="Button"    n="1"              name="Push-buttons: Reset"/>
+      <feature type="LED"       n="2"              name="LEDs: Power, One user"/>
+      <debugInterface adapter="JTAG/SW" connector="20 pin JTAG (0.1 inch connector)"/>
+    </board>
+  </boards>
+  
+  
+ 
+</package>

@@ -1,0 +1,1538 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>ABOV</vendor>
+  <name>A31G22x_Series</name>
+  <description>ABOV Semiconductor A31G22x Device Support, Drivers and Examples</description>
+  <url>https://www.abov.co.kr/data/mds/PACK/</url>
+  <supportContact>abov_fae@abov.co.kr</supportContact>
+  <releases>
+    <release version="1.0.0" date="2021-05-13">
+            - First Release for A31G226, A31G224
+    </release>
+  </releases>
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>ABOV</keyword>
+    <keyword>A31G22x</keyword>
+    <keyword>A31G226</keyword>
+    <keyword>A31G224</keyword>
+    <keyword>General Purpose</keyword>
+    <keyword>32bit</keyword>
+    <keyword>Memory Swap</keyword>
+  </keywords>
+  <devices>
+    <family Dfamily="A31G22x Series" Dvendor="ABOV Semiconductor:126">
+      <processor Dcore="Cortex-M0+" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian" />
+      <description>The ABOV A31G22x Series device family contains an ARM Cortex-M0+ processor with a versatile set of on-chip peripherals</description>
+      <!-- Subfamily : A31G22x *********************************************************-->
+      <subFamily DsubFamily="A31G22x">
+        <processor Dclock="48000000" />
+        <compile header="A31G22x/Core/Device/ABOV/A31G22x/Include/A31G22x.h" />
+        <debug svd="A31G22x/Svd/A31G22x.svd" />
+          <feature type="VCC" n="1.8" m="5.5" />
+	      <feature type="NVIC"            n="32"                    name="NVIC with 32 Interrupt Sources" />
+	      <feature type="DMA"             n="8"                     name="DMA" />
+	      <feature type="Memory"          n="256"                   name="Internal Code Flash Memory (CFMC)" />
+	      <feature type="Memory"          n="32"                    name="Internal Data Flash Memory (DFMC)" />
+	      <feature type="XTAL"            n="4000000" m="16000000"  name="External Crystal Oscillator (XTAL) "/>
+	      <feature type="IntRC"           n="32000000"              name="Internal RC Oscillator with +/- 1% accuracy"/>
+          <feature type="PLL"             n="1"                     name="Internal PLL up to 48MHz"/>
+          <feature type="PowerMode"       n="3"                     name="Run, Sleep (Idle), Deep-Sleep (Power-down)"/>
+          <feature type="PowerOther"      n="1"                     name="POR"/>
+          <feature type="IOs"             n="75"                    name="GPIOs of 80-LQFP Package"/>
+          <feature type="IOs"             n="75"                    name="GPIOs of 64-LQFP Package"/>
+          <feature type="IOs"             n="75"                    name="GPIOs of 48-LQFP Package"/>
+	      <feature type="UART"            n="2"                     name="UART Interface" />
+	      <feature type="USART"           n="4"       				name="USART Interface" />
+	      <feature type="SPI"             n="2"                     name="SPI Interface" />
+	      <feature type="I2C"             n="2"                     name="I2C Interface" />
+	      <feature type="ADC"             n="1"       m="12"        name="1 Msps High Performance 12-bit ADC" />
+	      <feature type="DAC"             n="1"       m="12"        name="12-bit DAC" />
+	      <feature type="TempSens"        n="1"                     name="Internal Temp Sensor" />
+	      <feature type="Timer"           n="7"       m="16"        name="16-bit TIMER (TIMER1n)" />
+	      <feature type="Timer"           n="2"       m="32"        name="32-bit TIMER (TIMER2n)" />
+	      <feature type="PWM"             n="1"       m="16"        name="3-phase complementary PWM (TIMER3n)" />
+	      <feature type="WDT"             n="1"                     name="Watch-dog Timer" />
+	      <feature type="LCD"             n="1"       m="8.44"      name="LCD Driver (8-COM x 44-SEG)" />
+		  <feature type="QFP"             n="80"                    name="80-LQFP Package (12x12, 14x14)"/>
+		  <feature type="QFP"             n="64"                    name="64-LQFP Package (12x12, 10x10)"/>
+		  <feature type="QFP"             n="47"                    name="48-LQFP Package (7x7)"/>
+
+        <memory id="IRAM1" start="0x20000000" size="0x5000" init="0" default="1" />
+        <!-- Device : A31G226-->
+        <device Dname="A31G226">
+          <description>256KB Flash Memory</description>
+          <algorithm name="A31G22x\Flashloader\Keil\A31G226.FLM" start="0x00000000" size="0x40000" default="1" />
+          <memory id="IROM1" start="0x00000000" size="0x40000" startup="1" default="1" />
+        </device>
+        <!-- Device : A31G224-->
+        <device Dname="A31G224">
+          <description>256KB Flash Memory</description>
+          <algorithm name="A31G22x\Flashloader\Keil\A31G224.FLM" start="0x00000000" size="0x20000" default="1" />
+          <memory id="IROM1" start="0x00000000" size="0x20000" startup="1" default="1" />
+        </device>
+      </subFamily>
+    </family>
+  </devices>
+  <conditions>
+
+
+    <!-- condition : A31G226/A31G224 ********************************************************-->
+    <condition id="A31G22x CMSIS">
+      <description>filter for A31G226/A31G224 device and athe ARM compiler</description>
+      <require Tcompiler="ARMCC" />
+      <require Cclass="CMSIS" Cgroup="CORE" />
+      <accept Dvendor="ABOV Semiconductor:126" Dname="A31G226" />
+      <accept Dvendor="ABOV Semiconductor:126" Dname="A31G224" />
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- component : A31G226/A31G224 ********************************************************-->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="A31G22x CMSIS">
+      <description>System Startup for ABOV A31G22x devices</description>
+      <files>
+        <file category="include" name="A31G22x/Core/Device/ABOV/A31G22x/Include/" />
+        <file category="header" version="1.0.0" name="A31G22x/Core/Device/ABOV/A31G22x/Include/A31G22x.h" attr="config" />
+        <file category="header" version="1.0.0" name="A31G22x/Core/Device/ABOV/A31G22x/Include/system_A31G22x.h" attr="config" />
+
+        <file category="include" name="A31G22x/Core/Device/ABOV/A31G22x/Source/" />
+        <file category="source" version="1.0.0" name="A31G22x/Core/Device/ABOV/A31G22x/Source/system_A31G22x.c" attr="config" />
+
+        <file category="include" name="A31G22x/Core/Device/ABOV/A31G22x/Source/ARM/" />
+        <file category="source" version="1.0.0" name="A31G22x/Core/Device/ABOV/A31G22x/Source/ARM/startup_A31G22x.s" attr="config" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="Common" Cversion="1.0.0" condition="A31G22x CMSIS">
+      <description>Common HAL Driver</description>
+      <files>
+        <file category="header" name="A31G22x/Drivers/Include/A31G22x_hal_aa_types.h" attr="config" version="1.0.0" />
+        <file category="header" name="A31G22x/Drivers/Include/A31G22x_hal_assert.h" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="Debug_frameWork" Cversion="1.0.0" condition="A31G22x CMSIS">
+      <description>Debug Framework</description>
+      <files>
+        <file category="header" name="A31G22x/Drivers/Include/debug.h" attr="config" version="1.0.0" />
+        <file category="header" name="A31G22x/Drivers/Include/debug_cmd.h" attr="config" version="1.0.0" />
+        <file category="header" name="A31G22x/Drivers/Include/debug_frmwrk.h" attr="config" version="1.0.0" />
+        <file category="source" name="A31G22x/Drivers/Source/debug.c" attr="config" version="1.0.0" />
+        <file category="source" name="A31G22x/Drivers/Source/debug_cmd.c" attr="config" version="1.0.0" />
+        <file category="source" name="A31G22x/Drivers/Source/debug_frmwrk.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="adc" Cversion="1.0.0" condition="A31G22x CMSIS">
+      <description>HAL driver for Analog to Digital Converter (ADC)</description>
+      <files>
+        <file category="header" name="A31G22x/Drivers/Include/A31G22x_hal_adc.h" />
+        <file category="source" name="A31G22x/Drivers/Source/A31G22x_hal_adc.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="cfmc" Cversion="1.0.0" condition="A31G22x CMSIS">
+      <description>HAL driver for Code Flash Memory (CFMC)</description>
+      <files>
+        <file category="header" name="A31G22x/Drivers/Include/A31G22x_hal_cfmc.h" />
+        <file category="source" name="A31G22x/Drivers/Source/A31G22x_hal_cfmc.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="cmp" Cversion="1.0.0" condition="A31G22x CMSIS">
+      <description>HAL driver for Comparator (CMP)</description>
+      <files>
+        <file category="header" name="A31G22x/Drivers/Include/A31G22x_hal_cmp.h" />
+        <file category="source" name="A31G22x/Drivers/Source/A31G22x_hal_cmp.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="crc" Cversion="1.0.0" condition="A31G22x CMSIS">
+      <description>HAL driver for CRC</description>
+      <files>
+        <file category="header" name="A31G22x/Drivers/Include/A31G22x_hal_crc.h" />
+        <file category="source" name="A31G22x/Drivers/Source/A31G22x_hal_crc.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="dac" Cversion="1.0.0" condition="A31G22x CMSIS">
+      <description>HAL driver for Digital to Analog Converter (DAC)</description>
+      <files>
+        <file category="header" name="A31G22x/Drivers/Include/A31G22x_hal_dac.h" />
+        <file category="source" name="A31G22x/Drivers/Source/A31G22x_hal_dac.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="dfmc" Cversion="1.0.0" condition="A31G22x CMSIS">
+      <description>HAL driver for Data Flash Memory Controller (DFMC)</description>
+      <files>
+        <file category="header" name="A31G22x/Drivers/Include/A31G22x_hal_dfmc.h" />
+        <file category="source" name="A31G22x/Drivers/Source/A31G22x_hal_dfmc.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="dmac" Cversion="1.0.0" condition="A31G22x CMSIS">
+      <description>HAL driver for Direct Memory Access Controller (DMAC) </description>
+      <files>
+        <file category="header" name="A31G22x/Drivers/Include/A31G22x_hal_dmac.h" />
+        <file category="source" name="A31G22x/Drivers/Source/A31G22x_hal_dmac.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="i2c" Cversion="1.0.0" condition="A31G22x CMSIS">
+      <description>HAL dirver for I2C interface</description>
+      <files>
+        <file category="header" name="A31G22x/Drivers/Include/A31G22x_hal_i2c.h" />
+        <file category="source" name="A31G22x/Drivers/Source/A31G22x_hal_i2c.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="lcd" Cversion="1.0.0" condition="A31G22x CMSIS">
+      <description>HAL dirver for LCD Driver</description>
+      <files>
+        <file category="header" name="A31G22x/Drivers/Include/A31G22x_hal_lcd.h" />
+        <file category="source" name="A31G22x/Drivers/Source/A31G22x_hal_lcd.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="spi" Cversion="1.0.0" condition="A31G22x CMSIS">
+      <description>HAL Driver for SPI interface</description>
+      <files>
+        <file category="header" name="A31G22x/Drivers/Include/A31G22x_hal_spi.h" />
+        <file category="source" name="A31G22x/Drivers/Source/A31G22x_hal_spi.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="pcu" Cversion="1.0.0" condition="A31G22x CMSIS">
+      <description>HAL Driver for GPIO and Port Control Unit (PCU) </description>
+      <files>
+        <file category="header" name="A31G22x/Drivers/Include/A31G22x_hal_pcu.h" />
+        <file category="source" name="A31G22x/Drivers/Source/A31G22x_hal_pcu.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="pwr" Cversion="1.0.0" condition="A31G22x CMSIS">
+      <description>HAL Driver for POWER Control (PWR)</description>
+      <files>
+        <file category="header" name="A31G22x/Drivers/Include/A31G22x_hal_pwr.h" />
+        <file category="source" name="A31G22x/Drivers/Source/A31G22x_hal_pwr.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="scu" Cversion="1.0.0" condition="A31G22x CMSIS">
+      <description>HAL Driver for System Control Unit (SCU)</description>
+      <files>
+        <file category="header" name="A31G22x/Drivers/Include/A31G22x_hal_scu.h" />
+        <file category="source" name="A31G22x/Drivers/Source/A31G22x_hal_scu.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="timer1n" Cversion="1.0.0" condition="A31G22x CMSIS">
+      <description>HAL Driver for 16-bit Timer (TIMER1n)</description>
+      <files>
+        <file category="header" name="A31G22x/Drivers/Include/A31G22x_hal_timer1n.h" />
+        <file category="source" name="A31G22x/Drivers/Source/A31G22x_hal_timer1n.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="timer2n" Cversion="1.0.0" condition="A31G22x CMSIS">
+      <description>HAL Driver for 32-bit Timer (TIMER2n)</description>
+      <files>
+        <file category="header" name="A31G22x/Drivers/Include/A31G22x_hal_timer2n.h" />
+        <file category="source" name="A31G22x/Drivers/Source/A31G22x_hal_timer2n.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="timer3n" Cversion="1.0.0" condition="A31G22x CMSIS">
+      <description>HAL Driver for 3-phase complementary PWM (TIMER3n)</description>
+      <files>
+        <file category="header" name="A31G22x/Drivers/Include/A31G22x_hal_timer3n.h" />
+        <file category="source" name="A31G22x/Drivers/Source/A31G22x_hal_timer3n.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="uart" Cversion="1.0.0" condition="A31G22x CMSIS">
+      <description>HAL Driver for A31G22x UART Interface</description>
+      <files>
+        <file category="header" name="A31G22x/Drivers/Include/A31G22x_hal_uartn.h" />
+        <file category="source" name="A31G22x/Drivers/Source/A31G22x_hal_uartn.c" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="Drivers" Csub="usart" Cversion="1.0.0" condition="A31G22x CMSIS">
+      <description>HAL Driver for A31G22x USART Interface</description>
+      <files>
+        <file category="header" name="A31G22x/Drivers/Include/A31G22x_hal_usart1n.h" />
+        <file category="source" name="A31G22x/Drivers/Source/A31G22x_hal_usart1n.c" />
+      </files>
+    </component>
+	<component Cclass="Device" Cgroup="Drivers" Csub="ts" Cversion="1.0.0" condition="A31G22x CMSIS">
+      <description>HAL Driver for Temp Sensor (TS)</description>
+      <files>
+        <file category="header" name="A31G22x/Drivers/Include/A31G22x_hal_ts.h" />
+        <file category="source" name="A31G22x/Drivers/Source/A31G22x_hal_ts.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="wdt" Cversion="1.0.0" condition="A31G22x CMSIS">
+      <description>HAL Driver for A31G22x Watch-dog Timer (WDT)</description>
+      <files>
+        <file category="header" name="A31G22x/Drivers/Include/A31G22x_hal_wdt.h" />
+        <file category="source" name="A31G22x/Drivers/Source/A31G22x_hal_wdt.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="wt" Cversion="1.0.0" condition="A31G22x CMSIS">
+      <description>HAL Driver for Watch Timer (WT)</description>
+      <files>
+        <file category="header" name="A31G22x/Drivers/Include/A31G22x_hal_wt.h" />
+        <file category="source" name="A31G22x/Drivers/Source/A31G22x_hal_wt.c" />
+      </files>
+    </component>
+  </components>
+
+  <boards>
+    <!-- board : STK-A31G326MLN-A v1.1 ************************************************************-->
+    <board vendor="ABOV" name="StarterKit-A31G226MLN-A" revision="V1.1">
+      <description>STK-A31G326MLN-A STARTER KIT v1.1</description>
+      <mountedDevice deviceIndex="0" Dvendor="ABOV Semiconductor:126" Dname="A31G226" />
+      <compatibleDevice deviceIndex="0" Dvendor="ABOV Semiconductor:126" Dname="A31G224" />
+      <feature type="ODbg"   n="1"              name="On-board Type A-Link Debugger"/>
+      <feature type="ROM"                       name="256KB Internal Code Flash Memory" />
+      <feature type="ROM"                       name="32KB Internal Data Flash Memory" />
+      <feature type="RAM"                       name="20KB SRAM" />
+      <feature type="XTAL"   n="8000000"        name="8MHz Crystal Oscillator" />
+      <feature type="Other"                     name="32.768kHz RTC Sub Crystal Oscillator" />
+      <feature type="PWR"    n="3.3"   m="5.0"  name="USB Powered" />
+      <feature type="PWR"    n="1.8"   m="5.0"  name="External Power Supply" />
+      <feature type="Button" n="2"              name="Tact-buttons : USER and nRESET" />
+      <feature type="LED"    n="6"              name="6 LEDs: D101~106" />
+	  <debugInterface adapter="CMSIS-DAP" connector="Mini-USB" />
+    </board>
+  </boards>
+
+
+  <!-- example : A31G226/A31G224 **********************************************************-->
+  <examples>
+
+    <!-- ADC examples *********************************************************************-->
+    <example name="ADC Buffer Example" doc="Abstract.txt" folder="A31G22x/Example/ADC/ADC_Buffer">
+      <description>ADC Buffer Function Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/ADC_Buffer.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ADC Burst Mode Example" doc="Abstract.txt" folder="A31G22x/Example/ADC/ADC_Burst">
+      <description>ADC Burst Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/ADC_Burst.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ADC Compare Function " doc="Abstract.txt" folder="A31G22x/Example/ADC/ADC_Compare">
+      <description>ADC Compare Function Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/ADC_Compare.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ADC Peri-to-Peri DMA Function Example" doc="Abstract.txt" folder="A31G22x/Example/ADC/ADC_dmac_p2p">
+      <description>ADC Peri-to-Peri DMA Function Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/ADC_dmac_p2p.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ADC Rx DMA Function Example" doc="Abstract.txt" folder="A31G22x/Example/ADC/ADC_dmac_rx">
+      <description>ADC Rx DMA Function Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/ADC_dmac_rx.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ADC Tx DMA Function Example" doc="Abstract.txt" folder="A31G22x/Example/ADC/ADC_dmac_tx">
+      <description>ADC Tx DMA Function Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/ADC_dmac_tx.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ADC Interrupt Mode Example" doc="Abstract.txt" folder="A31G22x/Example/ADC/ADC_Interrupt">
+      <description>ADC Interrupt Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/ADC_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ADC Multiple Mode Example" doc="Abstract.txt" folder="A31G22x/Example/ADC/ADC_Multiple">
+      <description>ADC Multiple Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/ADC_Multiple.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ADC Polling Mode Example" doc="Abstract.txt" folder="A31G22x/Example/ADC/ADC_Polling">
+      <description>ADC Polling Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/ADC_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ADC Sequence Mode Example" doc="Abstract.txt" folder="A31G22x/Example/ADC/ADC_Sequence">
+      <description>ADC Sequence Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/ADC_Sequence.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <!-- CFMC examples *********************************************************************-->
+    <example name="CFMC Test Example" doc="Abstract.txt" folder="A31G22x/Example/CFMC/CFMC_Test">
+      <description>CFMC Test Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/CFMC_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="CFMC Read Protection Example" doc="Abstract.txt" folder="A31G22x/Example/CFMC/CFMC_ReadProtection">
+      <description>CFMC Read Protection Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/CFMC_ReadProtection.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="CFMC Memory Swap Example" doc="Abstract.txt" folder="A31G22x/Example/CFMC/CFMC_MemorySwap">
+      <description>CFMC Memory Swap Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/CFMC_MemorySwap.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <!-- Clock Change examples *********************************************************************-->
+    <example name="HSE System Clock Change Example" doc="Abstract.txt" folder="A31G22x/Example/ClkChange/HSE_SystemClockChange">
+      <description>HSE System Clock Change Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/HSE_SystemClockChange.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="HSE PLL System Clock Change Example" doc="Abstract.txt" folder="A31G22x/Example/ClkChange/HSEPLL_SystemClockChange">
+      <description>HSE PLL System Clock Change Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/HSEPLL_SystemClockChange.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="HSI System Clock Change Example" doc="Abstract.txt" folder="A31G22x/Example/ClkChange/HSI_SystemClockChange">
+      <description>HSI System Clock Change Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/HSI_SystemClockChange.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="HSI PLL System Clock Change Example" doc="Abstract.txt" folder="A31G22x/Example/ClkChange/HSIPLL_SystemClockChange">
+      <description>HSI PLL System Clock Change Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/HSIPLL_SystemClockChange.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="LSE System Clock Change Example" doc="Abstract.txt" folder="A31G22x/Example/ClkChange/LSE_SystemClockChange">
+      <description>LSE System Clock Change Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/LSE_SystemClockChange.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="LSI System Clock Change Example" doc="Abstract.txt" folder="A31G22x/Example/ClkChange/LSI_SystemClockChange">
+      <description>LSI System Clock Change Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/LSI_SystemClockChange.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <!-- CMP examples *********************************************************************-->
+    <example name="Comparator Edge Polarity Monitoring Example" doc="Abstract.txt" folder="A31G22x/Example/CMP/CMP_EdgePoleMonitoring">
+      <description>Comparator Edge Polarity Monitoring Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/CMP_EdgePoleMonitoring.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="Comparator Interrupt Mode Example" doc="Abstract.txt" folder="A31G22x/Example/CMP/CMP_Interrupt">
+      <description>Comparator Interrupt Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/CMP_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="Comparator NMI Interrupt Function Example" doc="Abstract.txt" folder="A31G22x/Example/CMP/CMP_Nmi">
+      <description>Comparator NMI Interrupt Function Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/CMP_Nmi.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="Comparator Polling Mode Example" doc="Abstract.txt" folder="A31G22x/Example/CMP/CMP_Polling">
+      <description>Comparator Polling Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/CMP_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <!-- CORE examples *********************************************************************-->
+    <example name="Interrupt Priority Example" doc="Abstract.txt" folder="A31G22x/Example/CORE/Interrupt_Priority">
+      <description>Interrupt Priority Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Interrupt_Priority.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="Systick Interrupt Timer Example" doc="Abstract.txt" folder="A31G22x/Example/CORE/Systick_Test">
+      <description>Systick Interrupt Timer Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/Systick_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <!-- CRC examples *********************************************************************-->
+    <example name="CRC Example" doc="Abstract.txt" folder="A31G22x/Example/CRC/CRC_AutoTest">
+      <description>CRC Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/CRC_AutoTest.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="CRC with DMA Example" doc="Abstract.txt" folder="A31G22x/Example/CRC/CRC_AutoTestDma">
+      <description>CRC with DMA Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/CRC_AutoTestDma.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <!-- DAC examples *********************************************************************-->
+    <example name="DAC Buffer Auto Clear Function Example" doc="Abstract.txt" folder="A31G22x/Example/DAC/DAC_BufferClear">
+      <description>DAC Buffer Auto Clear Function Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/DAC_BufferClear.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="DAC Interrupt Mode Example 1" doc="Abstract.txt" folder="A31G22x/Example/DAC/DAC_Interrupt1">
+      <description>DAC Interrupt Mode Example 1</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/DAC_Interrupt1.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="DAC Interrupt Mode Example 2" doc="Abstract.txt" folder="A31G22x/Example/DAC/DAC_Interrupt2">
+      <description>DAC Interrupt Mode Example 2</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/DAC_Interrupt2.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="DAC Polling Mode Example" doc="Abstract.txt" folder="A31G22x/Example/DAC/DAC_Polling">
+      <description>DAC Polling Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/DAC_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="DAC Timer Trigger Example" doc="Abstract.txt" folder="A31G22x/Example/DAC/DAC_TimerTrigger">
+      <description>DAC Timer Trigger Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/DAC_TimerTrigger.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <!-- DFMC examples *********************************************************************-->
+    <example name="DFMC Test Example" doc="Abstract.txt" folder="A31G22x/Example/DFMC/DFMC_Test">
+      <description>DFMC Test Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/DFMC_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="DFMC Read Protection Example" doc="Abstract.txt" folder="A31G22x/Example/DFMC/DFMC_ReadProtection">
+      <description>DAC Read Protection Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/DFMC_ReadProtection.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <!-- GPIO examples *********************************************************************-->
+    <example name="GPIO Input Debounce Example" doc="Abstract.txt" folder="A31G22x/Example/GPIO/GPIO_InputDebounce">
+      <description>GPIO Input Debounce Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/GPIO_InputDebounce.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="GPIO Input Interrupt Mode Example" doc="Abstract.txt" folder="A31G22x/Example/GPIO/GPIO_InputInterrupt">
+      <description>GPIO Input Interrupt Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/GPIO_InputInterrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="GPIO Input Polling Mode Example" doc="Abstract.txt" folder="A31G22x/Example/GPIO/GPIO_InputPolling">
+      <description>GPIO Input Polling Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/GPIO_InputPolling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="GPIO High Current Output Port Example" doc="Abstract.txt" folder="A31G22x/Example/GPIO/GPIO_ISEG">
+      <description>GPIO High Current Output Port Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/GPIO_ISEG.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="GPIO Output Mode Example" doc="Abstract.txt" folder="A31G22x/Example/GPIO/GPIO_Output">
+      <description>GPIO Output Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/GPIO_Output.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="GPIO Strength Function Example" doc="Abstract.txt" folder="A31G22x/Example/GPIO/GPIO_Strength">
+      <description>GPIO Strength Function Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/GPIO_Strength.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <!-- I2C examples *********************************************************************-->
+    <example name="I2C Interrupt Mode EEPROM Example" doc="Abstract.txt" folder="A31G22x/Example/I2C/I2C_EEPROM_Interrupt">
+      <description>I2C Interrupt Mode EEPROM Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/I2C_EEPROMInterrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="I2C Polling Mode EEPROM Example" doc="Abstract.txt" folder="A31G22x/Example/I2C/I2C_EEPROM_Polling">
+      <description>I2C Polling Mode EEPROM Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/I2C_EEPROMPolling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="I2C Master Interrupt Mode Example" doc="Abstract.txt" folder="A31G22x/Example/I2C/I2C_Master_Interrupt">
+      <description>II2C Master Interrupt Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/I2C_Master_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <!-- LCD Driver examples *********************************************************************-->
+    <example name="LCD Driver Polling Example" doc="Abstract.txt" folder="A31G22x/Example/LCD/LCD_Polling">
+      <description>LCD Driver Polling Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/LCD_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <!-- PWR examples *********************************************************************-->
+    <example name="Deep-sleep and GPIO wake-up Example" doc="Abstract.txt" folder="A31G22x/Example/PWR/PWR_GpioDeepSleep">
+      <description>Deep-sleep (Power-down) and GPIO wake-up Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/PWR_GpioDeepSleep.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="Sleep and GPIO wake-up Example" doc="Abstract.txt" folder="A31G22x/Example/PWR/PWR_GpioSleep">
+      <description>Sleep (Idle) and GPIO wake-up Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/PWR_GpioSleep.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <!-- SCU examples *********************************************************************-->
+    <example name="SCU Clock Monitoring Example" doc="Abstract.txt" folder="A31G22x/Example/SCU/SCU_ClkMonitor">
+      <description>SCU Clock Monitoring Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/SCU_ClkMonitor.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="LVD Reset (LVR) Example" doc="Abstract.txt" folder="A31G22x/Example/SCU/SCU_LvdTest">
+      <description>LVD Reset (LVR) Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/SCU_LvdTest.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="LVD Interrupt (LVI) Example" doc="Abstract.txt" folder="A31G22x/Example/SCU/SCU_LviTest">
+      <description>LVD Interrupt (LVI) Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/SCU_LviTest.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="PLL Clock Timer Example" doc="Abstract.txt" folder="A31G22x/Example/SCU/SCU_PllTimerClk">
+      <description>PLL Clock Timer Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/SCU_PllTimerClk.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="SCU System Clock Setting Example" doc="Abstract.txt" folder="A31G22x/Example/SCU/SCU_SystemClk">
+      <description>SCU System Clock Setting Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/SCU_SystemClk.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <!-- SPI examples *********************************************************************-->
+    <example name="SPI DMA Example" doc="Abstract.txt" folder="A31G22x/Example/SPI/SPI_Dma">
+      <description>SPI DMA Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/SPI_Dma.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="SPI EEPROM Example" doc="Abstract.txt" folder="A31G22x/Example/SPI/SPI_EEPROM">
+      <description>SPI EEPROM Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/SPI_EEPROM.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="SPI Interrupt Mode Example" doc="Abstract.txt" folder="A31G22x/Example/SPI/SPI_Interrupt">
+      <description>SPI Interrupt Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/SPI_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="SPI Strength Function Example" doc="Abstract.txt" folder="A31G22x/Example/SPI/SPI_InterruptwithStrength">
+      <description>SPI Interrupt Mode with Strength Function for High Speed</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/SPI_InterruptwithStrength.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="SPI SPI_Polling Mode Example" doc="Abstract.txt" folder="A31G22x/Example/SPI/SPI_Polling">
+      <description>SPI Polling Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/SPI_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <!-- SRAM examples *********************************************************************-->
+    <example name="SRAM Example" doc="Abstract.txt" folder="A31G22x/Example/SRAM/SRAM_Test">
+      <description>SRAM Test Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/SRAM_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <!-- StarterKit examples *********************************************************************-->
+    <example name="StarterKit GPIO Blinky" doc="Abstract.txt" folder="A31G22x/Example/StarterKit/debug_cprintf">
+      <description>StarterKit GPIO Blinky example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/debug_cprintf.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="StarterKit Debug framework Example" doc="Abstract.txt" folder="A31G22x/Example/StarterKit/GPIO_LedBlinky">
+      <description>StarterKit Debug Framework example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/GPIO_LedBlinky.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <!-- Timer1n examples *********************************************************************-->
+    <example name="TIMER1n Capture Mode Example" doc="Abstract.txt" folder="A31G22x/Example/TIMER1n/TIMER1n_Capture">
+      <description>TIMER1n Capture Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER1n_Capture.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="TIMER1n Interrupt Mode Example" doc="Abstract.txt" folder="A31G22x/Example/TIMER1n/TIMER1n_Interrupt">
+      <description>TIMER1n Interrupt Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER1n_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="TIMER1n Oneshot Mode Example" doc="Abstract.txt" folder="A31G22x/Example/TIMER1n/TIMER1n_Oneshot">
+      <description>TIMER1n Oneshot Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER1n_Oneshot.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="TIMER1n Polling Mode Example" doc="Abstract.txt" folder="A31G22x/Example/TIMER1n/TIMER1n_Polling">
+      <description>TIMER1n Polling Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER1n_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="TIMER1n PWM Mode Example" doc="Abstract.txt" folder="A31G22x/Example/TIMER1n/TIMER1n_Pwm">
+      <description>TIMER1n PWM Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER1n_Pwm.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <!-- Timer2n examples *********************************************************************-->
+    <example name="TIMER2n Capture Mode Example" doc="Abstract.txt" folder="A31G22x/Example/TIMER2n/TIMER2n_Capture">
+      <description>TIMER2n Capture Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER2n_Capture.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="TIMER2n Capture Mode with WDT Example" doc="Abstract.txt" folder="A31G22x/Example/TIMER2n/TIMER2n_CaptureWdt">
+      <description>TIMER2n Capture Mode with WDT Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER2n_CaptureWdt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="TIMER2n Interrupt Mode Example" doc="Abstract.txt" folder="A31G22x/Example/TIMER2n/TIMER2n_Interrupt">
+      <description>TIMER2n Interrupt Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER2n_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="TIMER2n Oneshot Mode Example" doc="Abstract.txt" folder="A31G22x/Example/TIMER2n/TIMER2n_Oneshot">
+      <description>TIMER2n Oneshot Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER2n_Oneshot.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="TIMER2n PWM Mode Example" doc="Abstract.txt" folder="A31G22x/Example/TIMER2n/TIMER2n_Pwm">
+      <description>TIMER2n PWM Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER2n_Pwm.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <!-- TIMER3n examples *********************************************************************-->
+    <example name="TIMER3n ADC Trigger Mode Example" doc="Abstract.txt" folder="A31G22x/Example/TIMER3n/TIMER3n_AdcTrigger">
+      <description>TIMER3n ADC Trigger Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER3n_AdcTrigger.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="TIMER3n Capture  Mode Example" doc="Abstract.txt" folder="A31G22x/Example/TIMER3n/TIMER3n_Capture">
+      <description>TIMER3n Capture Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER3n_Capture.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="TIMER3n External Input Signal Example" doc="Abstract.txt" folder="A31G22x/Example/TIMER3n/TIMER3n_ExtInputSignal">
+      <description>TIMER3n External Input Signal Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER3n_ExtInputSignal.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="TIMER3n Interrupt Mode Example" doc="Abstract.txt" folder="A31G22x/Example/TIMER3n/TIMER3n_Interrupt">
+      <description>TIMER3n Interrupt Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER3n_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="TIMER3n NMI Function Example" doc="Abstract.txt" folder="A31G22x/Example/TIMER3n/TIMER3n_Nmi">
+      <description>TIMER3n NMI Function Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER3n_Nmi.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="TIMER3n Polling Mode Example" doc="Abstract.txt" folder="A31G22x/Example/TIMER3n/TIMER3n_Polling">
+      <description>TIMER3n Polling Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER3n_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="TIMER3n PWM Mode Example" doc="Abstract.txt" folder="A31G22x/Example/TIMER3n/TIMER3n_Pwm">
+      <description>TIMER3n PWM Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER3n_Pwm.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="TIMER3n Sync with TIMER1n Example" doc="Abstract.txt" folder="A31G22x/Example/TIMER3n/TIMER3n_Sync">
+      <description>TIMER3n Sync with TIMER1n Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER3n_Sync.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="TIMER3n Sync and Clear with TIMER1n Example" doc="Abstract.txt" folder="A31G22x/Example/TIMER3n/TIMER3n_SyncClear">
+      <description>TIMER3n Sync and Clear with TIMER1n Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TIMER3n_SyncClear.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <!-- Temp Sensor examples *********************************************************************-->
+    <example name="Temp Sensor Polling Example" doc="Abstract.txt" folder="A31G22x/Example/TS/TS_Polling">
+      <description>Temp Sensor Polling Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TS_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="Temp Sensor Interrupt Example" doc="Abstract.txt" folder="A31G22x/Example/TS/TS_Interrupt">
+      <description>Temp Sensor Interrupt Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/TS_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <!-- UART examples *********************************************************************-->
+    <example name="UART Interrupt Mode Example" doc="Abstract.txt" folder="A31G22x/Example/UART/UART_Interrupt">
+      <description>UART Interrupt Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/UART_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="UART Polling Mode Example" doc="Abstract.txt" folder="A31G22x/Example/UART/UART_Polling">
+      <description>UART Polling Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/UART_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="UART Polling Mode Example" doc="Abstract.txt" folder="A31G22x/Example/UART/UART_PollingDma">
+      <description>UART Polling Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/UART_PollingDma.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <!-- USART examples *********************************************************************-->
+    <example name="USART - UART Interrupt Mode Example" doc="Abstract.txt" folder="A31G22x/Example/USART/USART_UartInterrupt">
+      <description>USART - UART Interrupt Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/USART_UartInterrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="USART - UART Interrupt DMA Mode Example" doc="Abstract.txt" folder="A31G22x/Example/USART/USART_UartInterruptDma">
+      <description>USART - UART Interrupt DMA Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/USART_UartInterruptDma.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="USART - UART Polling Mode Example" doc="Abstract.txt" folder="A31G22x/Example/USART/USART_UartPolling">
+      <description>USART - UART Polling Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/USART_UartPolling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <!-- WDT examples *********************************************************************-->
+    <example name="WDT Clock Source Example" doc="Abstract.txt" folder="A31G22x/Example/WDT/WDT_ClkSrc">
+      <description>WDT Clock Source Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/WDT_ClkSrc.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="WDT Deep-sleep and Wakeup Example" doc="Abstract.txt" folder="A31G22x/Example/WDT/WDT_DeepSleepWakeup">
+      <description>WDT Deep-sleep and Wakeup Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/WDT_DeepSleepWakeup.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="WDT NMI Example" doc="Abstract.txt" folder="A31G22x/Example/WDT/WDT_Nmi">
+      <description>WDT NMI Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/WDT_Nmi.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="WDT Reset Function Example 1" doc="Abstract.txt" folder="A31G22x/Example/WDT/WDT_Reset1">
+      <description>WDT Reset Function Example 1</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/WDT_Reset1.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="WDT Reset Function Example 2" doc="Abstract.txt" folder="A31G22x/Example/WDT/WDT_Reset2">
+      <description>WDT Reset Function Example 2</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/WDT_Reset2.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="WDT Sleep and Wake-up Example" doc="Abstract.txt" folder="A31G22x/Example/WDT/WDT_SleepWakeup">
+      <description>WDT Sleep and Wake-up Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/WDT_SleepWakeup.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="WDT Underflow and Window Match Interrupt Example" doc="Abstract.txt" folder="A31G22x/Example/WDT/WDT_UnderFlowAndWinMatch">
+      <description>WDT Underflow and Window Match Interrupt Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/WDT_UnderFlowAndWinMatch.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="WDT Underflow Interrupt Example" doc="Abstract.txt" folder="A31G22x/Example/WDT/WDT_UnderFlowInterrupt">
+      <description>WDT Underflow Interrupt Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/WDT_UnderFlowInterrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="WDT Window Match Interrupt" doc="Abstract.txt" folder="A31G22x/Example/WDT/WDT_WindowMatchInterrupt">
+      <description>WDT Window Match Interrupt Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/WDT_WindowMatchInterrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <!-- WT examples *********************************************************************-->
+    <example name="WT Clock Source Example" doc="Abstract.txt" folder="A31G22x/Example/WT/WT_ClkSrc">
+      <description>WT Clock Source Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/WT_ClkSrc.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="WT Deep-sleep and Wake-up Example" doc="Abstract.txt" folder="A31G22x/Example/WT/WT_DeepSleepWakeup">
+      <description>WT Deep-sleep and Wake-up Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/WT_DeepSleepWakeup.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="WT Interrupt Mode Example" doc="Abstract.txt" folder="A31G22x/Example/WT/WT_Interrupt">
+      <description>WT Interrupt Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/WT_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="WT Polling Mode Example" doc="Abstract.txt" folder="A31G22x/Example/WT/WT_Polling">
+      <description>WT Polling Mode Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/WT_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="WT Reset Mask Function Example" doc="Abstract.txt" folder="A31G22x/Example/WT/WT_ResetMask">
+      <description>WT Reset Mask Function Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/WT_ResetMask.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="WT Sleep and Wake-up Example" doc="Abstract.txt" folder="A31G22x/Example/WT/WT_SleepWakeup">
+      <description>WT Sleep and Wake-up Example</description>
+      <board name="StarterKit-A31G226MLN-A" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil/WT_SleepWakeup.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+  </examples>
+</package>

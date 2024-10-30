@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="1.7.27" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.28/schema/PACK.xsd">
+    <vendor>Memfault</vendor>
+    <name>FirmwareSDK</name>
+    <description>Memfault SDK</description>
+    <url>https://github.com/memfault/memfault-firmware-sdk/releases/download/1.16.0/</url>
+    <supportContact>hello@memfault.com</supportContact>
+    <repository type="git">https://github.com/memfault/memfault-firmware-sdk.git</repository>
+    <changelogs>
+        <changelog id="all" default="true" name="CHANGELOG.md"/>
+    </changelogs>
+    <license>LICENSE</license>
+    <licenseSets>
+        <licenseSet id="all" default="true" gating="true">
+            <license name="LICENSE" title="Amended BSD-3 Clause License for the SDK files"/>
+            <license name="ports/templates/apache-2.0.txt" title="Apache 2.0 for template files" spdx="Apache-2.0"/>
+        </licenseSet>
+    </licenseSets>
+    <releases>
+        <release version="1.16.0" date="2024-10-24" url="https://github.com/memfault/memfault-firmware-sdk/releases/download/1.16.0/Memfault.FirmwareSDK.1.16.0.pack" tag="1.16.0">Memfault CMSIS Pack for Memfault Firmware SDK 1.16.0. See release notes at https://github.com/memfault/memfault-firmware-sdk/releases/tag/1.16.0</release>
+        <release version="1.15.0" date="2024-10-15" url="https://github.com/memfault/memfault-firmware-sdk/releases/download/1.15.0/Memfault.FirmwareSDK.1.15.0.pack" tag="1.15.0">Memfault CMSIS Pack for Memfault Firmware SDK 1.15.0. See release notes at https://github.com/memfault/memfault-firmware-sdk/releases/tag/1.15.0</release>
+        <release version="1.14.0" date="2024-10-09" url="https://github.com/memfault/memfault-firmware-sdk/releases/download/1.14.0/Memfault.FirmwareSDK.1.14.0.pack" tag="1.14.0">Memfault CMSIS Pack for Memfault Firmware SDK 1.14.0. See release notes at https://github.com/memfault/memfault-firmware-sdk/releases/tag/1.14.0</release>
+        <release version="1.13.0" date="2024-10-08" url="https://github.com/memfault/memfault-firmware-sdk/releases/download/1.13.0/Memfault.FirmwareSDK.1.13.0.pack" tag="1.13.0">Memfault CMSIS Pack for Memfault Firmware SDK 1.13.0. See release notes at https://github.com/memfault/memfault-firmware-sdk/releases/tag/1.13.0</release>
+        <release version="1.12.0" date="2024-09-25" url="https://github.com/memfault/memfault-firmware-sdk/releases/download/1.12.0/Memfault.FirmwareSDK.1.12.0.pack" tag="1.12.0">Memfault CMSIS Pack for Memfault Firmware SDK 1.12.0. See release notes at https://github.com/memfault/memfault-firmware-sdk/releases/tag/1.12.0</release>
+        <release version="1.11.5" date="2024-09-18" url="https://github.com/memfault/memfault-firmware-sdk/releases/download/1.11.5/Memfault.FirmwareSDK.1.11.5.pack" tag="1.11.5">Memfault CMSIS Pack for Memfault Firmware SDK 1.11.5. See release notes at https://github.com/memfault/memfault-firmware-sdk/releases/tag/1.11.5</release>
+        <release version="1.11.4" date="2024-09-10" url="https://github.com/memfault/memfault-firmware-sdk/releases/download/1.11.4/Memfault.FirmwareSDK.1.11.4.pack" tag="1.11.4">Memfault CMSIS Pack for Memfault Firmware SDK 1.11.4. See release notes at https://github.com/memfault/memfault-firmware-sdk/releases/tag/1.11.4</release>
+    </releases>
+    <keywords>
+        <keyword>Memfault</keyword>
+        <keyword>Memfault Firmware SDK</keyword>
+    </keywords>
+    <components>
+        <bundle Cbundle="Memfault" Cclass="Utility" Cversion="1.16.0">
+            <description>Memfault Firmware SDK</description>
+            <doc>https://docs.memfault.com/</doc>
+            <component Cgroup="Memfault Core">
+                <description>Memfault core components</description>
+                <files>
+                    <file category="include" name="components/include/"/>
+                    <file category="include" name="ports/include/"/>
+                    <file category="sourceC" name="components/core/src/memfault_self_test.c"/>
+                    <file category="sourceC" name="components/core/src/memfault_data_export.c"/>
+                    <file category="sourceC" name="components/core/src/memfault_log.c"/>
+                    <file category="sourceC" name="components/core/src/memfault_reboot_tracking_serializer.c"/>
+                    <file category="sourceC" name="components/core/src/arch_arm_cortex_m.c"/>
+                    <file category="sourceC" name="components/core/src/memfault_custom_data_recording.c"/>
+                    <file category="sourceC" name="components/core/src/memfault_trace_event.c"/>
+                    <file category="sourceC" name="components/core/src/memfault_log_data_source.c"/>
+                    <file category="sourceC" name="components/core/src/memfault_self_test_utils.c"/>
+                    <file category="sourceC" name="components/core/src/memfault_compact_log_serializer.c"/>
+                    <file category="sourceC" name="components/core/src/memfault_data_packetizer.c"/>
+                    <file category="sourceC" name="components/core/src/memfault_core_utils.c"/>
+                    <file category="sourceC" name="components/core/src/memfault_build_id.c"/>
+                    <file category="sourceC" name="components/core/src/memfault_sdk_assert.c"/>
+                    <file category="sourceC" name="components/core/src/memfault_ram_reboot_info_tracking.c"/>
+                    <file category="sourceC" name="components/core/src/memfault_data_source_rle.c"/>
+                    <file category="sourceC" name="components/core/src/memfault_event_storage.c"/>
+                    <file category="sourceC" name="components/core/src/memfault_serializer_helper.c"/>
+                    <file category="sourceC" name="components/core/src/memfault_batched_events.c"/>
+                    <file category="sourceC" name="components/core/src/memfault_task_watchdog.c"/>
+                    <file category="sourceC" name="components/core/src/memfault_heap_stats.c"/>
+                    <file category="sourceC" name="components/demo/src/memfault_demo_cli_trace_event.c"/>
+                    <file category="sourceC" name="components/demo/src/memfault_demo_core.c"/>
+                    <file category="sourceC" name="components/demo/src/memfault_demo_shell.c"/>
+                    <file category="sourceC" name="components/demo/src/memfault_demo_shell_commands.c"/>
+                    <file category="sourceC" name="components/demo/src/memfault_demo_cli_drain_chunks.c"/>
+                    <file category="sourceC" name="components/demo/src/memfault_demo_cli_log.c"/>
+                    <file category="sourceC" name="components/demo/src/panics/memfault_demo_panics.c"/>
+                    <file category="sourceC" name="components/demo/src/panics/memfault_demo_cli_aux.c"/>
+                    <file category="sourceC" name="components/demo/src/http/memfault_demo_http.c"/>
+                    <file category="sourceC" name="components/util/src/memfault_crc16_ccitt.c"/>
+                    <file category="sourceC" name="components/util/src/memfault_rle.c"/>
+                    <file category="sourceC" name="components/util/src/memfault_base64.c"/>
+                    <file category="sourceC" name="components/util/src/memfault_circular_buffer.c"/>
+                    <file category="sourceC" name="components/util/src/memfault_chunk_transport.c"/>
+                    <file category="sourceC" name="components/util/src/memfault_varint.c"/>
+                    <file category="sourceC" name="components/util/src/memfault_minimal_cbor.c"/>
+                    <file category="sourceC" name="components/metrics/src/memfault_metrics_reliability.c"/>
+                    <file category="sourceC" name="components/metrics/src/memfault_metrics.c"/>
+                    <file category="sourceC" name="components/metrics/src/memfault_metrics_battery.c"/>
+                    <file category="sourceC" name="components/metrics/src/memfault_metrics_serializer.c"/>
+                    <file category="sourceC" name="components/metrics/src/memfault_metrics_connectivity.c"/>
+                    <file category="sourceC" name="components/panics/src/memfault_fault_handling_armv7_a_r.c"/>
+                    <file category="sourceC" name="components/panics/src/memfault_fault_handling_arm.c"/>
+                    <file category="sourceC" name="components/panics/src/memfault_stdlib_assert.c"/>
+                    <file category="sourceC" name="components/panics/src/memfault_fault_handling_xtensa.c"/>
+                    <file category="sourceC" name="components/panics/src/memfault_coredump.c"/>
+                    <file category="sourceC" name="components/panics/src/memfault_fault_handling_aarch64.c"/>
+                    <file category="sourceC" name="components/panics/src/memfault_coredump_utils.c"/>
+                    <file category="sourceC" name="components/panics/src/memfault_coredump_regions_armv7.c"/>
+                    <file category="sourceC" name="components/panics/src/memfault_coredump_storage_debug.c"/>
+                    <file category="sourceC" name="components/panics/src/memfault_fault_handling_riscv.c"/>
+                    <file category="sourceC" name="components/panics/src/memfault_coredump_sdk_regions.c"/>
+                </files>
+            </component>
+            <component Cgroup="Memfault Coredump RAM Backend">
+                <description>RAM backed coredump implementation</description>
+                <files>
+                    <file category="sourceC" name="ports/panics/src/memfault_platform_ram_backed_coredump.c"/>
+                </files>
+            </component>
+            <component Cgroup="Memfault Platform Port">
+                <description>Template files for Memfault Platform implementation</description>
+                <files>
+                    <file attr="template" select="Platform Code" category="other" name="ports/templates/memfault_metrics_heartbeat_config.def"/>
+                    <file attr="template" select="Platform Code" category="header" name="ports/templates/memfault_platform_config.h"/>
+                    <file attr="template" select="Platform Code" category="header" name="ports/templates/memfault_platform_log_config.h"/>
+                    <file attr="template" select="Platform Code" category="sourceC" name="ports/templates/memfault_platform_port.c"/>
+                    <file attr="template" select="Platform Code" category="other" name="ports/templates/memfault_trace_reason_user_config.def"/>
+                </files>
+            </component>
+        </bundle>
+    </components>
+</package>

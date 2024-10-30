@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<package schemaVersion="1.7.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="PACK.xsd">
+  <name>corePKCS11</name>
+
+  <description>Software based implementation of the PKCS #11 interface (API) to enable rapid development and flexibility when developing applications that rely on cryptographic operations.</description>
+
+  <vendor>AWS</vendor>
+
+  <license>LICENSE</license>
+
+  <url>https://d1pm0k3vkcievw.cloudfront.net/</url>
+
+  <requirements>
+    <packages>
+      <package name="PKCS11" vendor="Arm-Packs" version="1.0.0"/>
+      <package name="mbedTLS" vendor="ARM" version="2.28.2"/>
+    </packages>
+  </requirements>
+
+  <releases>
+    <release date="2023-06-23" version="5.0.1">Re-release of the last version due to hosting changes. Based on the https://github.com/FreeRTOS/corePKCS11/tree/v3.5.0/ repository.</release>
+    <release date="2023-02-23" version="5.0.0">Based on the https://github.com/FreeRTOS/corePKCS11/tree/v3.5.0/ repository.</release>
+    <release date="2022-07-13" version="4.0.1">Fixes template files not being marked as template files. Based on the https://github.com/FreeRTOS/corePKCS11/tree/v3.0.1/ repository.</release>
+    <release date="2022-06-16" version="4.0.0">Based on the https://github.com/FreeRTOS/corePKCS11/tree/v3.0.1/ repository.</release>
+    <release date="2020-12-15" version="3.0.0-Beta">Based on the https://github.com/FreeRTOS/corePKCS11/tree/v3.0.0/ repository</release>
+  </releases>
+
+  <conditions>
+    <condition id="core_pkcs11_library Condition">
+      <require Cclass="Security" Cgroup="PKCS11"/>
+      <require Cclass="FreeRTOS" Cgroup="corePKCS11" Csub="Portable Abstraction Layer"/>
+    </condition>
+    <condition id="core_pkcs11_no_port Condition">
+      <require Cclass="FreeRTOS" Cgroup="corePKCS11" Csub="Core Library"/>
+    </condition>
+    <condition id="core_pkcs11_windows_port Condition">
+      <require Cclass="FreeRTOS" Cgroup="corePKCS11" Csub="Core Library"/>
+    </condition>
+    <condition id="core_pkcs11_posix_port Condition">
+      <require Cclass="FreeRTOS" Cgroup="corePKCS11" Csub="Core Library"/>
+    </condition>
+    <condition id="core_pkcs11_utilities Condition">
+      <require Cclass="FreeRTOS" Cgroup="corePKCS11" Csub="Core Library"/>
+    </condition>
+    <condition id="pkcs11_implementation Condition">
+      <require Cclass="FreeRTOS" Cgroup="corePKCS11" Csub="Utilities" Cversion="3.5.0"/>
+      <require Cclass="FreeRTOS" Cgroup="corePKCS11" Csub="Core Library"/>
+      <require Cclass="Security" Cgroup="mbed TLS" Cversion="2.28.2"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <component Cclass="FreeRTOS" Cgroup="corePKCS11" Csub="Core Library" Cversion="3.5.0" condition="core_pkcs11_library Condition">
+      <description>Software implementation of the PKCS #11 standard.</description>
+      <files>
+        <file category="source" name="corePKCS11/source/core_pkcs11.c"/>
+        <file category="header" name="corePKCS11/source/include/core_pkcs11.h"/>
+        <file category="header" name="corePKCS11/source/include/core_pkcs11_pal.h"/>
+        <file category="include" name="corePKCS11/source/include/"/>
+      </files>
+    </component>
+    <component Cclass="FreeRTOS" Cgroup="corePKCS11" Csub="Portable Abstraction Layer" Cvariant="Custom" Cversion="3.5.0" condition="core_pkcs11_no_port Condition">
+      <description>corePKCS11 PAL custom port. This option requires the user implement their own PAL by implementing functions found in the core_pkcs11_pal.c template file.</description>
+      <files>
+        <file attr="template" category="source" name="core_pkcs11_pal.c" select="Custom Portable Abstraction Layer Template"/>
+      </files>
+    </component>
+    <component Cclass="FreeRTOS" Cgroup="corePKCS11" Csub="Portable Abstraction Layer" Cvariant="Windows" Cversion="3.5.0" condition="core_pkcs11_windows_port Condition">
+      <description>corePKCS11 port for Windows.</description>
+      <files>
+        <file category="source" name="corePKCS11/source/portable/os/core_pkcs11_pal_utils.c"/>
+        <file category="header" name="corePKCS11/source/portable/os/core_pkcs11_pal_utils.h"/>
+        <file category="source" name="corePKCS11/source/portable/os/freertos_winsim/core_pkcs11_pal.c"/>
+      </files>
+    </component>
+    <component Cclass="FreeRTOS" Cgroup="corePKCS11" Csub="Portable Abstraction Layer" Cvariant="POSIX" Cversion="3.5.0" condition="core_pkcs11_posix_port Condition">
+      <description>corePKCS11 port for POSIX.</description>
+      <files>
+        <file category="source" name="corePKCS11/source/portable/os/core_pkcs11_pal_utils.c"/>
+        <file category="header" name="corePKCS11/source/portable/os/core_pkcs11_pal_utils.h"/>
+        <file category="source" name="corePKCS11/source/portable/os/posix/core_pkcs11_pal.c"/>
+      </files>
+    </component>
+    <component Cclass="FreeRTOS" Cgroup="corePKCS11" Csub="Utilities" Cversion="3.5.0" condition="core_pkcs11_utilities Condition">
+      <description>Optional helper functions for the corePKCS11 library.</description>
+      <files>
+        <file category="source" name="corePKCS11/source/core_pki_utils.c"/>
+        <file category="header" name="corePKCS11/source/include/core_pki_utils.h"/>
+        <file category="include" name="corePKCS11/source/include/"/>
+      </files>
+    </component>
+    <component Capiversion="2.4.0-errata1" Cclass="Security" Cgroup="PKCS11" Csub="corePKCS11" Cversion="3.5.0" condition="pkcs11_implementation Condition">
+      <description>PKCS11 implementation based on MbedTLS.</description>
+      <files>
+        <file category="source" name="corePKCS11/source/dependency/3rdparty/mbedtls_utils/mbedtls_utils.c"/>
+        <file category="header" name="corePKCS11/source/dependency/3rdparty/mbedtls_utils/mbedtls_utils.h"/>
+        <file category="source" name="corePKCS11/source/portable/mbedtls/core_pkcs11_mbedtls.c"/>
+        <file category="include" name="corePKCS11/source/dependency/3rdparty/mbedtls_utils/"/>
+      </files>
+    </component>
+  </components>
+</package>
+

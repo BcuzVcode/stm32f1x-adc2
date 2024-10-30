@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>TWR-KM34Z75M_FREERTOS-KERNEL_Examples</name>
+  <vendor>NXP</vendor>
+  <description>Middleware freertos-kernel Examples Pack for TWR-KM34Z75M</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="2.0.0" date="2024-07-17">NXP CMSIS SBSP Packs based on MCUXpresso SDK 2.16.0</release>
+    <release version="1.0.0" date="2024-01-14">NXP CMSIS SBSP Packs based on MCUXpresso SDK 2.15.0</release>
+  </releases>
+  <keywords>
+    <keyword>Middleware Board Support Pack</keyword>
+  </keywords>
+  <requirements>
+    <packages>
+      <package name="TWR-KM34Z75M_BSP" vendor="NXP" version="19.0.0"/>
+      <package name="FREERTOS-KERNEL" vendor="NXP" version="3.0.0"/>
+      <package name="MKM34Z7_DFP" vendor="NXP" version="19.0.0"/>
+      <package name="CMSIS" vendor="ARM" version="5.9.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <examples>
+    <example name="freertos_event" folder="boards/twrkm34z75m/freertos_examples/freertos_event" doc="readme.md">
+      <description>This document explains the freertos_event example. It shows how task waits for an event (defined setof bits in event group). This event can be set by any other process or interrupt in the system.The example...See more details in readme document.</description>
+      <board name="TWR-KM34Z75M" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/freertos_event.uvprojx"/>
+        <environment name="csolution" load="freertos_event.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="freertos_generic" folder="boards/twrkm34z75m/freertos_examples/freertos_generic" doc="readme.md">
+      <description>This document explains the freertos_generic example. It is based on code FreeRTOS documentation fromhttp://www.freertos.org/Hardware-independent-RTOS-example.html. It shows combination of severaltasks with queue,...See more details in readme document.</description>
+      <board name="TWR-KM34Z75M" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/freertos_generic.uvprojx"/>
+        <environment name="csolution" load="freertos_generic.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="freertos_hello" folder="boards/twrkm34z75m/freertos_examples/freertos_hello" doc="readme.md">
+      <description>The Hello World project is a simple demonstration program that uses the SDK UART driver in combination with FreeRTOS. The purpose of this demo is to show how to use the debug console and toprovide a simple project...See more details in readme document.</description>
+      <board name="TWR-KM34Z75M" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/freertos_hello.uvprojx"/>
+        <environment name="csolution" load="freertos_hello.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="freertos_mutex" folder="boards/twrkm34z75m/freertos_examples/freertos_mutex" doc="readme.md">
+      <description>This document explains the freertos_mutex example. It shows how mutex manage access to commonresource (terminal output).The example application creates two identical instances of write_task. Each task will lock the...See more details in readme document.</description>
+      <board name="TWR-KM34Z75M" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/freertos_mutex.uvprojx"/>
+        <environment name="csolution" load="freertos_mutex.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="freertos_queue" folder="boards/twrkm34z75m/freertos_examples/freertos_queue" doc="readme.md">
+      <description>This document explains the freertos_queue example. This example introduce simple logging mechanismbased on message passing.Example could be devided in two parts. First part is logger. It contain three...See more details in readme document.</description>
+      <board name="TWR-KM34Z75M" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/freertos_queue.uvprojx"/>
+        <environment name="csolution" load="freertos_queue.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="freertos_sem" folder="boards/twrkm34z75m/freertos_examples/freertos_sem" doc="readme.md">
+      <description>This document explains the freertos_sem example, what to expect when running it and a briefintroduction to the API. The freertos_sem example code shows how semaphores works. Two differenttasks are synchronized in...See more details in readme document.</description>
+      <board name="TWR-KM34Z75M" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/freertos_sem.uvprojx"/>
+        <environment name="csolution" load="freertos_sem.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="freertos_swtimer" folder="boards/twrkm34z75m/freertos_examples/freertos_swtimer" doc="readme.md">
+      <description>This document explains the freertos_swtimer example. It shows usage of software timer and itscallback.The example application creates one software timer SwTimer. The timer's callback SwTimerCallback isperiodically...See more details in readme document.</description>
+      <board name="TWR-KM34Z75M" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/freertos_swtimer.uvprojx"/>
+        <environment name="csolution" load="freertos_swtimer.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="freertos_tickless" folder="boards/twrkm34z75m/freertos_examples/freertos_tickless" doc="readme.md">
+      <description>This document explains the freertos_tickless example. It shows the CPU enter at sleep mode and then it is waked up by expired time delay that using timer module.</description>
+      <board name="TWR-KM34Z75M" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/freertos_tickless.uvprojx"/>
+        <environment name="csolution" load="freertos_tickless.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+  </examples>
+</package>

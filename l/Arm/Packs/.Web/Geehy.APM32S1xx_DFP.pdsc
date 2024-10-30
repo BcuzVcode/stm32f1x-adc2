@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>Geehy</vendor>
+    <name>APM32S1xx_DFP</name>
+    <description>Geehy Semiconductor APM32S1 Series Device Support, Drivers and Examples</description>
+    <url>https://www.geehy.com/uploads/tool/</url><supportContact>https://www.geehy.com/support/apm</supportContact>
+    <releases>
+        <release version="1.0.0" date="2022-06-07">
+      First Release version of APM32S10x SDK.
+        </release>
+        <release version="1.0.1" date="2022-12-31">
+      Update the Device to V1.0.1.
+        </release>
+    </releases>
+    <keywords>
+        <!-- keywords for indexing -->
+        <keyword>Geehy</keyword>
+        <keyword>Device Support</keyword>
+        <keyword>Device Family Package Geehy Semiconductor</keyword>
+        <keyword>APM32S1</keyword>
+        <keyword>APM32</keyword>
+    </keywords>
+    <devices>
+        <family Dfamily="APM32S1 Series" Dvendor="Geehy:163">
+            <processor Dcore="Cortex-M3" DcoreVersion="r1p1"/>
+            <book name="Documents/dui0552a_cortex_m3_dgug.pdf" title="Cortex-M3 Generic User Guide"/>
+            <description>
+Geehy Semiconductor' APM32S1 series of mainstream MCUs are 32-bit microprocessors based on Arm Cortex'-M3 core, with a maximum operating frequency of 96MHz. Built-in AHB high-performance bus, combined with high-speed memory and DMA, can achieve rapid data processing and storage. Built-in APB advanced peripheral bus extends the rich peripherals and enhanced I/O, guarantees the rapidity of connection and flexibility of control. The chip is equipped with powerful FPU floating-point processing unit, which supports single-precision data processing instructions and data types.
+            </description>
+
+            <sequences>
+
+        <!-- Override for Pre-Defined DebugCoreStart Sequence -->
+        <sequence name="DebugCoreStart">
+          <block>
+            // Replication of Standard Functionality
+            Write32(0xE000EDF0, 0xA05F0001);                                        // Enable Core Debug via DHCSR
+
+            // Device Specific Debug Setup
+            Write32(0xE0042004, DbgMCU_CFG);                                         // DBGMCU_CFG: Configure MCU Debug
+          </block>
+        </sequence>
+
+        <!-- Override for Pre-Defined TraceStart Sequence -->
+        <sequence name="TraceStart">
+          <block>
+            __var traceSWO    = (__traceout &amp; 0x1) != 0;                        // SWO Trace Selected?
+            __var traceTPIU   = (__traceout &amp; 0x2) != 0;                        // TPIU Trace Selected?
+          </block>
+
+          <control if="traceSWO">
+            <block>
+              Sequence("EnableTraceSWO");                                           // Call SWO Trace Setup
+            </block>
+          </control>
+
+          <control if="traceTPIU">
+            <block>
+              Sequence("EnableTraceTPIU");                                          // Call TPIU Trace Setup
+            </block>
+          </control>
+
+        </sequence>
+
+        <!-- User-Defined EnableTraceSWO Sequence -->
+        <sequence name="EnableTraceSWO">
+          <block>
+            __var dbgmcu_val    = 0;                                                // DBGMCU_CFG Value
+
+            dbgmcu_val  = Read32(0xE0042004) &amp; (~0xE0);                         // Read DBGMCU_CFG and clear trace setup
+            dbgmcu_val |= (1 &lt;&lt; 5);                                           // Trace I/O Enable + Trace Mode Asynchronous
+
+            Write32(0xE0042004, dbgmcu_val);                                        // Write DBGMCU_CFG: Trace Settings
+          </block>
+        </sequence>
+
+        <!-- User-Defined EnableTraceTPIU Sequence -->
+        <sequence name="EnableTraceTPIU">
+          <block>
+            __var width         = (__traceout &amp; 0x003F0000) &gt;&gt; 16;        // TPIU Port Width
+            __var dbgmcu_val    = 0;                                                // DBGMCU_CFG Value
+
+            dbgmcu_val  = Read32(0xE0042004) &amp; (~0xE0);                         // Read DBGMCU_CFG and clear trace setup
+            dbgmcu_val |= (1 &lt;&lt; 5);                                           // Trace I/O Enable
+
+          </block>
+
+          <control if="width == 1">
+            <block>
+              // 1-Bit TPIU Trace Setup
+              dbgmcu_val    |= (1 &lt;&lt; 6);                                      // Trace Mode (1-Bit)
+            </block>
+          </control>
+
+          <control if="width == 2">
+            <block>
+              // 2-Bit TPIU Trace Setup
+              dbgmcu_val    |= (2 &lt;&lt; 6);                                      // Trace Mode (2-Bit)
+            </block>
+          </control>
+
+          <control if="width == 4">
+            <block>
+              // 4-Bit TPIU Trace Setup
+              dbgmcu_val    |= (3 &lt;&lt; 6);                                      // Trace Mode (4-Bit)
+            </block>
+          </control>
+
+          <block>
+            // Write Trace Configuration to Target
+            Write32(0xE0042004, dbgmcu_val);                                        // Write DBGMCU_CFG: Trace Settings
+          </block>
+
+        </sequence>
+      </sequences><!-- ************************  Subfamily 'APM32S103'  **************************** -->
+            <subFamily DsubFamily="APM32S103">
+                <debugvars configfile="Debug/APM32S103.dbgconf" version="1.0.0">
+                    __var DbgMCU_CFG      = 0x00000007;   // DbgMCU_CFG:  DBG_SLEEP, DBG_STOP, DBG_STANDBY
+                </debugvars>
+
+                <feature type="WDT" n="2"/>
+                <feature type="RTC" n="32768"/>
+                <feature type="VCC" n="2.00" m="3.60"/>
+                <feature type="Temp" n="-40" m="85"/>
+                <feature type="Temp" n="-40" m="105"/>
+                <feature type="USBD" n="1"/>
+                <feature type="CAN" n="1"/>
+
+                <!-- *************************  Device 'APM32S103VB'  ***************************** -->
+                <device Dname="APM32S103VB">
+                    <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="96000000"/>
+                    <compile header="Device/Device/Geehy/APM32S10x/Include/apm32s10x.h" define="APM32S10X_MD"/>
+                    <debug svd="SVD/APM32S103xx.svd"/>
+                    <memory id="IROM1" start="0x08000000" size="0x20000" startup="1" default="1"/><memory id="IRAM1" start="0x20000000" size="0x9000" init="0" default="1"/>
+                    <algorithm name="Flash/APM32S10x_128.FLM" start="0x08000000" size="0x20000" default="1"/>
+                    <book name="Documents/DATASHEET.pdf" title="APM32S103 Data Sheet"/>
+                    <feature type="Timer" n="4" m="16"/>
+                    <feature type="ADC" n="16" m="12"/>
+                    <feature type="IOs" n="80"/>
+                    <feature type="SPI" n="2" m="18000000"/>
+                    <feature type="I2C" n="2"/>
+                    <feature type="USART" n="3" m="4500000"/>
+                    <feature type="QFP" n="100"/>
+                </device>
+                <!-- *************************  Device 'APM32S103RB'  ***************************** -->
+                <device Dname="APM32S103RB">
+                    <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="96000000"/>
+                    <compile header="Device/Device/Geehy/APM32S10x/Include/apm32s10x.h" define="APM32S10X_MD "/>
+                    <debug svd="SVD/APM32S103xx.svd"/>
+                    <memory id="IROM1" start="0x08000000" size="0x20000" startup="1" default="1"/><memory id="IRAM1" start="0x20000000" size="0x9000" init="0" default="1"/>
+                    <algorithm name="Flash/APM32S10x_128.FLM" start="0x08000000" size="0x20000" default="1"/>
+                    <book name="Documents/DATASHEET.pdf" title="APM32S103 Data Sheet"/>
+                    <feature type="Timer" n="4" m="16"/>
+                    <feature type="ADC" n="16" m="12"/>
+                    <feature type="IOs" n="51"/>
+                    <feature type="SPI" n="2" m="18000000"/>
+                    <feature type="I2C" n="2"/>
+                    <feature type="USART" n="3" m="4500000"/>
+                    <feature type="QFP" n="64"/>
+                </device>
+                <!-- *************************  Device 'APM32S103CB'  ***************************** -->
+                <device Dname="APM32S103CB">
+                    <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="96000000"/>
+                    <compile header="Device/Device/Geehy/APM32S10x/Include/apm32s10x.h" define="APM32S10X_MD"/>
+                    <debug svd="SVD/APM32S103xx.svd"/>
+                    <memory id="IROM1" start="0x08000000" size="0x20000" startup="1" default="1"/>
+                    <memory id="IRAM1" start="0x20000000" size="0x9000" init="0" default="1"/>
+                    <algorithm name="Flash/APM32S10x_128.FLM" start="0x08000000" size="0x20000" default="1"/>
+                    <book name="Documents/DATASHEET.pdf" title="APM32S103 Data Sheet"/>
+                    <feature type="Timer" n="4" m="16"/>
+                    <feature type="ADC" n="10" m="12"/>
+                    <feature type="IOs" n="37"/>
+                    <feature type="SPI" n="2" m="18000000"/>
+                    <feature type="I2C" n="2"/>
+                    <feature type="USART" n="3" m="4500000"/>
+                    <feature type="QFP" n="48"/>
+                </device>
+                <!-- *************************  Device 'APM32S103C8'  ***************************** -->
+                <device Dname="APM32S103C8">
+                    <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="96000000"/>
+                    <compile header="Device/Device/Geehy/APM32S10x/Include/apm32s10x.h" define="APM32S10X_MD"/>
+                    <debug svd="SVD/APM32S103xx.svd"/>
+                    <memory id="IROM1" start="0x08000000" size="0x10000" startup="1" default="1"/>
+                    <memory id="IRAM1" start="0x20000000" size="0x9000" init="0" default="1"/>
+                    <algorithm name="Flash/APM32S10x_64.FLM" start="0x08000000" size="0x10000" default="1"/>
+                    <book name="Documents/DATASHEET.pdf" title="APM32S103 Data Sheet"/>
+                    <feature type="Timer" n="4" m="16"/>
+                    <feature type="ADC" n="10" m="12"/>
+                    <feature type="IOs" n="37"/>
+                    <feature type="SPI" n="2" m="18000000"/>
+                    <feature type="I2C" n="2"/>
+                    <feature type="USART" n="3" m="4500000"/>
+                    <feature type="QFP" n="48"/>
+
+                </device><!-- *************************  Device 'APM32S103TB'  ***************************** -->
+                <device Dname="APM32S103TB">
+                    <processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="96000000"/>
+                    <compile header="Device/Device/Geehy/APM32S10x/Include/apm32s10x.h" define="APM32S10X_MD"/>
+                    <debug svd="SVD/APM32S103xx.svd"/>
+                    <memory id="IROM1" start="0x08000000" size="0x20000" startup="1" default="1"/><memory id="IRAM1" start="0x20000000" size="0x9000" init="0" default="1"/>
+                    <algorithm name="Flash/APM32S10x_128.FLM" start="0x08000000" size="0x20000" default="1"/>
+                    <book name="Documents/DATASHEET.pdf" title="APM32S103 Data Sheet"/>
+                    <feature type="Timer" n="4" m="16"/>
+                    <feature type="ADC" n="10" m="12"/>
+                    <feature type="IOs" n="26"/>
+                    <feature type="SPI" n="1" m="18000000"/>
+                    <feature type="I2C" n="1"/>
+                    <feature type="USART" n="2" m="4500000"/>
+                    <feature type="QFN" n="36"/>
+                </device>
+            </subFamily>
+        </family>
+    </devices>
+    <conditions>
+        <!-- conditions selecting Compiler -->
+        <condition id="Compiler ARMCC">
+            <require Tcompiler="ARMCC"/>
+        </condition>
+        <condition id="APM32S1xx">
+            <description>Geehy Semiconductor APM32S1xx Device</description>
+            <require Dvendor="Geehy:163" Dname="APM32S1*"/>
+        </condition>
+        <condition id="APM32S1xx LD">
+            <description>Geehy Semiconductor APM32S1xx Low Density Device</description>
+            <require Dvendor="Geehy:163" Dname="APM32S10[123]?[46]"/>
+        </condition>
+        <condition id="APM32S1xx MD">
+            <description>Geehy Semiconductor APM32S1xx Mid Density Device</description>
+            <require Dvendor="Geehy:163" Dname="APM32S10[123]?[8B]"/>
+        </condition>
+        <condition id="APM32S1xx LD ARMCC">
+            <description>filter for APM32S1xx Low Density Device and the ARM compiler</description>
+            <require condition="APM32S1xx LD"/>
+            <require Tcompiler="ARMCC"/>
+        </condition>
+        <condition id="APM32S1xx MD ARMCC">
+            <description>filter for APM32S1xx Mid Density Device and the ARM compiler</description>
+            <require condition="APM32S1xx MD"/>
+            <require Tcompiler="ARMCC"/>
+        </condition>
+        <condition id="APM32S1xx CMSIS">
+            <description>Geehy Semiconductor APM32S1xx Device with CMSIS</description>
+            <require condition="APM32S1xx"/>
+            <require Cclass="CMSIS" Cgroup="CORE"/>
+        </condition>
+        <condition id="APM32S1xx STDPERIPH">
+            <description>Geehy Semiconductor APM32S1xx with Standard Peripherals Drivers Framework</description>
+            <require condition="APM32S1xx CMSIS"/>
+            <require Cclass="Device" Cgroup="StdPeriph Drivers" Csub="Framework"/>
+        </condition>
+        <condition id="APM32S1xx STDPERIPH RCM">
+            <description>Geehy Semiconductor APM32S1xx with Standard Peripherals Drivers Framework and RCM</description>
+            <require condition="APM32S1xx CMSIS"/>
+            <require Cclass="Device" Cgroup="StdPeriph Drivers" Csub="Framework"/>
+            <require Cclass="Device" Cgroup="StdPeriph Drivers" Csub="RCM"/>
+        </condition>
+    </conditions>
+    <components>
+        <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="APM32S1xx CMSIS">
+            <description>System Startup for Geehy Semiconductor APM32S1xx device series</description>
+            <files>
+                <!--  include folder -->
+                <file category="include" name="Device/Device/Geehy/APM32S10x/Include/"/>
+                <!-- startup files -->
+                <file category="source" name="Device/Device/Geehy/APM32S10x/Source/arm/startup_apm32s10x_md.s" attr="config" version="1.0.0" condition="APM32S1xx MD ARMCC"/>
+                <!-- system file -->
+                <file category="source" name="Device/Device/Geehy/APM32S10x/Source/system_apm32s10x.c" attr="config" version="1.0.1"/>
+                <!-- device configuration required by drivers at the moment -->
+            </files>
+        </component>
+        <!-- START: Geehy Semiconductor Standard Peripherals Drivers -->
+        <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="Framework" Cversion="1.0.1" condition="APM32S1xx STDPERIPH">
+            <description>Standard Peripherals Drivers Framework</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_FRAMEWORK</RTE_Components_h>
+            <files>
+                <file category="include" name="Device/StdPeriphDriver/inc/"/>
+                <file category="header" name="Device/StdPeriphDriver/inc/apm32s10x_misc.h"/>
+                <file category="source" name="Device/StdPeriphDriver/src/apm32s10x_misc.c"/>
+                <file category="header" name="Device/Templates/apm32s10x_int.h" attr="template" select="Interrupt Service Routines"/>
+                <file category="source" name="Device/Templates/apm32s10x_int.c" attr="template" select="Interrupt Service Routines"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="ADC" Cversion="1.0.1" condition="APM32S1xx STDPERIPH RCM">
+            <description>Analog-to-digital converter (ADC) driver for APM32S10x</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_ADC</RTE_Components_h>
+            <files>
+                <file category="header" name="Device/StdPeriphDriver/inc/apm32s10x_adc.h"/>
+                <file category="source" name="Device/StdPeriphDriver/src/apm32s10x_adc.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="BAKPR" Cversion="1.0.1" condition="APM32S1xx STDPERIPH">
+            <description>Backup registers (BAKPR) driver for APM32S10x</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_BAKR</RTE_Components_h>
+            <files>
+                <file category="header" name="Device/StdPeriphDriver/inc/apm32s10x_bakpr.h"/>
+                <file category="source" name="Device/StdPeriphDriver/src/apm32s10x_bakpr.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="CAN" Cversion="1.0.1" condition="APM32S1xx STDPERIPH RCM">
+            <description>Controller area network (CAN) driver for APM32S1xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_CAN</RTE_Components_h>
+            <files>
+                <file category="header" name="Device/StdPeriphDriver/inc/apm32s10x_can.h"/>
+                <file category="source" name="Device/StdPeriphDriver/src/apm32s10x_can.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="CRC" Cversion="1.0.1" condition="APM32S1xx STDPERIPH">
+            <description>CRC calculation unit (CRC) driver for APM32S1xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_CRC</RTE_Components_h>
+            <files>
+                <file category="header" name="Device/StdPeriphDriver/inc/apm32s10x_crc.h"/>
+                <file category="source" name="Device/StdPeriphDriver/src/apm32s10x_crc.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="DMA" Cversion="1.0.1" condition="APM32S1xx STDPERIPH RCM">
+            <description>DMA controller (DMA) driver for APM32S1xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_DMA</RTE_Components_h>
+            <files>
+                <file category="header" name="Device/StdPeriphDriver/inc/apm32s10x_dma.h"/>
+                <file category="source" name="Device/StdPeriphDriver/src/apm32s10x_dma.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="EINT" Cversion="1.0.1" condition="APM32S1xx STDPERIPH">
+            <description>External interrupt/event controller (EINT) driver for APM32S1xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_EINT</RTE_Components_h>
+            <files>
+                <file category="header" name="Device/StdPeriphDriver/inc/apm32s10x_eint.h"/>
+                <file category="source" name="Device/StdPeriphDriver/src/apm32s10x_eint.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="FMC" Cversion="1.0.1" condition="APM32S1xx STDPERIPH">
+            <description>Flash memory controller driver for APM32S1xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_FMC</RTE_Components_h>
+            <files>
+                <file category="header" name="Device/StdPeriphDriver/inc/apm32s10x_fmc.h"/>
+                <file category="source" name="Device/StdPeriphDriver/src/apm32s10x_fmc.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="GPIO" Cversion="1.0.1" condition="APM32S1xx STDPERIPH RCM">
+            <description>General-purpose I/O (GPIO) driver for APM32S1xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_GPIO</RTE_Components_h>
+            <files>
+                <file category="header" name="Device/StdPeriphDriver/inc/apm32s10x_gpio.h"/>
+                <file category="source" name="Device/StdPeriphDriver/src/apm32s10x_gpio.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="I2C" Cversion="1.0.1" condition="APM32S1xx STDPERIPH RCM">
+            <description>Inter-integrated circuit (I2C) interface driver for APM32S1xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_I2C</RTE_Components_h>
+            <files>
+                <file category="header" name="Device/StdPeriphDriver/inc/apm32s10x_i2c.h"/>
+                <file category="source" name="Device/StdPeriphDriver/src/apm32s10x_i2c.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="IWDT" Cversion="1.0.1" condition="APM32S1xx STDPERIPH">
+            <description>Independent watchdog (IWDT) driver for APM32S1xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_IWDT</RTE_Components_h>
+            <files>
+                <file category="header" name="Device/StdPeriphDriver/inc/apm32s10x_iwdt.h"/>
+                <file category="source" name="Device/StdPeriphDriver/src/apm32s10x_iwdt.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="PMU" Cversion="1.0.1" condition="APM32S1xx STDPERIPH RCM">
+            <description>Power controller (PMU) driver for APM32S1xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_PMU</RTE_Components_h>
+            <files>
+                <file category="header" name="Device/StdPeriphDriver/inc/apm32s10x_pmu.h"/>
+                <file category="source" name="Device/StdPeriphDriver/src/apm32s10x_pmu.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="RCM" Cversion="1.0.1" condition="APM32S1xx STDPERIPH">
+            <description>Reset and clock management unit (RCM) driver for APM32S1xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_RCM</RTE_Components_h>
+            <files>
+                <file category="header" name="Device/StdPeriphDriver/inc/apm32s10x_rcm.h"/>
+                <file category="source" name="Device/StdPeriphDriver/src/apm32s10x_rcm.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="SPI" Cversion="1.0.1" condition="APM32S1xx STDPERIPH RCM">
+            <description>Serial peripheral interface (SPI) driver for APM32S1xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_SPI</RTE_Components_h>
+            <files>
+                <file category="header" name="Device/StdPeriphDriver/inc/apm32s10x_spi.h"/>
+                <file category="source" name="Device/StdPeriphDriver/src/apm32s10x_spi.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="QSPI" Cversion="1.0.1" condition="APM32S1xx STDPERIPH RCM">
+            <description>Queued Serial peripheral interface (QSPI) driver for APM32S1xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_QSPI</RTE_Components_h>
+            <files>
+                <file category="header" name="Device/StdPeriphDriver/inc/apm32s10x_qspi.h"/>
+                <file category="source" name="Device/StdPeriphDriver/src/apm32s10x_qspi.c"/>
+            </files>
+        </component><component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="TMR" Cversion="1.0.1" condition="APM32S1xx STDPERIPH RCM">
+            <description>Timers (TMR) driver for APM32S1xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_TMR</RTE_Components_h>
+            <files>
+                <file category="header" name="Device/StdPeriphDriver/inc/apm32s10x_tmr.h"/>
+                <file category="source" name="Device/StdPeriphDriver/src/apm32s10x_tmr.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="USART" Cversion="1.0.1" condition="APM32S1xx STDPERIPH RCM">
+            <description>Universal synchronous asynchronous receiver transmitter (USART) driver for APM32S1xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_USART</RTE_Components_h>
+            <files>
+                <file category="header" name="Device/StdPeriphDriver/inc/apm32s10x_usart.h"/>
+                <file category="source" name="Device/StdPeriphDriver/src/apm32s10x_usart.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="WWDT" Cversion="1.0.1" condition="APM32S1xx STDPERIPH RCM">
+            <description>Window watchdog (WWDT) driver for APM32S1xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_WWDT</RTE_Components_h>
+            <files>
+                <file category="header" name="Device/StdPeriphDriver/inc/apm32s10x_wwdt.h"/>
+                <file category="source" name="Device/StdPeriphDriver/src/apm32s10x_wwdt.c"/>
+            </files>
+        </component><component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="DBGMCU" Cversion="1.0.1" condition="APM32S1xx STDPERIPH">
+            <description>MCU debug component (DBGMCU) driver for APM32S1xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_DBGMCU</RTE_Components_h>
+            <files>
+                <file category="header" name="Device/StdPeriphDriver/inc/apm32s10x_dbgmcu.h"/>
+                <file category="source" name="Device/StdPeriphDriver/src/apm32s10x_dbgmcu.c"/>
+            </files>
+        </component><component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="RTC" Cversion="1.0.1" condition="APM32S1xx STDPERIPH">
+            <description>Real-time clock (RTC) driver for APM32S1xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_RTC</RTE_Components_h>
+            <files>
+                <file category="header" name="Device/StdPeriphDriver/inc/apm32s10x_rtc.h"/>
+                <file category="source" name="Device/StdPeriphDriver/src/apm32s10x_rtc.c"/>
+            </files>
+        </component>
+        <!-- END: Geehy Semiconductor Standard Peripherals Drivers -->
+    </components>
+    <boards>
+        <board vendor="Geehy" name="APM32S103MINI" revision="Ver 1.0">
+            <description>Geehy APM32S103 Development Board</description>
+            <image large="Boards/Geehy/APM32S103MINI/Documentation"/>
+            <mountedDevice deviceIndex="0" Dvendor="Geehy:163" Dname="APM32S103"/>
+            <compatibleDevice deviceIndex="0" Dvendor="Geehy:163" DsubFamily="APM32S103"/>
+            <feature type="XTAL" n="8000000"/>
+            <feature type="PWR" n="5" name="USB Powered"/>
+            <feature type="USB" n="1" name="USB 2.0 Full Speed Device"/>
+            <feature type="RS232" n="1"/>
+            <feature type="Button" n="3" name="Reset, KEY1 and KEY2"/>
+            <feature type="LED" n="2" name="LEDs directly connected to port pins"/>
+            <debugInterface adapter="JTAG/SW" connector="20 pin JTAG (0.1 inch connector)"/>
+        </board>
+    </boards>
+    <examples>
+        <example name="APM32S103MINI-Blinky" doc="readme.txt" folder="Boards/Geehy/APM32S103MINI/Blinky">
+            <description>APM32S103_MINI Blinky example</description>
+            <board name="APM32S103MINI" vendor="Geehy"/>
+            <project>
+                <environment name="uv" load="APM32S103MINI-Blinky.uvprojx"/>
+            </project>
+            <attributes>
+                <component Cclass="CMSIS" Cgroup="CORE"/>
+                <component Cclass="Device" Cgroup="Startup"/>
+                <component Cclass="CMSIS" Cgroup="RTOS"/>
+                <category>Getting Started</category>
+                <category>CMSIS-RTX</category>
+                <keyword>LED</keyword>
+                <keyword>APM32S103</keyword>
+            </attributes>
+        </example>
+    </examples>
+</package>

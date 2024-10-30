@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.7.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>SiliconLabs</vendor>
+  <url>https://www.silabs.com/documents/public/cmsis-packs/</url>
+  <name>GeckoPlatform_EFR32FG12P_DFP</name>
+  <description>Silicon Labs EFR32FG12P Flex Gecko Series Device Support.</description>
+  <license>License/license.md</license>
+
+  <releases>
+    <release version="4.4.0" date="2024-02-08">
+      New device family EFM32PG28 and new OPNs for EFR32SG28, EFR32MG24, EFR32BG24, MGM21, RM21
+    </release>
+    <release version="4.3.0" date="2023-06-15">
+      New device families EFR32SG23, EFR32SG28 and new OPNs for EFR32MG27, EFR32MG24, EFR32FG25, EFR32BG24, MGM24
+    </release>
+    <release version="4.2.0" date="2022-11-25">
+      New device families EFR32ZG28, EFR32FG28 and EFR32MR21
+    </release>
+    <release version="4.1.1" date="2022-06-22">
+      Add TrustZone support for Series2 Devices
+    </release>
+    <release version="4.1.0" date="2022-06-03">
+      Update CMSIS version to 5.8.0. New device families EFR32BG27, EFR32MG27. Documentation updated for ZGM130S, MGM220P, EFR32PG23. Add Cortex-M33 Generic User Guide
+    </release>
+    <release version="4.0.2" date="2022-04-22">
+      New OPNs for modules MGM24, for SoC EFR32MG24. New device families EFR32FG25. Documentation updated for EFM32PG22, EFR32BG24, EFR32MG24 and WGM160.
+    </release>
+    <release version="4.0.0" date="2022-01-24">
+      New OPNs for modules MGM21 and MGM24, for SoC EFR32MG24. New device families EFR32BG24, BGM24. Documentation updated for EFR32FG23, EFR32ZG23 and EFM32PG23.
+    </release>
+    <release version="3.2.0" date="2021-06-16">
+      New MCU's families efr32mg24, mgm24, wgm160.
+    </release>
+    <release version="3.1.0" date="2020-12-11">
+      New MCU's families efr32pg22, efr32fg23, efr32zg23 and efm32pg23.
+    </release>
+    <release version="3.0.0" date="2020-09-14">
+      Addition of EFR32ZG13L, EFR32ZG13S and removal of EFR32BG14P device families.
+    </release>
+    <release version="2.7.3" date="2020-03-23">
+      The PRORTC timer peripheral has been added to EFR32xG13 and EFR32xG14 device families.
+    </release>
+    <release version="2.7.0" date="2019-11-12">
+      Changed pack names and version number sequence.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Silicon Labs</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Silicon Labs</keyword>
+    <keyword>EFR32FG12P</keyword>
+    <keyword>EFR32</keyword>
+    <keyword>Flex Gecko</keyword>
+    <keyword>Gecko</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="EFR32FG12P Series" Dvendor="Silicon Labs:21">
+      <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="FPU" Dmpu="MPU" Dtz="NO_TZ" Ddsp="NO_DSP" Dendian="Little-endian" Dclock="38400000"/>
+      <book name="Documents/cortex_m4_dgug.pdf"      title="Cortex-M4 Generic User Guide"/>
+      <book name="Documents/efr32xg12-rm.pdf"  title="EFR32FG12P Reference Manual"/>
+      <description>
+- 32-bit ARM Cortex-M4 core with 40 MHz maximum operating frequency&#xD;&#xA;- Scalable Memory and Radio configuration options available in several footprint compatible QFN packages&#xD;&#xA;- 12-channel Peripheral Reflex System enabling autonomous interaction of MCU peripherals&#xD;&#xA;- Autonomous Hardware Crypto Accelerator and Random Number Generator&#xD;&#xA;- Integrated balun for 2.4 GHz and integrated PA with up to 19.5 dBm transmit power for 2.4 GHz and 20 dBm transmit power for Sub-GHz radios&#xD;&#xA;- Integrated DC-DC with RF noise mitigation&#xD;&#xA;&#xD;&#xA;The Wireless Gecko portfolio of SoCs (EFR32) include Mighty Gecko (EFR32MG12), Blue Gecko (EFR32BG12), and Flex Gecko (EFR32FG12) families. With support for ZigBee, Thread, Bluetooth Low Energy (BLE) and proprietary protocols, the Wireless Gecko portfolio is ideal for enabling energy-friendly wireless networking for IoT devices. The single-die solution provides industry-leading energy efficiency, ultra-fast wakeup times, a scalable high-power amplifier, an integrated balun and no-compromise MCU features.
+      </description>
+
+      <subFamily DsubFamily="EFR32FG12P231">
+        <book         name="Documents/efr32fg12-datasheet.pdf"      title="EFR32FG12P231 Data Sheet"/>
+        <book         name="Documents/efr32fg12-errata.pdf"         title="EFR32FG12P231 Errata"/>
+        <!-- *************************  Device 'EFR32FG12P231F1024GL125'  ***************************** -->
+        <device Dname="EFR32FG12P231F1024GL125">
+          <compile header="Device/SiliconLabs/EFR32FG12P/Include/em_device.h"  define="EFR32FG12P231F1024GL125"/>
+          <debug      svd="SVD/EFR32FG12P/EFR32FG12P231F1024GL125.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00020000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFR32FG12P231F1024GM48'  ***************************** -->
+        <device Dname="EFR32FG12P231F1024GM48">
+          <compile header="Device/SiliconLabs/EFR32FG12P/Include/em_device.h"  define="EFR32FG12P231F1024GM48"/>
+          <debug      svd="SVD/EFR32FG12P/EFR32FG12P231F1024GM48.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00020000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFR32FG12P231F1024GM68'  ***************************** -->
+        <device Dname="EFR32FG12P231F1024GM68">
+          <compile header="Device/SiliconLabs/EFR32FG12P/Include/em_device.h"  define="EFR32FG12P231F1024GM68"/>
+          <debug      svd="SVD/EFR32FG12P/EFR32FG12P231F1024GM68.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00020000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFR32FG12P231F512GM68'  ***************************** -->
+        <device Dname="EFR32FG12P231F512GM68">
+          <compile header="Device/SiliconLabs/EFR32FG12P/Include/em_device.h"  define="EFR32FG12P231F512GM68"/>
+          <debug      svd="SVD/EFR32FG12P/EFR32FG12P231F512GM68.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00010000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="EFR32FG12P232">
+        <book         name="Documents/efr32fg12-datasheet.pdf"      title="EFR32FG12P232 Data Sheet"/>
+        <book         name="Documents/efr32fg12-errata.pdf"         title="EFR32FG12P232 Errata"/>
+        <!-- *************************  Device 'EFR32FG12P232F1024GL125'  ***************************** -->
+        <device Dname="EFR32FG12P232F1024GL125">
+          <compile header="Device/SiliconLabs/EFR32FG12P/Include/em_device.h"  define="EFR32FG12P232F1024GL125"/>
+          <debug      svd="SVD/EFR32FG12P/EFR32FG12P232F1024GL125.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00020000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFR32FG12P232F1024GM48'  ***************************** -->
+        <device Dname="EFR32FG12P232F1024GM48">
+          <compile header="Device/SiliconLabs/EFR32FG12P/Include/em_device.h"  define="EFR32FG12P232F1024GM48"/>
+          <debug      svd="SVD/EFR32FG12P/EFR32FG12P232F1024GM48.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00020000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="EFR32FG12P431">
+        <book         name="Documents/efr32fg12-datasheet.pdf"      title="EFR32FG12P431 Data Sheet"/>
+        <book         name="Documents/efr32fg12-errata.pdf"         title="EFR32FG12P431 Errata"/>
+        <!-- *************************  Device 'EFR32FG12P431F1024GL125'  ***************************** -->
+        <device Dname="EFR32FG12P431F1024GL125">
+          <compile header="Device/SiliconLabs/EFR32FG12P/Include/em_device.h"  define="EFR32FG12P431F1024GL125"/>
+          <debug      svd="SVD/EFR32FG12P/EFR32FG12P431F1024GL125.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFR32FG12P431F1024GM48'  ***************************** -->
+        <device Dname="EFR32FG12P431F1024GM48">
+          <compile header="Device/SiliconLabs/EFR32FG12P/Include/em_device.h"  define="EFR32FG12P431F1024GM48"/>
+          <debug      svd="SVD/EFR32FG12P/EFR32FG12P431F1024GM48.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFR32FG12P431F1024GM68'  ***************************** -->
+        <device Dname="EFR32FG12P431F1024GM68">
+          <compile header="Device/SiliconLabs/EFR32FG12P/Include/em_device.h"  define="EFR32FG12P431F1024GM68"/>
+          <debug      svd="SVD/EFR32FG12P/EFR32FG12P431F1024GM68.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFR32FG12P431F1024IM48'  ***************************** -->
+        <device Dname="EFR32FG12P431F1024IM48">
+          <compile header="Device/SiliconLabs/EFR32FG12P/Include/em_device.h"  define="EFR32FG12P431F1024IM48"/>
+          <debug      svd="SVD/EFR32FG12P/EFR32FG12P431F1024IM48.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFR32FG12P431F512GM68'  ***************************** -->
+        <device Dname="EFR32FG12P431F512GM68">
+          <compile header="Device/SiliconLabs/EFR32FG12P/Include/em_device.h"  define="EFR32FG12P431F512GM68"/>
+          <debug      svd="SVD/EFR32FG12P/EFR32FG12P431F512GM68.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00080000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00020000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS1.FLM"  start="0x00000000"  size="0x00080000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS1.flash"  start="0x00000000"  size="0x00080000"  default="0"  style="IAR"/>
+        </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="EFR32FG12P432">
+        <book         name="Documents/efr32fg12-datasheet.pdf"      title="EFR32FG12P432 Data Sheet"/>
+        <book         name="Documents/efr32fg12-errata.pdf"         title="EFR32FG12P432 Errata"/>
+        <!-- *************************  Device 'EFR32FG12P432F1024GL125'  ***************************** -->
+        <device Dname="EFR32FG12P432F1024GL125">
+          <compile header="Device/SiliconLabs/EFR32FG12P/Include/em_device.h"  define="EFR32FG12P432F1024GL125"/>
+          <debug      svd="SVD/EFR32FG12P/EFR32FG12P432F1024GL125.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFR32FG12P432F1024GM48'  ***************************** -->
+        <device Dname="EFR32FG12P432F1024GM48">
+          <compile header="Device/SiliconLabs/EFR32FG12P/Include/em_device.h"  define="EFR32FG12P432F1024GM48"/>
+          <debug      svd="SVD/EFR32FG12P/EFR32FG12P432F1024GM48.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+      </subFamily>
+
+      <subFamily DsubFamily="EFR32FG12P433">
+        <book         name="Documents/efr32fg12-datasheet.pdf"      title="EFR32FG12P433 Data Sheet"/>
+        <book         name="Documents/efr32fg12-errata.pdf"         title="EFR32FG12P433 Errata"/>
+        <!-- *************************  Device 'EFR32FG12P433F1024GL125'  ***************************** -->
+        <device Dname="EFR32FG12P433F1024GL125">
+          <compile header="Device/SiliconLabs/EFR32FG12P/Include/em_device.h"  define="EFR32FG12P433F1024GL125"/>
+          <debug      svd="SVD/EFR32FG12P/EFR32FG12P433F1024GL125.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFR32FG12P433F1024GM48'  ***************************** -->
+        <device Dname="EFR32FG12P433F1024GM48">
+          <compile header="Device/SiliconLabs/EFR32FG12P/Include/em_device.h"  define="EFR32FG12P433F1024GM48"/>
+          <debug      svd="SVD/EFR32FG12P/EFR32FG12P433F1024GM48.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFR32FG12P433F1024GM68'  ***************************** -->
+        <device Dname="EFR32FG12P433F1024GM68">
+          <compile header="Device/SiliconLabs/EFR32FG12P/Include/em_device.h"  define="EFR32FG12P433F1024GM68"/>
+          <debug      svd="SVD/EFR32FG12P/EFR32FG12P433F1024GM68.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler GCC">
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="Compiler IAR">
+      <require Tcompiler="IAR"/>
+    </condition>
+
+    <!-- Device Conditions -->
+    <condition id="EFR32FG12P">
+      <description>Silicon Labs EFR32FG12P device series</description>
+      <require Dvendor="Silicon Labs:21" Dname="EFR32FG12P*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="4.4.0" condition="EFR32FG12P">
+      <description>System Startup for Silicon Labs EFR32FG12P device series</description>
+      <files>
+        <!-- include folder -->
+        <file category="include" name="Device/SiliconLabs/EFR32FG12P/Include/"/>
+        <file category="header"  name="Device/SiliconLabs/EFR32FG12P/Include/em_device.h"/>
+        <!-- startup files -->
+        <file category="source"  name="Device/SiliconLabs/EFR32FG12P/Source/GCC/startup_efr32fg12p.S" condition="Compiler GCC"   attr="config" version="4.4.0"/>
+        <file category="source"  name="Device/SiliconLabs/EFR32FG12P/Source/IAR/startup_efr32fg12p.s" condition="Compiler IAR"   attr="config" version="4.4.0"/>
+        <!-- linker command file -->
+        <file category="linkerScript"  name="Device/SiliconLabs/EFR32FG12P/Source/GCC/efr32fg12p.ld" condition="Compiler GCC" attr="config" version="4.4.0"/>
+        <!-- system file -->
+        <file category="source"  name="Device/SiliconLabs/EFR32FG12P/Source/system_efr32fg12p.c" attr="config" version="4.4.0"/>
+      </files>
+    </component>
+  </components>
+</package>

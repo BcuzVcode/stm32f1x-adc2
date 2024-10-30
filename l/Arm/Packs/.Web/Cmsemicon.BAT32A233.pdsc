@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Cmsemicon</vendor>
+  <name>BAT32A233</name>
+  <description>Cmsemicon BAT32A233 Device Family Pack</description>
+  <url>http://www.mcu.com.cn/pack/</url>
+
+  <releases>
+    <release version="0.13.0">
+      Update the driver files of the LIN function.
+    </release>
+    <release version="0.12.0">
+      Fix the cmp start function in "cmp.c".
+    </release>
+    <release version="0.11.0">
+      Modify the register name from VBG85 to VBG125 in svd file and headerfile.
+    </release>
+    <release version="0.10.0">
+      Modify the flash algorithm of "BAT32A233KC.FLM".
+    </release>
+    <release version="0.9.0">
+      Add enable and disable primask instruction in EraseChip(), EraseSector() and ProgramPage() in "flash.c".
+      Fix the protect instruction in EraseChip(), EraseSector() and ProgramPage() in "flash.c".
+    </release>
+    <release version="0.8.0">
+      MOdify the LIN port setting in the "userdefine.h".
+    </release>
+    <release version="0.7.0">
+      MOdify the SCR register in svd file and modify SCI drivers.
+    </release>
+    <release version="0.6.0">
+      MOdify some demo projects.
+    </release>
+    <release version="0.5.0">
+      MOdify some demo projects.
+    </release>
+    <release version="0.4.0">
+      Add some demo projects.
+    </release>
+    <release version="0.3.0">
+      Fix some error in the device header file.
+    </release>
+    <release version="0.2.0">
+      Add demo projects.
+    </release>
+    <release version="0.1.0">
+      Initial Version
+    </release>
+  </releases>
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Cmsemicon</keyword>
+    <keyword>BAT32A233</keyword>
+  </keywords>
+  <!-- devices section (mandatory for Device Family Packs) -->
+  <devices>
+    <family Dfamily="M0+ Series" Dvendor="Cmsemicon:161">
+      <!-- *************************  Sub Family 'BAT32A233'  ***************************** -->
+      <subFamily DsubFamily="BAT32A233">
+        <processor Dcore="Cortex-M0+" DcoreVersion="r0p1" Dfpu="0" Dmpu="1" Dendian="Little-endian" Dclock="64000000"/>
+        <description>
+          The BAT32A233 device family contains an ARM Cortex-M0+ processor, running up to 64 MHz with a versatile set of on-chip peripherals.
+        </description>
+        <compile  header="Device/Include/BAT32A233.h"/>
+        <debug    svd="SVD/BAT32A233.svd"/>
+        <feature 	type="VCC"    		      n="2.0" 	      m="5.5"/>
+        <feature 	type="Temp"          	  n="-40"     	  m="125"/>
+        <feature 	type="DMA"          	  n="40"     	                    name="Enhanced DMA"/>
+        <feature 	type="XTAL"          	  n="1000000"     m="20000000" 	  name="External Crystal Oscillator"/>
+        <feature 	type="IntRC"            n="24000000"    m="64000000" 	  name="Internal RC Oscillator with +/- 1% accuracy"/>
+        <feature 	type="WDT"              n="1"/>
+        <feature 	type="PowerMode"        n="3"                           name="Run, Sleep, Deep-Sleep"/>
+        <feature 	type="PowerOther"       n="1"                           name="POR"/>
+        <feature 	type="ADC"              n="10"          m="12"          name="High-Accuracy ADC"/>
+        <feature 	type="DAC"              n="2"           m="12"           name="DAC"/>
+        <feature 	type="AnalogOther"      n="1"                           name="PGA"/>
+        <feature 	type="AnalogOther"      n="2"                           name="CMP"/>
+        <feature 	type="TempSens"         n="1"                           name="Temperature Sensor"/>
+        <feature 	type="I2C"              n="2"                           name="Full Function I2C"/>
+        <feature 	type="I2C"              n="4"                           name="Simplified I2C"/>
+        <feature 	type="SPI"              n="1"                           name="4-wire SPI"/>
+        <feature 	type="SPI"              n="3"                           name="3-wire SPI"/>
+        <feature 	type="UART"             n="3"/>
+        <feature 	type="LIN"              n="1"/>
+        <feature 	type="Timer"            n="4"           m="16"          name="General Purpose Timer (TM4)"/>
+        <feature 	type="Timer"            n="1"           m="16"          name="General Purpose Timer (TRA)"/>
+        <feature 	type="Timer"            n="1"           m="16"          name="General Purpose Timer (TRB)"/>
+        <feature 	type="Timer"            n="1"           m="16"          name="General Purpose Timer (TRC)"/>
+        <feature 	type="Timer"            n="1"           m="16"          name="BLDC Motor Control Timer(TRM)"/>
+        <!-- *************************  Device 'BAT32A233KC32FP'  ***************************** -->
+        <device Dname="BAT32A233KC32FP">
+          <description>
+            Code Flash: 32KB,  Data Flash: 0KB,  RAM: 4KB
+            Package: 32-lead LQFP(7x7mm, 0.8mm pitch)
+          </description>
+          <memory     name="IROM1"  access="rx"       start="0x00000000"  size="0x08000"     startup="1"   default="1"/>
+          <memory     name="IRAM1"  access="rw"       start="0x20000000"  size="0x01000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash/BAT32A233KC.FLM"    start="0x00000000"  size="0x08000"     default="1"/>
+          <feature    type="QFP"            n="32"                        name="7x7mm, 0.8mm pitch LQFP"/>
+        </device>
+        <device Dname="BAT32A233KC32NA">
+          <description>
+            Code Flash: 32KB,  Data Flash: 0KB,  RAM: 4KB
+            Package: 32-lead QFN(5x5mm, 0.5mm pitch)
+          </description>
+          <memory     name="IROM1"  access="rx"       start="0x00000000"  size="0x08000"     startup="1"   default="1"/>
+          <memory     name="IRAM1"  access="rw"       start="0x20000000"  size="0x01000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash/BAT32A233KC.FLM"    start="0x00000000"  size="0x08000"     default="1"/>
+          <feature    type="QFN"            n="32"                        name="5x5mm, 0.5mm pitch QFN"/>
+        </device>
+        <device Dname="BAT32A233KC24NA">
+          <description>
+            Code Flash: 32KB,  Data Flash: 0KB,  RAM: 4KB
+            Package: 24-lead QFN(4x4mm, 0.5mm pitch)
+          </description>
+          <memory     name="IROM1"  access="rx"       start="0x00000000"  size="0x08000"     startup="1"   default="1"/>
+          <memory     name="IRAM1"  access="rw"       start="0x20000000"  size="0x01000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash/BAT32A233KC.FLM"    start="0x00000000"  size="0x08000"     default="1"/>
+          <feature    type="QFN"            n="24"                        name="4x4mm, 0.5mm pitch QFN"/>
+        </device>
+        <device Dname="BAT32A233KC20SA">
+          <description>
+            Code Flash: 32KB,  Data Flash: 0KB,  RAM: 4KB
+            Package: 20-lead TSSOP(6.5x4.4mm, 0.65mm pitch)
+          </description>
+          <memory     name="IROM1"  access="rx"       start="0x00000000"  size="0x08000"     startup="1"   default="1"/>
+          <memory     name="IRAM1"  access="rw"       start="0x20000000"  size="0x01000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash/BAT32A233KC.FLM"    start="0x00000000"  size="0x08000"     default="1"/>
+          <feature    type="SOP"            n="20"                        name="6.5x4.4mm, 0.65mm pitch TSSOP"/>
+        </device>
+        <device Dname="BAT32A233KC20NB">
+          <description>
+            Code Flash: 32KB,  Data Flash: 0KB,  RAM: 4KB
+            Package: 20-lead QFN(3x3mm, 0.4mm pitch)
+          </description>
+          <memory     name="IROM1"  access="rx"       start="0x00000000"  size="0x08000"     startup="1"   default="1"/>
+          <memory     name="IRAM1"  access="rw"       start="0x20000000"  size="0x01000"     init   ="0"   default="1"/>
+          <algorithm  name="Flash/BAT32A233KC.FLM"    start="0x00000000"  size="0x08000"     default="1"/>
+          <feature    type="QFP"            n="20"                        name="3x3mm, 0.4mm pitch QFN"/>
+        </device>
+      </subFamily>
+    </family>
+  </devices>
+  <!-- examples section (optional for all Software Packs)-->
+  <examples>
+    <example name="Blinky" doc="README" folder="Examples/Blinky/MDK">
+      <description>Sample project</description>
+      <board name="BAT32A233_EVB" vendor="Cmsemicon"/>
+      <project>
+        <environment name="uv" load="Blinky.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+      </attributes>
+    </example>
+  </examples>
+  
+  <!-- conditions section (optional for all Software Packs)-->
+  <conditions>
+    <condition id="BAT32A233 CMSIS-CORE">
+      <!-- conditions selecting Devices -->
+      <description>Cmsemicon BAT32A233 Series devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="Cmsemicon:161" Dname="BAT32A233*"/>
+    </condition>
+    <condition id="Startup ARM">
+      <description>Startup assembler file for ARMCC</description>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="Startup GCC">
+      <description>Startup assembler file for GCC</description>
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="Startup IAR">
+      <description>Startup assembler file for IAR</description>
+      <require Tcompiler="IAR"/>
+    </condition>
+  </conditions>
+  
+  <!-- component section (optional for all Software Packs)-->
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="0.1.0" condition="BAT32A233 CMSIS-CORE">
+      <description>System Startup for Cmsemicon BAT32A233 Series</description>
+      <files>
+        <!--  include folder -->
+        <file category="include" name="Device/Include/"/>
+        <file category="header" name="Device/Source/userdefine.h"  attr="config" version="0.1.0"/>
+
+        <file category="source"  name="Device/Source/ARM/startup_BAT32A233.s" attr="config" condition="Startup ARM" version="0.1.0"/>
+        <file category="source"  name="Device/Source/GCC/startup_BAT32A233.S" attr="config" condition="Startup GCC" version="0.1.0"/>
+        <file category="source"  name="Device/Source/IAR/startup_BAT32A233.s" attr="config" condition="Startup IAR" version="0.1.0"/>
+
+        <file category="source"  name="Device/Source/system_BAT32A233.c"  attr="config" version="0.1.0"/>
+      </files>
+    </component>
+
+  </components>
+  
+</package>

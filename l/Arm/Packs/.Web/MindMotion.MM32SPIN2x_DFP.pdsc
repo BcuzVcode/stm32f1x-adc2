@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+	<vendor>MindMotion</vendor>
+	<url>http://www.mindmotion.com.cn/Download/MDK_KEIL/</url>
+	<name>MM32SPIN2x_DFP</name>
+	<description>MindMotion MM32SPIN2x Series Device Support, Drivers and Examples</description>
+    <!-- optional license file -->
+    <!-- 
+  <license>
+  </license>
+  -->
+
+    <releases>
+		<release version="1.1.6" date="2021-07-28">
+      	 Release version of MM32SPIN2x Device Family Pack.
+        </release>
+    </releases>
+
+    <keywords>
+        <!-- keywords for indexing -->
+        <keyword>MindMotion</keyword>
+		<keyword>MM32SPIN2x</keyword>
+        <keyword>MM32</keyword>
+        
+    </keywords>
+
+    <!-- devices section (mandatory for Device Family Packs) -->
+    <devices>
+	<!-- generated, do not modify this section! -->
+        <family Dfamily="MM32SPIN2x Series" Dvendor="MindMotion:132">
+            <processor Dcore="Cortex-M0" DcoreVersion="r1p0"  Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="96000000"/>
+            <description>
+MM32SPIN2x Series
+            </description>
+		<!-- ************************  Subfamily 'MM32SPIN2x'  **************************** -->
+		<subFamily DsubFamily="MM32SPIN25">
+            
+
+		
+		<description>
+Subfamily: MM32SPIN25
+
+Frequency: 96MHz 
+Memory: 32 kB Flash, 8 kB RAM
+Communication: 2 x UART,up to 2 x SPI, 1 x I2C
+Analog : ADC, COMP
+power saving mode:stop, sleep, and standby mode
+Other: DIV
+            </description>
+		<!-- *************************  Device 'MM32SPIN2x'  ***************************** -->
+            <device Dname="MM32SPIN25TW">
+                
+        <compile header="Device/MM32SPIN2x/Include/HAL_device.h"  define="MM32SPIN25TW"/>
+
+                <debug svd="SVD/MM32SPIN2x.svd" />
+                <memory id="IROM1" start="0x08000000" size="0x00008000" startup="1" default="1" />
+                <memory id="IRAM1" start="0x20000000" size="0x00002000" init="0" default="1" />
+                <algorithm name="Flash/MM32SPIN25_32.FLM" start="0x08000000" size="0x00008000" default="1" />
+            </device>
+
+            <device Dname="MM32SPIN25PT">
+                
+        <compile header="Device/MM32SPIN2x/Include/HAL_device.h"  define="MM32SPIN25PT"/>
+
+                <debug svd="SVD/MM32SPIN2x.svd" />
+                <memory id="IROM1" start="0x08000000" size="0x00008000" startup="1" default="1" />
+                <memory id="IRAM1" start="0x20000000" size="0x00002000" init="0" default="1" />
+                <algorithm name="Flash/MM32SPIN25_32.FLM" start="0x08000000" size="0x00008000" default="1" />
+            </device>
+
+            <device Dname="MM32SPIN25PF">
+                
+        <compile header="Device/MM32SPIN2x/Include/HAL_device.h"  define="MM32SPIN25PF"/>
+
+                <debug svd="SVD/MM32SPIN2x.svd" />
+                <memory id="IROM1" start="0x08000000" size="0x00008000" startup="1" default="1" />
+                <memory id="IRAM1" start="0x20000000" size="0x00002000" init="0" default="1" />
+                <algorithm name="Flash/MM32SPIN25_32.FLM" start="0x08000000" size="0x00008000" default="1" />
+            </device>
+        </subFamily>
+            <!-- ************************  Subfamily 'MM32SPIN26'  **************************** -->
+        <subFamily DsubFamily="MM32SPIN26">
+            <description>
+Subfamily: MM32SPIN26
+
+Frequency: 96MHz 
+Memory: 64 kB Flash, 12 kB RAM
+Communication: up to 2 x UART, 1 x SPI, 1 x I2C
+Analog : ADC, COMP,opamp 
+power saving mode:stop, sleep, and standby mode
+            </description>
+			
+                <device Dname="MM32SPIN26NF">
+                <compile header="Device/MM32SPIN2x/Include/HAL_device.h"  define="MM32SPIN26NF"/>
+                    <debug svd="SVD/MM32SPIN2x.svd" />
+                    <memory id="IROM1" start="0x08000000" size="0x10000" startup="1" default="1" />
+                    <memory id="IRAM1" start="0x20000000" size="0x00003000" init="0" default="1" />
+                    <algorithm name="Flash/MM32SPIN26_64.FLM" start="0x08000000" size="0x10000" default="1" />
+                </device>
+
+                <device Dname="MM32SPIN26PF">
+                <compile header="Device/MM32SPIN2x/Include/HAL_device.h"  define="MM32SPIN26PF"/>
+                    <debug svd="SVD/MM32SPIN2x.svd" />
+                    <memory id="IROM1" start="0x08000000" size="0x10000" startup="1" default="1" />
+                    <memory id="IRAM1" start="0x20000000" size="0x00003000" init="0" default="1" />
+                    <algorithm name="Flash/MM32SPIN26_64.FLM" start="0x08000000" size="0x10000" default="1" />
+                </device>
+
+                <device Dname="MM32SPIN26PT">
+                <compile header="Device/MM32SPIN2x/Include/HAL_device.h"  define="MM32SPIN26PT"/>
+                    <debug svd="SVD/MM32SPIN2x.svd" />
+                    <memory id="IROM1" start="0x08000000" size="0x10000" startup="1" default="1" />
+                    <memory id="IRAM1" start="0x20000000" size="0x00003000" init="0" default="1" />
+                    <algorithm name="Flash/MM32SPIN26_64.FLM" start="0x08000000" size="0x10000" default="1" />
+                </device>
+
+
+        </subFamily>
+        
+    
+		<subFamily DsubFamily="MM32SPIN27">
+		
+          <description>
+Subfamily: MM32SPIN27
+
+Frequency: 96MHz 
+Memory: 128 kB Flash, 12 kB RAM
+Communication: 2 x UART, 2 x SPI, 1 x I2C
+Analog : ADC, COMP
+power saving mode:stop, sleep, and standby mode
+Other: DIV
+            </description>
+            <device Dname="MM32SPIN27PT">
+                
+        <compile header="Device/MM32SPIN2x/Include/HAL_device.h"  define="MM32SPIN27PT"/>
+
+                <debug svd="SVD/MM32SPIN2x.svd" />
+                <memory id="IROM1" start="0x08000000" size="0x00020000" startup="1" default="1" />
+                <memory id="IRAM1" start="0x20000000" size="0x00003000" init="0" default="1" />
+                <algorithm name="Flash/MM32SPIN27_128.FLM" start="0x08000000" size="0x00020000" default="1" />                
+            </device>
+
+            <device Dname="MM32SPIN27PF">
+                
+        <compile header="Device/MM32SPIN2x/Include/HAL_device.h"  define="MM32SPIN27PF"/>
+
+                <debug svd="SVD/MM32SPIN2x.svd" />
+                <memory id="IROM1" start="0x08000000" size="0x00020000" startup="1" default="1" />
+                <memory id="IRAM1" start="0x20000000" size="0x00003000" init="0" default="1" />
+                <algorithm name="Flash/MM32SPIN27_128.FLM" start="0x08000000" size="0x00020000" default="1" />                
+            </device>
+
+            <device Dname="MM32SPIN27PS">
+                
+        <compile header="Device/MM32SPIN2x/Include/HAL_device.h"  define="MM32SPIN27PS"/>
+
+                <debug svd="SVD/MM32SPIN2x.svd" />
+                <memory id="IROM1" start="0x08000000" size="0x00020000" startup="1" default="1" />
+                <memory id="IRAM1" start="0x20000000" size="0x00003000" init="0" default="1" />
+                <algorithm name="Flash/MM32SPIN27_128.FLM" start="0x08000000" size="0x00020000" default="1" />                
+            </device>
+	</subFamily>
+
+        </family>
+
+    </devices>
+
+  
+  <conditions>   
+	<condition id=" ARMCC">
+	<require Tcompiler="ARMCC"/>
+    </condition>
+
+     
+	
+    <condition id="ARMCM0 CMSIS">
+      <description>CMSIS CORE and device specific Startup files</description>
+        <require Cclass="CMSIS" Cgroup="CORE"/>
+		<require Dvendor="MindMotion:132"  Dname="MM32SPIN2*"/> 
+    </condition>
+	
+
+  </conditions>
+  
+<components>
+
+                 <!-- Cortex-M Device Startup -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.4" condition="ARMCM0 CMSIS"> 
+      <description>System Startup for MindMotion MM32SPIN2x Series devices</description>
+      <files>
+        <file category="header"  name="Device/MM32SPIN2x/Include/HAL_device.h"/>
+        <file category="header"  name="Device/MM32SPIN2x/Source/system_MM32SPIN2xx_p.h"/>
+        <file category="sourceC" name="Device/MM32SPIN2x/Source/system_MM32SPIN2xx_p.c" attr="config"  version="1.0.4"/>    
+        <file category="sourceAsm" name="Device/MM32SPIN2x/Source/KEIL_StartAsm/startup_MM32SPIN2xx_p.s" attr="config" version="1.0.4" condition=" ARMCC"/> 
+      </files>
+    </component> 
+	
+	    <component Cclass="Board" Cgroup="Samples" Csub="LED" Cversion="1.0.4" condition="ARMCM0 CMSIS"> 
+      <description>LED sample for MindMotion MM32SPIN2x Board</description>
+      <files>
+        <file category="header"  name="Boards/MBSPIN2x_Boardreg/RegSample/IOToggle/HARDWARE/LED/led.h"/>
+        <file category="sourceC"  name="Boards/MBSPIN2x_Boardreg/RegSample/IOToggle/HARDWARE/LED/led.c" attr="config"  version="1.0.4"/>
+        <file category="sourceC" name="Boards/MBSPIN2x_Boardreg/RegSample/IOToggle/USER/main.c" attr="config"  version="1.0.4"/>    
+      </files>
+    </component> 
+
+</components>
+ 
+   <examples>
+	<example name="MM32_MBSPIN2x_Boardreg_Board GPIO LED blinky" doc="README.TXT" folder="Boards/MBSPIN2x_Boardreg/RegSample/IOToggle">
+		<description>MM32_MBSPIN2x_Boardreg_Board Blinky example</description>           
+		<board name="MM32_MBSPIN2x_Boardreg_Board" vendor="MindMotion"/>
+		<project>   
+			<environment name="uv" load="KEIL_PRJ/IOToggle.uvprojx"/>
+		</project>                      
+		<attributes>
+			<component Cclass="CMSIS"     Cgroup="CORE"/>
+			<component Cclass="Device"    Cgroup="Startup"/>
+			<category>Getting Started</category>
+		</attributes>
+	</example>
+  </examples>  
+  
+ <boards>
+	<board vendor="MindMotion" name="MM32_MBSPIN2x_Boardreg_Board" revision="Ver 1.0" >
+      <description>MindMotion MM32_MBSPIN2x_Boardreg_Board Development Board</description>
+			<book category="manual" name="Documents/boards/SPIN27Reference.pdf" title="MM32_MBSPIN2x  Manual"/>
+      <mountedDevice    deviceIndex="0" Dvendor="MindMotion:132" Dname="MM32SPIN27PS"/>
+	  <compatibleDevice deviceIndex="0" Dvendor="MindMotion:132" DsubFamily="MM32SPIN25"/>	  
+	  <compatibleDevice deviceIndex="0" Dvendor="MindMotion:132" DsubFamily="MM32SPIN27"/>	  
+	  <compatibleDevice deviceIndex="0" Dvendor="MindMotion:132" DsubFamily=" MM32SPIN26"/>	  
+	 
+			  
+	  <feature type="XTAL"      n="8000000"/>
+      <feature type="PWR"       n="5"              name="USB Powered"/>
+      <feature type="PWR"       n="3"  m="5"       name="External Supply"/>
+      <feature type="Button"    n="1"              name="Push-buttons: Reset"/>
+      <feature type="LED"       n="2"              name="LEDs: Power, One user"/>
+      <debugInterface adapter="JTAG/SW" connector="20 pin JTAG (0.1 inch connector)"/>
+    </board>
+  </boards>
+  
+</package>

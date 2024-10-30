@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.7.36" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.36/schema/PACK.xsd">
+  <name>KIT_T2G-B-H_LITE_BSP</name>
+  <vendor>Infineon</vendor>
+  <description>Infineon KIT_T2G-B-H_LITE board support pack</description>
+  <url>https://itools.infineon.com/cmsis_packs/KIT_T2G-B-H_LITE_BSP/</url>
+  <license>APACHE_LICENSE.txt</license>
+
+  <releases>
+    <release version="1.0.0" date="2024-09-20">
+      Initial release
+      Drivers:
+      - CMSIS-Driver VIO
+      Example projects:
+      - Blinky (verify the basic tool setup)
+      - Blinky FreeRTOS
+      - GPIO Interrupt
+      - Multicore
+      - PWM Square Wave
+      - TCPWM Counter
+    </release>
+  </releases>
+
+  <requirements>
+    <packages>
+      <package vendor="Infineon" name="T2G-B-H_DFP"   version="1.0.0-0"/>
+      <package vendor="ARM" name="CMSIS"              version="6.0.0"/>
+    </packages>
+  </requirements>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Infineon</keyword>
+    <keyword>Board Support Pack</keyword>
+    <keyword>CYT4BF8CDS</keyword>
+    <keyword>KIT_T2G-B-H_LITE</keyword>
+  </keywords>
+
+  <conditions>
+    <condition id="Infineon T2G-B-H CYT4BF8CDS Device">
+      <description>Infineon T2G-B-H device required</description>
+      <accept Dfamily="T2G-B-H" Dvendor="Infineon:7" Dname="CYT4BF8CDS"/>
+      <accept Dfamily="T2G-B-H" Dvendor="Infineon:7" Dname="CYT4BF8CDE"/>
+    </condition>
+    <condition id="KIT_T2G-B-H_LITE Board Setup">
+      <description>Board Setup Code required</description>
+      <require condition="Infineon T2G-B-H CYT4BF8CDS Device"/>
+      <require Cclass="Device Configurator" Cgroup="Device Configurator"/>
+    </condition>
+    <condition id="KIT_T2G-B-H_LITE VIO">
+      <description>Virtual I/O B</description>
+      <require condition="KIT_T2G-B-H_LITE Board Setup"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+  </conditions>
+
+  <boards>
+    <board vendor="Infineon" name="KIT_T2G-B-H_LITE" revision="V1" 
+           salesContact="https://www.infineon.com/cms/en/product/evaluation-boards/kit_t2g-b-h_lite/"
+           orderForm="https://www.infineon.com/cms/en/product/evaluation-boards/kit_t2g-b-h_lite/">
+      <description>
+      The KIT_T2G-B-H_LITE, a 176-pin evaluation board is based on the TRAVEO T2G family of devices.
+      T2G-B-H MCU is designed for automotive and industrial applications. 
+      The evaluation board carries a T2G-B-H microcontroller, and headers compatible with Arduino for interfacing Arduino shields.
+      In addition, the board features an on-board programmer/debugger (KitProg3), Two 512-Mbit QSPI NOR flashes, CAN FD transceiver, 
+      Ethernet PHY transceiver with RJ45 connector interface, a Shield2Go connector interface and MikroBUS connector interface, 
+      three user LEDs, one potentiometer, and two push buttons. 
+      The board supports operating voltages from 3.3 V to 5.0 V for T2G-B-H device.
+      </description>
+      <image small="Images/KIT_T2G-B_H_LITE_small.png"
+             large="Images/KIT_T2G-B_H_LITE_large.png" public="true"/>           
+      <book category="manual" name="Documents/Infineon-KIT_T2G-B-H_LITE_user_guide-UserManual-v02_00-EN.pdf" title="User Manual" public="true"/>
+      <mountedDevice deviceIndex="0" Dvendor="Infineon:7" Dname="CYT4BF8CDS"/>
+      <feature type="ODbg"       n="1"           name="KitProg3"/>
+      <feature type="PWR"        n="5"           name="USB Powered"/>
+      <feature type="LED"        n="3"           name="User LEDs"/>
+      <feature type="ArduinoFF"  n="1"/>
+      <debugInterface adapter="KitProg3"      connector="Micro-USB"/>
+    </board>
+  </boards>
+  
+  <examples>
+    <example name="Blinky" doc="README.md" folder="Examples/KIT_T2G-B-H_LITE/blinky">
+      <description>Peripheral Driver Library (PDL) blinky example</description>
+      <board name="KIT_T2G-B-H_LITE" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="blinky.uvprojx"/>
+        <environment name="csolution" load="blinky.csolution.yml"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="FreeRTOS blinky" doc="README.md" folder="Examples/KIT_T2G-B-H_LITE/blinky_freertos">
+      <description>FreeRTOS based blinky example</description>
+      <board name="KIT_T2G-B-H_LITE" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="blinky_freertos.uvprojx"/>
+        <environment name="csolution" load="blinky_freertos.csolution.yml"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="Multicore" doc="README.md" folder="Examples/KIT_T2G-B-H_LITE/multicore">
+      <description>Multicore example</description>
+      <board name="KIT_T2G-B-H_LITE" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="multicore.uvmpw"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="GPIO Interrupt" doc="README.md" folder="Examples/KIT_T2G-B-H_LITE/gpio_interrupt">
+      <description>Peripheral Driver Library (PDL) GPIO Interrupt example</description>
+      <board name="KIT_T2G-B-H_LITE" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="gpio_interrupt.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="TCPWM Counter" doc="README.md" folder="Examples/KIT_T2G-B-H_LITE/tcpwm_counter">
+      <description>Peripheral Driver Library (PDL) TCPWM Counter example</description>
+      <board name="KIT_T2G-B-H_LITE" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="tcpwm_counter.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="PWM Square Wave" doc="README.md" folder="Examples/KIT_T2G-B-H_LITE/pwm_square_wave">
+      <description>Peripheral Driver Library (PDL) PWM Square Wave example</description>
+      <board name="KIT_T2G-B-H_LITE" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="pwm_square_wave.uvprojx"/>
+      </project>
+      <attributes>
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+  </examples>
+
+  <generators>
+    <generator id="DeviceConfigurator">
+      <gpdsc name="$P/RTE/Device_Configurator/DeviceConfigurator.gpdsc"/>
+      <workingDir>$P/RTE/Device_Configurator</workingDir>
+    </generator>
+  </generators>
+
+  <components>
+    <bundle Cbundle="KIT_T2G-B-H_LITE" Cclass="Board Support" Cversion="1.0.0">
+      <description>KIT_T2G-B-H_LITE board support package</description>
+      <doc></doc>
+      <component Cgroup="Board Setup" condition="KIT_T2G-B-H_LITE Board Setup">
+        <description>Custom board setup code</description>
+        <files>
+          <file category="doc" name="TARGET_KIT_T2G-B-H_LITE/docs/api_reference_manual.html"/>
+          <file category="include" name="TARGET_KIT_T2G-B-H_LITE/"/>
+          <file category="source" name="TARGET_KIT_T2G-B-H_LITE/cybsp.c"/>
+          <file category="source"  name="Templates/main.c" attr="template" select="main"/>
+          <file category="source"  name="Templates/retarget_stdio.c" attr="template" select="Retarget STDIO"/>
+        </files>
+      </component>
+    </bundle>
+    <component generator="DeviceConfigurator" Cclass="Device Configurator" Cgroup="Device Configurator" Cversion="1.0.0">
+      <description>Device Configurator generated code</description>
+      <files>
+        <file category="other"  name="TARGET_KIT_T2G-B-H_LITE/config/design.modus" attr="config" version="1.0.0"/>
+        <file category="other"  name="TARGET_KIT_T2G-B-H_LITE/config/DeviceConfigurator.gpdsc" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+    <!-- VIO component for KIT_T2G-B-H_LITE -->
+    <component Cclass="CMSIS Driver" Cgroup="VIO" Csub="Board" Cvariant="KIT_T2G-B-H_LITE" Cversion="1.0.0" Capiversion="1.0.0" condition="KIT_T2G-B-H_LITE VIO">
+      <description>Virtual I/O implementation for KIT_T2G-B-H_LITE VIO</description>
+      <RTE_Components_h>
+        #define RTE_VIO_BOARD
+        #define RTE_VIO_KIT_T2G-B-H_LITE
+      </RTE_Components_h>
+      <files>
+        <file category="source" name="Drivers/vio_KIT_T2G-B-H_LITE.c"/>
+      </files>
+    </component>
+  </components>
+
+</package>
+

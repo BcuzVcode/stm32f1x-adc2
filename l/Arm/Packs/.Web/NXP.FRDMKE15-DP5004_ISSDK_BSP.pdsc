@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>FRDMKE15-DP5004_ISSDK_BSP</name>
+  <vendor>NXP</vendor>
+  <description>Middleware issdk Board Support Pack for FRDMKE15-DP5004</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="1.0.1" date="2023-10-25" deprecated="2023-10-25" replacement="NXP.FRDMKE15-DP5004_ISSDK_Examples">This pack is no longer maintained. The new pack has been released with "_Examples" suffix instead of "_BSP".</release>
+    <release version="1.0.0" date="2023-07-27">NXP CMSIS SBSP Packs based on MCUXpresso SDK 2.14.0</release>
+  </releases>
+  <keywords>
+    <keyword>Middleware Board Support Pack</keyword>
+  </keywords>
+  <requirements>
+    <packages>
+      <package name="ISSDK" vendor="NXP" version="1.0.1"/>
+      <package name="MKE15Z7_DFP" vendor="NXP" version="18.0.0"/>
+      <package name="CMSIS" vendor="ARM" version="5.8.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <boards>
+    <board vendor="NXP" name="FRDMKE15-DP5004">
+      <description>Freedom Development Board for Kinetis KE15 MCUs with sensor shield board FRDM-STBC-DP5004 having MPXx5004 Differential and Gauge, Integrated Analog Pressure Sensor</description>
+      <image small="boards/frdmke15z_dp5004/frdmke15z_dp5004.png"/>
+      <mountedDevice Dname="MKE15Z256xxx7" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MKE14Z128VLH7" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MKE14Z128VLL7" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MKE14Z256VLH7" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MKE14Z256VLL7" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MKE15Z128VLH7" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MKE15Z128VLL7" Dvendor="NXP:11"/>
+    </board>
+  </boards>
+  <conditions>
+    <condition id="device.MKE15Z7.internal_condition">
+      <accept Dname="MKE15Z256xxx7" Dvariant="MKE15Z256VLH7" Dvendor="NXP:11"/>
+      <accept Dname="MKE15Z256VLH7" Dvendor="NXP:11"/>
+      <accept Dname="MKE15Z256xxx7" Dvariant="MKE15Z256VLL7" Dvendor="NXP:11"/>
+      <accept Dname="MKE15Z256VLL7" Dvendor="NXP:11"/>
+      <accept Dname="MKE15Z128xxx7" Dvariant="MKE15Z128VLH7" Dvendor="NXP:11"/>
+      <accept Dname="MKE15Z128VLH7" Dvendor="NXP:11"/>
+      <accept Dname="MKE15Z128xxx7" Dvariant="MKE15Z128VLL7" Dvendor="NXP:11"/>
+      <accept Dname="MKE15Z128VLL7" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="BOARD_Project_Template.frdmke15z_dp5004.condition_id">
+      <require condition="allOf.device.MKE15Z7_startup, driver.lpuart, driver.port, driver.common, utility.debug_console, driver.gpio, driver.smc, component.lpuart_adapter, component.serial_manager_uart, component.serial_manager, device=MKE15Z7.internal_condition"/>
+    </condition>
+    <condition id="allOf.device.MKE15Z7_startup, driver.lpuart, driver.port, driver.common, utility.debug_console, driver.gpio, driver.smc, component.lpuart_adapter, component.serial_manager_uart, component.serial_manager, device=MKE15Z7.internal_condition">
+      <require Cclass="Device" Cgroup="Startup" Csub=""/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="port"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="smc"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart_adapter"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_uart"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require condition="device.MKE15Z7.internal_condition"/>
+    </condition>
+  </conditions>
+  <examples>
+    <example name="mpxv5004dp_interrupt" folder="boards/frdmke15z_dp5004/issdk_examples/sensors/mpxv5004dp/mpxv5004dp_interrupt" doc="readme.txt">
+      <description>The MPXV5004DP Interrupt example application demonstrates the use of the MPXV5004DP analog sensor with in ADC. The example demonstrates configuration of ADC0 and LPTMR0 reguired to get the Pressure Sample and read out samples at periodic intervals.</description>
+      <board name="FRDMKE15-DP5004" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/mpxv5004dp_interrupt.uvprojx"/>
+        <environment name="csolution" load="mpxv5004dp_interrupt.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="hostdemo_mpxv5004dp" folder="boards/frdmke15z_dp5004/issdk_examples/sensors/hostdemo/host_demo_template" doc="readme.txt">
+      <description>The MPXV5004DP FIFO example application demonstrates the use of the MPXV5004DP sensor in Buffered (FIFO) Mode.The example demonstrates configuration of all registers reguired to put the sensor in FIFO Mode and read out samples.The sensor reads samples and are buffered upto the configured Water Mark Level and then a Flag is set.The application consistently checks the Flag and when set, reads out all(count=Water Mark Level) samples.</description>
+      <board name="FRDMKE15-DP5004" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/hostdemo_mpxv5004dp.uvprojx"/>
+        <environment name="csolution" load="hostdemo_mpxv5004dp.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+  </examples>
+  <components>
+    <component Cclass="Sensors" Cgroup="ISSDK project template" Csub="frdmke15z_dp5004" Cversion="1.0.0" condition="BOARD_Project_Template.frdmke15z_dp5004.condition_id">
+      <description>Board_project_template frdmke15z_dp5004</description>
+      <files>
+        <file category="sourceC" attr="config" name="boards/frdmke15z_dp5004/project_template/board.c" version="1.0.0" projectpath="frdmke15z_dp5004/project_template"/>
+        <file category="header" attr="config" name="boards/frdmke15z_dp5004/project_template/board.h" version="1.0.0" projectpath="frdmke15z_dp5004/project_template"/>
+        <file category="sourceC" attr="config" name="boards/frdmke15z_dp5004/project_template/clock_config.c" version="1.0.0" projectpath="frdmke15z_dp5004/project_template"/>
+        <file category="header" attr="config" name="boards/frdmke15z_dp5004/project_template/clock_config.h" version="1.0.0" projectpath="frdmke15z_dp5004/project_template"/>
+        <file category="sourceC" attr="config" name="boards/frdmke15z_dp5004/project_template/pin_mux.c" version="1.0.0" projectpath="frdmke15z_dp5004/project_template"/>
+        <file category="header" attr="config" name="boards/frdmke15z_dp5004/project_template/pin_mux.h" version="1.0.0" projectpath="frdmke15z_dp5004/project_template"/>
+        <file category="sourceC" attr="config" name="boards/frdmke15z_dp5004/project_template/peripherals.c" version="1.0.0" projectpath="frdmke15z_dp5004/project_template"/>
+        <file category="header" attr="config" name="boards/frdmke15z_dp5004/project_template/peripherals.h" version="1.0.0" projectpath="frdmke15z_dp5004/project_template"/>
+        <file category="include" name="boards/frdmke15z_dp5004/project_template/"/>
+      </files>
+    </component>
+  </components>
+</package>

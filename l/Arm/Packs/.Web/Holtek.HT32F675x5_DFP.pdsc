@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.2"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Holtek</vendor>
+  <name>HT32F675x5_DFP</name>
+  <description>Holtek HT32F675x5 Series Device Support</description>
+  <url>https://mcu.holtek.com.tw/pack</url>
+  <!-- optional license file -->
+  <!--
+  <license>
+  </license>
+  -->
+
+  <releases>
+    <release version="1.0.4" date="2024-01-11">
+      Correct device name HT32F67595_128BGA to HT32F67595_120BGA.
+    </release>
+    <release version="1.0.3" date="2023-12-08">
+      Add ARMCMP0 for CP.
+    </release>
+    <release version="1.0.2" date="2023-11-13">
+      Adjust Flash Loader RAMsize setting to 256KB.
+    </release>
+    <release version="1.0.1" date="2023-11-08">
+      Update information.
+    </release>
+    <release version="1.0.0" date="2023-11-03">
+      First Release version of HT32F675x5 Device Family.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>HOLTEK</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>HT32F675x5</keyword>
+    <keyword>HT32F675</keyword>
+    <keyword>HT32</keyword>
+  </keywords>
+
+  <devices>
+
+    <!-- ************************  Series 'HT32F675x5'  **************************** -->
+    <family Dfamily="HT32F675x5 Series" Dvendor="Holtek:106">
+
+      <description>
+The Holtek HT32F675x5 device is a high performance, low power consumption 32-bit microcontroller based around an Arm Cortex-M33 processor core and with an Arm Cortex-M0+ co-processor core which runs the lower layer of the BLE and 2.4G protocol stack. The Cortex-M33 is a next-generation processor core which is tightly coupled with Nested Vectored Interrupt Controller (NVIC), SysTick timer, and including advanced debug support.
+The device operates at a frequency of up to 64 MHz with a Flash accelerator to obtain maximum efficiency. It provides up to 1024 KB encryptable in system Flash memory with 16KB cache controller for code/data storage, up to 256 KB of embedded SRAM memory for system operation and application program usage and up to 256KB of embedded ROM memory for preprogrammed embedded RTX-RTOS kernel, driver library, and BLE lower layer protocol stack software. A variety of peripherals, such as BLEC, 2P4GC, DMAC, STTM, GPTM, WDT, RTC, USB, SPI, DSPI, QSPI, UART, I2C, SCI, IrDA, I2S, PCM, AES128, TRNG, QEI, KBC, ADC, TSEN and SW-DP (Serial Wire Debug Port), etc., are also implemented in the device. Several power saving modes provide the flexibility for maximum optimization between wake-up latency and power consumption, an especially important consideration in low power applications.
+The above features ensure that the device is suitable for use in a wide range of BLE products such as handheld products, health care products, home appliances, smart device information beacons, data loggers, human interface device service, etc.
+      </description>
+      <subFamily DsubFamily="HT32F675x5 CP">
+        <device Dname="ARMCM0P">
+          <processor Dcore="Cortex-M0+" DcoreVersion="r0p1" Dfpu="NO_FPU" Dmpu="NO_MPU" Dendian="Configurable" Dclock="10000000"/>
+          <compile header="Device/Include/ARMCM0plus.h" define="ARMCM0P"/>
+        </device>
+      </subFamily>
+
+      <!-- ************************  Series 'HT32F67575'  **************************** -->
+      <subFamily DsubFamily="HT32F67575">
+        <processor Pname="CM33" Dcore="Cortex-M33" DcoreVersion="r0p0" Dfpu="SP_FPU" Dmpu="MPU" Ddsp="DSP" Dtz="NO_TZ" Dendian="Configurable" Dclock="64000000"/>
+
+        <compile Pname="CM33" header="Device/Include/ARMCM33_DSP_FP.h" define=""/>
+
+        <!--<debug Pname="CM33" svd="SVD/ht32f675x5_cm33.svd"/>-->
+
+        <!-- *************************  Device 'HT32F67575_40QFN'  ***************************** -->
+        <device Dname="HT32F67575_40QFN">
+          <memory name="IROM1" access="rwx" start="0x10000000" size="0x80000" startup="1" default="1"/>
+          <memory name="IRAM1" access="rwx" start="0x20000000" size="0x40000" init="0" default="1"/>
+
+          <algorithm Pname="CM33" name="Flash/HT32F675x5_FLASH.FLM" start="0x10000000" size="0x100000" RAMstart="0x20000000" RAMsize="0x00040000" default="1"/>
+
+          <feature type="VCC" n="1.8" m="3.6"/>
+          <feature type="Temp" n="-40" m="85"/>
+          <feature type="PowerMode" n="4" name="Active,Sleep,Deep-Sleep,Hibernation"/>
+          <feature type="ExtInt" n="22"/>
+          <feature type="ADC" n="8" m="14"/>
+          <feature type="Timer" n="4" m="16" name="GPTM"/>
+          <feature type="WDT" n="2"/>
+          <feature type="USBD" n="1" name="Full-Speed USB Device"/>
+          <feature type="I2S" n="1"/>
+          <feature type="UART" n="3"/>
+          <feature type="SPI" n="2"/>
+          <feature type="I2C" n="1"/>
+          <feature type="IOs" n="22"/>
+          <feature type="QFN" n="40" name="QFN"/>
+          <feature type="Other" n="1" name="BLEC"/>
+          <feature type="Other" n="1" name="2P4GC"/>
+          <feature type="Other" n="1" name="DMAC"/>
+          <feature type="Other" n="1" name="STTM"/>
+          <feature type="Other" n="1" name="DSPI"/>
+          <feature type="Other" n="1" name="QSPI"/>
+          <feature type="Other" n="1" name="HSQPI"/>
+          <feature type="Other" n="1" name="IrDA"/>
+          <feature type="Other" n="1" name="PCM"/>
+          <feature type="Other" n="1" name="TRNG"/>
+          <feature type="Other" n="1" name="QEI"/>
+          <feature type="Other" n="1" name="KBC"/>
+          <feature type="Other" n="1" name="TSEN"/>
+        </device>
+      </subFamily>
+      <!-- ************************  Series 'HT32F67595'  **************************** -->
+      <subFamily DsubFamily="HT32F67595">
+        <processor Pname="CM33" Dcore="Cortex-M33" DcoreVersion="r0p0" Dfpu="SP_FPU" Dmpu="MPU" Ddsp="DSP" Dtz="NO_TZ" Dendian="Configurable" Dclock="64000000"/>
+        <!--<processor Pname="CM0P" Dcore="Cortex-M0+" DcoreVersion="r0p1" Dfpu="NO_FPU" Dmpu="NO_MPU" Dendian="Configurable" Dclock="16000000"/>-->
+
+        <compile Pname="CM33" header="Device/Include/ARMCM33_DSP_FP.h" define=""/>
+        <!--<compile Pname="CM0P" header="Device/Include/ARMCM0plus.h define="""/>-->
+
+        <!--<debug Pname="CM33" svd="SVD/ht32f675x5_cm33.svd"/>-->
+        <!--<debug Pname="CM0P" svd="SVD/ht32f675x5_cm0p.svd"/>-->
+
+        <!-- *************************  Device 'HT32F67595_120BGA'  ***************************** -->
+        <device Dname="HT32F67595_120BGA">
+          <memory name="IROM1" access="rwx" start="0x10000000" size="0x100000" startup="1" default="1"/>
+          <memory name="IRAM1" access="rwx" start="0x20000000" size="0x40000" init="0" default="1"/>
+
+          <algorithm Pname="CM33" name="Flash/HT32F675x5_FLASH.FLM" start="0x10000000" size="0x100000" RAMstart="0x20000000" RAMsize="0x00040000" default="1"/>
+          <!--<algorithm Pname="CM0P" name="Flash/HT32F675x5_FLASH.FLM" start="0x10000000" size="0x100000" default="1"/>-->
+
+          <feature type="VCC" n="1.8" m="3.6"/>
+          <feature type="Temp" n="-40" m="85"/>
+          <feature type="PowerMode" n="4" name="Active,Sleep,Deep-Sleep,Hibernation"/>
+          <feature type="ExtInt" n="48"/>
+          <feature type="ADC" n="16" m="14"/>
+          <feature type="Timer" n="4" m="16" name="GPTM"/>
+          <feature type="WDT" n="2"/>
+          <feature type="USBD" n="1" name="Full-Speed USB Device"/>
+          <feature type="I2S" n="1"/>
+          <feature type="UART" n="3"/>
+          <feature type="SPI" n="2"/>
+          <feature type="I2C" n="1"/>
+          <feature type="IOs" n="48"/>
+          <feature type="QFP" n="120" name="BGA"/>
+          <feature type="Other" n="1" name="BLEC"/>
+          <feature type="Other" n="1" name="2P4GC"/>
+          <feature type="Other" n="1" name="DMAC"/>
+          <feature type="Other" n="1" name="STTM"/>
+          <feature type="Other" n="1" name="DSPI"/>
+          <feature type="Other" n="1" name="QSPI"/>
+          <feature type="Other" n="1" name="HSQPI"/>
+          <feature type="Other" n="1" name="IrDA"/>
+          <feature type="Other" n="1" name="PCM"/>
+          <feature type="Other" n="1" name="TRNG"/>
+          <feature type="Other" n="1" name="QEI"/>
+          <feature type="Other" n="1" name="KBC"/>
+          <feature type="Other" n="1" name="TSEN"/>
+        </device>
+      </subFamily>
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- Device Conditions -->
+    <condition id="HT32F675x5">
+      <description>Holtek HT32F675x5 Devices</description>
+      <require Dvendor="Holtek:106" Dname="HT32F675*5*"/>
+      <require Cclass="Device" Cgroup="Startup" />
+    </condition>
+
+    <condition id="HT32F675x5 ARMCC">
+      <description>Holtek HT32F675x5 Series devices</description>
+      <require Dvendor="Holtek:106" Dname="HT32F675*5*"/>
+      <require condition="Compiler ARMCC"/>
+    </condition>
+
+    <condition id="HT32F675x5_M33">
+      <description>Holtek HT32F675x5 Devices (M33 Core)</description>
+      <require condition="HT32F675x5"/>
+      <require Dcore="Cortex-M33"/>
+    </condition>
+    <condition id="HT32F675x5_M0+">
+      <description>Holtek HT32F675x5 Devices (M0+ Core)</description>
+      <require condition="HT32F675x5"/>
+      <require Dcore="Cortex-M0+"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- HT32F675x5_firmware_library -->
+
+    <!-- Utilities HT32F675x5 -->
+
+    <!-- Config ht32f675x5 -->
+
+    <!-- Startup HT32F675x5  -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="HT32F675x5_M33">
+      <description>System Startup for Holtek HT32F675x5 M33 Devices</description>
+      <files>
+        <!-- include folder -->
+        <file category="include" name="Device/Include/"/>
+        <file category="header" name="Device/Include/ARMCM33_DSP_FP.h"/>
+        <!-- startup file -->
+        <file category="source" name="Device/Source/ARM/startup_ARMCM33.s" attr="config" version="1.0.0" condition="HT32F675x5 ARMCC"/>
+        <!-- system file -->
+        <file category="source" name="Device/Source/system_ARMCM33.c" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+  </components>
+
+  <!-- <boards>
+
+  </boards> -->
+
+</package>

@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  
+    <name>DA1470x_DFP</name>
+    <description>Dialog Semiconductor BLE ARM devices DA1470x Device Family Pack.</description>
+    <vendor>DialogSemiconductor</vendor>
+    <url>https://s3.eu-central-1.amazonaws.com/lpccs-docs.renesas.com/CMSIS/</url>
+    <supportContact>support.dialog-semiconductor.com</supportContact>
+	<license>License/license.txt</license>
+
+    <keywords>
+        <keyword>DeviceFamilyPack</keyword>
+        <keyword>Dialog</keyword>
+        <keyword>Dialog Semiconductor</keyword>
+        <keyword>DA1470x</keyword>
+        <keyword>DA14701</keyword>
+        <keyword>DA14705</keyword>
+        <keyword>DA14706</keyword>
+        <keyword>DA14708</keyword>
+        <keyword>BLE</keyword>
+    </keywords>
+
+    <releases>
+        <release version="1.2.0" date="2022-06-24">
+        Date: 24.06.2022
+        Added 705 and 708
+        changed SNC max clock
+        </release>
+        <release version="1.1.1" date="2022-06-21">
+        Date: 21.06.2022
+        ported to SDK 10.2.4.44
+        </release>
+        <release version="1.1.0" date="2022-05-30">
+        Date: 30.05.2022
+        Added 14706
+        Update datsheet to V3.0
+        </release>
+        <release version="1.0.4" date="2022-05-20">
+        Date: 20.05.2022
+        new repro URL
+        </release>
+        <release version="1.0.3" date="2022-05-12">
+        Date: 12.05.2022
+        removed warning`
+        </release>
+        <release version="1.0.2" date="2022-05-11">
+        Date: 11.05.2022
+        Fixed more issue with IAR
+        </release>
+        <release version="1.0.1" date="2022-05-09">
+        Date: `09.05.2022
+        Fixed issue with IAR
+        </release>
+        <release version="1.0.0" date="2022-05-03">
+        Date: `03.05.2022
+        First Release
+        </release>
+        <release version="0.0.5" date="2022-04-28">
+        Date: `28.04.2022
+        Added IAR support
+        </release>
+        <release version="0.0.4" date="2022-04-14">
+        Date: `14.04.2022
+        Added SNC vector table
+        Based on Cobalt SDK nightly 3-28
+        </release>
+        <release version="0.0.3" date="2022-04-08">
+        Date: `08.04.2022
+        Added sdk_defs
+        </release>
+        <release version="0.0.2" date="2022-04-05">
+        Date: `05.04.2022
+        Added sdk_defs
+        </release>
+        <release version="0.0.1" date="2022-03-22">
+        Date: `29.03.2022
+        Initial version.
+        </release>
+    </releases>
+  
+  <!-- devices section (mandatory for Device Family Packs) -->
+    <devices>
+
+        
+	   <family Dfamily="DA1470x Series" Dvendor="Dialog Semiconductor:113">
+       
+		    <processor Dcore="Cortex-M33"
+                       DcoreVersion="r0p2"
+                       Dendian="Little-endian"
+                       Dclock="160000000"
+                       Dtz="NO_TZ"
+                       Dfpu="SP_FPU"
+                       Dmpu="MPU"
+                       Pname="Main"/>
+       
+		   <processor Pname="SNC"
+                      Dcore="Cortex-M0+"
+					  DcoreVersion="r0p2"
+					  Dendian="Little-endian"
+					  Dclock="32000000"
+                      Dtz="NO_TZ"
+					  Dfpu="0"
+					  Dmpu="0" />
+                      
+			<description>The DA1470x is a family of multi-core wireless microcontrollers, combining the latest Arm 
+                         Cortex M33TM application processor with floating-point unit, advanced power management functionality,
+                         a Graphic Processing Unit (GPU) for advanced graphics processing, a cryptographic security engine, 
+                         analog and digital peripherals, a dedicated sensor node controller, and a software configurable protocol engine 
+                         with a radio that is compliant to the Bluetooth® 5.2 low energy standard. </description>
+
+            <!-- *************************  Device 'DA14701'  ***************************** -->			  
+            
+			<device Dname="DA1470x">
+                <book name="http://infocenter.arm.com/help/topic/com.arm.doc.100235_0004_00_en/index.html" title="Cortex-M33 Device Generic Users Guide"/>
+				<book name="Documents/DA1470x_Datasheet_3v0.pdf" title="DA1470x - Data Sheet"/>  
+				<description>The DA1470x has a SRAM of 1,5 MB with retention capabilities, upto 79 Configurable GPIO pins, a 2D GPU</description>
+                <compile header="Device/Include/DA1470x.h"/>
+                <compile header="Device/Include/DA1470x-00.h"/>
+                <compile header="Device/Include/system_DA1470x.h"/>
+				<debug  svd="Device/SVD/da1470x.svd"/>
+				<memory name="IROM1" access ="rx" start="0x00000000" size="0x10000"  startup="1" default="1"/>
+				<memory name="IRAM1" access ="rw" start="0x20000000" size="0x180000" init="0"    default="1"/>
+			</device>
+
+			<device Dname="DA14701">
+                <book name="http://infocenter.arm.com/help/topic/com.arm.doc.100235_0004_00_en/index.html" title="Cortex-M33 Device Generic Users Guide"/>
+				<book name="Documents/DA1470x_Datasheet_3v0.pdf" title="DA1470x - Data Sheet"/>  
+				<description>The DA14701 has a SRAM of 1,5 MB with retention capabilities, upto 79 Configurable GPIO pins and a 2D GPU, JDI/MIPI display interface with 2 lanes, a SDIO/eMMC interface and external PSRAM support with data cache</description>
+                <compile header="Device/Include/DA1470x.h"/>
+                <compile header="Device/Include/DA1470x-00.h"/>
+                <compile header="Device/Include/system_DA1470x.h"/>
+				<debug  svd="Device/SVD/da1470x.svd"/>
+				<memory name="IROM1" access ="rx" start="0x00000000" size="0x10000"  startup="1" default="1"/>
+				<memory name="IRAM1" access ="rw" start="0x20000000" size="0x180000" init="0"    default="1"/>
+			</device>
+
+			<device Dname="DA14705">
+                <book name="http://infocenter.arm.com/help/topic/com.arm.doc.100235_0004_00_en/index.html" title="Cortex-M33 Device Generic Users Guide"/>
+				<book name="Documents/DA1470x_Datasheet_3v0.pdf" title="DA1470x - Data Sheet"/>  
+				<description>The DA14705 has a SRAM of 1,5 MB with retention capabilities, upto 79 Configurable GPIO pins and a 2D GPU, JDI/MIPI display interface with 2 lanes, charger and boost DCDC converter </description>
+                <compile header="Device/Include/DA1470x.h"/>
+                <compile header="Device/Include/DA1470x-00.h"/>
+                <compile header="Device/Include/system_DA1470x.h"/>
+				<debug  svd="Device/SVD/da1470x.svd"/>
+				<memory name="IROM1" access ="rx" start="0x00000000" size="0x10000"  startup="1" default="1"/>
+				<memory name="IRAM1" access ="rw" start="0x20000000" size="0x180000" init="0"    default="1"/>
+			</device>
+            
+			<device Dname="DA14706">
+                <book name="http://infocenter.arm.com/help/topic/com.arm.doc.100235_0004_00_en/index.html" title="Cortex-M33 Device Generic Users Guide"/>
+				<book name="Documents/DA1470x_Datasheet_3v0.pdf" title="DA1470x - Data Sheet"/>  
+				<description>The DA14706 has a SRAM of 1,5 MB with retention capabilities, upto 79 Configurable GPIO pins and a 2D GPU, JDI display interface, JEITA Charger, a boost DCDC converter and external PSRAM support with data cache</description>
+                <compile header="Device/Include/DA1470x.h"/>
+                <compile header="Device/Include/DA1470x-00.h"/>
+                <compile header="Device/Include/system_DA1470x.h"/>
+				<debug  svd="Device/SVD/da1470x.svd"/>
+				<memory name="IROM1" access ="rx" start="0x00000000" size="0x10000"  startup="1" default="1"/>
+				<memory name="IRAM1" access ="rw" start="0x20000000" size="0x180000" init="0"    default="1"/>
+			</device>
+
+			<device Dname="DA14708">
+                <book name="http://infocenter.arm.com/help/topic/com.arm.doc.100235_0004_00_en/index.html" title="Cortex-M33 Device Generic Users Guide"/>
+				<book name="Documents/DA1470x_Datasheet_3v0.pdf" title="DA1470x - Data Sheet"/>  
+				<description>The DA14708 has a SRAM of 1,5 MB with retention capabilities, upto 79 Configurable GPIO pins and a 2D GPU, JDI/MIPI display interface with 2 lanes, JEITA Charger, a boost DCDC convertera SDIO/eMMC interface and external PSRAM support with data cache</description>
+                <compile header="Device/Include/DA1470x.h"/>
+                <compile header="Device/Include/DA1470x-00.h"/>
+                <compile header="Device/Include/system_DA1470x.h"/>
+				<debug  svd="Device/SVD/da1470x.svd"/>
+				<memory name="IROM1" access ="rx" start="0x00000000" size="0x10000"  startup="1" default="1"/>
+				<memory name="IRAM1" access ="rw" start="0x20000000" size="0x180000" init="0"    default="1"/>
+			</device>
+			
+		</family>
+		
+    </devices>
+  <!-- conditions section (optional for all Software Packs)-->
+  
+    <conditions>
+        <condition id="CMSIS-Core">
+          <description>True if the component Device Startup is selected</description>
+          <require Cclass="Device" Cgroup="Startup"/>
+        </condition>
+       
+      	<!-- Compiler Conditions -->
+        <condition id="ARM Compiler">
+          <require Tcompiler="ARMCC"/>
+        </condition>
+        <condition id="IAR Compiler">
+          <require Tcompiler="IAR"/>
+        </condition>
+        <condition id="GCC Compiler">
+          <require Tcompiler="GCC"/>
+        </condition>
+        
+   		<condition id="DA1470x">
+			<!-- conditions selecting Devices -->
+			<description>Dialog Semiconductor DA1470x Series devices</description>
+			<accept Dvendor="Dialog Semiconductor:113" Dname="DA1470x"/>
+		</condition>		
+
+   		<condition id="DA14701">
+			<!-- conditions selecting Devices -->
+			<description>Dialog Semiconductor DA14701 device</description>
+			<accept Dvendor="Dialog Semiconductor:113" Dname="DA14701"/>
+		</condition>		
+
+   		<condition id="DA14705">
+			<!-- conditions selecting Devices -->
+			<description>Dialog Semiconductor DA14705 device</description>
+			<accept Dvendor="Dialog Semiconductor:113" Dname="DA14705"/>
+		</condition>		
+
+   		<condition id="DA14706">
+			<!-- conditions selecting Devices -->
+			<description>Dialog Semiconductor DA14706 device</description>
+			<accept Dvendor="Dialog Semiconductor:113" Dname="DA14706"/>
+		</condition>		
+        
+   		<condition id="DA14708">
+			<!-- conditions selecting Devices -->
+			<description>Dialog Semiconductor DA14708 device</description>
+			<accept Dvendor="Dialog Semiconductor:113" Dname="DA14708"/>
+		</condition>		
+
+	    <!-- DA1470x Conditions -->
+		<condition id="DA1470x device Main core and CMSIS">
+		  <!-- defines the condition with the ID "CMSIS-CORE" -->
+            <description>Dialog Semiconductor DA14701 CMSIS Main device</description>
+            <require condition="CMSIS-Core"/>
+            <require condition="DA1470x"/>
+            <require Dvendor="Dialog Semiconductor:113" Dname="DA1470x" Pname="Main"/>
+		</condition>
+		<condition id="DA1470x device SNC core and CMSIS">
+		  <!-- defines the condition with the ID "CMSIS-CORE" -->
+            <description>Dialog Semiconductor DA14701 CMSIS SNC device</description>
+            <require condition="CMSIS-Core"/>
+            <require condition="DA1470x"/>
+            <require Dvendor="Dialog Semiconductor:113" Dname="DA1470x" Pname="SNC"/>
+		</condition>
+
+	    <!-- DA14701 Conditions -->
+		<condition id="DA14701 device Main core and CMSIS">
+		  <!-- defines the condition with the ID "CMSIS-CORE" -->
+            <description>Dialog Semiconductor DA14701 CMSIS Main device</description>
+            <require condition="CMSIS-Core"/>
+            <require condition="DA14701"/>
+            <require Dvendor="Dialog Semiconductor:113" Dname="DA14701" Pname="Main"/>
+		</condition>
+		<condition id="DA14701 device SNC core and CMSIS">
+		  <!-- defines the condition with the ID "CMSIS-CORE" -->
+            <description>Dialog Semiconductor DA14701 CMSIS SNC device</description>
+            <require condition="CMSIS-Core"/>
+            <require condition="DA14701"/>
+            <require Dvendor="Dialog Semiconductor:113" Dname="DA14701" Pname="SNC"/>
+		</condition>
+
+	    <!-- DA14705 Conditions -->
+		<condition id="DA14705 device Main core and CMSIS">
+		  <!-- defines the condition with the ID "CMSIS-CORE" -->
+            <description>Dialog Semiconductor DA14705 CMSIS Main device</description>
+            <require condition="CMSIS-Core"/>
+            <require condition="DA14705"/>
+            <require Dvendor="Dialog Semiconductor:113" Dname="DA14705" Pname="Main"/>
+		</condition>
+		<condition id="DA14705 device SNC core and CMSIS">
+		  <!-- defines the condition with the ID "CMSIS-CORE" -->
+            <description>Dialog Semiconductor DA14705 CMSIS SNC device</description>
+            <require condition="CMSIS-Core"/>
+            <require condition="DA14705"/>
+            <require Dvendor="Dialog Semiconductor:113" Dname="DA14705" Pname="SNC"/>
+		</condition>
+
+	    <!-- DA14706 Conditions -->
+		<condition id="DA14706 device Main core and CMSIS">
+		  <!-- defines the condition with the ID "CMSIS-CORE" -->
+            <description>Dialog Semiconductor DA14706 CMSIS Main device</description>
+            <require condition="CMSIS-Core"/>
+            <require condition="DA14706"/>
+            <require Dvendor="Dialog Semiconductor:113" Dname="DA14706" Pname="Main"/>
+		</condition>
+		<condition id="DA14706 device SNC core and CMSIS">
+		  <!-- defines the condition with the ID "CMSIS-CORE" -->
+            <description>Dialog Semiconductor DA14706 CMSIS SNC device</description>
+            <require condition="CMSIS-Core"/>
+            <require condition="DA14706"/>
+            <require Dvendor="Dialog Semiconductor:113" Dname="DA14706" Pname="SNC"/>
+		</condition>
+
+	    <condition id="Startup">
+            <description>Startup Component selected.</description>
+            <require condition="CMSIS-Core"/>
+            <accept Dvendor="Dialog Semiconductor:113" Dname="*"/>
+        </condition>
+
+	    <!-- DA14708 Conditions -->
+		<condition id="DA14708 device Main core and CMSIS">
+		  <!-- defines the condition with the ID "CMSIS-CORE" -->
+            <description>Dialog Semiconductor DA14708 CMSIS Main device</description>
+            <require condition="CMSIS-Core"/>
+            <require condition="DA14708"/>
+            <require Dvendor="Dialog Semiconductor:113" Dname="DA14708" Pname="Main"/>
+		</condition>
+		<condition id="DA14708 device SNC core and CMSIS">
+		  <!-- defines the condition with the ID "CMSIS-CORE" -->
+            <description>Dialog Semiconductor DA14708 CMSIS SNC device</description>
+            <require condition="CMSIS-Core"/>
+            <require condition="DA14708"/>
+            <require Dvendor="Dialog Semiconductor:113" Dname="DA14708" Pname="SNC"/>
+		</condition>
+
+    </conditions>
+
+  <!-- component section (optional for all Software Packs)-->
+  
+	<components>
+    
+        <component Cclass="Device" Cversion="10.0.12" condition="Startup" Cgroup="StartupConfig">
+      <description>Startup</description>
+      <files>
+        <file category="header" name="Device/Include/sdk_defs.h" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    
+		<component Cclass="Device" Cversion="1.0.0" Cgroup="Startup" condition="DA1470x device Main core and CMSIS">
+			<description>System startup for Dialog Semiconductor DA1470X device</description>
+			<files>
+				<file category="include" name="Device/Include/"/>
+                <file category="header"  name="Device/Include/sdk_defs.h"                                  version="1.0.0"/>
+                <file category="header"  name="Device/Include/bsp_definitions.h"                           version="1.0.0"/>
+                <file category="header"  name="Device/Include/bsp_device_definitions.h"                    version="1.0.0"/>
+                <file category="header"  name="Device/Include/bsp_device_definitions_internal.h"           version="1.0.0"/>
+                <file category="header"  name="Device/Include/DA1470x.h"                                   version="1.0.0"/>
+                <file category="header"  name="Device/Include/DA1470x-00.h"                                version="1.0.0"/>
+                <file category="sourceC" name="Device/Source/per_ex_hard_fault.c"            attr="config" version="1.0.0"/>
+                <file category="sourceC" name="Device/Source/system_DA1470x.c"               attr="config" version="1.0.0"/>
+                <file category="header"  name="Device/Include/system_DA1470x.h"                            version="1.0.0"/>
+                <file category="header"  name="Device/Include/DataAccess.h" 	                           version="1.0.0"/>
+                
+                <file category="source"  name="Device/Source/ARM/arm_startup_da1470x.S"             attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_deepsleep.S"                   attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_exception_handlers.S"          attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_vector_table_da1470x.S"        attr="config" version="1.0.0" condition="ARM Compiler"/>
+
+                <file category="source"  name="Device/Source/GCC/gcc_startup_da1470x.S"             attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_vector_table_da1470x.S"        attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_deepsleep.S"                   attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_exception_handlers.S"          attr="config" version="1.0.0" condition="GCC Compiler"/>
+
+                <file category="source"  name="Device/Source/IAR/iar_startup_da1470x.S"             attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_deepsleep.S"                   attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_exception_handlers.S"          attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_vector_table_da1470x.S"        attr="config" version="1.0.0" condition="IAR Compiler"/>
+			</files>		
+		</component>
+        
+		<component Cclass="Device" Cversion="1.0.0" Cgroup="Startup" condition="DA1470x device SNC core and CMSIS">
+			<description>System startup for Dialog Semiconductor DA1470X device</description>
+			<files>
+				<file category="include" name="Device/Include/"/>
+                <file category="header"  name="Device/Include/sdk_defs.h"                                  version="1.0.0"/>
+                <file category="header"  name="Device/Include/bsp_definitions.h"                           version="1.0.0"/>
+                <file category="header"  name="Device/Include/bsp_device_definitions.h"                    version="1.0.0"/>
+                <file category="header"  name="Device/Include/bsp_device_definitions_internal.h"           version="1.0.0"/>
+                <file category="header"  name="Device/Include/DA1470x.h"                                   version="1.0.0"/>
+                <file category="header"  name="Device/Include/DA1470x-00.h"                                version="1.0.0"/>
+                <file category="sourceC" name="Device/Source/per_ex_hard_fault.c"            attr="config" version="1.0.0"/>
+                <file category="sourceC" name="Device/Source/system_da1470x-snc.c"           attr="config" version="1.0.0"/>
+                <file category="header"  name="Device/Include/system_DA1470x.h"                            version="1.0.0"/>
+                <file category="header"  name="Device/Include/DataAccess.h" 	                           version="1.0.0"/>
+
+                <file category="source"  name="Device/Source/ARM/arm_startup_da1470x-snc.S"      attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_deepsleep-snc.S"            attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_exception_handlers-snc.S"   attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_vector_table_da1470x-snc.S" attr="config" version="1.0.0" condition="ARM Compiler"/>
+
+                <file category="source"  name="Device/Source/GCC/gcc_startup_da1470x-snc.S"      attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_deepsleep-snc.S"            attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_exception_handlers-snc.S"   attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_vector_table_da1470x-snc.S" attr="config" version="1.0.0" condition="GCC Compiler"/>
+
+                <file category="source"  name="Device/Source/IAR/iar_startup_da1470x-snc.S"      attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_deepsleep-snc.S"            attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_exception_handlers-snc.S"   attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_vector_table_da1470x-snc.S" attr="config" version="1.0.0" condition="IAR Compiler"/>
+			</files>		
+		</component>
+
+		<component Cclass="Device" Cversion="1.0.0" Cgroup="Startup" condition="DA14701 device Main core and CMSIS">
+			<description>System startup for Dialog Semiconductor DA14701 device</description>
+			<files>
+				<file category="include" name="Device/Include/"/>
+                <file category="header"  name="Device/Include/sdk_defs.h"                                  version="1.0.0"/>
+                <file category="header"  name="Device/Include/bsp_definitions.h"                           version="1.0.0"/>
+                <file category="header"  name="Device/Include/bsp_device_definitions.h"                    version="1.0.0"/>
+                <file category="header"  name="Device/Include/bsp_device_definitions_internal.h"           version="1.0.0"/>
+                <file category="header"  name="Device/Include/DA1470x.h"                                   version="1.0.0"/>
+                <file category="header"  name="Device/Include/DA1470x-00.h"                                version="1.0.0"/>
+                <file category="sourceC" name="Device/Source/per_ex_hard_fault.c"            attr="config" version="1.0.0"/>
+                <file category="sourceC" name="Device/Source/system_DA1470x.c"               attr="config" version="1.0.0"/>
+                <file category="header"  name="Device/Include/system_DA1470x.h"                            version="1.0.0"/>
+                <file category="header"  name="Device/Include/DataAccess.h" 	                           version="1.0.0"/>
+                
+                <file category="source"  name="Device/Source/ARM/arm_startup_da1470x.S"             attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_deepsleep.S"                   attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_exception_handlers.S"          attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_vector_table_da1470x.S"        attr="config" version="1.0.0" condition="ARM Compiler"/>
+
+                <file category="source"  name="Device/Source/GCC/gcc_startup_da1470x.S"             attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_vector_table_da1470x.S"        attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_deepsleep.S"                   attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_exception_handlers.S"          attr="config" version="1.0.0" condition="GCC Compiler"/>
+
+                <file category="source"  name="Device/Source/IAR/iar_startup_da1470x.S"             attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_deepsleep.S"                   attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_exception_handlers.S"          attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_vector_table_da1470x.S"        attr="config" version="1.0.0" condition="IAR Compiler"/>
+			</files>		
+		</component>
+        
+		<component Cclass="Device" Cversion="1.0.0" Cgroup="Startup" condition="DA14701 device SNC core and CMSIS">
+			<description>System startup for Dialog Semiconductor DA14701 device</description>
+			<files>
+				<file category="include" name="Device/Include/"/>
+                <file category="header"  name="Device/Include/sdk_defs.h"                                  version="1.0.0"/>
+                <file category="header"  name="Device/Include/bsp_definitions.h"                           version="1.0.0"/>
+                <file category="header"  name="Device/Include/bsp_device_definitions.h"                    version="1.0.0"/>
+                <file category="header"  name="Device/Include/bsp_device_definitions_internal.h"           version="1.0.0"/>
+                <file category="header"  name="Device/Include/DA1470x.h"                                   version="1.0.0"/>
+                <file category="header"  name="Device/Include/DA1470x-00.h"                                version="1.0.0"/>
+                <file category="sourceC" name="Device/Source/per_ex_hard_fault.c"            attr="config" version="1.0.0"/>
+                <file category="sourceC" name="Device/Source/system_da1470x-snc.c"           attr="config" version="1.0.0"/>
+                <file category="header"  name="Device/Include/system_DA1470x.h"                            version="1.0.0"/>
+                <file category="header"  name="Device/Include/DataAccess.h" 	                           version="1.0.0"/>
+
+                <file category="source"  name="Device/Source/ARM/arm_startup_da1470x-snc.S"      attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_deepsleep-snc.S"            attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_exception_handlers-snc.S"   attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_vector_table_da1470x-snc.S" attr="config" version="1.0.0" condition="ARM Compiler"/>
+
+                <file category="source"  name="Device/Source/GCC/gcc_startup_da1470x-snc.S"      attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_deepsleep-snc.S"            attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_exception_handlers-snc.S"   attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_vector_table_da1470x-snc.S" attr="config" version="1.0.0" condition="GCC Compiler"/>
+
+                <file category="source"  name="Device/Source/IAR/iar_startup_da1470x-snc.S"      attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_deepsleep-snc.S"            attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_exception_handlers-snc.S"   attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_vector_table_da1470x-snc.S" attr="config" version="1.0.0" condition="IAR Compiler"/>
+			</files>		
+		</component>
+
+
+		<component Cclass="Device" Cversion="1.0.0" Cgroup="Startup" condition="DA14705 device Main core and CMSIS">
+			<description>System startup for Dialog Semiconductor DA14705 device</description>
+			<files>
+				<file category="include" name="Device/Include/"/>
+                <file category="header"  name="Device/Include/sdk_defs.h"                                  version="1.0.0"/>
+                <file category="header"  name="Device/Include/bsp_definitions.h"                           version="1.0.0"/>
+                <file category="header"  name="Device/Include/bsp_device_definitions.h"                    version="1.0.0"/>
+                <file category="header"  name="Device/Include/bsp_device_definitions_internal.h"           version="1.0.0"/>
+                <file category="header"  name="Device/Include/DA1470x.h"                                   version="1.0.0"/>
+                <file category="header"  name="Device/Include/DA1470x-00.h"                                version="1.0.0"/>
+                <file category="sourceC" name="Device/Source/per_ex_hard_fault.c"            attr="config" version="1.0.0"/>
+                <file category="sourceC" name="Device/Source/system_DA1470x.c"               attr="config" version="1.0.0"/>
+                <file category="header"  name="Device/Include/system_DA1470x.h"                            version="1.0.0"/>
+                <file category="header"  name="Device/Include/DataAccess.h" 	                           version="1.0.0"/>
+                
+                <file category="source"  name="Device/Source/ARM/arm_startup_da1470x.S"             attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_deepsleep.S"                   attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_exception_handlers.S"          attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_vector_table_da1470x.S"        attr="config" version="1.0.0" condition="ARM Compiler"/>
+
+                <file category="source"  name="Device/Source/GCC/gcc_startup_da1470x.S"             attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_vector_table_da1470x.S"        attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_deepsleep.S"                   attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_exception_handlers.S"          attr="config" version="1.0.0" condition="GCC Compiler"/>
+
+                <file category="source"  name="Device/Source/IAR/iar_startup_da1470x.S"             attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_deepsleep.S"                   attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_exception_handlers.S"          attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_vector_table_da1470x.S"        attr="config" version="1.0.0" condition="IAR Compiler"/>
+			</files>		
+		</component>
+        
+		<component Cclass="Device" Cversion="1.0.0" Cgroup="Startup" condition="DA14705 device SNC core and CMSIS">
+			<description>System startup for Dialog Semiconductor DA14705 device</description>
+			<files>
+				<file category="include" name="Device/Include/"/>
+                <file category="header"  name="Device/Include/sdk_defs.h"                                  version="1.0.0"/>
+                <file category="header"  name="Device/Include/bsp_definitions.h"                           version="1.0.0"/>
+                <file category="header"  name="Device/Include/bsp_device_definitions.h"                    version="1.0.0"/>
+                <file category="header"  name="Device/Include/bsp_device_definitions_internal.h"           version="1.0.0"/>
+                <file category="header"  name="Device/Include/DA1470x.h"                                   version="1.0.0"/>
+                <file category="header"  name="Device/Include/DA1470x-00.h"                                version="1.0.0"/>
+                <file category="sourceC" name="Device/Source/per_ex_hard_fault.c"            attr="config" version="1.0.0"/>
+                <file category="sourceC" name="Device/Source/system_da1470x-snc.c"           attr="config" version="1.0.0"/>
+                <file category="header"  name="Device/Include/system_DA1470x.h"                            version="1.0.0"/>
+                <file category="header"  name="Device/Include/DataAccess.h" 	                           version="1.0.0"/>
+
+                <file category="source"  name="Device/Source/ARM/arm_startup_da1470x-snc.S"      attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_deepsleep-snc.S"            attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_exception_handlers-snc.S"   attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_vector_table_da1470x-snc.S" attr="config" version="1.0.0" condition="ARM Compiler"/>
+
+                <file category="source"  name="Device/Source/GCC/gcc_startup_da1470x-snc.S"      attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_deepsleep-snc.S"            attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_exception_handlers-snc.S"   attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_vector_table_da1470x-snc.S" attr="config" version="1.0.0" condition="GCC Compiler"/>
+
+                <file category="source"  name="Device/Source/IAR/iar_startup_da1470x-snc.S"      attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_deepsleep-snc.S"            attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_exception_handlers-snc.S"   attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_vector_table_da1470x-snc.S" attr="config" version="1.0.0" condition="IAR Compiler"/>
+			</files>		
+		</component>
+
+
+		<component Cclass="Device" Cversion="1.0.0" Cgroup="Startup" condition="DA14706 device Main core and CMSIS">
+			<description>System startup for Dialog Semiconductor DA14706 device</description>
+			<files>
+				<file category="include" name="Device/Include/"/>
+                <file category="header"  name="Device/Include/sdk_defs.h"                                  version="1.0.0"/>
+                <file category="header"  name="Device/Include/bsp_definitions.h"                           version="1.0.0"/>
+                <file category="header"  name="Device/Include/bsp_device_definitions.h"                    version="1.0.0"/>
+                <file category="header"  name="Device/Include/bsp_device_definitions_internal.h"           version="1.0.0"/>
+                <file category="header"  name="Device/Include/DA1470x.h"                                   version="1.0.0"/>
+                <file category="header"  name="Device/Include/DA1470x-00.h"                                version="1.0.0"/>
+                <file category="sourceC" name="Device/Source/per_ex_hard_fault.c"            attr="config" version="1.0.0"/>
+                <file category="sourceC" name="Device/Source/system_DA1470x.c"               attr="config" version="1.0.0"/>
+                <file category="header"  name="Device/Include/system_DA1470x.h"                            version="1.0.0"/>
+                <file category="header"  name="Device/Include/DataAccess.h" 	                           version="1.0.0"/>
+                
+                <file category="source"  name="Device/Source/ARM/arm_startup_da1470x.S"             attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_deepsleep.S"                   attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_exception_handlers.S"          attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_vector_table_da1470x.S"        attr="config" version="1.0.0" condition="ARM Compiler"/>
+
+                <file category="source"  name="Device/Source/GCC/gcc_startup_da1470x.S"             attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_vector_table_da1470x.S"        attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_deepsleep.S"                   attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_exception_handlers.S"          attr="config" version="1.0.0" condition="GCC Compiler"/>
+
+                <file category="source"  name="Device/Source/IAR/iar_startup_da1470x.S"             attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_deepsleep.S"                   attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_exception_handlers.S"          attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_vector_table_da1470x.S"        attr="config" version="1.0.0" condition="IAR Compiler"/>
+			</files>		
+		</component>
+        
+		<component Cclass="Device" Cversion="1.0.0" Cgroup="Startup" condition="DA14706 device SNC core and CMSIS">
+			<description>System startup for Dialog Semiconductor DA14706 device</description>
+			<files>
+				<file category="include" name="Device/Include/"/>
+                <file category="header"  name="Device/Include/sdk_defs.h"                                  version="1.0.0"/>
+                <file category="header"  name="Device/Include/bsp_definitions.h"                           version="1.0.0"/>
+                <file category="header"  name="Device/Include/bsp_device_definitions.h"                    version="1.0.0"/>
+                <file category="header"  name="Device/Include/bsp_device_definitions_internal.h"           version="1.0.0"/>
+                <file category="header"  name="Device/Include/DA1470x.h"                                   version="1.0.0"/>
+                <file category="header"  name="Device/Include/DA1470x-00.h"                                version="1.0.0"/>
+                <file category="sourceC" name="Device/Source/per_ex_hard_fault.c"            attr="config" version="1.0.0"/>
+                <file category="sourceC" name="Device/Source/system_da1470x-snc.c"           attr="config" version="1.0.0"/>
+                <file category="header"  name="Device/Include/system_DA1470x.h"                            version="1.0.0"/>
+                <file category="header"  name="Device/Include/DataAccess.h" 	                           version="1.0.0"/>
+
+                <file category="source"  name="Device/Source/ARM/arm_startup_da1470x-snc.S"      attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_deepsleep-snc.S"            attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_exception_handlers-snc.S"   attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_vector_table_da1470x-snc.S" attr="config" version="1.0.0" condition="ARM Compiler"/>
+
+                <file category="source"  name="Device/Source/GCC/gcc_startup_da1470x-snc.S"      attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_deepsleep-snc.S"            attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_exception_handlers-snc.S"   attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_vector_table_da1470x-snc.S" attr="config" version="1.0.0" condition="GCC Compiler"/>
+
+                <file category="source"  name="Device/Source/IAR/iar_startup_da1470x-snc.S"      attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_deepsleep-snc.S"            attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_exception_handlers-snc.S"   attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_vector_table_da1470x-snc.S" attr="config" version="1.0.0" condition="IAR Compiler"/>
+			</files>		
+		</component>
+
+		<component Cclass="Device" Cversion="1.0.0" Cgroup="Startup" condition="DA14708 device Main core and CMSIS">
+			<description>System startup for Dialog Semiconductor DA14708 device</description>
+			<files>
+				<file category="include" name="Device/Include/"/>
+                <file category="header"  name="Device/Include/sdk_defs.h"                                  version="1.0.0"/>
+                <file category="header"  name="Device/Include/bsp_definitions.h"                           version="1.0.0"/>
+                <file category="header"  name="Device/Include/bsp_device_definitions.h"                    version="1.0.0"/>
+                <file category="header"  name="Device/Include/bsp_device_definitions_internal.h"           version="1.0.0"/>
+                <file category="header"  name="Device/Include/DA1470x.h"                                   version="1.0.0"/>
+                <file category="header"  name="Device/Include/DA1470x-00.h"                                version="1.0.0"/>
+                <file category="sourceC" name="Device/Source/per_ex_hard_fault.c"            attr="config" version="1.0.0"/>
+                <file category="sourceC" name="Device/Source/system_DA1470x.c"               attr="config" version="1.0.0"/>
+                <file category="header"  name="Device/Include/system_DA1470x.h"                            version="1.0.0"/>
+                <file category="header"  name="Device/Include/DataAccess.h" 	                           version="1.0.0"/>
+                
+                <file category="source"  name="Device/Source/ARM/arm_startup_da1470x.S"             attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_deepsleep.S"                   attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_exception_handlers.S"          attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_vector_table_da1470x.S"        attr="config" version="1.0.0" condition="ARM Compiler"/>
+
+                <file category="source"  name="Device/Source/GCC/gcc_startup_da1470x.S"             attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_vector_table_da1470x.S"        attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_deepsleep.S"                   attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_exception_handlers.S"          attr="config" version="1.0.0" condition="GCC Compiler"/>
+
+                <file category="source"  name="Device/Source/IAR/iar_startup_da1470x.S"             attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_deepsleep.S"                   attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_exception_handlers.S"          attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_vector_table_da1470x.S"        attr="config" version="1.0.0" condition="IAR Compiler"/>
+			</files>		
+		</component>
+        
+		<component Cclass="Device" Cversion="1.0.0" Cgroup="Startup" condition="DA14708 device SNC core and CMSIS">
+			<description>System startup for Dialog Semiconductor DA14708 device</description>
+			<files>
+				<file category="include" name="Device/Include/"/>
+                <file category="header"  name="Device/Include/sdk_defs.h"                                  version="1.0.0"/>
+                <file category="header"  name="Device/Include/bsp_definitions.h"                           version="1.0.0"/>
+                <file category="header"  name="Device/Include/bsp_device_definitions.h"                    version="1.0.0"/>
+                <file category="header"  name="Device/Include/bsp_device_definitions_internal.h"           version="1.0.0"/>
+                <file category="header"  name="Device/Include/DA1470x.h"                                   version="1.0.0"/>
+                <file category="header"  name="Device/Include/DA1470x-00.h"                                version="1.0.0"/>
+                <file category="sourceC" name="Device/Source/per_ex_hard_fault.c"            attr="config" version="1.0.0"/>
+                <file category="sourceC" name="Device/Source/system_da1470x-snc.c"           attr="config" version="1.0.0"/>
+                <file category="header"  name="Device/Include/system_DA1470x.h"                            version="1.0.0"/>
+                <file category="header"  name="Device/Include/DataAccess.h" 	                           version="1.0.0"/>
+
+                <file category="source"  name="Device/Source/ARM/arm_startup_da1470x-snc.S"      attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_deepsleep-snc.S"            attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_exception_handlers-snc.S"   attr="config" version="1.0.0" condition="ARM Compiler"/>
+                <file category="source"  name="Device/Source/ARM/arm_vector_table_da1470x-snc.S" attr="config" version="1.0.0" condition="ARM Compiler"/>
+
+                <file category="source"  name="Device/Source/GCC/gcc_startup_da1470x-snc.S"      attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_deepsleep-snc.S"            attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_exception_handlers-snc.S"   attr="config" version="1.0.0" condition="GCC Compiler"/>
+                <file category="source"  name="Device/Source/GCC/gcc_vector_table_da1470x-snc.S" attr="config" version="1.0.0" condition="GCC Compiler"/>
+
+                <file category="source"  name="Device/Source/IAR/iar_startup_da1470x-snc.S"      attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_deepsleep-snc.S"            attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_exception_handlers-snc.S"   attr="config" version="1.0.0" condition="IAR Compiler"/>
+                <file category="source"  name="Device/Source/IAR/iar_vector_table_da1470x-snc.S" attr="config" version="1.0.0" condition="IAR Compiler"/>
+			</files>		
+		</component>
+
+	</components>
+</package>

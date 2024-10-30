@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>FRDM-KE15Z_FMSTR_Examples</name>
+  <vendor>NXP</vendor>
+  <description>Middleware fmstr Examples Pack for FRDM-KE15Z</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="2.0.0" date="2024-07-17">NXP CMSIS SBSP Packs based on MCUXpresso SDK 2.16.0</release>
+    <release version="1.0.0" date="2024-01-14">NXP CMSIS SBSP Packs based on MCUXpresso SDK 2.15.0</release>
+  </releases>
+  <keywords>
+    <keyword>Middleware Board Support Pack</keyword>
+  </keywords>
+  <requirements>
+    <packages>
+      <package name="FRDM-KE15Z_BSP" vendor="NXP" version="19.0.0"/>
+      <package name="FREEMASTER" vendor="NXP" version="2.0.0"/>
+      <package name="MKE15Z7_DFP" vendor="NXP" version="19.0.0"/>
+      <package name="CMSIS" vendor="ARM" version="5.9.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <examples>
+    <example name="fmstr_example_any" folder="boards/frdmke15z/freemaster_examples/fmstr_any" doc="readme.txt">
+      <description>FreeMASTER example fully configured by MCUXpresso ConfigTools. Serial communication is used by default, but it can be changed easily to CAN or other in the MCUXpresso Peripheral Tool. Also FreeMASTER driver features...See more details in readme document.</description>
+      <board name="FRDM-KE15Z" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/fmstr_example_any.uvprojx"/>
+        <environment name="csolution" load="fmstr_example_any.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="fmstr_example_pdbdm" folder="boards/frdmke15z/freemaster_examples/fmstr_pdbdm" doc="readme.txt">
+      <description>FreeMASTER example using a special packet-driven protocol on top of JTAG or BDM direct memory access. This example application demonstrates use of FreeMASTER tool to visualize internal variables and to control the...See more details in readme document.</description>
+      <board name="FRDM-KE15Z" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/fmstr_example_pdbdm.uvprojx"/>
+        <environment name="csolution" load="fmstr_example_pdbdm.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="fmstr_example_uart" folder="boards/frdmke15z/freemaster_examples/fmstr_uart" doc="readme.txt">
+      <description>FreeMASTER example using Serial-UART communication with the target microcontroller. This example application demonstrates use of FreeMASTER tool to visualize internal variables and to control the application flow by...See more details in readme document.</description>
+      <board name="FRDM-KE15Z" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/fmstr_example_uart.uvprojx"/>
+        <environment name="csolution" load="fmstr_example_uart.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+  </examples>
+</package>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+	<vendor>SILAN</vendor>
+	<name>SPC7L64_DFP</name>
+	<description>Silan SPC7L64 Device Family Pack</description>
+	<url>https://github.com/Silanpack/Pack/raw/main/</url>
+	<releases>
+		<release version="1.1.2" date="2022-07-04">
+			Update Chip Name
+    	</release>
+	
+		<release version="1.1.1" date="2021-07-29">
+			Update svd
+    	</release>
+	
+		<release version="1.1.0" date="2020-12-07">
+			Initial Version
+    	</release>
+	</releases>
+	<keywords>
+		<!-- keywords for indexing -->
+		<keyword>SPC7Lxx</keyword>
+		<keyword>SPC7L64</keyword>
+		<keyword>SPC7L64_BOOT</keyword>
+	</keywords>
+	<!-- devices section (mandatory for Device Family Packs) -->
+	<devices>
+		<family Dfamily="SPC7L Series" Dvendor="SILAN:164">
+			<!-- ************************  Subfamily 'SPC7Lxx'  **************************** -->
+			<subFamily DsubFamily="SPC7Lxx">
+				<processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+				<processor Dclock="64000000"/>
+				<feature type="VCC"				n="2.00"	m="5.50"/>
+				<feature type="Temp"			n="-40"		m="85"/>
+				<feature type="UART"			n="2"/>
+				<feature type="SPI"				n="1"/>
+				<feature type="Timer"			n="1"       m="16"		name="ETIMER T0"/>
+				<feature type="Timer"			n="2"       m="32"		name="General Purpose Timer TIM6"/>
+				<feature type="WDT"    			n="2"/>
+				<feature type="PWM"    			n="8"       m="16"/>
+				<feature type="ADC"    			n="16"      m="12"/>
+				<!-- *************************  Device 'SPC7L64'  ***************************** -->
+				<device Dname="SPC7L64">
+					<compile header="Device/Include/SPC7L64.h"/>
+					<debug svd="SVD/SPC7L64.svd"/>
+					<memory id="IROM1" start="0x00000000" size="0x10000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x1800" init   ="0" default="1"/>
+					<algorithm name="Flash/SPC7Lxx.FLM" start="0x00000000" size="0x8000" RAMstart="0x20000000" RAMsize="0x0800" default="1"/>
+					<description>
+SPC7L64 is a highly integrated high performance brushless motor controller.
+SPC7L64 integrated 6-ch NMOS Pre-driver, 2-ch LDO,  Multichannel high speed operational amplifier, Multichannel comparator、high speed ADC, coprocessor, multiple general timers, UART, SPI and special module for motor control, which helps customer  achieve minimum BOM cost and maximum flexibility in designing motor control systems. 
+It uses Cortex-M0 kernel with 64K byte Flash memory and 6K byte RAM memory, up to 64 MHz working frequency, which can satisfy the system application of high performance brushless motor control and simplify system cost.
+					</description>
+				</device>
+				<!-- *************************  Device 'SPC7L64_BOOT'  ***************************** -->
+				<device Dname="SPC7L64_BOOT">
+					<compile header="Device/Include/SPC7L64.h"/>
+					<debug svd="SVD/SPC7L64.svd"/>
+					<memory id="IROM1" start="0x00000000" size="0x10000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x1800" init   ="0" default="1"/>
+					<algorithm name="Flash/SPC7Lxx_BOOT.FLM" start="0x00000000" size="0x8000" RAMstart="0x20000000" RAMsize="0x0800" default="1"/>
+					<description>
+SPC7L64 is a highly integrated high performance brushless motor controller.
+SPC7L64 integrated 6-ch NMOS Pre-driver, 2-ch LDO,  Multichannel high speed operational amplifier, Multichannel comparator、high speed ADC, coprocessor, multiple general timers, UART, SPI and special module for motor control, which helps customer  achieve minimum BOM cost and maximum flexibility in designing motor control systems. 
+It uses Cortex-M0 kernel with 64K byte Flash memory and 6K byte RAM memory, up to 64 MHz working frequency, which can satisfy the system application of high performance brushless motor control and simplify system cost.
+					</description>
+				</device>
+			</subFamily>	
+		</family>
+	</devices>
+	<!-- examples section (optional for all Software Packs)-->
+	<!--
+  <examples>
+  </examples>
+  -->
+	<!-- conditions section (optional for all Software Packs)-->
+	<conditions>
+		<!-- Compiler Conditions -->
+		<condition id="Compiler ARMCC">
+			<require Tcompiler="ARMCC"/>
+		</condition>
+		<condition id="SPC7L64">
+			<description>Slian SPC7Lxx Series devices</description>
+			<require Cclass="CMSIS" Cgroup="CORE"/>
+			<require Dvendor="SILAN:164" Dname="SPC7L64"/>
+		</condition>
+		<condition id="SPC7L64_BOOT">
+			<description>Slian SPC7Lxx Series devices</description>
+			<require Cclass="CMSIS" Cgroup="CORE"/>
+			<require Dvendor="SILAN:164" Dname="SPC7L64_BOOT"/>
+		</condition>
+		<condition id="Startup ARM">
+			<description>Startupassembler file for ARMCC</description>
+			<require Tcompiler="ARMCC"/>
+		</condition>
+		<condition id="Startup GCC">
+			<description>Startupassembler file for GCC</description>
+			<require Tcompiler="GCC"/>
+		</condition>
+		<condition id="Startup IAR">
+			<description>Startupassembler file for IAR</description>
+			<require Tcompiler="IAR"/>
+		</condition>
+	</conditions>
+	<!-- component section (optional for all Software Packs)-->
+	<components>
+		<!-- Startup SPC7L64 -->
+		<component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="SPC7L64">
+			<description>System Startup for Silan SPC7Lxx Series</description>
+			<files>
+				<!-- include folder / file -->
+				<file category="include" name="Device/Include/"/>
+				<!-- startup / system file -->
+				<file category="source" name="Device/Source/ARM/startup_SPC7L64.s" attr="config" version="1.0.0" condition="Startup ARM"/>
+				<file category="source" name="Device/Source/GCC/startup_SPC7L64.S" attr="config" version="1.0.0" condition="Startup GCC"/>
+				<file category="source" name="Device/Source/IAR/startup_SPC7L64.s" attr="config" version="1.0.0" condition="Startup IAR"/>
+				<file category="source" name="Device/Source/system_SPC7L64.c" attr="config" version="1.0.0"/>
+			</files>
+		</component>
+		<!-- Startup SPC7L64_BOOT -->
+		<component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="SPC7L64_BOOT">
+			<description>System Startup for Silan SPC7Lxx Series</description>
+			<files>
+				<!-- include folder / file -->
+				<file category="include" name="Device/Include/"/>
+				<!-- startup / system file -->
+				<file category="source" name="Device/Source/ARM/startup_SPC7L64.s" attr="config" version="1.0.0" condition="Startup ARM"/>
+				<file category="source" name="Device/Source/GCC/startup_SPC7L64.S" attr="config" version="1.0.0" condition="Startup GCC"/>
+				<file category="source" name="Device/Source/IAR/startup_SPC7L64.s" attr="config" version="1.0.0" condition="Startup IAR"/>
+				<file category="source" name="Device/Source/system_SPC7L64.c" attr="config" version="1.0.0"/>
+			</files>
+		</component>
+	</components>
+</package>

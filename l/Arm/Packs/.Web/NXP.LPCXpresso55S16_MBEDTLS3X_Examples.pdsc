@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>LPCXpresso55S16_MBEDTLS3X_Examples</name>
+  <vendor>NXP</vendor>
+  <description>Middleware mbedtls3x Examples Pack for LPCXpresso55S16</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="2.0.0" date="2024-07-17">NXP CMSIS SBSP Packs based on MCUXpresso SDK 2.16.0</release>
+    <release version="1.0.0" date="2024-01-14">NXP CMSIS SBSP Packs based on MCUXpresso SDK 2.15.0</release>
+  </releases>
+  <keywords>
+    <keyword>Middleware Board Support Pack</keyword>
+  </keywords>
+  <requirements>
+    <packages>
+      <package name="LPCXpresso55S16_BSP" vendor="NXP" version="19.0.0"/>
+      <package name="MBEDTLS3X" vendor="NXP" version="2.0.0"/>
+      <package name="LPC55S16_DFP" vendor="NXP" version="19.0.0"/>
+      <package name="CMSIS" vendor="ARM" version="5.9.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <examples>
+    <example name="mbedtls3x_benchmark" folder="boards/lpcxpresso55s16/mbedtls3x_examples/mbedtls3x_benchmark" doc="readme.md">
+      <description>The mbedTLS Benchmark demo application performs cryptographic algorithm benchmarking and prints results to the terminal.</description>
+      <board name="LPCXpresso55S16" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/mbedtls3x_benchmark.uvprojx"/>
+        <environment name="csolution" load="mbedtls3x_benchmark.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="mbedtls3x_selftest" folder="boards/lpcxpresso55s16/mbedtls3x_examples/mbedtls3x_selftest" doc="readme.md">
+      <description>The Mbedtls Crypto SelfTest program performs cryptographic algorithm testing and prints results to the terminal.</description>
+      <board name="LPCXpresso55S16" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/mbedtls3x_selftest.uvprojx"/>
+        <environment name="csolution" load="mbedtls3x_selftest.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="psa_crypto_examples" folder="boards/lpcxpresso55s16/mbedtls3x_examples/psa_crypto_examples" doc="readme.md">
+      <description>PSA Crypto example to demonstrate cipher operation.</description>
+      <board name="LPCXpresso55S16" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/psa_crypto_examples.uvprojx"/>
+        <environment name="csolution" load="psa_crypto_examples.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+  </examples>
+</package>

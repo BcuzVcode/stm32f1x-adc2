@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<package schemaVersion="1.7.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="PACK.xsd">
+  <name>AWS_IoT_Over-the-air_Update</name>
+
+  <description>Client library for using the AWS Over-the-air Update service on embedded devices.</description>
+
+  <vendor>AWS</vendor>
+
+  <license>LICENSE</license>
+
+  <url>https://d1pm0k3vkcievw.cloudfront.net/</url>
+
+  <requirements>
+    <packages>
+      <package name="coreJSON" vendor="AWS" version="4.1.1"/>
+      <package name="TinyCBOR" vendor="MDK-Packs"/>
+    </packages>
+  </requirements>
+
+  <releases>
+    <release date="2023-06-23" version="5.0.1">Re-release of the last version due to hosting changes. Based on the https://github.com/aws/ota-for-aws-iot-embedded-sdk/tree/v3.4.0/ repository.</release>
+    <release date="2023-02-23" version="5.0.0">Based on the https://github.com/aws/ota-for-aws-iot-embedded-sdk/tree/v3.4.0/ repository.</release>
+    <release date="2022-07-13" version="4.0.1">Fixes template files not being marked as template files. Based on the https://github.com/aws/ota-for-aws-iot-embedded-sdk/tree/v3.0.0/ repository.</release>
+    <release date="2022-06-16" version="4.0.0">Based on the https://github.com/aws/ota-for-aws-iot-embedded-sdk/tree/v3.0.0/ repository.</release>
+    <release date="2020-12-15" version="3.0.0-Beta">Based on the https://github.com/aws/ota-for-aws-iot-embedded-sdk/tree/v3.0.0/ repository.</release>
+  </releases>
+
+  <conditions>
+    <condition id="ota_library Condition">
+      <require Cclass="Data Exchange" Cgroup="CBOR" Csub="TinyCBOR"/>
+      <require Cclass="FreeRTOS" Cgroup="coreJSON"/>
+      <require Cclass="AWS IoT" Cgroup="AWS IoT Over-the-air Update" Csub="OS Functional Abstraction Layer"/>
+      <require Cclass="AWS IoT" Cgroup="AWS IoT Over-the-air Update" Csub="Portable Abstraction Layer"/>
+      <require Cclass="AWS IoT" Cgroup="AWS IoT Over-the-air Update" Csub="Data Protocol"/>
+    </condition>
+    <condition id="custom_os_port Condition">
+      <require Cclass="AWS IoT" Cgroup="AWS IoT Over-the-air Update" Csub="Core Library"/>
+    </condition>
+    <condition id="freertos_os_port Condition">
+      <require Cclass="AWS IoT" Cgroup="AWS IoT Over-the-air Update" Csub="Core Library"/>
+    </condition>
+    <condition id="posix_os_port Condition">
+      <require Cclass="AWS IoT" Cgroup="AWS IoT Over-the-air Update" Csub="Core Library"/>
+    </condition>
+    <condition id="custom_pal_port Condition">
+      <require Cclass="AWS IoT" Cgroup="AWS IoT Over-the-air Update" Csub="Core Library"/>
+    </condition>
+    <condition id="http_only Condition">
+      <require Cclass="AWS IoT" Cgroup="AWS IoT Over-the-air Update" Csub="Core Library"/>
+    </condition>
+    <condition id="mqtt_only Condition">
+      <require Cclass="AWS IoT" Cgroup="AWS IoT Over-the-air Update" Csub="Core Library"/>
+    </condition>
+    <condition id="http_and_mqtt Condition">
+      <require Cclass="AWS IoT" Cgroup="AWS IoT Over-the-air Update" Csub="Core Library"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <component Cclass="AWS IoT" Cgroup="AWS IoT Over-the-air Update" Csub="Core Library" Cversion="3.4.0" condition="ota_library Condition">
+      <description>Client library for using the AWS Over-the-air Update service on embedded devices.</description>
+      <files>
+        <file category="source" name="ota-for-aws-iot-embedded-sdk/source/ota.c"/>
+        <file category="source" name="ota-for-aws-iot-embedded-sdk/source/ota_base64.c"/>
+        <file category="source" name="ota-for-aws-iot-embedded-sdk/source/ota_interface.c"/>
+        <file category="include" name="ota-for-aws-iot-embedded-sdk/source/include/"/>
+      </files>
+    </component>
+    <component Cclass="AWS IoT" Cgroup="AWS IoT Over-the-air Update" Csub="OS Functional Abstraction Layer" Cvariant="Custom" Cversion="3.4.0" condition="custom_os_port Condition">
+      <description>OTA OS FAL custom port. This option requires the user implement their own OS FAL by implementing functions found in the ota_os_custom.c template file.</description>
+      <files>
+        <file attr="template" category="source" name="ota_os_custom.c" select="Custom OS Abstraction Layer Template"/>
+        <file attr="template" category="header" name="ota_os_custom.h" select="Custom OS Abstraction Layer Template"/>
+      </files>
+    </component>
+    <component Cclass="AWS IoT" Cgroup="AWS IoT Over-the-air Update" Csub="OS Functional Abstraction Layer" Cvariant="FreeRTOS" Cversion="3.4.0" condition="freertos_os_port Condition">
+      <description>Includes ota_os_freertos.c which is an example implementation of the OTA OS Functional Interface for FreeRTOS.</description>
+      <files>
+        <file category="source" name="ota-for-aws-iot-embedded-sdk/source/portable/os/ota_os_freertos.c"/>
+        <file category="header" name="ota-for-aws-iot-embedded-sdk/source/portable/os/ota_os_freertos.h"/>
+      </files>
+    </component>
+    <component Cclass="AWS IoT" Cgroup="AWS IoT Over-the-air Update" Csub="OS Functional Abstraction Layer" Cvariant="POSIX" Cversion="3.4.0" condition="posix_os_port Condition">
+      <description>Includes ota_os_posix.c which is an example implementation of the OTA OS Functional Interface for a POSIX OS.</description>
+      <files>
+        <file category="source" name="ota-for-aws-iot-embedded-sdk/source/portable/os/ota_os_posix.c"/>
+        <file category="header" name="ota-for-aws-iot-embedded-sdk/source/portable/os/ota_os_posix.h"/>
+      </files>
+    </component>
+    <component Cclass="AWS IoT" Cgroup="AWS IoT Over-the-air Update" Csub="Portable Abstraction Layer" Cvariant="Custom" Cversion="3.4.0" condition="custom_pal_port Condition">
+      <description>OTA PAL custom port. This option requires the user implement their own portable abstraction layer by implementing functions found in the ota_pal.c template file.</description>
+      <files>
+        <file attr="template" category="source" name="ota_pal.c" select="Custom Portable Abstraction Layer Template"/>
+        <file attr="template" category="header" name="ota_pal.h" select="Custom Portable Abstraction Layer Template"/>
+      </files>
+    </component>
+    <component Cclass="AWS IoT" Cgroup="AWS IoT Over-the-air Update" Csub="Data Protocol" Cvariant="HTTP" Cversion="3.4.0" condition="http_only Condition">
+      <description>Includes files needed for OTA over HTTP.</description>
+      <files>
+        <file category="header" name="ota-for-aws-iot-embedded-sdk/source/include/ota_http_private.h"/>
+        <file category="source" name="ota-for-aws-iot-embedded-sdk/source/ota_http.c"/>
+      </files>
+    </component>
+    <component Cclass="AWS IoT" Cgroup="AWS IoT Over-the-air Update" Csub="Data Protocol" Cvariant="MQTT" Cversion="3.4.0" condition="mqtt_only Condition">
+      <description>Includes files needed for OTA over MQTT.</description>
+      <files>
+        <file category="header" name="ota-for-aws-iot-embedded-sdk/source/include/ota_cbor_private.h"/>
+        <file category="header" name="ota-for-aws-iot-embedded-sdk/source/include/ota_mqtt_private.h"/>
+        <file category="source" name="ota-for-aws-iot-embedded-sdk/source/ota_cbor.c"/>
+        <file category="source" name="ota-for-aws-iot-embedded-sdk/source/ota_mqtt.c"/>
+      </files>
+    </component>
+    <component Cclass="AWS IoT" Cgroup="AWS IoT Over-the-air Update" Csub="Data Protocol" Cvariant="HTTP/MQTT" Cversion="3.4.0" condition="http_and_mqtt Condition">
+      <description>Includes files needed for OTA over HTTP and OTA over MQTT.</description>
+      <files>
+        <file category="header" name="ota-for-aws-iot-embedded-sdk/source/include/ota_cbor_private.h"/>
+        <file category="header" name="ota-for-aws-iot-embedded-sdk/source/include/ota_http_private.h"/>
+        <file category="header" name="ota-for-aws-iot-embedded-sdk/source/include/ota_mqtt_private.h"/>
+        <file category="source" name="ota-for-aws-iot-embedded-sdk/source/ota_cbor.c"/>
+        <file category="source" name="ota-for-aws-iot-embedded-sdk/source/ota_http.c"/>
+        <file category="source" name="ota-for-aws-iot-embedded-sdk/source/ota_mqtt.c"/>
+      </files>
+    </component>
+  </components>
+</package>
+

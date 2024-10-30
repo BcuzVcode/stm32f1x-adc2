@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.2"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Holtek</vendor>
+  <name>HT32F493x5_DFP</name>
+  <description>Holtek HT32F493x5 Series Device Support</description>
+  <url>https://mcu.holtek.com.tw/pack</url>
+  <!-- optional license file -->
+  <!--
+  <license>
+  </license>
+  -->
+
+  <releases>
+    <release version="1.0.6" date="2023-11-08">
+      Update information.
+    </release>
+    <release version="1.0.5" date="2023-08-28">
+      Update information.
+    </release>
+    <release version="1.0.4" date="2023-06-20">
+      Update information.
+    </release>
+    <release version="1.0.3" date="2023-03-29">
+      Update information.
+    </release>
+    <release version="1.0.2" date="2023-03-16">
+      Update CMSIS-Pack Index relate information.
+    </release>
+    <release version="1.0.1" date="2023-03-15">
+      Update firmware library.
+    </release>
+    <release version="1.0.0" date="2023-01-30">
+      First Release version of HT32F493x5 Device Family.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>HOLTEK</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>HT32F493x5</keyword>
+    <keyword>HT32F493</keyword>
+    <keyword>HT32</keyword>
+  </keywords>
+
+  <devices>
+
+    <!-- ************************  Series 'HT32F493xx'  **************************** -->
+    <family Dfamily="HT32F493xx Series" Dvendor="Holtek:106">
+      <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="1" Dmpu="1" Dtz="NO_TZ" Dendian="Little-endian" Dclock="240000000"/>
+      <description>
+The HT32F49365/HT32F49395 devices are based on the high-performance Arm®Cortex®-M4 32-bit RISC core, operating at a frequency of up to 240 MHz. The Cortex®-M4 core features a Floating Point Unit (FPU) single precision which supports all Arm® single-precision data processing instructions and data types. It also implements a full set of DSP instructions and a Memory Protection Unit (MPU) which enhances application security.
+
+The devices incorporate high-speed embedded memories (up to 1024 KBytes of internal Flash memory, 96 + 128 KBytes of SRAM), external SPI Flash (up to 16 MBytes addressing capability), and a wide range of enhanced GPIOs and peripherals connected to two APB buses. Any block of the embedded Flash memory can be protected by the “sLib” (security library), functioning as a security area with code-executable only.
+
+The devices offer three 12-bit ADCs, two 12-bit DACs, eight general-purpose 16-bit timers plus two general-purpose 32-bit timers, and up to two PWM timers for motor control. They support standard and advanced communication interfaces including up to three I2Cs, four SPIs (all multiplexed as I2Ss), two SDIOs, eight USARTs/UARTs, an USBFS, and two CANs.
+
+The HT32F49365/HT32F49395 devices operate in the -40 to +105 °C temperature range, from a 2.6 to 3.6 V power supply. A comprehensive set of power-saving mode allows the design of low-power application.
+
+The HT32F49365/HT32F49395 are supplied in different package types. The entire HT32F49365/HT32F49395 series of devices are fully pin-to-pin, software and functionally compatible with each other, except that the configurations of peripherals are not completely identical, depending on the package types.
+      </description>
+
+      <subFamily DsubFamily="HT32F49365/49395">
+        <compile header="Device/Include/ht32f493x5.h"/>
+        <debug svd="SVD/HT32F493x5.svd"/>
+        <algorithm name="Flash/HT32F493x5_USD.FLM" start="0x1FFFF800" size="0x00040" default="0"/>
+        <algorithm name="Flash/HT32F493x5_EXT_TYPE1_REAMP0_GENERAL.FLM" start="0x08400000" size="0x1000000" default="0"/>
+        <algorithm name="Flash/HT32F493x5_EXT_TYPE1_REAMP1_GENERAL.FLM" start="0x08400000" size="0x1000000" default="0"/>
+        <algorithm name="Flash/HT32F493x5_EXT_TYPE2_REAMP0_GENERAL.FLM" start="0x08400000" size="0x1000000" default="0"/>
+        <algorithm name="Flash/HT32F493x5_EXT_TYPE2_REAMP1_GENERAL.FLM" start="0x08400000" size="0x1000000" default="0"/>
+        <feature type="XTAL" n="4000000" m="25000000"/>
+        <feature type="IntRC" n="8000000"/>
+        <feature type="RTC" n="32768"/>
+        <feature type="VCC" n="2.60" m="3.60"/>
+        <feature type="Temp" n="-40" m="105"/>
+        <feature type="PowerMode" n="4" name="Run, Sleep, Deepsleep, Standby"/>
+        <feature type="ExtInt" n="20"/>
+        <feature type="DMA" n="14" name="DMA Controller"/>
+        <feature type="DAC" n="2" m="12" name="DAC1/DAC2"/>
+        <feature type="Timer" n="2" m="16" name="Basic timer"/>
+        <feature type="Timer" n="8" m="16" name="16-bit General-purpose timer"/>
+        <feature type="Timer" n="2" m="32" name="32-bit General-purpose timer"/>
+        <feature type="Timer" n="2" m="16" name="Advanced-control timer"/>
+        <feature type="WDT" n="2"/>
+        <feature type="USBD" n="1"/>
+        <feature type="CAN" n="2"/>
+        <feature type="USART" n="4"/>
+        <feature type="SPI" n="4"/>
+        <feature type="I2S" n="4"/>
+        <feature type="I2C" n="3"/>
+        <feature type="ClockOther" name="HICK auto clock calibration (ACC)"/>
+        <feature type="Other" n="1" name="CRC"/>
+
+
+        <!-- *************************  Device 'HT32F49365_48LQFP'  ***************************** -->
+        <device Dname="HT32F49365_48LQFP">
+          <compile define="USE_HT32F49365_48LQFP"/>
+          <memory id="IROM1" start="0x08000000" size="0x40000" startup="1" default="1"/>
+          <memory id="IRAM1" start="0x20000000" size="0x38000"     init   ="0" default="1"/>
+          <algorithm name="Flash/HT32F493x5_256.FLM" start="0x08000000" size="0x40000" default="1"/>
+          <feature type="UART" n="3"/>
+          <feature type="SDIO" n="1" m="4"/>
+          <feature type="ADC" n="10" m="12" name="ADC1/ADC2/ADC3"/>
+          <feature type="IOs" n="37"/>
+          <feature type="QFP" n="48" name="LQFP"/>
+        </device>
+
+        <!-- *************************  Device 'HT32F49365_48QFN'  ***************************** -->
+        <device Dname="HT32F49365_48QFN">
+          <compile define="USE_HT32F49365_48QFN"/>
+          <memory id="IROM1" start="0x08000000" size="0x40000" startup="1" default="1"/>
+          <memory id="IRAM1" start="0x20000000" size="0x38000"     init   ="0" default="1"/>
+          <algorithm name="Flash/HT32F493x5_256.FLM" start="0x08000000" size="0x40000" default="1"/>
+          <feature type="UART" n="3"/>
+          <feature type="SDIO" n="1" m="4"/>
+          <feature type="ADC" n="10" m="12" name="ADC1/ADC2/ADC3"/>
+          <feature type="IOs" n="37"/>
+          <feature type="QFP" n="48" name="QFN"/>
+        </device>
+
+        <!-- *************************  Device 'HT32F49365_64LQFP'  ***************************** -->
+        <device Dname="HT32F49365_64LQFP">
+          <compile define="USE_HT32F49365_64LQFP"/>
+          <memory id="IROM1" start="0x08000000" size="0x40000" startup="1" default="1"/>
+          <memory id="IRAM1" start="0x20000000" size="0x38000"     init   ="0" default="1"/>
+          <algorithm name="Flash/HT32F493x5_256.FLM" start="0x08000000" size="0x40000" default="1"/>
+          <feature type="UART" n="4"/>
+          <feature type="SDIO" n="2" m="8"/>
+          <feature type="ADC" n="16" m="12" name="ADC1/ADC2/ADC3"/>
+          <feature type="ExtBus" n="8" name="XMC"/>
+          <feature type="IOs" n="51"/>
+          <feature type="QFP" n="64" name="LQFP"/>
+        </device>
+
+        <!-- *************************  Device 'HT32F49365_100LQFP'  ***************************** -->
+        <device Dname="HT32F49365_100LQFP">
+          <compile define="USE_HT32F49365_100LQFP"/>
+          <memory id="IROM1" start="0x08000000" size="0x40000" startup="1" default="1"/>
+          <memory id="IRAM1" start="0x20000000" size="0x38000"     init   ="0" default="1"/>
+          <algorithm name="Flash/HT32F493x5_256.FLM" start="0x08000000" size="0x40000" default="1"/>
+          <feature type="UART" n="4"/>
+          <feature type="SDIO" n="2" m="8"/>
+          <feature type="ADC" n="16" m="12" name="ADC1/ADC2/ADC3"/>
+          <feature type="ExtBus" n="16" name="XMC"/>
+          <feature type="IOs" n="80"/>
+          <feature type="QFP" n="100" name="LQFP"/>
+        </device>
+
+        <!-- *************************  Device 'HT32F49395_48LQFP'  ***************************** -->
+        <device Dname="HT32F49395_48LQFP">
+          <compile define="USE_HT32F49395_48LQFP"/>
+          <memory id="IROM1" start="0x08000000" size="0x100000" startup="1" default="1"/>
+          <memory id="IRAM1" start="0x20000000" size="0x38000"      init   ="0" default="1"/>
+          <algorithm name="Flash/HT32F493x5_1024.FLM" start="0x08000000" size="0x100000" default="1"/>
+          <feature type="UART" n="3"/>
+          <feature type="SDIO" n="1" m="4"/>
+          <feature type="ADC" n="10" m="12" name="ADC1/ADC2/ADC3"/>
+          <feature type="IOs" n="37"/>
+          <feature type="QFP" n="48" name="LQFP"/>
+        </device>
+
+        <!-- *************************  Device 'HT32F49395_48QFN'  ***************************** -->
+        <device Dname="HT32F49395_48QFN">
+          <compile define="USE_HT32F49395_48QFN"/>
+          <memory id="IROM1" start="0x08000000" size="0x100000" startup="1" default="1"/>
+          <memory id="IRAM1" start="0x20000000" size="0x38000"      init   ="0" default="1"/>
+          <algorithm name="Flash/HT32F493x5_1024.FLM" start="0x08000000" size="0x100000" default="1"/>
+          <feature type="UART" n="3"/>
+          <feature type="SDIO" n="1" m="4"/>
+          <feature type="ADC" n="10" m="12" name="ADC1/ADC2/ADC3"/>
+          <feature type="IOs" n="37"/>
+          <feature type="QFP" n="48" name="QFN"/>
+        </device>
+
+        <!-- *************************  Device 'HT32F49395_64LQFP'  ***************************** -->
+        <device Dname="HT32F49395_64LQFP">
+          <compile define="USE_HT32F49395_64LQFP"/>
+          <memory id="IROM1" start="0x08000000" size="0x100000" startup="1" default="1"/>
+          <memory id="IRAM1" start="0x20000000" size="0x38000"      init   ="0" default="1"/>
+          <algorithm name="Flash/HT32F493x5_1024.FLM" start="0x08000000" size="0x100000" default="1"/>
+          <feature type="UART" n="4"/>
+          <feature type="SDIO" n="2" m="8"/>
+          <feature type="ADC" n="16" m="12" name="ADC1/ADC2/ADC3"/>
+          <feature type="ExtBus" n="8" name="XMC"/>
+          <feature type="IOs" n="51"/>
+          <feature type="QFP" n="64" name="LQFP"/>
+        </device>
+
+        <!-- *************************  Device 'HT32F49395_100LQFP'  ***************************** -->
+        <device Dname="HT32F49395_100LQFP">
+          <compile define="USE_HT32F49395_100LQFP"/>
+          <memory id="IROM1" start="0x08000000" size="0x100000" startup="1" default="1"/>
+          <memory id="IRAM1" start="0x20000000" size="0x38000"      init   ="0" default="1"/>
+          <algorithm name="Flash/HT32F493x5_1024.FLM" start="0x08000000" size="0x100000" default="1"/>
+          <feature type="UART" n="4"/>
+          <feature type="SDIO" n="2" m="8"/>
+          <feature type="ADC" n="16" m="12" name="ADC1/ADC2/ADC3"/>
+          <feature type="ExtBus" n="16" name="XMC"/>
+          <feature type="IOs" n="80"/>
+          <feature type="QFP" n="100" name="LQFP"/>
+        </device>
+      </subFamily>
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler ARMCC">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <!-- Device Conditions -->
+    <condition id="HT32F493x5">
+      <description>Holtek HT32F493x5 Devices</description>
+      <require Dvendor="Holtek:106" Dname="HT32F493*5*"/>
+      <require Cclass="Device" Cgroup="Startup" />
+    </condition>
+
+    <condition id="HT32F493x5 ARMCC">
+      <description>Holtek HT32F493x5 Series devices</description>
+      <require Dvendor="Holtek:106" Dname="HT32F493*5*"/>
+      <require condition="Compiler ARMCC"/>
+    </condition>
+
+    <!-- Device + CMSIS Conditions -->
+    <condition id="HT32F493x5 CMSIS">
+      <description>Holtek HT32F493x5 Devices and CMSIS-CORE</description>
+      <require condition="HT32F493x5"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Cclass="Device" Cgroup="ht32f493x5_conf"/>
+      <require Cclass="Device" Cgroup="ht32f493x5_firmware_library" Csub="crm"/>
+    </condition>
+
+    <!-- HT32F493x5 STDPERIPHERALS CRM Conditions -->
+    <condition id="HT32F493x5 STDPERIPHERALS CRM">
+      <description>Holtek HT32F493x5 Standard Peripherals Drivers with CRM</description>
+      <require condition="HT32F493x5 CMSIS"/>
+      <require Cclass="Device" Cgroup="ht32f493x5_firmware_library" Csub="crm"/>
+    </condition>
+
+    <!-- HT32F493x5 STDPERIPHERALS MISC Conditions -->
+    <condition id="HT32F493x5 STDPERIPHERALS MISC">
+      <description>Holtek HT32F493x5 Standard Peripherals Drivers with MISC</description>
+      <require condition="HT32F493x5 CMSIS"/>
+      <require Cclass="Device" Cgroup="ht32f493x5_firmware_library" Csub="misc"/>
+    </condition>
+
+    <!-- HT32F493x5 STDPERIPHERALS EVAL Conditions -->
+    <condition id="HT32F493x5 STDPERIPHERALS EVB">
+      <description>Holtek HT32F493x5 Standard Peripherals Drivers with EVB</description>
+      <require condition="HT32F493x5 CMSIS"/>
+      <require Cclass="Device" Cgroup="ht32f493x5_firmware_library" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="ht32f493x5_firmware_library" Csub="exint"/>
+      <require Cclass="Device" Cgroup="ht32f493x5_firmware_library" Csub="usart"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <!-- HT32F493x5_firmware_library -->
+    <component Cclass="Device" Cgroup="ht32f493x5_firmware_library" Csub="acc" Cversion="1.0.0" condition="HT32F493x5 STDPERIPHERALS CRM">
+      <description>Auto Clock Calibration (ACC) driver for HT32F493x5 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_ACC
+      </RTE_Components_h>
+      <files>
+        <!-- ACC file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f493x5_acc.h"/>
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f493x5_acc.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f493x5_firmware_library" Csub="adc" Cversion="1.0.0" condition="HT32F493x5 STDPERIPHERALS CRM">
+      <description>Analog-to-digital converter (ADC) driver for HT32F493x5 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_ADC
+      </RTE_Components_h>
+      <files>
+        <!-- ADC file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f493x5_adc.h"/>
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f493x5_adc.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f493x5_firmware_library" Csub="bpr" Cversion="1.0.0" condition="HT32F493x5 STDPERIPHERALS CRM">
+      <description>Battery Powered Register (BPR) driver for HT32F493x5 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_BPR
+      </RTE_Components_h>
+      <files>
+        <!-- BPR file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f493x5_bpr.h"/>
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f493x5_bpr.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f493x5_firmware_library" Csub="can" Cversion="1.0.0" condition="HT32F493x5 STDPERIPHERALS CRM">
+      <description>CAN (CAN) driver for HT32F493x5 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_CAN
+      </RTE_Components_h>
+      <files>
+        <!-- CAN file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f493x5_can.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f493x5_can.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f493x5_firmware_library" Csub="crc" Cversion="1.0.0" condition="HT32F493x5 STDPERIPHERALS CRM">
+      <description>Cyclic Redundancy Check (CRC) driver for HT32F493x5 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_CRC
+      </RTE_Components_h>
+      <files>
+        <!-- CRC file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f493x5_crc.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f493x5_crc.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f493x5_firmware_library" Csub="crm" Cversion="1.0.0" condition="HT32F493x5 STDPERIPHERALS MISC">
+      <description>Clock and Reset Management (CRM) driver for HT32F493x5 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_CRM
+      </RTE_Components_h>
+      <files>
+        <!-- CRM file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f493x5_crm.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f493x5_crm.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f493x5_firmware_library" Csub="dac" Cversion="1.0.0" condition="HT32F493x5 STDPERIPHERALS CRM">
+      <description>Digital-to-Analog-to converter (DAC) driver for HT32F493x5 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_DAC
+      </RTE_Components_h>
+      <files>
+        <!-- DAC file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f493x5_dac.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f493x5_dac.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f493x5_firmware_library" Csub="debug" Cversion="1.0.0" condition="HT32F493x5 STDPERIPHERALS CRM">
+      <description>Debug (DEBUG) driver for HT32F493x5 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_DEBUG
+      </RTE_Components_h>
+      <files>
+        <!-- DEBUG file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f493x5_debug.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f493x5_debug.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f493x5_firmware_library" Csub="dma" Cversion="1.0.0" condition="HT32F493x5 STDPERIPHERALS CRM">
+      <description>Direct Memory Access (DMA) driver for HT32F493x5 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_DMA
+      </RTE_Components_h>
+      <files>
+        <!-- DMA file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f493x5_dma.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f493x5_dma.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f493x5_firmware_library" Csub="exint" Cversion="1.0.0" condition="HT32F493x5 STDPERIPHERALS CRM">
+      <description>External Interrupt/Event (EXINT) driver for HT32F493x5 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_EXINT
+      </RTE_Components_h>
+      <files>
+        <!-- EXINT file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f493x5_exint.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f493x5_exint.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f493x5_firmware_library" Csub="flash" Cversion="1.0.0" condition="HT32F493x5 STDPERIPHERALS CRM">
+      <description>Flash Memory Controller (FLASH) driver for HT32F493x5 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_FLASH
+      </RTE_Components_h>
+      <files>
+        <!-- FLASH file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f493x5_flash.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f493x5_flash.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f493x5_firmware_library" Csub="gpio" Cversion="1.0.0" condition="HT32F493x5 STDPERIPHERALS CRM">
+      <description>General-purpose and Alternate-function I/Os (GPIO) driver for HT32F493x5 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_GPIO
+      </RTE_Components_h>
+      <files>
+        <!-- GPIO file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f493x5_gpio.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f493x5_gpio.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f493x5_firmware_library" Csub="i2c" Cversion="1.0.0" condition="HT32F493x5 STDPERIPHERALS CRM">
+      <description>Inter-integrated Circuit (I2C) driver for HT32F493x5 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_I2C
+      </RTE_Components_h>
+      <files>
+        <!-- I2C file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f493x5_i2c.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f493x5_i2c.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f493x5_firmware_library" Csub="misc" Cversion="1.0.0" condition="HT32F493x5 CMSIS">
+      <description>MISC driver for HT32F493x5 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_MISC
+      </RTE_Components_h>
+      <files>
+        <!-- MISC file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f493x5_misc.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f493x5_misc.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f493x5_firmware_library" Csub="pwc" Cversion="1.0.0" condition="HT32F493x5 STDPERIPHERALS CRM">
+      <description>Power Control Unit(PWC) driver for HT32F493x5 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_PWC
+      </RTE_Components_h>
+      <files>
+        <!-- PWC file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f493x5_pwc.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f493x5_pwc.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f493x5_firmware_library" Csub="rtc" Cversion="1.0.0" condition="HT32F493x5 STDPERIPHERALS CRM">
+      <description>Real-time Clock (RTC) driver for HT32F493x5 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_RTC
+      </RTE_Components_h>
+      <files>
+        <!-- RTC file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f493x5_rtc.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f493x5_rtc.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f493x5_firmware_library" Csub="sdio" Cversion="1.0.0" condition="HT32F493x5 STDPERIPHERALS CRM">
+      <description>SD/SDIO MMC card host interface (SDIO) driver for HT32F493x5 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_SDIO
+      </RTE_Components_h>
+      <files>
+        <!-- SDIO file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f493x5_sdio.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f493x5_sdio.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f493x5_firmware_library" Csub="spi" Cversion="1.0.0" condition="HT32F493x5 STDPERIPHERALS CRM">
+      <description>Serial Peripheral Interface / Inter-IC Sound (SPI) driver for HT32F493x5 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_SPI
+      </RTE_Components_h>
+      <files>
+        <!-- SPI file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f493x5_spi.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f493x5_spi.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f493x5_firmware_library" Csub="tmr" Cversion="1.0.0" condition="HT32F493x5 STDPERIPHERALS CRM">
+      <description>TIMER driver for HT32F493x5 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_TMR
+      </RTE_Components_h>
+      <files>
+        <!-- TTMER file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f493x5_tmr.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f493x5_tmr.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f493x5_firmware_library" Csub="usart" Cversion="1.0.0" condition="HT32F493x5 STDPERIPHERALS CRM">
+      <description>Universal Synchronous Asynchronous Receiver Transmitter (USART) driver for HT32F493x5 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_USART
+      </RTE_Components_h>
+      <files>
+        <!-- USART file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f493x5_usart.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f493x5_usart.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f493x5_firmware_library" Csub="usb" Cversion="1.0.0" condition="HT32F493x5 STDPERIPHERALS CRM">
+      <description>Universal Serial Bus driver for HT32F493x5 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_USB
+      </RTE_Components_h>
+      <files>
+        <!-- USB file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f493x5_usb.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f493x5_usb.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f493x5_firmware_library" Csub="wdt" Cversion="1.0.0" condition="HT32F493x5 STDPERIPHERALS CRM">
+      <description>watchdog timer(WDT) driver for HT32F493x5 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_WDT
+      </RTE_Components_h>
+      <files>
+        <!-- WDT file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f493x5_wdt.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f493x5_wdt.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f493x5_firmware_library" Csub="wwdt" Cversion="1.0.0" condition="HT32F493x5 STDPERIPHERALS CRM">
+      <description>Window Watchdog Timer (WWDT) driver for HT32F493x5 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_WWDT
+      </RTE_Components_h>
+      <files>
+        <!-- WWDT file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f493x5_wwdt.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f493x5_wwdt.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ht32f493x5_firmware_library" Csub="xmc" Cversion="1.0.0" condition="HT32F493x5 STDPERIPHERALS CRM">
+      <description>External Memory Controller (XMC) driver for HT32F493x5 Devices</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_STDPERIPHERALS_XMC
+      </RTE_Components_h>
+      <files>
+        <!-- XMC file -->
+        <file category="header" name="Device/Firmware/Peripherals/inc/ht32f493x5_xmc.h" />
+        <file category="source" name="Device/Firmware/Peripherals/src/ht32f493x5_xmc.c" attr="config" version="1.0.0" />
+      </files>
+    </component>
+
+    <!-- Utilities HT32F493x5 -->
+    <component Cclass="Device" Cgroup="evb" Csub="ht32f49395_sk" Cversion="1.0.0" condition="HT32F493x5 STDPERIPHERALS EVB">
+      <description>Firmware functions to manage Leds, Keys, COM ports</description>
+      <files>
+        <!-- include folder -->
+        <file category="header" name="Device/Utilities/ht32f493x5_board.h" />
+        <!-- evb file -->
+        <file category="source" name="Device/Utilities/ht32f493x5_board.c" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Config HT32F493x5 -->
+    <component Cclass="Device" Cgroup="ht32f493x5_conf" Cversion="1.0.0" condition="HT32F493x5 CMSIS">
+      <description>Configuration file</description>
+      <files>
+        <!-- include folder -->
+        <file category="header" name="Device/Include/ht32f493x5_conf.h" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+    <!-- Startup HT32F493x5  -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="HT32F493x5">
+      <description>System Startup for Holtek HT32F493x5  Devices</description>
+      <files>
+        <!-- include folder -->
+        <file category="include" name="Device/Include/"/>
+        <file category="header" name="Device/Include/ht32f493x5.h"/>
+        <!-- startup file -->
+        <file category="source" name="Device/Source/ARM/startup_ht32f493x5.s" attr="config" version="1.0.0" condition="HT32F493x5 ARMCC"/>
+        <!-- system file -->
+        <file category="source" name="Device/Source/system_ht32f493x5.c" attr="config" version="1.0.0"/>
+      </files>
+    </component>
+  </components>
+
+  <boards>
+
+    <board vendor="Holtek" name="ESK32-31401 (HT32F49395)" revision="Ver 1.0" orderForm="https://www.bestmodulescorp.com/esk32-31401.html">
+      <description>Holtek ESK32-31401 HT32F49395 Starter Kit</description>
+      <image large="https://mcu.holtek.com.tw/ht32/images/ESK32-31401.jpg"/>
+      <book category="overview" name="https://www.holtek.com/esk32-31401" title="ESK32-31401 Starter Kit Web Page"/>
+      <mountedDevice deviceIndex="0" Dvendor="Holtek:106" Dname="HT32F49395_100LQFP"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Holtek:106" DsubFamily="HT32F49365/49395"/>
+      <feature type="ODbg" n="1" name="On-board e-Link32 Pro (CMSIS-DAP)"/>
+      <feature type="XTAL" n="8000000"/>
+      <feature type="PWR" n="4" name="USB Powered"/>
+      <feature type="DIO" n="80" name="Digital I/Os (depending on configuration)"/>
+      <feature type="USB" n="1" name="USB 2.0 Full-speed Device interface (USB Device connector)"/>
+      <feature type="Button" n="1" name="Reset Button"/>
+      <feature type="LED" n="5" name="(3.3 V Power, User I/O Port LEDs, Debug Adapter USB Ready/Busy"/>
+      <feature type="CustomFF" n="65" m="100"/>
+      <debugInterface adapter="e-Link32 Pro" connector="Micro-USB"/>
+      <debugInterface adapter="SWD" connector="10 pin Cortex debug (2.54 mm Connector)"/>
+    </board>
+
+  </boards>
+
+</package>

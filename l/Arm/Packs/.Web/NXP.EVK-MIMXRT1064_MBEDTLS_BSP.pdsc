@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>EVK-MIMXRT1064_MBEDTLS_BSP</name>
+  <vendor>NXP</vendor>
+  <description>Middleware mbedtls Board Support Pack for EVK-MIMXRT1064</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="1.0.1" date="2023-10-25" deprecated="2023-10-25" replacement="NXP.EVK-MIMXRT1064_MBEDTLS_Examples">This pack is no longer maintained. The new pack has been released with "_Examples" suffix instead of "_BSP".</release>
+    <release version="1.0.0" date="2023-07-27">NXP CMSIS SBSP Packs based on MCUXpresso SDK 2.14.0</release>
+  </releases>
+  <keywords>
+    <keyword>Middleware Board Support Pack</keyword>
+  </keywords>
+  <requirements>
+    <packages>
+      <package name="MIMXRT1064_DFP" vendor="NXP" version="18.0.0"/>
+      <package name="MBEDTLS" vendor="NXP" version="1.0.1"/>
+      <package name="EVK-MIMXRT1064_BSP" vendor="NXP" version="18.0.0"/>
+      <package name="CMSIS" vendor="ARM" version="5.8.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <boards>
+    <board vendor="NXP" name="EVK-MIMXRT1064">
+      <description>i.MX RT1064 Evaluation Kit</description>
+      <image small="boards/evkmimxrt1064/evkmimxrt1064.png"/>
+      <mountedDevice Dname="MIMXRT1064xxxxA" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1064CVJ5B" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1064CVL5B" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1064DVJ6B" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MIMXRT1064DVL6B" Dvendor="NXP:11"/>
+    </board>
+  </boards>
+  <examples>
+    <example name="mbedtls_selftest" folder="boards/evkmimxrt1064/mbedtls_examples/mbedtls_selftest" doc="readme.txt">
+      <description>The mbedTLS SelfTest program performs cryptographic algorithm testing and prints results to the terminal.</description>
+      <board name="EVK-MIMXRT1064" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/mbedtls_selftest.uvprojx"/>
+        <environment name="iar" load="iar/mbedtls_selftest.ewp"/>
+        <environment name="csolution" load="mbedtls_selftest.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="mbedtls_benchmark" folder="boards/evkmimxrt1064/mbedtls_examples/mbedtls_benchmark" doc="readme.txt">
+      <description>The mbdedTLS Benchmark demo application performs cryptographic algorithm benchmarking and prints results to the terminal.</description>
+      <board name="EVK-MIMXRT1064" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/mbedtls_benchmark.uvprojx"/>
+        <environment name="iar" load="iar/mbedtls_benchmark.ewp"/>
+        <environment name="csolution" load="mbedtls_benchmark.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+  </examples>
+</package>

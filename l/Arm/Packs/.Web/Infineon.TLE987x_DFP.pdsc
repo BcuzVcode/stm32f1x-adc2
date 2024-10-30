@@ -1,0 +1,2060 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="1.3" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <license>Licence/CMSIS_END_USER_LICENCE_AGREEMENT.txt</license>
+  <vendor>Infineon</vendor>
+  <url>https://itools.infineon.com/cmsis_packs/TLE987x/</url>
+  <name>TLE987x_DFP</name>
+  <description>Infineon TLE987x Series Device Support</description>
+  <supportContact>http://www.infineon.com/cms/en/corporate/company/contact/support/index.html</supportContact>
+  <releases>
+    <release version="1.6.0" date="2022-12-22">
+      Added UM 1.8.0 and BootROM UM 1.8.0 [EP-1126]
+      GPT12_CAPTURE_T2_T3 example: Changed Core Timer3 pin output from P0.0 to P1.2 [EP-1324]
+      Hall examples: Adapted examples to Nanotec motor [EP-1147, EP-1155]
+      LIN examples: Updated examples to use range 0...5000 for speed signal [EP-1206]
+      MCTRL: Removed ISLE examples, added link to FOC example in Infineon Developer Center [EP-1359]
+      NVM protection example: Added support for AA design step [EP-1148]
+      Changed to ARMCC v6 for all examples [EP-1371]
+      Corrected ARMCC v6 warnings [EP-1252]
+      Added using CMSIS related __INLINE define from pack [EP-1341]
+      ADC2: Set upper threshold for ADC2 Ch9 depending on the selected device [EP-1060]
+      BDRV: Added functions to enable and disable the charge pump [EP-1142]
+      CCU6: Added function CCU6_T12_T13_Str_En() [EP-1149]
+      Startup: Corrected NACNAD placement with IAR [EP-1323]
+      Startup: Moved Port_init after SSC_init [EP-1337]
+      Types: Fixed conflicting types in types.h and stdbool.h [EP-1153]
+      UART: Allowed more options for UART Pin Select [EP-1251]
+      Config Wizard: Set minimum Config Wizard version to 2.7.0 [EP-643]
+      Config Wizard: Added link to MOTIX MCU forum [EP-1200]
+      Config Wizard: Added UH-step options for Reset Settings in PMU [EP-1363]
+    </release>
+    <release version="1.5.2" date="2022-04-12">
+      Added BootROM UM 1.6.0 [EP-1125]
+      ADC2: Corrected channel assignment in tle987x.h file comments [EP-919]
+      DMA: Corrected DMA Trigger Select for SSCx Transmit in Config Wizard [EP-1014]
+      Interrupts: Corrected NMI Map Error in Config Wizard [EP-895]
+      SSC: Added 20 MHz option [EP-260]
+      Startup: Corrected CMSIS_Irq_Dis when using ARMCC v6 [EP-1040]
+      Cleaned MISRA violations [EP-896]
+      TLE987x MOTIX Branding + Copyright [EP-936]
+      Hall2 example: Updated startup [EP-974]
+      UART TTY examples in IAR: Updated examples to work with external terminal [EP-1113]
+    </release>
+    <release version="1.5.0" date="2021-06-30">
+      ADC2: Corrected ADC2 temperature calculation in Config Wizard [EP-720]
+      BDRV: Updated calculation and display of currents in BDRV in Config Wizard [EP-703]
+      BDRV: Added functions to get charge and discharge current [EP-715]
+      BDRV: Added initialization of BDRV_CTRL1 and BDRV_CTRL2 from Config Wizard to BDRV_Init [EP-827]
+      CSA: Added function to get CSA gain [EP-757]
+      PMU: Updated cyclic sense to be used only for stop mode [EP-780]
+      SCU: Corrected delay function [EP-766]
+      SCU: Added clearing of GPIO wake status registers in stop mode entry function [EP-698]
+      UART, SSC: Removed unnecessary lockons in baudrate selection [EP-729]
+      WDT1: Corrected delay function to work also with Systick timer values near 0 or the reload value [EP-766]
+      Added IAR support [EP-175]
+      Added IROM2 (DataFlash) to device TLE9872QXA40 [EP-712]
+      Added Hall2 example [EP-817]
+      Existing BEMF example: Corrected typecast for the slew rate in Emo.c [EP-772]
+      Existing FOC example: Increased accuracy of Rshunt in Config Wizard [EP-604]
+      Existing Hall example: Added option to enable pull-up for the selected Hall inputs [EP-512]
+      Existing LIN example: Corrected the signal reference speed [EP-835]
+      Fixed NACNAD error when using ARMCC v6 LTO [EP-840]
+      Updated User Manual to v1.6 [EP-830]
+    </release>
+    <release version="1.4.8" date="2020-11-06">
+      DMA: Updated files to work with ARMCC v6 O3 LTO [EP-565]
+      SCU: Updated PLL initialization flow [EP-531]
+      SCU: Replaced Field_Mod() functions by a direct register write operation for power saving functions [EP-559]
+      Updated SVD pathname [EP-569]
+      Updated User Manual
+    </release>
+    <release version="1.4.6" date="2020-10-06">
+      Portfolio Update: Added support for devices TLE9877QTW40, TLE9879QTW40, TLE9872QXA40, TLE9872QTW40, and TLE9872-2QXA40 [EP-437]
+      Added page "Device selection of the examples" to documentation [EP-437]
+      Added new TLE987x User Manual (v1.5.2) [EP-473]
+      Added new TLE987x BootROM User Manual (v1.5) [EP-481]
+      Enabled Retry-feature to Flash Algorithm [EP-487]
+      Added example to place Vector table in RAM [EP-434]
+      Added example for Timer3, mode 1b [EP-304]
+      Modified code to remove ARMCC v6 Compiler warnings [EP-431]
+      ADC1: Updated VDH attenuator output impedance configuration in Config Wizard [EP-293]
+      ADC2: Corrected ADC2 VREF in Config Wizard [EP-298]
+      ADC2: Corrected ADC2 temp sensor selection [EP-456]
+      ADC2: Corrected ADC2 channel assignment in svd file comments [EP-443]
+      ADC2: Corrected typical value for V_BG attenuator [EP-313]
+      ADC2: Added ADC2-&gt;CTRL2.bit.SEL_TS_STS to header and svd [EP-392]
+      ADC2: Corrected ADC2 channel assignment in svd file comments [EP-443]
+      BDRV: Corrected description in Config Wizard for Charge Pump Diagnosis [EP-262]
+      BDRV: Added control bits HSx_OC_DIS and LSx_OC_DIS in Config Wizard [EP-380]
+      BEMF: Updated the BEMF example code allow option 'reference to GND' [EP-138]
+      BootROM: Corrected BootROM doxygen examples [EP-432]
+      CCU6: Corrected CCU6 Deadtime calculation [EP-275]
+      GPT12: Removed T5INB external input in Config Wizard (not available for TLE97x) [EP-291]
+      PMU: Updated StopMode Entry sequence [EP-396]
+      SCU: Added warning if customer uses invalid clock settings (Manual clock Configuration) [EP-403]
+      SDADC: Renamed SDADC example [EP-319]
+      SDADC: Modified SDADC_Ch0_Result_Get and SDADC_Ch1_Result_Get to return a sint16 [EP-289]
+      UART: Locked U_TX_CONDIS to 1 if TXD1 UART sending is enabled in Config Wizard [EP-345]
+    </release>
+    <release version="1.4.4" date="2019-11-18">
+      Removed link to TLE987x Pack File Version 1.1.0, 1.2.0, 1.2.1, 1.2.2, 1.2.3, 1.2.5, 1.3.0, and 1.3.1
+      Updated FOC example to improve motor start behavior
+      Added new EvalBoard User Manual
+      Added new EvalKit User Manual
+      Corrected Slow down mode function
+      Correct all NVIC_NodeXY_Int_En/Dis functions
+      Changed default values of ADC2 Ch7 LOTH (1.1 --&gt; 1.01), 
+      ADC2 Ch2 UPTH (17.3 --&gt; 23.4), ADC2 Ch3 LOTH (6 --&gt; 5.2) (applies to new projects and examples)
+      Updated range check for UARTx_BaudRate_Set
+      Bridge driver interrupts enabled for Config Wizard 2
+      Charge Pump Diagnosis description corrected according to UM rev1.4 
+      FOC examples fixed to correct negative motor rotation (FOC Config Wizard xml updated)
+    </release>
+    <release version="1.4.2" date="2019-04-18">
+      ARMCC v6 compatibility added
+      BLDC Block Commutation with HALL example fixed
+      BLDC FOC example fixed
+      LIN Master example fixed
+      DMA module updated to be ARMCC v6 compartible
+      Config Wizard XMLs updated
+      IRAMx ranges modified
+      compatible devices for evalboards updated
+    </release>
+    <release version="1.4.0" date="2019-01-21">
+      SDADC module updated
+      PMU added to minimum configuration
+      TLE9879-2QXA40 datasheet added
+      SDK MISRA 2012 compliant
+      flash algorithm for data flash added, TLE9879-2QXA40 added
+      Compability with both version of Config Wizard added
+      TLE987x Eval.Board added
+      SDADC TMR example added
+    </release>
+    <release version="1.3.2" date="2017-08-01">
+      adc2, dma, pmu, bdrv updated
+    </release>
+    <release version="1.2.4" date="2016-01-14">
+      SDK update, ISR.C and SCU.C
+      DMA added
+      TLE9873QXW40, TLE9877QXW40, TLE9879QXW40 added
+    </release>
+  </releases>
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Infineon</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Infineon</keyword>
+    <keyword>TLE987x</keyword>
+  </keywords>
+  <devices>
+    <family Dfamily="TLE98xx Series" Dvendor="Infineon:7">
+      <processor Dcore="Cortex-M3" DcoreVersion="r0p0" Dfpu="NO_FPU" Dmpu="NO_MPU" Dendian="Little-endian"/>
+      <description>
+        The TLE987x series is designed for 3-phase motor drive applications with LIN/PWM interface
+        - Ultra low power consumption
+        - Nested Vectored Interrupt Controller (NVIC)
+        - Integrated LIN tranceiver (selected derivates)
+        - DMA (selected derivates)
+        - Current Sense Amplifier (selected derivates)
+      </description>
+      <environment name="uv">
+      </environment>
+      <feature type="WDT" n="1"/>
+      <feature type="ComOther" n="2" name="Universal Serial Interface"/>
+      <feature type="Temp" n="-40" m="150" name="all Devices"/>
+      <subFamily DsubFamily="TLE987x Series">
+        <device Dname="TLE9871QXA20">
+          <processor Dclock="24000000"/>
+          <compile header="Device/Include/tle987x.h" define="TLE9871QXA20"/>
+          <debug svd="Device/SDK/cfgwiz/script/v2/TLE987x.svd"/>
+          <memory id="IROM1" start="0x11000000" size="0x7FFC" startup="1" default="1"/>
+          <memory id="IROM2" start="0x11007FFC" size="0x1004" startup="0" default="1"/>
+          <memory id="IRAM1" start="0x18000018" size="0xBE8" init="0" default="1"/>
+          <memory id="IRAM2" start="0x18000000" size="0x10" init="0" default="1"/>
+          <algorithm name="Flash/TLE9871.FLM" start="0x11000000" size="0x9000" default="1"/>
+          <algorithm name="Flash/TLE9871_EEP.FLM" start="0x11008000" size="0x1000" default="1"/>
+          <book name="Documents/TLE987x-Users-Manual-18-Infineon.pdf" title="TLE987x Series Reference Manual"/>
+          <book name="Documents/TLE987xQX_BE-Step_BootROM-User-Manual-13-Infineon.pdf" title="TLE987x BE-Step Series BootROM Manual"/>
+          <book name="Documents/TLE986x_TLE987x_BootROM-UserManual-18.pdf" title="TLE987x BF-/A-/UH-Step Series BootROM Manual"/>
+          <book name="Documents/TLE9871QXA20-Data-Sheet-10-Infineon.pdf" title="TLE9871QXA20 Data Sheet - BE-Step"/>
+          <book name="Documents/TLE9871QXA20-BF-Data-Sheet-10-Infineon.pdf" title="TLE9871QXA20 Data Sheet - BF-Step"/>
+          <book name="Documents/html/index.html" title="SDK Help"/>
+          <feature type="ADC" n="1" m="10"/>
+          <feature type="ADC" n="1" m="8"/>
+          <feature type="IOs" n="11"/>
+        </device>
+        <device Dname="TLE9872QTW40">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/tle987x.h" define="TLE9872QTW40"/>
+          <debug svd="Device/SDK/cfgwiz/script/v2/TLE987x.svd"/>
+          <memory id="IROM1" start="0x11000000" size="0x3EFFC" startup="1" default="1"/>
+          <memory id="IROM2" start="0x1103EFFC" size="0x1004" startup="0" default="1"/>
+          <memory id="IRAM1" start="0x18000018" size="0x1FE8" init="0" default="1"/>
+          <memory id="IRAM2" start="0x18000000" size="0x14" init="0" default="1"/>
+          <algorithm name="Flash/TLE9872.FLM" start="0x11000000" size="0x3F000" default="1"/>
+          <algorithm name="Flash/TLE9872_EEP.FLM" start="0x1103F000" size="0x1000" default="1"/>
+          <book name="Documents/TLE987x-Users-Manual-18-Infineon.pdf" title="TLE987x Series Reference Manual"/>
+          <book name="Documents/TLE986x_TLE987x_BootROM-UserManual-18.pdf" title="TLE987x Series BootROM Manual"/>
+          <book name="Documents/Infineon-TLE9872QTW40-DS-v01_00-EN.pdf" title="TLE9872QTW40 Data Sheet"/>
+          <book name="Documents/html/index.html" title="SDK Help"/>
+          <feature type="ADC" n="1" m="10"/>
+          <feature type="ADC" n="1" m="8"/>
+          <feature type="IOs" n="11"/>
+        </device>
+        <device Dname="TLE9872QXA40">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/tle987x.h" define="TLE9872QXA40"/>
+          <debug svd="Device/SDK/cfgwiz/script/v2/TLE987x.svd"/>
+          <memory id="IROM1" start="0x11000000" size="0x3EFFC" startup="1" default="1"/>
+          <memory id="IRAM1" start="0x18000018" size="0x1FE8" init="0" default="1"/>
+          <memory id="IRAM2" start="0x18000000" size="0x14" init="0" default="1"/>
+          <algorithm name="Flash/TLE9872.FLM" start="0x11000000" size="0x3F000" default="1"/>
+          <algorithm name="Flash/TLE9872_EEP.FLM" start="0x1103F000" size="0x1000" default="1"/>
+          <book name="Documents/TLE987x-Users-Manual-18-Infineon.pdf" title="TLE987x Series Reference Manual"/>
+          <book name="Documents/TLE986x_TLE987x_BootROM-UserManual-18.pdf" title="TLE987x Series BootROM Manual"/>
+          <book name="Documents/Infineon-TLE9872QXA40-DS-v01_00-EN.pdf" title="TLE9872QXA40 Data Sheet"/>
+          <book name="Documents/html/index.html" title="SDK Help"/>
+          <feature type="ADC" n="1" m="10"/>
+          <feature type="ADC" n="1" m="8"/>
+          <feature type="IOs" n="11"/>
+        </device>
+        <device Dname="TLE9872-2QXA40">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/tle987x.h" define="TLE9872_2QXA40"/>
+          <debug svd="Device/SDK/cfgwiz/script/v2/TLE987x_2.svd"/>
+          <memory id="IROM1" start="0x11000000" size="0x3EFFC" startup="1" default="1"/>
+          <memory id="IROM2" start="0x1103EFFC" size="0x1004" startup="0" default="1"/>
+          <memory id="IRAM1" start="0x18000018" size="0x1FE8" init="0" default="1"/>
+          <memory id="IRAM2" start="0x18000000" size="0x14" init="0" default="1"/>
+          <algorithm name="Flash/TLE9872.FLM" start="0x11000000" size="0x3F000" default="1"/>
+          <algorithm name="Flash/TLE9872_EEP.FLM" start="0x1103F000" size="0x1000" default="1"/>
+          <book name="Documents/TLE987x-Users-Manual-18-Infineon.pdf" title="TLE987x Series Reference Manual"/>
+          <book name="Documents/TLE986x_TLE987x_BootROM-UserManual-18.pdf" title="TLE987x Series BootROM Manual"/>
+          <book name="Documents/Infineon-TLE9872_2QXA40-DS-v01_00-EN.pdf" title="TLE9872-2QXA40 Data Sheet"/>
+          <book name="Documents/html/index.html" title="SDK Help"/>
+          <feature type="ADC" n="1" m="10"/>
+          <feature type="ADC" n="1" m="8"/>
+          <feature type="IOs" n="11"/>
+        </device>
+        <device Dname="TLE9873QXW40">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/tle987x.h" define="TLE9873QXW40"/>
+          <debug svd="Device/SDK/cfgwiz/script/v2/TLE987x.svd"/>
+          <memory id="IROM1" start="0x11000000" size="0xAFFC" startup="1" default="1"/>
+          <memory id="IROM2" start="0x1100AFFC" size="0x1004" startup="0" default="1"/>
+          <memory id="IRAM1" start="0x18000018" size="0xBE8" init="0" default="1"/>
+          <memory id="IRAM2" start="0x18000000" size="0x14" init="0" default="1"/>
+          <algorithm name="Flash/TLE9873.FLM" start="0x11000000" size="0xB000" default="1"/>
+          <algorithm name="Flash/TLE9873_EEP.FLM" start="0x1100B000" size="0x1000" default="1"/>
+          <book name="Documents/TLE987x-Users-Manual-18-Infineon.pdf" title="TLE987x Series Reference Manual"/>
+          <book name="Documents/TLE986x_TLE987x_BootROM-UserManual-18.pdf" title="TLE987x Series BootROM Manual"/>
+          <book name="Documents/TLE9873QXW40-BF-Data-Sheet-11-Infineon.pdf" title="TLE9873QXW40 Data Sheet"/>
+          <book name="Documents/html/index.html" title="SDK Help"/>
+          <feature type="ADC" n="1" m="10"/>
+          <feature type="ADC" n="1" m="8"/>
+          <feature type="IOs" n="11"/>
+        </device>
+        <device Dname="TLE9877QTW40">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/tle987x.h" define="TLE9877QTW40"/>
+          <debug svd="Device/SDK/cfgwiz/script/v2/TLE987x.svd"/>
+          <memory id="IROM1" start="0x11000000" size="0xEFFC" startup="1" default="1"/>
+          <memory id="IROM2" start="0x1100EFFC" size="0x1004" startup="0" default="1"/>
+          <memory id="IRAM1" start="0x18000018" size="0x17E8" init="0" default="1"/>
+          <memory id="IRAM2" start="0x18000000" size="0x10" init="0" default="1"/>
+          <algorithm name="Flash/TLE9877.FLM" start="0x11000000" size="0xF000" default="1"/>
+          <algorithm name="Flash/TLE9877_EEP.FLM" start="0x1100F000" size="0x1000" default="1"/>
+          <book name="Documents/TLE987x-Users-Manual-18-Infineon.pdf" title="TLE987x Series Reference Manual"/>
+          <book name="Documents/TLE987xQX_BE-Step_BootROM-User-Manual-13-Infineon.pdf" title="TLE987x BE-Step Series BootROM Manual"/>
+          <book name="Documents/TLE986x_TLE987x_BootROM-UserManual-18.pdf" title="TLE987x BF-Step Series BootROM Manual"/>
+          <book name="Documents/Infineon-TLE9877QTW40-DS-v01_00-EN.pdf" title="TLE9877QTW40 Data Sheet"/>
+          <book name="Documents/html/index.html" title="SDK Help"/>
+          <feature type="ADC" n="1" m="10"/>
+          <feature type="ADC" n="1" m="8"/>
+          <feature type="IOs" n="11"/>
+        </device>
+        <device Dname="TLE9877QXA20">
+          <processor Dclock="24000000"/>
+          <compile header="Device/Include/tle987x.h" define="TLE9877QXA20"/>
+          <debug svd="Device/SDK/cfgwiz/script/v2/TLE987x.svd"/>
+          <memory id="IROM1" start="0x11000000" size="0xEFFC" startup="1" default="1"/>
+          <memory id="IROM2" start="0x1100EFFC" size="0x1004" startup="0" default="1"/>
+          <memory id="IRAM1" start="0x18000018" size="0x17E8" init="0" default="1"/>
+          <memory id="IRAM2" start="0x18000000" size="0x10" init="0" default="1"/>
+          <algorithm name="Flash/TLE9877.FLM" start="0x11000000" size="0xF000" default="1"/>
+          <algorithm name="Flash/TLE9877_EEP.FLM" start="0x1100F000" size="0x1000" default="1"/>
+          <book name="Documents/TLE987x-Users-Manual-18-Infineon.pdf" title="TLE987x Series Reference Manual"/>
+          <book name="Documents/TLE987xQX_BE-Step_BootROM-User-Manual-13-Infineon.pdf" title="TLE987x BE-Step Series BootROM Manual"/>
+          <book name="Documents/TLE986x_TLE987x_BootROM-UserManual-18.pdf" title="TLE987x BF-/A-/UH-Step Series BootROM Manual"/>
+          <book name="Documents/TLE9877QXA20-Data-Sheet-10-Infineon.pdf" title="TLE9877QXA20 Data Sheet - BE-Step"/>
+          <book name="Documents/TLE9877QXA20-BF-Data-Sheet-10-Infineon.pdf" title="TLE9877QXA20 Data Sheet - BF-Step"/>
+          <book name="Documents/html/index.html" title="SDK Help"/>
+          <feature type="ADC" n="1" m="10"/>
+          <feature type="ADC" n="1" m="8"/>
+          <feature type="IOs" n="11"/>
+        </device>
+        <device Dname="TLE9877QXA40">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/tle987x.h" define="TLE9877QXA40"/>
+          <debug svd="Device/SDK/cfgwiz/script/v2/TLE987x.svd"/>
+          <memory id="IROM1" start="0x11000000" size="0xEFFC" startup="1" default="1"/>
+          <memory id="IROM2" start="0x1100EFFC" size="0x1004" startup="0" default="1"/>
+          <memory id="IRAM1" start="0x18000018" size="0x17E8" init="0" default="1"/>
+          <memory id="IRAM2" start="0x18000000" size="0x10" init="0" default="1"/>
+          <algorithm name="Flash/TLE9877.FLM" start="0x11000000" size="0xF000" default="1"/>
+          <algorithm name="Flash/TLE9877_EEP.FLM" start="0x1100F000" size="0x1000" default="1"/>
+          <book name="Documents/TLE987x-Users-Manual-18-Infineon.pdf" title="TLE987x Series Reference Manual"/>
+          <book name="Documents/TLE987xQX_BE-Step_BootROM-User-Manual-13-Infineon.pdf" title="TLE987x BE-Step Series BootROM Manual"/>
+          <book name="Documents/TLE986x_TLE987x_BootROM-UserManual-18.pdf" title="TLE987x BF-/A-/UH-Step Series BootROM Manual"/>
+          <book name="Documents/TLE9877QXA40-Data-Sheet-10-Infineon.pdf" title="TLE9877QXA40 Data Sheet - BE-Step"/>
+          <book name="Documents/TLE9877QXA40-BF-Data-Sheet-10-Infineon.pdf" title="TLE9877QXA40 Data Sheet - BF-Step"/>
+          <book name="Documents/html/index.html" title="SDK Help"/>
+          <feature type="ADC" n="1" m="10"/>
+          <feature type="ADC" n="1" m="8"/>
+          <feature type="IOs" n="11"/>
+        </device>
+        <device Dname="TLE9877QXW40">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/tle987x.h" define="TLE9877QXW40"/>
+          <debug svd="Device/SDK/cfgwiz/script/v2/TLE987x.svd"/>
+          <memory id="IROM1" start="0x11000000" size="0xEFFC" startup="1" default="1"/>
+          <memory id="IROM2" start="0x1100EFFC" size="0x1004" startup="0" default="1"/>
+          <memory id="IRAM1" start="0x18000018" size="0x17E8" init="0" default="1"/>
+          <memory id="IRAM2" start="0x18000000" size="0x14" init="0" default="1"/>
+          <algorithm name="Flash/TLE9877.FLM" start="0x11000000" size="0xF000" default="1"/>
+          <algorithm name="Flash/TLE9877_EEP.FLM" start="0x1100F000" size="0x1000" default="1"/>
+          <book name="Documents/TLE987x-Users-Manual-18-Infineon.pdf" title="TLE987x Series Reference Manual"/>
+          <book name="Documents/TLE986x_TLE987x_BootROM-UserManual-18.pdf" title="TLE987x Series BootROM Manual"/>
+          <book name="Documents/TLE9877QXW40-BF-Data-Sheet-11-Infineon.pdf" title="TLE9877QXW40 Data Sheet"/>
+          <book name="Documents/html/index.html" title="SDK Help"/>
+          <feature type="ADC" n="1" m="10"/>
+          <feature type="ADC" n="1" m="8"/>
+          <feature type="IOs" n="11"/>
+        </device>
+        <device Dname="TLE9879QTW40">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/tle987x.h" define="TLE9879QTW40"/>
+          <debug svd="Device/SDK/cfgwiz/script/v2/TLE987x.svd"/>
+          <memory id="IROM1" start="0x11000000" size="0x1EFFC" startup="1" default="1"/>
+          <memory id="IROM2" start="0x1101EFFC" size="0x1004" startup="0" default="1"/>
+          <memory id="IRAM1" start="0x18000018" size="0x17E8" init="0" default="1"/>
+          <memory id="IRAM2" start="0x18000000" size="0x14" init="0" default="1"/>
+          <algorithm name="Flash/TLE9879.FLM" start="0x11000000" size="0x1F000" default="1"/>
+          <algorithm name="Flash/TLE9879_EEP.FLM" start="0x1101F000" size="0x1000" default="1"/>
+          <book name="Documents/TLE987x-Users-Manual-18-Infineon.pdf" title="TLE987x Series Reference Manual"/>
+          <book name="Documents/TLE986x_TLE987x_BootROM-UserManual-18.pdf" title="TLE987x Series BootROM Manual"/>
+          <book name="Documents/Infineon-TLE9879QTW40-DS-v01_00-EN.pdf" title="TLE9879QTW40 Data Sheet"/>
+          <book name="Documents/html/index.html" title="SDK Help"/>
+          <feature type="ADC" n="1" m="10"/>
+          <feature type="ADC" n="1" m="8"/>
+          <feature type="IOs" n="11"/>
+        </device>
+        <device Dname="TLE9879QXA20">
+          <processor Dclock="24000000"/>
+          <compile header="Device/Include/tle987x.h" define="TLE9879QXA20"/>
+          <debug svd="Device/SDK/cfgwiz/script/v2/TLE987x.svd"/>
+          <memory id="IROM1" start="0x11000000" size="0x1EFFC" startup="1" default="1"/>
+          <memory id="IROM2" start="0x1101EFFC" size="0x1004" startup="0" default="1"/>
+          <memory id="IRAM1" start="0x18000018" size="0x17E8" init="0" default="1"/>
+          <memory id="IRAM2" start="0x18000000" size="0x10" init="0" default="1"/>
+          <algorithm name="Flash/TLE9879.FLM" start="0x11000000" size="0x1F000" default="1"/>
+          <algorithm name="Flash/TLE9879_EEP.FLM" start="0x1101F000" size="0x1000" default="1"/>
+          <book name="Documents/TLE987x-Users-Manual-18-Infineon.pdf" title="TLE987x Series Reference Manual"/>
+          <book name="Documents/TLE987xQX_BE-Step_BootROM-User-Manual-13-Infineon.pdf" title="TLE987x BE-Step Series BootROM Manual"/>
+          <book name="Documents/TLE986x_TLE987x_BootROM-UserManual-18.pdf" title="TLE987x BF-/A-/UH-Step Series BootROM Manual"/>
+          <book name="Documents/TLE9879QXA20-Data-Sheet-10-Infineon.pdf" title="TLE9879QXA20 Data Sheet - BE-Step"/>
+          <book name="Documents/TLE9879QXA20-BF-Data-Sheet-10-Infineon.pdf" title="TLE9879QXA20 Data Sheet - BF-Step"/>
+          <book name="Documents/html/index.html" title="SDK Help"/>
+          <feature type="ADC" n="1" m="10"/>
+          <feature type="ADC" n="1" m="8"/>
+          <feature type="IOs" n="11"/>
+        </device>
+        <device Dname="TLE9879QXA40">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/tle987x.h" define="TLE9879QXA40"/>
+          <debug svd="Device/SDK/cfgwiz/script/v2/TLE987x.svd"/>
+          <memory id="IROM1" start="0x11000000" size="0x1EFFC" startup="1" default="1"/>
+          <memory id="IROM2" start="0x1101EFFC" size="0x1004" startup="0" default="1"/>
+          <memory id="IRAM1" start="0x18000018" size="0x17E8" init="0" default="1"/>
+          <memory id="IRAM2" start="0x18000000" size="0x10" init="0" default="1"/>
+          <algorithm name="Flash/TLE9879.FLM" start="0x11000000" size="0x1F000" default="1"/>
+          <algorithm name="Flash/TLE9879_EEP.FLM" start="0x1101F000" size="0x1000" default="1"/>
+          <book name="Documents/TLE987x-Users-Manual-18-Infineon.pdf" title="TLE987x Series Reference Manual"/>
+          <book name="Documents/TLE987xQX_BE-Step_BootROM-User-Manual-13-Infineon.pdf" title="TLE987x BE-Step Series BootROM Manual"/>
+          <book name="Documents/TLE986x_TLE987x_BootROM-UserManual-18.pdf" title="TLE987x BF-/A-/UH-Step Series BootROM Manual"/>
+          <book name="Documents/TLE9879QXA40-Data-Sheet-10-Infineon.pdf" title="TLE9879QXA40 Data Sheet - BE-Step"/>
+          <book name="Documents/TLE9879QXA40-BF-Data-Sheet-10-Infineon.pdf" title="TLE9879QXA40 Data Sheet - BF-Step"/>
+          <book name="Documents/html/index.html" title="SDK Help"/>
+          <feature type="ADC" n="1" m="10"/>
+          <feature type="ADC" n="1" m="8"/>
+          <feature type="IOs" n="11"/>
+        </device>
+        <device Dname="TLE9879QXW40">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/tle987x.h" define="TLE9879QXW40"/>
+          <debug svd="Device/SDK/cfgwiz/script/v2/TLE987x.svd"/>
+          <memory id="IROM1" start="0x11000000" size="0x1EFFC" startup="1" default="1"/>
+          <memory id="IROM2" start="0x1101EFFC" size="0x1004" startup="0" default="1"/>
+          <memory id="IRAM1" start="0x18000018" size="0x17E8" init="0" default="1"/>
+          <memory id="IRAM2" start="0x18000000" size="0x14" init="0" default="1"/>
+          <algorithm name="Flash/TLE9879.FLM" start="0x11000000" size="0x1F000" default="1"/>
+          <algorithm name="Flash/TLE9879_EEP.FLM" start="0x1101F000" size="0x1000" default="1"/>
+          <book name="Documents/TLE987x-Users-Manual-18-Infineon.pdf" title="TLE987x Series Reference Manual"/>
+          <book name="Documents/TLE986x_TLE987x_BootROM-UserManual-18.pdf" title="TLE987x Series BootROM Manual"/>
+          <book name="Documents/TLE9879QXW40-BF-Data-Sheet-11-Infineon.pdf" title="TLE9879QXW40 Data Sheet"/>
+          <book name="Documents/html/index.html" title="SDK Help"/>
+          <feature type="ADC" n="1" m="10"/>
+          <feature type="ADC" n="1" m="8"/>
+          <feature type="IOs" n="11"/>
+        </device>
+        <device Dname="TLE9879-2QXA40">
+          <processor Dclock="40000000"/>
+          <compile header="Device/Include/tle987x.h" define="TLE9879_2QXA40"/>
+          <debug svd="Device/SDK/cfgwiz/script/v2/TLE987x_2.svd"/>
+          <memory id="IROM1" start="0x11000000" size="0x1EFFC" startup="1" default="1"/>
+          <memory id="IROM2" start="0x1101EFFC" size="0x1004" startup="0" default="1"/>
+          <memory id="IRAM1" start="0x18000018" size="0x17E8" init="0" default="1"/>
+          <memory id="IRAM2" start="0x18000000" size="0x14" init="0" default="1"/>
+          <algorithm name="Flash/TLE9879.FLM" start="0x11000000" size="0x1F000" default="1"/>
+          <algorithm name="Flash/TLE9879_EEP.FLM" start="0x1101F000" size="0x1000" default="1"/>
+          <book name="Documents/TLE987x-Users-Manual-18-Infineon.pdf" title="TLE987x Series Reference Manual"/>
+          <book name="Documents/TLE986x_TLE987x_BootROM-UserManual-18.pdf" title="TLE987x Series BootROM Manual"/>
+          <book name="Documents/TLE9879-2QXA40-BF-Data-Sheet-10-Infineon.pdf" title="TLE9879-2QXA40 Data Sheet"/>
+          <book name="Documents/html/index.html" title="SDK Help"/>
+          <feature type="ADC" n="1" m="10"/>
+          <feature type="ADC" n="1" m="8"/>
+          <feature type="ADC" n="1" m="14"/>
+          <feature type="IOs" n="11"/>
+        </device>
+      </subFamily>
+    </family>
+  </devices>
+  <conditions>
+    <!-- conditions are dependency rules that can apply to a component or an individual file -->
+    <condition id="cond_any_TLE987x_device">
+      <description>Infineon TLE987x device series</description>
+      <accept Dvendor="Infineon:7" Dname="TLE9871QXA20"/>
+      <accept Dvendor="Infineon:7" Dname="TLE9873QXW40"/>
+      <accept Dvendor="Infineon:7" Dname="TLE9877QXA20"/>
+      <accept Dvendor="Infineon:7" Dname="TLE9877QXA40"/>
+      <accept Dvendor="Infineon:7" Dname="TLE9877QTW40"/>
+      <accept Dvendor="Infineon:7" Dname="TLE9877QXW40"/>
+      <accept Dvendor="Infineon:7" Dname="TLE9879QXA20"/>
+      <accept Dvendor="Infineon:7" Dname="TLE9879QXA40"/>
+      <accept Dvendor="Infineon:7" Dname="TLE9879QXW40"/>
+      <accept Dvendor="Infineon:7" Dname="TLE9879QTW40"/>
+      <accept Dvendor="Infineon:7" Dname="TLE9879-2QXA40"/>
+      <accept Dvendor="Infineon:7" Dname="TLE9872QXA40"/>
+      <accept Dvendor="Infineon:7" Dname="TLE9872QTW40"/>
+      <accept Dvendor="Infineon:7" Dname="TLE9872-2QXA40"/>
+    </condition>
+    <condition id="cond_TLE987x_ConfigWizard_1">
+      <!-- Condition for ConfigWizard_v1.x -->
+      <description>If ConfigWizard_v1.x is selected, version 2.x must not be selected</description>
+      <deny Cclass="Device" Cgroup="ConfigWizard_v2" Csub=""/>
+      <require condition="cond_any_TLE987x_device"/>
+    </condition>
+    <condition id="cond_TLE987x_ConfigWizard_2">
+      <!-- Condition for ConfigWizard_v2.x -->
+      <description>If ConfigWizard_v2.x is selected, version 1.x must not be selected</description>
+      <deny Cclass="Device" Cgroup="ConfigWizard" Csub=""/>
+      <require condition="cond_any_TLE987x_device"/>
+    </condition>
+    <condition id="cond_TLE987x_BF_Step">
+      <description>Infineon TLE987x device series, BF-Step</description>
+      <require Cclass="CMSIS" Cgroup="CORE" Csub=""/>
+      <accept Dvendor="Infineon:7" Dname="TLE9871QXA20"/>
+      <accept Dvendor="Infineon:7" Dname="TLE9877QXA20"/>
+      <accept Dvendor="Infineon:7" Dname="TLE9877QXA40"/>
+      <accept Dvendor="Infineon:7" Dname="TLE9879QXA20"/>
+      <accept Dvendor="Infineon:7" Dname="TLE9879QXA40"/>
+    </condition>
+    <!-- component conditions -->
+    <condition id="cond_TLE987x_ADC1">
+      <accept condition="cond_any_TLE987x_device"/>
+      <!-- ADC1 requires ADC2 -->
+      <require Cclass="Device" Cgroup="SDK" Csub="ADC2"/>
+    </condition>
+    <condition id="cond_TLE987x_ADC2">
+      <accept condition="cond_any_TLE987x_device"/>
+    </condition>
+    <condition id="cond_TLE987x_BDRV">
+      <accept condition="cond_any_TLE987x_device"/>
+    </condition>
+    <condition id="cond_TLE987x_BOOTROM">
+      <accept condition="cond_any_TLE987x_device"/>
+    </condition>
+    <condition id="cond_TLE987x_CCU6">
+      <accept condition="cond_any_TLE987x_device"/>
+    </condition>
+    <condition id="cond_TLE987x_CSA">
+      <accept condition="cond_any_TLE987x_device"/>
+      <!-- CSA requires ADC1 -->
+      <require Cclass="Device" Cgroup="SDK" Csub="ADC1"/>
+    </condition>
+    <condition id="cond_TLE987x_DMA">
+      <accept condition="cond_any_TLE987x_device"/>
+    </condition>
+    <condition id="cond_TLE987x_GPT12E">
+      <accept condition="cond_any_TLE987x_device"/>
+    </condition>
+    <condition id="cond_TLE987x_INT">
+      <accept condition="cond_any_TLE987x_device"/>
+    </condition>
+    <condition id="cond_TLE987x_ISR">
+      <accept condition="cond_any_TLE987x_device"/>
+    </condition>
+    <condition id="cond_TLE987x_LIN">
+      <accept condition="cond_any_TLE987x_device"/>
+    </condition>
+    <condition id="cond_TLE987x_MON">
+      <accept condition="cond_any_TLE987x_device"/>
+    </condition>
+    <condition id="cond_TLE987x_PMU">
+      <accept condition="cond_any_TLE987x_device"/>
+    </condition>
+    <condition id="cond_TLE987x_PORT">
+      <accept condition="cond_any_TLE987x_device"/>
+    </condition>
+    <condition id="cond_TLE987x_SCU">
+      <accept condition="cond_any_TLE987x_device"/>
+    </condition>
+    <condition id="cond_TLE987x_SDADC">
+      <accept Dvendor="Infineon:7" Dname="TLE9879-2QXA40"/>
+      <accept Dvendor="Infineon:7" Dname="TLE9872-2QXA40"/>
+    </condition>
+    <condition id="cond_TLE987x_SSC">
+      <accept condition="cond_any_TLE987x_device"/>
+    </condition>
+    <condition id="cond_TLE987x_TIMER2x">
+      <accept condition="cond_any_TLE987x_device"/>
+    </condition>
+    <condition id="cond_TLE987x_TIMER3">
+      <accept condition="cond_any_TLE987x_device"/>
+    </condition>
+    <condition id="cond_TLE987x_WDT1">
+      <accept condition="cond_any_TLE987x_device"/>
+    </condition>
+    <condition id="cond_TLE987x_UART">
+      <accept condition="cond_any_TLE987x_device"/>
+    </condition>
+    <condition id="cond_TLE987x_startup">
+      <!-- conditions selecting Devices -->
+      <description>Infineon TLE987x device series</description>
+      <require Cclass="CMSIS" Cgroup="CORE" Csub=""/>
+      <require Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+      <require Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+      <require Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+      <require Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+      <require Cclass="Device" Cgroup="SDK" Csub="INT"/>
+      <require Cclass="Device" Cgroup="SDK" Csub="LIN"/>
+      <require Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+      <require Cclass="Device" Cgroup="SDK" Csub="PMU"/>
+      <require condition="cond_any_TLE987x_device"/>
+      <accept condition="cond_TLE987x_ConfigWizard_1"/>
+      <accept condition="cond_TLE987x_ConfigWizard_2"/>
+    </condition>
+    <!-- SDADC condition: yes/no -->
+    <condition id="cond_TLE987x_noSDADC">
+      <description>Infineon TLE987x device series, no SDADC</description>
+      <require condition="cond_any_TLE987x_device"/>
+      <accept Dvendor="Infineon:7" Dname="TLE987?Q*"/>
+    </condition>
+    <condition id="cond_TLE987x_withSDADC">
+      <description>Infineon TLE987x device series, with SDADC</description>
+      <require condition="cond_any_TLE987x_device"/>
+      <accept Dvendor="Infineon:7" Dname="TLE987?-2*"/>
+      <accept Dvendor="Infineon:7" Dname="TLE987?_2*"/>
+    </condition>
+    <!-- fSYS condition: 40/24MHz -->
+    <condition id="cond_TLE987x_40MHz">
+      <description>Infineon TLE987x device series, fSYS 40MHz</description>
+      <require condition="cond_any_TLE987x_device"/>
+      <accept Dvendor="Infineon:7" Dname="TLE987*40"/>
+    </condition>
+    <condition id="cond_TLE987x_24MHz">
+      <description>Infineon TLE987x device series, fSYS 24MHz</description>
+      <require condition="cond_any_TLE987x_device"/>
+      <accept Dvendor="Infineon:7" Dname="TLE987*20"/>
+    </condition>
+    <!-- Combination of SDADC condition and fSYS condition -->
+    <condition id="cond_TLE987x_noSDADC_40MHz">
+      <description>Infineon TLE987x device series, no SDADC, fSYS 40MHz</description>
+      <require condition="cond_TLE987x_noSDADC"/>
+      <require condition="cond_TLE987x_40MHz"/>
+    </condition>
+    <condition id="cond_TLE987x_noSDADC_24MHz">
+      <description>Infineon TLE987x device series, no SDADC, fSYS 24MHz</description>
+      <require condition="cond_TLE987x_noSDADC"/>
+      <require condition="cond_TLE987x_24MHz"/>
+    </condition>
+    <condition id="cond_TLE987x_withSDADC_40MHz">
+      <description>Infineon TLE987x device series, with SDADC, fSYS 40MHz</description>
+      <require condition="cond_TLE987x_withSDADC"/>
+      <require condition="cond_TLE987x_40MHz"/>
+    </condition>
+    <condition id="cond_TLE987x_withSDADC_24MHz">
+      <description>Infineon TLE987x device series, with SDADC, fSYS 24MHz</description>
+      <require condition="cond_TLE987x_withSDADC"/>
+      <require condition="cond_TLE987x_24MHz"/>
+    </condition>
+    <condition id="cond_TLE987x_ARMCC">
+      <description>Infineon TLE987x device series with ARMCC</description>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="cond_TLE987x_IAR">
+      <description>Infineon TLE987x device series with IAR</description>
+      <require Tcompiler="IAR"/>
+    </condition>
+  </conditions>
+  <boards>
+    <board vendor="Infineon" name="TLE9879 EvalKit" revision="V1.1" salesContact="sales@infineon.com" orderForm="http://www.infineon.com/embeddedpower">
+      <description>Infineon TLE9879 EvalKit Board Support and Examples</description>
+      <image small="Images/TLE9879_EvalKit_v1_top_small.jpg" large="Images/TLE9879_EvalKit_v1_top_large.jpg"/>
+      <book category="overview" name="http://www.infineon.com/cms/en/product/evaluation-boards/TLE9879+EVALKIT/evaluation-boards/TLE9879+EVALKIT/productType.html?productType=5546d4624e765da5014eb4e2cc3f2fc5" title="TLE9879 EvalKit Web Page"/>
+      <book category="setup" name="Documents/TLE9879-EvalKit-UM-130-Infineon.pdf" title="Getting Started"/>
+      <book category="schematic" name="Documents/TLE9879_Evalkit_Rev1.3.zip" title="Schematics"/>
+      <mountedDevice deviceIndex="0" Dvendor="Infineon:7" Dname="TLE9879QXA40"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Infineon:7" DsubFamily="TLE987x Series" Dname="TLE9871QXA20"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Infineon:7" DsubFamily="TLE987x Series" Dname="TLE9873QXW40"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Infineon:7" DsubFamily="TLE987x Series" Dname="TLE9877QXA20"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Infineon:7" DsubFamily="TLE987x Series" Dname="TLE9877QXA40"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Infineon:7" DsubFamily="TLE987x Series" Dname="TLE9877QXW40"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Infineon:7" DsubFamily="TLE987x Series" Dname="TLE9877QTW40"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Infineon:7" DsubFamily="TLE987x Series" Dname="TLE9879QXA20"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Infineon:7" DsubFamily="TLE987x Series" Dname="TLE9879QXW40"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Infineon:7" DsubFamily="TLE987x Series" Dname="TLE9879QTW40"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Infineon:7" DsubFamily="TLE987x Series" Dname="TLE9872QXA40"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Infineon:7" DsubFamily="TLE987x Series" Dname="TLE9872QTW40"/>
+      <feature type="ODbg" n="1" name="On-board J-LINK Lite"/>
+      <feature type="PWR" n="5" name="USB Powered"/>
+      <feature type="PWR" n="12" m="5" name="POWER Connector for external supply"/>
+      <feature type="DIO" n="13" name="Pins at pin headers"/>
+      <feature type="AIO" n="3" name="Analog inputs at AD"/>
+      <feature type="LED" n="8" name="User LEDs"/>
+      <debugInterface adapter="J-Link Lite" connector="Mini-USB"/>
+    </board>
+    <board vendor="Infineon" name="TLE987x EvalBoard" revision="V1.2" salesContact="sales@infineon.com" orderForm="http://www.infineon.com/embeddedpower">
+      <description>Infineon TLE987x EvalBoard Board Support and Examples</description>
+      <image small="Images/TLE987X-EVALB_JLINK_low.png" large="Images/TLE987X-EVALB_JLINK.png_2136625930.png"/>
+      <book category="overview" name="https://www.infineon.com/cms/en/product/evaluation-boards/tle987x-evalb_jlink/" title="TLE9879 Eval.Board Web Page"/>
+      <book category="setup" name="Documents/TLE987x_EvalBoard_UM_120.pdf" title="Getting Started"/>
+      <book category="schematic" name="Documents/TLE987x_DUTplastic_rev1.2.zip" title="Schematics"/>
+      <mountedDevice deviceIndex="0" Dvendor="Infineon:7" Dname="TLE9879-2QXA40"/>
+      <compatibleDevice deviceIndex="0" Dvendor="Infineon:7" DsubFamily="TLE987x Series" Dname="TLE9872-2QXA40"/>
+      <feature type="ODbg" n="1" name="J-LINK Lite"/>
+      <feature type="PWR" n="12" m="5" name="POWER Connector for external supply"/>
+      <feature type="DIO" n="13" name="Pins at pin headers"/>
+      <feature type="AIO" n="3" name="Analog inputs at AD"/>
+      <feature type="LED" n="8" name="User LEDs"/>
+      <debugInterface adapter="J-Link Lite" connector="Mini-USB"/>
+    </board>
+  </boards>
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.2.0" condition="cond_TLE987x_startup">
+      <!-- Cversion is necessary -->
+      <description>System Startup for Infineon TLE987x device series</description>
+      <files>
+        <!-- startup files -->
+        <file category="source" name="Device/Source/ARM/startup_tle987x.S" attr="config" version="1.2.0" condition="cond_TLE987x_ARMCC"/>
+        <file category="source" name="Device/Source/IAR/startup_tle987x.s" attr="config" version="1.1.0" condition="cond_TLE987x_IAR"/>
+        <!-- system file -->
+        <file category="source" name="Device/Source/system_tle987x.c" attr="config" version="0.5.0"/>
+        <file category="header" name="Device/Include/system_tle987x.h" attr="config" version="0.5.0"/>
+        <file category="source" name="Device/Source/tle_device.c" attr="config" version="1.1.3"/>
+        <file category="header" name="Device/Include/tle_device.h" attr="config" version="1.1.3"/>
+        <file category="header" name="Device/Include/tle_variants.h" attr="config" version="0.2.2"/>
+        <file category="source" name="Device/Include/sfr_access.h" attr="config" version="0.1.3"/>
+        <file category="header" name="Device/Include/types.h" attr="config" version="0.3.1"/>
+        <file category="header" name="Device/Include/eval_board.h" attr="config" version="0.1.2"/>
+        <file category="header" name="Device/Include/cmsis_misra.h" attr="config" version="0.1.6"/>
+        <file category="header" name="Device/Include/tle987x.h" attr="config" version="3.0.7"/>
+        <file category="sourceC" name="Device/SDK/app/main.c" attr="template" select="Simple Main" version="1.0.1"/>
+        <file category="doc" name="Documents/html/index.html"/>
+      </files>
+    </component>
+    <!-- START: Infineon Standard Peripherals Low Level Drivers -->
+    <component Cclass="Device" Cgroup="ConfigWizard" Cversion="1.8.6" condition="cond_TLE987x_ConfigWizard_1">
+      <!-- Cversion is necessary -->
+      <description>Infineon ConfigWizard Configuration File</description>
+      <RTE_Components_h>
+         #define CONFIGWIZARD 1
+      </RTE_Components_h>
+      <files>
+        <file category="doc" name="Device/SDK/cfgwiz/TLE987x_20/v1/config.icwp" attr="config" condition="cond_TLE987x_noSDADC_24MHz" version="1.8.6"/>
+        <file category="doc" name="Device/SDK/cfgwiz/TLE987x_40/v1/config.icwp" attr="config" condition="cond_TLE987x_noSDADC_40MHz" version="1.8.6"/>
+        <file category="doc" name="Device/SDK/cfgwiz/TLE9879_2/v1/config.icwp" attr="config" condition="cond_TLE987x_withSDADC_40MHz" version="1.8.6"/>
+        <file category="doc" name="Device/SDK/cfgwiz/script/v2/TLE987x.svd" attr="config" condition="cond_TLE987x_noSDADC" version="4.1.0"/>
+        <file category="doc" name="Device/SDK/cfgwiz/script/v2/TLE987x_2.svd" attr="config" condition="cond_TLE987x_withSDADC" version="4.2.0"/>
+        <file category="doc" name="Device/SDK/cfgwiz/script/v1/ICW_TLE987x.xml" attr="config" condition="cond_TLE987x_noSDADC" version="1.5.6"/>
+        <file category="doc" name="Device/SDK/cfgwiz/script/TLE9879_2/v1/ICW_TLE987x.xml" attr="config" condition="cond_TLE987x_withSDADC" version="1.5.6"/>
+        <!-- sdadc_defines.h only for TLE9879_2 -->
+        <file category="header" name="Device/SDK/cfgwiz/TLE9879_2/v1/sdadc_defines.h" attr="config" condition="cond_TLE987x_withSDADC" version="1.8.6"/>
+        <!-- _defines.h whose content is the same between both versions of the Config Wizard -->
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v1/ccu6_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v1/ccu6_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v1/isr_defines.h" attr="config" condition="cond_TLE987x_noSDADC_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v1/isr_defines.h" attr="config" condition="cond_TLE987x_noSDADC_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE9879_2/v1/isr_defines.h" attr="config" condition="cond_TLE987x_withSDADC_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v1/lin_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v1/lin_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v1/ssc_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v1/ssc_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v1/timer2x_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v1/timer2x_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v1/uart_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v1/uart_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+        <!-- _defines.h for which you have to differentiate between both versions of the Config Wizard -->
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v1/bsl_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v1/bsl_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v1/scu_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v1/scu_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v1/pmu_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v1/pmu_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v1/adc1_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v1/adc1_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v1/adc2_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v1/adc2_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v1/bdrv_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v1/bdrv_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v1/csa_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v1/csa_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v1/gpt12e_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v1/gpt12e_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v1/int_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v1/int_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v1/mon_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v1/mon_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v1/port_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v1/port_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v1/timer3_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v1/timer3_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v1/dma_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v1/dma_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="ConfigWizard_v2" Cversion="2.1.12" condition="cond_TLE987x_ConfigWizard_2">
+      <!-- Cversion is necessary -->
+      <description>Infineon ConfigWizard Configuration File</description>
+      <RTE_Components_h>
+          #define CONFIGWIZARD 2
+      </RTE_Components_h>
+      <files>
+        <file category="doc" name="Device/SDK/cfgwiz/TLE987x_20/v2/config.icwp" attr="config" condition="cond_TLE987x_noSDADC_24MHz" version="1.8.6"/>
+        <file category="doc" name="Device/SDK/cfgwiz/TLE987x_40/v2/config.icwp" attr="config" condition="cond_TLE987x_noSDADC_40MHz" version="1.8.6"/>
+        <file category="doc" name="Device/SDK/cfgwiz/TLE9879_2/v2/config.icwp" attr="config" condition="cond_TLE987x_withSDADC_40MHz" version="1.8.6"/>
+        <file category="doc" name="Device/SDK/cfgwiz/script/v2/TLE987x.svd" attr="config" condition="cond_TLE987x_noSDADC" version="4.1.0"/>
+        <file category="doc" name="Device/SDK/cfgwiz/script/v2/TLE987x_2.svd" attr="config" condition="cond_TLE987x_withSDADC" version="4.2.0"/>
+        <file category="doc" name="Device/SDK/cfgwiz/script/v2/ICW_TLE987x.xml" attr="config" version="2.3.4"/>
+        <file category="doc" name="Device/SDK/cfgwiz/script/v2/TLE987x.mig" attr="config" version="2.0.5"/>
+        <!-- sdadc_defines.h only for TLE9879_2 -->
+        <file category="header" name="Device/SDK/cfgwiz/TLE9879_2/v2/sdadc_defines.h" attr="config" condition="cond_TLE987x_withSDADC" version="1.8.6"/>
+        <!-- _defines.h whose content is the same between both versions of the Config Wizard -->
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v2/ccu6_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v2/ccu6_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v2/isr_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v2/isr_defines.h" attr="config" condition="cond_TLE987x_noSDADC_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE9879_2/v2/isr_defines.h" attr="config" condition="cond_TLE987x_withSDADC_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v2/lin_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v2/lin_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v2/ssc_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v2/ssc_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v2/timer2x_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v2/timer2x_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v2/uart_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v2/uart_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+        <!-- _defines.h for which you have to differentiate between both versions of the Config Wizard -->
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v2/bsl_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v2/bsl_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v2/scu_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v2/scu_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v2/pmu_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v2/pmu_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v2/adc1_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v2/adc1_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v2/adc2_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v2/adc2_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v2/bdrv_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v2/bdrv_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v2/csa_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v2/csa_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v2/gpt12e_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v2/gpt12e_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v2/int_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v2/int_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v2/mon_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v2/mon_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v2/port_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v2/port_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v2/timer3_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v2/timer3_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_20/v2/dma_defines.h" attr="config" condition="cond_TLE987x_24MHz" version="1.8.6"/>
+        <file category="header" name="Device/SDK/cfgwiz/TLE987x_40/v2/dma_defines.h" attr="config" condition="cond_TLE987x_40MHz" version="1.8.6"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="BF-Stepping" Cversion="0.0.1" condition="cond_TLE987x_BF_Step">
+      <description>Select if target device is BF-Stepping</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_BF_STEP
+      </RTE_Components_h>
+      <files>
+        <file category="doc" name="Documents/bf_stepping.html"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK" Csub="ADC1" Cversion="0.3.0" condition="cond_TLE987x_ADC1">
+      <description>Analog Digital Converter 1 (ADC1) driver for TLE987x</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SDK_ADC1
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SDK/inc/adc1.h" attr="config" version="0.3.0"/>
+        <file category="source" name="Device/SDK/src/adc1.c" attr="config" version="0.3.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK" Csub="ADC2" Cversion="0.2.6" condition="cond_TLE987x_ADC2">
+      <description>Analog Digital Converter 2 (ADC2) driver for TLE987x</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SDK_ADC2
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SDK/inc/adc2.h" attr="config" version="0.2.6"/>
+        <file category="source" name="Device/SDK/src/adc2.c" attr="config" version="0.2.6"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK" Csub="BDRV" Cversion="0.6.1" condition="cond_TLE987x_BDRV">
+      <description>Bridge Driver (BDRV) driver for TLE987x</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SDK_BDRV
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SDK/inc/bdrv.h" attr="config" version="0.6.1"/>
+        <file category="source" name="Device/SDK/src/bdrv.c" attr="config" version="0.6.1"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM" Cversion="0.3.3" condition="cond_TLE987x_BOOTROM">
+      <description>BootROM driver for TLE987x</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SDK_BROM
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SDK/inc/bootrom.h" attr="config" version="0.3.3"/>
+        <file category="source" name="Device/SDK/src/bootrom.c" attr="config" version="0.3.3"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK" Csub="CCU6" Cversion="0.4.1" condition="cond_TLE987x_CCU6">
+      <description>Capture Compare Unit (CCU6) driver for TLE987x</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SDK_CCU6
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SDK/inc/ccu6.h" attr="config" version="0.4.1"/>
+        <file category="source" name="Device/SDK/src/ccu6.c" attr="config" version="0.4.1"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK" Csub="CSA" Cversion="0.1.9" condition="cond_TLE987x_CSA">
+      <description>Current Sense Amplifier (CSA) driver for TLE987x</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SDK_CSA
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SDK/inc/csa.h" attr="config" version="0.1.9"/>
+        <file category="source" name="Device/SDK/src/csa.c" attr="config" version="0.1.9"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK" Csub="DMA" Cversion="0.2.2" condition="cond_TLE987x_DMA">
+      <description>DMA driver for TLE987x</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SDK_DMA
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SDK/inc/dma.h" attr="config" version="0.2.2"/>
+        <file category="source" name="Device/SDK/src/dma.c" attr="config" version="0.2.2"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK" Csub="GPT12E" Cversion="0.2.2" condition="cond_TLE987x_GPT12E">
+      <description>General Purpose Timer 12E (GPT12E) driver for TLE987x</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SDK_GPT12E
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SDK/inc/gpt12e.h" attr="config" version="0.2.2"/>
+        <file category="source" name="Device/SDK/src/gpt12e.c" attr="config" version="0.2.2"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK" Csub="INT" Cversion="0.2.3" condition="cond_TLE987x_INT">
+      <description>Interrupt (INT) driver for TLE987x</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SDK_INT
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SDK/inc/int.h" attr="config" version="0.2.3"/>
+        <file category="source" name="Device/SDK/src/int.c" attr="config" version="0.2.3"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK" Csub="ISR" Cversion="0.2.9" condition="cond_TLE987x_ISR">
+      <description>Interrupt Service Routines (ISR) driver for TLE987x</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SDK_ISR
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SDK/inc/isr.h" attr="config" version="0.2.9"/>
+        <file category="source" name="Device/SDK/src/isr.c" attr="config" version="0.2.9"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK" Csub="LIN" Cversion="0.2.0" condition="cond_TLE987x_LIN">
+      <description>LIN Tranceiver (LIN) driver for TLE987x</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SDK_LIN
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SDK/inc/lin.h" attr="config" version="0.2.0"/>
+        <file category="source" name="Device/SDK/src/lin.c" attr="config" version="0.2.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK" Csub="MON" Cversion="0.1.7" condition="cond_TLE987x_MON">
+      <description>High Voltage Monitor Input (MON) driver for TLE987x</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SDK_MON
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SDK/inc/mon.h" attr="config" version="0.1.7"/>
+        <file category="source" name="Device/SDK/src/mon.c" attr="config" version="0.1.7"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK" Csub="PMU" Cversion="0.2.2" condition="cond_TLE987x_PMU">
+      <description>Power Management Unit (SCU) driver for TLE987x</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SDK_PMU
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SDK/inc/pmu.h" attr="config" version="0.2.2"/>
+        <file category="source" name="Device/SDK/src/pmu.c" attr="config" version="0.2.2"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK" Csub="PORT" Cversion="0.6.0" condition="cond_TLE987x_PORT">
+      <description>GPIO Ports (PORT) driver for TLE987x</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SDK_PORT
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SDK/inc/port.h" attr="config" version="0.6.0"/>
+        <file category="source" name="Device/SDK/src/port.c" attr="config" version="0.6.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK" Csub="SCU" Cversion="0.5.7" condition="cond_TLE987x_SCU">
+      <description>System Control Unit (SCU) driver for TLE987x</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SDK_SCU
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SDK/inc/scu.h" attr="config" version="0.5.7"/>
+        <file category="source" name="Device/SDK/src/scu.c" attr="config" version="0.5.7"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK" Csub="SDADC" Cversion="0.1.6" condition="cond_TLE987x_SDADC">
+      <description>Sigma Delta ADC driver for TLE9879-2QXA40</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SDK_ADC34
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SDK/inc/sdadc.h" attr="config" version="0.1.6"/>
+        <file category="source" name="Device/SDK/src/sdadc.c" attr="config" version="0.1.6"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK" Csub="SSC" Cversion="0.1.8" condition="cond_TLE987x_SSC">
+      <description>High Speed Synchronous Serial Interface 1 and 2 (SSC) driver for TLE987x</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SDK_SSC
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SDK/inc/ssc.h" attr="config" version="0.1.8"/>
+        <file category="source" name="Device/SDK/src/ssc.c" attr="config" version="0.1.8"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK" Csub="TIMER2x" Cversion="0.2.3" condition="cond_TLE987x_TIMER2x">
+      <description>Timer2 and Timer21 (TIMER2x) driver for TLE987x</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SDK_TIMER2X
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SDK/inc/timer2x.h" attr="config" version="0.2.3"/>
+        <file category="source" name="Device/SDK/src/timer2x.c" attr="config" version="0.2.3"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK" Csub="TIMER3" Cversion="0.2.0" condition="cond_TLE987x_TIMER3">
+      <description>Timer3 (TIMER3) driver for TLE987x</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SDK_TIMER3
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SDK/inc/timer3.h" attr="config" version="0.2.0"/>
+        <file category="source" name="Device/SDK/src/timer3.c" attr="config" version="0.2.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK" Csub="WDT1" Cversion="0.3.3" condition="cond_TLE987x_WDT1">
+      <description>Watchdog 1 (WDT1) driver for TLE987x</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SDK_WDT1
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SDK/inc/wdt1.h" attr="config" version="0.3.3"/>
+        <file category="source" name="Device/SDK/src/wdt1.c" attr="config" version="0.3.3"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK" Csub="UART" Cversion="0.2.4" condition="cond_TLE987x_UART">
+      <description>UART1 and UART2 (UART) driver for TLE987x</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_SDK_UART
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Device/SDK/inc/uart.h" attr="config" version="0.2.4"/>
+        <file category="source" name="Device/SDK/src/uart.c" attr="config" version="0.2.4"/>
+      </files>
+    </component>
+  </components>
+  <examples>
+    <example name="TLE9879QXA40_ADC1_POTI_EIM" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/ADC1_POTI_EIM_EXAMPLE_TLE987X/">
+      <description>Reading the Poti using an Exceptional Interrupt Measurement in ADC1</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_ADC1_POTI_EIM.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_ADC1_POTI_EIM.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="CCU6"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_ADC1_POTI_ESM" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/ADC1_POTI_ESM_EXAMPLE_TLE987X/">
+      <description>Reading the Poti using an Exceptional Sequencer Measurement in ADC1</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_ADC1_POTI_ESM.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_ADC1_POTI_ESM.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="CCU6"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="MON"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_ADC1_POTI_SEQ" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/ADC1_POTI_SEQ_EXAMPLE_TLE987X/">
+      <description>Reading the Poti using the sequencer mode in ADC1</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_ADC1_POTI_SEQ.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_ADC1_POTI_SEQ.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_ADC2_VS" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/ADC2_VS_EXAMPLE_TLE987X/">
+      <description>Measuring VS in ADC2</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_ADC2_VS.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_ADC2_VS.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_BLINKY" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/BLINKY_EXAMPLE_TLE987X/">
+      <description>Blinking a LED</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_BLINKY.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_BLINKY.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_BLINKY_RUNNING_LIGHTS" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/BLINKY_RUNNING_LIGHTS_EXAMPLE_TLE987X/">
+      <description>Running lights</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_BLINKY_RUNNING_LIGHTS.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_BLINKY_RUNNING_LIGHTS.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PMU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="CCU6"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_BLDC_BEMF" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/BLDC_BC_BEMF_EXAMPLE_TLE987X/">
+      <description>Driving a BLDC motor with a sensorless block commutation (BEMF)</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_BLDC_BEMF.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_BLDC_BEMF.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="MON"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="GPT12E"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="CCU6"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_BLDC_BEMF_LIN" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/BLDC_BC_BEMF_LIN_EXAMPLE_TLE987X/">
+      <description>Driving a BLDC motor with a sensorless block commutation (BEMF) controlled over LIN</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_BLDC_BEMF_LIN.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_BLDC_BEMF_LIN.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="GPT12E"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="CCU6"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="LIN"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="TIMER2x"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="UART"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_BLDC_HALL" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/BLDC_BC_HALL_EXAMPLE_TLE987X/">
+      <description>Driving a BLDC motor with block commutation with HALL sensor</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_BLDC_HALL.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_BLDC_HALL.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="MON"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="GPT12E"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="CCU6"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_BLDC_HALL_LIN" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/BLDC_BC_HALL_LIN_EXAMPLE_TLE987X/">
+      <description>Driving a BLDC motor with block commutation with HALL sensor controlled over LIN</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_BLDC_HALL_LIN.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_BLDC_HALL_LIN.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="GPT12E"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="CCU6"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="LIN"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="TIMER2x"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="UART"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_BLDC_HALL2" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/BLDC_HALL2_EXAMPLE_TLE987X/">
+      <description>Measuring the Hall Pattern of a BLDC motor and driving it. Pattern can be sent to PC via stdio. </description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_BLDC_HALL2.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_BLDC_HALL2.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="CCU6"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="CSA"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="GPT12E"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="LIN"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="MON"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PMU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="TIMER2x"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="TIMER3"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="UART"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_BLDC_FOC_SENSORLESS" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/BLDC_SENSORLESS_FOC_EXAMPLE_TLE987X/">
+      <description>DEPRECATED! Please download the latest version from https://softwaretools.infineon.com/tools/com.ifx.tb.tool.tle987xeslbas</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_BLDC_FOC_SENSORLESS.uvprojx"/>
+        <!-- Example for IAR not ready yet -->
+        <!--environment name="iar" load="TLE9879QXA40_BLDC_FOC_SENSORLESS.ewp"/-->
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="MON"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="CSA"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="GPT12E"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="CCU6"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <!-- Example with LIN not ready yet -->
+    <!--example name="TLE9879QXA40_BLDC_FOC_SENSORLESS_LIN" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/BLDC_SENSORLESS_FOC_LIN_EXAMPLE_TLE987X/">
+      <description>Driving a BLDC motor with sensorless FOC controlled over LIN</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_BLDC_FOC_SENSORLESS_LIN.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_BLDC_FOC_SENSORLESS_LIN.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="MON"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="CSA"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="GPT12E"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="CCU6"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="LIN"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="TIMER2x"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="UART"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example-->
+    <example name="TLE9879QXA40_CCU6_PWM" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/CCU6_PWM_EXAMPLE_TLE987X/">
+      <description>Generating PWM via CCU6</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_CCU6_PWM.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_CCU6_PWM.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="CCU6"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_CCU6_SIN_PWM" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/CCU6_SIN_PWM_EXAMPLE_TLE987X/">
+      <description>Generating sinusoidal PWM via CCU6</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_CCU6_SIN_PWM.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_CCU6_SIN_PWM.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="CCU6"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_CCU6_ADC1_SYNC" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/CCU6_ADC1_EXAMPLE_TLE987X/">
+      <description>Synchronizing ADC1-EIM with CCU6 ch0</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_CCU6_ADC1_SYNC.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_CCU6_ADC1_SYNC.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="CCU6"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_DMA_ADC1_SEQ" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/DMA_ADC1_SEQ_EXAMPLE_TLE987X/">
+      <description>Triggering DMA after completing an ADC1 sequence</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_DMA_ADC1_SEQ.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_DMA_ADC1_SEQ.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="DMA"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="CSA"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_DMA_SCTGTH" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/DMA_CH0_SCTGTH_EXAMPLE_TLE987X/">
+      <description>Multiple memory copy using DMA.Ch0 scatter-gather mode</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_DMA_SCTGTH.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_DMA_SCTGTH.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="DMA"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_DMA_SPI" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/DMA_SPI_EXAMPLE_TLE987X/">
+      <description>Sending data through SPI using DMA</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_DMA_SPI.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_DMA_SPI.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="DMA"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SSC"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_DMA_UART_TTY" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/DMA_UART_TTY_EXAMPLE_TLE987X/">
+      <description>Sending data triggered by DMA via UART2</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_DMA_UART_TTY.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_DMA_UART_TTY.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="DMA"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="GPT12E"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="MON"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="UART"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_GPT12_CAPTURE_T2_T3" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/GPT12_INPUT_CAPTURE_EXAMPLE_TLE987X/">
+      <description>Capturing input via auxiliary timer T2 of GPT12E</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_GPT12_CAPTURE_T2_T3.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_GPT12_CAPTURE_T2_T3.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="GPT12E"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="TIMER2x"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_GPT12_CONCAT_T3_T2" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/GPT12E_T3_CONCAT_EXAMPLE_TLE987X/">
+      <description>Concatenating T2 and T3 (GPT12E) as 32bit timer</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_GPT12_CONCAT_T3_T2.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_GPT12_CONCAT_T3_T2.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="GPT12E"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_GPT12_RELOAD_T3_T2" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/GPT12E_T3_RELOAD_EXAMPLE_TLE987X/">
+      <description>Reloading of core timer T3 (GPT12E) with auxiliary timer T2 (GPT12E)</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_GPT12_RELOAD_T3_T2.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_GPT12_RELOAD_T3_T2.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="GPT12E"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_LIN_MASTER" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/LIN_MASTER_EXAMPLE_TLE987X/">
+      <description>Running the IHR LIN low-level driver in a LIN master configuration</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_LIN_MASTER.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_LIN_MASTER.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="LIN"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="TIMER2x"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="UART"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_LIN_SLAVE" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/LIN_SLAVE_EXAMPLE_TLE987X/">
+      <description>Running the IHR LIN low-level driver in a LIN slave configuration</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_LIN_SLAVE.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_LIN_SLAVE.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="LIN"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="TIMER2x"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="UART"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_LIN_SYNC_AUTOBAUD" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/LIN_SYNCH_AUTOBAUD_EXAMPLE_TLE987X/">
+      <description>Synchronizing LIN and detecting the baudrate automatically</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_LIN_SYNC_AUTOBAUD.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_LIN_SYNC_AUTOBAUD.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="LIN"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="TIMER2x"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="UART"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_NVM_DATA_FLASH" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/NVM_DATA_FLASH_HANDLING_EXAMPLE_TLE987X/">
+      <description>Handling NVM data flash errors during a page programming</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_NVM_DATA_FLASH.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_NVM_DATA_FLASH.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BDRV"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_NVM_PROGRAMMING" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/NVM_PROG_EXAMPLE_TLE987X/">
+      <description>Programming a NVM page</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_NVM_PROGRAMMING.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_NVM_PROGRAMMING.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_NVM_RAM_BRANCH" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/NVM_RAM_BRANCH_EXAMPLE_TLE987X/">
+      <description>Programming a NVM page with RAM branch</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_NVM_RAM_BRANCH.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_NVM_RAM_BRANCH.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_NVM_RAM_INTERRUPTS" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/NVM_RAM_INTERRUPTS_EXAMPLE_TLE987X/">
+      <description>Programming a NVM page with interrupts in RAM</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_NVM_RAM_INTERRUPTS.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_NVM_RAM_INTERRUPTS.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="LIN"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PMU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="TIMER2x"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_NVM_PROTECTION" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/NVM_PROTECTION_EXAMPLE_TLE987X/">
+      <description>Flashing a page with write protection</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_NVM_PROTECTION.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_NVM_PROTECTION.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_PMU_SLEEP_MODE" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/PMU_POWER_SAVING_SLEEP_MODE_EXAMPLE_TLE987X/">
+      <description>Power saving modes - Sleep mode</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_PMU_SLEEP_MODE.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_PMU_SLEEP_MODE.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PMU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_PMU_SLEEP_MODE_CYCLIC_WAKE" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/PMU_POWER_SAVING_SLEEP_MODE_CYCLIC_WAKE_EXAMPLE_TLE987X/">
+      <description>Power saving modes - Sleep mode with cyclic wake</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_PMU_SLEEP_MODE_CYCLIC_WAKE.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_PMU_SLEEP_MODE_CYCLIC_WAKE.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="MON"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PMU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_PMU_STOP_MODE" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/PMU_POWER_SAVING_STOP_MODE_EXAMPLE_TLE987X/">
+      <description>Power saving modes - Stop mode</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_PMU_STOP_MODE.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_PMU_STOP_MODE.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PMU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_PMU_RESET_STATUS" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/PMU_RESET_STATUS_EXAMPLE_TLE987X/">
+      <description>Evaluating the Reset source</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_PMU_RESET_STATUS.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_PMU_RESET_STATUS.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="MON"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PMU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_PMU_VDDEXT" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/PMU_VDDEXT_EXAMPLE_TLE987X/">
+      <description>Enabling VDDEXT and using diagnostic function</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_PMU_VDDEXT.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_PMU_VDDEXT.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PMU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_SCU_PLL" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/SCU_PLL_EXAMPLE_TLE987X/">
+      <description>Adjusting the PLL</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_SCU_PLL.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_SCU_PLL.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ADC1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ADC2"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BDRV"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_SCU_PLL_XTAL" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/SCU_PLL_XTAL_EXAMPLE_TLE987X/">
+      <description>Adjusting the PLL with external XTAL</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_SCU_PLL_XTAL.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_SCU_PLL_XTAL.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879_2QXA40_SDADC_TMR" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/SDADC_TMR_EXAMPLE_TLE9879_2/">
+      <description>Calculating an absolute angle using a TMR sensor (e.g. TLE5501) connected to the SDADC</description>
+      <board name="TLE987x EvalBoard" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879_2QXA40_SDADC_TMR.uvprojx"/>
+        <environment name="iar" load="TLE9879_2QXA40_SDADC_TMR.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="LIN"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SDADC"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_SSC1_SEND" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/SSC1_SEND_EXAMPLE_TLE987X/">
+      <description>Sending data with SSC1 as SPI Master</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_SSC1_SEND.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_SSC1_SEND.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SSC"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="GPT12E"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="TIMER2x"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_SSC1_TO_SSC2" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/SSC1_TO_SSC2_EXAMPLE_TLE987X/">
+      <description>Sending data between SSC1 and SSC2</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_SSC1_TO_SSC2.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_SSC1_TO_SSC2.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SSC"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_TIMER2_BLINK" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/TIMER2_BLINK_EXAMPLE_TLE987X/">
+      <description>Blinking LED via TIMER2</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_TIMER2_BLINK.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_TIMER2_BLINK.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="TIMER2x"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_TIMER2_PWM_CAPTURE" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/TIMER2_PWM_CAPTURE_EXAMPLE_TLE987X/">
+      <description>Measuring the PWM duty cycle and period via TIMER2</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_TIMER2_PWM_CAPTURE.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_TIMER2_PWM_CAPTURE.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="TIMER2x"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_TIMER3_MODE_1B" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/TIMER3_MODE1B_EXAMPLE_TLE987X/">
+      <description>Starting TIMER3 at every rising edge of a PWM signal</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_TIMER3_MODE_1B.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_TIMER3_MODE_1B.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="CCU6"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="LIN"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PMU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="TIMER3"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_UART1_SEND" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/UART1_SEND_EXAMPLE_TLE987X/">
+      <description>Sending data via UART1 over LIN transceiver</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_UART1_SEND.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_UART1_SEND.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="UART"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+    <example name="TLE9879QXA40_UART2_TTY" doc="Abstract.txt" folder="Boards/Infineon/TLE9879_EvalKit/UART2_TTY_EXAMPLE_TLE987X/">
+      <description>Sending printf messages via UART2</description>
+      <board name="TLE9879 EvalKit" vendor="Infineon"/>
+      <project>
+        <environment name="uv" load="TLE9879QXA40_UART2_TTY.uvprojx"/>
+        <environment name="iar" load="TLE9879QXA40_UART2_TTY.ewp"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE"/>
+        <component Cclass="Device" Cgroup="Startup"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="SCU"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="ISR"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="INT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="UART"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="WDT1"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="PORT"/>
+        <component Cclass="Device" Cgroup="SDK" Csub="BOOTROM"/>
+        <category>Getting Started</category>
+        <category>SDK</category>
+      </attributes>
+    </example>
+  </examples>
+</package>

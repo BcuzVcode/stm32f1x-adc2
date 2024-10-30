@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>MCX-N5XX-EVK_EIQ_Examples</name>
+  <vendor>NXP</vendor>
+  <description>Middleware eiq Examples Pack for MCX-N5XX-EVK</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="1.0.0" date="2024-07-17">NXP CMSIS SBSP Packs based on MCUXpresso SDK 2.16.0</release>
+  </releases>
+  <keywords>
+    <keyword>Middleware Board Support Pack</keyword>
+  </keywords>
+  <requirements>
+    <packages>
+      <package name="MCX-N5XX-EVK_BSP" vendor="NXP" version="19.0.0"/>
+      <package name="EIQ" vendor="NXP" version="2.0.0"/>
+      <package name="MCXN547_DFP" vendor="NXP" version="19.0.0"/>
+      <package name="CMSIS" vendor="ARM" version="5.9.0"/>
+      <package name="LWIP" vendor="NXP" version="3.0.0"/>
+      <package name="FREERTOS-KERNEL" vendor="NXP" version="3.0.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <examples>
+    <example name="tflm_cifar10" folder="boards/mcxn5xxevk/eiq_examples/tflm_cifar10/cm33_core0" doc="readme.md">
+      <description>CIFAR-10 example for TensorFlow Lite Micro</description>
+      <board name="MCX-N5XX-EVK" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/tflm_cifar10.uvprojx"/>
+        <environment name="csolution" load="tflm_cifar10.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="tflm_label_image" folder="boards/mcxn5xxevk/eiq_examples/tflm_label_image/cm33_core0" doc="readme.md">
+      <description>Label image example for TensorFlow Lite Micro</description>
+      <board name="MCX-N5XX-EVK" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/tflm_label_image.uvprojx"/>
+        <environment name="csolution" load="tflm_label_image.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="tflm_modelrunner" folder="boards/mcxn5xxevk/eiq_examples/tflm_modelrunner/cm33_core0" doc="readme.md">
+      <description>ModelRunner for TFlite</description>
+      <board name="MCX-N5XX-EVK" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/tflm_modelrunner.uvprojx"/>
+        <environment name="csolution" load="tflm_modelrunner.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+  </examples>
+</package>

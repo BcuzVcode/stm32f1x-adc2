@@ -1,0 +1,326 @@
+<?xml version="1.0"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="file:/C:/Users/1/AppData/Local/Arm/Packs/ARM/CMSIS/5.6.0/CMSIS/Utilities/PACK.xsd" schemaVersion="1.0">
+    <vendor>Geehy</vendor>
+    <url>https://www.geehy.com/uploads/tool/</url>
+    <supportContact>https://www.geehy.com/support/apm</supportContact>
+    <name>APM32A0xx_DFP</name>
+    <description>Geehy Semiconductor APM32A0xx Series Device Support</description>
+    <releases>
+        <release version="1.0.0" date="2023-03-30">
+First Release version of APM32A0xx Device Family Pack.
+        </release>
+    </releases>
+    <keywords>
+        <!-- keywords for indexing -->
+        <keyword>Geehy</keyword>
+        <keyword>Device Support</keyword>
+        <keyword>Device Family Package Geehy Semiconductor</keyword>
+        <keyword>APM32A0x</keyword>
+        <keyword>APM32A0</keyword>
+        <keyword>APM32</keyword>
+    </keywords>
+    <devices>
+        <family Dfamily="APM32A0 Series" Dvendor="Geehy:163">
+            <processor Dcore="Cortex-M0+" DcoreVersion="r0p1" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+            <book name="Documents/DUI0662B_cortex_m0p_r0p1_dgug.pdf" title="Cortex-M0+ Generic User Guide"/>
+            <description>
+        Geehy Semiconductor' APM32A0 series of mainstream MCUs are 32-bit microprocessors based on ARM Cortex'-M0+ core, with a maximum operating frequency of 48MHz.
+        Core
+        - ARM 32-bit Cortex-M0+ CPU (48 MHz max)
+        Memories
+        - 32 to 256 Kbytes of Flash memory
+        - 4 to 32 Kbytes of SRAM with HW parity checking
+        CRC calculation unit
+        Reset and power management
+        - Voltage range: 2.4 V to 3.6 V
+        - Power-on/Power down reset (POR/PDR)
+        - Low power modes: Sleep, Stop, Standby
+        Clock management
+        - 4 to 32 MHz crystal oscillator
+        - 32 kHz oscillator for RTC with calibration
+        - Internal 8 MHz RC with x6 PLL option
+        - Internal 40 kHz RC oscillator
+
+            </description>
+            <!-- ******************************  APM32A091  ****************************** -->
+            <subFamily DsubFamily="APM32A091">
+                <!-- ******************************  APM32A091RC  ****************************** -->
+                <device Dname="APM32A091RC">
+                    <processor Dclock="48000000"/>
+                    <compile header="Device\Device\Geehy\APM32A0xx\Include\apm32a0xx.h" define="APM32A091XC"/>
+                    <debug svd="SVD\APM32A091.svd"/>
+                    <memory id="IROM1" start="0x08000000" size="0x40000" startup="1" default="1"/>
+                    <memory id="IRAM1" start="0x20000000" size="0x8000" init="0" default="1"/>
+                    <algorithm name="Flash\APM32A0xx_256.FLM" start="0x08000000" size="0x40000" default="1"/>
+                    <book name="Documents/DATASHEET.pdf" title="APM32A0xx Data Sheet"/>
+                    <feature type="Timer" count="8" name="16-Bit Timer with Input Capture, Output Compare and PWM"/>
+                    <feature type="Timer" count="1" name="32-Bit Timer with Input Capture, Output Compare and PWM"/>
+                    <feature type="Timer" count="2" name="Watchdog"/>
+                    <feature type="Timer" count="1" name="RTC"/>
+                    <feature type="A/D" count="1" name="12-bit Analog to Digital Converter"/>
+                    <feature type="I/O" count="52" name="Input and Output Ports"/>
+                    <feature type="D/A" count="1" name="12-bit Digital to Analog Converter"/>
+                    <feature type="Com" count="2" name="SPI Interface"/>
+                    <feature type="Com" count="2" name="I2S Interface"/>
+                    <feature type="Com" count="2" name="I2C Interface"/>
+                    <feature type="Com" count="8" name="USART Interface"/>
+                </device>
+            </subFamily>
+        </family>
+    </devices>
+    <conditions>
+        <!--conditions selecting Compiler -->
+        <condition id="Compiler ARM">
+            <require Tcompiler="ARMCC"/>
+        </condition>
+        <!--APM32A091xx Device Conditions-->
+        <condition id="APM32A091xx">
+            <description>Geehy Semiconductor APM32A091 Series devices</description>
+            <require Dname="APM32A091*" Dvendor="Geehy:163"/>
+        </condition>
+        <!--APM32A0xx CMSIS Conditions -->
+        <condition id="APM32A0xx CMSIS Device">
+            <!-- conditions selecting Devices -->
+            <accept condition="APM32A091xx"/>
+            <require Cclass="CMSIS" Cgroup="CORE"/>
+        </condition>
+        <!--APM32A0xx STDPERIPH Conditions -->
+        <condition id="APM32A0xx STDPERIPH">
+            <description>Geehy Semiconductor APM32A0xx with Standard Peripherals Drivers Framework</description>
+            <require condition="APM32A0xx CMSIS Device"/>
+            <require Cclass="Device" Cgroup="APM32A0xx StdPeriph Drivers" Csub="Framework"/>
+        </condition>
+        <!--APM32A0xx STDPERIPH RCM Conditions-->
+        <condition id="APM32A0xx STDPERIPH RCM">
+            <description>Geehy Semiconductor APM32A0xx with Standard Peripherals Drivers Framework and RCM</description>
+            <require condition="APM32A0xx CMSIS Device"/>
+            <require Cclass="Device" Cgroup="APM32A0xx StdPeriph Drivers" Csub="Framework"/>
+            <require Cclass="Device" Cgroup="APM32A0xx StdPeriph Drivers" Csub="RCM"/>
+        </condition>
+    </conditions>
+    <components>
+        <!--Startup-->
+        <component Cclass="Device" Cgroup="APM32A0xx Startup" Cversion="1.0.0" condition="APM32A0xx CMSIS Device">
+            <!-- Cversion is necessary -->
+            <description>System Startup for Geehy Semiconductor APM32A0xx Series</description>
+            <files>
+                <!-- startup files -->
+                <file category="source" name="Device\Device\Geehy\APM32A0xx\Source\arm\startup_apm32a091.s" attr="config" condition="APM32A0xx CMSIS Device"/>
+                <!-- system file -->
+                <file category="source" name="Device\Device\Geehy\APM32A0xx\Source\system_apm32a0xx.c" attr="config"/>
+            </files>
+        </component>
+        <!-- START: Geehy Semiconductor Standard Peripherals Drivers -->
+        <component Cclass="Device" Cgroup="APM32A0xx StdPeriph Drivers" Csub="Framework" Cversion="1.0.0" condition="APM32A0xx STDPERIPH">
+            <description>Standard Peripherals Drivers Framework</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_FRAMEWORK</RTE_Components_h>
+            <files>
+                <file category="include" name="Device/APM32A0xx_StdPeriphDriver/inc/"/>
+                <file category="header" name="Device/APM32A0xx_StdPeriphDriver/inc/apm32a0xx_misc.h"/>
+                <file category="source" name="Device/APM32A0xx_StdPeriphDriver/src/apm32a0xx_misc.c"/>
+                <file category="header" name="Device/Templates/inc/apm32a0xx_int.h" attr="template" select="Interrupt Service Routines"/>
+                <file category="source" name="Device/Templates/src/apm32a0xx_int.c" attr="template" select="Interrupt Service Routines"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="APM32A0xx StdPeriph Drivers" Csub="ADC" Cversion="1.0.0" condition="APM32A0xx STDPERIPH RCM">
+            <description>Analog-to-digital converter (ADC) driver for APM32A0xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_ADC </RTE_Components_h>
+            <files>
+                <file category="header" name="Device/APM32A0xx_StdPeriphDriver/inc/apm32a0xx_adc.h"/>
+                <file category="source" name="Device/APM32A0xx_StdPeriphDriver/src/apm32a0xx_adc.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="APM32A0xx StdPeriph Drivers" Csub="CAN" Cversion="1.0.0" condition="APM32A0xx STDPERIPH RCM">
+            <description>Controller area network (CAN) driver for APM32A0xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_CAN </RTE_Components_h>
+            <files>
+                <file category="header" name="Device/APM32A0xx_StdPeriphDriver/inc/apm32a0xx_can.h"/>
+                <file category="source" name="Device/APM32A0xx_StdPeriphDriver/src/apm32a0xx_can.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="APM32A0xx StdPeriph Drivers" Csub="CEC" Cversion="1.0.0" condition="APM32A0xx STDPERIPH RCM">
+            <description>HDMI-CEC controller (CEC) driver for APM32A0xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_CEC </RTE_Components_h>
+            <files>
+                <file category="header" name="Device/APM32A0xx_StdPeriphDriver/inc/apm32a0xx_cec.h"/>
+                <file category="source" name="Device/APM32A0xx_StdPeriphDriver/src/apm32a0xx_cec.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="APM32A0xx StdPeriph Drivers" Csub="COMP" Cversion="1.0.0" condition="APM32A0xx STDPERIPH RCM">
+            <description>Comparator (COMP) driver for APM32A0xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_COMP </RTE_Components_h>
+            <files>
+                <file category="header" name="Device/APM32A0xx_StdPeriphDriver/inc/apm32a0xx_comp.h"/>
+                <file category="source" name="Device/APM32A0xx_StdPeriphDriver/src/apm32a0xx_comp.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="APM32A0xx StdPeriph Drivers" Csub="CRC" Cversion="1.0.0" condition="APM32A0xx STDPERIPH">
+            <description>CRC calculation unit (CRC) driver for APM32A0xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_CRC      </RTE_Components_h>
+            <files>
+                <file category="header" name="Device/APM32A0xx_StdPeriphDriver/inc/apm32a0xx_crc.h"/>
+                <file category="source" name="Device/APM32A0xx_StdPeriphDriver/src/apm32a0xx_crc.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="APM32A0xx StdPeriph Drivers" Csub="CRS" Cversion="1.0.0" condition="APM32A0xx STDPERIPH RCM">
+            <description>Clock recovery system (CRS) driver for APM32A0xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_CRS      </RTE_Components_h>
+            <files>
+                <file category="header" name="Device/APM32A0xx_StdPeriphDriver/inc/apm32a0xx_crs.h"/>
+                <file category="source" name="Device/APM32A0xx_StdPeriphDriver/src/apm32a0xx_crs.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="APM32A0xx StdPeriph Drivers" Csub="DAC" Cversion="1.0.0" condition="APM32A0xx STDPERIPH RCM">
+            <description>Digital-to-analog converter (DAC) driver for APM32A0xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_DAC      </RTE_Components_h>
+            <files>
+                <file category="header" name="Device/APM32A0xx_StdPeriphDriver/inc/apm32a0xx_dac.h"/>
+                <file category="source" name="Device/APM32A0xx_StdPeriphDriver/src/apm32a0xx_dac.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="APM32A0xx StdPeriph Drivers" Csub="DBG" Cversion="1.0.0" condition="APM32A0xx STDPERIPH">
+            <description>MCU debug component (DBGMCU) driver for APM32A0xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_DBG</RTE_Components_h>
+            <files>
+                <file category="header" name="Device/APM32A0xx_StdPeriphDriver/inc/apm32a0xx_dbg.h"/>
+                <file category="source" name="Device/APM32A0xx_StdPeriphDriver/src/apm32a0xx_dbg.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="APM32A0xx StdPeriph Drivers" Csub="DMA" Cversion="1.0.0" condition="APM32A0xx STDPERIPH RCM">
+            <description>DMA controller (DMA) driver for APM32A0xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_DMA      </RTE_Components_h>
+            <files>
+                <file category="header" name="Device/APM32A0xx_StdPeriphDriver/inc/apm32a0xx_dma.h"/>
+                <file category="source" name="Device/APM32A0xx_StdPeriphDriver/src/apm32a0xx_dma.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="APM32A0xx StdPeriph Drivers" Csub="EINT" Cversion="1.0.0" condition="APM32A0xx STDPERIPH">
+            <description>External interrupt/event controller (EINT) driver for APM32A0xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_EINT </RTE_Components_h>
+            <files>
+                <file category="header" name="Device/APM32A0xx_StdPeriphDriver/inc/apm32a0xx_eint.h"/>
+                <file category="source" name="Device/APM32A0xx_StdPeriphDriver/src/apm32a0xx_eint.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="APM32A0xx StdPeriph Drivers" Csub="FMC" Cversion="1.0.0" condition="APM32A0xx STDPERIPH">
+            <description>Flash memory controller driver for APM32A0xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_FMC     </RTE_Components_h>
+            <files>
+                <file category="header" name="Device/APM32A0xx_StdPeriphDriver/inc/apm32a0xx_fmc.h"/>
+                <file category="source" name="Device/APM32A0xx_StdPeriphDriver/src/apm32a0xx_fmc.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="APM32A0xx StdPeriph Drivers" Csub="GPIO" Cversion="1.0.0" condition="APM32A0xx STDPERIPH RCM">
+            <description>General-purpose I/O (GPIO) driver for APM32A0xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_GPIO      </RTE_Components_h>
+            <files>
+                <file category="header" name="Device/APM32A0xx_StdPeriphDriver/inc/apm32a0xx_gpio.h"/>
+                <file category="source" name="Device/APM32A0xx_StdPeriphDriver/src/apm32a0xx_gpio.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="APM32A0xx StdPeriph Drivers" Csub="I2C" Cversion="1.0.0" condition="APM32A0xx STDPERIPH RCM">
+            <description>Inter-integrated circuit (I2C) interface driver for APM32A0xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_I2C      </RTE_Components_h>
+            <files>
+                <file category="header" name="Device/APM32A0xx_StdPeriphDriver/inc/apm32a0xx_i2c.h"/>
+                <file category="source" name="Device/APM32A0xx_StdPeriphDriver/src/apm32a0xx_i2c.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="APM32A0xx StdPeriph Drivers" Csub="IWDT" Cversion="1.0.0" condition="APM32A0xx STDPERIPH">
+            <description>Independent watchdog (IWDT) driver for APM32A0xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_IWDT</RTE_Components_h>
+            <files>
+                <file category="header" name="Device/APM32A0xx_StdPeriphDriver/inc/apm32a0xx_iwdt.h"/>
+                <file category="source" name="Device/APM32A0xx_StdPeriphDriver/src/apm32a0xx_iwdt.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="APM32A0xx StdPeriph Drivers" Csub="PMU" Cversion="1.0.0" condition="APM32A0xx STDPERIPH RCM">
+            <description>Power controller (PMU) driver for APM32A0xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_PMU</RTE_Components_h>
+            <files>
+                <file category="header" name="Device/APM32A0xx_StdPeriphDriver/inc/apm32a0xx_pmu.h"/>
+                <file category="source" name="Device/APM32A0xx_StdPeriphDriver/src/apm32a0xx_pmu.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="APM32A0xx StdPeriph Drivers" Csub="RCM" Cversion="1.0.0" condition="APM32A0xx STDPERIPH">
+            <description>Reset and clock management unit (RCM) driver for APM32A0xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_RCM</RTE_Components_h>
+            <files>
+                <file category="header" name="Device/APM32A0xx_StdPeriphDriver/inc/apm32a0xx_rcm.h"/>
+                <file category="source" name="Device/APM32A0xx_StdPeriphDriver/src/apm32a0xx_rcm.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="APM32A0xx StdPeriph Drivers" Csub="RTC" Cversion="1.0.0" condition="APM32A0xx STDPERIPH">
+            <description>Real-Time Clock (RTC) driver for APM32A0xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_RTC</RTE_Components_h>
+            <files>
+                <file category="header" name="Device/APM32A0xx_StdPeriphDriver/inc/apm32a0xx_rtc.h"/>
+                <file category="source" name="Device/APM32A0xx_StdPeriphDriver/src/apm32a0xx_rtc.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="APM32A0xx StdPeriph Drivers" Csub="SPI" Cversion="1.0.0" condition="APM32A0xx STDPERIPH RCM">
+            <description>Serial peripheral interface (SPI) driver for APM32A0xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_SPI      </RTE_Components_h>
+            <files>
+                <file category="header" name="Device/APM32A0xx_StdPeriphDriver/inc/apm32a0xx_spi.h"/>
+                <file category="source" name="Device/APM32A0xx_StdPeriphDriver/src/apm32a0xx_spi.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="APM32A0xx StdPeriph Drivers" Csub="TMR" Cversion="1.0.0" condition="APM32A0xx STDPERIPH RCM">
+            <description>Timers (TMR) driver for APM32A0xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_TMR</RTE_Components_h>
+            <files>
+                <file category="header" name="Device/APM32A0xx_StdPeriphDriver/inc/apm32a0xx_tmr.h"/>
+                <file category="source" name="Device/APM32A0xx_StdPeriphDriver/src/apm32a0xx_tmr.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="APM32A0xx StdPeriph Drivers" Csub="USART" Cversion="1.0.0" condition="APM32A0xx STDPERIPH RCM">
+            <description>Universal synchronous asynchronous receiver transmitter (USART) driver for APM32A0xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_USART</RTE_Components_h>
+            <files>
+                <file category="header" name="Device/APM32A0xx_StdPeriphDriver/inc/apm32a0xx_usart.h"/>
+                <file category="source" name="Device/APM32A0xx_StdPeriphDriver/src/apm32a0xx_usart.c"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="APM32A0xx StdPeriph Drivers" Csub="WWDT" Cversion="1.0.0" condition="APM32A0xx STDPERIPH RCM">
+            <description>Window watchdog (WWDT) driver for APM32A0xx</description>
+            <RTE_Components_h>#define RTE_DEVICE_STDPERIPH_WWDT</RTE_Components_h>
+            <files>
+                <file category="header" name="Device/APM32A0xx_StdPeriphDriver/inc/apm32a0xx_wwdt.h"/>
+                <file category="source" name="Device/APM32A0xx_StdPeriphDriver/src/apm32a0xx_wwdt.c"/>
+            </files>
+        </component>
+        <!-- END: Geehy Semiconductor Standard Peripherals Drivers -->
+    </components>
+    <boards>
+        <board vendor="Geehy" name="APM32A091MINI" revision="Ver 1.0">
+            <description>Geehy APM32A091 Development Board</description>
+            <mountedDevice deviceIndex="0" Dvendor="Geehy:163" Dname="APM32A091RC"/>
+            <compatibleDevice deviceIndex="0" Dvendor="Geehy:163" DsubFamily="APM32A091"/>
+            <feature type="XTAL" n="8000000"/>
+            <feature type="PWR" n="5" name="USB Powered"/>
+            <feature type="USB" n="1" name="USB 2.0 Full Speed Device"/>
+            <feature type="RS232" n="1"/>
+            <feature type="Button" n="3" name="Reset, KEY1 and KEY2"/>
+            <feature type="LED" n="3" name="LEDs directly connected to port pins"/>
+            <debugInterface adapter="SW"/>
+        </board>
+    </boards>
+    <examples>
+        <example name="APM32A091MINI-Blinky" doc="readme.txt" folder="Boards/Geehy/APM32A091MINI/Blinky">
+            <description>APM32A091_MINI  Blinky example</description>
+            <board name="APM32A091MINI" vendor="Geehy"/>
+            <project>
+                <environment name="uv" load="APM32A091MINI-Blinky.uvprojx"/>
+            </project>
+            <attributes>
+                <component Cclass="CMSIS" Cgroup="CORE"/>
+                <component Cclass="Device" Cgroup="Startup"/>
+                <component Cclass="CMSIS" Cgroup="RTOS"/>
+                <category>Getting Started</category>
+                <category>CMSIS-RTX</category>
+                <keyword>LED</keyword>
+            </attributes>
+        </example>
+    </examples>
+</package>

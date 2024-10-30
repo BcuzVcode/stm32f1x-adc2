@@ -1,0 +1,1165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>MK65F18_DFP</name>
+  <vendor>NXP</vendor>
+  <description>Device Family Pack for MK65F18</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="14.0.0" date="2022-01-05">NXP CMSIS Packs based on MCUXpresso SDK 2.11.0</release>
+    <release version="13.1.0" date="2021-07-13">NXP CMSIS Packs based on MCUXpresso SDK 2.10.0</release>
+    <release version="13.0.0" date="2021-02-05">NXP CMSIS Packs based on MCUXpresso SDK 2.9.0 with restructured startup component files</release>
+    <release version="12.3.0" date="2021-01-14">NXP CMSIS Packs based on MCUXpresso SDK 2.9.0</release>
+    <release version="12.2.0" date="2020-07-20">NXP CMSIS Packs based on MCUXpresso SDK 2.8.0</release>
+    <release version="12.1.0" date="2019-12-19">NXP CMSIS Packs based on MCUXpresso SDK 2.7.0</release>
+    <release version="12.0.0" date="2019-06-10">NXP CMSIS packs based on MCUXpresso SDK 2.6.0</release>
+    <release version="11.0.1" date="2019-04-26">Removed invalid entries from Software Content Register</release>
+    <release version="11.0.0" date="2018-12-19">NXP CMSIS packs based on MCUXpresso SDK 2.5.0</release>
+    <release version="10.0.3" date="2018-07-16">A problem with missing components from some example the projects were dependent on was fixed (KEX-4241); Incorrect path to linked libraries were fixed: a pack version was a static part of the path and hadn’t worked for pack versions other than v10.0.0 (KEX-4373); A problem with incorrectly defined XIP_BOOT_HEADER_ENABLE, XIP_BOOT_HEADER_DCD_ENABLE and XIP_EXTERNAL_FLASH preprocessor symbols was fixed (KEX-4553); Missing flash algorithms for MK27, MK28, LPC802 and LPC804 device family packs were added (KEX-4659).</release>
+    <release version="10.0.2" date="2018-05-25">NXP CMSIS packs based on MCUXpresso SDK 2.4.0</release>
+    <release version="10.0.1" date="2018-04-04">NXP CMSIS packs based on MCUXpresso SDK 2.3.1</release>
+    <release version="10.0.0" date="2018-01-19">NXP CMSIS packs with updated Clear BSD license, based on MCUXpresso SDK 2.3.0. NXP CMSIS pack will maintain independent versioning starting with 10.0.0</release>
+    <release version="2.3.0" date="2017-11-17">NXP MCUXpresso SDK 2.3.0 CMSIS packs with updated Clear BSD license</release>
+  </releases>
+  <keywords>
+    <keyword>Device Family Pack</keyword>
+  </keywords>
+  <taxonomy>
+    <description Cclass="Board Support" Cgroup="SDK Project Template">NXP MCUXpresso SDK Project Template</description>
+    <description Cclass="Device" Cgroup="SDK Project Template">NXP MCUXpresso SDK RTE Device Project Template</description>
+    <description Cclass="Device" Cgroup="SDK Drivers">NXP MCUXpresso SDK Peripheral Drivers</description>
+    <description Cclass="Device" Cgroup="SDK Utilities">NXP MCUXpresso SDK Utilities</description>
+    <description Cclass="Device" Cgroup="Startup">NXP MCUXpresso SDK Start up</description>
+    <description Cclass="CMSIS Driver">NXP MCUXpresso SDK Peripheral CMSIS Drivers</description>
+  </taxonomy>
+  <requirements>
+    <packages>
+      <package name="CMSIS" vendor="ARM" version="5.6.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <devices>
+    <family Dfamily="MK65F18" Dvendor="NXP:11">
+      <description>Kinetis K65-180 MHz, Dual High-Speed &amp; Full-speed USBs, 2MB Flash, Anti-Tamper Microcontrollers (MCUs) based on ARM Cortex-M4 Core.</description>
+      <device Dname="MK65FN2M0xxx18">
+        <processor Dcore="Cortex-M4" Dfpu="SP_FPU" Dmpu="NO_MPU" Dendian="Little-endian" Dclock="180000000"/>
+        <environment name="iar">
+          <file category="linkerfile" name="iar/MK65FN2M0xxx18_flash.icf"/>
+        </environment>
+        <memory name="FLEX_RAM" start="0x14000000" size="0x1000" access="rw" default="1"/>
+        <memory name="PROGRAM_FLASH" start="0x00000000" size="0x200000" access="rx" default="1" startup="1"/>
+        <memory name="SRAM_LOWER" start="0x1fff0000" size="0x010000" access="rw" default="1"/>
+        <memory name="SRAM_UPPER" start="0x20000000" size="0x030000" access="rw" default="1"/>
+        <algorithm name="arm/MK_P2M0.FLM" start="0x00000000" size="0x00200000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+        <debug svd="MK65F18.xml"/>
+        <variant Dvariant="MK65FN2M0VMI18">
+          <compile header="fsl_device_registers.h" define="CPU_MK65FN2M0VMI18"/>
+        </variant>
+        <variant Dvariant="MK65FN2M0CAC18">
+          <compile header="fsl_device_registers.h" define="CPU_MK65FN2M0CAC18"/>
+        </variant>
+      </device>
+      <device Dname="MK65FX1M0xxx18">
+        <processor Dcore="Cortex-M4" Dfpu="SP_FPU" Dmpu="NO_MPU" Dendian="Little-endian" Dclock="180000000"/>
+        <environment name="iar">
+          <file category="linkerfile" name="iar/MK65FX1M0xxx18_flash.icf"/>
+        </environment>
+        <memory name="FLEX_NVM" start="0x10000000" size="0x040000" access="rx" default="1"/>
+        <memory name="FLEX_RAM" start="0x14000000" size="0x1000" access="rw" default="1"/>
+        <memory name="PROGRAM_FLASH" start="0x00000000" size="0x100000" access="rx" default="1" startup="1"/>
+        <memory name="SRAM_LOWER" start="0x1fff0000" size="0x010000" access="rw" default="1"/>
+        <memory name="SRAM_UPPER" start="0x20000000" size="0x030000" access="rw" default="1"/>
+        <algorithm name="arm/MK_P1M0.FLM" start="0x00000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+        <algorithm name="arm/MKD256_4KB_SECTOR.FLM" start="0x10000000" size="0x00040000" RAMstart="0x20000000" RAMsize="0x00001000" default="1"/>
+        <debug svd="MK65F18.xml"/>
+        <variant Dvariant="MK65FX1M0CAC18">
+          <compile header="fsl_device_registers.h" define="CPU_MK65FX1M0CAC18"/>
+        </variant>
+        <variant Dvariant="MK65FX1M0VMI18">
+          <compile header="fsl_device_registers.h" define="CPU_MK65FX1M0VMI18"/>
+        </variant>
+      </device>
+    </family>
+  </devices>
+  <conditions>
+    <condition id="device.MK65F18">
+      <accept Dname="MK65FX1M0xxx18" Dvariant="MK65FX1M0CAC18" Dvendor="NXP:11"/>
+      <accept Dname="MK65FX1M0CAC18" Dvendor="NXP:11"/>
+      <accept Dname="MK65FX1M0xxx18" Dvariant="MK65FX1M0VMI18" Dvendor="NXP:11"/>
+      <accept Dname="MK65FX1M0VMI18" Dvendor="NXP:11"/>
+      <accept Dname="MK65FN2M0xxx18" Dvariant="MK65FN2M0VMI18" Dvendor="NXP:11"/>
+      <accept Dname="MK65FN2M0VMI18" Dvendor="NXP:11"/>
+      <accept Dname="MK65FN2M0xxx18" Dvariant="MK65FN2M0CAC18" Dvendor="NXP:11"/>
+      <accept Dname="MK65FN2M0CAC18" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="component.serial_manager_AND_utility.debug_console">
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+    </condition>
+    <condition id="_component.serial_manager_AND_utility.debug_console__OR_utility.debug_console_lite">
+      <accept condition="component.serial_manager_AND_utility.debug_console"/>
+      <accept Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite"/>
+    </condition>
+    <condition id="device.MK65F18_AND___component.serial_manager_AND_utility.debug_console__OR_utility.debug_console_lite__AND_component.uart_adapter_AND_device.MK65F18_startup_AND_driver.adc16_AND_driver.clock_AND_driver.common_AND_driver.gpio_AND_driver.i2c_AND_driver.port_AND_driver.rtc_AND_driver.smc_AND_driver.uart">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart_adapter"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="port"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="smc"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="rtc"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="adc"/>
+      <require condition="_component.serial_manager_AND_utility.debug_console__OR_utility.debug_console_lite"/>
+    </condition>
+    <condition id="device.MK65F18_AND_driver.dmamux_AND_driver.edma">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dmamux"/>
+    </condition>
+    <condition id="device.MK65F18_AND_component.gpio_adapter_AND_component.timer_manager_AND_driver.common">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="timer_manager"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio_adapter"/>
+    </condition>
+    <condition id="device.MK65F18_AND_component.osa_AND_driver.common">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="osa"/>
+    </condition>
+    <condition id="device.MK65F18_AND_driver.common_AND_driver.crc">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="crc"/>
+    </condition>
+    <condition id="device.MK65F18_AND_driver.common_AND_driver.dspi">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dspi"/>
+    </condition>
+    <condition id="device.MK65F18_AND_driver.common_AND_driver.flash">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="flash"/>
+    </condition>
+    <condition id="device.MK65F18_AND_driver.common_AND_driver.ftm">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="ftm"/>
+    </condition>
+    <condition id="device.MK65F18_AND_driver.gpio_AND_driver.port">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="gpio"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="port"/>
+    </condition>
+    <condition id="device.MK65F18_AND_driver.common">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="device.MK65F18_AND_driver.common_AND_utility.debug_console">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+    </condition>
+    <condition id="device.MK65F18_AND_component.log_AND_driver.common_AND_utility.debug_console">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="log"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+    </condition>
+    <condition id="device.MK65F18_AND_component.log_AND_driver.common">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="log"/>
+    </condition>
+    <condition id="device.MK65F18_AND_driver.common_AND_driver.lptmr">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lptmr"/>
+    </condition>
+    <condition id="device.MK65F18_AND_driver.common_AND_driver.lpuart">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+    </condition>
+    <condition id="device.MK65F18_AND_component.lpuart_adapter_AND_component.timer_manager_AND_driver.lpuart_edma">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart_adapter"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="timer_manager"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart_edma"/>
+    </condition>
+    <condition id="device.MK65F18_AND_component.lists_AND_driver.common">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+    </condition>
+    <condition id="device.MK65F18_AND_driver.common_AND_driver.pit">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="pit"/>
+    </condition>
+    <condition id="device.MK65F18_AND_driver.common_AND_driver.tpm">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="tpm"/>
+    </condition>
+    <condition id="device.MK65F18_AND_driver.common_AND_driver.rnga">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="rnga"/>
+    </condition>
+    <condition id="component.serial_manager_spi_OR_component.serial_manager_swo_OR_component.serial_manager_uart_OR_component.serial_manager_virtual">
+      <accept Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_uart"/>
+      <accept Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_spi"/>
+      <accept Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_swo"/>
+      <accept Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_virtual"/>
+    </condition>
+    <condition id="device.MK65F18_AND__component.serial_manager_spi_OR_component.serial_manager_swo_OR_component.serial_manager_uart_OR_component.serial_manager_virtual__AND_component.lists_AND_driver.common">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+      <require condition="component.serial_manager_spi_OR_component.serial_manager_swo_OR_component.serial_manager_uart_OR_component.serial_manager_virtual"/>
+    </condition>
+    <condition id="device.MK65F18_AND_component.dspi_adapter_AND_component.serial_manager_AND_driver.dspi">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dspi"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dspi_adapter"/>
+    </condition>
+    <condition id="device.MK65F18_AND_component.serial_manager_AND_core_type.cm4f_AND_driver.common">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require Dcore="Cortex-M4"/>
+    </condition>
+    <condition id="driver.lpuart_OR_driver.uart">
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+    </condition>
+    <condition id="device.MK65F18_AND__driver.lpuart_OR_driver.uart__AND_component.serial_manager_AND_component.uart_adapter">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart_adapter"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require condition="driver.lpuart_OR_driver.uart"/>
+    </condition>
+    <condition id="device.MK65F18_AND_component.serial_manager_AND_driver.common">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="component.ftm_adapter_OR_component.lptmr_adapter_OR_component.pit_adapter_OR_component.tpm_adapter">
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="tpm_adapter"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="pit_adapter"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="lptmr_adapter"/>
+      <accept Cclass="Device" Cgroup="SDK Drivers" Csub="ftm_adapter"/>
+    </condition>
+    <condition id="device.MK65F18_AND__component.ftm_adapter_OR_component.lptmr_adapter_OR_component.pit_adapter_OR_component.tpm_adapter__AND_component.lists_AND_driver.common">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+      <require condition="component.ftm_adapter_OR_component.lptmr_adapter_OR_component.pit_adapter_OR_component.tpm_adapter"/>
+    </condition>
+    <condition id="device.MK65F18_AND_driver.common_AND_driver.uart">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+    </condition>
+    <condition id="device.MK65F18_AND_CMSIS_Include_core_cm">
+      <require condition="device.MK65F18"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="armclang_OR_iar">
+      <accept Tcompiler="ARMCC"/>
+      <accept Tcompiler="IAR"/>
+    </condition>
+    <condition id="device.MK65F18_AND__armclang_OR_iar__AND_device.MK65F18_system">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="CMSIS" Csub="MK65F18_system"/>
+      <require condition="armclang_OR_iar"/>
+    </condition>
+    <condition id="iar">
+      <require Tcompiler="IAR"/>
+    </condition>
+    <condition id="mdk">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    <condition id="device.MK65F18_AND_device.MK65F18_CMSIS">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="CMSIS" Csub="MK65F18_header"/>
+    </condition>
+    <condition id="device.MK65F18_AND_CMSIS_Driver_Include.SPI_AND_RTE_Device_AND_driver.dspi_edma">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dspi_edma"/>
+      <require Cclass="CMSIS Driver" Cgroup="SPI" Csub="Custom" Capiversion="2.2.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+    </condition>
+    <condition id="device.MK65F18_AND_CMSIS_Driver_Include.Ethernet_AND_CMSIS_Driver_Include.Ethernet_MAC_AND_CMSIS_Driver_Include.Ethernet_PHY_AND_RTE_Device_AND_driver.enet_AND_driver.phy-common">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="enet"/>
+      <require Cclass="CMSIS Driver" Cgroup="Ethernet MAC" Csub="Custom" Capiversion="2.1.0"/>
+      <require Cclass="CMSIS Driver" Cgroup="Ethernet PHY" Csub="Custom" Capiversion="2.1.0"/>
+      <require Cclass="CMSIS Driver" Cgroup="Ethernet" Csub="Custom" Capiversion="2.1.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="phy-common"/>
+    </condition>
+    <condition id="device.MK65F18_AND_CMSIS_Driver_Include.I2C_AND_RTE_Device_AND_driver.i2c_AND_driver.i2c_edma">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c_edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c"/>
+      <require Cclass="CMSIS Driver" Cgroup="I2C" Csub="Custom" Capiversion="2.3.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+    </condition>
+    <condition id="device.MK65F18_AND_CMSIS_Driver_Include.USART_AND_RTE_Device_AND_driver.lpuart_AND_driver.lpuart_edma">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart_edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+      <require Cclass="CMSIS Driver" Cgroup="USART" Csub="Custom" Capiversion="2.3.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+    </condition>
+    <condition id="device.MK65F18_AND_CMSIS_Driver_Include.USART_AND_RTE_Device_AND_driver.uart_AND_driver.uart_edma">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart_edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+      <require Cclass="CMSIS Driver" Cgroup="USART" Csub="Custom" Capiversion="2.3.0"/>
+      <require Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device"/>
+    </condition>
+    <condition id="device.MK65F18_AND_device.MK65F18_CMSIS_AND_driver.clock">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="clock"/>
+      <require Cclass="Device" Cgroup="CMSIS" Csub="MK65F18_header"/>
+    </condition>
+    <condition id="core_type.cm4f">
+      <require Dcore="Cortex-M4"/>
+    </condition>
+    <condition id="device.MK65F18_AND_driver.dspi_AND_driver.edma">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dspi"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+    </condition>
+    <condition id="device.MK65F18_AND_driver.common_AND_driver.dmamux">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dmamux"/>
+    </condition>
+    <condition id="device.MK65F18_AND_driver.edma_AND_driver.i2c">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="i2c"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+    </condition>
+    <condition id="device.MK65F18_AND_driver.edma_AND_driver.lpuart">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart"/>
+    </condition>
+    <condition id="device.MK65F18_AND_driver.mdio-common">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="mdio-common"/>
+    </condition>
+    <condition id="device.MK65F18_AND_driver.edma_AND_driver.sai">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="sai"/>
+    </condition>
+    <condition id="device.MK65F18_AND_driver.edma_AND_driver.uart">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="edma"/>
+    </condition>
+    <condition id="device.MK65F18_AND_utility.debug_console">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+    </condition>
+    <condition id="device.MK65F18_AND_utility.debug_console_lite">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite"/>
+    </condition>
+    <condition id="device.MK65F18_AND_component.uart_adapter_AND_driver.common">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="uart_adapter"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+    <condition id="device.MK65F18_AND_component.lists_AND_driver.common_AND_utility.debug_console">
+      <require condition="device.MK65F18"/>
+      <require Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="lists"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="common"/>
+    </condition>
+  </conditions>
+  <components>
+    <component Cclass="Board Support" Cgroup="SDK Project Template" Csub="project_template" Cvariant="MK65F18" Cversion="1.0.0" condition="device.MK65F18_AND___component.serial_manager_AND_utility.debug_console__OR_utility.debug_console_lite__AND_component.uart_adapter_AND_device.MK65F18_startup_AND_driver.adc16_AND_driver.clock_AND_driver.common_AND_driver.gpio_AND_driver.i2c_AND_driver.port_AND_driver.rtc_AND_driver.smc_AND_driver.uart" isDefaultVariant="1">
+      <description>Devices_project_template MK65F18; {for-development:SDK-Manifest-ID: project_template.MK65F18.MK65F18}</description>
+      <files>
+        <file category="header" attr="config" name="project_template/board.h" version="1.0.0"/>
+        <file category="sourceC" attr="config" name="project_template/board.c" version="1.0.0"/>
+        <file category="header" attr="config" name="project_template/clock_config.h" version="1.0.0"/>
+        <file category="sourceC" attr="config" name="project_template/clock_config.c" version="1.0.0"/>
+        <file category="header" attr="config" name="project_template/pin_mux.h" version="1.0.0"/>
+        <file category="sourceC" attr="config" name="project_template/pin_mux.c" version="1.0.0"/>
+        <file category="header" attr="config" name="project_template/peripherals.h" version="1.0.0"/>
+        <file category="sourceC" attr="config" name="project_template/peripherals.c" version="1.0.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Project Template" Csub="RTE_Device" Cversion="1.0.0" condition="device.MK65F18_AND_driver.dmamux_AND_driver.edma">
+      <description>Rte_device; {for-development:SDK-Manifest-ID: RTE_Device.MK65F18}</description>
+      <files>
+        <file category="header" attr="config" name="template/RTE_Device.h" version="1.0.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="button" Cversion="1.0.0" condition="device.MK65F18_AND_component.gpio_adapter_AND_component.timer_manager_AND_driver.common">
+      <description>Component button; {for-development:SDK-Manifest-ID: component.button.MK65F18}</description>
+      <files>
+        <file category="header" name="components/button/fsl_component_button.h"/>
+        <file category="sourceC" name="components/button/fsl_component_button.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="common_task" Cversion="1.0.0" condition="device.MK65F18_AND_component.osa_AND_driver.common">
+      <description>Component common_task; {for-development:SDK-Manifest-ID: component.common_task.MK65F18}</description>
+      <files>
+        <file category="header" name="components/common_task/fsl_component_common_task.h"/>
+        <file category="sourceC" name="components/common_task/fsl_component_common_task.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="crc_adapter" Cversion="1.0.0" condition="device.MK65F18_AND_driver.common_AND_driver.crc">
+      <description>Component crc_adapter; {for-development:SDK-Manifest-ID: component.crc_adapter.MK65F18}</description>
+      <files>
+        <file category="header" name="components/crc/fsl_adapter_crc.h"/>
+        <file category="sourceC" name="components/crc/fsl_adapter_crc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dspi_adapter" Cversion="1.0.0" condition="device.MK65F18_AND_driver.common_AND_driver.dspi">
+      <description>Component dspi_adapter; {for-development:SDK-Manifest-ID: component.dspi_adapter.MK65F18}</description>
+      <files>
+        <file category="header" name="components/spi/fsl_adapter_spi.h"/>
+        <file category="sourceC" name="components/spi/fsl_adapter_dspi.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flash_adapter" Cversion="1.0.0" condition="device.MK65F18_AND_driver.common_AND_driver.flash">
+      <description>Component flash_adapter; {for-development:SDK-Manifest-ID: component.flash_adapter.MK65F18}</description>
+      <files>
+        <file category="header" name="components/internal_flash/fsl_adapter_flash.h"/>
+        <file category="sourceC" name="components/internal_flash/fsl_adapter_flash.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ftm_adapter" Cversion="1.0.0" condition="device.MK65F18_AND_driver.common_AND_driver.ftm">
+      <description>Component ftm_adapter; {for-development:SDK-Manifest-ID: component.ftm_adapter.MK65F18}</description>
+      <files>
+        <file category="header" name="components/timer/fsl_adapter_timer.h"/>
+        <file category="sourceC" name="components/timer/fsl_adapter_ftm.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="gpio_adapter" Cversion="1.0.0" condition="device.MK65F18_AND_driver.gpio_AND_driver.port">
+      <description>Component gpio_adapter; {for-development:SDK-Manifest-ID: component.gpio_adapter.MK65F18}</description>
+      <files>
+        <file category="header" name="components/gpio/fsl_adapter_gpio.h"/>
+        <file category="sourceC" name="components/gpio/fsl_adapter_gpio.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="led" Cversion="1.0.0" condition="device.MK65F18_AND_component.gpio_adapter_AND_component.timer_manager_AND_driver.common">
+      <description>Component led; {for-development:SDK-Manifest-ID: component.led.MK65F18}</description>
+      <files>
+        <file category="header" name="components/led/fsl_component_led.h"/>
+        <file category="sourceC" name="components/led/fsl_component_led.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lists" Cversion="1.0.0" condition="device.MK65F18_AND_driver.common">
+      <description>Component lists; {for-development:SDK-Manifest-ID: component.lists.MK65F18}</description>
+      <files>
+        <file category="header" name="components/lists/fsl_component_generic_list.h"/>
+        <file category="sourceC" name="components/lists/fsl_component_generic_list.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="log" Cversion="1.0.0" condition="device.MK65F18_AND_driver.common_AND_utility.debug_console">
+      <description>Component log; {for-development:SDK-Manifest-ID: component.log.MK65F18}</description>
+      <files>
+        <file category="header" name="components/log/fsl_component_log.h"/>
+        <file category="header" name="components/log/fsl_component_log_config.h"/>
+        <file category="sourceC" name="components/log/fsl_component_log.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="debugconsole" Cversion="1.0.0" condition="device.MK65F18_AND_component.log_AND_driver.common_AND_utility.debug_console">
+      <description>Component log backend debug console; {for-development:SDK-Manifest-ID: component.log.backend.debugconsole.MK65F18}</description>
+      <files>
+        <file category="sourceC" name="components/log/fsl_component_log_backend_debugconsole.c"/>
+        <file category="header" name="components/log/fsl_component_log_backend_debugconsole.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ringbuffer" Cversion="1.0.0" condition="device.MK65F18_AND_component.log_AND_driver.common">
+      <description>Component log backend ring buffer; {for-development:SDK-Manifest-ID: component.log.backend.ringbuffer.MK65F18}</description>
+      <files>
+        <file category="sourceC" name="components/log/fsl_component_log_backend_ringbuffer.c"/>
+        <file category="header" name="components/log/fsl_component_log_backend_ringbuffer.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lptmr_adapter" Cversion="1.0.0" condition="device.MK65F18_AND_driver.common_AND_driver.lptmr">
+      <description>Component lptmr_adapter; {for-development:SDK-Manifest-ID: component.lptmr_adapter.MK65F18}</description>
+      <files>
+        <file category="header" name="components/timer/fsl_adapter_timer.h"/>
+        <file category="sourceC" name="components/timer/fsl_adapter_lptmr.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart_adapter" Cversion="1.0.0" condition="device.MK65F18_AND_driver.common_AND_driver.lpuart">
+      <description>Component lpuart_adapter; {for-development:SDK-Manifest-ID: component.lpuart_adapter.MK65F18}</description>
+      <files>
+        <file category="header" name="components/uart/fsl_adapter_uart.h"/>
+        <file category="sourceC" name="components/uart/fsl_adapter_lpuart.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart_dma_adapter" Cversion="1.0.0" condition="device.MK65F18_AND_component.lpuart_adapter_AND_component.timer_manager_AND_driver.lpuart_edma">
+      <description>Component lpuart_dma_adapter; {for-development:SDK-Manifest-ID: component.lpuart_dma_adapter.MK65F18}</description>
+      <RTE_Components_h>
+#ifndef HAL_UART_DMA_ENABLE
+#define HAL_UART_DMA_ENABLE 1
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/uart/fsl_adapter_uart.h"/>
+        <file category="sourceC" name="components/uart/fsl_adapter_lpuart.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mem_manager" Cversion="1.0.0" condition="device.MK65F18_AND_component.lists_AND_driver.common">
+      <description>Component mem_manager; {for-development:SDK-Manifest-ID: component.mem_manager.MK65F18}</description>
+      <files>
+        <file category="header" name="components/mem_manager/fsl_component_mem_manager.h"/>
+        <file category="sourceC" name="components/mem_manager/fsl_component_mem_manager.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mem_manager_light" Cversion="1.0.0" condition="device.MK65F18_AND_component.lists_AND_driver.common">
+      <description>Component mem_manager_light; {for-development:SDK-Manifest-ID: component.mem_manager_light.MK65F18}</description>
+      <files>
+        <file category="header" name="components/mem_manager/fsl_component_mem_manager.h"/>
+        <file category="sourceC" name="components/mem_manager/fsl_component_mem_manager_light.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="osa" Cversion="1.0.0" condition="device.MK65F18_AND_component.lists_AND_driver.common">
+      <description>Component osa; {for-development:SDK-Manifest-ID: component.osa.MK65F18}</description>
+      <files>
+        <file category="header" name="components/osa/fsl_os_abstraction.h"/>
+        <file category="header" name="components/osa/fsl_os_abstraction_config.h"/>
+        <file category="header" name="components/osa/fsl_os_abstraction_bm.h"/>
+        <file category="sourceC" name="components/osa/fsl_os_abstraction_bm.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="osa_bm" Cversion="1.0.0" condition="device.MK65F18_AND_component.lists_AND_driver.common">
+      <description>Component osa_bm; {for-development:SDK-Manifest-ID: component.osa_bm.MK65F18}</description>
+      <files>
+        <file category="header" name="components/osa/fsl_os_abstraction.h"/>
+        <file category="header" name="components/osa/fsl_os_abstraction_bm.h"/>
+        <file category="header" name="components/osa/fsl_os_abstraction_config.h"/>
+        <file category="sourceC" name="components/osa/fsl_os_abstraction_bm.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="osa_thread" Cversion="1.0.0" condition="device.MK65F18_AND_component.lists_AND_driver.common">
+      <description>Component osa thread; {for-development:SDK-Manifest-ID: component.osa_thread.MK65F18}</description>
+      <files>
+        <file category="header" name="components/osa/fsl_os_abstraction.h"/>
+        <file category="header" name="components/osa/fsl_os_abstraction_config.h"/>
+        <file category="sourceC" name="components/osa/fsl_os_abstraction_threadx.c"/>
+        <file category="header" name="components/osa/fsl_os_abstraction_threadx.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="panic" Cversion="1.0.0" condition="device.MK65F18_AND_driver.common_AND_utility.debug_console">
+      <description>Component panic; {for-development:SDK-Manifest-ID: component.panic.MK65F18}</description>
+      <files>
+        <file category="header" name="components/panic/fsl_component_panic.h"/>
+        <file category="sourceC" name="components/panic/fsl_component_panic.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pit_adapter" Cversion="1.0.0" condition="device.MK65F18_AND_driver.common_AND_driver.pit">
+      <description>Component pit_adapter; {for-development:SDK-Manifest-ID: component.pit_adapter.MK65F18}</description>
+      <files>
+        <file category="header" name="components/timer/fsl_adapter_timer.h"/>
+        <file category="sourceC" name="components/timer/fsl_adapter_pit.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pwm_ftm_adapter" Cversion="1.0.0" condition="device.MK65F18_AND_driver.common_AND_driver.ftm">
+      <description>Component pwm_ftm_adapter; {for-development:SDK-Manifest-ID: component.pwm_ftm_adapter.MK65F18}</description>
+      <files>
+        <file category="header" name="components/pwm/fsl_adapter_pwm.h"/>
+        <file category="sourceC" name="components/pwm/fsl_adapter_pwm_ftm.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pwm_tpm_adapter" Cversion="1.0.0" condition="device.MK65F18_AND_driver.common_AND_driver.tpm">
+      <description>Component pwm_tpm_adapter; {for-development:SDK-Manifest-ID: component.pwm_tpm_adapter.MK65F18}</description>
+      <files>
+        <file category="header" name="components/pwm/fsl_adapter_pwm.h"/>
+        <file category="sourceC" name="components/pwm/fsl_adapter_pwm_tpm.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="rnga_adapter" Cversion="1.0.0" condition="device.MK65F18_AND_driver.common_AND_driver.rnga">
+      <description>Component rnga_adapter; {for-development:SDK-Manifest-ID: component.rnga_adapter.MK65F18}</description>
+      <files>
+        <file category="header" name="components/rng/fsl_adapter_rng.h"/>
+        <file category="sourceC" name="components/rng/fsl_adapter_rnga.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager" Cversion="1.0.1" condition="device.MK65F18_AND__component.serial_manager_spi_OR_component.serial_manager_swo_OR_component.serial_manager_uart_OR_component.serial_manager_virtual__AND_component.lists_AND_driver.common">
+      <description>Component serial_manager; {for-development:SDK-Manifest-ID: component.serial_manager.MK65F18}</description>
+      <files>
+        <file category="header" name="components/serial_manager/fsl_component_serial_manager.h"/>
+        <file category="header" name="components/serial_manager/fsl_component_serial_port_internal.h"/>
+        <file category="sourceC" name="components/serial_manager/fsl_component_serial_manager.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_spi" Cversion="1.0.0" condition="device.MK65F18_AND_component.dspi_adapter_AND_component.serial_manager_AND_driver.dspi">
+      <description>Component serial_manager_spi; {for-development:SDK-Manifest-ID: component.serial_manager_spi.MK65F18}</description>
+      <RTE_Components_h>
+#ifndef SERIAL_PORT_TYPE_SPI
+#define SERIAL_PORT_TYPE_SPI 1
+#endif
+#ifndef SERIAL_PORT_TYPE_SPI_MASTER
+#define SERIAL_PORT_TYPE_SPI_MASTER 1
+#endif
+#ifndef SERIAL_PORT_TYPE_SPI_SLAVE
+#define SERIAL_PORT_TYPE_SPI_SLAVE 1
+#endif
+#ifndef SERIAL_MANAGER_NON_BLOCKING_MODE
+#define SERIAL_MANAGER_NON_BLOCKING_MODE 1
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/serial_manager/fsl_component_serial_port_spi.h"/>
+        <file category="sourceC" name="components/serial_manager/fsl_component_serial_port_spi.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_swo" Cversion="1.0.0" condition="device.MK65F18_AND_component.serial_manager_AND_core_type.cm4f_AND_driver.common">
+      <description>Component serial_manager_swo; {for-development:SDK-Manifest-ID: component.serial_manager_swo.MK65F18}</description>
+      <RTE_Components_h>
+#ifndef SERIAL_PORT_TYPE_SWO
+#define SERIAL_PORT_TYPE_SWO 1
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/serial_manager/fsl_component_serial_port_swo.h"/>
+        <file category="sourceC" name="components/serial_manager/fsl_component_serial_port_swo.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_uart" Cversion="1.0.0" condition="device.MK65F18_AND__driver.lpuart_OR_driver.uart__AND_component.serial_manager_AND_component.uart_adapter">
+      <description>Component serial_manager_uart; {for-development:SDK-Manifest-ID: component.serial_manager_uart.MK65F18}</description>
+      <RTE_Components_h>
+#ifndef SERIAL_PORT_TYPE_UART
+#define SERIAL_PORT_TYPE_UART 1
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/serial_manager/fsl_component_serial_port_uart.h"/>
+        <file category="sourceC" name="components/serial_manager/fsl_component_serial_port_uart.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="serial_manager_virtual" Cversion="1.0.0" condition="device.MK65F18_AND_component.serial_manager_AND_driver.common">
+      <description>Component serial_manager_virtual; {for-development:SDK-Manifest-ID: component.serial_manager_virtual.MK65F18}</description>
+      <RTE_Components_h>
+#ifndef SERIAL_PORT_TYPE_VIRTUAL
+#define SERIAL_PORT_TYPE_VIRTUAL 1
+#endif
+#ifndef DEBUG_CONSOLE_TRANSFER_NON_BLOCKING
+#define DEBUG_CONSOLE_TRANSFER_NON_BLOCKING 
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="header" name="components/serial_manager/fsl_component_serial_port_virtual.h"/>
+        <file category="sourceC" name="components/serial_manager/fsl_component_serial_port_virtual.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="software_crc_adapter" Cversion="1.0.0" condition="device.MK65F18_AND_driver.common">
+      <description>Component software_crc_adapter; {for-development:SDK-Manifest-ID: component.software_crc_adapter.MK65F18}</description>
+      <files>
+        <file category="header" name="components/crc/fsl_adapter_crc.h"/>
+        <file category="sourceC" name="components/crc/fsl_adapter_software_crc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="software_rng_adapter" Cversion="1.0.0" condition="device.MK65F18_AND_driver.common">
+      <description>Component software_rng_adapter; {for-development:SDK-Manifest-ID: component.software_rng_adapter.MK65F18}</description>
+      <files>
+        <file category="header" name="components/rng/fsl_adapter_rng.h"/>
+        <file category="sourceC" name="components/rng/fsl_adapter_software_rng.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="timer_manager" Cversion="1.0.0" condition="device.MK65F18_AND__component.ftm_adapter_OR_component.lptmr_adapter_OR_component.pit_adapter_OR_component.tpm_adapter__AND_component.lists_AND_driver.common">
+      <description>Component timer_manager; {for-development:SDK-Manifest-ID: component.timer_manager.MK65F18}</description>
+      <files>
+        <file category="header" name="components/timer_manager/fsl_component_timer_manager.h"/>
+        <file category="sourceC" name="components/timer_manager/fsl_component_timer_manager.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="tpm_adapter" Cversion="1.0.0" condition="device.MK65F18_AND_driver.common_AND_driver.tpm">
+      <description>Component tpm_adapter; {for-development:SDK-Manifest-ID: component.tpm_adapter.MK65F18}</description>
+      <files>
+        <file category="header" name="components/timer/fsl_adapter_timer.h"/>
+        <file category="sourceC" name="components/timer/fsl_adapter_tpm.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="uart_adapter" Cversion="1.0.0" condition="device.MK65F18_AND_driver.common_AND_driver.uart">
+      <description>Component uart_adapter; {for-development:SDK-Manifest-ID: component.uart_adapter.MK65F18}</description>
+      <files>
+        <file category="header" name="components/uart/fsl_adapter_uart.h"/>
+        <file category="sourceC" name="components/uart/fsl_adapter_uart.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="CMSIS" Csub="MK65F18_header" Cversion="1.0.0" condition="device.MK65F18_AND_CMSIS_Include_core_cm">
+      <description>Device MK65F18_cmsis; {for-development:SDK-Manifest-ID: device.MK65F18_CMSIS.MK65F18}</description>
+      <files>
+        <file category="header" name="fsl_device_registers.h"/>
+        <file category="header" name="MK65F18.h"/>
+        <file category="header" name="MK65F18_features.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.1.0" condition="device.MK65F18_AND__armclang_OR_iar__AND_device.MK65F18_system">
+      <description>Device MK65F18_startup; {for-development:SDK-Manifest-ID: device.MK65F18_startup.MK65F18}</description>
+      <files>
+        <file condition="iar" category="sourceAsm" attr="config" name="iar/startup_MK65F18.s" version="1.1.0"/>
+        <file condition="mdk" category="sourceAsm" attr="config" name="arm/startup_MK65F18.S" version="1.1.0"/>
+        <file condition="mdk" category="linkerScript" attr="config" name="arm/MK65FN2M0xxx18_flash.scf" version="1.1.0"/>
+        <file condition="mdk" category="linkerScript" attr="config" name="arm/MK65FN2M0xxx18_ram.scf" version="1.1.0"/>
+        <file condition="mdk" category="linkerScript" attr="config" name="arm/MK65FX1M0xxx18_flash.scf" version="1.1.0"/>
+        <file condition="mdk" category="linkerScript" attr="config" name="arm/MK65FX1M0xxx18_ram.scf" version="1.1.0"/>
+        <file condition="iar" category="linkerScript" attr="config" name="iar/MK65FN2M0xxx18_flash.icf" version="1.1.0"/>
+        <file condition="iar" category="linkerScript" attr="config" name="iar/MK65FN2M0xxx18_ram.icf" version="1.1.0"/>
+        <file condition="iar" category="linkerScript" attr="config" name="iar/MK65FX1M0xxx18_flash.icf" version="1.1.0"/>
+        <file condition="iar" category="linkerScript" attr="config" name="iar/MK65FX1M0xxx18_ram.icf" version="1.1.0"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="CMSIS" Csub="MK65F18_system" Cversion="1.0.0" condition="device.MK65F18_AND_device.MK65F18_CMSIS">
+      <description>Device MK65F18_system; {for-development:SDK-Manifest-ID: device.MK65F18_system.MK65F18}</description>
+      <files>
+        <file category="sourceC" name="system_MK65F18.c"/>
+        <file category="header" name="system_MK65F18.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="adc" Cversion="2.2.0" condition="device.MK65F18_AND_driver.common">
+      <description>ADC16 Driver; {for-development:SDK-Manifest-ID: platform.drivers.adc16.MK65F18}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_adc16.c"/>
+        <file category="header" name="drivers/fsl_adc16.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="cache_lmem" Cversion="2.0.6" condition="device.MK65F18_AND_driver.common">
+      <description>CACHE LMEM Driver; {for-development:SDK-Manifest-ID: platform.drivers.cache_lmem.MK65F18}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_cache.c"/>
+        <file category="header" name="drivers/fsl_cache.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="clock" Cversion="2.5.1" condition="device.MK65F18_AND_driver.common">
+      <description>Clock Driver; {for-development:SDK-Manifest-ID: platform.drivers.clock.MK65F18}</description>
+      <files>
+        <file category="header" name="drivers/fsl_clock.h"/>
+        <file category="sourceC" name="drivers/fsl_clock.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="cmp" Cversion="2.0.2" condition="device.MK65F18_AND_driver.common">
+      <description>CMP Driver; {for-development:SDK-Manifest-ID: platform.drivers.cmp.MK65F18}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_cmp.c"/>
+        <file category="header" name="drivers/fsl_cmp.h"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="SPI" Csub="dspi_cmsis" Cversion="2.3.0" Capiversion="2.2.0" condition="device.MK65F18_AND_CMSIS_Driver_Include.SPI_AND_RTE_Device_AND_driver.dspi_edma">
+      <description>DSPI CMSIS Driver; {for-development:SDK-Manifest-ID: platform.drivers.dspi_cmsis.MK65F18}</description>
+      <files>
+        <file category="header" name="cmsis_drivers/fsl_dspi_cmsis.h"/>
+        <file category="sourceC" name="cmsis_drivers/fsl_dspi_cmsis.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="Ethernet" Csub="enet_cmsis" Cversion="2.2.0" Capiversion="2.1.0" condition="device.MK65F18_AND_CMSIS_Driver_Include.Ethernet_AND_CMSIS_Driver_Include.Ethernet_MAC_AND_CMSIS_Driver_Include.Ethernet_PHY_AND_RTE_Device_AND_driver.enet_AND_driver.phy-common">
+      <description>ENET CMSIS Driver; {for-development:SDK-Manifest-ID: platform.drivers.enet_cmsis.MK65F18}</description>
+      <files>
+        <file category="header" name="cmsis_drivers/fsl_enet_cmsis.h"/>
+        <file category="sourceC" name="cmsis_drivers/fsl_enet_cmsis.c"/>
+        <file category="sourceC" name="cmsis_drivers/fsl_enet_phy_cmsis.c"/>
+        <file category="header" name="cmsis_drivers/fsl_enet_phy_cmsis.h"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="I2C" Csub="i2c_cmsis" Cversion="2.2.0" Capiversion="2.3.0" condition="device.MK65F18_AND_CMSIS_Driver_Include.I2C_AND_RTE_Device_AND_driver.i2c_AND_driver.i2c_edma">
+      <description>I2C CMSIS Driver; {for-development:SDK-Manifest-ID: platform.drivers.i2c_cmsis.MK65F18}</description>
+      <files>
+        <file category="header" name="cmsis_drivers/fsl_i2c_cmsis.h"/>
+        <file category="sourceC" name="cmsis_drivers/fsl_i2c_cmsis.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="USART" Csub="lpuart_cmsis" Cversion="2.2.0" Capiversion="2.3.0" condition="device.MK65F18_AND_CMSIS_Driver_Include.USART_AND_RTE_Device_AND_driver.lpuart_AND_driver.lpuart_edma">
+      <description>LPUART CMSIS Driver; {for-development:SDK-Manifest-ID: platform.drivers.lpuart_cmsis.MK65F18}</description>
+      <files>
+        <file category="header" name="cmsis_drivers/fsl_lpuart_cmsis.h"/>
+        <file category="sourceC" name="cmsis_drivers/fsl_lpuart_cmsis.c"/>
+      </files>
+    </component>
+    <component Cclass="CMSIS Driver" Cgroup="USART" Csub="uart_cmsis" Cversion="2.1.0" Capiversion="2.3.0" condition="device.MK65F18_AND_CMSIS_Driver_Include.USART_AND_RTE_Device_AND_driver.uart_AND_driver.uart_edma">
+      <description>UART CMSIS Driver; {for-development:SDK-Manifest-ID: platform.drivers.uart_cmsis.MK65F18}</description>
+      <files>
+        <file category="header" name="cmsis_drivers/fsl_uart_cmsis.h"/>
+        <file category="sourceC" name="cmsis_drivers/fsl_uart_cmsis.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="cmt" Cversion="2.0.3" condition="device.MK65F18_AND_driver.common">
+      <description>CMT Driver; {for-development:SDK-Manifest-ID: platform.drivers.cmt.MK65F18}</description>
+      <files>
+        <file category="header" name="drivers/fsl_cmt.h"/>
+        <file category="sourceC" name="drivers/fsl_cmt.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="common" Cversion="2.3.1" condition="device.MK65F18_AND_device.MK65F18_CMSIS_AND_driver.clock">
+      <description>COMMON Driver; {for-development:SDK-Manifest-ID: platform.drivers.common.MK65F18}</description>
+      <files>
+        <file category="header" name="drivers/fsl_common.h"/>
+        <file category="sourceC" name="drivers/fsl_common.c"/>
+        <file condition="core_type.cm4f" category="sourceC" name="drivers/fsl_common_arm.c"/>
+        <file condition="core_type.cm4f" category="header" name="drivers/fsl_common_arm.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="crc" Cversion="2.0.3" condition="device.MK65F18_AND_driver.common">
+      <description>CRC Driver; {for-development:SDK-Manifest-ID: platform.drivers.crc.MK65F18}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_crc.c"/>
+        <file category="header" name="drivers/fsl_crc.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dac" Cversion="2.0.2" condition="device.MK65F18_AND_driver.common">
+      <description>DAC Driver; {for-development:SDK-Manifest-ID: platform.drivers.dac.MK65F18}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_dac.c"/>
+        <file category="header" name="drivers/fsl_dac.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dmamux" Cversion="2.0.5" condition="device.MK65F18_AND_driver.common">
+      <description>DMAMUX Driver; {for-development:SDK-Manifest-ID: platform.drivers.dmamux.MK65F18}</description>
+      <files>
+        <file category="header" name="drivers/fsl_dmamux.h"/>
+        <file category="sourceC" name="drivers/fsl_dmamux.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dspi" Cversion="2.2.4" condition="device.MK65F18_AND_driver.common">
+      <description>DSPI Driver; {for-development:SDK-Manifest-ID: platform.drivers.dspi.MK65F18}</description>
+      <files>
+        <file category="header" name="drivers/fsl_dspi.h"/>
+        <file category="sourceC" name="drivers/fsl_dspi.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="dspi_edma" Cversion="2.2.4" condition="device.MK65F18_AND_driver.dspi_AND_driver.edma">
+      <description>DSPI Driver; {for-development:SDK-Manifest-ID: platform.drivers.dspi_edma.MK65F18}</description>
+      <files>
+        <file category="header" name="drivers/fsl_dspi_edma.h"/>
+        <file category="sourceC" name="drivers/fsl_dspi_edma.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="edma" Cversion="2.4.3" condition="device.MK65F18_AND_driver.common_AND_driver.dmamux">
+      <description>EDMA Driver; {for-development:SDK-Manifest-ID: platform.drivers.edma.MK65F18}</description>
+      <files>
+        <file category="header" name="drivers/fsl_edma.h"/>
+        <file category="sourceC" name="drivers/fsl_edma.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="enet" Cversion="2.5.3" condition="device.MK65F18_AND_driver.common">
+      <description>ENET Driver; {for-development:SDK-Manifest-ID: platform.drivers.enet.MK65F18}</description>
+      <files>
+        <file category="header" name="drivers/fsl_enet.h"/>
+        <file category="sourceC" name="drivers/fsl_enet.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ewm" Cversion="2.0.3" condition="device.MK65F18_AND_driver.common">
+      <description>EWM Driver; {for-development:SDK-Manifest-ID: platform.drivers.ewm.MK65F18}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_ewm.c"/>
+        <file category="header" name="drivers/fsl_ewm.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flash" Cversion="3.0.0" condition="device.MK65F18_AND_driver.common">
+      <description>Flash Driver; {for-development:SDK-Manifest-ID: platform.drivers.flash.MK65F18}</description>
+      <files>
+        <file category="header" name="drivers/fsl_ftfx_adapter.h"/>
+        <file category="header" name="drivers/fsl_ftfx_utilities.h"/>
+        <file category="header" name="drivers/fsl_ftfx_features.h"/>
+        <file category="sourceC" name="drivers/fsl_ftfx_controller.c"/>
+        <file category="header" name="drivers/fsl_ftfx_controller.h"/>
+        <file category="sourceC" name="drivers/fsl_ftfx_flash.c"/>
+        <file category="header" name="drivers/fsl_ftfx_flash.h"/>
+        <file category="sourceC" name="drivers/fsl_ftfx_cache.c"/>
+        <file category="header" name="drivers/fsl_ftfx_cache.h"/>
+        <file category="sourceC" name="drivers/fsl_ftfx_flexnvm.c"/>
+        <file category="header" name="drivers/fsl_ftfx_flexnvm.h"/>
+        <file category="header" name="drivers/fsl_flash.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flexbus" Cversion="2.1.1" condition="device.MK65F18_AND_driver.common">
+      <description>FLEXBUS Driver; {for-development:SDK-Manifest-ID: platform.drivers.flexbus.MK65F18}</description>
+      <files>
+        <file category="header" name="drivers/fsl_flexbus.h"/>
+        <file category="sourceC" name="drivers/fsl_flexbus.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="flexcan" Cversion="2.8.2" condition="device.MK65F18_AND_driver.common">
+      <description>FLEXCAN Driver; {for-development:SDK-Manifest-ID: platform.drivers.flexcan.MK65F18}</description>
+      <files>
+        <file category="header" name="drivers/fsl_flexcan.h"/>
+        <file category="sourceC" name="drivers/fsl_flexcan.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="ftm" Cversion="2.5.0" condition="device.MK65F18_AND_driver.common">
+      <description>FTM Driver; {for-development:SDK-Manifest-ID: platform.drivers.ftm.MK65F18}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_ftm.c"/>
+        <file category="header" name="drivers/fsl_ftm.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="gpio" Cversion="2.5.3" condition="device.MK65F18_AND_driver.common">
+      <description>GPIO Driver; {for-development:SDK-Manifest-ID: platform.drivers.gpio.MK65F18}</description>
+      <files>
+        <file category="header" name="drivers/fsl_gpio.h"/>
+        <file category="sourceC" name="drivers/fsl_gpio.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="i2c" Cversion="2.0.9" condition="device.MK65F18_AND_driver.common">
+      <description>I2C Driver; {for-development:SDK-Manifest-ID: platform.drivers.i2c.MK65F18}</description>
+      <files>
+        <file category="header" name="drivers/fsl_i2c.h"/>
+        <file category="sourceC" name="drivers/fsl_i2c.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="i2c_edma" Cversion="2.0.9" condition="device.MK65F18_AND_driver.edma_AND_driver.i2c">
+      <description>I2C Driver; {for-development:SDK-Manifest-ID: platform.drivers.i2c_edma.MK65F18}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_i2c_edma.c"/>
+        <file category="header" name="drivers/fsl_i2c_edma.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="llwu" Cversion="2.0.5" condition="device.MK65F18_AND_driver.common">
+      <description>LLWU Driver; {for-development:SDK-Manifest-ID: platform.drivers.llwu.MK65F18}</description>
+      <files>
+        <file category="header" name="drivers/fsl_llwu.h"/>
+        <file category="sourceC" name="drivers/fsl_llwu.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lmem" Cversion="2.1.2" condition="device.MK65F18_AND_driver.common">
+      <description>LMEM Driver; {for-development:SDK-Manifest-ID: platform.drivers.lmem.MK65F18}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_lmem_cache.c"/>
+        <file category="header" name="drivers/fsl_lmem_cache.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lptmr" Cversion="2.1.1" condition="device.MK65F18_AND_driver.common">
+      <description>LPTMR Driver; {for-development:SDK-Manifest-ID: platform.drivers.lptmr.MK65F18}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_lptmr.c"/>
+        <file category="header" name="drivers/fsl_lptmr.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart" Cversion="2.5.2" condition="device.MK65F18_AND_driver.common">
+      <description>LPUART Driver; {for-development:SDK-Manifest-ID: platform.drivers.lpuart.MK65F18}</description>
+      <files>
+        <file category="header" name="drivers/fsl_lpuart.h"/>
+        <file category="sourceC" name="drivers/fsl_lpuart.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="lpuart_edma" Cversion="2.5.2" condition="device.MK65F18_AND_driver.edma_AND_driver.lpuart">
+      <description>LPUART Driver; {for-development:SDK-Manifest-ID: platform.drivers.lpuart_edma.MK65F18}</description>
+      <files>
+        <file category="header" name="drivers/fsl_lpuart_edma.h"/>
+        <file category="sourceC" name="drivers/fsl_lpuart_edma.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="mdio-common" Cversion="2.0.0" condition="device.MK65F18_AND_driver.common">
+      <description>Driver mdio-common; {for-development:SDK-Manifest-ID: driver.mdio-common.MK65F18}</description>
+      <files>
+        <file category="header" name="components/phy/fsl_mdio.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pdb" Cversion="2.0.4" condition="device.MK65F18_AND_driver.common">
+      <description>PDB Driver; {for-development:SDK-Manifest-ID: platform.drivers.pdb.MK65F18}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_pdb.c"/>
+        <file category="header" name="drivers/fsl_pdb.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="phy-common" Cversion="2.0.0" condition="device.MK65F18_AND_driver.mdio-common">
+      <description>Driver phy-common; {for-development:SDK-Manifest-ID: driver.phy-common.MK65F18}</description>
+      <files>
+        <file category="header" name="components/phy/fsl_phy.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pit" Cversion="2.0.4" condition="device.MK65F18_AND_driver.common">
+      <description>PIT Driver; {for-development:SDK-Manifest-ID: platform.drivers.pit.MK65F18}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_pit.c"/>
+        <file category="header" name="drivers/fsl_pit.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="pmc" Cversion="2.0.3" condition="device.MK65F18_AND_driver.common">
+      <description>PMC Driver; {for-development:SDK-Manifest-ID: platform.drivers.pmc.MK65F18}</description>
+      <files>
+        <file category="header" name="drivers/fsl_pmc.h"/>
+        <file category="sourceC" name="drivers/fsl_pmc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="port" Cversion="2.2.0" condition="device.MK65F18_AND_driver.common">
+      <description>PORT Driver; {for-development:SDK-Manifest-ID: platform.drivers.port.MK65F18}</description>
+      <files>
+        <file category="header" name="drivers/fsl_port.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="rcm" Cversion="2.0.4" condition="device.MK65F18_AND_driver.common">
+      <description>RCM Driver; {for-development:SDK-Manifest-ID: platform.drivers.rcm.MK65F18}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_rcm.c"/>
+        <file category="header" name="drivers/fsl_rcm.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="rnga" Cversion="2.0.2" condition="device.MK65F18_AND_driver.common">
+      <description>RNGA Driver; {for-development:SDK-Manifest-ID: platform.drivers.rnga.MK65F18}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_rnga.c"/>
+        <file category="header" name="drivers/fsl_rnga.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="rtc" Cversion="2.2.1" condition="device.MK65F18_AND_driver.common">
+      <description>RTC Driver; {for-development:SDK-Manifest-ID: platform.drivers.rtc.MK65F18}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_rtc.c"/>
+        <file category="header" name="drivers/fsl_rtc.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sai" Cversion="2.3.4" condition="device.MK65F18_AND_driver.common">
+      <description>SAI Driver; {for-development:SDK-Manifest-ID: platform.drivers.sai.MK65F18}</description>
+      <files>
+        <file category="header" name="drivers/fsl_sai.h"/>
+        <file category="sourceC" name="drivers/fsl_sai.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sai_edma" Cversion="2.5.0" condition="device.MK65F18_AND_driver.edma_AND_driver.sai">
+      <description>SAI EDMA Driver; {for-development:SDK-Manifest-ID: platform.drivers.sai_edma.MK65F18}</description>
+      <files>
+        <file category="header" name="drivers/fsl_sai_edma.h"/>
+        <file category="sourceC" name="drivers/fsl_sai_edma.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sdhc" Cversion="2.1.13" condition="device.MK65F18_AND_driver.common">
+      <description>SDHC Driver; {for-development:SDK-Manifest-ID: platform.drivers.sdhc.MK65F18}</description>
+      <files>
+        <file category="header" name="drivers/fsl_sdhc.h"/>
+        <file category="sourceC" name="drivers/fsl_sdhc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sdramc" Cversion="2.1.1" condition="device.MK65F18_AND_driver.common">
+      <description>SDRAMC Driver; {for-development:SDK-Manifest-ID: platform.drivers.sdramc.MK65F18}</description>
+      <files>
+        <file category="header" name="drivers/fsl_sdramc.h"/>
+        <file category="sourceC" name="drivers/fsl_sdramc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sim" Cversion="2.1.3" condition="device.MK65F18_AND_driver.common">
+      <description>SIM Driver; {for-development:SDK-Manifest-ID: platform.drivers.sim.MK65F18}</description>
+      <files>
+        <file category="header" name="drivers/fsl_sim.h"/>
+        <file category="sourceC" name="drivers/fsl_sim.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="smc" Cversion="2.0.7" condition="device.MK65F18_AND_driver.common">
+      <description>SMC Driver; {for-development:SDK-Manifest-ID: platform.drivers.smc.MK65F18}</description>
+      <files>
+        <file category="header" name="drivers/fsl_smc.h"/>
+        <file category="sourceC" name="drivers/fsl_smc.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="sysmpu" Cversion="2.2.3" condition="device.MK65F18_AND_driver.common">
+      <description>SYSMPU Driver; {for-development:SDK-Manifest-ID: platform.drivers.sysmpu.MK65F18}</description>
+      <files>
+        <file category="header" name="drivers/fsl_sysmpu.h"/>
+        <file category="sourceC" name="drivers/fsl_sysmpu.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="tpm" Cversion="2.2.0" condition="device.MK65F18_AND_driver.common">
+      <description>TPM Driver; {for-development:SDK-Manifest-ID: platform.drivers.tpm.MK65F18}</description>
+      <files>
+        <file category="sourceC" name="drivers/fsl_tpm.c"/>
+        <file category="header" name="drivers/fsl_tpm.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="tsi_v4" Cversion="2.1.3" condition="device.MK65F18_AND_driver.common">
+      <description>TSI Driver; {for-development:SDK-Manifest-ID: platform.drivers.tsi_v4.MK65F18}</description>
+      <files>
+        <file category="header" name="drivers/fsl_tsi_v4.h"/>
+        <file category="sourceC" name="drivers/fsl_tsi_v4.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="uart" Cversion="2.5.1" condition="device.MK65F18_AND_driver.common">
+      <description>UART Driver; {for-development:SDK-Manifest-ID: platform.drivers.uart.MK65F18}</description>
+      <files>
+        <file category="header" name="drivers/fsl_uart.h"/>
+        <file category="sourceC" name="drivers/fsl_uart.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="uart_edma" Cversion="2.5.2" condition="device.MK65F18_AND_driver.edma_AND_driver.uart">
+      <description>UART Driver; {for-development:SDK-Manifest-ID: platform.drivers.uart_edma.MK65F18}</description>
+      <files>
+        <file category="header" name="drivers/fsl_uart_edma.h"/>
+        <file category="sourceC" name="drivers/fsl_uart_edma.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="vref" Cversion="2.1.2" condition="device.MK65F18_AND_driver.common">
+      <description>VREF Driver; {for-development:SDK-Manifest-ID: platform.drivers.vref.MK65F18}</description>
+      <files>
+        <file category="header" name="drivers/fsl_vref.h"/>
+        <file category="sourceC" name="drivers/fsl_vref.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Drivers" Csub="wdog" Cversion="2.0.1" condition="device.MK65F18_AND_driver.common">
+      <description>WDOG Driver; {for-development:SDK-Manifest-ID: platform.drivers.wdog.MK65F18}</description>
+      <files>
+        <file category="header" name="drivers/fsl_wdog.h"/>
+        <file category="sourceC" name="drivers/fsl_wdog.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="assert" Cversion="1.0.0" condition="device.MK65F18_AND_utility.debug_console">
+      <description>Utility assert; {for-development:SDK-Manifest-ID: platform.utilities.assert.MK65F18}</description>
+      <files>
+        <file category="sourceC" name="utilities/fsl_assert.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="assert_lite" Cversion="1.0.0" condition="device.MK65F18_AND_utility.debug_console_lite">
+      <description>Utility assert_lite; {for-development:SDK-Manifest-ID: platform.utilities.assert_lite.MK65F18}</description>
+      <files>
+        <file category="sourceC" name="utilities/debug_console_lite/fsl_assert.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console" Cversion="1.0.0" condition="device.MK65F18_AND_component.serial_manager_AND_driver.common">
+      <description>Utility debug_console; {for-development:SDK-Manifest-ID: utility.debug_console.MK65F18}</description>
+      <files>
+        <file category="sourceC" name="utilities/str/fsl_str.c"/>
+        <file category="header" name="utilities/str/fsl_str.h"/>
+        <file category="sourceC" name="utilities/debug_console/fsl_debug_console.c"/>
+        <file category="header" name="utilities/debug_console/fsl_debug_console.h"/>
+        <file category="header" name="utilities/debug_console/fsl_debug_console_conf.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite" Cversion="1.0.0" condition="device.MK65F18_AND_component.uart_adapter_AND_driver.common">
+      <description>Utility debug_console_lite; {for-development:SDK-Manifest-ID: utility.debug_console_lite.MK65F18}</description>
+      <files>
+        <file category="sourceC" name="utilities/debug_console_lite/fsl_debug_console.c"/>
+        <file category="header" name="utilities/debug_console_lite/fsl_debug_console.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="notifier" Cversion="1.0.0" condition="device.MK65F18_AND_driver.common">
+      <description>Utility notifier; {for-development:SDK-Manifest-ID: platform.utilities.notifier.MK65F18}</description>
+      <files>
+        <file category="sourceC" name="utilities/fsl_notifier.c"/>
+        <file category="header" name="utilities/fsl_notifier.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SDK Utilities" Csub="shell" Cversion="1.0.0" condition="device.MK65F18_AND_component.lists_AND_driver.common_AND_utility.debug_console">
+      <description>Utility shell; {for-development:SDK-Manifest-ID: utility.shell.MK65F18}</description>
+      <RTE_Components_h>
+#ifndef DEBUG_CONSOLE_RX_ENABLE
+#define DEBUG_CONSOLE_RX_ENABLE 0
+#endif
+</RTE_Components_h>
+      <files>
+        <file category="sourceC" name="utilities/fsl_shell.c"/>
+        <file category="header" name="utilities/fsl_shell.h"/>
+      </files>
+    </component>
+  </components>
+</package>

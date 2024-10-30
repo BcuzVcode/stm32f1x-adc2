@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.6.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <name>PSA</name>
+  <description>PSA (Platform Security Architecture)</description>
+  <vendor>ARM</vendor>
+  <!-- <license>license.txt</license> -->
+  <url>http://www.keil.com/pack/</url>
+
+  <releases>
+    <release version="1.0.0" date="2021-02-15">
+      PSA APIs:
+       - Cyrpto 1.0
+       - Internal Trusted Storage 1.0
+       - Protected Storage 1.0
+       - Initial Attestation 1.0
+    </release>
+  </releases>
+
+  <taxonomy>
+    <description Cclass="PSA" doc="https://developer.arm.com/architectures/security-architectures/platform-security-architecture">Platform Security Architecture</description>
+  </taxonomy>
+
+  <apis>
+    <api Cclass="PSA" Cgroup="Crypto" Capiversion="1.0.0" exclusive="1">
+      <description>PSA Cryptography API</description>
+      <files>
+        <file category="doc" name="api-specs/doc/IHI0086-PSA_Cryptography_API-1.0.0.pdf"/>
+      </files>
+    </api>
+    <api Cclass="PSA" Cgroup="Internal Trusted Storage" Capiversion="1.0.0" exclusive="1">
+      <description>PSA Internal Trusted Storage API</description>
+      <files>
+        <file category="doc" name="api-specs/doc/IHI0087-PSA_Storage_API-1.0.0.pdf"/>
+      </files>
+    </api>
+    <api Cclass="PSA" Cgroup="Protected Storage" Capiversion="1.0.0" exclusive="1">
+      <description>PSA Protected Storage API</description>
+      <files>
+        <file category="doc" name="api-specs/doc/IHI0087-PSA_Storage_API-1.0.0.pdf"/>
+      </files>
+    </api>
+    <api Cclass="PSA" Cgroup="Initial Attestation" Capiversion="1.0.0" exclusive="1">
+      <description>PSA Initial Attestation API</description>
+      <files>
+        <file category="doc" name="api-specs/doc/IHI0085-PSA_Attestation_API-1.0.0.pdf"/>
+      </files>
+    </api>
+  </apis>
+
+</package>

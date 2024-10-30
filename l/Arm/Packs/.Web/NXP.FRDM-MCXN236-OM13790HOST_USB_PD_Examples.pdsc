@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>FRDM-MCXN236-OM13790HOST_USB_PD_Examples</name>
+  <vendor>NXP</vendor>
+  <description>Middleware usb_pd Examples Pack for FRDM-MCXN236-OM13790HOST</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="1.0.0" date="2024-07-17">NXP CMSIS SBSP Packs based on MCUXpresso SDK 2.16.0</release>
+  </releases>
+  <keywords>
+    <keyword>Middleware Board Support Pack</keyword>
+  </keywords>
+  <requirements>
+    <packages>
+      <package name="Component_OS_Abstraction_Layer" vendor="NXP" version="3.0.0"/>
+      <package name="FREERTOS-KERNEL" vendor="NXP" version="3.0.0"/>
+      <package name="USB_PD" vendor="NXP" version="3.0.0"/>
+      <package name="MCXN236_DFP" vendor="NXP" version="19.0.0"/>
+      <package name="CMSIS" vendor="ARM" version="5.9.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <boards>
+    <board vendor="NXP" name="FRDM-MCXN236-OM13790HOST">
+      <description>Development Board for MCXN10 family of MCUs with USB Type-C Host Shield Board Gen 2 with Display Port Alt Mode</description>
+      <image small="boards/frdmmcxn236_om13790host/frdmmcxn236_om13790host.png"/>
+      <mountedDevice Dname="MCXN236VDF" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MCXN235VDF" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MCXN235VNL" Dvendor="NXP:11"/>
+      <compatibleDevice Dname="MCXN236VNL" Dvendor="NXP:11"/>
+    </board>
+  </boards>
+  <examples>
+    <example name="usb_pd_alt_mode_dp_host_bm" folder="boards/frdmmcxn236_om13790host/usb_examples/usb_pd_alt_mode_dp_host/bm" doc="readme.txt">
+      <description>This PD example is a simple demonstration based on the MCUXpresso SDK PD stack. The application use the shield host board (om13790host) to implement the DisplayPort alternate mode.It recognize attached video adapters...See more details in readme document.</description>
+      <board name="FRDM-MCXN236-OM13790HOST" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/usb_pd_alt_mode_dp_host_bm.uvprojx"/>
+        <environment name="csolution" load="usb_pd_alt_mode_dp_host_bm.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="usb_pd_alt_mode_dp_host_freertos" folder="boards/frdmmcxn236_om13790host/usb_examples/usb_pd_alt_mode_dp_host/freertos" doc="readme.txt">
+      <description>This PD example is a simple demonstration based on the MCUXpresso SDK PD stack. The application use the shield host board (om13790host) to implement the DisplayPort alternate mode.It recognize attached video adapters...See more details in readme document.</description>
+      <board name="FRDM-MCXN236-OM13790HOST" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/usb_pd_alt_mode_dp_host_freertos.uvprojx"/>
+        <environment name="csolution" load="usb_pd_alt_mode_dp_host_freertos.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="usb_pd_bm" folder="boards/frdmmcxn236_om13790host/usb_examples/usb_pd/bm" doc="readme.txt">
+      <description>This PD example is a simple demonstration based on the MCUXpresso SDK PD stack. The application use the board keys and debug console to test the PD functions. The demo works as DRP. When connect, the board can be source or sink.</description>
+      <board name="FRDM-MCXN236-OM13790HOST" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/usb_pd_bm.uvprojx"/>
+        <environment name="csolution" load="usb_pd_bm.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="usb_pd_charger_battery_bm" folder="boards/frdmmcxn236_om13790host/usb_examples/usb_pd_charger_battery/bm" doc="readme.txt">
+      <description>the application simulate battery product , it prints the battery percent continually. The demo works as DRP. When connect, the board can be source or sink.</description>
+      <board name="FRDM-MCXN236-OM13790HOST" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/usb_pd_charger_battery_bm.uvprojx"/>
+        <environment name="csolution" load="usb_pd_charger_battery_bm.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="usb_pd_charger_battery_freertos" folder="boards/frdmmcxn236_om13790host/usb_examples/usb_pd_charger_battery/freertos" doc="readme.txt">
+      <description>The application simulate battery product, it prints the battery percent continually. The demo works as sink and get power from partner port</description>
+      <board name="FRDM-MCXN236-OM13790HOST" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/usb_pd_charger_battery_freertos.uvprojx"/>
+        <environment name="csolution" load="usb_pd_charger_battery_freertos.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="usb_pd_freertos" folder="boards/frdmmcxn236_om13790host/usb_examples/usb_pd/freertos" doc="readme.txt">
+      <description>This PD example is a simple demonstration based on the MCUXpresso SDK PD stack. The application use the board keys and debug console to test the PD functions. The demo works as DRP. When connect, the board can be source or sink.</description>
+      <board name="FRDM-MCXN236-OM13790HOST" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/usb_pd_freertos.uvprojx"/>
+        <environment name="csolution" load="usb_pd_freertos.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="usb_pd_sink_battery_bm" folder="boards/frdmmcxn236_om13790host/usb_examples/usb_pd_sink_battery/bm" doc="readme.txt">
+      <description>The application simulate battery product , it prints the battery percent continually. The demo works as sink and get power from partner port</description>
+      <board name="FRDM-MCXN236-OM13790HOST" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/usb_pd_sink_battery_bm.uvprojx"/>
+        <environment name="csolution" load="usb_pd_sink_battery_bm.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="usb_pd_sink_battery_freertos" folder="boards/frdmmcxn236_om13790host/usb_examples/usb_pd_sink_battery/freertos" doc="readme.txt">
+      <description>The application simulate battery product, it prints the battery percent continually. The demo works as sink and get power from partner port</description>
+      <board name="FRDM-MCXN236-OM13790HOST" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/usb_pd_sink_battery_freertos.uvprojx"/>
+        <environment name="csolution" load="usb_pd_sink_battery_freertos.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="usb_pd_source_charger_bm" folder="boards/frdmmcxn236_om13790host/usb_examples/usb_pd_source_charger/bm" doc="readme.txt">
+      <description>The application simulate charger product. The demo only works as source and is external powered</description>
+      <board name="FRDM-MCXN236-OM13790HOST" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/usb_pd_source_charger_bm.uvprojx"/>
+        <environment name="csolution" load="usb_pd_source_charger_bm.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="usb_pd_source_charger_freertos" folder="boards/frdmmcxn236_om13790host/usb_examples/usb_pd_source_charger/freertos" doc="readme.txt">
+      <description>The application simulate charger product. The demo only works as source and is external powered</description>
+      <board name="FRDM-MCXN236-OM13790HOST" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/usb_pd_source_charger_freertos.uvprojx"/>
+        <environment name="csolution" load="usb_pd_source_charger_freertos.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+  </examples>
+</package>

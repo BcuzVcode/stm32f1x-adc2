@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.7.27" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>3PEAK</vendor>
+  <name>TPS325M0_DFP</name>
+  <description>3PEAK TPS325M0 Series Device Support,Drivers</description>
+  <url>https://mcupack.3peakic.com.cn:8286/</url>
+  
+  <releases>
+    <release version="1.0.0" date="2023-10-13">
+      First Release version of TPS325M0 Device Family Pack.
+    </release>
+  </releases>
+  
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>3PEAK</keyword>
+    <keyword>TPS325M0</keyword>
+    <keyword>TPS325M0x</keyword>	
+  </keywords>
+
+  <!-- devices section (mandatory for Device Family Packs) -->
+  <devices>
+    <!-- ****************************** Cortex-M33 ********************** -->
+    <family Dfamily="TPS325M0 Series" Dvendor="3PEAK:177">
+      <!--book name="Device/ARM/Documents/??_dgug.pdf"       title="?? Device Generic Users Guide"/-->
+	<processor Dcore="Cortex-M33" DcoreVersion="r0p1" Dfpu="FPU" Ddsp="DSP" Dmpu="MPU" Dendian="Little-endian" Dtz="NO_TZ" />	
+
+      <description>
+The TPS325M0 Series adopts Arm v8-MC1 Architecture based STAR-MC1 core compatible with Cortex®-M33 instruction set. The TPS325M0 Series belongs to Mainstream Line of TPS32 mixed-signal industrial microcontroller family which is designed with advanced architecture, 3PEAK powered rich integrated analog and peripherals to provide high performance and flexibility, which meets the diverse needs of various applications, delivering exceptional experiences to customers.  
+     </description>    
+	  <!-- ****************************************************************************** -->
+	  <!-- ****************************************************************************** -->
+      <!-- ************************  Subfamily 'TPS325M01'  **************************** -->
+	  <!-- ****************************************************************************** -->
+	  <!-- ****************************************************************************** -->
+	  <subFamily DsubFamily="TPS325M01">
+        <processor Dclock="156000000"/>
+	  <!--	<algorithm name="Flash/W25Q256.FLM" start="0x10000000" size="0x02000000" RAMstart="0x20000000" RAMsize="0x00002000" default="1"/> -->
+	  <!-- ****************************************************************************** -->
+	  <!-- *************************  Device 'TPS325M0177'  FLASH:2048K RAM:336K********* -->
+	  <!-- ****************************************************************************** -->  
+	  <device Dname="TPS325M0177x">
+        <debug svd="SVD/TPS325M0x.svd"/>      
+		<memory name="IROM1"  access="rx"   start="0x08000000" size="0x00200000"  startup="1"    default="1"/>
+		<memory name="IRAM1"  access="rw"   start="0x20000000" size="0x00050000"  init   ="0"    default="1"/>
+		<memory name="IRAM2"  access="rw"   start="0x20050000" size="0x00004000"  init   ="1"    default="1"/>		  
+		<algorithm name="Flash/TPS325Mx_2MB_MEM.FLM"      start="0x08000000" size="0x200000" RAMstart="0x20000000" RAMsize="0x3000" default="1"/>	
+		<compile header="Device/Include/tps325mx.h"  define="TPS325M0x TPS325M0177x"/>		
+	  </device> 
+	  
+	  <!-- ****************************************************************************** -->
+	  <!-- *************************  Device 'TPS325M0166'   FLASH:1024K RAM:208K********* -->
+	  <!-- ****************************************************************************** -->
+	  <device Dname="TPS325M0166x">
+        <debug svd="SVD/TPS325M0x.svd"/>      
+		<memory name="IROM1"  access="rx"   start="0x08000000" size="0x00100000"  startup="1"    default="1"/>
+		<memory name="IRAM1"  access="rw"   start="0x20000000" size="0x00030000"  init   ="0"    default="1"/>
+		<memory name="IRAM2"  access="rw"   start="0x20030000" size="0x00004000"  init   ="1"    default="1"/>		  
+		<algorithm name="Flash/TPS325Mx_1MB_MEM.FLM"      start="0x08000000" size="0x00100000" RAMstart="0x20000000" RAMsize="0x3000" default="1"/>	
+	    <compile header="Device/Include/tps325mx.h"  define="TPS325M0x TPS325M0166x"/>		
+	  </device>	  
+
+	  <!-- ****************************************************************************** -->
+	  <!-- *************************  Device 'TPS325M0156'  FLASH:512K RAM:208K********* -->
+	  <!-- ****************************************************************************** -->
+	  <device Dname="TPS325M0156x">
+        <debug svd="SVD/TPS325M0x.svd"/>      
+		<memory name="IROM1"  access="rx"   start="0x08000000" size="0x00080000"  startup="1"    default="1"/>
+		<memory name="IRAM1"  access="rw"   start="0x20000000" size="0x00030000"  init   ="0"    default="1"/>
+		<memory name="IRAM2"  access="rw"   start="0x20030000" size="0x00004000"  init   ="1"    default="1"/>		  
+		<algorithm name="Flash/TPS325Mx_512KB_MEM.FLM"      start="0x08000000" size="0x80000" RAMstart="0x20000000" RAMsize="0x3000" default="1"/>
+		<compile header="Device/Include/tps325mx.h"  define="TPS325M0x TPS325M0156x"/>				
+	  </device>	
+	  
+	  <!-- ****************************************************************************** -->
+	  <!-- *************************  Device 'TPS325M0155'  FLASH:512K RAM:144K********* -->
+	  <!-- ****************************************************************************** -->
+	  <device Dname="TPS325M0155x">
+        <debug svd="SVD/TPS325M0x.svd"/>      
+		<memory name="IROM1"  access="rx"   start="0x08000000" size="0x00080000"  startup="1"    default="1"/>
+		<memory name="IRAM1"  access="rw"   start="0x20000000" size="0x00020000"  init   ="0"    default="1"/>
+		<memory name="IRAM2"  access="rw"   start="0x20020000" size="0x00004000"  init   ="1"    default="1"/>		  
+		<algorithm name="Flash/TPS325Mx_512KB_MEM.FLM"      start="0x08000000" size="0x80000" RAMstart="0x20000000" RAMsize="0x3000" default="1"/>
+		<compile header="Device/Include/tps325mx.h"  define="TPS325M0x TPS325M0155x"/>		
+	  </device>			
+	  
+      </subFamily>	  	  
+
+	  <!-- ****************************************************************************** -->
+	  <!-- ****************************************************************************** -->
+      <!-- ************************  Subfamily 'TPS325M0A'  **************************** -->
+	  <!-- ****************************************************************************** -->
+	  <!-- ****************************************************************************** -->
+	  <subFamily DsubFamily="TPS325M0A">
+        <processor Dclock="156000000"/>
+        <debug svd="SVD/TPS325M0x.svd"/>      
+
+	  <!-- ****************************************************************************** -->
+	  <!-- *************************  Device 'TPS325M0A57'  FLASH:512K RAM:336K********* -->
+	  <!-- ****************************************************************************** -->	  
+	  <device Dname="TPS325M0A57x">	
+		<memory name="IROM1"  access="rx"   start="0x08000000" size="0x00080000"  startup="1"    default="1"/>
+		<memory name="IRAM1"  access="rw"   start="0x20000000" size="0x00050000"  init   ="0"    default="1"/>
+		<memory name="IRAM2"  access="rw"   start="0x20050000" size="0x00004000"  init   ="1"    default="1"/>		  
+		<algorithm name="Flash/TPS325Mx_512KB_MEM.FLM"      start="0x08000000" size="0x80000" RAMstart="0x20000000" RAMsize="0x3000" default="1"/>
+		<compile header="Device/Include/tps325mx.h"  define="TPS325M0x TPS325M0A57x"/>	
+	  </device>	  
+	  
+      </subFamily>
+	  
+    </family>
+  </devices>
+    <conditions>   	
+	  <condition id="TPS325M0">
+		<!-- conditions selecting Devices -->
+		<description>TPS325M0 Series devices and CMSIS-CORE</description>
+		<require Dvendor="3PEAK:177" Dname="TPS325M0*"/>
+	  </condition>
+	  
+		<condition id="Startup ARM">
+		  <description>Startup assembler file for ARMCC</description>
+		  <require Tcompiler="ARMCC"/>
+		</condition>
+	</conditions>
+
+ <components>
+   <!-- Startup TPS325M0x  -->
+    <component Cclass="Device" Cgroup="Startup"   Cversion="1.0.0" condition="TPS325M0">
+      <description>System Startup for 3PEAK TPS325M0x Devices</description>
+      <files>
+        <!-- include folder -->
+        <file category="include" name="Device/Include/"/>
+        <file category="header" name="Device/Include/tps325m0x.h"/>
+        <!-- startup file -->
+        <file category="source" name="Device/Source/ARM/startup_tps325m0x.s" attr="config" version="1.0.0" condition="Startup ARM"/>	
+        <!-- system file -->
+        <file category="source" name="Device/Source/system_tps325mx.c"      attr="config" version="1.0.0"/>
+      </files>
+    </component>
+  </components>
+</package>

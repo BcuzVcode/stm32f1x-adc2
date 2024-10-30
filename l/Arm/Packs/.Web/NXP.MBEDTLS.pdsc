@@ -1,0 +1,866 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>MBEDTLS</name>
+  <vendor>NXP</vendor>
+  <description>Software Pack for mbedtls</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="3.0.0" date="2024-07-17">NXP CMSIS SWP Packs based on MCUXpresso SDK 2.16.0</release>
+    <release version="2.0.0" date="2024-01-14">NXP CMSIS SWP Packs based on MCUXpresso SDK 2.15.0</release>
+    <release version="1.0.0" date="2023-07-27">NXP CMSIS SWP Packs based on MCUXpresso SDK 2.14.0</release>
+  </releases>
+  <keywords>
+    <keyword>Software Pack</keyword>
+  </keywords>
+  <taxonomy>
+    <description Cclass="Security" Cgroup="mbedTLS library">Mbed_TLS NXP</description>
+  </taxonomy>
+  <requirements>
+    <packages>
+      <package name="MMCAU" vendor="NXP" version="3.0.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <conditions>
+    <condition id="middleware.mbedtls.condition_id">
+      <require condition="allOf.anyOf=utility.debug_console, utility.debug_console_lite, anyOf=middleware.mbedtls.port.ksdk, middleware.mbedtls.port.ele_s400, middleware.mbedtls.port.ele_s400_ecc_opaque, middleware.mbedtls.port.els_pkc.internal_condition"/>
+    </condition>
+    <condition id="allOf.anyOf=utility.debug_console, utility.debug_console_lite, anyOf=middleware.mbedtls.port.ksdk, middleware.mbedtls.port.ele_s400, middleware.mbedtls.port.ele_s400_ecc_opaque, middleware.mbedtls.port.els_pkc.internal_condition">
+      <require condition="anyOf.utility.debug_console, utility.debug_console_lite.internal_condition"/>
+      <require condition="anyOf.middleware.mbedtls.port.ksdk, middleware.mbedtls.port.ele_s400, middleware.mbedtls.port.ele_s400_ecc_opaque, middleware.mbedtls.port.els_pkc.internal_condition"/>
+    </condition>
+    <condition id="anyOf.utility.debug_console, utility.debug_console_lite.internal_condition">
+      <accept Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console"/>
+      <accept Cclass="Device" Cgroup="SDK Utilities" Csub="debug_console_lite"/>
+    </condition>
+    <condition id="anyOf.middleware.mbedtls.port.ksdk, middleware.mbedtls.port.ele_s400, middleware.mbedtls.port.ele_s400_ecc_opaque, middleware.mbedtls.port.els_pkc.internal_condition">
+      <accept Cclass="Security" Cgroup="mbedTLS library" Csub="ksdk"/>
+      <accept Cclass="Security" Cgroup="mbedTLS library" Csub="ele_s400"/>
+      <accept Cclass="Security" Cgroup="mbedTLS library" Csub="ele_s400_opaque"/>
+      <accept Cclass="Security" Cgroup="mbedTLS library" Csub="els_pkc"/>
+    </condition>
+    <condition id="middleware.mbedtls.port.ele_s400.condition_id">
+      <require condition="allOf.driver.s3mu, component.ele_crypto, middleware.mbedtls.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.s3mu, component.ele_crypto, middleware.mbedtls.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="s3mu"/>
+      <require Cclass="ele_crypto" Cgroup="ele_crypto"/>
+      <require Cclass="Security" Cgroup="mbedTLS library" Csub="mbedtls"/>
+    </condition>
+    <condition id="middleware.mbedtls.port.ele_s400_ecc_opaque.condition_id">
+      <require condition="allOf.driver.s3mu, component.ele_crypto, middleware.mbedtls.internal_condition"/>
+    </condition>
+    <condition id="middleware.mbedtls.port.els.condition_id">
+      <require condition="allOf.component.els_pkc.els, middleware.mbedtls.internal_condition"/>
+    </condition>
+    <condition id="allOf.component.els_pkc.els, middleware.mbedtls.internal_condition">
+      <require Cclass="MCXN547 els_pkc" Cgroup="els_pkc_els"/>
+      <require Cclass="Security" Cgroup="mbedTLS library" Csub="mbedtls"/>
+    </condition>
+    <condition id="device_id.RW610, RW612.internal_condition">
+      <accept Dname="RW610ETA2I" Dvendor="NXP:11"/>
+      <accept Dname="RW610HNA2I" Dvendor="NXP:11"/>
+      <accept Dname="RW610UKA2I" Dvendor="NXP:11"/>
+      <accept Dname="RW612ETA2I" Dvendor="NXP:11"/>
+      <accept Dname="RW612HNA2I" Dvendor="NXP:11"/>
+      <accept Dname="RW612UKA2I" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="device_id.LPC55S36, MCXN235, MCXN236, MCXN546, MCXN547, MCXN946, MCXN947.internal_condition">
+      <accept Dname="LPC55S36JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S36JHI48" Dvendor="NXP:11"/>
+      <accept Dname="MCXN235VDF" Dvendor="NXP:11"/>
+      <accept Dname="MCXN235VNL" Dvendor="NXP:11"/>
+      <accept Dname="MCXN236VDF" Dvendor="NXP:11"/>
+      <accept Dname="MCXN236VNL" Dvendor="NXP:11"/>
+      <accept Dname="MCXN546VDF" Dvendor="NXP:11"/>
+      <accept Dname="MCXN546VNL" Dvendor="NXP:11"/>
+      <accept Dname="MCXN546VPB" Dvendor="NXP:11"/>
+      <accept Dname="MCXN547VDF" Dvendor="NXP:11"/>
+      <accept Dname="MCXN547VNL" Dvendor="NXP:11"/>
+      <accept Dname="MCXN547VPB" Dvendor="NXP:11"/>
+      <accept Dname="MCXN946VDF" Dvendor="NXP:11"/>
+      <accept Dname="MCXN946VNL" Dvendor="NXP:11"/>
+      <accept Dname="MCXN946VPB" Dvendor="NXP:11"/>
+      <accept Dname="MCXN947VDF" Dvendor="NXP:11"/>
+      <accept Dname="MCXN947VNL" Dvendor="NXP:11"/>
+      <accept Dname="MCXN947VPB" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="middleware.mbedtls.port.els_pkc.condition_id">
+      <require condition="allOf.middleware.mbedtls.port.els, component.els_pkc, middleware.mbedtls.els_pkc.config, anyOf=allOf=driver.trng, device_id=RW610, RW612, allOf=device_id=LPC55S36, MCXN235, MCXN236, MCXN546, MCXN547, MCXN946, MCXN947.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.mbedtls.port.els, component.els_pkc, middleware.mbedtls.els_pkc.config, anyOf=allOf=driver.trng, device_id=RW610, RW612, allOf=device_id=LPC55S36, MCXN235, MCXN236, MCXN546, MCXN547, MCXN946, MCXN947.internal_condition">
+      <require Cclass="Security" Cgroup="mbedTLS library" Csub="els"/>
+      <require Cclass="MCXN547 els_pkc" Cgroup="els_pkc_main"/>
+      <require Cclass="Security" Cgroup="mbedTLS library" Csub="els_pkc_config"/>
+      <require condition="anyOf.allOf=driver.trng, device_id=RW610, RW612, allOf=device_id=LPC55S36, MCXN235, MCXN236, MCXN546, MCXN547, MCXN946, MCXN947.internal_condition"/>
+    </condition>
+    <condition id="anyOf.allOf=driver.trng, device_id=RW610, RW612, allOf=device_id=LPC55S36, MCXN235, MCXN236, MCXN546, MCXN547, MCXN946, MCXN947.internal_condition">
+      <accept condition="allOf.driver.trng, device_id=RW610, RW612.internal_condition"/>
+      <accept condition="allOf.device_id=LPC55S36, MCXN235, MCXN236, MCXN546, MCXN547, MCXN946, MCXN947.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.trng, device_id=RW610, RW612.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="trng"/>
+      <require condition="device_id.RW610, RW612.internal_condition"/>
+    </condition>
+    <condition id="allOf.device_id=LPC55S36, MCXN235, MCXN236, MCXN546, MCXN547, MCXN946, MCXN947.internal_condition">
+      <require condition="device_id.LPC55S36, MCXN235, MCXN236, MCXN546, MCXN547, MCXN946, MCXN947.internal_condition"/>
+    </condition>
+    <condition id="device_id.LPC54S005, LPC54S016, LPC54S018, LPC54S018J2M, LPC54S018J4M.internal_condition">
+      <accept Dname="LPC54S005JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54S005JET100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54S016JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54S016JBD208" Dvendor="NXP:11"/>
+      <accept Dname="LPC54S016JET100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54S016JET180" Dvendor="NXP:11"/>
+      <accept Dname="LPC54S018JBD208" Dvendor="NXP:11"/>
+      <accept Dname="LPC54S018JET180" Dvendor="NXP:11"/>
+      <accept Dname="LPC54S018J2MET180" Dvendor="NXP:11"/>
+      <accept Dname="LPC54S018J4MET180" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="device_id.LPC54005, LPC54016, LPC54018, LPC54018J2M, LPC54018J4M, LPC54628J512.internal_condition">
+      <accept Dname="LPC54005JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54005JET100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54016JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54016JBD208" Dvendor="NXP:11"/>
+      <accept Dname="LPC54016JET100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54016JET180" Dvendor="NXP:11"/>
+      <accept Dname="LPC54018JBD208" Dvendor="NXP:11"/>
+      <accept Dname="LPC54018JET180" Dvendor="NXP:11"/>
+      <accept Dname="LPC54018J2MET180" Dvendor="NXP:11"/>
+      <accept Dname="LPC54018J4MET180" Dvendor="NXP:11"/>
+      <accept Dname="LPC54628J512ET180" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="device_id.LPC54605J512, LPC54605J256, LPC54606J512, LPC54606J256, LPC54607J256, LPC54607J512, LPC54608J512, LPC54616J512, LPC54616J256, LPC54618J512.internal_condition">
+      <accept Dname="LPC54605J512BD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54605J512ET100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54605J512ET180" Dvendor="NXP:11"/>
+      <accept Dname="LPC54605J256BD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54605J256ET100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54605J256ET180" Dvendor="NXP:11"/>
+      <accept Dname="LPC54606J512BD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54606J512BD208" Dvendor="NXP:11"/>
+      <accept Dname="LPC54606J512ET100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54606J256BD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54606J256ET100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54606J256ET180" Dvendor="NXP:11"/>
+      <accept Dname="LPC54607J256BD208" Dvendor="NXP:11"/>
+      <accept Dname="LPC54607J256ET180" Dvendor="NXP:11"/>
+      <accept Dname="LPC54607J512ET180" Dvendor="NXP:11"/>
+      <accept Dname="LPC54608J512BD208" Dvendor="NXP:11"/>
+      <accept Dname="LPC54608J512ET180" Dvendor="NXP:11"/>
+      <accept Dname="LPC54616J512BD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54616J512BD208" Dvendor="NXP:11"/>
+      <accept Dname="LPC54616J512ET100" Dvendor="NXP:11"/>
+      <accept Dname="LPC54616J256ET180" Dvendor="NXP:11"/>
+      <accept Dname="LPC54618J512BD208" Dvendor="NXP:11"/>
+      <accept Dname="LPC54618J512ET180" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="device_id.LPC55S04, LPC55S06, LPC55S14, LPC55S16, LPC55S26, LPC55S28, LPC55S66, LPC55S69.internal_condition">
+      <accept Dname="LPC55S04JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S04JHI48" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S06JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S06JHI48" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S14JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S14JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S14JEV59" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S16JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S16JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S16JEV59" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S16JEV98" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S26JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S26JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S26JEV98" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S28JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S28JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S28JEV59" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S28JEV98" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S66JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S66JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S66JEV98" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S69JBD100" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S69JBD64" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S69JEV59" Dvendor="NXP:11"/>
+      <accept Dname="LPC55S69JEV98" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="device_id.MIMXRT533S, MIMXRT555S, MIMXRT595S, MIMXRT633S, MIMXRT685S.internal_condition">
+      <accept Dname="MIMXRT533SFAWC" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT533SFFOC" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT555SFAWC" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT555SFFOC" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT595SFAWC" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT595SFFOC" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT633SFAWBR" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT633SFFOB" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT633SFVKB" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT685SFAWBR" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT685SFFOB" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT685SFVKB" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="device_id.MIMXRT1011xxxxx, MIMXRT1021xxxxx, MIMXRT1024xxxxx, MIMXRT1041xxxxB, MIMXRT1042xxxxB, MIMXRT1051xxxxB, MIMXRT1052xxxxB, MIMXRT1061xxxxA, MIMXRT1061xxxxB, MIMXRT1062xxxxA, MIMXRT1062xxxxB, MIMXRT1064xxxxA, MIMXRT1064xxxxB.internal_condition">
+      <accept Dname="MIMXRT1011CAE4A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1011DAE5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1021CAF4A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1021CAF4B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1021CAG4A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1021CAG4B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1021DAF5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1021DAF5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1021DAG5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1021DAG5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1024CAG4A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1024CAG4B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1024DAG5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1024DAG5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1041DFP6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1041DJM6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1041XFP5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1041XJM5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1042DFP6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1042DJM6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1042XFP5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1042XJM5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1051CVJ5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1051CVL5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1051DVJ6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1051DVL6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1052CVJ5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1052CVL5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1052DVJ6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1052DVL6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1061CVJ5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1061CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1061DVJ6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1061DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1061CVJ5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1061CVL5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1061DVJ6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1061DVL6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1061XVN5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1062CVJ5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1062CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1062DVJ6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1062DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1062CVJ5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1062CVL5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1062DVJ6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1062DVL6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1062DVN6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1062XVN5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064CVJ5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064CVL5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064DVJ6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064DVL6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064CVJ5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064CVL5B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064DVJ6B" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1064DVL6B" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="device_id.K32L2A31xxxxA, K32L2A41xxxxA.internal_condition">
+      <accept Dname="K32L2A31VLH1A" Dvendor="NXP:11"/>
+      <accept Dname="K32L2A31VLL1A" Dvendor="NXP:11"/>
+      <accept Dname="K32L2A41VLH1A" Dvendor="NXP:11"/>
+      <accept Dname="K32L2A41VLL1A" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="device_id.K32L2A41xxxxA.internal_condition">
+      <accept Dname="K32L2A41VLH1A" Dvendor="NXP:11"/>
+      <accept Dname="K32L2A41VLL1A" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="device_id.MKM35Z512xxx7, MKM35Z256xxx7.internal_condition">
+      <accept Dname="MKM35Z512VLL7" Dvendor="NXP:11"/>
+      <accept Dname="MKM35Z512VLL7R" Dvendor="NXP:11"/>
+      <accept Dname="MKM35Z512VLQ7" Dvendor="NXP:11"/>
+      <accept Dname="MKM35Z512VLQ7R" Dvendor="NXP:11"/>
+      <accept Dname="MKM35Z256VLL7" Dvendor="NXP:11"/>
+      <accept Dname="MKM35Z256VLL7R" Dvendor="NXP:11"/>
+      <accept Dname="MKM35Z256VLQ7" Dvendor="NXP:11"/>
+      <accept Dname="MKM35Z256VLQ7R" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="device_id.K32L3A60xxx.internal_condition">
+      <accept Dname="K32L3A60VPJ1A" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="device_id.MIMXRT1165xxxxx, MIMXRT1166xxxxx, MIMXRT1171xxxxx, MIMXRT1172xxxxx, MIMXRT1173xxxxx, MIMXRT1175xxxxx, MIMXRT1176xxxxx.internal_condition">
+      <accept Dname="MIMXRT1165CVM5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1165DVM6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1165XVM5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1166CVM5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1166DVM6A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1166XVM5A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1171AVM8A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1171CVM8A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1171DVMAA" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1172AVM8A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1172CVM8A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1172DVMAA" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1173CVM8A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1175AVM8A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1175CVM8A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1175DVMAA" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1176AVM8A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1176CVM8A" Dvendor="NXP:11"/>
+      <accept Dname="MIMXRT1176DVMAA" Dvendor="NXP:11"/>
+    </condition>
+    <condition id="middleware.mbedtls.port.ksdk.condition_id">
+      <require condition="allOf.middleware.mbedtls, middleware.mbedtls.template, anyOf=allOf=driver.sha, driver.rng, driver.aes, device_id=LPC54S005, LPC54S016, LPC54S018, LPC54S018J2M, LPC54S018J4M, allOf=driver.sha, driver.rng, device_id=LPC54005, LPC54016, LPC54018, LPC54018J2M, LPC54018J4M, LPC54628J512, allOf=driver.rng, device_id=LPC54605J512, LPC54605J256, LPC54606J512, LPC54606J256, LPC54607J256, LPC54607J512, LPC54608J512, LPC54616J512, LPC54616J256, LPC54618J512, allOf=driver.rng_1, driver.casper, driver.hashcrypt, device_id=LPC55S04, LPC55S06, LPC55S14, LPC55S16, LPC55S26, LPC55S28, LPC55S66, LPC55S69, allOf=driver.trng, driver.casper, driver.hashcrypt, device_id=MIMXRT533S, MIMXRT555S, MIMXRT595S, MIMXRT633S, MIMXRT685S, allOf=driver.dcp, driver.trng, driver.cache_armv7_m7, device_id=MIMXRT1011xxxxx, MIMXRT1021xxxxx, MIMXRT1024xxxxx, MIMXRT1041xxxxB, MIMXRT1042xxxxB, MIMXRT1051xxxxB, MIMXRT1052xxxxB, MIMXRT1061xxxxA, MIMXRT1061xxxxB, MIMXRT1062xxxxA, MIMXRT1062xxxxB, MIMXRT1064xxxxA, MIMXRT1064xxxxB, allOf=driver.trng, middleware.mmcau.cm0p, device_id=K32L2A31xxxxA, K32L2A41xxxxA, allOf=driver.trng, middleware.mmcau.cm4_cm7, device_id=K32L2A41xxxxA, allOf=driver.rnga, middleware.mmcau.cm4_cm7, device_id=MKM35Z512xxx7, MKM35Z256xxx7, allOf=driver.rnga, middleware.mmcau.cm0p, device_id=MKM35Z512xxx7, MKM35Z256xxx7, allOf=driver.cau3, driver.trng, device_id=K32L3A60xxx, allOf=driver.caam, device_id=MIMXRT1165xxxxx, MIMXRT1166xxxxx, MIMXRT1171xxxxx, MIMXRT1172xxxxx, MIMXRT1173xxxxx, MIMXRT1175xxxxx, MIMXRT1176xxxxx.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.mbedtls, middleware.mbedtls.template, anyOf=allOf=driver.sha, driver.rng, driver.aes, device_id=LPC54S005, LPC54S016, LPC54S018, LPC54S018J2M, LPC54S018J4M, allOf=driver.sha, driver.rng, device_id=LPC54005, LPC54016, LPC54018, LPC54018J2M, LPC54018J4M, LPC54628J512, allOf=driver.rng, device_id=LPC54605J512, LPC54605J256, LPC54606J512, LPC54606J256, LPC54607J256, LPC54607J512, LPC54608J512, LPC54616J512, LPC54616J256, LPC54618J512, allOf=driver.rng_1, driver.casper, driver.hashcrypt, device_id=LPC55S04, LPC55S06, LPC55S14, LPC55S16, LPC55S26, LPC55S28, LPC55S66, LPC55S69, allOf=driver.trng, driver.casper, driver.hashcrypt, device_id=MIMXRT533S, MIMXRT555S, MIMXRT595S, MIMXRT633S, MIMXRT685S, allOf=driver.dcp, driver.trng, driver.cache_armv7_m7, device_id=MIMXRT1011xxxxx, MIMXRT1021xxxxx, MIMXRT1024xxxxx, MIMXRT1041xxxxB, MIMXRT1042xxxxB, MIMXRT1051xxxxB, MIMXRT1052xxxxB, MIMXRT1061xxxxA, MIMXRT1061xxxxB, MIMXRT1062xxxxA, MIMXRT1062xxxxB, MIMXRT1064xxxxA, MIMXRT1064xxxxB, allOf=driver.trng, middleware.mmcau.cm0p, device_id=K32L2A31xxxxA, K32L2A41xxxxA, allOf=driver.trng, middleware.mmcau.cm4_cm7, device_id=K32L2A41xxxxA, allOf=driver.rnga, middleware.mmcau.cm4_cm7, device_id=MKM35Z512xxx7, MKM35Z256xxx7, allOf=driver.rnga, middleware.mmcau.cm0p, device_id=MKM35Z512xxx7, MKM35Z256xxx7, allOf=driver.cau3, driver.trng, device_id=K32L3A60xxx, allOf=driver.caam, device_id=MIMXRT1165xxxxx, MIMXRT1166xxxxx, MIMXRT1171xxxxx, MIMXRT1172xxxxx, MIMXRT1173xxxxx, MIMXRT1175xxxxx, MIMXRT1176xxxxx.internal_condition">
+      <require Cclass="Security" Cgroup="mbedTLS library" Csub="mbedtls"/>
+      <require Cclass="Security" Cgroup="mbedTLS library" Csub="template"/>
+      <require condition="anyOf.allOf=driver.sha, driver.rng, driver.aes, device_id=LPC54S005, LPC54S016, LPC54S018, LPC54S018J2M, LPC54S018J4M, allOf=driver.sha, driver.rng, device_id=LPC54005, LPC54016, LPC54018, LPC54018J2M, LPC54018J4M, LPC54628J512, allOf=driver.rng, device_id=LPC54605J512, LPC54605J256, LPC54606J512, LPC54606J256, LPC54607J256, LPC54607J512, LPC54608J512, LPC54616J512, LPC54616J256, LPC54618J512, allOf=driver.rng_1, driver.casper, driver.hashcrypt, device_id=LPC55S04, LPC55S06, LPC55S14, LPC55S16, LPC55S26, LPC55S28, LPC55S66, LPC55S69, allOf=driver.trng, driver.casper, driver.hashcrypt, device_id=MIMXRT533S, MIMXRT555S, MIMXRT595S, MIMXRT633S, MIMXRT685S, allOf=driver.dcp, driver.trng, driver.cache_armv7_m7, device_id=MIMXRT1011xxxxx, MIMXRT1021xxxxx, MIMXRT1024xxxxx, MIMXRT1041xxxxB, MIMXRT1042xxxxB, MIMXRT1051xxxxB, MIMXRT1052xxxxB, MIMXRT1061xxxxA, MIMXRT1061xxxxB, MIMXRT1062xxxxA, MIMXRT1062xxxxB, MIMXRT1064xxxxA, MIMXRT1064xxxxB, allOf=driver.trng, middleware.mmcau.cm0p, device_id=K32L2A31xxxxA, K32L2A41xxxxA, allOf=driver.trng, middleware.mmcau.cm4_cm7, device_id=K32L2A41xxxxA, allOf=driver.rnga, middleware.mmcau.cm4_cm7, device_id=MKM35Z512xxx7, MKM35Z256xxx7, allOf=driver.rnga, middleware.mmcau.cm0p, device_id=MKM35Z512xxx7, MKM35Z256xxx7, allOf=driver.cau3, driver.trng, device_id=K32L3A60xxx, allOf=driver.caam, device_id=MIMXRT1165xxxxx, MIMXRT1166xxxxx, MIMXRT1171xxxxx, MIMXRT1172xxxxx, MIMXRT1173xxxxx, MIMXRT1175xxxxx, MIMXRT1176xxxxx.internal_condition"/>
+    </condition>
+    <condition id="anyOf.allOf=driver.sha, driver.rng, driver.aes, device_id=LPC54S005, LPC54S016, LPC54S018, LPC54S018J2M, LPC54S018J4M, allOf=driver.sha, driver.rng, device_id=LPC54005, LPC54016, LPC54018, LPC54018J2M, LPC54018J4M, LPC54628J512, allOf=driver.rng, device_id=LPC54605J512, LPC54605J256, LPC54606J512, LPC54606J256, LPC54607J256, LPC54607J512, LPC54608J512, LPC54616J512, LPC54616J256, LPC54618J512, allOf=driver.rng_1, driver.casper, driver.hashcrypt, device_id=LPC55S04, LPC55S06, LPC55S14, LPC55S16, LPC55S26, LPC55S28, LPC55S66, LPC55S69, allOf=driver.trng, driver.casper, driver.hashcrypt, device_id=MIMXRT533S, MIMXRT555S, MIMXRT595S, MIMXRT633S, MIMXRT685S, allOf=driver.dcp, driver.trng, driver.cache_armv7_m7, device_id=MIMXRT1011xxxxx, MIMXRT1021xxxxx, MIMXRT1024xxxxx, MIMXRT1041xxxxB, MIMXRT1042xxxxB, MIMXRT1051xxxxB, MIMXRT1052xxxxB, MIMXRT1061xxxxA, MIMXRT1061xxxxB, MIMXRT1062xxxxA, MIMXRT1062xxxxB, MIMXRT1064xxxxA, MIMXRT1064xxxxB, allOf=driver.trng, middleware.mmcau.cm0p, device_id=K32L2A31xxxxA, K32L2A41xxxxA, allOf=driver.trng, middleware.mmcau.cm4_cm7, device_id=K32L2A41xxxxA, allOf=driver.rnga, middleware.mmcau.cm4_cm7, device_id=MKM35Z512xxx7, MKM35Z256xxx7, allOf=driver.rnga, middleware.mmcau.cm0p, device_id=MKM35Z512xxx7, MKM35Z256xxx7, allOf=driver.cau3, driver.trng, device_id=K32L3A60xxx, allOf=driver.caam, device_id=MIMXRT1165xxxxx, MIMXRT1166xxxxx, MIMXRT1171xxxxx, MIMXRT1172xxxxx, MIMXRT1173xxxxx, MIMXRT1175xxxxx, MIMXRT1176xxxxx.internal_condition">
+      <accept condition="allOf.driver.sha, driver.rng, driver.aes, device_id=LPC54S005, LPC54S016, LPC54S018, LPC54S018J2M, LPC54S018J4M.internal_condition"/>
+      <accept condition="allOf.driver.sha, driver.rng, device_id=LPC54005, LPC54016, LPC54018, LPC54018J2M, LPC54018J4M, LPC54628J512.internal_condition"/>
+      <accept condition="allOf.driver.rng, device_id=LPC54605J512, LPC54605J256, LPC54606J512, LPC54606J256, LPC54607J256, LPC54607J512, LPC54608J512, LPC54616J512, LPC54616J256, LPC54618J512.internal_condition"/>
+      <accept condition="allOf.driver.rng_1, driver.casper, driver.hashcrypt, device_id=LPC55S04, LPC55S06, LPC55S14, LPC55S16, LPC55S26, LPC55S28, LPC55S66, LPC55S69.internal_condition"/>
+      <accept condition="allOf.driver.trng, driver.casper, driver.hashcrypt, device_id=MIMXRT533S, MIMXRT555S, MIMXRT595S, MIMXRT633S, MIMXRT685S.internal_condition"/>
+      <accept condition="allOf.driver.dcp, driver.trng, driver.cache_armv7_m7, device_id=MIMXRT1011xxxxx, MIMXRT1021xxxxx, MIMXRT1024xxxxx, MIMXRT1041xxxxB, MIMXRT1042xxxxB, MIMXRT1051xxxxB, MIMXRT1052xxxxB, MIMXRT1061xxxxA, MIMXRT1061xxxxB, MIMXRT1062xxxxA, MIMXRT1062xxxxB, MIMXRT1064xxxxA, MIMXRT1064xxxxB.internal_condition"/>
+      <accept condition="allOf.driver.trng, middleware.mmcau.cm0p, device_id=K32L2A31xxxxA, K32L2A41xxxxA.internal_condition"/>
+      <accept condition="allOf.driver.trng, middleware.mmcau.cm4_cm7, device_id=K32L2A41xxxxA.internal_condition"/>
+      <accept condition="allOf.driver.rnga, middleware.mmcau.cm4_cm7, device_id=MKM35Z512xxx7, MKM35Z256xxx7.internal_condition"/>
+      <accept condition="allOf.driver.rnga, middleware.mmcau.cm0p, device_id=MKM35Z512xxx7, MKM35Z256xxx7.internal_condition"/>
+      <accept condition="allOf.driver.cau3, driver.trng, device_id=K32L3A60xxx.internal_condition"/>
+      <accept condition="allOf.driver.caam, device_id=MIMXRT1165xxxxx, MIMXRT1166xxxxx, MIMXRT1171xxxxx, MIMXRT1172xxxxx, MIMXRT1173xxxxx, MIMXRT1175xxxxx, MIMXRT1176xxxxx.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.sha, driver.rng, driver.aes, device_id=LPC54S005, LPC54S016, LPC54S018, LPC54S018J2M, LPC54S018J4M.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="sha"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="rng"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="aes"/>
+      <require condition="device_id.LPC54S005, LPC54S016, LPC54S018, LPC54S018J2M, LPC54S018J4M.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.sha, driver.rng, device_id=LPC54005, LPC54016, LPC54018, LPC54018J2M, LPC54018J4M, LPC54628J512.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="sha"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="rng"/>
+      <require condition="device_id.LPC54005, LPC54016, LPC54018, LPC54018J2M, LPC54018J4M, LPC54628J512.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.rng, device_id=LPC54605J512, LPC54605J256, LPC54606J512, LPC54606J256, LPC54607J256, LPC54607J512, LPC54608J512, LPC54616J512, LPC54616J256, LPC54618J512.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="rng"/>
+      <require condition="device_id.LPC54605J512, LPC54605J256, LPC54606J512, LPC54606J256, LPC54607J256, LPC54607J512, LPC54608J512, LPC54616J512, LPC54616J256, LPC54618J512.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.rng_1, driver.casper, driver.hashcrypt, device_id=LPC55S04, LPC55S06, LPC55S14, LPC55S16, LPC55S26, LPC55S28, LPC55S66, LPC55S69.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="rng"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="casper"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="hashcrypt"/>
+      <require condition="device_id.LPC55S04, LPC55S06, LPC55S14, LPC55S16, LPC55S26, LPC55S28, LPC55S66, LPC55S69.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.trng, driver.casper, driver.hashcrypt, device_id=MIMXRT533S, MIMXRT555S, MIMXRT595S, MIMXRT633S, MIMXRT685S.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="trng"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="casper"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="hashcrypt"/>
+      <require condition="device_id.MIMXRT533S, MIMXRT555S, MIMXRT595S, MIMXRT633S, MIMXRT685S.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.dcp, driver.trng, driver.cache_armv7_m7, device_id=MIMXRT1011xxxxx, MIMXRT1021xxxxx, MIMXRT1024xxxxx, MIMXRT1041xxxxB, MIMXRT1042xxxxB, MIMXRT1051xxxxB, MIMXRT1052xxxxB, MIMXRT1061xxxxA, MIMXRT1061xxxxB, MIMXRT1062xxxxA, MIMXRT1062xxxxB, MIMXRT1064xxxxA, MIMXRT1064xxxxB.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="dcp"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="trng"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="cache"/>
+      <require condition="device_id.MIMXRT1011xxxxx, MIMXRT1021xxxxx, MIMXRT1024xxxxx, MIMXRT1041xxxxB, MIMXRT1042xxxxB, MIMXRT1051xxxxB, MIMXRT1052xxxxB, MIMXRT1061xxxxA, MIMXRT1061xxxxB, MIMXRT1062xxxxA, MIMXRT1062xxxxB, MIMXRT1064xxxxA, MIMXRT1064xxxxB.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.trng, middleware.mmcau.cm0p, device_id=K32L2A31xxxxA, K32L2A41xxxxA.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="trng"/>
+      <require Cclass="MMCAU Security" Cgroup="MMCAU library" Csub="cm0p"/>
+      <require condition="device_id.K32L2A31xxxxA, K32L2A41xxxxA.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.trng, middleware.mmcau.cm4_cm7, device_id=K32L2A41xxxxA.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="trng"/>
+      <require Cclass="MMCAU Security" Cgroup="MMCAU library" Csub="cm4_cm7"/>
+      <require condition="device_id.K32L2A41xxxxA.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.rnga, middleware.mmcau.cm4_cm7, device_id=MKM35Z512xxx7, MKM35Z256xxx7.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="rnga"/>
+      <require Cclass="MMCAU Security" Cgroup="MMCAU library" Csub="cm4_cm7"/>
+      <require condition="device_id.MKM35Z512xxx7, MKM35Z256xxx7.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.rnga, middleware.mmcau.cm0p, device_id=MKM35Z512xxx7, MKM35Z256xxx7.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="rnga"/>
+      <require Cclass="MMCAU Security" Cgroup="MMCAU library" Csub="cm0p"/>
+      <require condition="device_id.MKM35Z512xxx7, MKM35Z256xxx7.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.cau3, driver.trng, device_id=K32L3A60xxx.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="cau3"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="trng"/>
+      <require condition="device_id.K32L3A60xxx.internal_condition"/>
+    </condition>
+    <condition id="allOf.driver.caam, device_id=MIMXRT1165xxxxx, MIMXRT1166xxxxx, MIMXRT1171xxxxx, MIMXRT1172xxxxx, MIMXRT1173xxxxx, MIMXRT1175xxxxx, MIMXRT1176xxxxx.internal_condition">
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="caam"/>
+      <require condition="device_id.MIMXRT1165xxxxx, MIMXRT1166xxxxx, MIMXRT1171xxxxx, MIMXRT1172xxxxx, MIMXRT1173xxxxx, MIMXRT1175xxxxx, MIMXRT1176xxxxx.internal_condition"/>
+    </condition>
+  </conditions>
+  <components>
+    <bundle Cbundle="Mbed_TLS NXP" Cclass="Security" Cversion="2.28.8">
+      <description>Mbed_TLS NXP</description>
+      <doc>middleware/mbedtls/Mbed_TLS NXP_dummy.txt</doc>
+      <component Cgroup="mbedTLS library" Csub="mbedtls" Cversion="2.28.8" condition="middleware.mbedtls.condition_id">
+        <description>mbedTLS library</description>
+        <files>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/aes.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/aesni.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/arc4.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/aria.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/asn1.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/asn1write.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/base64.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/bignum.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/blowfish.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/bn_mul.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/camellia.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/ccm.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/certs.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/chacha20.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/chachapoly.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/check_config.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/cipher.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/cipher_internal.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/cmac.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/compat-1.3.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/config.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/config_psa.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/constant_time.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/ctr_drbg.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/debug.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/des.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/dhm.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/ecdh.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/ecdsa.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/ecjpake.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/ecp.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/ecp_internal.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/entropy.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/entropy_poll.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/error.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/gcm.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/havege.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/hkdf.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/hmac_drbg.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/md.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/md_internal.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/md2.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/md4.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/md5.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/memory_buffer_alloc.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/net.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/net_sockets.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/nist_kw.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/oid.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/padlock.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/pem.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/pk.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/pk_internal.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/pkcs5.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/pkcs11.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/pkcs12.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/platform.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/platform_time.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/platform_util.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/poly1305.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/psa_util.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/ripemd160.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/rsa.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/rsa_internal.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/sha1.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/sha256.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/sha512.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/ssl.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/ssl_cache.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/ssl_ciphersuites.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/ssl_cookie.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/ssl_internal.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/ssl_ticket.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/threading.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/timing.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/version.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/x509.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/x509_crl.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/x509_crt.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/x509_csr.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/mbedtls/xtea.h" projectpath="mbedtls/include/mbedtls" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/psa/crypto.h" projectpath="mbedtls/include/psa" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/psa/crypto_builtin_composites.h" projectpath="mbedtls/include/psa" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/psa/crypto_builtin_primitives.h" projectpath="mbedtls/include/psa" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/psa/crypto_compat.h" projectpath="mbedtls/include/psa" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/psa/crypto_config.h" projectpath="mbedtls/include/psa" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/psa/crypto_driver_common.h" projectpath="mbedtls/include/psa" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/psa/crypto_driver_contexts_composites.h" projectpath="mbedtls/include/psa" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/psa/crypto_driver_contexts_primitives.h" projectpath="mbedtls/include/psa" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/psa/crypto_extra.h" projectpath="mbedtls/include/psa" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/psa/crypto_platform.h" projectpath="mbedtls/include/psa" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/psa/crypto_se_driver.h" projectpath="mbedtls/include/psa" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/psa/crypto_sizes.h" projectpath="mbedtls/include/psa" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/psa/crypto_struct.h" projectpath="mbedtls/include/psa" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/psa/crypto_types.h" projectpath="mbedtls/include/psa" path="middleware/mbedtls/include"/>
+          <file category="header" name="middleware/mbedtls/include/psa/crypto_values.h" projectpath="mbedtls/include/psa" path="middleware/mbedtls/include"/>
+          <file category="sourceC" name="middleware/mbedtls/library/aes.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/aesni.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/arc4.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/aria.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/asn1parse.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/asn1write.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/base64.c" projectpath="mbedtls/library"/>
+          <file category="header" name="middleware/mbedtls/library/bignum_internal.h" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/bignum.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/blowfish.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/camellia.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/ccm.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/certs.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/chacha20.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/chachapoly.c" projectpath="mbedtls/library"/>
+          <file category="header" name="middleware/mbedtls/library/check_crypto_config.h" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/cipher.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/cipher_wrap.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/cmac.c" projectpath="mbedtls/library"/>
+          <file category="header" name="middleware/mbedtls/library/common.h" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/constant_time.c" projectpath="mbedtls/library"/>
+          <file category="header" name="middleware/mbedtls/library/constant_time_internal.h" projectpath="mbedtls/library"/>
+          <file category="header" name="middleware/mbedtls/library/constant_time_invasive.h" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/ctr_drbg.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/debug.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/des.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/dhm.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/ecdh.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/ecdsa.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/ecjpake.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/ecp.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/ecp_curves.c" projectpath="mbedtls/library"/>
+          <file category="header" name="middleware/mbedtls/library/ecp_invasive.h" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/entropy.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/entropy_poll.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/error.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/gcm.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/havege.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/hkdf.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/hmac_drbg.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/md.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/md2.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/md4.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/md5.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/memory_buffer_alloc.c" projectpath="mbedtls/library"/>
+          <file category="header" name="middleware/mbedtls/library/mps_common.h" projectpath="mbedtls/library"/>
+          <file category="header" name="middleware/mbedtls/library/mps_error.h" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/mps_reader.c" projectpath="mbedtls/library"/>
+          <file category="header" name="middleware/mbedtls/library/mps_reader.h" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/mps_trace.c" projectpath="mbedtls/library"/>
+          <file category="header" name="middleware/mbedtls/library/mps_trace.h" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/net_sockets.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/nist_kw.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/oid.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/padlock.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/pem.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/pk.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/pk_wrap.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/pkcs5.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/pkcs11.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/pkcs12.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/pkparse.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/pkwrite.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/platform.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/platform_util.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/poly1305.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/psa_crypto.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/psa_crypto_aead.c" projectpath="mbedtls/library"/>
+          <file category="header" name="middleware/mbedtls/library/psa_crypto_aead.h" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/psa_crypto_cipher.c" projectpath="mbedtls/library"/>
+          <file category="header" name="middleware/mbedtls/library/psa_crypto_cipher.h" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/psa_crypto_client.c" projectpath="mbedtls/library"/>
+          <file category="header" name="middleware/mbedtls/library/psa_crypto_core.h" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/psa_crypto_driver_wrappers.c" projectpath="mbedtls/library"/>
+          <file category="header" name="middleware/mbedtls/library/psa_crypto_driver_wrappers.h" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/psa_crypto_ecp.c" projectpath="mbedtls/library"/>
+          <file category="header" name="middleware/mbedtls/library/psa_crypto_ecp.h" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/psa_crypto_hash.c" projectpath="mbedtls/library"/>
+          <file category="header" name="middleware/mbedtls/library/psa_crypto_hash.h" projectpath="mbedtls/library"/>
+          <file category="header" name="middleware/mbedtls/library/psa_crypto_invasive.h" projectpath="mbedtls/library"/>
+          <file category="header" name="middleware/mbedtls/library/psa_crypto_its.h" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/psa_crypto_mac.c" projectpath="mbedtls/library"/>
+          <file category="header" name="middleware/mbedtls/library/psa_crypto_mac.h" projectpath="mbedtls/library"/>
+          <file category="header" name="middleware/mbedtls/library/psa_crypto_random_impl.h" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/psa_crypto_rsa.c" projectpath="mbedtls/library"/>
+          <file category="header" name="middleware/mbedtls/library/psa_crypto_rsa.h" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/psa_crypto_se.c" projectpath="mbedtls/library"/>
+          <file category="header" name="middleware/mbedtls/library/psa_crypto_se.h" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/psa_crypto_slot_management.c" projectpath="mbedtls/library"/>
+          <file category="header" name="middleware/mbedtls/library/psa_crypto_slot_management.h" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/psa_crypto_storage.c" projectpath="mbedtls/library"/>
+          <file category="header" name="middleware/mbedtls/library/psa_crypto_storage.h" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/psa_its_file.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/ripemd160.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/rsa.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/rsa_internal.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/sha1.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/sha256.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/sha512.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/ssl_cache.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/ssl_ciphersuites.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/ssl_cli.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/ssl_cookie.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/ssl_msg.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/ssl_srv.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/ssl_ticket.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/ssl_tls.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/ssl_tls13_keys.c" projectpath="mbedtls/library"/>
+          <file category="header" name="middleware/mbedtls/library/ssl_tls13_keys.h" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/threading.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/timing.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/version.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/version_features.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/x509.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/x509_create.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/x509_crl.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/x509_crt.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/x509_csr.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/x509write_crt.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/x509write_csr.c" projectpath="mbedtls/library"/>
+          <file category="sourceC" name="middleware/mbedtls/library/xtea.c" projectpath="mbedtls/library"/>
+          <file category="include" name="middleware/mbedtls/include/"/>
+          <file category="include" name="middleware/mbedtls/library/"/>
+        </files>
+      </component>
+      <component Cgroup="mbedTLS library" Csub="3rdparty" Cversion="2.28.8">
+        <description>mbedTLS 3rdparty code</description>
+        <files>
+          <file category="doc" name="middleware/mbedtls/3rdparty/CMakeLists.txt" projectpath="mbedtls/3rdparty"/>
+          <file category="other" name="middleware/mbedtls/3rdparty/Makefile.inc" projectpath="mbedtls/3rdparty"/>
+          <file category="doc" name="middleware/mbedtls/3rdparty/everest/CMakeLists.txt" projectpath="mbedtls/3rdparty/everest"/>
+          <file category="other" name="middleware/mbedtls/3rdparty/everest/Makefile.inc" projectpath="mbedtls/3rdparty/everest"/>
+          <file category="doc" name="middleware/mbedtls/3rdparty/everest/README.md" projectpath="mbedtls/3rdparty/everest"/>
+          <file category="header" name="middleware/mbedtls/3rdparty/everest/include/everest/Hacl_Curve25519.h" projectpath="mbedtls/3rdparty/everest/include/everest"/>
+          <file category="header" name="middleware/mbedtls/3rdparty/everest/include/everest/everest.h" projectpath="mbedtls/3rdparty/everest/include/everest"/>
+          <file category="header" name="middleware/mbedtls/3rdparty/everest/include/everest/kremlib/FStar_UInt128.h" projectpath="mbedtls/3rdparty/everest/include/everest/kremlib"/>
+          <file category="header" name="middleware/mbedtls/3rdparty/everest/include/everest/kremlib/FStar_UInt64_FStar_UInt32_FStar_UInt16_FStar_UInt8.h" projectpath="mbedtls/3rdparty/everest/include/everest/kremlib"/>
+          <file category="header" name="middleware/mbedtls/3rdparty/everest/include/everest/kremlib.h" projectpath="mbedtls/3rdparty/everest/include/everest"/>
+          <file category="header" name="middleware/mbedtls/3rdparty/everest/include/everest/kremlin/c_endianness.h" projectpath="mbedtls/3rdparty/everest/include/everest/kremlin"/>
+          <file category="header" name="middleware/mbedtls/3rdparty/everest/include/everest/kremlin/internal/builtin.h" projectpath="mbedtls/3rdparty/everest/include/everest/kremlin/internal"/>
+          <file category="header" name="middleware/mbedtls/3rdparty/everest/include/everest/kremlin/internal/callconv.h" projectpath="mbedtls/3rdparty/everest/include/everest/kremlin/internal"/>
+          <file category="header" name="middleware/mbedtls/3rdparty/everest/include/everest/kremlin/internal/compat.h" projectpath="mbedtls/3rdparty/everest/include/everest/kremlin/internal"/>
+          <file category="header" name="middleware/mbedtls/3rdparty/everest/include/everest/kremlin/internal/debug.h" projectpath="mbedtls/3rdparty/everest/include/everest/kremlin/internal"/>
+          <file category="header" name="middleware/mbedtls/3rdparty/everest/include/everest/kremlin/internal/target.h" projectpath="mbedtls/3rdparty/everest/include/everest/kremlin/internal"/>
+          <file category="header" name="middleware/mbedtls/3rdparty/everest/include/everest/kremlin/internal/types.h" projectpath="mbedtls/3rdparty/everest/include/everest/kremlin/internal"/>
+          <file category="header" name="middleware/mbedtls/3rdparty/everest/include/everest/kremlin/internal/wasmsupport.h" projectpath="mbedtls/3rdparty/everest/include/everest/kremlin/internal"/>
+          <file category="header" name="middleware/mbedtls/3rdparty/everest/include/everest/vs2010/Hacl_Curve25519.h" projectpath="mbedtls/3rdparty/everest/include/everest/vs2010" path="middleware/mbedtls/3rdparty/everest/include"/>
+          <file category="header" name="middleware/mbedtls/3rdparty/everest/include/everest/vs2010/inttypes.h" projectpath="mbedtls/3rdparty/everest/include/everest/vs2010" path="middleware/mbedtls/3rdparty/everest/include"/>
+          <file category="header" name="middleware/mbedtls/3rdparty/everest/include/everest/vs2010/stdbool.h" projectpath="mbedtls/3rdparty/everest/include/everest/vs2010" path="middleware/mbedtls/3rdparty/everest/include"/>
+          <file category="header" name="middleware/mbedtls/3rdparty/everest/include/everest/x25519.h" projectpath="mbedtls/3rdparty/everest/include/everest"/>
+          <file category="sourceC" name="middleware/mbedtls/3rdparty/everest/library/Hacl_Curve25519.c" projectpath="mbedtls/3rdparty/everest/library"/>
+          <file category="sourceC" name="middleware/mbedtls/3rdparty/everest/library/Hacl_Curve25519_joined.c" projectpath="mbedtls/3rdparty/everest/library"/>
+          <file category="sourceC" name="middleware/mbedtls/3rdparty/everest/library/everest.c" projectpath="mbedtls/3rdparty/everest/library"/>
+          <file category="sourceC" name="middleware/mbedtls/3rdparty/everest/library/kremlib/FStar_UInt128_extracted.c" projectpath="mbedtls/3rdparty/everest/library/kremlib"/>
+          <file category="sourceC" name="middleware/mbedtls/3rdparty/everest/library/kremlib/FStar_UInt64_FStar_UInt32_FStar_UInt16_FStar_UInt8.c" projectpath="mbedtls/3rdparty/everest/library/kremlib"/>
+          <file category="sourceC" name="middleware/mbedtls/3rdparty/everest/library/legacy/Hacl_Curve25519.c" projectpath="mbedtls/3rdparty/everest/library/legacy"/>
+          <file category="sourceC" name="middleware/mbedtls/3rdparty/everest/library/x25519.c" projectpath="mbedtls/3rdparty/everest/library"/>
+          <file category="include" name="middleware/mbedtls/3rdparty/everest/include/"/>
+          <file category="include" name="middleware/mbedtls/3rdparty/everest/include/everest/"/>
+          <file category="include" name="middleware/mbedtls/3rdparty/everest/include/everest/kremlib/"/>
+          <file category="include" name="middleware/mbedtls/3rdparty/everest/include/everest/kremlin/"/>
+          <file category="include" name="middleware/mbedtls/3rdparty/everest/include/everest/kremlin/internal/"/>
+        </files>
+      </component>
+      <component Cgroup="mbedTLS library" Csub="els_pkc_config" Cversion="2.28.8">
+        <description>els_pkc config</description>
+        <Pre_Include_Global_h>
+#ifndef MBEDTLS_CONFIG_FILE
+#define MBEDTLS_CONFIG_FILE "els_pkc_mbedtls_config.h"
+#endif
+</Pre_Include_Global_h>
+        <files>
+          <file category="header" attr="config" name="middleware/mbedtls/port/pkc/els_pkc_mbedtls_config.h" version="2.28.8" projectpath="mbedtls/port/pkc"/>
+        </files>
+      </component>
+      <component Cgroup="mbedTLS library" Csub="ele_s400" Cversion="2.28.8" condition="middleware.mbedtls.port.ele_s400.condition_id">
+        <description>mbedTLS port library for ELE S40x</description>
+        <Pre_Include_Global_h>
+#ifndef MBEDTLS_MCUX_ELE_S400_API
+#define MBEDTLS_MCUX_ELE_S400_API 
+#endif
+#ifndef MBEDTLS_CONFIG_FILE
+#define MBEDTLS_CONFIG_FILE "ele_s400_mbedtls_config.h"
+#endif
+</Pre_Include_Global_h>
+        <files>
+          <file category="sourceC" name="middleware/mbedtls/port/ele_s400/ele_mbedtls.c" projectpath="mbedtls/port/ele_s400"/>
+          <file category="header" name="middleware/mbedtls/port/ele_s400/ele_mbedtls.h" projectpath="mbedtls/port/ele_s400"/>
+          <file category="header" name="middleware/mbedtls/port/ele_s400/ele_s400_mbedtls_config.h" projectpath="mbedtls/port/ele_s400"/>
+          <file category="header" name="middleware/mbedtls/port/ele_s400/ele_fw.h" projectpath="mbedtls/port/ele_s400"/>
+          <file category="sourceC" name="middleware/mbedtls/port/ele_s400/ele_entropy.c" projectpath="mbedtls/port/ele_s400"/>
+          <file category="header" name="middleware/mbedtls/port/ele_s400/aes_alt.h" projectpath="mbedtls/port/ele_s400"/>
+          <file category="sourceC" name="middleware/mbedtls/port/ele_s400/aes_alt.c" projectpath="mbedtls/port/ele_s400"/>
+          <file category="header" name="middleware/mbedtls/port/ele_s400/ccm_alt.h" projectpath="mbedtls/port/ele_s400"/>
+          <file category="sourceC" name="middleware/mbedtls/port/ele_s400/ccm_alt.c" projectpath="mbedtls/port/ele_s400"/>
+          <file category="header" name="middleware/mbedtls/port/ele_s400/gcm_alt.h" projectpath="mbedtls/port/ele_s400"/>
+          <file category="sourceC" name="middleware/mbedtls/port/ele_s400/gcm_alt.c" projectpath="mbedtls/port/ele_s400"/>
+          <file category="header" name="middleware/mbedtls/port/ele_s400/rsa_alt.h" projectpath="mbedtls/port/ele_s400"/>
+          <file category="sourceC" name="middleware/mbedtls/port/ele_s400/rsa_alt.c" projectpath="mbedtls/port/ele_s400"/>
+          <file category="header" name="middleware/mbedtls/port/ele_s400/threading_alt.h" projectpath="mbedtls/port/ele_s400"/>
+          <file category="sourceC" name="middleware/mbedtls/port/ele_s400/sha256_alt.c" projectpath="mbedtls/port/ele_s400"/>
+          <file category="header" name="middleware/mbedtls/port/ele_s400/sha256_alt.h" projectpath="mbedtls/port/ele_s400"/>
+          <file category="sourceC" name="middleware/mbedtls/port/ele_s400/sha512_alt.c" projectpath="mbedtls/port/ele_s400"/>
+          <file category="header" name="middleware/mbedtls/port/ele_s400/sha512_alt.h" projectpath="mbedtls/port/ele_s400"/>
+          <file category="sourceC" name="middleware/mbedtls/port/ele_s400/hmac_alt.c" projectpath="mbedtls/port/ele_s400"/>
+          <file category="include" name="middleware/mbedtls/port/ele_s400/"/>
+        </files>
+      </component>
+      <component Cgroup="mbedTLS library" Csub="ele_s400_opaque" Cversion="2.28.8" condition="middleware.mbedtls.port.ele_s400_ecc_opaque.condition_id">
+        <description>mbedTLS port library for ELE S40x</description>
+        <Pre_Include_Global_h>
+#ifndef MBEDTLS_MCUX_ELE_S400_API
+#define MBEDTLS_MCUX_ELE_S400_API 
+#endif
+#ifndef MBEDTLS_CONFIG_FILE
+#define MBEDTLS_CONFIG_FILE "ele_ecc_opaque_mbedtls_config.h"
+#endif
+</Pre_Include_Global_h>
+        <files>
+          <file category="header" name="middleware/mbedtls/port/ele_s400/ele_fw.h" projectpath="mbedtls/port/ele_s400"/>
+          <file category="sourceC" name="middleware/mbedtls/port/ele_s400/ele_entropy.c" projectpath="mbedtls/port/ele_s400"/>
+          <file category="header" name="middleware/mbedtls/port/ele_s400/aes_alt.h" projectpath="mbedtls/port/ele_s400"/>
+          <file category="sourceC" name="middleware/mbedtls/port/ele_s400/aes_alt.c" projectpath="mbedtls/port/ele_s400"/>
+          <file category="header" name="middleware/mbedtls/port/ele_s400/ccm_alt.h" projectpath="mbedtls/port/ele_s400"/>
+          <file category="sourceC" name="middleware/mbedtls/port/ele_s400/ccm_alt.c" projectpath="mbedtls/port/ele_s400"/>
+          <file category="header" name="middleware/mbedtls/port/ele_s400/gcm_alt.h" projectpath="mbedtls/port/ele_s400"/>
+          <file category="sourceC" name="middleware/mbedtls/port/ele_s400/gcm_alt.c" projectpath="mbedtls/port/ele_s400"/>
+          <file category="header" name="middleware/mbedtls/port/ele_s400/rsa_alt.h" projectpath="mbedtls/port/ele_s400"/>
+          <file category="sourceC" name="middleware/mbedtls/port/ele_s400/rsa_alt.c" projectpath="mbedtls/port/ele_s400"/>
+          <file category="header" name="middleware/mbedtls/port/ele_s400/threading_alt.h" projectpath="mbedtls/port/ele_s400"/>
+          <file category="sourceC" name="middleware/mbedtls/port/ele_s400/sha256_alt.c" projectpath="mbedtls/port/ele_s400"/>
+          <file category="header" name="middleware/mbedtls/port/ele_s400/sha256_alt.h" projectpath="mbedtls/port/ele_s400"/>
+          <file category="sourceC" name="middleware/mbedtls/port/ele_s400/sha512_alt.c" projectpath="mbedtls/port/ele_s400"/>
+          <file category="header" name="middleware/mbedtls/port/ele_s400/sha512_alt.h" projectpath="mbedtls/port/ele_s400"/>
+          <file category="sourceC" name="middleware/mbedtls/port/ele_s400/hmac_alt.c" projectpath="mbedtls/port/ele_s400"/>
+          <file category="header" name="middleware/mbedtls/port/ele_s400/ecc_opaque/ele_ecc_opaque_mbedtls_config.h" projectpath="mbedtls/port/ele_s400/ecc_opaque"/>
+          <file category="sourceC" name="middleware/mbedtls/port/ele_s400/ecc_opaque/ele_mbedtls.c" projectpath="mbedtls/port/ele_s400/ecc_opaque"/>
+          <file category="header" name="middleware/mbedtls/port/ele_s400/ecc_opaque/ele_mbedtls.h" projectpath="mbedtls/port/ele_s400/ecc_opaque"/>
+          <file category="header" name="middleware/mbedtls/port/ele_s400/ecc_opaque/ecdsa_alt.h" projectpath="mbedtls/port/ele_s400/ecc_opaque"/>
+          <file category="sourceC" name="middleware/mbedtls/port/ele_s400/ecc_opaque/ecdsa_alt.c" projectpath="mbedtls/port/ele_s400/ecc_opaque"/>
+          <file category="sourceC" name="middleware/mbedtls/port/ele_s400/ecc_opaque/pk_alt.c" projectpath="mbedtls/port/ele_s400/ecc_opaque"/>
+          <file category="include" name="middleware/mbedtls/port/ele_s400/"/>
+          <file category="include" name="middleware/mbedtls/port/ele_s400/ecc_opaque/"/>
+        </files>
+      </component>
+      <component Cgroup="mbedTLS library" Csub="els" Cversion="2.28.8" condition="middleware.mbedtls.port.els.condition_id">
+        <description>mbedTLS port library for ELS</description>
+        <Pre_Include_Global_h>
+#ifndef MBEDTLS_MCUX_ELS_API
+#define MBEDTLS_MCUX_ELS_API 
+#endif
+#ifndef MBEDTLS_MCUX_USE_ELS
+#define MBEDTLS_MCUX_USE_ELS 
+#endif
+#ifndef MCUXCL_FEATURE_CSSL_MEMORY_C_FALLBACK
+#define MCUXCL_FEATURE_CSSL_MEMORY_C_FALLBACK 
+#endif
+#ifndef MBEDTLS_CONFIG_FILE
+#define MBEDTLS_CONFIG_FILE "els_mbedtls_config.h"
+#endif
+</Pre_Include_Global_h>
+        <files>
+          <file category="sourceC" name="middleware/mbedtls/port/els/aes_alt.c" projectpath="mbedtls/port/els"/>
+          <file category="header" name="middleware/mbedtls/port/els/aes_alt.h" projectpath="mbedtls/port/els"/>
+          <file category="sourceC" name="middleware/mbedtls/port/els/cbc_mac_alt.c" projectpath="mbedtls/port/els"/>
+          <file category="header" name="middleware/mbedtls/port/els/cbc_mac_alt.h" projectpath="mbedtls/port/els"/>
+          <file category="header" name="middleware/mbedtls/port/els/cmac_alt.h" projectpath="mbedtls/port/els"/>
+          <file category="sourceC" name="middleware/mbedtls/port/els/cmac_alt.c" projectpath="mbedtls/port/els"/>
+          <file category="header" name="middleware/mbedtls/port/els/els_mbedtls_config.h" projectpath="mbedtls/port/els"/>
+          <file category="sourceC" name="middleware/mbedtls/port/els/ctr_drbg_alt.c" projectpath="mbedtls/port/els"/>
+          <file category="header" name="middleware/mbedtls/port/els/ctr_drbg_alt.h" projectpath="mbedtls/port/els"/>
+          <file category="sourceC" name="middleware/mbedtls/port/els/gcm_alt.c" projectpath="mbedtls/port/els"/>
+          <file category="header" name="middleware/mbedtls/port/els/gcm_alt.h" projectpath="mbedtls/port/els"/>
+          <file category="header" name="middleware/mbedtls/port/els/platform_hw_ip.h" projectpath="mbedtls/port/els"/>
+          <file category="sourceC" name="middleware/mbedtls/port/els/sha256_alt.c" projectpath="mbedtls/port/els"/>
+          <file category="header" name="middleware/mbedtls/port/els/sha256_alt.h" projectpath="mbedtls/port/els"/>
+          <file category="sourceC" name="middleware/mbedtls/port/els/sha512_alt.c" projectpath="mbedtls/port/els"/>
+          <file category="header" name="middleware/mbedtls/port/els/sha512_alt.h" projectpath="mbedtls/port/els"/>
+          <file category="sourceC" name="middleware/mbedtls/port/els/entropy_poll_alt.c" projectpath="mbedtls/port/els"/>
+          <file category="sourceC" name="middleware/mbedtls/port/els/els_mbedtls.c" projectpath="mbedtls/port/els"/>
+          <file category="header" name="middleware/mbedtls/port/els/els_mbedtls.h" projectpath="mbedtls/port/els"/>
+          <file category="include" name="middleware/mbedtls/port/els/"/>
+        </files>
+      </component>
+      <component Cgroup="mbedTLS library" Csub="els_pkc" Cversion="2.28.8" condition="middleware.mbedtls.port.els_pkc.condition_id">
+        <description>mbedTLS port library for ELS and PKC</description>
+        <Pre_Include_Global_h>
+#ifndef MBEDTLS_MCUX_ELS_PKC_API
+#define MBEDTLS_MCUX_ELS_PKC_API 
+#endif
+#ifndef MBEDTLS_MCUX_USE_PKC
+#define MBEDTLS_MCUX_USE_PKC 
+#endif
+#ifndef MBEDTLS_CONFIG_FILE
+#define MBEDTLS_CONFIG_FILE "els_pkc_mbedtls_config.h"
+#endif
+</Pre_Include_Global_h>
+        <files>
+          <file category="header" name="middleware/mbedtls/port/pkc/els_pkc_mbedtls_config.h" projectpath="mbedtls/port/pkc"/>
+          <file category="header" name="middleware/mbedtls/port/pkc/els_pkc_mbedtls_thread_config.h" projectpath="mbedtls/port/pkc"/>
+          <file category="sourceC" name="middleware/mbedtls/port/pkc/ecc_alt.c" projectpath="mbedtls/port/pkc"/>
+          <file category="header" name="middleware/mbedtls/port/pkc/ecc_alt.h" projectpath="mbedtls/port/pkc"/>
+          <file category="sourceC" name="middleware/mbedtls/port/pkc/ecdh_alt.c" projectpath="mbedtls/port/pkc"/>
+          <file category="sourceC" name="middleware/mbedtls/port/pkc/ecdsa_alt.c" projectpath="mbedtls/port/pkc"/>
+          <file category="sourceC" name="middleware/mbedtls/port/pkc/rsa_alt.c" projectpath="mbedtls/port/pkc"/>
+          <file category="header" name="middleware/mbedtls/port/pkc/rsa_alt.h" projectpath="mbedtls/port/pkc"/>
+          <file category="sourceC" name="middleware/mbedtls/port/pkc/els_pkc_mbedtls.c" projectpath="mbedtls/port/pkc"/>
+          <file category="header" name="middleware/mbedtls/port/pkc/els_pkc_mbedtls.h" projectpath="mbedtls/port/pkc"/>
+          <file category="header" name="middleware/mbedtls/port/pkc/threading_alt.h" projectpath="mbedtls/port/pkc"/>
+          <file category="include" name="middleware/mbedtls/port/pkc/"/>
+        </files>
+      </component>
+      <component Cgroup="mbedTLS library" Csub="ksdk" Cversion="2.28.8" condition="middleware.mbedtls.port.ksdk.condition_id">
+        <description>mbedTLS port library for KPSDK</description>
+        <files>
+          <file category="sourceC" name="middleware/mbedtls/port/ksdk/ksdk_mbedtls.c" projectpath="mbedtls/port/ksdk"/>
+          <file category="header" name="middleware/mbedtls/port/ksdk/ksdk_mbedtls.h" projectpath="mbedtls/port/ksdk"/>
+          <file category="header" name="middleware/mbedtls/port/ksdk/ksdk_mbedtls_config.h" projectpath="mbedtls/port/ksdk"/>
+          <file category="header" name="middleware/mbedtls/port/ksdk/sha1_alt.h" projectpath="mbedtls/port/ksdk"/>
+          <file category="header" name="middleware/mbedtls/port/ksdk/sha256_alt.h" projectpath="mbedtls/port/ksdk"/>
+          <file category="header" name="middleware/mbedtls/port/ksdk/des_alt.h" projectpath="mbedtls/port/ksdk"/>
+          <file category="sourceC" name="middleware/mbedtls/port/ksdk/des_alt.c" projectpath="mbedtls/port/ksdk"/>
+          <file category="header" name="middleware/mbedtls/port/ksdk/aes_alt.h" projectpath="mbedtls/port/ksdk"/>
+          <file category="sourceC" name="middleware/mbedtls/port/ksdk/aes_alt.c" projectpath="mbedtls/port/ksdk"/>
+          <file category="header" name="middleware/mbedtls/port/ksdk/ccm_alt.h" projectpath="mbedtls/port/ksdk"/>
+          <file category="header" name="middleware/mbedtls/port/ksdk/ecp_alt.h" projectpath="mbedtls/port/ksdk"/>
+          <file category="sourceC" name="middleware/mbedtls/port/ksdk/ecp_alt.c" projectpath="mbedtls/port/ksdk"/>
+          <file category="sourceC" name="middleware/mbedtls/port/ksdk/ecp_curves_alt.c" projectpath="mbedtls/port/ksdk"/>
+          <file category="sourceC" name="middleware/mbedtls/port/ksdk/ecp_alt_ksdk.c" projectpath="mbedtls/port/ksdk"/>
+          <file category="header" name="middleware/mbedtls/port/ksdk/threading_alt.h" projectpath="mbedtls/port/ksdk"/>
+          <file category="include" name="middleware/mbedtls/port/ksdk/"/>
+        </files>
+      </component>
+      <component Cgroup="mbedTLS library" Csub="template" Cversion="2.28.8">
+        <description>mbedTLS Template</description>
+        <Pre_Include_Global_h>
+#ifndef MBEDTLS_CONFIG_FILE
+#define MBEDTLS_CONFIG_FILE "ksdk_mbedtls_config.h"
+#endif
+</Pre_Include_Global_h>
+        <files>
+          <file category="header" attr="config" name="middleware/mbedtls/port/ksdk/ksdk_mbedtls_config.h" version="2.28.8" projectpath="mbedtls/port/ksdk"/>
+          <file category="doc" name="middleware/mbedtls/Mbed_TLS NXP_dummy.txt"/>
+        </files>
+      </component>
+      <component Cgroup="mbedTLS library" Csub="tests" Cversion="2.28.8">
+        <description>mbedTLS test suite</description>
+        <files>
+          <file category="sourceC" name="middleware/mbedtls/tests/src/asn1_helpers.c" projectpath="mbedtls/tests/src"/>
+          <file category="sourceC" name="middleware/mbedtls/tests/src/helpers.c" projectpath="mbedtls/tests/src"/>
+          <file category="sourceC" name="middleware/mbedtls/tests/src/psa_crypto_helpers.c" projectpath="mbedtls/tests/src"/>
+          <file category="sourceC" name="middleware/mbedtls/tests/src/psa_exercise_key.c" projectpath="mbedtls/tests/src"/>
+          <file category="sourceC" name="middleware/mbedtls/tests/src/random.c" projectpath="mbedtls/tests/src"/>
+          <file category="sourceC" name="middleware/mbedtls/tests/src/threading_helpers.c" projectpath="mbedtls/tests/src"/>
+          <file category="sourceC" name="middleware/mbedtls/tests/src/fake_external_rng_for_test.c" projectpath="mbedtls/tests/src"/>
+          <file category="sourceC" name="middleware/mbedtls/tests/src/test_helpers/ssl_helpers.c" projectpath="mbedtls/tests/src/test_helpers"/>
+          <file category="header" name="middleware/mbedtls/tests/include/test/arguments.h" projectpath="mbedtls/tests/include/test"/>
+          <file category="header" name="middleware/mbedtls/tests/include/test/asn1_helpers.h" projectpath="mbedtls/tests/include/test"/>
+          <file category="header" name="middleware/mbedtls/tests/include/test/constant_flow.h" projectpath="mbedtls/tests/include/test"/>
+          <file category="header" name="middleware/mbedtls/tests/include/test/fake_external_rng_for_test.h" projectpath="mbedtls/tests/include/test"/>
+          <file category="header" name="middleware/mbedtls/tests/include/test/helpers.h" projectpath="mbedtls/tests/include/test"/>
+          <file category="header" name="middleware/mbedtls/tests/include/test/macros.h" projectpath="mbedtls/tests/include/test"/>
+          <file category="header" name="middleware/mbedtls/tests/include/test/psa_crypto_helpers.h" projectpath="mbedtls/tests/include/test"/>
+          <file category="header" name="middleware/mbedtls/tests/include/test/psa_exercise_key.h" projectpath="mbedtls/tests/include/test"/>
+          <file category="header" name="middleware/mbedtls/tests/include/test/psa_helpers.h" projectpath="mbedtls/tests/include/test"/>
+          <file category="header" name="middleware/mbedtls/tests/include/test/random.h" projectpath="mbedtls/tests/include/test"/>
+          <file category="header" name="middleware/mbedtls/tests/include/test/ssl_helpers.h" projectpath="mbedtls/tests/include/test"/>
+          <file category="include" name="middleware/mbedtls/tests/include/test/"/>
+          <file category="include" name="middleware/mbedtls/tests/include/"/>
+        </files>
+      </component>
+    </bundle>
+  </components>
+</package>

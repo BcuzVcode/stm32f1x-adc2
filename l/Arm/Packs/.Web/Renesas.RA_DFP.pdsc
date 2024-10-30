@@ -1,0 +1,2618 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.7.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+	<vendor>Renesas</vendor>
+	<name>RA_DFP</name>
+	<description>Renesas RA series device family pack</description>
+	<repository></repository>
+	<supportContact></supportContact>
+	<license></license>
+
+  <!-- URL where this pack is hosted -->
+<url>https://www2.renesas.eu/Keil_MDK_Packs/</url>
+ 
+	<releases>
+		<release version="5.6.0" date="2024-10-14">
+		FSP 5.6.0 synchronised release. Adds support for RA8E1 and RA8E2.
+		Updated SVD files for RA2A2, RA2E1, RA2E2, RA2E3, RA2L1, RA6E2 and RA6T3.
+		</release>
+		<release version="5.5.0" date="2024-08-19">
+		FSP 5.5.0 synchronised release
+		Updated SVD file for RA2E1.
+		</release>
+		<release version="5.4.0" date="2024-06-14">
+		FSP 5.4.0 synchronised release.
+		Flash loaders optimized to increase ULINK / CMSIS-DAP code flash programming speeds. 
+		Various other related memory/flash changes to pdsc.
+		Updated SVD files for RA2A2, RA6T2, RA8D1, RA8M1 and RA8T1.
+		</release>
+		<release version="5.3.0" date="2024-04-18">
+		FSP 5.3.0 synchronised release.
+		Updated rasc_launcher.bat to allow selection if more than 9 FSP installs detected.
+		</release>
+		<release version="5.2.0" date="2024-02-19">
+		FSP 5.2.0 synchronised release. Adds support for RA2A2 and RA0E1.
+		</release>
+		<release version="5.1.0" date="2023-12-01">
+		FSP 5.1.0 synchronised release. Adds support for RA8D1 and RA8T1.
+		Updated SVD files for RA2E1, RA2E2, RA2E3, RA2L1 and RA8M1.
+		</release>
+		<release version="5.0.1" date="2023-11-08">
+		FSP 5.0.1 synchronised release. No functional change.
+		</release>
+		<release version="5.0.0" date="2023-10-17">
+		FSP 5.0.0 synchronised release. Adds support for RA8M1 and RA2E3.
+		Updated SVD file for RA2L1.
+		</release>
+		<release version="4.6.0" date="2023-08-16">
+		FSP 4.6.0 synchronised release.
+		Updated SVD files for RA4M2, RA4M3, RA4E2, RA6M3, RA6M4, RA6M5 and RA6E2.
+		</release>
+		<release version="4.5.0" date="2023-06-19">
+		FSP 4.5.0 synchronised release.
+		Updated SVD files for RA4M2, RA4T1 and RA6T3.
+		Added ULINK trace setup for RA4M2, RA4M3, RA6M4, RA6M5 and RA6T2.
+		</release>
+		<release version="4.4.0" date="2023-04-14">
+		FSP 4.4.0 synchronised release. Adds support for RA4T1 and RA6T3.
+		Updated SVD files for RA4E2 and RA6E2.
+		Updated rasc_launcher.bat to fix refresh issue that could cause build failures in certain circumstances. 
+		Removed unnecessary options from generator id="Renesas RA Smart Configurator".
+		</release>
+		<release version="4.3.0" date="2023-02-13">
+		FSP 4.3.0 synchronised release. Adds support for RA4E2 and RA6E2
+		</release>
+		<release version="4.2.0" date="2022-12-12">
+		FSP 4.2.0 synchronised release.
+		Updated SVD files for RA2E1, RA2E2, RA2L1, RA4E1, RA4M2 and RA6E1.
+		</release>
+		<release version="4.1.0" date="2022-10-20">
+		FSP 4.1.0 synchronised release.
+		Updated rasc_launcher.bat to fix issue identifying RASC 2022-10 executable.
+		Updated SVD files for RA2A1, RA2E2, RA2L1, RA4M3, RA4W1, RA6M4, RA6M5 and RA6T2.
+		Removed device variants containing package info in name as RASC will always specify non-package short form in generated projects.
+		Removed boards and examples elements, as incomplete and not required for usage in conjunction with FSP and RASC.
+		</release>
+		<release version="4.0.0" date="2022-08-08">
+		FSP 4.0.0 synchronised release.
+		Updated SVD files for RA2E2, RA4W1 and RA6T2.
+		</release>
+		<release version="3.8.0" date="2022-06-16">
+		FSP 3.8.0 synchronised release.
+		Updated SVD files for RA2L1 and RA6T1.
+		</release>
+		<release version="3.7.0" date="2022-04-22">
+		FSP 3.7.0 synchronised release.
+		Updated SVD files for RA2E2, RA4M2, RA4M3, RA6E1, RA6M4 and RA6T2.
+		Updated flash programming support for RA2A1, RA2E1, RA2E2, RA2L1, RA4M1, RA4M3, RA4W1, RA6M4 and RA6M5.
+		</release>
+		<release version="3.6.0" date="2022-02-23">
+		FSP 3.6.0 synchronised release.
+		Updated rasc_launcher.bat.
+		Various cleanups to PDSC file to reduce duplication of settings.
+		All device families now reference family specific SVD files.
+		Updated flash programming support for RA2L1, RA2E1 and RA2E2.
+		</release>
+		<release version="3.5.0" date="2021-12-09">
+		FSP 3.5.0 synchronised release. Adds support for RA6T2
+		Add ULINK Flash Programing for RA2E2, RA6T1, RA6T2, RA6E1, RA4E1
+		Note ULINK support is only available for TrustZone enabled devices in Flat mode.
+		</release>
+		<release version="3.4.0" date="2021-10-12">
+		FSP 3.4.0 synchronised release. Adds support for RA2E2. 
+		Includes integrated ULINK compatible Flash algorithms
+		for the following parts:-
+		RA2A1, RA2E1, RA2L1, RA4M1, RA4M2, RA4M3, RA4W1, RA6M1, RA6M2, RA6M3, RA6M4, RA6M5.
+		Note UKINK support is only available for TrustZone enabled devices in Flat mode.
+		</release>
+		<release version="3.3.0" date="2021-09-21">
+		FSP 3.3.0 synchronised release. Adds support for RA4E1 and RA6E1
+		</release>			
+		<release version="3.2.0-alpha.0" date="2021-07-13">
+		FSP 3.2.0 synchronised release
+		</release>	
+		<release version="3.1.0" date="2021-06-28">
+		FSP 3.1.0 synchronised release
+		</release>	
+		<release version="3.0.1" date="2021-06-04">
+		FSP 3.0.1 synchronised release
+		Adds support for RA2L1A9 devices
+		</release>
+		<release version="3.0.0" date="2021-04-28">
+		FSP 3.0.0 synchronised release
+		</release>
+		<release version="2.4.0" date="2021-03-30">
+		FSP 2.4.0 synchronised release
+		Adds support for RA6M5
+		</release>	
+		<release version="2.3.0" date="2021-01-26">
+		FSP 2.3.0 synchronised release
+		Adds support for RL2E1 and RA4M2
+		</release>		
+		<release version="2.2.0" date="2020-12-01">
+		FSP 2.2.0 synchronised release
+		Adds support for RL2L1 and RA4M3
+		</release>	
+		<release version="2.1.0" date="2020-10-29">
+		FSP 2.1.0 synchronised release
+		Adds support for RA6T1
+		</release>	
+		<release version="2.0.0" date="2020-10-01">
+		FSP 2.0.0 synchronised release. 	
+		Supports all RA M23 and M4 devices with FSP 2.0 
+		RA6M4 with Flat model only. No TrustZone support.
+		IMPORTANT. 
+		This pack can only be used with FSP 2.0 or later 
+		as the linker script folder structure has changed. 	
+		</release>
+		<release version="1.3.0" date="2020-08-21">
+		FSP 1.3.0 synchronised release, no functional change
+		</release>
+		<release version="1.2.0" date="2020-06-30">
+		FSP 1.2.0 synchronised release, no functional change
+		</release>		
+		<release version="1.1.1" date="2020-05-29">
+		FSP 1.1.1 synchronised release, no functional change
+		</release>
+		<release version="1.1.0" date="2020-05-06">
+		FSP 1.1.0 synchronised release, adds support for RA4W1
+		</release>
+		<release version="1.0.0" date="2020-03-31">
+		FSP 1.0.0 synchronised release
+		</release>
+	</releases>
+
+	<keywords>
+		<!-- keywords for indexing -->
+		<keyword>Renesas</keyword>
+		<keyword>RA</keyword>
+		<keyword>4M</keyword>
+		<keyword>6M</keyword>
+		<keyword>2M</keyword>
+	</keywords>
+
+	<requirements>
+		<languages>
+		  <language name="C" version="99"/>
+		</languages>
+		<compilers>
+		  <!-- FSP tested with at least AC6 version 6.18.0  -->
+		  <compiler name="ARMCC" version="6.18.0"/>
+		</compilers>
+	  </requirements>
+  
+	<!-- NOTE: Each RA device family pack needs this -->
+	<generators>
+    <generator id="Renesas RA Smart Configurator">
+      <description>Renesas RA Smart Configurator</description>
+      <exe>
+        <command host="win">launcher\rasc_launcher.bat</command>
+        <argument>"$Prasc_version.txt"</argument>
+        <argument>"$Pconfiguration.xml"</argument>
+      </exe>
+      <gpdsc name="buildinfo.gpdsc"/>
+    </generator>
+  </generators>
+
+  	<!-- Part number definitions -->
+   <devices>
+
+		<!-- RA2A1 Part number definitions -->
+		<family Dfamily="RA2A1 Series" Dvendor="Renesas:117">
+
+			<processor Dcore="Cortex-M23" DcoreVersion="r0p1" Dfpu="NO_FPU" Dmpu="MPU" Ddsp="NO_DSP" Dendian="Little-endian" Dclock="48000000" />
+			<description>
+The RA2A1 Group of microcontrollers (MCUs) uses a high-performance Arm® Cortex®-M23 core and offers highly integrated, high-accuracy analog capabilities. 
+This group of ICs offers a complete MCU with analog solution for signal conditioning and measurement. 
+The RA2A1 Group supports a wide operating voltage range of 1.6V to 5.5V. It includes a 16-bit SAR ADC, 24-bit Sigma-Delta ADC, comparators, operational amplifiers, and DACs.
+ 
+The RA2A1 MCU targets cost sensitive and low power industrial sensor applications where high resolution analog will become a cost benefit.
+			
+Applications
+
+- Industrial automation (photoelectric sensor, fiber sensor, temperature sensor)
+- Building automation/home appliance (smoke detector)
+- Healthcare (pulse oximeters, body composition measurement)
+- General purpose
+
+			</description> 
+			<feature type="Timer" 				n="1"	m="32"			name="General PWM Timer (GPT)"/>			
+			<feature type="Timer" 				n="6"	m="16"			name="General PWM Timer (GPT)"/>
+			<feature type="Timer"      			n="2"	m="16"			name="Asynchronous General Purpose Timer (AGT)"/>
+			<feature type="RTC"     						   			name="Real Time CLock"/>
+			<feature type="WDT"					n="1"	m="14"			name="Watchdog Timer (WDT)"/>
+			<feature type="WDT"					n="1"	m="14"			name="Independent Watchdog Timer (IWDT)"/>	
+			<feature type="ComOther"			n="3"					name="Serial Communications Interface (SCI)"/>	
+			<feature type="I2C"					n="2"					name="I2C bus interface (IIC)"/>	
+			<feature type="SPI"					n="2"					name="Serial Peripheral Interface (SPI)"/>	
+			<feature type="CAN"					n="1"					name="Controller Area Network (CAN)"/>				
+			<feature type="ADC"					n="17"	m="16"			name="16-bit A/D Converter (ADC16)"/>	
+			<feature type="ADC"					n="10"	m="24"			name="24-bit Sigma-Delta A/D Converter (SDADC24)"/>
+			<feature type="DAC"					n="1"	m="12"			name="12-bit D/A Converter (DAC12)"/>			
+			<feature type="DAC"					n="1"	m="8"			name="8-bit D/A Converter (DAC8)"/>
+			<feature type="TempSens"			n="1"					name="Temperature Sensor (TSN)"/>	
+			<feature type="CoreOther"			n="1"					name="High-Speed Analog Comparator(ACMPHS)"/>			
+			<feature type="CoreOther"			n="1"					name="Low-Power Analog Comparator(ACMPLP)"/>
+			<feature type="Other"				n="3"					name="Operational Amplifier (OPAMP)"/>
+			<feature type="Touch"				n="26"					name="Capacitive Touch Sensing Unit(CTSU)"/>
+			<feature type="CoreOther"			n="1"					name="Cyclic Redundancy Check (CRC) calculator"/>			
+			<feature type="CoreOther"			n="1"					name="Data Operation Circuit (DOC)"/>
+			<feature type="Crypto"				n="128.256"				name="AES Engine"/>	
+			<feature type="RNG"											name="True Random Number Generator(TRNG)"/>			
+			<feature type="Memory"				n="256"					name="Code Flash Kbytes"/>
+			<feature type="Memory"				n="32"					name="SRAM Kbytes"/>
+			<feature type="Memory"				n="8"					name="Data Flash Kbytes"/>			
+			<feature type="PLL"         		n="1"                   name="Internal PLL"/>
+			<feature type="VCC"         		n="1.6"   m="5.5"       name="Power Supply Voltage"/>
+			<feature type="Temp"        		n="-40"   m="105"       name="Operating Temperature Range"/>
+			<feature type="QFP"        			n="32"                  name="Leadless Quad Flat Pack (LQFP)"/>
+			<feature type="QFP"        			n="64"                  name="Leadless Quad Flat Pack (LQFP"/>
+			<feature type="BGA"        			n="36"                  name="Ball Grid Array"/>
+			<feature type="QFN"        			n="48.40"               name="Quad-Flat No-leads"/>
+			<feature type="XTAL"        		m="48000000"            name="Maximum operating frequency"/>
+			<feature type="PLL"        		            				name="4 internal PLLs"/>
+			<debug	svd="SVD/R7FA2A1AB.svd"/>
+			<subFamily DsubFamily="RA2A1_256K">
+				<memory name="Flash"     access="rx" start="0"          size="0x040000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x40100000" size="0x002000"/>
+				<memory name="ConfigROM" access="r"  start="0x01010000" size="0x34"/>
+				<memory name="SRAM1"    access="rwx" start="0x20000000" size="0x008000" init   ="0" default="1"/>
+				<algorithm name="Flash/RA2A1_256K.FLM"          start="0x00000000" size="0x040000" RAMstart="0x20000000" RAMsize="0x2800" default="1"/>
+				<algorithm name="Flash/RA2A1_DATA.FLM"    		start="0x40100000" size="0x002000" RAMstart="0x20000000" RAMsize="0x2800" default="1"/>
+				<algorithm name="Flash/RA2A1_CONF.FLM"          start="0x01010000" size="0x000034" RAMstart="0x20000000" RAMsize="0x2800" default="1"/>	
+				<device Dname="R7FA2A1AB"/>
+			</subFamily>			
+		</family>
+
+		<!-- RA2L1 Part number definitions -->
+
+ 		<family Dfamily="RA2L1 Series" Dvendor="Renesas:117">
+			<processor Dcore="Cortex-M23" DcoreVersion="r0p1" Dfpu="NO_FPU" Dmpu="MPU" Ddsp="NO_DSP" Dendian="Little-endian" Dclock="120000000" />
+			<description>
+The Renesas RA2L1 microcontroller.
+
+			</description>
+			<feature type="Timer" 				n="4"	m="32"			name="General PWM Timer (GPT32EH)"/>			
+			<feature type="Timer" 				n="4"	m="32"			name="General PWM Timer (GPT32E)"/>
+			<feature type="Timer" 				n="5"	m="32"			name="General PWM Timer (GPT32)"/>
+			<feature type="Timer"      			n="2"	m="16"			name="Asynchronous General Purpose Timer (AGT)"/>
+			<feature type="RTC"     						   			name="Real Time CLock"/>
+			<feature type="WDT"					n="1"	m="14"			name="Watchdog Timer (WDT)"/>
+			<feature type="WDT"					n="1"	m="14"			name="Independent Watchdog Timer (IWDT)"/>	
+			<feature type="ComOther"			n="7"					name="Serial Communications Interface (SCI)"/>	
+			<feature type="ComOther"			n="1"					name="Serial Communications Interface (IrDA)"/>	
+			<feature type="I2C"					n="2"					name="I2C bus interface (IIC)"/>	
+			<feature type="SPI"					n="2"					name="Serial Peripheral Interface (SPI)"/>	
+			<feature type="CAN"					n="2"					name="Controller Area Network (CAN)"/>				
+			<feature type="ADC"					n="19"	m="12"			name="12-bit A/D Converter (ADC12)"/>	
+			<feature type="DAC"					n="1"	m="12"			name="12-bit D/A Converter (DAC12)"/>			
+			<feature type="TempSens"			n="1"					name="Temperature Sensor (TSN)"/>	
+			<feature type="CoreOther"			n="6"					name="High-Speed Analog Comparator(ACMPHS)"/>			
+			<feature type="Touch"				n="12"					name="Capacitive Touch Sensing Unit(CTSU)"/>
+			<feature type="CoreOther"			n="1"					name="Cyclic Redundancy Check (CRC) calculator"/>			
+			<feature type="CoreOther"			n="1"					name="Data Operation Circuit (DOC)"/>
+			<feature type="Crypto"				n="128"					name="AES128 Engine"/>	
+			<feature type="Crypto"				n="192"					name="AES192 Engine"/>	
+			<feature type="Crypto"				n="256"					name="AES256 Engine"/>	
+			<feature type="Crypto"				n="192"					name="3DES Engine"/>
+			<feature type="Crypto"				n="2018"				name="ARC4 Engine"/>			
+			<feature type="RNG"											name="True Random Number Generator(TRNG)"/>			
+			<feature type="Memory"				n="256"					name="Code Flash Kbytes"/>
+			<feature type="Memory"				n="32"					name="SRAM Kbytes"/>
+			<feature type="Memory"				n="8"					name="Data Flash Kbytes"/>			
+			<feature type="PLL"         		n="1"                   name="Internal PLL"/>
+			<feature type="VCC"         		n="1.6"   m="5.5"       name="Power Supply Voltage"/>
+			<feature type="Temp"        		n="-40"   m="105"       name="Operating Temperature Range"/>
+			<feature type="QFP"        			n="100.64"           	name="Leadless Quad Flat Pack (LQFP)"/>
+			<feature type="QFN"        			n="64"            		name="Quad-Flat No-leads"/>
+			<feature type="XTAL"        		m="120000000"           name="Maximum operating frequency"/>
+			<feature type="PLL"        		            				name="5 internal PLLs"/>
+			<feature type="DMA"        		    n="8"        			name="DMAC"/>
+			<feature type="USBD"       		    n="1"        			name="USB Device "/>
+			<feature type="USBH"       		    n="1"        			name="USB Host"/>					
+			<debug	svd="SVD/R7FA2L1AB.svd"/>
+
+			<subFamily DsubFamily="RA2L1_256K">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x040000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x40100000" size="0x002000"/>
+				<memory name="ConfigROM" access="r"  start="0x01010000" size="0x34"/>
+				<memory name="SRAM1"    access="rwx" start="0x20000000" size="0x008000" init   ="0" default="1"/>
+				<algorithm name="Flash/RA2L1_256K.FLM"          start="0x00000000" size="0x040000" RAMstart="0x20000000" RAMsize="0x2800" default="1"/>
+				<algorithm name="Flash/RA2L1_DATA.FLM"          start="0x40100000" size="0x002000" RAMstart="0x20000000" RAMsize="0x2800" default="1"/>
+				<algorithm name="Flash/RA2L1_CONF.FLM"          start="0x01010000" size="0x000034" RAMstart="0x20000000" RAMsize="0x2800" default="1"/>
+				<device Dname="R7FA2L1AB" />
+			</subFamily>
+
+			<subFamily DsubFamily="RA2L1_128K">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x020000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x40100000" size="0x002000"/>
+				<memory name="ConfigROM" access="r"  start="0x01010000" size="0x34"/>
+				<memory name="SRAM1"    access="rwx" start="0x20000000" size="0x008000" init   ="0" default="1"/>
+				<algorithm name="Flash/RA2L1_128K.FLM"          start="0x00000000" size="0x020000" RAMstart="0x20000000" RAMsize="0x2800" default="1"/>
+				<algorithm name="Flash/RA2L1_DATA.FLM"          start="0x40100000" size="0x002000" RAMstart="0x20000000" RAMsize="0x2800" default="1"/>
+				<algorithm name="Flash/RA2L1_CONF.FLM"          start="0x01010000" size="0x000034" RAMstart="0x20000000" RAMsize="0x2800" default="1"/>
+				<device Dname="R7FA2L1A9"/>
+			</subFamily>
+		</family>
+
+		<!-- RA2E1 Part number definitions -->
+
+		<family Dfamily="RA2E1 Series" Dvendor="Renesas:117">
+			<processor Dcore="Cortex-M23" DcoreVersion="r0p1" Dfpu="NO_FPU" Dmpu="MPU" Ddsp="NO_DSP" Dendian="Little-endian" Dclock="48000000" />
+			<description>
+The MCU integrates multiple series of software- and pin-compatible Arm®-based 32-bit cores that share a common set of
+Renesas peripherals to facilitate design scalability.
+The MCU in this series incorporates an energy-efficient Arm Cortex®-M23 32-bit core, that is particularly well suited for
+cost-sensitive and low-power applications, with the following features:
+- Up to 128-KB code flash memory
+- 16 KB SRAM
+- 12-bit A/D Converter (ADC12)
+- Security features
+		</description> 
+			<feature type="Timer" 				n="4"	m="32"			name="General PWM Timer (GPT32EH)"/>			
+			<feature type="Timer" 				n="4"	m="32"			name="General PWM Timer (GPT32E)"/>
+			<feature type="Timer" 				n="5"	m="32"			name="General PWM Timer (GPT32)"/>
+			<feature type="Timer"      			n="2"	m="16"			name="Asynchronous General Purpose Timer (AGT)"/>
+			<feature type="RTC"     						   			name="Real Time CLock"/>
+			<feature type="WDT"					n="1"	m="14"			name="Watchdog Timer (WDT)"/>
+			<feature type="WDT"					n="1"	m="14"			name="Independent Watchdog Timer (IWDT)"/>	
+			<feature type="ComOther"			n="7"					name="Serial Communications Interface (SCI)"/>	
+			<feature type="ComOther"			n="1"					name="Serial Communications Interface (IrDA)"/>	
+			<feature type="I2C"					n="2"					name="I2C bus interface (IIC)"/>	
+			<feature type="SPI"					n="2"					name="Serial Peripheral Interface (SPI)"/>	
+			<feature type="CAN"					n="2"					name="Controller Area Network (CAN)"/>				
+			<feature type="ADC"					n="19"	m="12"			name="12-bit A/D Converter (ADC12)"/>	
+			<feature type="DAC"					n="1"	m="12"			name="12-bit D/A Converter (DAC12)"/>			
+			<feature type="TempSens"			n="1"					name="Temperature Sensor (TSN)"/>	
+			<feature type="CoreOther"			n="6"					name="High-Speed Analog Comparator(ACMPHS)"/>			
+			<feature type="Touch"				n="12"					name="Capacitive Touch Sensing Unit(CTSU)"/>
+			<feature type="CoreOther"			n="1"					name="Cyclic Redundancy Check (CRC) calculator"/>			
+			<feature type="CoreOther"			n="1"					name="Data Operation Circuit (DOC)"/>
+			<feature type="Crypto"				n="128"					name="AES128 Engine"/>	
+			<feature type="Crypto"				n="192"					name="AES192 Engine"/>	
+			<feature type="Crypto"				n="256"					name="AES256 Engine"/>	
+			<feature type="Crypto"				n="192"					name="3DES Engine"/>
+			<feature type="Crypto"				n="2018"				name="ARC4 Engine"/>			
+			<feature type="RNG"											name="True Random Number Generator(TRNG)"/>			
+			<feature type="Memory"				n="256"					name="Code Flash Kbytes"/>
+			<feature type="Memory"				n="32"					name="SRAM Kbytes"/>
+			<feature type="Memory"				n="8"					name="Data Flash Kbytes"/>			
+			<feature type="PLL"         		n="1"                   name="Internal PLL"/>
+			<feature type="VCC"         		n="1.6"   m="5.5"       name="Power Supply Voltage"/>
+			<feature type="Temp"        		n="-40"   m="105"       name="Operating Temperature Range"/>
+			<feature type="QFP"        			n="100.64"           	name="Leadless Quad Flat Pack (LQFP)"/>
+			<feature type="QFN"        			n="64"            		name="Quad-Flat No-leads"/>
+			<feature type="XTAL"        		m="120000000"           name="Maximum operating frequency"/>
+			<feature type="PLL"        		            				name="5 internal PLLs"/>
+			<feature type="DMA"        		    n="8"        			name="DMAC"/>
+			<feature type="USBD"       		    n="1"        			name="USB Device "/>
+			<feature type="USBH"       		    n="1"        			name="USB Host"/>					
+			<debug	svd="SVD/R7FA2E1A9.svd"/>
+
+			<subFamily DsubFamily="RA2E1_128K">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x020000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x40100000" size="0x001000"/>
+				<memory name="ConfigROM" access="r"  start="0x01010000" size="0x34"/>
+				<memory name="SRAM1"    access="rwx" start="0x20004000" size="0x004000" init   ="0" default="1"/>
+				<algorithm name="Flash/RA2E1_128K.FLM"          start="0x00000000" size="0x020000" RAMstart="0x20004000" RAMsize="0x2800" default="1"/>
+				<algorithm name="Flash/RA2E1_DATA.FLM"          start="0x40100000" size="0x001000" RAMstart="0x20004000" RAMsize="0x2800" default="1"/>
+				<algorithm name="Flash/RA2E1_CONF.FLM"          start="0x01010000" size="0x000034" RAMstart="0x20004000" RAMsize="0x2800" default="1"/>
+				<device Dname="R7FA2E1A9"/>
+			</subFamily>
+
+			<subFamily DsubFamily="RA2E1_64K">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x020000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x40100000" size="0x001000"/>
+				<memory name="ConfigROM" access="r"  start="0x01010000" size="0x34"/>
+				<memory name="SRAM1"    access="rwx" start="0x20004000" size="0x004000" init   ="0" default="1"/>
+				<algorithm name="Flash/RA2E1_64K.FLM"           start="0x00000000" size="0x010000" RAMstart="0x20004000" RAMsize="0x2800" default="1"/>
+				<algorithm name="Flash/RA2E1_DATA.FLM"          start="0x40100000" size="0x001000" RAMstart="0x20004000" RAMsize="0x2800" default="1"/>
+				<algorithm name="Flash/RA2E1_CONF.FLM"          start="0x01010000" size="0x000034" RAMstart="0x20004000" RAMsize="0x2800" default="1"/>
+				<device Dname="R7FA2E1A7"/>	
+			</subFamily>
+
+			<subFamily DsubFamily="RA2E1_32K">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x020000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x40100000" size="0x001000"/>
+				<memory name="ConfigROM" access="r"  start="0x01010000" size="0x34"/>
+				<memory name="SRAM1"    access="rwx" start="0x20004000" size="0x004000" init   ="0" default="1"/>
+				<algorithm name="Flash/RA2E1_32K.FLM"           start="0x00000000" size="0x008000" RAMstart="0x20004000" RAMsize="0x2800" default="1"/>
+				<algorithm name="Flash/RA2E1_DATA.FLM"          start="0x40100000" size="0x001000" RAMstart="0x20004000" RAMsize="0x2800" default="1"/>
+				<algorithm name="Flash/RA2E1_CONF.FLM"          start="0x01010000" size="0x000034" RAMstart="0x20004000" RAMsize="0x2800" default="1"/>
+				<device Dname="R7FA2E1A5"/>	
+			</subFamily>
+		</family>
+
+	<!-- RA2E2 Part number definitions -->
+
+	<family Dfamily="RA2E2 Series" Dvendor="Renesas:117">
+		<processor Dcore="Cortex-M23" DcoreVersion="r1p0-00rel0" Dfpu="NO_FPU" Dmpu="MPU" Ddsp="NO_DSP" Dendian="Little-endian" Dclock="48000000" />
+		<description>
+The MCU integrates multiple series of software- and pin-compatible Arm®-based 32-bit cores that share a common set of
+Renesas peripherals to facilitate design scalability.
+The MCU in this series incorporates an energy-efficient Arm Cortex®-M23 32-bit core, that is particularly well suited for
+cost-sensitive and low-power applications, with the following features:
+● Up to 64-KB code flash memory
+● 8 KB SRAM
+● 12-bit A/D Converter (ADC12)
+● Security features
+	</description> 
+		<feature type="Timer" 				n="4"	m="32"			name="General PWM Timer (GPT32EH)"/>			
+		<feature type="Timer" 				n="4"	m="32"			name="General PWM Timer (GPT32E)"/>
+		<feature type="Timer" 				n="5"	m="32"			name="General PWM Timer (GPT32)"/>
+		<feature type="Timer"      			n="2"	m="16"			name="Asynchronous General Purpose Timer (AGT)"/>
+		<feature type="RTC"     						   			name="Real Time CLock"/>
+		<feature type="WDT"					n="1"	m="14"			name="Watchdog Timer (WDT)"/>
+		<feature type="WDT"					n="1"	m="14"			name="Independent Watchdog Timer (IWDT)"/>	
+		<feature type="ComOther"			n="7"					name="Serial Communications Interface (SCI)"/>	
+		<feature type="ComOther"			n="1"					name="Serial Communications Interface (IrDA)"/>	
+		<feature type="I2C"					n="2"					name="I2C bus interface (IIC)"/>	
+		<feature type="SPI"					n="2"					name="Serial Peripheral Interface (SPI)"/>	
+		<feature type="CAN"					n="2"					name="Controller Area Network (CAN)"/>				
+		<feature type="ADC"					n="19"	m="12"			name="12-bit A/D Converter (ADC12)"/>	
+		<feature type="DAC"					n="1"	m="12"			name="12-bit D/A Converter (DAC12)"/>			
+		<feature type="TempSens"			n="1"					name="Temperature Sensor (TSN)"/>	
+		<feature type="CoreOther"			n="6"					name="High-Speed Analog Comparator(ACMPHS)"/>			
+		<feature type="Touch"				n="12"					name="Capacitive Touch Sensing Unit(CTSU)"/>
+		<feature type="CoreOther"			n="1"					name="Cyclic Redundancy Check (CRC) calculator"/>			
+		<feature type="CoreOther"			n="1"					name="Data Operation Circuit (DOC)"/>
+		<feature type="Crypto"				n="128"					name="AES128 Engine"/>	
+		<feature type="Crypto"				n="192"					name="AES192 Engine"/>	
+		<feature type="Crypto"				n="256"					name="AES256 Engine"/>	
+		<feature type="Crypto"				n="192"					name="3DES Engine"/>
+		<feature type="Crypto"				n="2018"				name="ARC4 Engine"/>			
+		<feature type="RNG"											name="True Random Number Generator(TRNG)"/>			
+		<feature type="Memory"				n="256"					name="Code Flash Kbytes"/>
+		<feature type="Memory"				n="32"					name="SRAM Kbytes"/>
+		<feature type="Memory"				n="8"					name="Data Flash Kbytes"/>			
+		<feature type="PLL"         		n="1"                   name="Internal PLL"/>
+		<feature type="VCC"         		n="1.6"   m="5.5"       name="Power Supply Voltage"/>
+		<feature type="Temp"        		n="-40"   m="105"       name="Operating Temperature Range"/>
+		<feature type="QFP"        			n="100.64"           	name="Leadless Quad Flat Pack (LQFP)"/>
+		<feature type="QFN"        			n="64"            		name="Quad-Flat No-leads"/>
+		<feature type="XTAL"        		m="120000000"           name="Maximum operating frequency"/>
+		<feature type="PLL"        		            				name="5 internal PLLs"/>
+		<feature type="DMA"        		    n="8"        			name="DMAC"/>
+		<feature type="USBD"       		    n="1"        			name="USB Device "/>
+		<feature type="USBH"       		    n="1"        			name="USB Host"/>					
+		<debug	svd="SVD/R7FA2E2A7.svd"/>
+
+		<subFamily DsubFamily="RA2E2_64K"> 
+			<memory name="Flash"     access="rx" start="0x00000000" size="0x010000" startup="1" default="1"/>
+			<memory name="DataFlash" access="r"  start="0x40100000" size="0x000800"/>
+			<memory name="ConfigROM" access="r"  start="0x01010000" size="0x34"/>
+			<memory name="SRAM1"    access="rwx" start="0x20004000" size="0x002000" init   ="0" default="1"/>
+			<algorithm name="Flash/RA2E2_64K.FLM"          	start="0x00000000" size="0x010000" RAMstart="0x20004000" RAMsize="0x1C00" default="1"/>
+			<algorithm name="Flash/RA2E2_DATA.FLM"          start="0x40100000" size="0x000800" RAMstart="0x20004000" RAMsize="0x1C00" default="1"/>
+			<algorithm name="Flash/RA2E2_CONF.FLM"          start="0x01010000" size="0x000034" RAMstart="0x20004000" RAMsize="0x1C00" default="1"/>
+			<device Dname="R7FA2E2A7"/>	
+		</subFamily>
+		
+		<subFamily DsubFamily="RA2E2_32K"> 
+			<memory name="Flash"     access="rx" start="0x00000000" size="0x008000" startup="1" default="1"/>
+			<memory name="DataFlash" access="r"  start="0x40100000" size="0x000800"/>
+			<memory name="ConfigROM" access="r"  start="0x01010000" size="0x34"/>
+			<memory name="SRAM1"    access="rwx" start="0x20004000" size="0x002000" init   ="0" default="1"/>
+			<algorithm name="Flash/RA2E2_32K.FLM"          	start="0x00000000" size="0x008000" RAMstart="0x20004000" RAMsize="0x1C00" default="1"/>
+			<algorithm name="Flash/RA2E2_DATA.FLM"          start="0x40100000" size="0x000800" RAMstart="0x20004000" RAMsize="0x1C00" default="1"/>
+			<algorithm name="Flash/RA2E2_CONF.FLM"          start="0x01010000" size="0x000034" RAMstart="0x20004000" RAMsize="0x1C00" default="1"/>
+			<device Dname="R7FA2E2A5"/>
+		</subFamily>
+
+		<subFamily DsubFamily="RA2E2_16K"> 
+			<memory name="Flash"     access="rx" start="0x00000000" size="0x004000" startup="1" default="1"/>
+			<memory name="DataFlash" access="r"  start="0x40100000" size="0x000800"/>
+			<memory name="ConfigROM" access="r"  start="0x01010000" size="0x34"/>
+			<memory name="SRAM1"    access="rwx" start="0x20004000" size="0x002000" init   ="0" default="1"/>
+			<algorithm name="Flash/RA2E2_16K.FLM"          	start="0x00000000" size="0x004000" RAMstart="0x20004000" RAMsize="0x1C00" default="1"/>
+			<algorithm name="Flash/RA2E2_DATA.FLM"          start="0x40100000" size="0x000800" RAMstart="0x20004000" RAMsize="0x1C00" default="1"/>
+			<algorithm name="Flash/RA2E2_CONF.FLM"          start="0x01010000" size="0x000034" RAMstart="0x20004000" RAMsize="0x1C00" default="1"/>		
+			<device Dname="R7FA2E2A3"/>
+		</subFamily>	
+		</family>
+
+	    <!-- RA4M1 Part number definitions -->
+
+		<family Dfamily="RA4M1 Series" Dvendor="Renesas:117">
+			<processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="SP_FPU" Dmpu="MPU" Ddsp="DSP" Dendian="Little-endian" Dclock="48000000" />
+			<description>
+The Renesas RA4M1 group of micrcontrollers (MCUs) uses the high-performance Arm® Cortex®-M4 core and offers a segment LCD controller and a capacitive touch sensing unit input for intensive HMI designs. 
+The RA4M1 MCU is built on a highly efficient low power process and is supported by an open and flexible ecosystem concept—the Flexible Software Package (FSP), built on FreeRTOS—and is expandable to use other RTOSes and middleware. 
+The RA4M1 is suitable for applications where a large amount of capacitive touch channels and a segment LCD controller are required.
+
+Applications
+
+- HMI with Seg/Com LCD display
+- Security (fire detection, burglar detection, panel control)
+- Industry (door openers, panel control)
+- HVAC (heating, air conditioning, boiler control)
+- Home appliance 
+- General purpose
+
+			</description>
+			<feature type="Timer" 				n="2"	m="32"			name="General PWM Timer (GPT)"/>			
+			<feature type="Timer" 				n="6"	m="16"			name="General PWM Timer (GPT)"/>
+			<feature type="Timer"      			n="2"	m="16"			name="Asynchronous General Purpose Timer (AGT)"/>
+			<feature type="RTC"     						   			name="Real Time CLock"/>
+			<feature type="WDT"					n="1"	m="14"			name="Watchdog Timer (WDT)"/>
+			<feature type="WDT"					n="1"	m="14"			name="Independent Watchdog Timer (IWDT)"/>	
+			<feature type="ComOther"			n="4"					name="Serial Communications Interface (SCI)"/>	
+			<feature type="I2C"					n="2"					name="I2C bus interface (IIC)"/>	
+			<feature type="SPI"					n="2"					name="Serial Peripheral Interface (SPI)"/>	
+			<feature type="CAN"					n="1"					name="Controller Area Network (CAN)"/>				
+			<feature type="ADC"					n="25"	m="14"			name="14-bit A/D Converter (ADC14)"/>	
+			<feature type="DAC"					n="1"	m="12"			name="12-bit D/A Converter (DAC12)"/>			
+			<feature type="DAC"					n="2"	m="8"			name="8-bit D/A Converter (DAC8)"/>
+			<feature type="TempSens"			n="1"					name="Temperature Sensor (TSN)"/>	
+			<feature type="CoreOther"			n="1"					name="High-Speed Analog Comparator(ACMPHS)"/>			
+			<feature type="CoreOther"			n="1"					name="Low-Power Analog Comparator(ACMPLP)"/>
+			<feature type="Touch"				n="27"					name="Capacitive Touch Sensing Unit(CTSU)"/>
+			<feature type="CoreOther"			n="1"					name="Cyclic Redundancy Check (CRC) calculator"/>			
+			<feature type="CoreOther"			n="1"					name="Data Operation Circuit (DOC)"/>
+			<feature type="Crypto"				n="128.256"				name="AES Engine"/>	
+			<feature type="RNG"											name="True Random Number Generator(TRNG)"/>			
+			<feature type="Memory"				n="256"					name="Code Flash Kbytes"/>
+			<feature type="Memory"				n="32"					name="SRAM Kbytes"/>
+			<feature type="Memory"				n="8"					name="Data Flash Kbytes"/>			
+			<feature type="PLL"         		n="1"                   name="Internal PLL"/>
+			<feature type="VCC"         		n="1.6"   m="5.5"       name="Power Supply Voltage"/>
+			<feature type="Temp"        		n="-40"   m="105"       name="Operating Temperature Range"/>
+			<feature type="QFP"        			n="100"           		name="Leadless Quad Flat Pack (LQFP100)"/>
+			<feature type="QFP"        			n="64"           		name="Leadless Quad Flat Pack (LQFP64)"/>			
+			<feature type="QFP"        			n="48"           		name="Leadless Quad Flat Pack (LQFP48)"/>
+			<feature type="XTAL"        		m="48000000"            name="Maximum operating frequency"/>
+			<feature type="PLL"        		            				name="5 internal PLLs"/>
+			<feature type="USBD"       		    n="1"        			name="USB Device "/>
+			<feature type="USBH"       		    n="1"        			name="USB Host"/>
+			<feature type="DMA"        		    n="4"        			name="DMAC"/>
+			<feature type="LCD"       		    n="1"	m="38.4"		name="Segment LCD COntroller (LCDC)"/>							
+			<debug	svd="SVD/R7FA4M1AB.svd"/>
+
+			<subFamily DsubFamily="RA4M1_256K">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x040000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x40100000" size="0x002000"/>
+				<memory name="ConfigROM" access="r"  start="0x01010000" size="0x34"/>
+				<memory name="SRAM1"    access="rwx" start="0x20000000" size="0x008000" init   ="0" default="1"/>
+				<algorithm name="Flash/RA4M1_256K.FLM"          start="0x00000000" size="0x040000" RAMstart="0x20000000" RAMsize="0x2800" default="1"/>
+				<algorithm name="Flash/RA4M1_DATA.FLM"    		start="0x40100000" size="0x002000" RAMstart="0x20000000" RAMsize="0x2800" default="1"/>
+				<algorithm name="Flash/RA4M1_CONF.FLM"          start="0x01010000" size="0x000034" RAMstart="0x20000000" RAMsize="0x2800" default="1"/>
+				<device Dname="R7FA4M1AB"/>	
+			</subFamily>
+		  </family>
+
+	    <!-- RA4M2 Part number definitions -->
+
+		<family Dfamily="RA4M2 Series" Dvendor="Renesas:117">		
+			<processor Dcore="Cortex-M33" DcoreVersion="r0p4-00rel1" Dtz="TZ" Dfpu="SP_FPU" Dmpu="MPU" Ddsp="DSP" Dendian="Little-endian" Dclock="100000000" />
+			<description>
+The RA4M2 Group bridges the needs for reasonable low power with the demand for connectivity and performance. These
+MCUs deliver up to 100 MHz of CPU performance using an Arm Cortex-M33 core with up to 512 KB of embedded flash
+memory. The RA4M2 Group offers a wide set of peripherals, including USB, CAN, ADC, capacitive touch, and additional
+security IP integration, making it suitable for industrial equipment, home appliances, office equipment, healthcare products,
+and meters.
+			</description>
+			<feature type="Timer" 				n="4"	m="32"			name="General PWM Timer (GPT32)"/>			
+			<feature type="Timer" 				n="4"	m="16"			name="General PWM Timer (GPT16)"/>
+			<feature type="Timer"      			n="6"	m="16"			name="Asynchronous General Purpose Timer (AGT)"/>
+			<feature type="RTC"     						   			name="Real Time CLock"/>
+			<feature type="WDT"					n="1"	m="14"			name="Watchdog Timer (WDT)"/>
+			<feature type="WDT"					n="1"	m="14"			name="Independent Watchdog Timer (IWDT)"/>	
+			<feature type="ComOther"			n="6"					name="Serial Communications Interface (SCI)"/>
+			<feature type="ComOther"			n="1"					name="Quad Serial Peripheral Interface (QSPI)"/>	
+			<feature type="ComOther"			n="1"					name="Serial Sound Interface Enhanced (SSIE)"/>
+			<feature type="ComOther"			n="1"					name="SD/MMC Host Interface (SDHI)"/>			
+			<feature type="I2C"					n="2"					name="I2C bus interface (IIC)"/>	
+			<feature type="SPI"					n="1"					name="Serial Peripheral Interface (SPI)"/>	
+			<feature type="CAN"					n="1"					name="Controller Area Network (CAN)"/>		
+			<feature type="ADC"					n="13"	m="12"			name="12-bit A/D Converter (ADC12)"/>	
+			<feature type="DAC"					n="2"	m="12"			name="12-bit D/A Converter (DAC12)"/>			
+			<feature type="TempSens"			n="1"					name="Temperature Sensor (TSN)"/>	
+			<feature type="Touch"				n="12"					name="Capacitive Touch Sensing Unit(CTSU)"/>		
+			<feature type="Crypto"				n="128"					name="AES128 Engine"/>	
+			<feature type="Crypto"				n="192"					name="AES192 Engine"/>	
+			<feature type="Crypto"				n="256"					name="AES256 Engine"/>	
+			<feature type="Crypto"				n="1024"				name="RSA1024 Engine"/>
+			<feature type="Crypto"				n="2048"				name="RSA2048 Engine"/>
+			<feature type="Crypto"				n="3072"				name="RSA3072 Engine"/>
+			<feature type="Crypto"				n="4096"				name="RSA4096 Engine"/>	
+			<feature type="Crypto"				n="1024.160"			name="DSA160 Engine"/>
+			<feature type="Crypto"				n="2048.224"			name="DSA224 Engine"/>
+			<feature type="Crypto"				n="2048.256"			name="DSA256 Engine"/>	
+			<feature type="Crypto"				n="192"					name="ECC NIST P192"/>				
+			<feature type="Crypto"				n="224"					name="ECC NIST P224"/>	
+			<feature type="Crypto"				n="256"					name="ECC NIST P256"/>	
+			<feature type="Crypto"				n="384"					name="ECC NIST P384"/>	
+			<feature type="Crypto"				n="256"					name="ECC Branpool 256"/>
+			<feature type="Crypto"				n="384"					name="ECC Branpool384"/>			
+			<feature type="Crypto"				n="512"					name="ECC Branpool 512"/>	
+			<feature type="Crypto"				n="256"					name="SHA 256"/>			
+			<feature type="Crypto"				n="224"					name="SHA 224"/>	
+			<feature type="RNG"											name="True Random Number Generator(TRNG)"/>				
+			<feature type="PLL"         		n="2"                   name="Internal PLL"/>
+			<feature type="VCC"         		n="2.7"   m="3.6"       name="Power Supply Voltage"/>
+			<feature type="Temp"        		n="-40"   m="105"       name="Operating Temperature Range"/>			
+			<feature type="QFP"        			n="100"           		name="LQFP (14 mm × 14 mm, 0.5 mm pitch)"/>
+			<feature type="QFP"        			n="64"           		name="LQFP (10 mm × 10 mm, 0.5 mm pitch)"/>	
+			<feature type="QFP"        			n="48"           		name="LQFP (7 mm × 7 mm, 0.5 mm pitch)"/>	
+			<feature type="QFN"        			n="48"           		name="LQFP (7 mm × 7 mm, 0.5 mm pitch)"/>				
+			<feature type="XTAL"        		m="100000000"           name="Maximum operating frequency"/>
+			<feature type="ClockOther"        		            		name="5 independant clock sources"/>
+			<feature type="DMA"        		    n="8"        			name="DMAC"/>
+			<feature type="USBD"       		    n="1"        			name="USB 2.0 Full-Speed Module (USBFS)"/>
+			<feature type="USBH"       		    n="1"        			name="USB 2.0 Full-Speed Module (USBFS)"/>					
+			
+			<debug	svd="SVD/R7FA4M2AD.svd">
+			  <datapatch  __dp="0" __ap="0" address="0xE0040FCC" value="0x11" info="DEVTYPE"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FF0" value="0x0D" info="CIDR0"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FF4" value="0x90" info="CIDR1"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FF8" value="0x05" info="CIDR2"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FFC" value="0xB1" info="CIDR3"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FD0" value="0x04" info="PIDR4"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FD4" value="0x00" info="PIDR5"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FD8" value="0x00" info="PIDR6"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FDC" value="0x00" info="PIDR7"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FE0" value="0x21" info="PIDR0"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FE4" value="0xBD" info="PIDR1"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FE8" value="0x0B" info="PIDR2"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FEC" value="0x00" info="PIDR3 (ECOREVNUM)"/>
+            </debug>
+
+			<debugvars configfile="Debug/RA4M2.dbgconf">
+              __var TRCK_value      = 0x00000001;   // Trace Clock operating frequency /1
+            </debugvars>
+
+            <sequences>
+              <sequence name="EnableTraceClock">
+                <block>
+                  Write16( 0x4001E3FE, 0xA501 ) ;  // set PRCR, bit PRC0
+                  Write8( 0x4001E03F, 0x80 | TRCK_value ) ;  // set TRCKCR, bit TRCKEN and TRCK[]
+                  Write16( 0x4001E3FE, 0xA500 ) ;  // clear PRCR, bit PRC0
+                </block>
+              </sequence>
+
+              <sequence name="DebugDeviceUnlock">
+                <block>
+                  __var trace_enabled = ( __traceout &amp; 0x3 ) != 0 ; // TPIU or SWO Trace Selected?
+                </block>
+
+                <control if="trace_enabled">
+                  <block>
+                    Sequence("EnableTraceClock");
+                  </block>
+                </control>
+              </sequence>
+
+              <sequence name="ConfigureTraceTPIUPins">
+                <block>
+                  __var parallel_trace_port_size = ( __traceout &amp; 0x003F0000 ) &gt;&gt; 16 ;
+                  Write8( 0x40080D03, 0x00 ) ;  // clear PWPR, bit B0WI
+                  Write8( 0x40080D03, 0x40 ) ;  // set PWPR, bit PFSWE
+                  Write32( 0x400808B8, 0x1A010C00 ) ;  // P214: TCLK
+                </block>
+
+                <control if="parallel_trace_port_size &gt;= 1" info="TPIU port width 1">
+                  <block info="configure Trace I/O Enable + Trace Mode Synchronous 1 bit">
+                    Write32( 0x400808AC, 0x1A010C00 ) ;  // P211: TDATA0
+                  </block>
+                </control>
+                <control if="parallel_trace_port_size &gt;= 2" info="TPIU port width 2">
+                  <block info="configure Trace I/O Enable + Trace Mode Synchronous 2 bit">
+                    Write32( 0x400808A8, 0x1A010C00 ) ;  // P210: TDATA1
+                  </block>
+                </control>
+                <control if="parallel_trace_port_size &gt;= 4" info="TPIU port width 4">
+                  <block info="configure Trace I/O Enable + Trace Mode Synchronous 4 bit">
+                    Write32( 0x400808A4, 0x1A010C00 ) ;  // P209: TDATA2
+                    Write32( 0x400808A0, 0x1A010C00 ) ;  // P208: TDATA3
+                  </block>
+                </control>
+                <block>
+                  Write8( 0x40080D03, 0x00);  // clear PWPR, bit PFSWE
+                  Write8( 0x40080D03, 0x80);  // set PWPR, bit B0WI
+                </block>
+              </sequence>
+
+              <sequence name="TraceStart ">
+                <block>
+                  __var tpiu_trace_enabled = ( __traceout &amp; 0x2 ) != 0 ; // TPIU Trace Selected?
+                  Sequence( "EnableTraceClock" ) ;
+                </block>
+                <control if="tpiu_trace_enabled">
+                  <block>
+                    Sequence( "ConfigureTraceTPIUPins" ) ;
+                  </block>
+                </control>
+              </sequence>
+            </sequences>
+
+			<subFamily DsubFamily="RA4M2_512K">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x080000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x08000000" size="0x002000"/>
+				<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x000200"/>
+				<memory name="SRAM1"    access="rwx" start="0x20000000" size="0x020000" init   ="0" default="1"/>
+				<algorithm name="Flash/RA4M2_512K.FLM"          start="0x00000000" size="0x080000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA4M2_DATA_C512K.FLM"    start="0x08000000" size="0x002000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA4M2_CONF.FLM"          start="0x0100A100" size="0x000200" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<device Dname="R7FA4M2AD"/>
+			</subFamily>
+
+			<subFamily DsubFamily="RA4M2_384K">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x060000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x08000000" size="0x002000"/>
+				<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x000200"/>
+				<memory name="SRAM1"    access="rwx" start="0x20000000" size="0x020000" init   ="0" default="1"/>
+				<algorithm name="Flash/RA4M2_384K.FLM"          start="0x00000000" size="0x060000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA4M2_DATA_C384K.FLM"    start="0x08000000" size="0x002000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA4M2_CONF.FLM"          start="0x0100A100" size="0x000200" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<device Dname="R7FA4M2AC" />
+			</subFamily>
+
+			<subFamily DsubFamily="RA4M2_256K">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x040000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x08000000" size="0x002000"/>
+				<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x000200"/>
+				<memory name="SRAM1"    access="rwx" start="0x20000000" size="0x020000" init   ="0" default="1"/>
+				<algorithm name="Flash/RA4M2_256K.FLM"          start="0x00000000" size="0x040000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA4M2_DATA_C256K.FLM"    start="0x08000000" size="0x002000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA4M2_CONF.FLM"          start="0x0100A100" size="0x000200" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<device Dname="R7FA4M2AB" />
+			</subFamily>		
+		</family>	
+
+	    <!-- RA4M3 Part number definitions -->
+
+		<family Dfamily="RA4M3 Series" Dvendor="Renesas:117">		
+			<processor Dcore="Cortex-M33" DcoreVersion="r0p4-00rel1" Dtz="TZ" Dfpu="SP_FPU" Dmpu="MPU" Ddsp="DSP" Dendian="Little-endian" Dclock="100000000" />
+			<description>
+The RA4M3 Group bridges the needs for reasonable low power with the demand for connectivity and performance. These
+MCUs deliver up to 100 MHz of CPU performance using an Arm Cortex-M33 core with up to 1 MB of embedded flash
+memory. The RA4M3 Group offers a wide set of peripherals, including USB, CAN, ADC, capacitive touch, and additional
+security IP integration, making it suitable for industrial equipment, home appliances, office equipment, healthcare products,
+and meters.
+			</description>
+			<feature type="Timer" 				n="4"	m="32"			name="General PWM Timer (GPT32)"/>			
+			<feature type="Timer" 				n="4"	m="16"			name="General PWM Timer (GPT16)"/>
+			<feature type="Timer"      			n="6"	m="16"			name="Asynchronous General Purpose Timer (AGT)"/>
+			<feature type="RTC"     						   			name="Real Time CLock"/>
+			<feature type="WDT"					n="1"	m="14"			name="Watchdog Timer (WDT)"/>
+			<feature type="WDT"					n="1"	m="14"			name="Independent Watchdog Timer (IWDT)"/>	
+			<feature type="ComOther"			n="6"					name="Serial Communications Interface (SCI)"/>
+			<feature type="ComOther"			n="1"					name="Quad Serial Peripheral Interface (QSPI)"/>	
+			<feature type="ComOther"			n="1"					name="Serial Sound Interface Enhanced (SSIE)"/>
+			<feature type="ComOther"			n="1"					name="SD/MMC Host Interface (SDHI)"/>			
+			<feature type="I2C"					n="2"					name="I2C bus interface (IIC)"/>	
+			<feature type="SPI"					n="1"					name="Serial Peripheral Interface (SPI)"/>	
+			<feature type="CAN"					n="2"					name="Controller Area Network (CAN)"/>		
+			<feature type="ADC"					n="22"	m="12"			name="12-bit A/D Converter (ADC12)"/>	
+			<feature type="DAC"					n="2"	m="12"			name="12-bit D/A Converter (DAC12)"/>			
+			<feature type="TempSens"			n="1"					name="Temperature Sensor (TSN)"/>	
+			<feature type="Touch"				n="20"					name="Capacitive Touch Sensing Unit(CTSU)"/>		
+			<feature type="Crypto"				n="128"					name="AES128 Engine"/>	
+			<feature type="Crypto"				n="192"					name="AES192 Engine"/>	
+			<feature type="Crypto"				n="256"					name="AES256 Engine"/>	
+			<feature type="Crypto"				n="1024"				name="RSA1024 Engine"/>
+			<feature type="Crypto"				n="2048"				name="RSA2048 Engine"/>
+			<feature type="Crypto"				n="3072"				name="RSA3072 Engine"/>
+			<feature type="Crypto"				n="4096"				name="RSA4096 Engine"/>	
+			<feature type="Crypto"				n="1024.160"			name="DSA160 Engine"/>
+			<feature type="Crypto"				n="2048.224"			name="DSA224 Engine"/>
+			<feature type="Crypto"				n="2048.256"			name="DSA256 Engine"/>	
+			<feature type="Crypto"				n="192"					name="ECC NIST P192"/>				
+			<feature type="Crypto"				n="224"					name="ECC NIST P224"/>	
+			<feature type="Crypto"				n="256"					name="ECC NIST P256"/>	
+			<feature type="Crypto"				n="384"					name="ECC NIST P384"/>	
+			<feature type="Crypto"				n="256"					name="ECC Branpool 256"/>
+			<feature type="Crypto"				n="384"					name="ECC Branpool384"/>			
+			<feature type="Crypto"				n="512"					name="ECC Branpool 512"/>	
+			<feature type="Crypto"				n="384"					name="SHA 384"/>			
+			<feature type="Crypto"				n="224"					name="SHA 224"/>	
+			<feature type="RNG"											name="True Random Number Generator(TRNG)"/>				
+			<feature type="PLL"         		n="2"                   name="Internal PLL"/>
+			<feature type="VCC"         		n="2.7"   m="3.6"       name="Power Supply Voltage"/>
+			<feature type="Temp"        		n="-40"   m="105"       name="Operating Temperature Range"/>			
+			<feature type="QFP"        			n="144"           		name="LQFP (20 mm × 20 mm, 0.5 mm pitch)"/>
+			<feature type="QFP"        			n="100"           		name="LQFP (14 mm × 14 mm, 0.5 mm pitch)"/>
+			<feature type="QFP"        			n="64"           		name="LQFP (10 mm × 10 mm, 0.5 mm pitch)"/>			
+			<feature type="XTAL"        		m="100000000"           name="Maximum operating frequency"/>
+			<feature type="ClockOther"        		            		name="5 independant clock sources"/>
+			<feature type="DMA"        		    n="8"        			name="DMAC"/>
+			<feature type="USBD"       		    n="1"        			name="USB 2.0 Full-Speed Module (USBFS)"/>
+			<feature type="USBH"       		    n="1"        			name="USB 2.0 Full-Speed Module (USBFS)"/>					
+			<debug	svd="SVD/R7FA4M3AF.svd">
+			  <datapatch  __dp="0" __ap="0" address="0xE0040FCC" value="0x11" info="DEVTYPE"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FF0" value="0x0D" info="CIDR0"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FF4" value="0x90" info="CIDR1"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FF8" value="0x05" info="CIDR2"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FFC" value="0xB1" info="CIDR3"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FD0" value="0x04" info="PIDR4"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FD4" value="0x00" info="PIDR5"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FD8" value="0x00" info="PIDR6"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FDC" value="0x00" info="PIDR7"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FE0" value="0x21" info="PIDR0"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FE4" value="0xBD" info="PIDR1"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FE8" value="0x0B" info="PIDR2"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FEC" value="0x00" info="PIDR3 (ECOREVNUM)"/>
+            </debug>
+
+			<debugvars configfile="Debug/RA4M3.dbgconf">
+              __var TRCK_value      = 0x00000001;   // Trace Clock operating frequency /1
+            </debugvars>
+
+            <sequences>
+              <sequence name="EnableTraceClock">
+                <block>
+                  Write16( 0x4001E3FE, 0xA501 ) ;  // set PRCR, bit PRC0
+                  Write8( 0x4001E03F, 0x80 | TRCK_value ) ;  // set TRCKCR, bit TRCKEN and TRCK[]
+                  Write16( 0x4001E3FE, 0xA500 ) ;  // clear PRCR, bit PRC0
+                </block>
+              </sequence>
+
+              <sequence name="DebugDeviceUnlock">
+                <block>
+                  __var trace_enabled = ( __traceout &amp; 0x3 ) != 0 ; // TPIU or SWO Trace Selected?
+                </block>
+
+                <control if="trace_enabled">
+                  <block>
+                    Sequence("EnableTraceClock");
+                  </block>
+                </control>
+              </sequence>
+
+              <sequence name="ConfigureTraceTPIUPins">
+                <block>
+                  __var parallel_trace_port_size = ( __traceout &amp; 0x003F0000 ) &gt;&gt; 16 ;
+                  Write8( 0x40080D03, 0x00 ) ;  // clear PWPR, bit B0WI
+                  Write8( 0x40080D03, 0x40 ) ;  // set PWPR, bit PFSWE
+                  Write32( 0x400808B8, 0x1A010C00 ) ;  // P214: TCLK
+                </block>
+
+                <control if="parallel_trace_port_size &gt;= 1" info="TPIU port width 1">
+                  <block info="configure Trace I/O Enable + Trace Mode Synchronous 1 bit">
+                    Write32( 0x400808AC, 0x1A010C00 ) ;  // P211: TDATA0
+                  </block>
+                </control>
+                <control if="parallel_trace_port_size &gt;= 2" info="TPIU port width 2">
+                  <block info="configure Trace I/O Enable + Trace Mode Synchronous 2 bit">
+                    Write32( 0x400808A8, 0x1A010C00 ) ;  // P210: TDATA1
+                  </block>
+                </control>
+                <control if="parallel_trace_port_size &gt;= 4" info="TPIU port width 4">
+                  <block info="configure Trace I/O Enable + Trace Mode Synchronous 4 bit">
+                    Write32( 0x400808A4, 0x1A010C00 ) ;  // P209: TDATA2
+                    Write32( 0x400808A0, 0x1A010C00 ) ;  // P208: TDATA3
+                  </block>
+                </control>
+                <block>
+                  Write8( 0x40080D03, 0x00);  // clear PWPR, bit PFSWE
+                  Write8( 0x40080D03, 0x80);  // set PWPR, bit B0WI
+                </block>
+              </sequence>
+
+              <sequence name="TraceStart ">
+                <block>
+                  __var tpiu_trace_enabled = ( __traceout &amp; 0x2 ) != 0 ; // TPIU Trace Selected?
+                  Sequence( "EnableTraceClock" ) ;
+                </block>
+                <control if="tpiu_trace_enabled">
+                  <block>
+                    Sequence( "ConfigureTraceTPIUPins" ) ;
+                  </block>
+                </control>
+              </sequence>
+            </sequences>
+
+			<subFamily DsubFamily="RA4M3_1M">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x100000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x08000000" size="0x002000"/>
+				<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x000200"/>
+				<memory name="SRAM1"    access="rwx" start="0x20000000" size="0x020000" init   ="0" default="1"/>
+				<algorithm name="Flash/RA4M3_1M.FLM"            start="0x00000000" size="0x100000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA4M3_DATA_C1M.FLM"      start="0x08000000" size="0x002000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA4M3_CONF.FLM"          start="0x0100A100" size="0x000200" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<device Dname="R7FA4M3AF" />				
+			</subFamily>
+
+			<subFamily DsubFamily="RA4M3_768K">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x0C0000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x08000000" size="0x002000"/>
+				<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x000200"/>
+				<memory name="SRAM1"    access="rwx" start="0x20000000" size="0x020000" init   ="0" default="1"/>
+				<algorithm name="Flash/RA4M3_768K.FLM"          start="0x00000000" size="0x0C0000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA4M3_DATA_C768K.FLM"    start="0x08000000" size="0x002000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA4M3_CONF.FLM"          start="0x0100A100" size="0x000200" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<device Dname="R7FA4M3AE"/>
+			</subFamily>		
+
+			<subFamily DsubFamily="RA4M3_512K">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x080000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x08000000" size="0x002000"/>
+				<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x000200"/>
+				<memory name="SRAM1"    access="rwx" start="0x20000000" size="0x020000" init   ="0" default="1"/>
+				<algorithm name="Flash/RA4M3_512K.FLM"          start="0x00000000" size="0x080000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA4M3_DATA_C512K.FLM"    start="0x08000000" size="0x002000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA4M3_CONF.FLM"          start="0x0100A100" size="0x000200" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<device Dname="R7FA4M3AD" />
+			</subFamily>
+	
+		  </family>
+
+		<!-- RA4W1 Part number definitions -->
+
+		<family Dfamily="RA4W1 Series" Dvendor="Renesas:117">
+			<processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="SP_FPU" Dmpu="MPU" Ddsp="DSP" Dendian="Little-endian" Dclock="48000000" />
+			<description>
+The Renesas RA4W1 is the first Bluetooth® 5.0 Low Energy fully compliant with 2Mbit High-Throughput (HT) and Long Range support in a single chip MCU of Renesas RA4 product series for IoT applications that require a high-performance Arm® Cortex®-M4 core at a very attractive price point. 
+The RA4W1 is built on a highly efficient low power process and is supported by an open and flexible ecosystem concept, called Flexible Software Package (FSP), using FreeRTOS as base. 
+RA4W1 is geared towards IoT application requiring Security, large embedded RAM and low power consumption.
+
+Highlights
+-    48MHz Arm® Cortex®-M4
+-    512kB Flash Memory and 96kB SRAM
+-    8kB Data Flash to store data as in EEPROM
+-    7x7 mm QFN 56-pin package
+-    Capacitive touch sensing unit
+-    Segment LCD controller
+-    USB 2.0 Full Speed module supporting host and device mode
+-    CAN 2.0B
+-    SCI (UART, Simple SPI, Simple I2C)
+-    SPI/ I2C multimaster interface
+-    2.4 GHz radio with Bluetooth 5.0 Low Energy
+-    LE 1M, 2M, Coded PHY, and LE advertising extension
+-    Secure Crypto Engine (AES128 / 256, GHASH, TRNG)
+			</description>
+			<feature type="Timer" 				n="4"	m="32"			name="General PWM Timer (GPT)"/>			
+			<feature type="Timer" 				n="3"	m="16"			name="General PWM Timer (GPT)"/>
+			<feature type="Timer"      			n="2"	m="16"			name="Asynchronous General Purpose Timer (AGT)"/>
+			<feature type="WDT"					n="1"	m="14"			name="Watchdog Timer (WDT)"/>
+			<feature type="ComOther"			n="4"					name="Serial Communications Interface (SCI)"/>	
+			<feature type="I2C"					n="2"					name="I2C bus interface (IIC)"/>	
+			<feature type="SPI"					n="2"					name="Serial Peripheral Interface (SPI)"/>	
+			<feature type="CAN"					n="1"					name="Controller Area Network (CAN)"/>				
+			<feature type="ADC"					n="8"	m="14"			name="14-bit A/D Converter (ADC14)"/>				
+			<feature type="DAC"					n="1"	m="12"			name="12-bit D/A Converter (DAC12)"/>
+			<feature type="TempSens"			n="1"					name="Temperature Sensor (TSN)"/>	
+			<feature type="CoreOther"			n="1"					name="OPAMP"/>
+			<feature type="Touch"				n="11"					name="Capacitive Touch Sensing Unit(CTSU)"/>
+			<feature type="CoreOther"			n="1"					name="Cyclic Redundancy Check (CRC) calculator"/>			
+			<feature type="CoreOther"			n="1"					name="Data Operation Circuit (DOC)"/>
+			<feature type="Crypto"				n="128"					name="AES128 Engine"/>	
+			<feature type="Crypto"				n="256"					name="AES256 Engine"/>	
+			<feature type="RNG"											name="True Random Number Generator(TRNG)"/>			
+			<feature type="Memory"				n="512"					name="Code Flash KB"/>
+			<feature type="Memory"				n="96"					name="SRAM KB"/>
+			<feature type="Memory"				n="8"					name="Data Flash KB"/>			
+			<feature type="PLL"         		n="1"                   name="Internal PLL"/>
+			<feature type="VCC"         		n="1.8"   m="3.6"       name="Power Supply Voltage"/>
+			<feature type="Temp"        		n="-40"   m="85"       	name="Operating Temperature Range"/>
+			<feature type="QFN"        			n="56"            		name="Quad-Flat No-leads"/>
+			<feature type="XTAL"        		m="48000000"            name="Maximum operating frequency"/>
+			<feature type="PLL"        		            				name="5 internal PLLs"/>
+			<feature type="USBD"       		    n="1"        			name="USB Device "/>
+			<feature type="DMA"        		    n="4"        			name="DMAC"/>
+			<feature type="LCD"       		    n="1"	m="9.4"			name="Segment LCD COntroller (LCDC)"/>				
+			<debug	svd="SVD/R7FA4W1AD.svd"/>
+			
+			<subFamily DsubFamily="RA4W1_512K">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x080000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x40100000" size="0x002000"/>
+				<memory name="ConfigROM" access="r"  start="0x01010000" size="0x34"/>
+				<memory name="SRAM1"    access="rwx" start="0x20000000" size="0x008000" init   ="0" default="1"/>
+				<algorithm name="Flash/RA4W1_512K.FLM"          start="0x00000000" size="0x080000" RAMstart="0x20000000" RAMsize="0x2800" default="1"/>
+				<algorithm name="Flash/RA4W1_DATA.FLM"    		start="0x40100000" size="0x002000" RAMstart="0x20000000" RAMsize="0x2800" default="1"/>
+				<algorithm name="Flash/RA4W1_CONF.FLM"          start="0x01010000" size="0x000034" RAMstart="0x20000000" RAMsize="0x2800" default="1"/>
+				<device Dname="R7FA4W1AD"/>
+			</subFamily>			
+		</family>
+
+		<!-- RA4E1 Part number definitions -->
+
+		<family Dfamily="RA4E1 Series" Dvendor="Renesas:117">
+
+			<processor Dcore="Cortex-M33" DcoreVersion="r0p4-00rel0" Dtz="TZ" Dfpu="SP_FPU" Dmpu="MPU" Ddsp="DSP" Dendian="Little-endian" Dclock="100000000" />
+			<description>
+The MCU integrates multiple series of software-compatible Arm®-based 32-bit cores that share a common set of Renesas
+peripherals to facilitate design scalability and efficient platform-based product development.
+The MCU in this series incorporates a high-performance Arm Cortex®-M33 core running up to 100 MHz with the following
+features:
+- Up to 512 KB code flash memory
+- 128 KB SRAM
+- Quad Serial Peripheral Interface (QSPI)
+- USBFS
+- Analog peripherals
+- Security and safety features
+
+			</description> 
+			<feature type="Timer" 				n="4"	m="32"			name="General PWM Timer (GPT32)"/>			
+			<feature type="Timer" 				n="6"	m="16"			name="General PWM Timer (GPT16)"/>
+			<feature type="Timer"      			n="6"	m="16"			name="Asynchronous General Purpose Timer (AGT)"/>
+			<feature type="RTC"     						   			name="Real Time CLock"/>
+			<feature type="WDT"					n="1"	m="14"			name="Watchdog Timer (WDT)"/>
+			<feature type="WDT"					n="1"	m="14"			name="Independent Watchdog Timer (IWDT)"/>	
+			<feature type="CAN" 				n="2" 					name="CAN FD Controller"/>
+			<feature type="ComOther"			n="10"					name="Serial Communications Interface (SCI)"/>
+			<feature type="ComOther"			n="1"					name="Quad Serial Peripheral Interface (QSPI)"/>	
+			<feature type="ComOther"			n="1"					name="Octa Serial Peripheral Interface (OSPI)"/>
+			<feature type="ComOther"			n="1"					name="Serial Communications Interface (IrDA)"/>	
+			<feature type="ComOther"			n="1"					name="Serial Sound Interface Enhanced (SSIE)"/>
+			<feature type="ComOther"			n="1"					name="SD/MMC Host Interface (SDHI)"/>			
+			<feature type="I2C"					n="2"					name="I2C bus interface (IIC)"/>	
+			<feature type="SPI"					n="2"					name="Serial Peripheral Interface (SPI)"/>	
+			<feature type="CAN"					n="2"					name="Controller Area Network (CAN)"/>		
+			<feature type="ADC"					n="22"	m="12"			name="12-bit A/D Converter (ADC12)"/>	
+			<feature type="DAC"					n="2"	m="12"			name="12-bit D/A Converter (DAC12)"/>			
+			<feature type="TempSens"			n="1"					name="Temperature Sensor (TSN)"/>	
+			<feature type="Touch"				n="20"					name="Capacitive Touch Sensing Unit(CTSU)"/>		
+			<feature type="Crypto"				n="128"					name="AES128 Engine"/>	
+			<feature type="Crypto"				n="192"					name="AES192 Engine"/>	
+			<feature type="Crypto"				n="256"					name="AES256 Engine"/>	
+			<feature type="Crypto"				n="1024"				name="RSA1024 Engine"/>
+			<feature type="Crypto"				n="2048"				name="RSA2048 Engine"/>
+			<feature type="Crypto"				n="3072"				name="RSA3072 Engine"/>
+			<feature type="Crypto"				n="4096"				name="RSA4096 Engine"/>	
+			<feature type="Crypto"				n="1024.160"			name="DSA160 Engine"/>
+			<feature type="Crypto"				n="2048.224"			name="DSA224 Engine"/>
+			<feature type="Crypto"				n="2048.256"			name="DSA256 Engine"/>	
+			<feature type="Crypto"				n="192"					name="ECC NIST P192"/>				
+			<feature type="Crypto"				n="224"					name="ECC NIST P224"/>	
+			<feature type="Crypto"				n="256"					name="ECC NIST P256"/>	
+			<feature type="Crypto"				n="384"					name="ECC NIST P384"/>	
+			<feature type="Crypto"				n="256"					name="ECC Branpool 256"/>
+			<feature type="Crypto"				n="384"					name="ECC Branpool384"/>			
+			<feature type="Crypto"				n="512"					name="ECC Branpool 512"/>	
+			<feature type="Crypto"				n="384"					name="SHA 384"/>			
+			<feature type="Crypto"				n="224"					name="SHA 224"/>	
+			<feature type="RNG"											name="True Random Number Generator(TRNG)"/>				
+			<feature type="PLL"         		n="2"                   name="Internal PLL"/>
+			<feature type="VCC"         		n="2.7"   m="3.6"       name="Power Supply Voltage"/>
+			<feature type="Temp"        		n="-40"   m="105"       name="Operating Temperature Range"/>			
+			<feature type="QFP"        			n="144"           		name="LQFP (20 mm × 20 mm, 0.5 mm pitch)"/>
+			<feature type="QFP"        			n="100"           		name="LQFP (14 mm × 14 mm, 0.5 mm pitch)"/>
+			<feature type="QFP"        			n="64"           		name="LQFP (10 mm × 10 mm, 0.5 mm pitch)"/>			
+			<feature type="XTAL"        		m="200000000"           name="Maximum operating frequency"/>
+			<feature type="ClockOther"        		            		name="5 independant clock sources"/>
+			<feature type="DMA"        		    n="8"        			name="DMAC"/>
+			<feature type="USBD"       		    n="1"        			name="USB 2.0 Full-Speed Module (USBFS)"/>
+			<feature type="USBH"       		    n="1"        			name="USB 2.0 Full-Speed Module (USBFS)"/>
+			<feature type="ETH"       		    n="1"        			name="Ethernet MAC/DMA Controller (ETHERC/EDMAC)"/>			            				
+			<debug	svd="SVD/R7FA4E10D.svd"/>
+
+			<subFamily DsubFamily="RA4E1_512K">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x080000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x08000000" size="0x002000"/>
+				<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x000200"/>
+				<memory name="SRAM1"    access="rwx" start="0x20000000" size="0x020000" init   ="0" default="1"/>
+				<algorithm name="Flash/RA4E1_512K.FLM"          start="0x00000000" size="0x080000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA4E1_DATA_C512K.FLM"    start="0x08000000" size="0x002000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA4E1_CONF.FLM"          start="0x0100A100" size="0x000200" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<device Dname="R7FA4E10D"/>	
+			</subFamily>			
+		
+			<subFamily DsubFamily="RA4E1_256K">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x040000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x08000000" size="0x002000"/>
+				<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x000200"/>
+				<memory name="SRAM1"    access="rwx" start="0x20000000" size="0x020000" init   ="0" default="1"/>
+				<algorithm name="Flash/RA4E1_256K.FLM"          start="0x00000000" size="0x040000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA4E1_DATA_C256K.FLM"    start="0x08000000" size="0x002000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA4E1_CONF.FLM"          start="0x0100A100" size="0x000200" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<device Dname="R7FA4E10B"/>
+			</subFamily>			
+		</family>	
+
+	    <!-- RA6M1 Part number definitions -->
+
+		<family Dfamily="RA6M1 Series" Dvendor="Renesas:117">
+			<processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="SP_FPU" Dmpu="MPU" Ddsp="DSP" Dendian="Little-endian" Dclock="120000000" />
+			<description>
+The Renesas RA6M1 microcontroller is the entry point to the Renesas RA6 product series for applications that require a high-performance Arm® Cortex®-M4 core at a very attractive price point. 
+The RA6M1 is built on a highly efficient 40nm process and is supported by an open and flexible ecosystem concept—the Flexible Software Package (FSP), built on FreeRTOS—and is expandable to use other RTOSes 
+and middleware. 
+The RA6M1 is suitable for IoT applications requiring security, large embedded RAM and low power consumption.
+
+Applications
+
+- Security (fire detection, burglar detection, panel control)
+- Metering (electricity, automated meter reading)
+- Industry (robotics, door openers, sewing machines, vending machines, UPS)
+- HVAC (heating, air conditioning, boiler control)
+- General purpose
+
+			</description>
+			<feature type="Timer" 				n="4"	m="32"			name="General PWM Timer (GPT32EH)"/>			
+			<feature type="Timer" 				n="4"	m="32"			name="General PWM Timer (GPT32E)"/>
+			<feature type="Timer" 				n="5"	m="32"			name="General PWM Timer (GPT32)"/>
+			<feature type="Timer"      			n="2"	m="16"			name="Asynchronous General Purpose Timer (AGT)"/>
+			<feature type="RTC"     						   			name="Real Time CLock"/>
+			<feature type="WDT"					n="1"	m="14"			name="Watchdog Timer (WDT)"/>
+			<feature type="WDT"					n="1"	m="14"			name="Independent Watchdog Timer (IWDT)"/>	
+			<feature type="ComOther"			n="7"					name="Serial Communications Interface (SCI)"/>	
+			<feature type="ComOther"			n="1"					name="Serial Communications Interface (IrDA)"/>	
+			<feature type="I2C"					n="2"					name="I2C bus interface (IIC)"/>	
+			<feature type="SPI"					n="2"					name="Serial Peripheral Interface (SPI)"/>	
+			<feature type="CAN"					n="2"					name="Controller Area Network (CAN)"/>				
+			<feature type="ADC"					n="19"	m="12"			name="12-bit A/D Converter (ADC12)"/>	
+			<feature type="DAC"					n="1"	m="12"			name="12-bit D/A Converter (DAC12)"/>			
+			<feature type="TempSens"			n="1"					name="Temperature Sensor (TSN)"/>	
+			<feature type="CoreOther"			n="6"					name="High-Speed Analog Comparator(ACMPHS)"/>			
+			<feature type="Touch"				n="12"					name="Capacitive Touch Sensing Unit(CTSU)"/>
+			<feature type="CoreOther"			n="1"					name="Cyclic Redundancy Check (CRC) calculator"/>			
+			<feature type="CoreOther"			n="1"					name="Data Operation Circuit (DOC)"/>
+			<feature type="Crypto"				n="128"					name="AES128 Engine"/>	
+			<feature type="Crypto"				n="192"					name="AES192 Engine"/>	
+			<feature type="Crypto"				n="256"					name="AES256 Engine"/>	
+			<feature type="Crypto"				n="192"					name="3DES Engine"/>
+			<feature type="Crypto"				n="2018"				name="ARC4 Engine"/>			
+			<feature type="RNG"											name="True Random Number Generator(TRNG)"/>			
+			<feature type="Memory"				n="256"					name="Code Flash Kbytes"/>
+			<feature type="Memory"				n="32"					name="SRAM Kbytes"/>
+			<feature type="Memory"				n="8"					name="Data Flash Kbytes"/>			
+			<feature type="PLL"         		n="1"                   name="Internal PLL"/>
+			<feature type="VCC"         		n="1.6"   m="5.5"       name="Power Supply Voltage"/>
+			<feature type="Temp"        		n="-40"   m="105"       name="Operating Temperature Range"/>
+			<feature type="QFP"        			n="100.64"           	name="Leadless Quad Flat Pack (LQFP)"/>
+			<feature type="QFN"        			n="64"            		name="Quad-Flat No-leads"/>
+			<feature type="XTAL"        		m="120000000"           name="Maximum operating frequency"/>
+			<feature type="PLL"        		            				name="5 internal PLLs"/>
+			<feature type="DMA"        		    n="8"        			name="DMAC"/>
+			<feature type="USBD"       		    n="1"        			name="USB Device "/>
+			<feature type="USBH"       		    n="1"        			name="USB Host"/>					
+			<debug	svd="SVD/R7FA6M1AD.svd"/>
+
+			<subFamily DsubFamily="RA6M1_512K">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x080000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x40100000" size="0x002000"/>
+				<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x80"/>
+				<memory name="SRAM1"    access="rwx" start="0x1FFE0000" size="0x020000" init   ="0" default="0"/>
+				<memory name="SRAM2"    access="rwx" start="0x20000000" size="0x020000" init   ="0" default="1"/>
+				<algorithm name="Flash/RA6M1_512K.FLM"          start="0x00000000" size="0x080000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA6M1_DATA.FLM"          start="0x40100000" size="0x002000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA6M1_CONF.FLM"          start="0x0100A100" size="0x000080" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<device Dname="R7FA6M1AD"/>	
+			</subFamily>			
+			</family>
+	
+		<!-- RA6M2 Part number definitions -->
+
+		<family Dfamily="RA6M2 Series" Dvendor="Renesas:117">
+			<processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="SP_FPU" Dmpu="MPU" Ddsp="DSP" Dendian="Little-endian" Dclock="120000000" />
+			<description>
+The Renesas RA6M2 group of microcontrollers (MCUs) uses the high-performance Arm® Cortex®-M4 core and offers Ethernet MAC with individual DMA, to ensure high data throughput. 
+The RA6M2 is built on a highly efficient 40nm process and is supported by an open and flexible ecosystem concept—the Flexible Software Package (FSP), built on FreeRTOS—and is expandable to use other 
+RTOSes and middleware. 
+The RA6M2 is suitable for IoT applications requiring Ethernet, security, large embedded RAM, and low active power consumption.
+
+
+Applications
+
+- Wired Ethernet applications
+- Security (fire detection, burglar detection, panel control)
+- Metering (electricity, automated meter reading)
+- Industry (robotics, door openers, sewing machines, vending machines, UPS)
+- HVAC (heating, air conditioning, boiler control)
+- General purpose
+
+			</description>
+			<feature type="Timer" 				n="4"	m="32"			name="General PWM Timer (GPT32EH)"/>			
+			<feature type="Timer" 				n="4"	m="32"			name="General PWM Timer (GPT32E)"/>
+			<feature type="Timer" 				n="6"	m="32"			name="General PWM Timer (GPT32)"/>
+			<feature type="Timer"      			n="2"	m="16"			name="Asynchronous General Purpose Timer (AGT)"/>
+			<feature type="RTC"     						   			name="Real Time CLock"/>
+			<feature type="WDT"					n="1"	m="14"			name="Watchdog Timer (WDT)"/>
+			<feature type="WDT"					n="1"	m="14"			name="Independent Watchdog Timer (IWDT)"/>	
+			<feature type="ComOther"			n="10"					name="Serial Communications Interface (SCI)"/>	
+			<feature type="ComOther"			n="1"					name="Serial Communications Interface (IrDA)"/>	
+			<feature type="I2C"					n="2"					name="I2C bus interface (IIC)"/>	
+			<feature type="SPI"					n="2"					name="Serial Peripheral Interface (SPI)"/>	
+			<feature type="CAN"					n="2"					name="Controller Area Network (CAN)"/>				
+			<feature type="ADC"					n="22"	m="12"			name="12-bit A/D Converter (ADC12)"/>	
+			<feature type="DAC"					n="2"	m="12"			name="12-bit D/A Converter (DAC12)"/>			
+			<feature type="TempSens"			n="1"					name="Temperature Sensor (TSN)"/>	
+			<feature type="CoreOther"			n="6"					name="High-Speed Analog Comparator(ACMPHS)"/>			
+			<feature type="Touch"				n="18"					name="Capacitive Touch Sensing Unit(CTSU)"/>
+			<feature type="CoreOther"			n="1"					name="Cyclic Redundancy Check (CRC) calculator"/>			
+			<feature type="CoreOther"			n="1"					name="Data Operation Circuit (DOC)"/>
+			<feature type="Crypto"				n="128"					name="AES128 Engine"/>	
+			<feature type="Crypto"				n="192"					name="AES192 Engine"/>	
+			<feature type="Crypto"				n="256"					name="AES256 Engine"/>	
+			<feature type="Crypto"				n="192"					name="3DES Engine"/>
+			<feature type="Crypto"				n="2018"				name="ARC4 Engine"/>			
+			<feature type="RNG"											name="True Random Number Generator(TRNG)"/>			
+			<feature type="PLL"         		n="1"                   name="Internal PLL"/>
+			<feature type="VCC"         		n="1.6"   m="5.5"       name="Power Supply Voltage"/>
+			<feature type="Temp"        		n="-40"   m="105"       name="Operating Temperature Range"/>
+			<feature type="QFP"        			n="14.100"           	name="Leadless Quad Flat Pack (LQFP)"/>
+			<feature type="XTAL"        		m="120000000"           name="Maximum operating frequency"/>
+			<feature type="PLL"        		            				name="5 internal PLLs"/>
+			<feature type="DMA"        		    n="8"        			name="DMAC"/>
+			<feature type="USBD"       		    n="1"        			name="USB Device "/>
+			<feature type="USBH"       		    n="1"        			name="USB Host"/>
+			<feature type="ETH"       		    n="1"        			name="Ethernet controller"/>							
+			<debug	svd="SVD/R7FA6M2AF.svd"/>
+
+
+			<subFamily DsubFamily="RA6M2_1M">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x100000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x40100000" size="0x008000"/>
+				<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x80"/>
+				<memory name="SRAM1"    access="rwx" start="0x1FFE0000" size="0x020000" init   ="0" default="0"/>
+				<memory name="SRAM2"    access="rwx" start="0x20000000" size="0x040000" init   ="0" default="1"/>
+				<algorithm name="Flash/RA6M2_1M.FLM"            start="0x00000000" size="0x100000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA6M2_DATA_C1M.FLM"      start="0x40100000" size="0x008000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA6M2_CONF.FLM"          start="0x0100A100" size="0x000080" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<device Dname="R7FA6M2AF"/>	
+			</subFamily>			
+
+			<subFamily DsubFamily="RA6M2_512K">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x080000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x40100000" size="0x008000"/>
+				<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x80"/>
+				<memory name="SRAM1"    access="rwx" start="0x1FFE0000" size="0x020000" init   ="0" default="0"/>
+				<memory name="SRAM2"    access="rwx" start="0x20000000" size="0x040000" init   ="0" default="1"/>
+				<algorithm name="Flash/RA6M2_512K.FLM"          start="0x00000000" size="0x080000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA6M2_DATA_C512K.FLM"    start="0x40100000" size="0x008000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA6M2_CONF.FLM"          start="0x0100A100" size="0x000080" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<device Dname="R7FA6M2AD"/>
+			</subFamily>
+		</family>
+
+	    <!-- RA6M3 Part number definitions -->
+
+		<family Dfamily="RA6M3 Series" Dvendor="Renesas:117">
+			<processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="SP_FPU" Dmpu="MPU" Ddsp="DSP" Dendian="Little-endian" Dclock="120000000" />
+			<description>
+The Renesas RA6M3 group of microcontrollers (MCUs) uses the high-performance Arm® Cortex®-M4 core and offers a TFT controller with 2D accelerator and JPEG decoder. 
+Additionally, the RA6M3 MCU offers Ethernet MAC with individual DMA and USB high-speed interface to ensure high data throughput. 
+The RA6M3 MCU is built on a highly efficient 40nm process and is supported by an open and flexible ecosystem concept—the Flexible Software Package (FSP), built on FreeRTOS—and is expandable to use other RTOSes and middleware. 
+The RA6M3 is suitable for IoT applications requiring TFT, Ethernet, security, large embedded RAM, and USB High Speed (HS).
+
+Applications
+
+- HMI (small/mid size TFT)
+- Applications with demand for High Speed USB and wired Ethernet applications
+- Security (fire detection, burglar detection, panel control)
+- Industry (robotics, door openers, sewing machines, vending machines, UPS)
+- HVAC (heating, air conditioning, boiler control)
+- General purpose
+
+			</description> 
+			<feature type="Timer" 				n="4"	m="32"			name="General PWM Timer (GPT32EH)"/>			
+			<feature type="Timer" 				n="4"	m="32"			name="General PWM Timer (GPT32E)"/>
+			<feature type="Timer" 				n="6"	m="32"			name="General PWM Timer (GPT32)"/>
+			<feature type="Timer"      			n="2"	m="16"			name="Asynchronous General Purpose Timer (AGT)"/>
+			<feature type="RTC"     						   			name="Real Time CLock"/>
+			<feature type="WDT"					n="1"	m="14"			name="Watchdog Timer (WDT)"/>
+			<feature type="WDT"					n="1"	m="14"			name="Independent Watchdog Timer (IWDT)"/>	
+			<feature type="ComOther"			n="10"					name="Serial Communications Interface (SCI)"/>	
+			<feature type="ComOther"			n="1"					name="Serial Communications Interface (IrDA)"/>	
+			<feature type="I2C"					n="3"					name="I2C bus interface (IIC)"/>	
+			<feature type="SPI"					n="2"					name="Serial Peripheral Interface (SPI)"/>	
+			<feature type="CAN"					n="2"					name="Controller Area Network (CAN)"/>				
+			<feature type="ADC"					n="24"	m="12"			name="12-bit A/D Converter (ADC12)"/>	
+			<feature type="DAC"					n="2"	m="12"			name="12-bit D/A Converter (DAC12)"/>			
+			<feature type="TempSens"			n="1"					name="Temperature Sensor (TSN)"/>	
+			<feature type="CoreOther"			n="6"					name="High-Speed Analog Comparator(ACMPHS)"/>			
+			<feature type="Touch"				n="18"					name="Capacitive Touch Sensing Unit(CTSU)"/>
+			<feature type="CoreOther"			n="1"					name="Cyclic Redundancy Check (CRC) calculator"/>			
+			<feature type="CoreOther"			n="1"					name="Data Operation Circuit (DOC)"/>
+			<feature type="Crypto"				n="128"					name="AES128 Engine"/>	
+			<feature type="Crypto"				n="192"					name="AES192 Engine"/>	
+			<feature type="Crypto"				n="256"					name="AES256 Engine"/>	
+			<feature type="Crypto"				n="192"					name="3DES Engine"/>
+			<feature type="Crypto"				n="2018"				name="ARC4 Engine"/>			
+			<feature type="RNG"											name="True Random Number Generator(TRNG)"/>			
+			<feature type="PLL"         		n="1"                   name="Internal PLL"/>
+			<feature type="VCC"         		n="1.6"   m="5.5"       name="Power Supply Voltage"/>
+			<feature type="Temp"        		n="-40"   m="105"       name="Operating Temperature Range"/>
+			<feature type="QFP"        			n="14.100"           	name="Leadless Quad Flat Pack (LQFP)"/>
+			<feature type="XTAL"        		m="120000000"           name="Maximum operating frequency"/>
+			<feature type="PLL"        		            				name="5 internal PLLs"/>
+			<feature type="DMA"        		    n="8"        			name="DMAC"/>
+			<feature type="USBD"       		    n="1"        			name="USB Device "/>
+			<feature type="USBH"       		    n="1"        			name="USB Host"/>
+			<feature type="ETH"       		    n="1"        			name="Ethernet controller (IEEE1588)"/>				
+			<feature type="GLCD"       		    n="1"	   				name="Graphics LCD Controller (GLCDC)"/>		  		
+			<debug	svd="SVD/R7FA6M3AH.svd"/>
+
+			<subFamily DsubFamily="RA6M3_2M">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x200000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x40100000" size="0x010000"/>
+				<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x80"/>
+				<memory name="SRAM1"    access="rwx" start="0x1FFE0000" size="0x020000" init   ="0" default="0"/>
+				<memory name="SRAM2"    access="rwx" start="0x20000000" size="0x080000" init   ="0" default="1"/>
+				<algorithm name="Flash/RA6M3_2M.FLM"            start="0x00000000" size="0x200000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA6M3_DATA_C2M.FLM"      start="0x40100000" size="0x010000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA6M3_CONF.FLM"          start="0x0100A100" size="0x000080" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<device Dname="R7FA6M3AH"/>
+			</subFamily>			
+
+			<subFamily DsubFamily="RA6M3_1M">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x100000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x40100000" size="0x010000"/>
+				<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x80"/>
+				<memory name="SRAM1"    access="rwx" start="0x1FFE0000" size="0x020000" init   ="0" default="0"/>
+				<memory name="SRAM2"    access="rwx" start="0x20000000" size="0x080000" init   ="0" default="1"/>
+				<algorithm name="Flash/RA6M3_1M.FLM"            start="0x00000000" size="0x100000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA6M3_DATA_C1M.FLM"      start="0x40100000" size="0x010000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA6M3_CONF.FLM"          start="0x0100A100" size="0x000080" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<device Dname="R7FA6M3AF"/>
+			</subFamily>
+
+		</family>
+
+	    <!-- RA6M4 Part number definitions -->
+
+		<family Dfamily="RA6M4 Series" Dvendor="Renesas:117">
+			<processor Dcore="Cortex-M33" DcoreVersion="r0p0" Dfpu="SP_FPU" Dmpu="MPU" Ddsp="DSP" Dtz="TZ" Dendian="Little-endian" Dclock="120000000" />
+			<description>
+The Renesas RA6M4 microcontroller.
+
+			</description>
+			<feature type="Timer" 				n="4"	m="32"			name="General PWM Timer (GPT32EH)"/>			
+			<feature type="Timer" 				n="4"	m="32"			name="General PWM Timer (GPT32E)"/>
+			<feature type="Timer" 				n="5"	m="32"			name="General PWM Timer (GPT32)"/>
+			<feature type="Timer"      			n="2"	m="16"			name="Asynchronous General Purpose Timer (AGT)"/>
+			<feature type="RTC"     						   			name="Real Time CLock"/>
+			<feature type="WDT"					n="1"	m="14"			name="Watchdog Timer (WDT)"/>
+			<feature type="WDT"					n="1"	m="14"			name="Independent Watchdog Timer (IWDT)"/>	
+			<feature type="ComOther"			n="7"					name="Serial Communications Interface (SCI)"/>	
+			<feature type="ComOther"			n="1"					name="Serial Communications Interface (IrDA)"/>	
+			<feature type="I2C"					n="2"					name="I2C bus interface (IIC)"/>	
+			<feature type="SPI"					n="2"					name="Serial Peripheral Interface (SPI)"/>	
+			<feature type="CAN"					n="2"					name="Controller Area Network (CAN)"/>				
+			<feature type="ADC"					n="19"	m="12"			name="12-bit A/D Converter (ADC12)"/>	
+			<feature type="DAC"					n="1"	m="12"			name="12-bit D/A Converter (DAC12)"/>			
+			<feature type="TempSens"			n="1"					name="Temperature Sensor (TSN)"/>	
+			<feature type="CoreOther"			n="6"					name="High-Speed Analog Comparator(ACMPHS)"/>			
+			<feature type="Touch"				n="12"					name="Capacitive Touch Sensing Unit(CTSU)"/>
+			<feature type="CoreOther"			n="1"					name="Cyclic Redundancy Check (CRC) calculator"/>			
+			<feature type="CoreOther"			n="1"					name="Data Operation Circuit (DOC)"/>
+			<feature type="Crypto"				n="128"					name="AES128 Engine"/>	
+			<feature type="Crypto"				n="192"					name="AES192 Engine"/>	
+			<feature type="Crypto"				n="256"					name="AES256 Engine"/>	
+			<feature type="Crypto"				n="192"					name="3DES Engine"/>
+			<feature type="Crypto"				n="2018"				name="ARC4 Engine"/>			
+			<feature type="RNG"											name="True Random Number Generator(TRNG)"/>			
+			<feature type="Memory"				n="256"					name="Code Flash Kbytes"/>
+			<feature type="Memory"				n="32"					name="SRAM Kbytes"/>
+			<feature type="Memory"				n="8"					name="Data Flash Kbytes"/>			
+			<feature type="PLL"         		n="1"                   name="Internal PLL"/>
+			<feature type="VCC"         		n="1.6"   m="5.5"       name="Power Supply Voltage"/>
+			<feature type="Temp"        		n="-40"   m="105"       name="Operating Temperature Range"/>
+			<feature type="QFP"        			n="100.64"           	name="Leadless Quad Flat Pack (LQFP)"/>
+			<feature type="QFN"        			n="64"            		name="Quad-Flat No-leads"/>
+			<feature type="XTAL"        		m="120000000"           name="Maximum operating frequency"/>
+			<feature type="PLL"        		            				name="5 internal PLLs"/>
+			<feature type="DMA"        		    n="8"        			name="DMAC"/>
+			<feature type="USBD"       		    n="1"        			name="USB Device "/>
+			<feature type="USBH"       		    n="1"        			name="USB Host"/>					
+			<debug	svd="SVD/R7FA6M4AF.svd">
+			  <datapatch  __dp="0" __ap="0" address="0xE0040FCC" value="0x11" info="DEVTYPE"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FF0" value="0x0D" info="CIDR0"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FF4" value="0x90" info="CIDR1"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FF8" value="0x05" info="CIDR2"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FFC" value="0xB1" info="CIDR3"/>       
+              <datapatch  __dp="0" __ap="0" address="0xE0040FD0" value="0x04" info="PIDR4"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FD4" value="0x00" info="PIDR5"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FD8" value="0x00" info="PIDR6"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FDC" value="0x00" info="PIDR7"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FE0" value="0x21" info="PIDR0"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FE4" value="0xBD" info="PIDR1"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FE8" value="0x0B" info="PIDR2"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FEC" value="0x00" info="PIDR3 (ECOREVNUM)"/>
+            </debug>
+
+			<debugvars configfile="Debug/RA6M4.dbgconf">
+              __var TRCK_value      = 0x00000001;   // Trace Clock operating frequency /1
+            </debugvars>
+
+            <sequences>
+              <sequence name="EnableTraceClock">
+                <block>
+                  Write16( 0x4001E3FE, 0xA501 ) ;  // set PRCR, bit PRC0
+                  Write8( 0x4001E03F, 0x80 | TRCK_value ) ;  // set TRCKCR, bit TRCKEN and TRCK[]
+                  Write16( 0x4001E3FE, 0xA500 ) ;  // clear PRCR, bit PRC0
+                </block>
+              </sequence>
+
+              <sequence name="DebugDeviceUnlock">
+                <block>
+                  __var trace_enabled = ( __traceout &amp; 0x3 ) != 0 ; // TPIU or SWO Trace Selected?
+                </block>
+
+                <control if="trace_enabled">
+                  <block>
+                    Sequence("EnableTraceClock");
+                  </block>
+                </control>
+              </sequence>
+
+              <sequence name="ConfigureTraceTPIUPins">
+                <block>
+                  __var parallel_trace_port_size = ( __traceout &amp; 0x003F0000 ) &gt;&gt; 16 ;
+                  Write8( 0x40080D03, 0x00 ) ;  // clear PWPR, bit B0WI
+                  Write8( 0x40080D03, 0x40 ) ;  // set PWPR, bit PFSWE
+                  Write32( 0x400808B8, 0x1A010C00 ) ;  // P214: TCLK
+                </block>
+
+                <control if="parallel_trace_port_size &gt;= 1" info="TPIU port width 1">
+                  <block info="configure Trace I/O Enable + Trace Mode Synchronous 1 bit">
+                    Write32( 0x400808AC, 0x1A010C00 ) ;  // P211: TDATA0
+                  </block>
+                </control>
+                <control if="parallel_trace_port_size &gt;= 2" info="TPIU port width 2">
+                  <block info="configure Trace I/O Enable + Trace Mode Synchronous 2 bit">
+                    Write32( 0x400808A8, 0x1A010C00 ) ;  // P210: TDATA1
+                  </block>
+                </control>
+                <control if="parallel_trace_port_size &gt;= 4" info="TPIU port width 4">
+                  <block info="configure Trace I/O Enable + Trace Mode Synchronous 4 bit">
+                    Write32( 0x400808A4, 0x1A010C00 ) ;  // P209: TDATA2
+                    Write32( 0x400808A0, 0x1A010C00 ) ;  // P208: TDATA3
+                  </block>
+                </control>
+                <block>
+                  Write8( 0x40080D03, 0x00);  // clear PWPR, bit PFSWE
+                  Write8( 0x40080D03, 0x80);  // set PWPR, bit B0WI
+                </block>
+              </sequence>
+
+              <sequence name="TraceStart ">
+                <block>
+                  __var tpiu_trace_enabled = ( __traceout &amp; 0x2 ) != 0 ; // TPIU Trace Selected?
+                  Sequence( "EnableTraceClock" ) ;
+                </block>
+                <control if="tpiu_trace_enabled">
+                  <block>
+                    Sequence( "ConfigureTraceTPIUPins" ) ;
+                  </block>
+                </control>
+              </sequence>
+            </sequences>
+
+			<subFamily DsubFamily="RA6M4_1M">
+				<device Dname="R7FA6M4AF">
+					<memory name="Flash"     access="rx" start="0x00000000" size="0x100000" startup="1" default="1"/>
+					<memory name="DataFlash" access="r"  start="0x08000000" size="0x002000"/>
+					<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x200"/>
+					<memory name="SRAM1"    access="rwx" start="0x20000000" size="0x040000" init   ="0" default="1"/>
+					<algorithm name="Flash/RA6M4_1M.FLM"            start="0x00000000" size="0x100000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+					<algorithm name="Flash/RA6M4_DATA_C1M.FLM"      start="0x08000000" size="0x002000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+					<algorithm name="Flash/RA6M4_CONF.FLM"          start="0x0100A100" size="0x000200" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				</device>
+				
+				<device Dname="R7FA6M4AF_dual">
+					<memory name="Flash_Lower"           access="rx"        start="0"          size="0x080000" startup="1" default="1"/>
+					<memory name="Flash_Upper"           access="rx"        start="0x00200000" size="0x080000"/>
+					<memory name="DataFlash" access="r"  start="0x08000000" size="0x002000"/>
+					<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x200"/>
+					<memory name="SRAM1"    access="rwx" start="0x20000000" size="0x040000" init   ="0" default="1"/>
+					<algorithm name="Flash/RA6M4_1M_DL.FLM"         start="0x00000000" size="0x080000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+					<algorithm name="Flash/RA6M4_1M_DU.FLM"         start="0x00200000" size="0x080000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+					<algorithm name="Flash/RA6M4_DATA_C1M_D.FLM"    start="0x08000000" size="0x002000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+					<algorithm name="Flash/RA6M4_CONF.FLM"          start="0x0100A100" size="0x000200" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+					</device>
+					
+			</subFamily>			
+
+			<subFamily DsubFamily="RA6M4_768K">
+				<device Dname="R7FA6M4AE">
+					<memory name="Flash"     access="rx" start="0x00000000" size="0x0C0000" startup="1" default="1"/>
+					<memory name="DataFlash" access="r"  start="0x08000000" size="0x002000"/>
+					<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x200"/>
+					<memory name="SRAM1"    access="rwx" start="0x20000000" size="0x040000" init   ="0" default="1"/>
+					<algorithm name="Flash/RA6M4_768K.FLM"          start="0x00000000" size="0x0C0000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+					<algorithm name="Flash/RA6M4_DATA_C768K.FLM"    start="0x08000000" size="0x002000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+					<algorithm name="Flash/RA6M4_CONF.FLM"          start="0x0100A100" size="0x000200" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				</device>
+				
+				<device Dname="R7FA6M4AE_dual">
+					<memory name="Flash_Lower"           access="rx"        start="0"          size="0x060000" startup="1" default="1"/>
+					<memory name="Flash_Upper"           access="rx"        start="0x00200000" size="0x060000"/>
+					<memory name="DataFlash" access="r"  start="0x08000000" size="0x002000"/>
+					<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x200"/>
+					<memory name="SRAM1"    access="rwx" start="0x20000000" size="0x040000" init   ="0" default="1"/>
+					<algorithm name="Flash/RA6M4_768K_DL.FLM"       start="0x00000000" size="0x060000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+					<algorithm name="Flash/RA6M4_768K_DU.FLM"       start="0x00200000" size="0x060000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+					<algorithm name="Flash/RA6M4_DATA_C768K_D.FLM"  start="0x08000000" size="0x002000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+					<algorithm name="Flash/RA6M4_CONF.FLM"          start="0x0100A100" size="0x000200" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				</device>
+					
+			</subFamily>
+
+			<subFamily DsubFamily="RA6M4_512K">
+				<device Dname="R7FA6M4AD">	
+					<memory name="Flash"     access="rx" start="0x00000000" size="0x080000" startup="1" default="1"/>
+					<memory name="DataFlash" access="r"  start="0x08000000" size="0x002000"/>
+					<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x200"/>
+					<memory name="SRAM1"    access="rwx" start="0x20000000" size="0x040000" init   ="0" default="1"/>
+					<algorithm name="Flash/RA6M4_512K.FLM"          start="0x00000000" size="0x080000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+					<algorithm name="Flash/RA6M4_DATA_C512K.FLM"    start="0x08000000" size="0x002000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+					<algorithm name="Flash/RA6M4_CONF.FLM"          start="0x0100A100" size="0x000200" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				</device>	
+				
+				<device Dname="R7FA6M4AD_dual">
+					<memory name="Flash_Lower"           access="rx"        start="0"          size="0x040000" startup="1" default="1"/>
+					<memory name="Flash_Upper"           access="rx"        start="0x00200000" size="0x040000"/>
+					<memory name="DataFlash" access="r"  start="0x08000000" size="0x002000"/>
+					<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x200"/>
+					<memory name="SRAM1"    access="rwx" start="0x20000000" size="0x040000" init   ="0" default="1"/>
+					<algorithm name="Flash/RA6M4_512K_DL.FLM"       start="0x00000000" size="0x040000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+					<algorithm name="Flash/RA6M4_512K_DU.FLM"       start="0x00200000" size="0x040000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+					<algorithm name="Flash/RA6M4_DATA_C512K_D.FLM"  start="0x08000000" size="0x002000" RAMstart="0x20000000" RAMsize="0x2000" default="1"/>
+					<algorithm name="Flash/RA6M4_CONF.FLM"          start="0x0100A100" size="0x000200" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				</device>
+				
+			</subFamily>
+		
+			</family>
+
+	    <!-- RA6M5 Part number definitions -->
+
+		<family Dfamily="RA6M5 Series" Dvendor="Renesas:117">
+			<processor Dcore="Cortex-M33" DcoreVersion="r0p4-00rel1" Dtz="TZ" Dfpu="SP_FPU" Dmpu="MPU" Ddsp="DSP" Dendian="Little-endian" Dclock="200000000" />
+			<description>
+The RA6M5 Group offers the widest integration of communication interfaces as well as the best performance level. These
+MCUs deliver up to 200 MHz of CPU performance using an Arm Cortex-M33 core and a memory range from 1 MB to 2 MB
+Flash. The group offers Ethernet, USB, CANFD, QSPI, OSPI, CEC integration. And, its embedded Secure Crypto Engine is
+full of features you can leverage in your higher-level solutions. The RA6M5 Group addresses a broad range of applications
+for IoT endpoints such as white goods, meters, and other industrial and consumer applications.
+
+Applications
+
+-Wired Ethernet applications
+-Enhanced Security (fire detection, burglar detection, panel control)
+-Metering (electricity, automated meter reading)
+-Industry (robotics, door openers, sewing machines, vending machines, UPS)
+-HVAC (heating, air conditioning, boiler control)
+-General purpose
+
+			</description>
+			<feature type="Timer" 				n="4"	m="32"			name="General PWM Timer (GPT32)"/>			
+			<feature type="Timer" 				n="6"	m="16"			name="General PWM Timer (GPT16)"/>
+			<feature type="Timer"      			n="6"	m="16"			name="Asynchronous General Purpose Timer (AGT)"/>
+			<feature type="RTC"     						   			name="Real Time CLock"/>
+			<feature type="WDT"					n="1"	m="14"			name="Watchdog Timer (WDT)"/>
+			<feature type="WDT"					n="1"	m="14"			name="Independent Watchdog Timer (IWDT)"/>	
+			<feature type="CAN" 				n="2" 					name="CAN FD Controller"/>
+			<feature type="ComOther"			n="10"					name="Serial Communications Interface (SCI)"/>
+			<feature type="ComOther"			n="1"					name="Quad Serial Peripheral Interface (QSPI)"/>	
+			<feature type="ComOther"			n="1"					name="Octa Serial Peripheral Interface (OSPI)"/>
+			<feature type="ComOther"			n="1"					name="Serial Communications Interface (IrDA)"/>	
+			<feature type="ComOther"			n="1"					name="Serial Sound Interface Enhanced (SSIE)"/>
+			<feature type="ComOther"			n="1"					name="SD/MMC Host Interface (SDHI)"/>			
+			<feature type="I2C"					n="2"					name="I2C bus interface (IIC)"/>	
+			<feature type="SPI"					n="2"					name="Serial Peripheral Interface (SPI)"/>	
+			<feature type="CAN"					n="2"					name="Controller Area Network (CAN)"/>		
+			<feature type="ADC"					n="22"	m="12"			name="12-bit A/D Converter (ADC12)"/>	
+			<feature type="DAC"					n="2"	m="12"			name="12-bit D/A Converter (DAC12)"/>			
+			<feature type="TempSens"			n="1"					name="Temperature Sensor (TSN)"/>	
+			<feature type="Touch"				n="20"					name="Capacitive Touch Sensing Unit(CTSU)"/>		
+			<feature type="Crypto"				n="128"					name="AES128 Engine"/>	
+			<feature type="Crypto"				n="192"					name="AES192 Engine"/>	
+			<feature type="Crypto"				n="256"					name="AES256 Engine"/>	
+			<feature type="Crypto"				n="1024"				name="RSA1024 Engine"/>
+			<feature type="Crypto"				n="2048"				name="RSA2048 Engine"/>
+			<feature type="Crypto"				n="3072"				name="RSA3072 Engine"/>
+			<feature type="Crypto"				n="4096"				name="RSA4096 Engine"/>	
+			<feature type="Crypto"				n="1024.160"			name="DSA160 Engine"/>
+			<feature type="Crypto"				n="2048.224"			name="DSA224 Engine"/>
+			<feature type="Crypto"				n="2048.256"			name="DSA256 Engine"/>	
+			<feature type="Crypto"				n="192"					name="ECC NIST P192"/>				
+			<feature type="Crypto"				n="224"					name="ECC NIST P224"/>	
+			<feature type="Crypto"				n="256"					name="ECC NIST P256"/>	
+			<feature type="Crypto"				n="384"					name="ECC NIST P384"/>	
+			<feature type="Crypto"				n="256"					name="ECC Branpool 256"/>
+			<feature type="Crypto"				n="384"					name="ECC Branpool384"/>			
+			<feature type="Crypto"				n="512"					name="ECC Branpool 512"/>	
+			<feature type="Crypto"				n="384"					name="SHA 384"/>			
+			<feature type="Crypto"				n="224"					name="SHA 224"/>	
+			<feature type="RNG"											name="True Random Number Generator(TRNG)"/>				
+			<feature type="PLL"         		n="2"                   name="Internal PLL"/>
+			<feature type="VCC"         		n="2.7"   m="3.6"       name="Power Supply Voltage"/>
+			<feature type="Temp"        		n="-40"   m="105"       name="Operating Temperature Range"/>			
+			<feature type="QFP"        			n="144"           		name="LQFP (20 mm × 20 mm, 0.5 mm pitch)"/>
+			<feature type="QFP"        			n="100"           		name="LQFP (14 mm × 14 mm, 0.5 mm pitch)"/>
+			<feature type="QFP"        			n="64"           		name="LQFP (10 mm × 10 mm, 0.5 mm pitch)"/>			
+			<feature type="XTAL"        		m="200000000"           name="Maximum operating frequency"/>
+			<feature type="ClockOther"        		            		name="5 independant clock sources"/>
+			<feature type="DMA"        		    n="8"        			name="DMAC"/>
+			<feature type="USBD"       		    n="1"        			name="USB 2.0 Full-Speed Module (USBFS)"/>
+			<feature type="USBH"       		    n="1"        			name="USB 2.0 Full-Speed Module (USBFS)"/>
+			<feature type="ETH"       		    n="1"        			name="Ethernet MAC/DMA Controller (ETHERC/EDMAC)"/>							
+
+			<debug	svd="SVD/R7FA6M5BH.svd">
+			  <datapatch  __dp="0" __ap="0" address="0xE0040FCC" value="0x11" info="DEVTYPE"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FF0" value="0x0D" info="CIDR0"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FF4" value="0x90" info="CIDR1"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FF8" value="0x05" info="CIDR2"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FFC" value="0xB1" info="CIDR3"/>       
+              <datapatch  __dp="0" __ap="0" address="0xE0040FD0" value="0x04" info="PIDR4"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FD4" value="0x00" info="PIDR5"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FD8" value="0x00" info="PIDR6"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FDC" value="0x00" info="PIDR7"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FE0" value="0x21" info="PIDR0"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FE4" value="0xBD" info="PIDR1"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FE8" value="0x0B" info="PIDR2"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FEC" value="0x00" info="PIDR3 (ECOREVNUM)"/>
+            </debug>
+
+			<debugvars configfile="Debug/RA6M5.dbgconf">
+              __var TRCK_value      = 0x00000001;   // Trace Clock operating frequency /1
+            </debugvars>
+
+            <sequences>
+              <sequence name="EnableTraceClock">
+                <block>
+                  Write16( 0x4001E3FE, 0xA501 ) ;  // set PRCR, bit PRC0
+                  Write8( 0x4001E03F, 0x80 | TRCK_value ) ;  // set TRCKCR, bit TRCKEN and TRCK[]
+                  Write16( 0x4001E3FE, 0xA500 ) ;  // clear PRCR, bit PRC0
+                </block>
+              </sequence>
+
+              <sequence name="DebugDeviceUnlock">
+                <block>
+                  __var trace_enabled = ( __traceout &amp; 0x3 ) != 0 ; // TPIU or SWO Trace Selected?
+                </block>
+
+                <control if="trace_enabled">
+                  <block>
+                    Sequence("EnableTraceClock");
+                  </block>
+                </control>
+              </sequence>
+
+              <sequence name="ConfigureTraceTPIUPins">
+                <block>
+                  __var parallel_trace_port_size = ( __traceout &amp; 0x003F0000 ) &gt;&gt; 16 ;
+                  Write8( 0x40080D03, 0x00 ) ;  // clear PWPR, bit B0WI
+                  Write8( 0x40080D03, 0x40 ) ;  // set PWPR, bit PFSWE
+                  Write32( 0x400808B8, 0x1A010C00 ) ;  // P214: TCLK
+                </block>
+
+                <control if="parallel_trace_port_size &gt;= 1" info="TPIU port width 1">
+                  <block info="configure Trace I/O Enable + Trace Mode Synchronous 1 bit">
+                    Write32( 0x400808AC, 0x1A010C00 ) ;  // P211: TDATA0
+                  </block>
+                </control>
+                <control if="parallel_trace_port_size &gt;= 2" info="TPIU port width 2">
+                  <block info="configure Trace I/O Enable + Trace Mode Synchronous 2 bit">
+                    Write32( 0x400808A8, 0x1A010C00 ) ;  // P210: TDATA1
+                  </block>
+                </control>
+                <control if="parallel_trace_port_size &gt;= 4" info="TPIU port width 4">
+                  <block info="configure Trace I/O Enable + Trace Mode Synchronous 4 bit">
+                    Write32( 0x400808A4, 0x1A010C00 ) ;  // P209: TDATA2
+                    Write32( 0x400808A0, 0x1A010C00 ) ;  // P208: TDATA3
+                  </block>
+                </control>
+                <block>
+                  Write8( 0x40080D03, 0x00);  // clear PWPR, bit PFSWE
+                  Write8( 0x40080D03, 0x80);  // set PWPR, bit B0WI
+                </block>
+              </sequence>
+
+              <sequence name="TraceStart ">
+                <block>
+                  __var tpiu_trace_enabled = ( __traceout &amp; 0x2 ) != 0 ; // TPIU Trace Selected?
+                  Sequence( "EnableTraceClock" ) ;
+                </block>
+                <control if="tpiu_trace_enabled">
+                  <block>
+                    Sequence( "ConfigureTraceTPIUPins" ) ;
+                  </block>
+                </control>
+              </sequence>
+            </sequences>
+
+			<subFamily DsubFamily="RA6M5_2M">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x200000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x08000000" size="0x002000"/>
+				<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x200"/>
+				<memory name="SRAM1"    access="rwx" start="0x20000000" size="0x040000" init   ="0" default="1"/>
+				<algorithm name="Flash/RA6M5_2M.FLM"            start="0x00000000" size="0x200000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA6M5_DATA_C2M.FLM"      start="0x08000000" size="0x002000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA6M5_CONF.FLM"          start="0x0100A100" size="0x000200" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<device Dname="R7FA6M5AH"/>
+				<device Dname="R7FA6M5BH"/>
+
+			</subFamily>
+
+			<subFamily DsubFamily="RA6M5_1.5M">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x180000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x08000000" size="0x002000"/>
+				<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x200"/>
+				<memory name="SRAM1"    access="rwx" start="0x20000000" size="0x040000" init   ="0" default="1"/>
+				<algorithm name="Flash/RA6M5_1_dot_5M.FLM"      start="0x00000000" size="0x180000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA6M5_DATA_C1dot5M.FLM"  start="0x08000000" size="0x002000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA6M5_CONF.FLM"          start="0x0100A100" size="0x000200" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<device Dname="R7FA6M5AG"/>	
+				<device Dname="R7FA6M5BG"/>
+			</subFamily>
+
+			<subFamily DsubFamily="RA6M5_1M">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x100000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x08000000" size="0x002000"/>
+				<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x200"/>
+				<memory name="SRAM1"    access="rwx" start="0x20000000" size="0x040000" init   ="0" default="1"/>
+				<algorithm name="Flash/RA6M5_1M.FLM"            start="0x00000000" size="0x100000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA6M5_DATA_C1M.FLM"      start="0x08000000" size="0x002000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA6M5_CONF.FLM"          start="0x0100A100" size="0x000200" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<device Dname="R7FA6M5BF"/>
+			</subFamily>
+		</family>
+
+		<!-- RA6T1 Part number definitions -->
+
+		<family Dfamily="RA6T1 Series" Dvendor="Renesas:117">
+			<processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="SP_FPU" Dmpu="MPU" Ddsp="DSP" Dendian="Little-endian" Dclock="120000000" />
+			<description>
+The MCU integrates multiple series of software- and pin-compatible Arm®-based 32-bit cores that share a common set
+of Renesas peripherals to facilitate design scalability and efficient platform-based product development.
+The MCU in this series incorporates a high-performance Arm Cortex®-M4 core running up to 120 MHz with the
+following features:
+- Up to 512-KB code flash memory
+- 64-KB SRAM
+- Security and safety features
+- 12-bit A/D Converter (ADC12)
+- 12-bit D/A Converter (DAC12)
+- Analog peripherals.
+
+			</description>
+			<feature type="Timer" 				n="13"	m="32"			name="General PWM Timer (GPT)"/>			
+			<feature type="Timer"      			n="2"	m="16"			name="Asynchronous General Purpose Timer (AGT)"/>
+			<feature type="WDT"					n="1"	m="14"			name="Watchdog Timer (WDT)"/>
+			<feature type="ComOther"			n="7"					name="Serial Communications Interface (SCI)"/>	
+			<feature type="I2C"					n="2"					name="I2C bus interface (IIC)"/>	
+			<feature type="SPI"					n="2"					name="Serial Peripheral Interface (SPI)"/>	
+			<feature type="CAN"					n="1"					name="Controller Area Network (CAN)"/>				
+			<feature type="ADC"					n="8"	m="14"			name="14-bit A/D Converter (ADC14)"/>				
+			<feature type="DAC"					n="2"	m="8"			name="8-bit D/A Converter (DAC8)"/>
+			<feature type="TempSens"			n="1"					name="Temperature Sensor (TSN)"/>	
+			<feature type="CoreOther"			n="2"					name="Low-Power Analog Comparator(ACMPHS)"/>
+			<feature type="Touch"				n="27"					name="Capacitive Touch Sensing Unit(CTSU)"/>
+			<feature type="CoreOther"			n="1"					name="Cyclic Redundancy Check (CRC) calculator"/>			
+			<feature type="CoreOther"			n="1"					name="Data Operation Circuit (DOC)"/>
+			<feature type="Crypto"				n="128"					name="AES128 Engine"/>	
+			<feature type="Crypto"				n="256"					name="AES256 Engine"/>	
+			<feature type="Crypto"				n="192"					name="AES192 Engine"/>	
+			<feature type="RNG"											name="True Random Number Generator(TRNG)"/>			
+			<feature type="Memory"				n="512"					name="Code Flash KB"/>
+			<feature type="Memory"				n="64"					name="SRAM KB"/>
+			<feature type="Memory"				n="8"					name="Data Flash KB"/>			
+			<feature type="PLL"         		n="1"                   name="Internal PLL"/>
+			<feature type="VCC"         		n="1.6"   m="5.5"       name="Power Supply Voltage"/>
+			<feature type="Temp"        		n="-40"   m="105"       name="Operating Temperature Range"/>
+			<feature type="QFP"        			n="100"            		name="Quad-Flat Pack 100"/>
+			<feature type="QFP"        			n="64"            		name="Quad-Flat Pack 64"/>
+			<feature type="XTAL"        		m="100000000"            name="Maximum operating frequency"/>
+			<feature type="PLL"        		            				name="5 internal PLLs"/>
+			<feature type="DMA"        		    n="8"        			name="DMAC"/>	
+			<debug	svd="SVD/R7FA6T1AD.svd"/>
+			
+			<subFamily DsubFamily="RA6T1_512K">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x080000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x40100000" size="0x002000"/>
+				<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x80"/>
+				<memory name="SRAM1"    access="rwx" start="0x1FFE0000" size="0x010000" init   ="0" default="1"/>
+				<algorithm name="Flash/RA6T1_512K.FLM"          start="0x00000000" size="0x080000" RAMstart="0x1FFE0000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA6T1_DATA_C512K.FLM"    start="0x40100000" size="0x002000" RAMstart="0x1FFE0000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA6T1_CONF.FLM"          start="0x0100A100" size="0x000080" RAMstart="0x1FFE0000" RAMsize="0x7800" default="1"/>
+				<device Dname="R7FA6T1AD"/>
+			</subFamily>
+
+
+			<subFamily DsubFamily="RA6T1_256K">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x040000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x40100000" size="0x002000"/>
+				<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x80"/>
+				<memory name="SRAM1"    access="rwx" start="0x1FFE0000" size="0x010000" init   ="0" default="1"/>
+				<algorithm name="Flash/RA6T1_256K.FLM"          start="0x00000000" size="0x040000" RAMstart="0x1FFE0000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA6T1_DATA_C256K.FLM"    start="0x40100000" size="0x002000" RAMstart="0x1FFE0000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA6T1_CONF.FLM"          start="0x0100A100" size="0x000080" RAMstart="0x1FFE0000" RAMsize="0x7800" default="1"/>
+				<device Dname="R7FA6T1AB"/>
+			</subFamily>			
+		  </family>		
+
+		<!-- RA6T2 Part number definitions -->
+
+		<family Dfamily="RA6T2 Series" Dvendor="Renesas:117">
+
+			<processor Dcore="Cortex-M33" DcoreVersion="r0p4-00rel0" Dtz="TZ" Dfpu="SP_FPU" Dmpu="MPU" Ddsp="DSP" Dendian="Little-endian" Dclock="240000000" />
+			<description>
+The MCU integrates multiple series of software-compatible Arm®-based 32-bit cores that share a common set of Renesas
+peripherals to facilitate design scalability and efficient platform-based product development.
+The MCU in this series incorporates a high-performance Arm Cortex®-M33 core running up to 200 MHz with the following
+features:
+- Up to 512 KB code flash memory
+- 64 KB SRAM
+- General PWM Timer (GPT) - Enhanced High Resolution
+- Analog peripherals
+- Security and safety features
+
+			</description> 
+			<feature type="Timer" 				n="4"	m="32"			name="General PWM Timer (GPT32)"/>			
+			<feature type="Timer" 				n="6"	m="16"			name="General PWM Timer (GPT16)"/>
+			<feature type="Timer"      			n="6"	m="16"			name="Asynchronous General Purpose Timer (AGT)"/>
+			<feature type="RTC"     						   			name="Real Time CLock"/>
+			<feature type="WDT"					n="1"	m="14"			name="Watchdog Timer (WDT)"/>
+			<feature type="WDT"					n="1"	m="14"			name="Independent Watchdog Timer (IWDT)"/>	
+			<feature type="CAN" 				n="2" 					name="CAN FD Controller"/>
+			<feature type="ComOther"			n="10"					name="Serial Communications Interface (SCI)"/>
+			<feature type="ComOther"			n="1"					name="Quad Serial Peripheral Interface (QSPI)"/>	
+			<feature type="ComOther"			n="1"					name="Octa Serial Peripheral Interface (OSPI)"/>
+			<feature type="ComOther"			n="1"					name="Serial Communications Interface (IrDA)"/>	
+			<feature type="ComOther"			n="1"					name="Serial Sound Interface Enhanced (SSIE)"/>
+			<feature type="ComOther"			n="1"					name="SD/MMC Host Interface (SDHI)"/>			
+			<feature type="I2C"					n="2"					name="I2C bus interface (IIC)"/>	
+			<feature type="SPI"					n="2"					name="Serial Peripheral Interface (SPI)"/>	
+			<feature type="CAN"					n="2"					name="Controller Area Network (CAN)"/>		
+			<feature type="ADC"					n="22"	m="12"			name="12-bit A/D Converter (ADC12)"/>	
+			<feature type="DAC"					n="2"	m="12"			name="12-bit D/A Converter (DAC12)"/>			
+			<feature type="TempSens"			n="1"					name="Temperature Sensor (TSN)"/>	
+			<feature type="Touch"				n="20"					name="Capacitive Touch Sensing Unit(CTSU)"/>		
+			<feature type="Crypto"				n="128"					name="AES128 Engine"/>	
+			<feature type="Crypto"				n="192"					name="AES192 Engine"/>	
+			<feature type="Crypto"				n="256"					name="AES256 Engine"/>	
+			<feature type="Crypto"				n="1024"				name="RSA1024 Engine"/>
+			<feature type="Crypto"				n="2048"				name="RSA2048 Engine"/>
+			<feature type="Crypto"				n="3072"				name="RSA3072 Engine"/>
+			<feature type="Crypto"				n="4096"				name="RSA4096 Engine"/>	
+			<feature type="Crypto"				n="1024.160"			name="DSA160 Engine"/>
+			<feature type="Crypto"				n="2048.224"			name="DSA224 Engine"/>
+			<feature type="Crypto"				n="2048.256"			name="DSA256 Engine"/>	
+			<feature type="Crypto"				n="192"					name="ECC NIST P192"/>				
+			<feature type="Crypto"				n="224"					name="ECC NIST P224"/>	
+			<feature type="Crypto"				n="256"					name="ECC NIST P256"/>	
+			<feature type="Crypto"				n="384"					name="ECC NIST P384"/>	
+			<feature type="Crypto"				n="256"					name="ECC Branpool 256"/>
+			<feature type="Crypto"				n="384"					name="ECC Branpool384"/>			
+			<feature type="Crypto"				n="512"					name="ECC Branpool 512"/>	
+			<feature type="Crypto"				n="384"					name="SHA 384"/>			
+			<feature type="Crypto"				n="224"					name="SHA 224"/>	
+			<feature type="RNG"											name="True Random Number Generator(TRNG)"/>				
+			<feature type="PLL"         		n="2"                   name="Internal PLL"/>
+			<feature type="VCC"         		n="2.7"   m="3.6"       name="Power Supply Voltage"/>
+			<feature type="Temp"        		n="-40"   m="105"       name="Operating Temperature Range"/>			
+			<feature type="QFP"        			n="144"           		name="LQFP (20 mm × 20 mm, 0.5 mm pitch)"/>
+			<feature type="QFP"        			n="100"           		name="LQFP (14 mm × 14 mm, 0.5 mm pitch)"/>
+			<feature type="QFP"        			n="64"           		name="LQFP (10 mm × 10 mm, 0.5 mm pitch)"/>			
+			<feature type="XTAL"        		m="200000000"           name="Maximum operating frequency"/>
+			<feature type="ClockOther"        		            		name="5 independant clock sources"/>
+			<feature type="DMA"        		    n="8"        			name="DMAC"/>
+			<feature type="USBD"       		    n="1"        			name="USB 2.0 Full-Speed Module (USBFS)"/>
+			<feature type="USBH"       		    n="1"        			name="USB 2.0 Full-Speed Module (USBFS)"/>
+			<feature type="ETH"       		    n="1"        			name="Ethernet MAC/DMA Controller (ETHERC/EDMAC)"/>			            				
+			<debug	svd="SVD/R7FA6T2BD.svd">
+			  <datapatch  __dp="0" __ap="0" address="0xE0040FCC" value="0x11" info="DEVTYPE"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FF0" value="0x0D" info="CIDR0"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FF4" value="0x90" info="CIDR1"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FF8" value="0x05" info="CIDR2"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FFC" value="0xB1" info="CIDR3"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FD0" value="0x04" info="PIDR4"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FD4" value="0x00" info="PIDR5"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FD8" value="0x00" info="PIDR6"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FDC" value="0x00" info="PIDR7"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FE0" value="0x21" info="PIDR0"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FE4" value="0xBD" info="PIDR1"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FE8" value="0x0B" info="PIDR2"/>
+              <datapatch  __dp="0" __ap="0" address="0xE0040FEC" value="0x00" info="PIDR3 (ECOREVNUM)"/>
+            </debug>
+
+			<debugvars configfile="Debug/RA6T2.dbgconf">
+              __var TRCK_value      = 0x00000001;   // Trace Clock operating frequency /2
+            </debugvars>
+
+            <sequences>
+              <sequence name="EnableTraceClock">
+                <block>
+                  Write16( 0x4001E3FE, 0xA501 ) ;  // set PRCR, bit PRC0
+                  Write8( 0x4001E03F, 0x80 | TRCK_value ) ;  // set TRCKCR, bit TRCKEN and TRCK[]
+                  Write16( 0x4001E3FE, 0xA500 ) ;  // clear PRCR, bit PRC0
+                </block>
+              </sequence>
+
+              <sequence name="DebugDeviceUnlock">
+                <block>
+                  __var trace_enabled = ( __traceout &amp; 0x3 ) != 0 ; // TPIU or SWO Trace Selected?
+                </block>
+
+                <control if="trace_enabled">
+                  <block>
+                    Sequence("EnableTraceClock");
+                  </block>
+                </control>
+              </sequence>
+
+              <sequence name="ConfigureTraceTPIUPins">
+                <block>
+                  __var parallel_trace_port_size = ( __traceout &amp; 0x003F0000 ) &gt;&gt; 16 ;
+                  Write8( 0x4001FD0C, 0x00 ) ;  // clear PWPR, bit B0WI
+                  Write8( 0x4001FD0C, 0x40 ) ;  // set PWPR, bit PFSWE
+                  Write32( 0x4001FB88, 0x1A010C00 ) ;  // PE02: TRCLK
+                </block>
+
+                <control if="parallel_trace_port_size &gt;= 1" info="TPIU port width 1">
+                  <block info="configure Trace I/O Enable + Trace Mode Synchronous 1 bit">
+                    Write32( 0x4001FB8C, 0x1A010C00 ) ;  // PE03: TDATA0
+                  </block>
+                </control>
+                <control if="parallel_trace_port_size &gt;= 2" info="TPIU port width 2">
+                  <block info="configure Trace I/O Enable + Trace Mode Synchronous 2 bit">
+                    Write32( 0x4001FB90, 0x1A010C00 ) ;  // PE04: TDATA1
+                  </block>
+                </control>
+                <control if="parallel_trace_port_size &gt;= 4" info="TPIU port width 4">
+                  <block info="configure Trace I/O Enable + Trace Mode Synchronous 4 bit">
+                    Write32( 0x4001FB94, 0x1A010C00 ) ;  // PE05: TDATA2
+                    Write32( 0x4001FB98, 0x1A010C00 ) ;  // PE06: TDATA3
+                  </block>
+                </control>
+                <block>
+                  Write8( 0x4001FD0C, 0x00);  // clear PWPR, bit PFSWE
+                  Write8( 0x4001FD0C, 0x80);  // set PWPR, bit B0WI
+                </block>
+              </sequence>
+
+              <sequence name="TraceStart ">
+                <block>
+                  __var tpiu_trace_enabled = ( __traceout &amp; 0x2 ) != 0 ; // TPIU Trace Selected?
+                  Sequence( "EnableTraceClock" ) ;
+                </block>
+                <control if="tpiu_trace_enabled">
+                  <block>
+                    Sequence( "ConfigureTraceTPIUPins" ) ;
+                  </block>
+                </control>
+              </sequence>
+            </sequences>
+
+			<subFamily DsubFamily="RA6T2_512K">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x080000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x08000000" size="0x004000"/>
+				<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x000200"/>
+				<memory name="SRAM1"    access="rwx" start="0x20000000" size="0x010000" init   ="0" default="1"/>
+				<algorithm name="Flash/RA6T2_512K.FLM"          start="0x00000000" size="0x080000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA6T2_DATA_C512K.FLM"    start="0x08000000" size="0x004000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA6T2_CONF.FLM"          start="0x0100A100" size="0x000200" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<device Dname="R7FA6T2AD"/>	
+				<device Dname="R7FA6T2BD"/>
+			</subFamily>
+
+			<subFamily DsubFamily="RA6T2_256K">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x040000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x08000000" size="0x004000"/>
+				<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x000200"/>
+				<memory name="SRAM1"    access="rwx" start="0x20000000" size="0x010000" init   ="0" default="1"/>
+				<algorithm name="Flash/RA6T2_256K.FLM"          start="0x00000000" size="0x040000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA6T2_DATA_C256K.FLM"    start="0x08000000" size="0x004000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA6T2_CONF.FLM"          start="0x0100A100" size="0x000200" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<device Dname="R7FA6T2AB"/>
+				<device Dname="R7FA6T2BB"/>
+			</subFamily>
+			
+		</family>
+
+		<!-- RA6E1 Part number definitions -->
+
+		<family Dfamily="RA6E1 Series" Dvendor="Renesas:117">
+
+			<processor Dcore="Cortex-M33" DcoreVersion="r0p4-00rel0" Dtz="TZ" Dfpu="SP_FPU" Dmpu="MPU" Ddsp="DSP" Dendian="Little-endian" Dclock="200000000" />
+			<description>
+The MCU integrates multiple series of software-compatible Arm®-based 32-bit cores that share a common set of Renesas
+peripherals to facilitate design scalability and efficient platform-based product development.
+The MCU in this series incorporates a high-performance Arm Cortex®-M33 core running up to 200 MHz with the following
+features:
+- Up to 1 MB code flash memory
+- 256 KB SRAM
+- Quad Serial Peripheral Interface (QSPI)
+- Ethernet MAC Controller (ETHERC), USBFS, SD/MMC Host Interface
+- Analog peripherals
+- Security and safety features
+
+			</description> 
+			<feature type="Timer" 				n="4"	m="32"			name="General PWM Timer (GPT32)"/>			
+			<feature type="Timer" 				n="6"	m="16"			name="General PWM Timer (GPT16)"/>
+			<feature type="Timer"      			n="6"	m="16"			name="Asynchronous General Purpose Timer (AGT)"/>
+			<feature type="RTC"     						   			name="Real Time CLock"/>
+			<feature type="WDT"					n="1"	m="14"			name="Watchdog Timer (WDT)"/>
+			<feature type="WDT"					n="1"	m="14"			name="Independent Watchdog Timer (IWDT)"/>	
+			<feature type="CAN" 				n="2" 					name="CAN FD Controller"/>
+			<feature type="ComOther"			n="10"					name="Serial Communications Interface (SCI)"/>
+			<feature type="ComOther"			n="1"					name="Quad Serial Peripheral Interface (QSPI)"/>	
+			<feature type="ComOther"			n="1"					name="Octa Serial Peripheral Interface (OSPI)"/>
+			<feature type="ComOther"			n="1"					name="Serial Communications Interface (IrDA)"/>	
+			<feature type="ComOther"			n="1"					name="Serial Sound Interface Enhanced (SSIE)"/>
+			<feature type="ComOther"			n="1"					name="SD/MMC Host Interface (SDHI)"/>			
+			<feature type="I2C"					n="2"					name="I2C bus interface (IIC)"/>	
+			<feature type="SPI"					n="2"					name="Serial Peripheral Interface (SPI)"/>	
+			<feature type="CAN"					n="2"					name="Controller Area Network (CAN)"/>		
+			<feature type="ADC"					n="22"	m="12"			name="12-bit A/D Converter (ADC12)"/>	
+			<feature type="DAC"					n="2"	m="12"			name="12-bit D/A Converter (DAC12)"/>			
+			<feature type="TempSens"			n="1"					name="Temperature Sensor (TSN)"/>	
+			<feature type="Touch"				n="20"					name="Capacitive Touch Sensing Unit(CTSU)"/>		
+			<feature type="Crypto"				n="128"					name="AES128 Engine"/>	
+			<feature type="Crypto"				n="192"					name="AES192 Engine"/>	
+			<feature type="Crypto"				n="256"					name="AES256 Engine"/>	
+			<feature type="Crypto"				n="1024"				name="RSA1024 Engine"/>
+			<feature type="Crypto"				n="2048"				name="RSA2048 Engine"/>
+			<feature type="Crypto"				n="3072"				name="RSA3072 Engine"/>
+			<feature type="Crypto"				n="4096"				name="RSA4096 Engine"/>	
+			<feature type="Crypto"				n="1024.160"			name="DSA160 Engine"/>
+			<feature type="Crypto"				n="2048.224"			name="DSA224 Engine"/>
+			<feature type="Crypto"				n="2048.256"			name="DSA256 Engine"/>	
+			<feature type="Crypto"				n="192"					name="ECC NIST P192"/>				
+			<feature type="Crypto"				n="224"					name="ECC NIST P224"/>	
+			<feature type="Crypto"				n="256"					name="ECC NIST P256"/>	
+			<feature type="Crypto"				n="384"					name="ECC NIST P384"/>	
+			<feature type="Crypto"				n="256"					name="ECC Branpool 256"/>
+			<feature type="Crypto"				n="384"					name="ECC Branpool384"/>			
+			<feature type="Crypto"				n="512"					name="ECC Branpool 512"/>	
+			<feature type="Crypto"				n="384"					name="SHA 384"/>			
+			<feature type="Crypto"				n="224"					name="SHA 224"/>	
+			<feature type="RNG"											name="True Random Number Generator(TRNG)"/>				
+			<feature type="PLL"         		n="2"                   name="Internal PLL"/>
+			<feature type="VCC"         		n="2.7"   m="3.6"       name="Power Supply Voltage"/>
+			<feature type="Temp"        		n="-40"   m="105"       name="Operating Temperature Range"/>			
+			<feature type="QFP"        			n="144"           		name="LQFP (20 mm × 20 mm, 0.5 mm pitch)"/>
+			<feature type="QFP"        			n="100"           		name="LQFP (14 mm × 14 mm, 0.5 mm pitch)"/>
+			<feature type="QFP"        			n="64"           		name="LQFP (10 mm × 10 mm, 0.5 mm pitch)"/>			
+			<feature type="XTAL"        		m="200000000"           name="Maximum operating frequency"/>
+			<feature type="ClockOther"        		            		name="5 independant clock sources"/>
+			<feature type="DMA"        		    n="8"        			name="DMAC"/>
+			<feature type="USBD"       		    n="1"        			name="USB 2.0 Full-Speed Module (USBFS)"/>
+			<feature type="USBH"       		    n="1"        			name="USB 2.0 Full-Speed Module (USBFS)"/>
+			<feature type="ETH"       		    n="1"        			name="Ethernet MAC/DMA Controller (ETHERC/EDMAC)"/>			            				
+			<debug	svd="SVD/R7FA6E10F.svd"/>
+
+			<subFamily DsubFamily="RA6E1_1M">
+				<device Dname="R7FA6E10F">	
+					<memory name="Flash"     access="rx" start="0x00000000" size="0x100000" startup="1" default="1"/>
+					<memory name="DataFlash" access="r"  start="0x08000000" size="0x002000"/>
+					<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x000200"/>
+					<memory name="SRAM1"    access="rwx" start="0x20000000" size="0x040000" init   ="0" default="1"/>
+					<algorithm name="Flash/RA6E1_1M.FLM"          	start="0x00000000" size="0x100000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+					<algorithm name="Flash/RA6E1_DATA_C1M.FLM"    	start="0x08000000" size="0x002000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+					<algorithm name="Flash/RA6E1_CONF.FLM"          start="0x0100A100" size="0x000200" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				</device>
+				
+				<device Dname="R7FA6E10F_dual">
+					<memory name="Flash_Lower"           access="rx"        start="0"          size="0x080000" startup="1" default="1"/>
+					<memory name="Flash_Upper"           access="rx"        start="0x00200000" size="0x080000"/>
+					<memory name="DataFlash" access="r"  start="0x08000000" size="0x002000"/>
+					<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x200"/>
+					<memory name="SRAM1"    access="rwx" start="0x20000000" size="0x010000" init   ="0" default="1"/>
+					<algorithm name="Flash/RA6E1_1M_dual_lower.FLM" start="0x00000000" size="0x080000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+					<algorithm name="Flash/RA6E1_1M_dual_upper.FLM" start="0x00200000" size="0x080000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+					<algorithm name="Flash/RA6E1_DATA_C1M_D.FLM"    start="0x08000000" size="0x002000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+					<algorithm name="Flash/RA6E1_CONF.FLM"          start="0x0100A100" size="0x000200" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				</device>
+					
+			</subFamily>
+
+			<subFamily DsubFamily="RA6E1_512K">
+				<device Dname="R7FA6E10D">					
+					<memory name="Flash"     access="rx" start="0x00000000" size="0x080000" startup="1" default="1"/>
+					<memory name="DataFlash" access="r"  start="0x08000000" size="0x002000"/>
+					<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x000200"/>
+					<memory name="SRAM1"    access="rwx" start="0x20000000" size="0x010000" init   ="0" default="1"/>
+					<algorithm name="Flash/RA6E1_512K.FLM"          start="0x00000000" size="0x080000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+					<algorithm name="Flash/RA6E1_DATA_C512K.FLM"    start="0x08000000" size="0x002000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+					<algorithm name="Flash/RA6E1_CONF.FLM"          start="0x0100A100" size="0x000200" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>		
+				</device>	
+				
+				<device Dname="R7FA6E10D_dual">
+					<memory name="Flash_Lower"           access="rx"        start="0"          size="0x040000" startup="1" default="1"/>
+					<memory name="Flash_Upper"           access="rx"        start="0x00200000" size="0x040000"/>
+					<memory name="DataFlash" access="r"  start="0x08000000" size="0x002000"/>
+					<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x200"/>
+					<memory name="SRAM1"    access="rwx" start="0x20000000" size="0x010000" init   ="0" default="1"/>
+					<algorithm name="Flash/RA6E1_512K_dual_lower.FLM" start="0x00000000" size="0x040000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+					<algorithm name="Flash/RA6E1_512K_dual_upper.FLM" start="0x00200000" size="0x040000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+					<algorithm name="Flash/RA6E1_DATA_C512K_D.FLM"  start="0x08000000" size="0x002000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+					<algorithm name="Flash/RA6E1_CONF.FLM"          start="0x0100A100" size="0x000200" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				</device>
+				
+			</subFamily>
+		</family>
+
+	    <!-- RA4E2 Part number definitions -->
+
+		<family Dfamily="RA4E2 Series" Dvendor="Renesas:117">
+			<processor Dcore="Cortex-M33" DcoreVersion="r0p4-00rel1" Dtz="TZ" Dfpu="SP_FPU" Dmpu="MPU" Ddsp="DSP" Dendian="Little-endian" Dclock="100000000" />
+			<description>
+The RA4E2 Group delivers up to 100 MHz of CPU performance 
+using an Arm Cortex-M33 core with 128KB of code flash memory,
+4 KB of data flash memory, and 40 KB of SRAM. A wide set of 
+peripherals is provided, including CANFD, I3C, and ADC.
+			</description>
+			
+			<debug	svd="SVD/R7FA4E2B9.svd"/>
+
+			<subFamily DsubFamily="RA4E2_128K">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x20000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x08000000" size="0x1000"/>
+				<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x200"/>
+				<memory name="SRAM1"    access="rwx" start="0x20000000" size="0xA000" init   ="0" default="1"/>
+				<algorithm name="Flash/RA4E2_128K.FLM"      start="0x00000000" size="0x20000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA4E2_DATA.FLM"      start="0x08000000" size="0x001000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA4E2_CONF.FLM"      start="0x0100A100" size="0x000200" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<device Dname="R7FA4E2B9"/>		
+			</subFamily>	
+
+			</family>
+
+	    <!-- RA6E2 Part number definitions -->
+
+		<family Dfamily="RA6E2 Series" Dvendor="Renesas:117">
+			<processor Dcore="Cortex-M33" DcoreVersion="r0p4-00rel1" Dtz="TZ" Dfpu="SP_FPU" Dmpu="MPU" Ddsp="DSP" Dendian="Little-endian" Dclock="200000000" />
+			<description>
+The RA6E2 Group delivers up to 200 MHz of CPU performance
+using an Arm Cortex-M33 core with code flash memory ranging
+from 128 KB to 256 KB, 4 KB of data flash memory, and 40 KB
+of SRAM. A wide set of peripherals is provided, including 
+QSPI, CANFD, I3C, and ADC.
+			</description>			
+			<debug	svd="SVD/R7FA6E2BB.svd"/>
+
+			<subFamily DsubFamily="RA6E2_256K">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x40000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x08000000" size="0x1000"/>
+				<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x200"/>
+				<memory name="SRAM1"    access="rwx" start="0x20000000" size="0xA000" init   ="0" default="1"/>
+				<algorithm name="Flash/RA6E2_256K.FLM"          start="0x00000000" size="0x40000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA6E2_DATA_C256K.FLM"    start="0x08000000" size="0x001000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA6E2_CONF.FLM"          start="0x0100A100" size="0x000200" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<device Dname="R7FA6E2BB"/>
+			</subFamily>			
+
+			<subFamily DsubFamily="RA6E2_128K">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x20000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x08000000" size="0x1000"/>
+				<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x200"/>
+				<memory name="SRAM1"    access="rwx" start="0x20000000" size="0xA000" init   ="0" default="1"/>
+				<algorithm name="Flash/RA6E2_128K.FLM"          start="0x00000000" size="0x20000" RAMstart="0x20000000" RAMsize="0x2000" default="1"/>
+				<algorithm name="Flash/RA6E2_DATA_C128K.FLM"    start="0x08000000" size="0x001000" RAMstart="0x20000000" RAMsize="0x2000" default="1"/>
+				<algorithm name="Flash/RA6E2_CONF.FLM"          start="0x0100A100" size="0x000200" RAMstart="0x20000000" RAMsize="0x2000" default="1"/>
+				<device Dname="R7FA6E2B9"/>			
+			</subFamily>	
+
+			</family>
+
+	    <!-- RA4T1 Part number definitions -->
+
+		<family Dfamily="RA4T1 Series" Dvendor="Renesas:117">
+			<processor Dcore="Cortex-M33" DcoreVersion="r0p4-00rel1" Dtz="TZ" Dfpu="SP_FPU" Dmpu="MPU" Ddsp="DSP" Dendian="Little-endian" Dclock="100000000" />
+			<description>
+The RA4T1 Group delivers up to 100 MHz of CPU performance using an
+Arm Cortex-M33 core with a code flash memory ranging from 128 KB 
+to 256 KB, 4 KB of data flash memory, and 40 KB of SRAM. The RA4T1
+Group offers a wide set of peripherals, including CANFD, I3C, and
+ADC.
+			</description>
+			<debug	svd="SVD/R7FA4T1BB.svd"/>
+
+			<subFamily DsubFamily="RA4T1_256K">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x40000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x08000000" size="0x001000"/>
+				<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x200"/>
+				<memory name="SRAM1"    access="rwx" start="0x20000000" size="0xA000" init   ="0" default="1"/>
+
+				<algorithm name="Flash/RA4T1_256K.FLM"          start="0x00000000" size="0x40000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA4T1_DATA_C256K.FLM"    start="0x08000000" size="0x001000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA4T1_CONF.FLM"          start="0x0100A100" size="0x000200" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				
+				<device Dname="R7FA4T1BB"/>		
+			</subFamily>			
+
+			<subFamily DsubFamily="RA4T1_128K">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x20000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x08000000" size="0x001000"/>
+				<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x200"/>
+				<memory name="SRAM1"    access="rwx" start="0x20000000" size="0xA000" init   ="0" default="1"/>
+
+				<algorithm name="Flash/RA4T1_128K.FLM"        start="0x00000000" size="0x20000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA4T1_DATA_C128K.FLM"  start="0x08000000" size="0x001000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA4T1_CONF.FLM"        start="0x0100A100" size="0x000200" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+
+				<device Dname="R7FA4T1B9"/>			
+			</subFamily>	
+		</family>
+
+	    <!-- RA6T3 Part number definitions -->
+
+		<family Dfamily="RA6T3 Series" Dvendor="Renesas:117">
+			<processor Dcore="Cortex-M33" DcoreVersion="r0p4-00rel1" Dtz="TZ" Dfpu="SP_FPU" Dmpu="MPU" Ddsp="DSP" Dendian="Little-endian" Dclock="200000000" />
+			<description>
+The RA6T3 Group delivers up to 200 MHz of CPU performance using an
+Arm Cortex-M33 core with 256KB of code flash memory, 4 KB of data
+flash memory, and 40 KB of SRAM. The RA6T3 Group offers a wide set
+of peripherals, including CANFD, I3C, and ADC.
+			</description>
+			
+			<debug	svd="SVD/R7FA6T3BB.svd"/>
+
+			<subFamily DsubFamily="RA6T3_256K">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x40000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x08000000" size="0x001000"/>
+				<memory name="ConfigROM" access="r"  start="0x0100A100" size="0x200"/>
+				<memory name="SRAM1"    access="rwx" start="0x20000000" size="0xA000" init   ="0" default="1"/>
+
+				<algorithm name="Flash/RA6T3_256K.FLM" start="0x00000000" size="0x40000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA6T3_DATA.FLM" start="0x08000000" size="0x001000" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA6T3_CONF.FLM" start="0x0100A100" size="0x000200" RAMstart="0x20000000" RAMsize="0x7800" default="1"/>
+
+				<device Dname="R7FA6T3BB"/>
+			
+			</subFamily>			
+
+		</family>
+
+	    <!-- RA8M1 Part number definitions -->
+
+		<family Dfamily="RA8M1 Series" Dvendor="Renesas:117">
+			<processor Dcore="Cortex-M85" DcoreVersion="r0p0" Dtz="TZ" Dfpu="DP_FPU" Dmpu="MPU" Ddsp="DSP" Dmve="FP_MVE" Dpacbti="PACBTI" Dendian="Little-endian" Dclock="480000000" />
+			<description>
+The RA8M1 Group incorporates a high-performance Arm Cortex-M85 
+core with Helium running up to 480 MHz and feature up to 2 MB
+code flash memory, 1 MB SRAM (128 KB of TCM RAM, 896 KB of 
+user SRAM), Octal Serial Peripheral Interface (OSPI), Ethernet
+MAC Controller (ETHERC), USBFS, USBHS, SD/MMC Host Interface,
+Analog peripherals, plus Security and safety features.
+			</description>			
+			<debug	svd="SVD/R7FA8M1AH.svd"/>
+
+			<subFamily DsubFamily="RA8M1_1M">
+				<memory name="Flash"     access="rx" start="0x02000000" size="0x00100000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x27000000" size="0x3000"/>
+				<memory name="DataFlash_Config" access="r"  start="0x27030080" size="0x2E0"/>
+				<memory name="ConfigROM" access="r"  start="0x0300A100" size="0x100"/>
+				<memory name="ConfigROM_S" access="r"  start="0x0300A200" size="0x100"/>
+				<memory name="SRAM"    access="rwx" start="0x22000000" size="0xE0000" init   ="0" default="1"/>
+				<memory name="ITCM"    access="rwx" start="0x0" size="0x10000"/>
+				<memory name="DTCM"    access="rw" start="0x20000000" size="0x10000"/>
+
+				<algorithm name="Flash/RA8M1_1M.FLM"        start="0x02000000" size="0x00100000" RAMstart="0x22000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA8M1_DATA_C1M.FLM"  start="0x27000000" size="0x3000" RAMstart="0x22000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA8M1_CCONF.FLM"     start="0x0300A100" size="0x000200" RAMstart="0x22000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA8M1_DCONF.FLM"     start="0x27030080" size="0x2E0" RAMstart="0x22000000" RAMsize="0x7800" default="1"/>
+		
+				<device Dname="R7FA8M1AF"/>
+			</subFamily>			
+
+			<subFamily DsubFamily="RA8M1_2M">
+				<memory name="Flash"     access="rx" start="0x02000000" size="0x001F8000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x27000000" size="0x3000"/>
+				<memory name="DataFlash_Config" access="r"  start="0x27030080" size="0x2E0"/>
+				<memory name="ConfigROM" access="r"  start="0x0300A100" size="0x100"/>
+				<memory name="ConfigROM_S" access="r"  start="0x0300A200" size="0x100"/>
+				<memory name="SRAM"    access="rwx" start="0x22000000" size="0xE0000" init   ="0" default="1"/>
+				<memory name="ITCM"    access="rwx" start="0x0" size="0x10000"/>
+				<memory name="DTCM"    access="rw" start="0x20000000" size="0x10000"/>
+
+				<algorithm name="Flash/RA8M1_2M.FLM"        start="0x02000000" size="0x001F8000" RAMstart="0x22000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA8M1_DATA_C2M.FLM"  start="0x27000000" size="0x3000" RAMstart="0x22000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA8M1_CCONF.FLM"     start="0x0300A100" size="0x000200" RAMstart="0x22000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA8M1_DCONF.FLM"     start="0x27030080" size="0x2E0" RAMstart="0x22000000" RAMsize="0x7800" default="1"/>
+
+				<device Dname="R7FA8M1AH"/>		
+			</subFamily>	
+		</family>
+
+	    <!-- RA8D1 Part number definitions -->
+
+		<family Dfamily="RA8D1 Series" Dvendor="Renesas:117">
+			<processor Dcore="Cortex-M85" DcoreVersion="r0p0" Dtz="TZ" Dfpu="DP_FPU" Dmpu="MPU" Ddsp="DSP" Dmve="FP_MVE" Dpacbti="PACBTI" Dendian="Little-endian" Dclock="480000000" />
+			<description>
+The RA8D1 Group incorporates a high-performance Arm Cortex-M85 
+core with Helium running up to 480 MHz and feature up to 2 MB
+code flash memory, 1 MB SRAM (128 KB of TCM RAM, 896 KB of 
+user SRAM), Octal Serial Peripheral Interface (OSPI), Ethernet
+MAC Controller (ETHERC), USBFS, USBHS, SD/MMC Host Interface,
+Graphics LCD Controller (GLCDC), 2D Drawing Engine (DRW), 
+MIPI DSI interface, Analog peripherals, plus Security and 
+safety features.
+			</description>			
+			<debug	svd="SVD/R7FA8D1BH.svd"/>
+
+			<subFamily DsubFamily="RA8D1_1M">
+				<memory name="Flash"     access="rx" start="0x02000000" size="0x00100000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x27000000" size="0x3000"/>
+				<memory name="DataFlash_Config" access="r"  start="0x27030080" size="0x2E0"/>
+				<memory name="ConfigROM" access="r"  start="0x0300A100" size="0x100"/>
+				<memory name="ConfigROM_S" access="r"  start="0x0300A200" size="0x100"/>
+				<memory name="SRAM"    access="rwx" start="0x22000000" size="0xE0000" init   ="0" default="1"/>
+				<memory name="ITCM"    access="rwx" start="0x0" size="0x10000"/>
+				<memory name="DTCM"    access="rw" start="0x20000000" size="0x10000"/>
+
+				<algorithm name="Flash/RA8D1_1M.FLM"        start="0x02000000" size="0x00100000" RAMstart="0x22000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA8D1_DATA_C1M.FLM"  start="0x27000000" size="0x3000" RAMstart="0x22000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA8D1_CCONF.FLM"     start="0x0300A100" size="0x000200" RAMstart="0x22000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA8D1_DCONF.FLM"     start="0x27030080" size="0x2E0" RAMstart="0x22000000" RAMsize="0x7800" default="1"/>
+
+				<device Dname="R7FA8D1AF"/>
+				<device Dname="R7FA8D1BF"/>
+			</subFamily>			
+
+			<subFamily DsubFamily="RA8D1_2M">
+				<memory name="Flash"     access="rx" start="0x02000000" size="0x001F8000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x27000000" size="0x3000"/>
+				<memory name="DataFlash_Config" access="r"  start="0x27030080" size="0x2E0"/>
+				<memory name="ConfigROM" access="r"  start="0x0300A100" size="0x100"/>
+				<memory name="ConfigROM_S" access="r"  start="0x0300A200" size="0x100"/>
+				<memory name="SRAM"    access="rwx" start="0x22000000" size="0xE0000" init   ="0" default="1"/>
+				<memory name="ITCM"    access="rwx" start="0x0" size="0x10000"/>
+				<memory name="DTCM"    access="rw" start="0x20000000" size="0x10000"/>
+
+				<algorithm name="Flash/RA8D1_2M.FLM"        start="0x02000000" size="0x001F8000" RAMstart="0x22000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA8D1_DATA_C2M.FLM"  start="0x27000000" size="0x3000" RAMstart="0x22000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA8D1_CCONF.FLM"     start="0x0300A100" size="0x000200" RAMstart="0x22000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA8D1_DCONF.FLM"     start="0x27030080" size="0x2E0" RAMstart="0x22000000" RAMsize="0x7800" default="1"/>
+
+				<device Dname="R7FA8D1AH"/>
+				<device Dname="R7FA8D1BH"/>						
+			</subFamily>	
+
+		</family>
+
+	    <!-- RA8T1 Part number definitions -->
+
+		<family Dfamily="RA8T1 Series" Dvendor="Renesas:117">
+			<processor Dcore="Cortex-M85" DcoreVersion="r0p0" Dtz="TZ" Dfpu="DP_FPU" Dmpu="MPU" Ddsp="DSP" Dmve="FP_MVE" Dpacbti="PACBTI" Dendian="Little-endian" Dclock="480000000" />
+			<description>
+The RA8T1 Group incorporates a high-performance Arm Cortex-M85 
+core with Helium running up to 480 MHz and feature up to 2 MB
+code flash memory, 1 MB SRAM (128 KB of TCM RAM, 896 KB of 
+user SRAM), Ethernet MAC Controller (ETHERC), USBFS, SD/MMC Host Interface,
+Analog peripherals, plus Security and safety features.
+			</description>			
+			<debug	svd="SVD/R7FA8T1AH.svd"/>
+
+			<subFamily DsubFamily="RA8T1_1M">
+				<memory name="Flash"     access="rx" start="0x02000000" size="0x00100000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x27000000" size="0x3000"/>
+				<memory name="DataFlash_Config" access="r"  start="0x27030080" size="0x2E0"/>
+				<memory name="ConfigROM" access="r"  start="0x0300A100" size="0x100"/>
+				<memory name="ConfigROM_S" access="r"  start="0x0300A200" size="0x100"/>
+				<memory name="SRAM"    access="rwx" start="0x22000000" size="0xE0000" init   ="0" default="1"/>
+				<memory name="ITCM"    access="rwx" start="0x0" size="0x10000"/>
+				<memory name="DTCM"    access="rw" start="0x20000000" size="0x10000"/>
+
+				<algorithm name="Flash/RA8T1_1M.FLM"        start="0x02000000" size="0x00100000" RAMstart="0x22000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA8T1_DATA_C1M.FLM"  start="0x27000000" size="0x3000" RAMstart="0x22000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA8T1_CCONF.FLM"     start="0x0300A100" size="0x000200" RAMstart="0x22000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA8T1_DCONF.FLM"     start="0x27030080" size="0x2E0" RAMstart="0x22000000" RAMsize="0x7800" default="1"/>
+
+				<device Dname="R7FA8T1AF"/>
+			</subFamily>			
+
+			<subFamily DsubFamily="RA8T1_2M">
+				<memory name="Flash"     access="rx" start="0x02000000" size="0x001F8000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x27000000" size="0x3000"/>
+				<memory name="DataFlash_Config" access="r"  start="0x27030080" size="0x2E0"/>
+				<memory name="ConfigROM" access="r"  start="0x0300A100" size="0x100"/>
+				<memory name="ConfigROM_S" access="r"  start="0x0300A200" size="0x100"/>
+				<memory name="SRAM"    access="rwx" start="0x22000000" size="0xE0000" init   ="0" default="1"/>
+				<memory name="ITCM"    access="rwx" start="0x0" size="0x10000"/>
+				<memory name="DTCM"    access="rw" start="0x20000000" size="0x10000"/>
+
+				<algorithm name="Flash/RA8T1_2M.FLM"        start="0x02000000" size="0x001F8000" RAMstart="0x22000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA8T1_DATA_C2M.FLM"  start="0x27000000" size="0x3000" RAMstart="0x22000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA8T1_CCONF.FLM"     start="0x0300A100" size="0x000200" RAMstart="0x22000000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA8T1_DCONF.FLM"     start="0x27030080" size="0x2E0" RAMstart="0x22000000" RAMsize="0x7800" default="1"/>
+
+				<device Dname="R7FA8T1AH"/>					
+			</subFamily>	
+		</family>
+
+	    <!-- RA2E3 Part number definitions -->
+
+		<family Dfamily="RA2E3 Series" Dvendor="Renesas:117">
+			<processor Dcore="Cortex-M23" DcoreVersion="r0p1" Dfpu="NO_FPU" Dmpu="MPU" Ddsp="NO_DSP" Dendian="Little-endian" Dclock="48000000" />
+			<description>
+The RA2E3 series incorporates an energy-efficient Arm Cortex-M23
+32-bit core, that is particularly well suited for cost-sensitive
+and low-power applications and features up to 64-KB code flash 
+memory, 16 KB SRAM, 12-bit A/D Converter (ADC12) and safety 
+features.
+			</description>			
+			<debug	svd="SVD/R7FA2E307.svd"/>
+
+			<subFamily DsubFamily="RA2E3_64K">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x020000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x40100000" size="0x000800"/>
+				<memory name="ConfigROM" access="r"  start="0x01010000" size="0x34"/>
+				<memory name="SRAM1"    access="rwx" start="0x20004000" size="0x004000" init   ="0" default="1"/>
+				<algorithm name="Flash/RA2E3_64K.FLM"           start="0x00000000" size="0x010000" RAMstart="0x20004000" RAMsize="0x2800" default="1"/>
+				<algorithm name="Flash/RA2E3_DATA.FLM"          start="0x40100000" size="0x000800" RAMstart="0x20004000" RAMsize="0x2800" default="1"/>
+				<algorithm name="Flash/RA2E3_CONF.FLM"          start="0x01010000" size="0x000034" RAMstart="0x20004000" RAMsize="0x2800" default="1"/>
+				<device Dname="R7FA2E307"/>	
+			</subFamily>
+
+			<subFamily DsubFamily="RA2E3_32K">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x020000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x40100000" size="0x000800"/>
+				<memory name="ConfigROM" access="r"  start="0x01010000" size="0x34"/>
+				<memory name="SRAM1"    access="rwx" start="0x20004000" size="0x004000" init   ="0" default="1"/>
+				<algorithm name="Flash/RA2E3_32K.FLM"           start="0x00000000" size="0x008000" RAMstart="0x20004000" RAMsize="0x2800" default="1"/>
+				<algorithm name="Flash/RA2E3_DATA.FLM"          start="0x40100000" size="0x000800" RAMstart="0x20004000" RAMsize="0x2800" default="1"/>
+				<algorithm name="Flash/RA2E3_CONF.FLM"          start="0x01010000" size="0x000034" RAMstart="0x20004000" RAMsize="0x2800" default="1"/>
+				<device Dname="R7FA2E305"/>	
+			</subFamily>
+		</family>
+
+	    <!-- RA2A2 Part number definitions -->
+
+		<family Dfamily="RA2A2 Series" Dvendor="Renesas:117">
+			<processor Dcore="Cortex-M23" DcoreVersion="r0p1" Dfpu="NO_FPU" Dmpu="MPU" Ddsp="NO_DSP" Dendian="Little-endian" Dclock="48000000" />
+			<description>
+The RA2A2 Group delivers an ultra low power 48 MHz Arm Cortex-M23 core, up to 512-KB code flash memory, 48-KB SRAM, 12-bit A/D Converter,
+24- bit Sigma-Delta A/D Converter, LCD Controller/driver, Independent power supply RTC, On-chip 32-bit multiplier and 
+multiply-accumulator, and Security and Safety features.
+			</description>			
+			<debug	svd="SVD/R7FA2A2AD.svd"/>
+
+			<subFamily DsubFamily="RA2A2_512K">
+
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x80000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x40100000" size="0x2000"/>
+				<memory name="ConfigROM" access="r"  start="0x01010000" size="0x34"/>
+				<memory name="SRAM1"    access="rwx" start="0x20000000" size="0xC000" init   ="0" default="1"/>
+
+				<algorithm name="Flash/RA2A2_512K.FLM"          start="0x00000000" size="0x080000" RAMstart="0x20000000" RAMsize="0x2800" default="1"/>
+				<algorithm name="Flash/RA2A2_DATA.FLM"          start="0x40100000" size="0x002000" RAMstart="0x20000000" RAMsize="0x2800" default="1"/>
+				<algorithm name="Flash/RA2A2_CONF.FLM"          start="0x01010000" size="0x000034" RAMstart="0x20000000" RAMsize="0x2800" default="1"/>
+
+				<device Dname="R7FA2A2AD"/>
+				<device Dname="R7FA2A2BD"/>
+			</subFamily>			
+
+		</family>
+
+	    <!-- RA0E1 Part number definitions -->
+
+		<family Dfamily="RA0E1 Series" Dvendor="Renesas:117">
+			<processor Dcore="Cortex-M23" DcoreVersion="r0p1" Dfpu="NO_FPU" Dmpu="NO_MPU" Ddsp="NO_DSP" Dendian="Little-endian" Dclock="32000000" />
+			<description>
+Ultra low power 32 MHz Arm Cortex-M23 core, up to 64-KB code flash memory, 12-KB SRAM, 12-bit A/D Converter, Serial interfaces and Safety features.
+			</description>			
+			<debug	svd="SVD/R7FA0E107.svd"/>
+
+			<subFamily DsubFamily="RA0E1_64K">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x010000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x40100000" size="0x000400"/>
+				<memory name="ConfigROM" access="r"  start="0x01010000" size="0x34"/>
+				<memory name="SRAM1"    access="rwx" start="0x20004000" size="0x003000" init   ="0" default="1"/>
+
+				<algorithm name="Flash/RA0E1_64K.FLM"           start="0x00000000" size="0x010000" RAMstart="0x20004000" RAMsize="0x2800" default="1"/>
+				<algorithm name="Flash/RA0E1_DATA.FLM"          start="0x40100000" size="0x000400" RAMstart="0x20004000" RAMsize="0x2800" default="1"/>
+				<algorithm name="Flash/RA0E1_CONF.FLM"          start="0x01010000" size="0x000034" RAMstart="0x20004000" RAMsize="0x2800" default="1"/>
+
+				<device Dname="R7FA0E107"/>	
+			</subFamily>
+
+			<subFamily DsubFamily="RA0E1_32K">
+				<memory name="Flash"     access="rx" start="0x00000000" size="0x008000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x40100000" size="0x000400"/>
+				<memory name="ConfigROM" access="r"  start="0x01010000" size="0x34"/>
+				<memory name="SRAM1"    access="rwx" start="0x20004000" size="0x003000" init   ="0" default="1"/>
+
+				<algorithm name="Flash/RA0E1_32K.FLM"           start="0x00000000" size="0x008000" RAMstart="0x20004000" RAMsize="0x2800" default="1"/>
+				<algorithm name="Flash/RA0E1_DATA.FLM"          start="0x40100000" size="0x000400" RAMstart="0x20004000" RAMsize="0x2800" default="1"/>
+				<algorithm name="Flash/RA0E1_CONF.FLM"          start="0x01010000" size="0x000034" RAMstart="0x20004000" RAMsize="0x2800" default="1"/>
+
+				<device Dname="R7FA0E105"/>	
+			</subFamily>
+		</family>
+
+	    <!-- RA8E1 Part number definitions -->
+
+		<family Dfamily="RA8E1 Series" Dvendor="Renesas:117">
+			<processor Dcore="Cortex-M85" DcoreVersion="r0p0" Dtz="TZ" Dfpu="DP_FPU" Dmpu="MPU" Ddsp="DSP" Dmve="FP_MVE" Dpacbti="PACBTI" Dendian="Little-endian" Dclock="480000000" />
+			<description>
+The RA8E1 Group incorporates a high-performance Arm Cortex-M85 
+core with Helium running up to 360 MHz and feature 1 MB
+code flash memory, 544 KB SRAM (32 KB of TCM RAM, 512 KB of 
+user SRAM), Octal Serial Peripheral Interface (OSPI), Ethernet
+MAC Controller (ETHERC), USBFS, Analog peripherals, plus
+Security and safety features.
+			</description>			
+			<debug	svd="SVD/R7FA8E1AF.svd"/>
+
+			<subFamily DsubFamily="RA8E1_1M">
+				<memory name="Flash"     access="rx" start="0x02000000" size="0x00100000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x27000000" size="0x3000"/>
+				<memory name="DataFlash_Config" access="r"  start="0x27030080" size="0x2E0"/>
+				<memory name="ConfigROM" access="r"  start="0x0300A100" size="0x100"/>
+				<memory name="ConfigROM_S" access="r"  start="0x0300A200" size="0x100"/>
+				<memory name="SRAM"    access="rwx" start="0x22060000" size="0x80000" init   ="0" default="1"/>
+				<memory name="ITCM"    access="rwx" start="0x0" size="0x4000"/>
+				<memory name="DTCM"    access="rw" start="0x20000000" size="0x4000"/>
+
+				<algorithm name="Flash/RA8E1_1M.FLM"        start="0x02000000" size="0x00100000" RAMstart="0x22060000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA8E1_DATA_C1M.FLM"  start="0x27000000" size="0x3000" RAMstart="0x22060000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA8E1_CCONF.FLM"     start="0x0300A100" size="0x000200" RAMstart="0x22060000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA8E1_DCONF.FLM"     start="0x27030098" size="0x2c8" RAMstart="0x22060000" RAMsize="0x7800" default="1"/>
+		
+				<device Dname="R7FA8E1AF"/>
+			</subFamily>			
+
+		</family>
+
+		<family Dfamily="RA8E2 Series" Dvendor="Renesas:117">
+			<processor Dcore="Cortex-M85" DcoreVersion="r0p0" Dtz="TZ" Dfpu="DP_FPU" Dmpu="MPU" Ddsp="DSP" Dmve="FP_MVE" Dpacbti="PACBTI" Dendian="Little-endian" Dclock="480000000" />
+			<description>
+The RA8E2 Group incorporates a high-performance Arm Cortex-M85 
+core with Helium running up to 480 MHz and feature 1 MB
+code flash memory, 672 KB SRAM (32 KB of TCM RAM, 640 KB of 
+user SRAM), Octal Serial Peripheral Interface (OSPI), Ethernet
+MAC Controller (ETHERC), USBFS, Graphics LCD Controller (GLCDC),
+2D Drawing Engine (DRW), Analog peripherals, plus Security and 
+safety features.
+			</description>			
+			<debug	svd="SVD/R7FA8E2AF.svd"/>
+
+			<subFamily DsubFamily="RA8E2_1M">
+				<memory name="Flash"     access="rx" start="0x02000000" size="0x00100000" startup="1" default="1"/>
+				<memory name="DataFlash" access="r"  start="0x27000000" size="0x3000"/>
+				<memory name="DataFlash_Config" access="r"  start="0x27030080" size="0x2E0"/>
+				<memory name="ConfigROM" access="r"  start="0x0300A100" size="0x100"/>
+				<memory name="ConfigROM_S" access="r"  start="0x0300A200" size="0x100"/>
+				<memory name="SRAM"    access="rwx" start="0x22040000" size="0xA0000" init   ="0" default="1"/>
+				<memory name="ITCM"    access="rwx" start="0x0" size="0x4000"/>
+				<memory name="DTCM"    access="rw" start="0x20000000" size="0x4000"/>
+
+				<algorithm name="Flash/RA8E2_1M.FLM"        start="0x02000000" size="0x00100000" RAMstart="0x22060000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA8E2_DATA_C1M.FLM"  start="0x27000000" size="0x3000" RAMstart="0x22060000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA8E2_CCONF.FLM"     start="0x0300A100" size="0x000200" RAMstart="0x22060000" RAMsize="0x7800" default="1"/>
+				<algorithm name="Flash/RA8E2_DCONF.FLM"     start="0x27030098" size="0x2C8" RAMstart="0x22060000" RAMsize="0x7800" default="1"/>
+
+				<device Dname="R7FA8E2AF"/>
+
+			</subFamily>			
+
+		</family>
+
+    </devices>
+
+	<!--
+  <boards>	
+  </boards>
+  -->
+  
+  <taxonomy>
+    <description Cclass="Flex Software" generator="Renesas RA Smart Configurator">Renesas Flex Software</description>
+  </taxonomy>
+  
+  <conditions>
+    <condition id="RA Device">
+      <require Dvendor="Renesas:117" Dname="R7FA*" />
+      <require Tcompiler="ARMCC"/>
+    </condition>
+  </conditions>
+  
+  <!-- NOTE: Each RA device family pack needs this -->
+  <components>
+    <component generator="Renesas RA Smart Configurator" Cgroup="RA Configuration" Cclass="Flex Software" Cversion="1.0.0" condition="RA Device">
+      <description>Renesas RA Configuration</description>
+      <files>
+        <!-- Dummy file to placate schema validator -->
+        <file category="other" name="dummy.txt" />
+      </files>
+    </component>
+	<component Cclass="Device" Cgroup="Startup" condition="RA Device" Cversion="1.0.0">
+		<description>System Startup for RA devices</description>
+		<files>
+			<!--  include folder -->
+			<file category="include" 	name="Files/include/"/>
+			<file category="sourceC"  	attr="config"	name="Files/startup_RA.c"  version="1.0.0"/>
+			<file category="sourceC"  	attr="config"	name="Files/system_RA.c"  version="1.0.0"/>
+		</files>
+	</component>
+  </components>
+
+ <!--
+ <examples>
+</examples>  
+  -->
+  
+</package>

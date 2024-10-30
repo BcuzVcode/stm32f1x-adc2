@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="1.4" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>Brainchip</vendor>
+  <name>AKD1000_DeviceFamilyPack</name>
+  <description>Brainchip AKD1000 Device Family Pack with Apache license.</description>
+  <url>https://data.brainchip.com/packs/</url>
+  <license>license/LICENSE-2.0.txt</license>
+  <releases>
+    <release version="1.0.3" date="2023-05-16">Use https for package</release>
+    <release version="1.0.2" date="2022-01-03">Fix board image</release>
+    <release version="1.0.1" date="2021-12-30">Brainchip CMSIS Pack with drivers and example application miniPCIe support</release>
+    <release version="1.0.0" date="2021-09-13">Brainchip CMSIS Pack with drivers and example application</release>
+  </releases>
+  <keywords>
+    <keyword>Brainchip</keyword>
+    <keyword>AKD1000</keyword>
+  </keywords>
+  <conditions>
+    <condition id="ARMCC6">
+      <accept Tcompiler="ARMCC" Toptions="AC6"/>
+      <accept Tcompiler="ARMCC" Toptions="AC6LTO"/>
+    </condition>
+    <condition id="CM4">
+      <description>Cortex-M4 based device</description>
+      <accept Dcore="Cortex-M4"/>
+    </condition>
+    <condition id="CMSIS Core">
+      <description>CMSIS Core for Cortex-M processor</description>
+      <accept condition="CM4"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+    <condition id="AKD1000">
+      <require condition="CMSIS Core"/>
+      <require Dname="AKD1000"/>
+    </condition>
+  </conditions>
+  <examples>
+    <example name="Uart_communication" doc="Abstract.txt" folder="examples/AKD1000/Uart_communication/ARMCC" version="1.0.1">
+      <description>UART communication</description>
+      <board name="ADK1000 PCIe USB" vendor="Brainchip"/>
+      <project>
+        <environment name="uv" load="Uart_communication_mini_pcie.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CORE" Cgroup="Startup"/>
+        <component Cclass="CORE" Cgroup="Startup"/>
+        <category>Getting started</category>
+      </attributes>
+    </example>
+    <example name="Uart_communication" doc="Abstract.txt" folder="examples/AKD1000/Uart_communication/ARMCC" version="1.0.1">
+      <description>UART communication</description>
+      <board name="ADK1000 miniPCIe" vendor="Brainchip"/>
+      <project>
+        <environment name="uv" load="Uart_communication_mini_pcie.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CORE" Cgroup="Startup"/>
+        <component Cclass="CORE" Cgroup="Startup"/>
+        <category>Getting started</category>
+      </attributes>
+    </example>
+  </examples>
+  <components>
+    <component Cclass="Board Support" Cgroup="Infra" Cversion="1.0.1" condition="AKD1000">
+      <description>Common infrastructure</description>
+      <files>
+        <file category="source" version="1.0.1" name="infra/src/version.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SPI_BUS" Cversion="1.0.1" condition="AKD1000">
+      <description>SPI_BUS</description>
+      <files>
+        <file category="header" version="1.0.1" name="drivers/src/akida/spi/akida_spi_reg.h"/>
+        <file category="header" version="1.0.1" name="drivers/include/spi_bus.h"/>
+        <file category="source" version="1.0.1" name="drivers/src/akida/spi/spi_bus_lld.c"/>
+        <file category="source" version="1.0.1" name="drivers/src/spi_bus.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="FLASH" Cversion="1.0.1" condition="AKD1000">
+      <description>SPI_FLASH</description>
+      <files>
+        <file category="header" version="1.0.1" name="drivers/include/spi_flash.h"/>
+        <file category="header" version="1.0.1" name="drivers/include/partition.h"/>
+        <file category="source" version="1.0.1" name="drivers/src/spi_flash.c"/>
+        <file category="source" version="1.0.1" name="drivers/src/spi_flash/spi_flash_lld.c"/>
+        <file category="source" version="1.0.1" name="drivers/src/spi_flash/spi_flash_sfdp.c"/>
+        <file category="header" version="1.0.1" name="drivers/src/spi_flash/spi_flash_sfdp.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="CLOCK" Cversion="1.0.1" condition="AKD1000">
+      <description>CLOCK</description>
+      <files>
+        <file category="header" version="1.0.1" name="drivers/include/clock.h"/>
+        <file category="source" version="1.0.1" name="drivers/src/akida/nsocv1/crg11.c"/>
+        <file category="header" version="1.0.1" name="drivers/include/akida/nsocv1/crg11.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="DMA" Cversion="1.0.1" condition="AKD1000">
+      <description>DMA</description>
+      <files>
+        <file category="header" version="1.0.1" name="drivers/include/akida_dma.h"/>
+        <file category="header" version="1.0.1" name="drivers/include/akida/nsocv1/dma_common.h"/>
+        <file category="source" version="1.0.1" name="drivers/src/akida/dma/akida_dma.c"/>
+        <file category="header" version="1.0.1" name="drivers/src/akida/dma/akida_dma_reg.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Interrupt" Cversion="1.0.1" condition="AKD1000">
+      <description>Interrupt</description>
+      <files>
+        <file category="header" version="1.0.1" name="drivers/include/interrupt.h"/>
+        <file category="source" version="1.0.1" name="drivers/src/akida/interrupt/exiu.c"/>
+        <file category="header" version="1.0.1" name="drivers/include/akida/exiu.h"/>
+        <file category="header" version="1.0.1" name="drivers/src/akida/interrupt/exiu_reg.h"/>
+        <file category="source" version="1.0.1" name="drivers/src/akida/interrupt/interrupt.c"/>
+        <file category="header" version="1.0.1" name="drivers/include/akida/nsoc_v1_interrupts.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Uart" Cversion="1.0.1" condition="AKD1000">
+      <description>UART</description>
+      <files>
+        <file category="header" version="1.0.1" name="drivers/include/uart.h"/>
+        <file category="source" version="1.0.1" name="drivers/src/akida/uart/uart_lld.c"/>
+        <file category="header" version="1.0.1" name="drivers/src/akida/uart/uart_reg.h"/>
+        <file category="source" version="1.0.1" name="drivers/src/uart.c"/>
+      </files>
+    </component>
+    <component Cclass="Board Support" Cgroup="PMON" Cversion="1.0.1" condition="AKD1000">
+      <description>Power monitor, an I2C slave</description>
+      <files>
+        <file category="header" version="1.0.1" name="drivers/include/i2c/ina233.h"/>
+        <file category="header" version="1.0.1" name="drivers/include/power_monitor.h"/>
+        <file category="source" version="1.0.1" name="drivers/src/i2c/devices/power/ina233_lld.c"/>
+        <file category="source" version="1.0.1" name="drivers/src/power_monitor.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="I2C_Master" Cversion="1.0.1" condition="AKD1000">
+      <description>I2C Master</description>
+      <files>
+        <file category="header" version="1.0.1" name="drivers/include/i2c_bus.h"/>
+        <file category="source" version="1.0.1" name="drivers/src/akida/i2c/i2c_lld.c"/>
+        <file category="header" version="1.0.1" name="drivers/src/akida/i2c/i2c_reg.h"/>
+        <file category="source" version="1.0.1" name="drivers/src/i2c_bus.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="I3C_Master" Cversion="1.0.1" condition="AKD1000">
+      <description>I3C Master</description>
+      <files>
+        <file category="source" version="1.0.1" name="drivers/src/akida/i3c/i3c_lld.c"/>
+        <file category="header" version="1.0.1" name="drivers/src/akida/i3c/i3c_reg.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="SOC_Init" Cversion="1.0.1" condition="AKD1000">
+      <description>Soc initailization</description>
+      <files>
+        <file category="header" version="1.0.1" name="drivers/include/akida/nsocv1/scr.h"/>
+        <file category="header" version="1.0.1" name="drivers/include/driver.h"/>
+        <file category="source" version="1.0.1" name="drivers/src/driver.c"/>
+        <file category="source" version="1.0.1" name="drivers/src/akida/nsocv1/soc.c"/>
+        <file category="header" version="1.0.1" name="drivers/include/akida/nsocv1/soc.h"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.1" condition="AKD1000">
+      <description>AKD1000 device startup code</description>
+      <files>
+        <file category="source" attr="config" condition="ARMCC6" version="1.0.1" name="Device/AKD1000/Source/startup.S"/>
+        <file category="source" attr="config" version="1.0.1" name="Device/AKD1000/Source/system_AKD1000.c"/>
+        <file category="source" attr="config" version="1.0.1" name="Device/AKD1000/Source/startup_AKD1000.c"/>
+        <file category="linkerScript" attr="config" condition="ARMCC6" version="1.0.1" name="Device/AKD1000/ARM/AKD1000_ac6.sct"/>
+        <file category="other" attr="config" version="1.0.1" name="Device/AKD1000/ARM/Debug_RAM.ini"/>
+        <file category="header" attr="config" version="1.0.1" name="Device/AKD1000/mini_pcie/mini_pcie_config.h"/>
+        <file category="include" version="1.0.1" name="Device/AKD1000/Include/"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="GPIO" Cversion="1.0.1" condition="AKD1000">
+      <description>GPIO</description>
+      <files>
+        <file category="header" version="1.0.1" name="drivers/include/gpio.h"/>
+        <file category="source" version="1.0.1" name="drivers/src/akida/gpio/gpio_lld.c"/>
+        <file category="header" version="1.0.1" name="drivers/src/akida/gpio/gpio_reg.h"/>
+        <file category="source" version="1.0.1" name="drivers/src/gpio.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="WDOG" Cversion="1.0.1" condition="AKD1000">
+      <description>I2C Master</description>
+      <files>
+        <file category="header" version="1.0.1" name="drivers/include/gpio.h"/>
+        <file category="source" version="1.0.1" name="drivers/src/akida/gpio/gpio_lld.c"/>
+        <file category="header" version="1.0.1" name="drivers/src/akida/gpio/gpio_reg.h"/>
+        <file category="source" version="1.0.1" name="drivers/src/gpio.c"/>
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="BOARD_mini_pcie" Cversion="1.0.1" condition="AKD1000">
+      <description>mini_pcie</description>
+      <files>
+        <file category="source" version="1.0.1" name="boards/mini_pcie/src/board_config.c"/>
+        <file category="header" version="1.0.1" name="boards/mini_pcie/src/mini_pcie.h"/>
+      </files>
+    </component>
+  </components>
+  <devices>
+    <family Dfamily="AKD" Dvendor="BrainChip:168">
+      <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="1" Dmpu="0" Dendian="Little-endian"/>
+      <description>
+      The Brainchip device family contains an ARM Cortex-M4 processor, running up to 300 MHz with a versatile set of on-chip peripherals.
+    </description>
+      <subFamily DsubFamily="AKD_Devices">
+        <processor Dclock="300000000"/>
+        <device Dname="AKD1000">
+          <memory name="IROM1" access="rx" start="0x10000000" size="0x00020000" startup="1" default="1"/>
+          <memory name="IRAM1" access="rw" start="0x10020000" size="0x00040000" init="0" default="1"/>
+          <compile header="Device/AKD1000/Include/AKD1000.h" define="AKD1000=1 ARMCM4_FP=1 CONFIG_SYSTEM_CLOCK_FREQUENCY=300000000"/>
+          <debug svd="SVD/AKD1000.svd"/>
+        </device>
+      </subFamily>
+    </family>
+  </devices>
+  <boards>
+    <board vendor="Brainchip" name="ADK1000 miniPCIe" revision="V1" salesContact="sales@brainchip.com" orderForm="https://brainchipinc.com">
+      <description>BrainChip AKD1000 Reference miniPCIe Board</description>
+      <image small="Images/miniPCIe.png" large="Images/miniPCIe.png" public="true"/>
+      <mountedDevice deviceIndex="0" Dvendor="BrainChip:168" Dname="AKD1000"/>
+      <compatibleDevice deviceIndex="0" Dvendor="BrainChip:168" Dfamily="AKD"/>
+    </board>
+    <board vendor="Brainchip" name="ADK1000 PCIe USB" revision="V2" salesContact="sales@brainchip.com" orderForm="https://brainchipinc.com">
+      <description>BrainChip AKD1000 Reference Board</description>
+      <mountedDevice deviceIndex="0" Dvendor="BrainChip:168" Dname="AKD1000"/>
+      <compatibleDevice deviceIndex="0" Dvendor="BrainChip:168" Dfamily="AKD"/>
+    </board>
+  </boards>
+</package>

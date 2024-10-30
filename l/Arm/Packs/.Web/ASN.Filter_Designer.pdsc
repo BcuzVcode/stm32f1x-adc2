@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>ASN</vendor>
+  <name>Filter_Designer</name>
+  <description>Intuitive graphical FIR/IIR digital filter designer for CMSIS-DSP projects</description>
+  <url>http://www.advsolned.com/armpack/</url>
+  <releases>
+    <release version="1.0.3" date="2021-10-27">
+	ASNFD v5.0.4 
+    </release>
+  </releases>
+  <examples>
+    <example name="ASN Filter Designer FIR Example" doc="Readme.txt" folder="arm_fir_example" version="1.0.3">
+      <description>Advanced Solutions Nederland Filter Designer FIR Example for Arm Cortex-M devices</description>
+      <board name="uVision Simulator" vendor="Keil" />
+      <project>
+        <environment name="uv" load="arm_fir_example.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <component Cclass="CMSIS" Cgroup="DSP" />
+      </attributes>
+    </example>
+    <example name="ASN Filter Designer IIR Example" doc="Readme.txt" folder="arm_iir_example" version="1.0.3">
+      <description>Advanced Solutions Nederland Filter Designer IIR Example for Arm Cortex-M devices</description>
+      <board name="uVision Simulator" vendor="Keil" />
+      <project>
+        <environment name="uv" load="arm_iir_example.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <component Cclass="CMSIS" Cgroup="DSP" />
+      </attributes>
+    </example>
+  </examples>
+</package>

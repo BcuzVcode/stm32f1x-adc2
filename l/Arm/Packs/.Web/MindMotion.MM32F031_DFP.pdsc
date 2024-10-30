@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>MindMotion</vendor>
+    <url>http://www.mindmotion.com.cn/Download/MDK_KEIL/</url>
+    <name>MM32F031_DFP</name>
+    <description>MindMotion MM32F031 Series Device Support, Drivers and Examples</description>
+    <releases>
+
+		<release version="1.4.3" date="2021-10-25">
+       Release version of MM32F031 Device Family Pack.
+    </release>
+    </releases>
+
+    <devices>
+        <!-- generated, do not modify this section! -->
+        <family Dfamily="MM32F031 Series" Dvendor="MindMotion:132">
+            <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"  Dclock="72000000"/>
+            <description>
+MM32F031 Series
+            </description>
+            <!-- ************************  Subfamily 'MM32F031xB'  **************************** -->
+            <subFamily DsubFamily="MM32F031xB">
+            <description>
+Subfamily: MM32F031xB
+
+Frequency: 72MHz 
+Memory: 128 kB Flash, 8 kB RAM
+Communication: 2 x UART, up to 2 x SPI, 1 x I2C
+Analog : ADC
+power saving mode:stop, sleep, and standby mode
+
+            </description>
+                
+                <device Dname="MM32F031CBT">
+                    
+        <compile header="Device/MM32F031xxn/Include/HAL_device.h"  define="MM32F031CBT"/>
+
+                    <debug svd="SVD/MM32F031xxn.svd"/>
+                    <memory id="IROM1" start="0x08000000" size="0x20000" startup="1" default="1"/>
+                    <memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1"/>
+                    <algorithm name="Flash/MM32F031x_128.FLM" start="0x08000000" size="0x20000" default="1"/>
+                </device>
+                <device Dname="MM32F031KBT">
+                    
+        <compile header="Device/MM32F031xxn/Include/HAL_device.h"  define="MM32F031KBT"/>
+
+                    <debug svd="SVD/MM32F031xxn.svd"/>
+                    <memory id="IROM1" start="0x08000000" size="0x20000" startup="1" default="1"/>
+                    <memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1"/>
+                    <algorithm name="Flash/MM32F031x_128.FLM" start="0x08000000" size="0x20000" default="1"/>
+                </device>
+                <device Dname="MM32F031KBU">
+                    
+        <compile header="Device/MM32F031xxn/Include/HAL_device.h"  define="MM32F031KBU"/>
+
+                    <debug svd="SVD/MM32F031xxn.svd"/>
+                    <memory id="IROM1" start="0x08000000" size="0x20000" startup="1" default="1"/>
+                    <memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1"/>
+                    <algorithm name="Flash/MM32F031x_128.FLM" start="0x08000000" size="0x20000" default="1"/>
+                </device>
+            </subFamily>
+            <!-- ************************  Subfamily 'MM32F031x8'  **************************** -->
+            <subFamily DsubFamily="MM32F031x8">
+            <description>
+Subfamily: MM32F031x8
+
+Frequency: 72MHz 
+Memory: 64 kB Flash, 8 kB RAM
+Communication: 2 x UART, up to 2 x SPI, 1 x I2C
+Analog : ADC
+power saving mode:stop, sleep, and standby mode
+ 
+            </description>
+                
+                <!-- *************************  Device 'MM32F031C8T'  ***************************** -->
+                <device Dname="MM32F031C8T">
+                    
+        <compile header="Device/MM32F031xxn/Include/HAL_device.h"  define="MM32F031C8T"/>
+
+                    <debug svd="SVD/MM32F031xxn.svd"/>
+                    <memory id="IROM1" start="0x08000000" size="0x10000" startup="1" default="1"/>
+                    <memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1"/>
+                    <algorithm name="Flash/MM32F031x_64.FLM" start="0x08000000" size="0x10000" default="1"/>
+                </device>
+                <device Dname="MM32F031K8T">
+                    
+        <compile header="Device/MM32F031xxn/Include/HAL_device.h"  define="MM32F031K8T"/>
+
+                    <debug svd="SVD/MM32F031xxn.svd"/>
+                    <memory id="IROM1" start="0x08000000" size="0x10000" startup="1" default="1"/>
+                    <memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1"/>
+                    <algorithm name="Flash/MM32F031x_64.FLM" start="0x08000000" size="0x10000" default="1"/>
+                </device>
+                <device Dname="MM32F031K8U">
+                    
+        <compile header="Device/MM32F031xxn/Include/HAL_device.h"  define="MM32F031K8U"/>
+
+                    <debug svd="SVD/MM32F031xxn.svd"/>
+                    <memory id="IROM1" start="0x08000000" size="0x10000" startup="1" default="1"/>
+                    <memory id="IRAM1" start="0x20000000" size="0x2000" init="0" default="1"/>
+                    <algorithm name="Flash/MM32F031x_64.FLM" start="0x08000000" size="0x10000" default="1"/>
+                </device>
+            </subFamily>
+            <!-- ************************  Subfamily 'MM32F031x6'  **************************** -->
+            <subFamily DsubFamily="MM32F031x6">
+            <description>
+Subfamily: MM32F031x6
+
+Frequency: 72MHz 
+Memory: 32 kB Flash, 4 kB RAM
+Communication: 1 x UART,  1 x SPI, 1 x I2C
+Analog : ADC
+power saving mode:stop, sleep, and standby mode
+
+            </description>
+                
+                <!-- *************************  Device 'MM32F031x6'  ***************************** -->
+                <device Dname="MM32F031C6T">
+                    
+        <compile header="Device/MM32F031xxn/Include/HAL_device.h"  define="MM32F031C6T"/>
+
+                    <debug svd="SVD/MM32F031xxq.svd"/>
+                    <memory id="IROM1" start="0x08000000" size="0x8000" startup="1" default="1"/>
+                    <memory id="IRAM1" start="0x20000000" size="0x1000" init="0" default="1"/>
+                    <algorithm name="Flash/MM32F031x_32.FLM" start="0x08000000" size="0x8000" default="1"/>
+                </device>
+                <device Dname="MM32F031K6T">
+                    
+        <compile header="Device/MM32F031xxn/Include/HAL_device.h"  define="MM32F031K6T"/>
+
+                    <debug svd="SVD/MM32F031xxq.svd"/>
+                    <memory id="IROM1" start="0x08000000" size="0x8000" startup="1" default="1"/>
+                    <memory id="IRAM1" start="0x20000000" size="0x1000" init="0" default="1"/>
+                    <algorithm name="Flash/MM32F031x_32.FLM" start="0x08000000" size="0x8000" default="1"/>
+                </device>
+                <device Dname="MM32F031K6U">
+                    
+        <compile header="Device/MM32F031xxn/Include/HAL_device.h"  define="MM32F031K6U"/>
+
+                    <debug svd="SVD/MM32F031xxq.svd"/>
+                    <memory id="IROM1" start="0x08000000" size="0x8000" startup="1" default="1"/>
+                    <memory id="IRAM1" start="0x20000000" size="0x1000" init="0" default="1"/>
+                    <algorithm name="Flash/MM32F031x_32.FLM" start="0x08000000" size="0x8000" default="1"/>
+                </device>
+                <device Dname="MM32F031G6U">
+                    
+        <compile header="Device/MM32F031xxn/Include/HAL_device.h"  define="MM32F031G6U"/>
+
+                    <debug svd="SVD/MM32F031xxq.svd"/>
+                    <memory id="IROM1" start="0x08000000" size="0x8000" startup="1" default="1"/>
+                    <memory id="IRAM1" start="0x20000000" size="0x1000" init="0" default="1"/>
+                    <algorithm name="Flash/MM32F031x_32.FLM" start="0x08000000" size="0x8000" default="1"/>
+                </device>
+                <device Dname="MM32F031F6P">
+                    
+        <compile header="Device/MM32F031xxn/Include/HAL_device.h"  define="MM32F031F6P"/>
+
+                    <debug svd="SVD/MM32F031xxq.svd"/>
+                    <memory id="IROM1" start="0x08000000" size="0x8000" startup="1" default="1"/>
+                    <memory id="IRAM1" start="0x20000000" size="0x1000" init="0" default="1"/>
+                    <algorithm name="Flash/MM32F031x_32.FLM" start="0x08000000" size="0x8000" default="1"/>
+                </device>
+            </subFamily>
+            <!-- ************************  Subfamily 'MM32F031x4'  **************************** -->
+            <subFamily DsubFamily="MM32F031x4">
+            <description>
+Subfamily: MM32F031x4
+
+Frequency: 72MHz 
+Memory: 16 kB Flash, 4 kB RAM
+Communication: 1 x UART, 1 x SPI, 1 x I2C
+Analog : ADC
+power saving mode:stop, sleep, and standby mode
+ 
+            </description>
+                
+                <!-- *************************  Device 'MM32F031x4'  ***************************** -->
+                <device Dname="MM32F031K4U">
+                    
+        <compile header="Device/MM32F031xxn/Include/HAL_device.h"  define="MM32F031K4U"/>
+
+                    <debug svd="SVD/MM32F031xxq.svd"/>
+                    <memory id="IROM1" start="0x08000000" size="0x4000" startup="1" default="1"/>
+                    <memory id="IRAM1" start="0x20000000" size="0x1000" init="0" default="1"/>
+                    <algorithm name="Flash/MM32F031x_16.FLM" start="0x08000000" size="0x4000" default="1"/>
+                </device>
+                <device Dname="MM32F031F4P">
+                    
+        <compile header="Device/MM32F031xxn/Include/HAL_device.h"  define="MM32F031F4P"/>
+
+                    <debug svd="SVD/MM32F031xxq.svd"/>
+                    <memory id="IROM1" start="0x08000000" size="0x4000" startup="1" default="1"/>
+                    <memory id="IRAM1" start="0x20000000" size="0x1000" init="0" default="1"/>
+                    <algorithm name="Flash/MM32F031x_16.FLM" start="0x08000000" size="0x4000" default="1"/>
+                </device>
+            </subFamily>
+        </family>
+    </devices>
+    
+  
+ <conditions>   
+    <condition id="Compiler ARMCC">
+    <require Tcompiler="ARMCC"/>
+    </condition>
+
+
+    <condition id="ARMCM0 CMSIS">
+      <description>Generic Arm Cortex-M0 device startup and depends on CMSIS Core</description>
+
+        <require Dvendor="MindMotion:132"  Dname="MM32F031*"/> 
+        <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+  </conditions>
+
+<components>
+                 <!-- Cortex-M Device Startup -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.4" condition="ARMCM0 CMSIS"> 
+      <description>System Startup for MindMotion MM32F031 Series devices</description>
+      <files>
+        <file category="header"  name="Device/MM32F031xxn/Include/HAL_device.h"/>
+        <file category="header"  name="Device/MM32F031xxn/Include/MM32F031xxn.h"/>
+        <file category="sourceC" name="Device/MM32F031xxn/Source/system_MM32F031xxn.c" attr="config"  version="1.0.4"/>    
+        <file category="sourceAsm" name="Device/MM32F031xxn/Source/KEIL_StartAsm/startup_MM32F031xxn_KEIL.s" attr="config" version="1.0.4" condition="Compiler ARMCC"/> 
+      </files>
+    </component> 
+    
+        <component Cclass="Board" Cgroup="Samples" Csub="LED" Cversion="1.0.4" condition="ARMCM0 CMSIS"> 
+      <description>System Startup for MindMotion MM32F003 Series devices</description>
+      <files>
+        <file category="header"  name="Boards/MBF031_Boardreg/RegSample/GPIO_LED/HARDWARE/LED/led.h"/>
+        <file category="sourceC"  name="Boards/MBF031_Boardreg/RegSample/GPIO_LED/HARDWARE/LED/led.c" attr="config"  version="1.0.4"/>
+        <file category="sourceC" name="Boards/MBF031_Boardreg/RegSample/GPIO_LED/USER/test.c" attr="config"  version="1.0.4"/>    
+      </files>
+    </component> 
+
+</components>
+ 
+   <examples>
+    <example name="MM32_MBF031_Board GPIO LED blinky" doc="README.TXT" folder="Boards/MBF031_Boardreg/RegSample/GPIO_LED">
+        <description>MM32_MBF031_Board Blinky example</description>           
+        <board name="MM32_MBF031_Board" vendor="MindMotion"/>
+        <project>   
+            <environment name="uv" load="KEIL_PRJ/IOToggle.uvprojx"/>
+        </project>                      
+        <attributes>
+            <component Cclass="CMSIS"     Cgroup="CORE"/>
+            <component Cclass="Device"    Cgroup="Startup"/>
+            <category>Getting Started</category>
+        </attributes>
+    </example>
+  </examples>  
+  
+ <boards>
+    <board vendor="MindMotion" name="MM32_MBF031_Board" revision="Ver 1.0" >
+      <description>MindMotion MM32_MBF031_Board Development Board</description>
+            <book category="manual" name="Documents/boards/f031reference.pdf" title="MM32_MBF031  Manual"/>
+      <mountedDevice    deviceIndex="0" Dvendor="MindMotion:132" Dname="MM32F031CBT"/>
+      <compatibleDevice deviceIndex="0" Dvendor="MindMotion:132" DsubFamily="MM32F031xB"/>    
+      <compatibleDevice deviceIndex="0" Dvendor="MindMotion:132" DsubFamily="MM32F031x8"/>
+      <compatibleDevice deviceIndex="0" Dvendor="MindMotion:132" DsubFamily="MM32F031x6"/>
+      <compatibleDevice deviceIndex="0" Dvendor="MindMotion:132" DsubFamily="MM32F031x4"/>
+
+              
+      <feature type="XTAL"      n="8000000"/>
+      <feature type="PWR"       n="5"              name="USB Powered"/>
+      <feature type="PWR"       n="3"  m="5"       name="External Supply"/>
+      <feature type="Button"    n="1"              name="Push-buttons: Reset"/>
+      <feature type="LED"       n="2"              name="LEDs: Power, One user"/>
+      <debugInterface adapter="JTAG/SW" connector="20 pin JTAG (0.1 inch connector)"/>
+    </board>
+  </boards>
+
+    
+</package>

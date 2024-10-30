@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>FREERTOS-AWS_IOT</name>
+  <vendor>NXP</vendor>
+  <description>Software Pack for freertos-aws_iot</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="2.0.0" date="2024-07-17">NXP CMSIS SWP Packs based on MCUXpresso SDK 2.16.0</release>
+    <release version="1.0.0" date="2024-01-14">NXP CMSIS SWP Packs based on MCUXpresso SDK 2.15.0</release>
+  </releases>
+  <keywords>
+    <keyword>Software Pack</keyword>
+  </keywords>
+  <taxonomy>
+    <description Cclass="FreeRTOS">FreeRTOS NXP</description>
+    <description Cclass="AWS IoT">AWS IoT NXP</description>
+  </taxonomy>
+  <requirements>
+    <packages>
+      <package name="COREHTTP" vendor="NXP" version="2.0.0"/>
+      <package name="FREERTOS-KERNEL" vendor="NXP" version="3.0.0"/>
+      <package name="MBEDTLS" vendor="NXP" version="3.0.0"/>
+      <package name="PKCS11" vendor="NXP" version="2.0.0"/>
+      <package name="LLHTTP" vendor="NXP" version="2.0.0"/>
+      <package name="TINYCBOR" vendor="NXP" version="2.0.0"/>
+      <package name="SERIAL_MWM" vendor="NXP" version="2.0.0"/>
+      <package name="LWIP" vendor="NXP" version="3.0.0"/>
+      <package name="WIFI" vendor="NXP" version="3.0.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <conditions>
+    <condition id="middleware.aws_iot.device_shadow.condition_id">
+      <require condition="allOf.middleware.aws_iot.device_shadow.template.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.aws_iot.device_shadow.template.internal_condition">
+      <require Cclass="AWS IoT" Cgroup="AWS IoT Device Shadow" Csub="template"/>
+    </condition>
+    <condition id="middleware.aws_iot.device_shadow.template.condition_id">
+      <require condition="allOf.middleware.iot_reference.logging.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.iot_reference.logging.internal_condition">
+      <require Cclass="AWS IoT" Cgroup="IoT Reference" Csub="logging"/>
+    </condition>
+    <condition id="middleware.aws_iot.jobs.condition_id">
+      <require condition="allOf.middleware.llhttp.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.llhttp.internal_condition">
+      <require Cclass="AWS IoT" Cgroup="llhttp" Csub="llhttp"/>
+    </condition>
+    <condition id="middleware.aws_iot.ota.condition_id">
+      <require condition="allOf.middleware.freertos.corejson, middleware.tinycbor.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.freertos.corejson, middleware.tinycbor.internal_condition">
+      <require Cclass="FreeRTOS" Cgroup="coreJSON"/>
+      <require Cclass="TinyCBOR" Cgroup="TinyCBOR" Csub="tinycbor"/>
+    </condition>
+    <condition id="middleware.aws_iot.ota.freertos.condition_id">
+      <require condition="allOf.middleware.freertos-kernel.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.freertos-kernel.internal_condition">
+      <require Cclass="RTOS" Cgroup="Core"/>
+    </condition>
+    <condition id="middleware.freertos.coremqtt.condition_id">
+      <require condition="allOf.middleware.freertos.coremqtt.template.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.freertos.coremqtt.template.internal_condition">
+      <require Cclass="FreeRTOS" Cgroup="coreMQTT" Csub="template"/>
+    </condition>
+    <condition id="middleware.freertos.coremqtt-agent.condition_id">
+      <require condition="allOf.middleware.freertos.coremqtt, middleware.iot_reference.logging.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.freertos.coremqtt, middleware.iot_reference.logging.internal_condition">
+      <require Cclass="FreeRTOS" Cgroup="coreMQTT"/>
+      <require Cclass="AWS IoT" Cgroup="IoT Reference" Csub="logging"/>
+    </condition>
+    <condition id="middleware.freertos.coremqtt.template.condition_id">
+      <require condition="allOf.middleware.iot_reference.logging.internal_condition"/>
+    </condition>
+    <condition id="middleware.freertos.corepkcs11.condition_id">
+      <require condition="allOf.middleware.pkcs11, middleware.freertos.corepkcs11.template.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.pkcs11, middleware.freertos.corepkcs11.template.internal_condition">
+      <require Cclass="AWS IoT" Cgroup="OASIS PKCS Standard 11" Csub="pkcs11"/>
+      <require Cclass="FreeRTOS" Cgroup="corePKCS11" Csub="template"/>
+    </condition>
+    <condition id="middleware.freertos.corepkcs11.mbedtls.condition_id">
+      <require condition="allOf.middleware.pkcs11, middleware.mbedtls, middleware.freertos.corepkcs11, middleware.freertos.corepkcs11.template.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.pkcs11, middleware.mbedtls, middleware.freertos.corepkcs11, middleware.freertos.corepkcs11.template.internal_condition">
+      <require Cclass="AWS IoT" Cgroup="OASIS PKCS Standard 11" Csub="pkcs11"/>
+      <require Cclass="Security" Cgroup="mbedTLS library" Csub="mbedtls"/>
+      <require Cclass="FreeRTOS" Cgroup="corePKCS11" Csub="Core Library"/>
+      <require Cclass="FreeRTOS" Cgroup="corePKCS11" Csub="template"/>
+    </condition>
+    <condition id="middleware.freertos.corepkcs11.mbedtls_utils.condition_id">
+      <require condition="allOf.middleware.pkcs11, middleware.mbedtls.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.pkcs11, middleware.mbedtls.internal_condition">
+      <require Cclass="AWS IoT" Cgroup="OASIS PKCS Standard 11" Csub="pkcs11"/>
+      <require Cclass="Security" Cgroup="mbedTLS library" Csub="mbedtls"/>
+    </condition>
+    <condition id="middleware.freertos.corepkcs11.template.condition_id">
+      <require condition="allOf.middleware.freertos-kernel.internal_condition"/>
+    </condition>
+    <condition id="middleware.iot_reference.cli.condition_id">
+      <require condition="allOf.middleware.freertos-kernel.internal_condition"/>
+    </condition>
+    <condition id="middleware.iot_reference.kvstore.condition_id">
+      <require condition="allOf.middleware.freertos-kernel, middleware.iot_reference.template, component.mflash_file.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.freertos-kernel, middleware.iot_reference.template, component.mflash_file.internal_condition">
+      <require Cclass="RTOS" Cgroup="Core"/>
+      <require Cclass="AWS IoT" Cgroup="IoT Reference" Csub="template"/>
+      <require Cclass="Device" Cgroup="SDK Drivers" Csub="mflash_file"/>
+    </condition>
+    <condition id="middleware.iot_reference.logging.condition_id">
+      <require condition="allOf.middleware.freertos-kernel.internal_condition"/>
+    </condition>
+    <condition id="middleware.iot_reference.mqtt_agent.condition_id">
+      <require condition="allOf.middleware.freertos-kernel, middleware.freertos.backoffalgorithm, middleware.freertos.coremqtt-agent, middleware.freertos.corepkcs11, middleware.iot_reference.kvstore, middleware.iot_reference.mqtt_agent_interface, middleware.iot_reference.template, anyOf=allOf=middleware.iot_reference.transport_mbedtls.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.freertos-kernel, middleware.freertos.backoffalgorithm, middleware.freertos.coremqtt-agent, middleware.freertos.corepkcs11, middleware.iot_reference.kvstore, middleware.iot_reference.mqtt_agent_interface, middleware.iot_reference.template, anyOf=allOf=middleware.iot_reference.transport_mbedtls.internal_condition">
+      <require Cclass="RTOS" Cgroup="Core"/>
+      <require Cclass="FreeRTOS" Cgroup="backoffAlgorithm"/>
+      <require Cclass="FreeRTOS" Cgroup="coreMQTT Agent"/>
+      <require Cclass="FreeRTOS" Cgroup="corePKCS11" Csub="Core Library"/>
+      <require Cclass="AWS IoT" Cgroup="IoT Reference" Csub="kvstore"/>
+      <require Cclass="AWS IoT" Cgroup="IoT Reference" Csub="mqtt_agent_interface"/>
+      <require Cclass="AWS IoT" Cgroup="IoT Reference" Csub="template"/>
+      <require condition="anyOf.allOf=middleware.iot_reference.transport_mbedtls.internal_condition"/>
+    </condition>
+    <condition id="anyOf.allOf=middleware.iot_reference.transport_mbedtls.internal_condition">
+      <accept condition="allOf.middleware.iot_reference.transport_mbedtls.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.iot_reference.transport_mbedtls.internal_condition">
+      <require Cclass="AWS IoT" Cgroup="IoT Reference" Csub="transport_interface" Cvariant="lwIP"/>
+    </condition>
+    <condition id="middleware.iot_reference.mqtt_agent_interface.condition_id">
+      <require condition="allOf.middleware.freertos.coremqtt-agent, middleware.freertos-kernel.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.freertos.coremqtt-agent, middleware.freertos-kernel.internal_condition">
+      <require Cclass="FreeRTOS" Cgroup="coreMQTT Agent"/>
+      <require Cclass="RTOS" Cgroup="Core"/>
+    </condition>
+    <condition id="middleware.iot_reference.ota.condition_id">
+      <require condition="allOf.middleware.aws_iot.ota, middleware.freertos.coremqtt-agent, middleware.aws_iot.ota.freertos.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.aws_iot.ota, middleware.freertos.coremqtt-agent, middleware.aws_iot.ota.freertos.internal_condition">
+      <require Cclass="AWS IoT" Cgroup="AWS IoT Over-the-air Update" Csub="Library"/>
+      <require Cclass="FreeRTOS" Cgroup="coreMQTT Agent"/>
+      <require Cclass="AWS IoT" Cgroup="AWS IoT Over-the-air Update" Csub="OS Functional Abstraction Layer"/>
+    </condition>
+    <condition id="middleware.iot_reference.shadow.condition_id">
+      <require condition="allOf.middleware.freertos.coremqtt-agent, middleware.aws_iot.device_shadow, middleware.iot_reference.shadow_tasks.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.freertos.coremqtt-agent, middleware.aws_iot.device_shadow, middleware.iot_reference.shadow_tasks.internal_condition">
+      <require Cclass="FreeRTOS" Cgroup="coreMQTT Agent"/>
+      <require Cclass="AWS IoT" Cgroup="AWS IoT Device Shadow" Csub="Shadow library"/>
+      <require Cclass="AWS IoT" Cgroup="IoT Reference" Csub="shadow_tasks"/>
+    </condition>
+    <condition id="middleware.iot_reference.shadow_tasks.condition_id">
+      <require condition="allOf.middleware.freertos.coremqtt, middleware.aws_iot.device_shadow, middleware.freertos.corejson.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.freertos.coremqtt, middleware.aws_iot.device_shadow, middleware.freertos.corejson.internal_condition">
+      <require Cclass="FreeRTOS" Cgroup="coreMQTT"/>
+      <require Cclass="AWS IoT" Cgroup="AWS IoT Device Shadow" Csub="Shadow library"/>
+      <require Cclass="FreeRTOS" Cgroup="coreJSON"/>
+    </condition>
+    <condition id="middleware.iot_reference.template.condition_id">
+      <require condition="allOf.middleware.freertos-kernel, middleware.iot_reference.logging.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.freertos-kernel, middleware.iot_reference.logging.internal_condition">
+      <require Cclass="RTOS" Cgroup="Core"/>
+      <require Cclass="AWS IoT" Cgroup="IoT Reference" Csub="logging"/>
+    </condition>
+    <condition id="middleware.iot_reference.transport_mbedtls.condition_id">
+      <require condition="allOf.middleware.freertos.coremqtt, middleware.freertos.corepkcs11, middleware.pkcs11, middleware.lwip, middleware.mbedtls, middleware.iot_reference.template.internal_condition"/>
+    </condition>
+    <condition id="allOf.middleware.freertos.coremqtt, middleware.freertos.corepkcs11, middleware.pkcs11, middleware.lwip, middleware.mbedtls, middleware.iot_reference.template.internal_condition">
+      <require Cclass="FreeRTOS" Cgroup="coreMQTT"/>
+      <require Cclass="FreeRTOS" Cgroup="corePKCS11" Csub="Core Library"/>
+      <require Cclass="AWS IoT" Cgroup="OASIS PKCS Standard 11" Csub="pkcs11"/>
+      <require Cclass="Network" Cgroup="lwIP TCPIP Networking Stack" Csub="lwip"/>
+      <require Cclass="Security" Cgroup="mbedTLS library" Csub="mbedtls"/>
+      <require Cclass="AWS IoT" Cgroup="IoT Reference" Csub="template"/>
+    </condition>
+  </conditions>
+  <components>
+    <bundle Cbundle="FreeRTOS NXP" Cclass="FreeRTOS" Cversion="1.0.0">
+      <description>FreeRTOS NXP</description>
+      <doc>rtos/freertos/FreeRTOS NXP_dummy.txt</doc>
+      <component Cgroup="backoffAlgorithm" Cversion="1.3.0">
+        <description>Algorithm for calculating exponential backoff with jitter for network retry attempts.</description>
+        <files>
+          <file category="sourceC" name="rtos/freertos/backoffalgorithm/source/backoff_algorithm.c" projectpath="freertos/backoffalgorithm/source"/>
+          <file category="header" name="rtos/freertos/backoffalgorithm/source/include/backoff_algorithm.h" projectpath="freertos/backoffalgorithm/source/include"/>
+          <file category="doc" name="rtos/freertos/FreeRTOS NXP_dummy.txt"/>
+          <file category="include" name="rtos/freertos/backoffalgorithm/source/include/"/>
+        </files>
+      </component>
+      <component Cgroup="coreJSON" Cversion="3.2.0">
+        <description>A parser strictly enforcing the ECMA-404 JSON standard, suitable for microcontrollers.</description>
+        <files>
+          <file category="sourceC" name="rtos/freertos/corejson/source/core_json.c" projectpath="freertos/corejson/source"/>
+          <file category="header" name="rtos/freertos/corejson/source/include/core_json.h" projectpath="freertos/corejson/source/include"/>
+          <file category="include" name="rtos/freertos/corejson/source/include/"/>
+        </files>
+      </component>
+      <component Cgroup="coreMQTT" Cversion="2.1.1" condition="middleware.freertos.coremqtt.condition_id">
+        <description>Client implementation of the MQTT 3.1.1 specification for embedded devices.</description>
+        <files>
+          <file category="sourceC" name="rtos/freertos/coremqtt/source/core_mqtt.c" projectpath="freertos/coremqtt/source"/>
+          <file category="sourceC" name="rtos/freertos/coremqtt/source/core_mqtt_serializer.c" projectpath="freertos/coremqtt/source"/>
+          <file category="sourceC" name="rtos/freertos/coremqtt/source/core_mqtt_state.c" projectpath="freertos/coremqtt/source"/>
+          <file category="header" name="rtos/freertos/coremqtt/source/include/core_mqtt.h" projectpath="freertos/coremqtt/source/include"/>
+          <file category="header" name="rtos/freertos/coremqtt/source/include/core_mqtt_config_defaults.h" projectpath="freertos/coremqtt/source/include"/>
+          <file category="header" name="rtos/freertos/coremqtt/source/include/core_mqtt_default_logging.h" projectpath="freertos/coremqtt/source/include"/>
+          <file category="header" name="rtos/freertos/coremqtt/source/include/core_mqtt_serializer.h" projectpath="freertos/coremqtt/source/include"/>
+          <file category="header" name="rtos/freertos/coremqtt/source/include/core_mqtt_state.h" projectpath="freertos/coremqtt/source/include"/>
+          <file category="header" name="rtos/freertos/coremqtt/source/interface/transport_interface.h" projectpath="freertos/coremqtt/source/interface"/>
+          <file category="include" name="rtos/freertos/coremqtt/source/include/"/>
+          <file category="include" name="rtos/freertos/coremqtt/source/interface/"/>
+        </files>
+      </component>
+      <component Cgroup="coreMQTT Agent" Cversion="1.2.0" condition="middleware.freertos.coremqtt-agent.condition_id">
+        <description>Agent for thread-safe use of coreMQTT.</description>
+        <Pre_Include_Global_h>
+#ifndef MQTT_AGENT_DO_NOT_USE_CUSTOM_CONFIG
+#define MQTT_AGENT_DO_NOT_USE_CUSTOM_CONFIG 
+#endif
+</Pre_Include_Global_h>
+        <files>
+          <file category="header" name="rtos/freertos/coremqtt-agent/source/include/core_mqtt_agent.h" projectpath="freertos/coremqtt-agent/source/include"/>
+          <file category="header" name="rtos/freertos/coremqtt-agent/source/include/core_mqtt_agent_command_functions.h" projectpath="freertos/coremqtt-agent/source/include"/>
+          <file category="header" name="rtos/freertos/coremqtt-agent/source/include/core_mqtt_agent_config_defaults.h" projectpath="freertos/coremqtt-agent/source/include"/>
+          <file category="header" name="rtos/freertos/coremqtt-agent/source/include/core_mqtt_agent_default_logging.h" projectpath="freertos/coremqtt-agent/source/include"/>
+          <file category="header" name="rtos/freertos/coremqtt-agent/source/include/core_mqtt_agent_message_interface.h" projectpath="freertos/coremqtt-agent/source/include"/>
+          <file category="sourceC" name="rtos/freertos/coremqtt-agent/source/core_mqtt_agent_command_functions.c" projectpath="freertos/coremqtt-agent/source"/>
+          <file category="sourceC" name="rtos/freertos/coremqtt-agent/source/core_mqtt_agent.c" projectpath="freertos/coremqtt-agent/source"/>
+          <file category="include" name="rtos/freertos/coremqtt-agent/source/include/"/>
+        </files>
+      </component>
+      <component Cgroup="coreMQTT" Csub="template" Cversion="1.0.0" condition="middleware.freertos.coremqtt.template.condition_id">
+        <description>Template configuration file to be edited by user.</description>
+        <files>
+          <file category="header" attr="config" name="rtos/freertos/coremqtt/template/core_mqtt_config.h" version="1.0.0" projectpath="freertos/coremqtt/template"/>
+        </files>
+      </component>
+      <component Cgroup="corePKCS11" Csub="Core Library" Cversion="3.5.0" condition="middleware.freertos.corepkcs11.condition_id">
+        <description>Software implementation of the PKCS #11 standard.</description>
+        <files>
+          <file category="sourceC" name="rtos/freertos/corepkcs11/source/core_pkcs11.c" projectpath="freertos/corepkcs11/source"/>
+          <file category="sourceC" name="rtos/freertos/corepkcs11/source/core_pki_utils.c" projectpath="freertos/corepkcs11/source"/>
+          <file category="header" name="rtos/freertos/corepkcs11/source/include/core_pkcs11.h" projectpath="freertos/corepkcs11/source/include"/>
+          <file category="header" name="rtos/freertos/corepkcs11/source/include/core_pkcs11_config_defaults.h" projectpath="freertos/corepkcs11/source/include"/>
+          <file category="header" name="rtos/freertos/corepkcs11/source/include/core_pkcs11_pal.h" projectpath="freertos/corepkcs11/source/include"/>
+          <file category="header" name="rtos/freertos/corepkcs11/source/include/core_pki_utils.h" projectpath="freertos/corepkcs11/source/include"/>
+          <file category="include" name="rtos/freertos/corepkcs11/source/include/"/>
+        </files>
+      </component>
+      <component Cgroup="corePKCS11" Csub="mbedtls" Cversion="3.5.0" condition="middleware.freertos.corepkcs11.mbedtls.condition_id">
+        <description>PKCS #11, mbedtls port.</description>
+        <files>
+          <file category="sourceC" name="rtos/freertos/corepkcs11/source/portable/mbedtls/core_pkcs11_mbedtls.c" projectpath="freertos/corepkcs11/source/portable/mbedtls"/>
+        </files>
+      </component>
+      <component Cgroup="corePKCS11" Csub="mbedtls_utils" Cversion="3.5.0" condition="middleware.freertos.corepkcs11.mbedtls_utils.condition_id">
+        <description>PKCS #11, mbedtls_utils</description>
+        <files>
+          <file category="sourceC" name="rtos/freertos/corepkcs11/source/dependency/3rdparty/mbedtls_utils/mbedtls_utils.c" projectpath="freertos/corepkcs11/source/dependency/3rdparty/mbedtls_utils"/>
+          <file category="header" name="rtos/freertos/corepkcs11/source/dependency/3rdparty/mbedtls_utils/mbedtls_utils.h" projectpath="freertos/corepkcs11/source/dependency/3rdparty/mbedtls_utils"/>
+          <file category="include" name="rtos/freertos/corepkcs11/source/dependency/3rdparty/mbedtls_utils/"/>
+        </files>
+      </component>
+      <component Cgroup="corePKCS11" Csub="template" Cversion="1.0.0" condition="middleware.freertos.corepkcs11.template.condition_id">
+        <description>Template configuration file to be edited by user.</description>
+        <Pre_Include_Global_h>
+#ifndef MBEDTLS_THREADING_ALT
+#define MBEDTLS_THREADING_ALT 
+#endif
+#ifndef MBEDTLS_THREADING_C
+#define MBEDTLS_THREADING_C 
+#endif
+</Pre_Include_Global_h>
+        <files>
+          <file category="header" attr="config" name="rtos/freertos/corepkcs11/template/core_pkcs11_config.h" version="1.0.0" projectpath="freertos/corepkcs11/template"/>
+        </files>
+      </component>
+    </bundle>
+    <bundle Cbundle="AWS IoT NXP" Cclass="AWS IoT" Cversion="1.0.0">
+      <description>AWS IoT NXP</description>
+      <doc>rtos/freertos/AWS IoT NXP_dummy.txt</doc>
+      <component Cgroup="AWS IoT Device Defender" Cversion="1.3.0">
+        <description>Client library for using the AWS IoT Device Defender service on embedded devices.</description>
+        <files>
+          <file category="sourceC" name="middleware/aws_iot/device-defender/source/defender.c" projectpath="aws_iot/device-defender/source"/>
+          <file category="header" name="middleware/aws_iot/device-defender/source/include/defender.h" projectpath="aws_iot/device-defender/source/include"/>
+          <file category="header" name="middleware/aws_iot/device-defender/source/include/defender_config_defaults.h" projectpath="aws_iot/device-defender/source/include"/>
+          <file category="include" name="middleware/aws_iot/device-defender/source/include/"/>
+        </files>
+      </component>
+      <component Cgroup="AWS IoT Device Shadow" Csub="Shadow library" Cversion="1.3.0" condition="middleware.aws_iot.device_shadow.condition_id">
+        <description>Client library for using the AWS IoT Device Shadow service on embedded devices.</description>
+        <files>
+          <file category="sourceC" name="middleware/aws_iot/device-shadow/source/shadow.c" projectpath="aws_iot/device-shadow/source"/>
+          <file category="header" name="middleware/aws_iot/device-shadow/source/include/shadow.h" projectpath="aws_iot/device-shadow/source/include"/>
+          <file category="header" name="middleware/aws_iot/device-shadow/source/include/shadow_config_defaults.h" projectpath="aws_iot/device-shadow/source/include"/>
+          <file category="include" name="middleware/aws_iot/device-shadow/source/include/"/>
+        </files>
+      </component>
+      <component Cgroup="AWS IoT Device Shadow" Csub="template" Cversion="1.0.0" condition="middleware.aws_iot.device_shadow.template.condition_id">
+        <description>Template configuration file to be edited by user.</description>
+        <files>
+          <file category="header" attr="config" name="middleware/aws_iot/device-shadow/template/shadow_config.h" version="1.0.0" projectpath="aws_iot/device-shadow/template"/>
+        </files>
+      </component>
+      <component Cgroup="AWS IoT Jobs" Cversion="1.3.0" condition="middleware.aws_iot.jobs.condition_id">
+        <description>Library for using the AWS IoT Jobs service on embedded devices.</description>
+        <files>
+          <file category="sourceC" name="middleware/aws_iot/jobs/source/jobs.c" projectpath="aws_iot/jobs/source"/>
+        </files>
+      </component>
+      <component Cgroup="AWS IoT Over-the-air Update" Csub="Library" Cversion="3.4.0" condition="middleware.aws_iot.ota.condition_id">
+        <description>Client library for using the AWS Over-the-air Update service on embedded devices.</description>
+        <files>
+          <file category="sourceC" name="middleware/aws_iot/ota/source/ota.c" projectpath="aws_iot/ota/source"/>
+          <file category="sourceC" name="middleware/aws_iot/ota/source/ota_base64.c" projectpath="aws_iot/ota/source"/>
+          <file category="sourceC" name="middleware/aws_iot/ota/source/ota_cbor.c" projectpath="aws_iot/ota/source"/>
+          <file category="sourceC" name="middleware/aws_iot/ota/source/ota_http.c" projectpath="aws_iot/ota/source"/>
+          <file category="sourceC" name="middleware/aws_iot/ota/source/ota_interface.c" projectpath="aws_iot/ota/source"/>
+          <file category="sourceC" name="middleware/aws_iot/ota/source/ota_mqtt.c" projectpath="aws_iot/ota/source"/>
+          <file category="header" name="middleware/aws_iot/ota/source/include/ota.h" projectpath="aws_iot/ota/source/include"/>
+          <file category="header" name="middleware/aws_iot/ota/source/include/ota_appversion32.h" projectpath="aws_iot/ota/source/include"/>
+          <file category="header" name="middleware/aws_iot/ota/source/include/ota_base64_private.h" projectpath="aws_iot/ota/source/include"/>
+          <file category="header" name="middleware/aws_iot/ota/source/include/ota_cbor_private.h" projectpath="aws_iot/ota/source/include"/>
+          <file category="header" name="middleware/aws_iot/ota/source/include/ota_config_defaults.h" projectpath="aws_iot/ota/source/include"/>
+          <file category="header" name="middleware/aws_iot/ota/source/include/ota_http_interface.h" projectpath="aws_iot/ota/source/include"/>
+          <file category="header" name="middleware/aws_iot/ota/source/include/ota_http_private.h" projectpath="aws_iot/ota/source/include"/>
+          <file category="header" name="middleware/aws_iot/ota/source/include/ota_interface_private.h" projectpath="aws_iot/ota/source/include"/>
+          <file category="header" name="middleware/aws_iot/ota/source/include/ota_mqtt_interface.h" projectpath="aws_iot/ota/source/include"/>
+          <file category="header" name="middleware/aws_iot/ota/source/include/ota_mqtt_private.h" projectpath="aws_iot/ota/source/include"/>
+          <file category="header" name="middleware/aws_iot/ota/source/include/ota_os_interface.h" projectpath="aws_iot/ota/source/include"/>
+          <file category="header" name="middleware/aws_iot/ota/source/include/ota_platform_interface.h" projectpath="aws_iot/ota/source/include"/>
+          <file category="header" name="middleware/aws_iot/ota/source/include/ota_private.h" projectpath="aws_iot/ota/source/include"/>
+          <file category="doc" name="middleware/aws_iot/ota/source/include/stdbool.readme" projectpath="aws_iot/ota/source/include"/>
+          <file category="doc" name="middleware/aws_iot/ota/source/include/stdint.readme" projectpath="aws_iot/ota/source/include"/>
+          <file category="include" name="middleware/aws_iot/ota/source/include/"/>
+        </files>
+      </component>
+      <component Cgroup="AWS IoT Over-the-air Update" Csub="OS Functional Abstraction Layer" Cversion="3.4.0" condition="middleware.aws_iot.ota.freertos.condition_id">
+        <description>Client library for using the AWS Over-the-air Update service on embedded devices. FreeRTOS port.</description>
+        <files>
+          <file category="sourceC" name="middleware/aws_iot/ota/source/portable/os/ota_os_freertos.c" projectpath="aws_iot/ota/source/portable/os"/>
+          <file category="header" name="middleware/aws_iot/ota/source/portable/os/ota_os_freertos.h" projectpath="aws_iot/ota/source/portable/os"/>
+          <file category="include" name="middleware/aws_iot/ota/source/portable/os/"/>
+        </files>
+      </component>
+      <component Cgroup="IoT Reference" Csub="cli" Cversion="1.0.0" condition="middleware.iot_reference.cli.condition_id">
+        <description>CLI, IoT reference common example component</description>
+        <files>
+          <file category="sourceC" name="middleware/aws_iot/iot-reference/examples/common/cli/cli.c" projectpath="aws_iot/iot-reference/examples/common/cli"/>
+          <file category="sourceC" name="middleware/aws_iot/iot-reference/examples/common/cli/cli_uart.c" projectpath="aws_iot/iot-reference/examples/common/cli"/>
+          <file category="sourceC" name="middleware/aws_iot/iot-reference/examples/common/cli/FreeRTOS_CLI.c" projectpath="aws_iot/iot-reference/examples/common/cli"/>
+          <file category="header" name="middleware/aws_iot/iot-reference/examples/common/cli/FreeRTOS_CLI.h" projectpath="aws_iot/iot-reference/examples/common/cli"/>
+          <file category="sourceC" name="middleware/aws_iot/iot-reference/examples/common/cli/FreeRTOS_CLI_Console.c" projectpath="aws_iot/iot-reference/examples/common/cli"/>
+          <file category="header" name="middleware/aws_iot/iot-reference/examples/common/cli/FreeRTOS_CLI_Console.h" projectpath="aws_iot/iot-reference/examples/common/cli"/>
+          <file category="include" name="middleware/aws_iot/iot-reference/examples/common/cli/"/>
+        </files>
+      </component>
+      <component Cgroup="IoT Reference" Csub="kvstore" Cversion="1.0.0" condition="middleware.iot_reference.kvstore.condition_id">
+        <description>kvstore, IoT reference common example component</description>
+        <files>
+          <file category="sourceC" name="middleware/aws_iot/iot-reference/examples/common/kvstore/kvstore.c" projectpath="aws_iot/iot-reference/examples/common/kvstore"/>
+          <file category="header" name="middleware/aws_iot/iot-reference/examples/common/kvstore/kvstore.h" projectpath="aws_iot/iot-reference/examples/common/kvstore"/>
+          <file category="include" name="middleware/aws_iot/iot-reference/examples/common/kvstore/"/>
+        </files>
+      </component>
+      <component Cgroup="IoT Reference" Csub="logging" Cversion="1.0.0" condition="middleware.iot_reference.logging.condition_id">
+        <description>logging, IoT reference common example component</description>
+        <files>
+          <file category="sourceC" name="middleware/aws_iot/iot-reference/examples/common/logging/logging.c" projectpath="aws_iot/iot-reference/examples/common/logging"/>
+          <file category="header" name="middleware/aws_iot/iot-reference/examples/common/logging/logging.h" projectpath="aws_iot/iot-reference/examples/common/logging"/>
+          <file category="header" name="middleware/aws_iot/iot-reference/examples/common/logging/logging_levels.h" projectpath="aws_iot/iot-reference/examples/common/logging"/>
+          <file category="include" name="middleware/aws_iot/iot-reference/examples/common/logging/"/>
+        </files>
+      </component>
+      <component Cgroup="IoT Reference" Csub="mqtt_agent" Cversion="1.0.0" condition="middleware.iot_reference.mqtt_agent.condition_id">
+        <description>mqtt_agent, IoT reference common example component</description>
+        <files>
+          <file category="sourceC" name="middleware/aws_iot/iot-reference/examples/common/mqtt_agent/mqtt_agent_task.c" projectpath="aws_iot/iot-reference/examples/common/mqtt_agent"/>
+          <file category="header" name="middleware/aws_iot/iot-reference/examples/common/mqtt_agent/mqtt_agent_task.h" projectpath="aws_iot/iot-reference/examples/common/mqtt_agent"/>
+          <file category="include" name="middleware/aws_iot/iot-reference/examples/common/mqtt_agent/"/>
+        </files>
+      </component>
+      <component Cgroup="IoT Reference" Csub="mqtt_agent_interface" Cversion="1.0.0" condition="middleware.iot_reference.mqtt_agent_interface.condition_id">
+        <description>mqtt-agent-interface, IoT reference common example component</description>
+        <files>
+          <file category="sourceC" name="middleware/aws_iot/iot-reference/Middleware/FreeRTOS/mqtt-agent-interface/freertos_agent_message.c" projectpath="aws_iot/iot-reference/mqtt-agent-interface"/>
+          <file category="sourceC" name="middleware/aws_iot/iot-reference/Middleware/FreeRTOS/mqtt-agent-interface/freertos_command_pool.c" projectpath="aws_iot/iot-reference/mqtt-agent-interface"/>
+          <file category="header" name="middleware/aws_iot/iot-reference/Middleware/FreeRTOS/mqtt-agent-interface/include/freertos_agent_message.h" projectpath="aws_iot/iot-reference/mqtt-agent-interface/include"/>
+          <file category="header" name="middleware/aws_iot/iot-reference/Middleware/FreeRTOS/mqtt-agent-interface/include/freertos_command_pool.h" projectpath="aws_iot/iot-reference/mqtt-agent-interface/include"/>
+          <file category="include" name="middleware/aws_iot/iot-reference/Middleware/FreeRTOS/mqtt-agent-interface/include/"/>
+        </files>
+      </component>
+      <component Cgroup="IoT Reference" Csub="nxp_pkcs11" Cversion="1.0.0">
+        <description>nxp_pkcs11, IoT reference common example component</description>
+        <files>
+          <file category="sourceC" name="middleware/aws_iot/iot-reference/Middleware/NXP/pkcs11/pkcs11.c" projectpath="aws_iot/iot-reference/NXP/pkcs11"/>
+          <file category="doc" name="rtos/freertos/AWS IoT NXP_dummy.txt"/>
+        </files>
+      </component>
+      <component Cgroup="IoT Reference" Csub="ota" Cversion="1.0.0" condition="middleware.iot_reference.ota.condition_id">
+        <description>OTA, IoT reference common example component</description>
+        <files>
+          <file category="sourceC" name="middleware/aws_iot/iot-reference/examples/common/ota/mcuboot_app_support.c" projectpath="aws_iot/iot-reference/examples/common/ota"/>
+          <file category="header" name="middleware/aws_iot/iot-reference/examples/common/ota/mcuboot_app_support.h" projectpath="aws_iot/iot-reference/examples/common/ota"/>
+          <file category="sourceC" name="middleware/aws_iot/iot-reference/examples/common/ota/ota_pal.c" projectpath="aws_iot/iot-reference/examples/common/ota"/>
+          <file category="header" name="middleware/aws_iot/iot-reference/examples/common/ota/ota_pal.h" projectpath="aws_iot/iot-reference/examples/common/ota"/>
+          <file category="sourceC" name="middleware/aws_iot/iot-reference/examples/common/ota/ota_signature_validation.c" projectpath="aws_iot/iot-reference/examples/common/ota"/>
+          <file category="sourceC" name="middleware/aws_iot/iot-reference/examples/common/ota/ota_update.c" projectpath="aws_iot/iot-reference/examples/common/ota"/>
+          <file category="header" name="middleware/aws_iot/iot-reference/examples/common/ota/ota_update.h" projectpath="aws_iot/iot-reference/examples/common/ota"/>
+          <file category="include" name="middleware/aws_iot/iot-reference/examples/common/ota/"/>
+        </files>
+      </component>
+      <component Cgroup="IoT Reference" Csub="shadow" Cversion="1.0.0" condition="middleware.iot_reference.shadow.condition_id">
+        <description>shadow, IoT reference common example component</description>
+        <files>
+          <file category="sourceC" name="middleware/aws_iot/iot-reference/examples/evkbmimxrt1060/shadow/app_main.c" projectpath="aws_iot/iot-reference/examples/evkbmimxrt1060/shadow"/>
+        </files>
+      </component>
+      <component Cgroup="IoT Reference" Csub="shadow_tasks" Cversion="1.0.0" condition="middleware.iot_reference.shadow_tasks.condition_id">
+        <description>shadow tasks, IoT reference common example component</description>
+        <files>
+          <file category="sourceC" name="middleware/aws_iot/iot-reference/examples/evkbmimxrt1060/shadow/shadow_device_task.c" projectpath="aws_iot/iot-reference/examples/evkbmimxrt1060/shadow"/>
+          <file category="sourceC" name="middleware/aws_iot/iot-reference/examples/evkbmimxrt1060/shadow/shadow_update_task.c" projectpath="aws_iot/iot-reference/examples/evkbmimxrt1060/shadow"/>
+        </files>
+      </component>
+      <component Cgroup="IoT Reference" Csub="template" Cversion="1.0.0" condition="middleware.iot_reference.template.condition_id">
+        <description>Template configuration file to be edited by user.</description>
+        <Pre_Include_Global_h>
+#ifndef LWIP_DNS
+#define LWIP_DNS 1
+#endif
+</Pre_Include_Global_h>
+        <files>
+          <file category="header" attr="config" name="middleware/aws_iot/iot-reference/template/demo_config.h" version="1.0.0" projectpath="aws_iot/iot-reference/template"/>
+          <file category="header" attr="config" name="middleware/aws_iot/iot-reference/template/kvstore_config.h" version="1.0.0" projectpath="aws_iot/iot-reference/template"/>
+        </files>
+      </component>
+      <component Cgroup="IoT Reference" Csub="transport_interface" Cvariant="lwIP" Cversion="1.0.0" condition="middleware.iot_reference.transport_mbedtls.condition_id" isDefaultVariant="1">
+        <description>transport_mbedtls, IoT reference common example component</description>
+        <files>
+          <file category="sourceC" name="middleware/aws_iot/iot-reference/Middleware/FreeRTOS/transport_mbedtls/using_mbedtls.c" projectpath="aws_iot/iot-reference/FreeRTOS/transport_mbedtls"/>
+          <file category="header" name="middleware/aws_iot/iot-reference/Middleware/FreeRTOS/transport_mbedtls/using_mbedtls.h" projectpath="aws_iot/iot-reference/FreeRTOS/transport_mbedtls"/>
+          <file category="include" name="middleware/aws_iot/iot-reference/Middleware/FreeRTOS/transport_mbedtls/"/>
+        </files>
+      </component>
+    </bundle>
+  </components>
+</package>

@@ -1,0 +1,1115 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+
+   <vendor>AnalogDevices</vendor>
+
+   <name>ADuCM410_DFP</name>
+
+   <url>https://download.analog.com/tools/EZBoards/ADuCM41x/Releases/</url>
+
+   <description>Analog Devices ADuCM410 Device Support and Examples</description>
+
+   <supportContact>http://www.analog.com/en/content/technical_support_page/fca.html</supportContact>
+
+   <license>License\License.txt</license>  
+
+	
+
+   <releases>
+
+      <release version="1.7.0">
+
+      First creation of CMSIS DEVICE PACK
+
+		Included WDT and FlashDma example project
+
+		Tested on FPGA
+
+      </release>
+
+      <release version="0.2.0">
+
+      Included KEIL projects
+
+      </release>
+
+      <release version="0.3.0">
+
+      What's New    
+
+      M410_DmaDacAdc example demonstrate ADC measuring DAC and DMA generated sine wave. Refer to DMA chapter of User guide for details
+
+      M410_DmaSpiAdc example demonstrate generating sine wave using DMA with SPI protocol.Refer to DMA chapter of User guide for details 
+
+      M410_SpiMdio example imitate MDIO master using SPI three pin mode
+
+      Updated device header file, refer to header file update section in the end of this notes.
+
+      M410_SpiSlaveReceive example to set SPI as slave
+
+
+
+      Bug Fixes 
+
+      ClkMuxCfg function, check PLL status before switching PLL clock
+
+      ClkDivCfg function, swtich to internal OSC for clock divider opertion and switch back after division.
+
+      update IAR linker file(.icf) to support changing Vector table address in IAR linker editor
+
+
+
+      Other changes  
+
+      ADC_SETUP_t type in AdcLib.h, pinCnvType changed to pinMode
+
+      Removed SYNC and interpolation mode of VDAC
+
+      </release>
+
+   </releases>
+
+
+
+   <keywords>
+
+      <!-- keywords for indexing -->
+
+      <keyword>Analog Devices</keyword>
+
+      <keyword>Device Support</keyword>
+
+      <keyword>Device Family Package Analog Devices</keyword>
+
+      <keyword>ADuCM410</keyword>
+
+		  <keyword>Optical</keyword>
+
+   </keywords>
+
+	
+
+	
+
+   <devices>
+
+      <family Dfamily="ADuCM41x Series" Dvendor="Analog Devices:1">
+
+      <!-- ******************************  ADuCM410  ****************************** -->
+
+      <device Dname="ADuCM410">
+
+        <processor Dcore="Cortex-M33" DcoreVersion="r0p4" Dfpu="SP_FPU" Dmpu="NO_MPU" Dtz="NO_TZ" Dendian="Little-endian" Dclock="16000000"/>  
+
+        <!-- <processor Dcore="Cortex-M4" DcoreVersion="r0p4" Dfpu="SP_FPU"  Dendian="Little-endian" Dclock="16000000"/> -->
+
+        <book    name="Documentation/arm_cortex_m33_dgug_100235_0002_00_en.pdf"           title="Cortex-M33 Generic User Guide"/>
+
+        <debug      svd="SVD/ADuCM410.svd"/>
+
+        <memory     id="IROM1"                      start="0x00000000"  size="0x80000"    startup="1"   default="1"/>
+
+        <memory     id="IRAM1"                      start="0x20000000"  size="0x18000"     init   ="1"   default="1"/>
+
+        <algorithm  name="Flash/ADuCM410.FLM"  start="0x00000000"  size="0x80000"   default="1"/>
+
+        <description>
+
+The ADuCM410 is a Precision Analog Microcontroller, 16-Bit Analog I/O with MDIO interface, ARM Cortex M33
+
+Typical applications include Optical networking – 100G, 200G and 400G modules, Industrial control and automation systems,
+
+Smart sensors, precision instrumentation and Base station systems.
+
+        </description>
+
+        <feature type="ADC"           n="16"      m="16"    name="Multichannel, 16-bit 2MSPS ADC"/>
+
+        <feature type="DAC"           n="9"       m="16"/>
+
+        <feature type="AnalogOther"   n="9"       name="0 mA to 200 mA IDACs"/>
+
+        <feature type="Other"         n="1"       name="MDIO slave up to 4 MHz"/>
+
+        <feature type="PLL"           n="1"       name="160 MHz PLL with programmable divider"/>
+
+        <feature type="IntRC"         n="16000000" m="16000000"      name="Internal oscillator with +/-3% accuracy"/>
+
+        <feature type="XTAL"          n="16000000" m="16000000"      name="External Crystal Oscillator"/>
+
+        <feature type="Memory"        n="524228"  name="512kB Flash memory"/>
+
+        <feature type="Memory"        n="131072"   name="96kB SRAM"/>
+
+        <feature type="SPI"           n="3"       m="40000000"/>
+
+        <feature type="I2C"           n="3"/>
+
+        <feature type="PWM"           n="6"       m="16"/>
+
+        <feature type="UART"          n="2"       m="230400"/>
+
+        <feature type="IOs"           n="40"/>
+
+        <feature type="Timer"         n="3"       m="32"/>
+
+        <feature type="WDT"           n="1"       name="16 bit Watchdog timer"/>
+
+        <feature type="TimerOther"    n="1"       name="32 bit Wake-up timer"/>
+
+        <feature type="DMA"           n="22"     />        
+
+        <feature type="NVIC"          n="54"     />        
+
+        <feature type="TempSens"      n="1"     />        
+
+        <feature type="Temp"          n="-40"     m="105"/>
+
+        <feature type="VCC"           n="2.9"    m="3.60"/>
+
+		  <feature type="PowerOther"	  n="1"		name="3.3V/1.8V/1.2V for digital I/O"/>
+
+        <feature type="BGA"           n="81"/>
+
+        <compile header="ADuCM410/common/ADuCM410.h"  define="ADuCM410"/>
+
+      </device>
+
+      
+
+    </family>
+
+  </devices>
+
+
+
+  <!-- boards section (mandatory for Board Support Packs) -->
+
+   <boards>
+
+      <board vendor="Analog Devices" name="EVAL-ADuCM410EVB" revision="Rev. A" orderForm="http://www.analog.com/en/evaluation/eval-ADuCM410/eb.html">
+
+      <mountedDevice    deviceIndex="0" Dvendor="Analog Devices:1" Dname="ADuCM410"/>
+
+      </board>
+
+   </boards>
+
+  
+
+   <conditions>
+
+      <condition id="ADuCM410">
+
+         <description>ADuCM410 device</description>
+
+         <require Dvendor="Analog Devices:1"/>
+
+         <require Dname="ADuCM410"/>
+
+      </condition>
+
+    <condition id="ADuCM410 CMSIS Device">
+
+      <description>ADuCM410 CMSIS Device</description>
+
+      <require Cclass ="CMSIS" Cgroup="CORE" />
+
+      <require condition="ADuCM410"/>
+
+    </condition>
+
+    <condition id="ADuCM410 Library">
+
+      <description>Low Level Peripheral Libraries for ADuCM410</description>
+
+      <require condition="ADuCM410"/>
+
+    </condition>
+
+    <condition id="ADuCM41x_ARM">
+
+      <description>ADuCM41x device for KEIL</description>
+
+      <require Tcompiler="ARMCC"/>
+
+    </condition>
+
+    <condition id="ADuCM41x_IAR">
+
+      <description>ADuCM41x device for IAR</description>
+
+      <require Tcompiler="IAR"/>
+
+    </condition>
+
+  </conditions> 
+
+  
+
+   <components>
+
+    <component Cclass="Device" Cgroup="Startup"  Cversion="1.7.0" Cvendor="Analog Devices" condition="ADuCM410 CMSIS Device">
+
+      <!-- Cversion is necessary -->
+
+      <description>System Startup for ADuCM410</description>
+
+      <files>
+
+        <!-- additional include path -->
+
+		    <file category="include" name="ADuCM410/common/"/>
+
+        <!-- startup files -->
+
+        <file category="source" name="ADuCM410/common/ARM/startup_ADuCM410.s" version="1.7.0" condition="ADuCM41x_ARM"/>
+
+        <file category="source" name="ADuCM410/common/IAR/startup_ADuCM410.s" version="1.7.0" condition="ADuCM41x_IAR"/>
+
+        <file category="source" name="ADuCM410/common/system_ADuCM410.c" version="1.7.0" condition="ADuCM41x_ARM"/>
+
+        <file category="source" name="ADuCM410/common/system_ADuCM410.c" version="1.7.0" condition="ADuCM41x_IAR"/>
+
+        <!-- system files -->
+
+        <!--<file category="source" name="ADuCM410/common/system_ADuCM410.c" version="1.7.0" attr="config"  /> -->
+
+      </files>
+
+    </component>
+
+    
+
+    <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="WDT" Cversion="1.7.0" condition="ADuCM410 Library">
+
+         <description>Watch dog timer low level library for ADuCM410</description>
+
+         <files>
+
+            <file category="header" attr="config" name="ADuCM410/common/WdtLib.h" version="1.7.0"/>
+
+            <file category="source" attr="config" name="ADuCM410/common/WdtLib.c" version="1.7.0"/>
+
+         </files>
+
+      </component>
+
+
+
+    <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="Common" Cversion="1.7.0" condition="ADuCM410 Library">
+
+         <description>common file that required for all ADuCM410 projects</description>
+
+         <files>
+
+            <file category="header" attr="config" name="ADuCM410/common/common.h" version="1.7.0"/>
+
+            <file category="source" attr="config" name="ADuCM410/common/common.c" version="1.7.0"/>
+
+         </files>
+
+    </component>
+
+		
+
+		<component Cclass="Device" Cgroup="Peripheral Libraries" Csub="FLASH" Cversion="1.7.0" condition="ADuCM410 Library">
+
+         <description>Flash controller low level library for ADuCM410</description>
+
+         <files>
+
+            <file category="header" attr="config" name="ADuCM410/common/FeeLib.h" version="1.7.0"/>
+
+            <file category="source" attr="config" name="ADuCM410/common/FeeLib.c" version="1.7.0"/>
+
+         </files>
+
+      </component>
+
+		
+
+		<component Cclass="Device" Cgroup="Peripheral Libraries" Csub="UART" Cversion="1.7.0" condition="ADuCM410 Library">
+
+         <description>UART low level library for ADuCM410</description>
+
+         <files>
+
+            <file category="header" attr="config" name="ADuCM410/common/UrtLib.h" version="1.7.0"/>
+
+            <file category="source" attr="config" name="ADuCM410/common/UrtLib.c" version="1.7.0"/>
+
+         </files>
+
+      </component>
+
+		
+
+		<component Cclass="Device" Cgroup="Peripheral Libraries" Csub="DMA" Cversion="1.7.0" condition="ADuCM410 Library">
+
+         <description>DMA low level library for ADuCM410</description>
+
+         <files>
+
+            <file category="header" attr="config" name="ADuCM410/common/DmaLib.h" version="1.7.0"/>
+
+            <file category="source" attr="config" name="ADuCM410/common/DmaLib.c" version="1.7.0"/>
+
+         </files>
+
+      </component>
+
+		
+
+		<component Cclass="Device" Cgroup="Peripheral Libraries" Csub="GPIO" Cversion="1.7.0" condition="ADuCM410 Library">
+
+         <description>GPIO low level library for ADuCM410</description>
+
+         <files>
+
+            <file category="header" attr="config" name="ADuCM410/common/DioLib.h" version="1.7.0"/>
+
+            <file category="source" attr="config" name="ADuCM410/common/DioLib.c" version="1.7.0"/>
+
+         </files>
+
+      </component>
+
+		
+
+		<component Cclass="Device" Cgroup="Peripheral Libraries" Csub="CLOCK" Cversion="1.7.0" condition="ADuCM410 Library">
+
+         <description>Clock low level library for ADuCM410</description>
+
+         <files>
+
+            <file category="header" attr="config" name="ADuCM410/common/ClkLib.h" version="1.7.0"/>
+
+            <file category="source" attr="config" name="ADuCM410/common/ClkLib.c" version="1.7.0"/>
+
+         </files>
+
+      </component>
+
+
+
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="COMPARATOR" Cversion="1.7.0" condition="ADuCM410 Library">
+
+         <description>Analog Comparator low level library for ADuCM410</description>
+
+         <files>
+
+            <file category="header" attr="config" name="ADuCM410/common/CmpLib.h" version="1.7.0"/>
+
+            <file category="source" attr="config" name="ADuCM410/common/CmpLib.c" version="1.7.0"/>
+
+         </files>
+
+      </component>
+
+
+
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="CRC" Cversion="1.7.0" condition="ADuCM410 Library">
+
+         <description>CRC low level library for ADuCM410</description>
+
+         <files>
+
+            <file category="header" attr="config" name="ADuCM410/common/CrcLib.h" version="1.7.0"/>
+
+            <file category="source" attr="config" name="ADuCM410/common/CrcLib.c" version="1.7.0"/>
+
+         </files>
+
+      </component>
+
+
+
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="Timer" Cversion="1.7.0" condition="ADuCM410 Library">
+
+         <description>General Purpose Timer low level library for ADuCM410</description>
+
+         <files>
+
+            <file category="header" attr="config" name="ADuCM410/common/GptLib.h" version="1.7.0"/>
+
+            <file category="source" attr="config" name="ADuCM410/common/GptLib.c" version="1.7.0"/>
+
+         </files>
+
+      </component>
+
+
+
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="I2C" Cversion="1.7.0" condition="ADuCM410 Library">
+
+         <description>I2C interface low level library for ADuCM410</description>
+
+         <files>
+
+            <file category="header" attr="config" name="ADuCM410/common/I2cLib.h" version="1.7.0"/>
+
+            <file category="source" attr="config" name="ADuCM410/common/I2cLib.c" version="1.7.0"/>
+
+         </files>
+
+      </component>
+
+
+
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="MDIO" Cversion="1.7.0" condition="ADuCM410 Library">
+
+         <description>MDIO interface low level library for ADuCM410</description>
+
+         <files>
+
+            <file category="header" attr="config" name="ADuCM410/common/MdLib.h" version="1.7.0"/>
+
+            <file category="source" attr="config" name="ADuCM410/common/MdLib.c" version="1.7.0"/>
+
+         </files>
+
+      </component>
+
+
+
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="PLA" Cversion="1.7.0" condition="ADuCM410 Library">
+
+         <description>Programmable Logic Array low level library for ADuCM410</description>
+
+         <files>
+
+            <file category="header" attr="config" name="ADuCM410/common/PlaLib.h" version="1.7.0"/>
+
+            <file category="source" attr="config" name="ADuCM410/common/PlaLib.c" version="1.7.0"/>
+
+         </files>
+
+      </component>
+
+
+
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="PWM" Cversion="1.7.0" condition="ADuCM410 Library">
+
+         <description>Pulse Width Modulation low level library for ADuCM410</description>
+
+         <files>
+
+            <file category="header" attr="config" name="ADuCM410/common/PwmLib.h" version="1.7.0"/>
+
+            <file category="source" attr="config" name="ADuCM410/common/PwmLib.c" version="1.7.0"/>
+
+         </files>
+
+      </component>
+
+
+
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="SPI" Cversion="1.7.0" condition="ADuCM410 Library">
+
+         <description>SPI interface low level library for ADuCM410</description>
+
+         <files>
+
+            <file category="header" attr="config" name="ADuCM410/common/SpiLib.h" version="1.7.0"/>
+
+            <file category="source" attr="config" name="ADuCM410/common/SpiLib.c" version="1.7.0"/>
+
+         </files>
+
+      </component>
+
+
+
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="WUT" Cversion="1.7.0" condition="ADuCM410 Library">
+
+         <description>Wake up timer low level library for ADuCM410</description>
+
+         <files>
+
+            <file category="header" attr="config" name="ADuCM410/common/WutLib.h" version="1.7.0"/>
+
+            <file category="source" attr="config" name="ADuCM410/common/WutLib.c" version="1.7.0"/>
+
+         </files>
+
+      </component>
+
+
+
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="ADC" Cversion="1.7.0" condition="ADuCM410 Library">
+
+         <description>ADC and PGA low level library for ADuCM410</description>
+
+         <files>
+
+            <file category="header" attr="config" name="ADuCM410/common/AdcLib.h" version="1.7.0"/>
+
+            <file category="source" attr="config" name="ADuCM410/common/AdcLib.c" version="1.7.0"/>
+
+         </files>
+
+      </component>
+
+ 
+
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="DAC" Cversion="1.7.0" condition="ADuCM410 Library">
+
+         <description>DAC low level library for ADuCM410</description>
+
+         <files>
+
+            <file category="header" attr="config" name="ADuCM410/common/DacLib.h" version="1.7.0"/>
+
+            <file category="source" attr="config" name="ADuCM410/common/DacLib.c" version="1.7.0"/>
+
+         </files>
+
+      </component> 
+
+
+
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="INT" Cversion="1.7.0" condition="ADuCM410 Library">
+
+         <description>External interrupt library for ADuCM410</description>
+
+         <files>
+
+            <file category="header" attr="config" name="ADuCM410/common/IntLib.h" version="1.7.0"/>
+
+            <file category="source" attr="config" name="ADuCM410/common/IntLib.c" version="1.7.0"/>
+
+         </files>
+
+      </component> 
+
+
+
+      <component Cclass="Device" Cgroup="Peripheral Libraries" Csub="PWR" Cversion="1.7.0" condition="ADuCM410 Library">
+
+         <description>Power Management low level library for ADuCM410</description>
+
+         <files>
+
+            <file category="header" attr="config" name="ADuCM410/common/PwrLib.h" version="1.7.0"/>
+
+            <file category="source" attr="config" name="ADuCM410/common/PwrLib.c" version="1.7.0"/>
+
+         </files>
+
+      </component> 
+
+
+
+   </components>
+
+	
+
+	  <!-- examples section (optional for all Software Packs), this section will be filled by-->
+
+   <examples>
+
+
+
+   <example name="M410_Adc" doc="Abstract.txt" folder="ADuCM410/examples/M410_Adc">
+      <description>M410_Adc</description> 
+      <board name="EVAL-ADuCM410EVB" vendor="Analog Devices" /> 
+      <project>
+         <environment name="uv" load="ARM/M410_Adc.uvprojx"/>
+         <environment name="iar" load="IAR/M410_Adc.ewp"/>
+      </project>
+      <attributes>
+          <component Cclass="CMSIS" Cgroup="CORE" />
+          <component Cclass="Device" Cgroup="Startup" />
+          <component Cclass="Device" Cgroup="Peripheral Libraries" />
+        <category>Analog Peripheral</category>
+        <keyword>M410_Adc</keyword>
+      </attributes>
+   </example>
+ 
+   <example name="M410_AdcSeq" doc="Abstract.txt" folder="ADuCM410/examples/M410_AdcSeq">
+      <description>M410_AdcSeq</description> 
+      <board name="EVAL-ADuCM410EVB" vendor="Analog Devices" /> 
+      <project>
+         <environment name="uv" load="ARM/M410_AdcSeq.uvprojx"/>
+         <environment name="iar" load="IAR/M410_AdcSeq.ewp"/>
+      </project>
+      <attributes>
+          <component Cclass="CMSIS" Cgroup="CORE" />
+          <component Cclass="Device" Cgroup="Startup" />
+          <component Cclass="Device" Cgroup="Peripheral Libraries" />
+        <category>Analog Peripheral</category>
+        <keyword>M410_AdcSeq</keyword>
+      </attributes>
+   </example>
+ 
+   <example name="M410_CMP" doc="Abstract.txt" folder="ADuCM410/examples/M410_CMP">
+      <description>M410_CMP</description> 
+      <board name="EVAL-ADuCM410EVB" vendor="Analog Devices" /> 
+      <project>
+         <environment name="uv" load="ARM/M410_CMP.uvprojx"/>
+         <environment name="iar" load="IAR/M410_CMP.ewp"/>
+      </project>
+      <attributes>
+          <component Cclass="CMSIS" Cgroup="CORE" />
+          <component Cclass="Device" Cgroup="Startup" />
+          <component Cclass="Device" Cgroup="Peripheral Libraries" />
+        <category>Analog Peripheral</category>
+        <keyword>M410_CMP</keyword>
+      </attributes>
+   </example>
+ 
+   <example name="M410_ClkTest" doc="Abstract.txt" folder="ADuCM410/examples/M410_ClkTest">
+      <description>M410_ClkTest</description> 
+      <board name="EVAL-ADuCM410EVB" vendor="Analog Devices" /> 
+      <project>
+         <environment name="uv" load="ARM/M410_ClkTest.uvprojx"/>
+         <environment name="iar" load="IAR/M410_ClkTest.ewp"/>
+      </project>
+      <attributes>
+          <component Cclass="CMSIS" Cgroup="CORE" />
+          <component Cclass="Device" Cgroup="Startup" />
+          <component Cclass="Device" Cgroup="Peripheral Libraries" />
+        <category>Analog Peripheral</category>
+        <keyword>M410_ClkTest</keyword>
+      </attributes>
+   </example>
+ 
+   <example name="M410_DAC" doc="Abstract.txt" folder="ADuCM410/examples/M410_DAC">
+      <description>M410_DAC</description> 
+      <board name="EVAL-ADuCM410EVB" vendor="Analog Devices" /> 
+      <project>
+         <environment name="uv" load="ARM/M410_DAC.uvprojx"/>
+         <environment name="iar" load="IAR/M410_DAC.ewp"/>
+      </project>
+      <attributes>
+          <component Cclass="CMSIS" Cgroup="CORE" />
+          <component Cclass="Device" Cgroup="Startup" />
+          <component Cclass="Device" Cgroup="Peripheral Libraries" />
+        <category>Analog Peripheral</category>
+        <keyword>M410_DAC</keyword>
+      </attributes>
+   </example>
+ 
+   <example name="M410_FlashDma" doc="Abstract.txt" folder="ADuCM410/examples/M410_FlashDma">
+      <description>M410_FlashDma</description> 
+      <board name="EVAL-ADuCM410EVB" vendor="Analog Devices" /> 
+      <project>
+         <environment name="uv" load="ARM/M410_FlashDma.uvprojx"/>
+         <environment name="iar" load="IAR/M410_FlashDma.ewp"/>
+      </project>
+      <attributes>
+          <component Cclass="CMSIS" Cgroup="CORE" />
+          <component Cclass="Device" Cgroup="Startup" />
+          <component Cclass="Device" Cgroup="Peripheral Libraries" />
+        <category>Analog Peripheral</category>
+        <keyword>M410_FlashDma</keyword>
+      </attributes>
+   </example>
+ 
+   <example name="M410_Flash" doc="Abstract.txt" folder="ADuCM410/examples/M410_Flash">
+      <description>M410_Flash</description> 
+      <board name="EVAL-ADuCM410EVB" vendor="Analog Devices" /> 
+      <project>
+         <environment name="uv" load="ARM/M410_Flash.uvprojx"/>
+         <environment name="iar" load="IAR/M410_Flash.ewp"/>
+      </project>
+      <attributes>
+          <component Cclass="CMSIS" Cgroup="CORE" />
+          <component Cclass="Device" Cgroup="Startup" />
+          <component Cclass="Device" Cgroup="Peripheral Libraries" />
+        <category>Analog Peripheral</category>
+        <keyword>M410_Flash</keyword>
+      </attributes>
+   </example>
+ 
+   <example name="M410_Gpt" doc="Abstract.txt" folder="ADuCM410/examples/M410_Gpt">
+      <description>M410_Gpt</description> 
+      <board name="EVAL-ADuCM410EVB" vendor="Analog Devices" /> 
+      <project>
+         <environment name="uv" load="ARM/M410_Gpt.uvprojx"/>
+         <environment name="iar" load="IAR/M410_Gpt.ewp"/>
+      </project>
+      <attributes>
+          <component Cclass="CMSIS" Cgroup="CORE" />
+          <component Cclass="Device" Cgroup="Startup" />
+          <component Cclass="Device" Cgroup="Peripheral Libraries" />
+        <category>Analog Peripheral</category>
+        <keyword>M410_Gpt</keyword>
+      </attributes>
+   </example>
+ 
+   <example name="M410_I2CBasic_Master" doc="Abstract.txt" folder="ADuCM410/examples/M410_I2CBasic_Master">
+      <description>M410_I2CBasic_Master</description> 
+      <board name="EVAL-ADuCM410EVB" vendor="Analog Devices" /> 
+      <project>
+         <environment name="uv" load="ARM/M410_I2CBasic_Master.uvprojx"/>
+         <environment name="iar" load="IAR/M410_I2CBasic_Master.ewp"/>
+      </project>
+      <attributes>
+          <component Cclass="CMSIS" Cgroup="CORE" />
+          <component Cclass="Device" Cgroup="Startup" />
+          <component Cclass="Device" Cgroup="Peripheral Libraries" />
+        <category>Analog Peripheral</category>
+        <keyword>M410_I2CBasic_Master</keyword>
+      </attributes>
+   </example>
+ 
+   <example name="M410_I2CBasic_Slave" doc="Abstract.txt" folder="ADuCM410/examples/M410_I2CBasic_Slave">
+      <description>M410_I2CBasic_Slave</description> 
+      <board name="EVAL-ADuCM410EVB" vendor="Analog Devices" /> 
+      <project>
+         <environment name="uv" load="ARM/M410_I2CBasic_Slave.uvprojx"/>
+         <environment name="iar" load="IAR/M410_I2CBasic_Slave.ewp"/>
+      </project>
+      <attributes>
+          <component Cclass="CMSIS" Cgroup="CORE" />
+          <component Cclass="Device" Cgroup="Startup" />
+          <component Cclass="Device" Cgroup="Peripheral Libraries" />
+        <category>Analog Peripheral</category>
+        <keyword>M410_I2CBasic_Slave</keyword>
+      </attributes>
+   </example>
+ 
+   <example name="M410_Mdio" doc="Abstract.txt" folder="ADuCM410/examples/M410_Mdio">
+      <description>M410_Mdio</description> 
+      <board name="EVAL-ADuCM410EVB" vendor="Analog Devices" /> 
+      <project>
+         <environment name="uv" load="ARM/M410_Mdio.uvprojx"/>
+         <environment name="iar" load="IAR/M410_Mdio.ewp"/>
+      </project>
+      <attributes>
+          <component Cclass="CMSIS" Cgroup="CORE" />
+          <component Cclass="Device" Cgroup="Startup" />
+          <component Cclass="Device" Cgroup="Peripheral Libraries" />
+        <category>Analog Peripheral</category>
+        <keyword>M410_Mdio</keyword>
+      </attributes>
+   </example>
+ 
+   <example name="M410_PgaAcMode" doc="Abstract.txt" folder="ADuCM410/examples/M410_PgaAcMode">
+      <description>M410_PgaAcMode</description> 
+      <board name="EVAL-ADuCM410EVB" vendor="Analog Devices" /> 
+      <project>
+         <environment name="uv" load="ARM/M410_PgaAcMode.uvprojx"/>
+         <environment name="iar" load="IAR/M410_PgaAcMode.ewp"/>
+      </project>
+      <attributes>
+          <component Cclass="CMSIS" Cgroup="CORE" />
+          <component Cclass="Device" Cgroup="Startup" />
+          <component Cclass="Device" Cgroup="Peripheral Libraries" />
+        <category>Analog Peripheral</category>
+        <keyword>M410_PgaAcMode</keyword>
+      </attributes>
+   </example>
+ 
+   <example name="M410_Tia" doc="Abstract.txt" folder="ADuCM410/examples/M410_Tia">
+      <description>M410_Tia</description> 
+      <board name="EVAL-ADuCM410EVB" vendor="Analog Devices" /> 
+      <project>
+         <environment name="uv" load="ARM/M410_Tia.uvprojx"/>
+         <environment name="iar" load="IAR/M410_Tia.ewp"/>
+      </project>
+      <attributes>
+          <component Cclass="CMSIS" Cgroup="CORE" />
+          <component Cclass="Device" Cgroup="Startup" />
+          <component Cclass="Device" Cgroup="Peripheral Libraries" />
+        <category>Analog Peripheral</category>
+        <keyword>M410_Tia</keyword>
+      </attributes>
+   </example>
+ 
+   <example name="M410_Uart" doc="Abstract.txt" folder="ADuCM410/examples/M410_Uart">
+      <description>M410_Uart</description> 
+      <board name="EVAL-ADuCM410EVB" vendor="Analog Devices" /> 
+      <project>
+         <environment name="uv" load="ARM/M410_Uart.uvprojx"/>
+         <environment name="iar" load="IAR/M410_Uart.ewp"/>
+      </project>
+      <attributes>
+          <component Cclass="CMSIS" Cgroup="CORE" />
+          <component Cclass="Device" Cgroup="Startup" />
+          <component Cclass="Device" Cgroup="Peripheral Libraries" />
+        <category>Analog Peripheral</category>
+        <keyword>M410_Uart</keyword>
+      </attributes>
+   </example>
+ 
+   <example name="M410_Wdt" doc="Abstract.txt" folder="ADuCM410/examples/M410_Wdt">
+      <description>M410_Wdt</description> 
+      <board name="EVAL-ADuCM410EVB" vendor="Analog Devices" /> 
+      <project>
+         <environment name="uv" load="ARM/M410_Wdt.uvprojx"/>
+         <environment name="iar" load="IAR/M410_Wdt.ewp"/>
+      </project>
+      <attributes>
+          <component Cclass="CMSIS" Cgroup="CORE" />
+          <component Cclass="Device" Cgroup="Startup" />
+          <component Cclass="Device" Cgroup="Peripheral Libraries" />
+        <category>Analog Peripheral</category>
+        <keyword>M410_Wdt</keyword>
+      </attributes>
+   </example>
+ 
+   <example name="M410_SpiMaster" doc="Abstract.txt" folder="ADuCM410/examples/M410_SpiMaster">
+      <description>M410_SpiMaster</description> 
+      <board name="EVAL-ADuCM410EVB" vendor="Analog Devices" /> 
+      <project>
+         <environment name="uv" load="ARM/M410_SpiMaster.uvprojx"/>
+         <environment name="iar" load="IAR/M410_SpiMaster.ewp"/>
+      </project>
+      <attributes>
+          <component Cclass="CMSIS" Cgroup="CORE" />
+          <component Cclass="Device" Cgroup="Startup" />
+          <component Cclass="Device" Cgroup="Peripheral Libraries" />
+        <category>Analog Peripheral</category>
+        <keyword>M410_SpiMaster</keyword>
+      </attributes>
+   </example>
+ 
+   <example name="M410_SpiDma" doc="Abstract.txt" folder="ADuCM410/examples/M410_SpiDma">
+      <description>M410_SpiDma</description> 
+      <board name="EVAL-ADuCM410EVB" vendor="Analog Devices" /> 
+      <project>
+         <environment name="uv" load="ARM/M410_SpiDma.uvprojx"/>
+         <environment name="iar" load="IAR/M410_SpiDma.ewp"/>
+      </project>
+      <attributes>
+          <component Cclass="CMSIS" Cgroup="CORE" />
+          <component Cclass="Device" Cgroup="Startup" />
+          <component Cclass="Device" Cgroup="Peripheral Libraries" />
+        <category>Analog Peripheral</category>
+        <keyword>M410_SpiDma</keyword>
+      </attributes>
+   </example>
+ 
+   <example name="M410_SpiRxDma" doc="Abstract.txt" folder="ADuCM410/examples/M410_SpiRxDma">
+      <description>M410_SpiRxDma</description> 
+      <board name="EVAL-ADuCM410EVB" vendor="Analog Devices" /> 
+      <project>
+         <environment name="uv" load="ARM/M410_SpiRxDma.uvprojx"/>
+         <environment name="iar" load="IAR/M410_SpiRxDma.ewp"/>
+      </project>
+      <attributes>
+          <component Cclass="CMSIS" Cgroup="CORE" />
+          <component Cclass="Device" Cgroup="Startup" />
+          <component Cclass="Device" Cgroup="Peripheral Libraries" />
+        <category>Analog Peripheral</category>
+        <keyword>M410_SpiRxDma</keyword>
+      </attributes>
+   </example>
+ 
+   <example name="M410_GPIO" doc="Abstract.txt" folder="ADuCM410/examples/M410_GPIO">
+      <description>M410_GPIO</description> 
+      <board name="EVAL-ADuCM410EVB" vendor="Analog Devices" /> 
+      <project>
+         <environment name="uv" load="ARM/M410_GPIO.uvprojx"/>
+         <environment name="iar" load="IAR/M410_GPIO.ewp"/>
+      </project>
+      <attributes>
+          <component Cclass="CMSIS" Cgroup="CORE" />
+          <component Cclass="Device" Cgroup="Startup" />
+          <component Cclass="Device" Cgroup="Peripheral Libraries" />
+        <category>Analog Peripheral</category>
+        <keyword>M410_GPIO</keyword>
+      </attributes>
+   </example>
+ 
+   <example name="M410_Int" doc="Abstract.txt" folder="ADuCM410/examples/M410_Int">
+      <description>M410_Int</description> 
+      <board name="EVAL-ADuCM410EVB" vendor="Analog Devices" /> 
+      <project>
+         <environment name="uv" load="ARM/M410_Int.uvprojx"/>
+         <environment name="iar" load="IAR/M410_Int.ewp"/>
+      </project>
+      <attributes>
+          <component Cclass="CMSIS" Cgroup="CORE" />
+          <component Cclass="Device" Cgroup="Startup" />
+          <component Cclass="Device" Cgroup="Peripheral Libraries" />
+        <category>Analog Peripheral</category>
+        <keyword>M410_Int</keyword>
+      </attributes>
+   </example>
+ 
+   <example name="M410_DmaDacAdc" doc="Abstract.txt" folder="ADuCM410/examples/M410_DmaDacAdc">
+      <description>M410_DmaDacAdc</description> 
+      <board name="EVAL-ADuCM410EVB" vendor="Analog Devices" /> 
+      <project>
+         <environment name="uv" load="ARM/M410_DmaDacAdc.uvprojx"/>
+         <environment name="iar" load="IAR/M410_DmaDacAdc.ewp"/>
+      </project>
+      <attributes>
+          <component Cclass="CMSIS" Cgroup="CORE" />
+          <component Cclass="Device" Cgroup="Startup" />
+          <component Cclass="Device" Cgroup="Peripheral Libraries" />
+        <category>Analog Peripheral</category>
+        <keyword>M410_DmaDacAdc</keyword>
+      </attributes>
+   </example>
+ 
+   <example name="M410_DmaSpiAdc" doc="Abstract.txt" folder="ADuCM410/examples/M410_DmaSpiAdc">
+      <description>M410_DmaSpiAdc</description> 
+      <board name="EVAL-ADuCM410EVB" vendor="Analog Devices" /> 
+      <project>
+         <environment name="uv" load="ARM/M410_DmaSpiAdc.uvprojx"/>
+         <environment name="iar" load="IAR/M410_DmaSpiAdc.ewp"/>
+      </project>
+      <attributes>
+          <component Cclass="CMSIS" Cgroup="CORE" />
+          <component Cclass="Device" Cgroup="Startup" />
+          <component Cclass="Device" Cgroup="Peripheral Libraries" />
+        <category>Analog Peripheral</category>
+        <keyword>M410_DmaSpiAdc</keyword>
+      </attributes>
+   </example>
+ 
+   <example name="M410_SpiMdio" doc="Abstract.txt" folder="ADuCM410/examples/M410_SpiMdio">
+      <description>M410_SpiMdio</description> 
+      <board name="EVAL-ADuCM410EVB" vendor="Analog Devices" /> 
+      <project>
+         <environment name="uv" load="ARM/M410_SpiMdio.uvprojx"/>
+         <environment name="iar" load="IAR/M410_SpiMdio.ewp"/>
+      </project>
+      <attributes>
+          <component Cclass="CMSIS" Cgroup="CORE" />
+          <component Cclass="Device" Cgroup="Startup" />
+          <component Cclass="Device" Cgroup="Peripheral Libraries" />
+        <category>Analog Peripheral</category>
+        <keyword>M410_SpiMdio</keyword>
+      </attributes>
+   </example>
+ 
+   <example name="M410_2BlockSwap" doc="Abstract.txt" folder="ADuCM410/examples/M410_2BlockSwap">
+      <description>M410_2BlockSwap</description> 
+      <board name="EVAL-ADuCM410EVB" vendor="Analog Devices" /> 
+      <project>
+         <environment name="uv" load="ARM/M410_2BlockSwap.uvprojx"/>
+         <environment name="iar" load="IAR/M410_2BlockSwap.ewp"/>
+      </project>
+      <attributes>
+          <component Cclass="CMSIS" Cgroup="CORE" />
+          <component Cclass="Device" Cgroup="Startup" />
+          <component Cclass="Device" Cgroup="Peripheral Libraries" />
+        <category>Analog Peripheral</category>
+        <keyword>M410_2BlockSwap</keyword>
+      </attributes>
+   </example>
+ 
+   <example name="M410_FPU" doc="Abstract.txt" folder="ADuCM410/examples/M410_FPU">
+      <description>M410_FPU</description> 
+      <board name="EVAL-ADuCM410EVB" vendor="Analog Devices" /> 
+      <project>
+         <environment name="uv" load="ARM/M410_FPU.uvprojx"/>
+         <environment name="iar" load="IAR/M410_FPU.ewp"/>
+      </project>
+      <attributes>
+          <component Cclass="CMSIS" Cgroup="CORE" />
+          <component Cclass="Device" Cgroup="Startup" />
+          <component Cclass="Device" Cgroup="Peripheral Libraries" />
+        <category>Analog Peripheral</category>
+        <keyword>M410_FPU</keyword>
+      </attributes>
+   </example>
+ 
+   <example name="M410_SramMode" doc="Abstract.txt" folder="ADuCM410/examples/M410_SramMode">
+      <description>M410_SramMode</description> 
+      <board name="EVAL-ADuCM410EVB" vendor="Analog Devices" /> 
+      <project>
+         <environment name="uv" load="ARM/M410_SramMode.uvprojx"/>
+         <environment name="iar" load="IAR/M410_SramMode.ewp"/>
+      </project>
+      <attributes>
+          <component Cclass="CMSIS" Cgroup="CORE" />
+          <component Cclass="Device" Cgroup="Startup" />
+          <component Cclass="Device" Cgroup="Peripheral Libraries" />
+        <category>Analog Peripheral</category>
+        <keyword>M410_SramMode</keyword>
+      </attributes>
+   </example>
+ 
+   <example name="M410_MPU" doc="Abstract.txt" folder="ADuCM410/examples/M410_MPU">
+      <description>M410_MPU</description> 
+      <board name="EVAL-ADuCM410EVB" vendor="Analog Devices" /> 
+      <project>
+         <environment name="uv" load="ARM/M410_MPU.uvprojx"/>
+         <environment name="iar" load="IAR/M410_MPU.ewp"/>
+      </project>
+      <attributes>
+          <component Cclass="CMSIS" Cgroup="CORE" />
+          <component Cclass="Device" Cgroup="Startup" />
+          <component Cclass="Device" Cgroup="Peripheral Libraries" />
+        <category>Analog Peripheral</category>
+        <keyword>M410_MPU</keyword>
+      </attributes>
+   </example>
+ 
+   <example name="M410_I2CSlave_Dma" doc="Abstract.txt" folder="ADuCM410/examples/M410_I2CSlave_Dma">
+      <description>M410_I2CSlave_Dma</description> 
+      <board name="EVAL-ADuCM410EVB" vendor="Analog Devices" /> 
+      <project>
+         <environment name="uv" load="ARM/M410_I2CSlave_Dma.uvprojx"/>
+         <environment name="iar" load="IAR/M410_I2CSlave_Dma.ewp"/>
+      </project>
+      <attributes>
+          <component Cclass="CMSIS" Cgroup="CORE" />
+          <component Cclass="Device" Cgroup="Startup" />
+          <component Cclass="Device" Cgroup="Peripheral Libraries" />
+        <category>Analog Peripheral</category>
+        <keyword>M410_I2CSlave_Dma</keyword>
+      </attributes>
+   </example>
+ 
+   <example name="M410_PWM" doc="Abstract.txt" folder="ADuCM410/examples/M410_PWM">
+      <description>M410_PWM</description> 
+      <board name="EVAL-ADuCM410EVB" vendor="Analog Devices" /> 
+      <project>
+         <environment name="uv" load="ARM/M410_PWM.uvprojx"/>
+         <environment name="iar" load="IAR/M410_PWM.ewp"/>
+      </project>
+      <attributes>
+          <component Cclass="CMSIS" Cgroup="CORE" />
+          <component Cclass="Device" Cgroup="Startup" />
+          <component Cclass="Device" Cgroup="Peripheral Libraries" />
+        <category>Analog Peripheral</category>
+        <keyword>M410_PWM</keyword>
+      </attributes>
+   </example>
+ 
+   <example name="M410_PLA_HDL" doc="Abstract.txt" folder="ADuCM410/examples/M410_PLA_HDL">
+      <description>M410_PLA_HDL</description> 
+      <board name="EVAL-ADuCM410EVB" vendor="Analog Devices" /> 
+      <project>
+         <environment name="uv" load="ARM/M410_PLA_HDL.uvprojx"/>
+         <environment name="iar" load="IAR/M410_PLA_HDL.ewp"/>
+      </project>
+      <attributes>
+          <component Cclass="CMSIS" Cgroup="CORE" />
+          <component Cclass="Device" Cgroup="Startup" />
+          <component Cclass="Device" Cgroup="Peripheral Libraries" />
+        <category>Analog Peripheral</category>
+        <keyword>M410_PLA_HDL</keyword>
+      </attributes>
+   </example>
+ 
+   <example name="M410_CRC" doc="Abstract.txt" folder="ADuCM410/examples/M410_CRC">
+      <description>M410_CRC</description> 
+      <board name="EVAL-ADuCM410EVB" vendor="Analog Devices" /> 
+      <project>
+         <environment name="uv" load="ARM/M410_CRC.uvprojx"/>
+         <environment name="iar" load="IAR/M410_CRC.ewp"/>
+      </project>
+      <attributes>
+          <component Cclass="CMSIS" Cgroup="CORE" />
+          <component Cclass="Device" Cgroup="Startup" />
+          <component Cclass="Device" Cgroup="Peripheral Libraries" />
+        <category>Analog Peripheral</category>
+        <keyword>M410_CRC</keyword>
+      </attributes>
+   </example>
+ 
+ </examples>
+ <!-- example section End -->
+</package>

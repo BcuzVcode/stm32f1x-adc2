@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.7.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>SiliconLabs</vendor>
+  <url>https://www.silabs.com/documents/public/cmsis-packs/</url>
+  <name>GeckoPlatform_BGM24_DFP</name>
+  <description>Silicon Labs BGM24 Blue Gecko Series Device Support.</description>
+  <license>License/license.md</license>
+
+  <releases>
+    <release version="2024.6.0" date="2024-06-19">
+      New device family for Caracal EFM32PG26, EFR32BG26, EFR32MG26
+    </release>
+    <release version="4.4.0" date="2024-02-08">
+      New device family EFM32PG28 and new OPNs for EFR32SG28, EFR32MG24, EFR32BG24, MGM21, RM21
+    </release>
+    <release version="4.3.0" date="2023-06-15">
+      New device families EFR32SG23, EFR32SG28 and new OPNs for EFR32MG27, EFR32MG24, EFR32FG25, EFR32BG24, MGM24
+    </release>
+    <release version="4.2.0" date="2022-11-25">
+      New device families EFR32ZG28, EFR32FG28 and EFR32MR21
+    </release>
+    <release version="4.1.1" date="2022-06-22">
+      Add TrustZone support for Series2 Devices
+    </release>
+    <release version="4.1.0" date="2022-06-03">
+      Update CMSIS version to 5.8.0. New device families EFR32BG27, EFR32MG27. Documentation updated for ZGM130S, MGM220P, EFR32PG23. Add Cortex-M33 Generic User Guide
+    </release>
+    <release version="4.0.2" date="2022-04-22">
+      New OPNs for modules MGM24, for SoC EFR32MG24. New device families EFR32FG25. Documentation updated for EFM32PG22, EFR32BG24, EFR32MG24 and WGM160.
+    </release>
+    <release version="4.0.0" date="2022-01-24">
+      New OPNs for modules MGM21 and MGM24, for SoC EFR32MG24. New device families EFR32BG24, BGM24. Documentation updated for EFR32FG23, EFR32ZG23 and EFM32PG23.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Silicon Labs</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Silicon Labs</keyword>
+    <keyword>BGM24</keyword>
+    <keyword>BGM24</keyword>
+    <keyword>Blue Gecko</keyword>
+    <keyword>Gecko</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="BGM24 Series" Dvendor="Silicon Labs:21">
+      <processor Dcore="Cortex-M33" DcoreVersion="r0p4" Dfpu="FPU" Dmpu="MPU" Dtz="TZ" Ddsp="DSP" Dendian="Little-endian" Dclock="39000000"/>
+      <book name="Documents/cortex_m33_dgug.pdf"      title="Cortex-M33 Generic User Guide"/>
+      <book name="Documents/efr32xg24-rm.pdf"  title="BGM24 Reference Manual"/>
+      <description>
+32-bit ARM Cortex-M33 core with 78 MHz maximum operating frequency.
+      </description>
+
+      <subFamily DsubFamily="BGM240P">
+        <book         name="Documents/bgm240p-datasheet.pdf"      title="BGM240P Data Sheet"/>
+        <!-- *************************  Device 'BGM240PA22VNA'  ***************************** -->
+        <device Dname="BGM240PA22VNA">
+          <compile header="Device/SiliconLabs/BGM24/Include/em_device.h"  define="BGM240PA22VNA"/>
+          <debug      svd="SVD/BGM24/BGM240PA22VNA.svd"/>
+          <memory     id="IROM1"                start="0x08000000"  size="0x00180000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS2C3.FLM"  start="0x08000000"  size="0x00180000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS2C3.flash"  start="0x08000000"  size="0x00180000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'BGM240PA32VNA'  ***************************** -->
+        <device Dname="BGM240PA32VNA">
+          <compile header="Device/SiliconLabs/BGM24/Include/em_device.h"  define="BGM240PA32VNA"/>
+          <debug      svd="SVD/BGM24/BGM240PA32VNA.svd"/>
+          <memory     id="IROM1"                start="0x08000000"  size="0x00180000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS2C3.FLM"  start="0x08000000"  size="0x00180000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS2C3.flash"  start="0x08000000"  size="0x00180000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'BGM240PA32VNN'  ***************************** -->
+        <device Dname="BGM240PA32VNN">
+          <compile header="Device/SiliconLabs/BGM24/Include/em_device.h"  define="BGM240PA32VNN"/>
+          <debug      svd="SVD/BGM24/BGM240PA32VNN.svd"/>
+          <memory     id="IROM1"                start="0x08000000"  size="0x00180000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS2C3.FLM"  start="0x08000000"  size="0x00180000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS2C3.flash"  start="0x08000000"  size="0x00180000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'BGM240PB22VNA'  ***************************** -->
+        <device Dname="BGM240PB22VNA">
+          <compile header="Device/SiliconLabs/BGM24/Include/em_device.h"  define="BGM240PB22VNA"/>
+          <debug      svd="SVD/BGM24/BGM240PB22VNA.svd"/>
+          <memory     id="IROM1"                start="0x08000000"  size="0x00180000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS2C3.FLM"  start="0x08000000"  size="0x00180000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS2C3.flash"  start="0x08000000"  size="0x00180000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'BGM240PB32VNA'  ***************************** -->
+        <device Dname="BGM240PB32VNA">
+          <compile header="Device/SiliconLabs/BGM24/Include/em_device.h"  define="BGM240PB32VNA"/>
+          <debug      svd="SVD/BGM24/BGM240PB32VNA.svd"/>
+          <memory     id="IROM1"                start="0x08000000"  size="0x00180000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS2C3.FLM"  start="0x08000000"  size="0x00180000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS2C3.flash"  start="0x08000000"  size="0x00180000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'BGM240PB32VNN'  ***************************** -->
+        <device Dname="BGM240PB32VNN">
+          <compile header="Device/SiliconLabs/BGM24/Include/em_device.h"  define="BGM240PB32VNN"/>
+          <debug      svd="SVD/BGM24/BGM240PB32VNN.svd"/>
+          <memory     id="IROM1"                start="0x08000000"  size="0x00180000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS2C3.FLM"  start="0x08000000"  size="0x00180000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS2C3.flash"  start="0x08000000"  size="0x00180000"  default="0"  style="IAR"/>
+        </device>
+
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler GCC">
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="Compiler IAR">
+      <require Tcompiler="IAR"/>
+    </condition>
+
+    <!-- Device Conditions -->
+    <condition id="BGM24">
+      <description>Silicon Labs BGM24 device series</description>
+      <require Dvendor="Silicon Labs:21" Dname="BGM24*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="2024.6.0" condition="BGM24">
+      <description>System Startup for Silicon Labs BGM24 device series</description>
+      <files>
+        <!-- include folder -->
+        <file category="include" name="Device/SiliconLabs/BGM24/Include/"/>
+        <file category="header"  name="Device/SiliconLabs/BGM24/Include/em_device.h"/>
+        <!-- startup files -->
+        <file category="source"  name="Device/SiliconLabs/BGM24/Source/GCC/startup_bgm24.S" condition="Compiler GCC"   attr="config" version="2024.6.0"/>
+        <file category="source"  name="Device/SiliconLabs/BGM24/Source/IAR/startup_bgm24.s" condition="Compiler IAR"   attr="config" version="2024.6.0"/>
+        <!-- linker command file -->
+        <file category="linkerScript"  name="Device/SiliconLabs/BGM24/Source/GCC/bgm24.ld" condition="Compiler GCC" attr="config" version="2024.6.0"/>
+        <!-- system file -->
+        <file category="source"  name="Device/SiliconLabs/BGM24/Source/system_bgm24.c" attr="config" version="2024.6.0"/>
+      </files>
+    </component>
+  </components>
+</package>

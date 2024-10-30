@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<package schemaVersion="1.7.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="PACK.xsd">
+  <name>FreeRTOS-Plus-TCP</name>
+
+  <description>Thread safe FreeRTOS TCP/IP stack working on top of the FreeRTOS-Kernel to implement the TCP/IP protocol with LTS. Suitable for microcontrollers.</description>
+
+  <vendor>AWS</vendor>
+
+  <license>LICENSE</license>
+
+  <url>https://d1pm0k3vkcievw.cloudfront.net/</url>
+
+  <requirements>
+    <packages>
+      <package name="CMSIS-FreeRTOS" vendor="ARM"/>
+    </packages>
+  </requirements>
+
+  <releases>
+    <release date="2023-06-23" version="5.0.1">Re-release of the last version due to hosting changes. Based on the https://github.com/FreeRTOS/FreeRTOS-Plus-TCP/tree/V3.1.0/ repository.</release>
+    <release date="2023-02-23" version="5.0.0">Based on the https://github.com/FreeRTOS/FreeRTOS-Plus-TCP/tree/V3.1.0/ repository.</release>
+    <release date="2022-07-13" version="4.0.1">Fixes template files not being marked as template files. Based on the https://github.com/FreeRTOS/FreeRTOS-Plus-TCP/tree/V2.3.2-LTS-Patch-2/ repository.</release>
+    <release date="2022-06-16" version="4.0.0">Based on the https://github.com/FreeRTOS/FreeRTOS-Plus-TCP/tree/V2.3.2-LTS-Patch-2/ repository.</release>
+    <release date="2020-12-15" version="2.3.2-Beta">Based on the https://github.com/FreeRTOS/FreeRTOS-Plus-TCP/tree/V2.3.2/ repository.</release>
+  </releases>
+
+  <conditions>
+    <condition id="freertos_plus_tcp_lts_library Condition">
+      <require Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Buffer Allocation"/>
+      <require Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Network Interface"/>
+      <require Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Compiler Port"/>
+      <require Cbundle="FreeRTOS" Cclass="RTOS" Cgroup="Core"/>
+    </condition>
+    <condition id="freertos_plus_tcp_lts_buffer_allocation_1 Condition">
+      <require Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Core Library"/>
+    </condition>
+    <condition id="freertos_plus_tcp_lts_buffer_allocation_2 Condition">
+      <require Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Core Library"/>
+    </condition>
+    <condition id="freertos_plus_tcp_lts_custom_compiler Condition">
+      <require Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Core Library"/>
+    </condition>
+    <condition id="freertos_plus_tcp_lts_gcc_compiler Condition">
+      <require Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Core Library"/>
+    </condition>
+    <condition id="freertos_plus_tcp_lts_iar_compiler Condition">
+      <require Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Core Library"/>
+    </condition>
+    <condition id="freertos_plus_tcp_lts_keil_compiler Condition">
+      <require Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Core Library"/>
+    </condition>
+    <condition id="freertos_plus_tcp_lts_msvc_compiler Condition">
+      <require Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Core Library"/>
+    </condition>
+    <condition id="freertos_plus_tcp_lts_renesas_compiler Condition">
+      <require Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Core Library"/>
+    </condition>
+    <condition id="freertos_plus_tcp_lts_custom_interface_port Condition">
+      <require Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Core Library"/>
+    </condition>
+    <condition id="freertos_plus_tcp_lts_driver_sam_network_interface_port Condition">
+      <require Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Core Library"/>
+    </condition>
+    <condition id="freertos_plus_tcp_lts_lpc17xx_network_interface_port Condition">
+      <require Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Core Library"/>
+    </condition>
+    <condition id="freertos_plus_tcp_lts_lpc18xx_network_interface_port Condition">
+      <require Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Core Library"/>
+    </condition>
+    <condition id="freertos_plus_tcp_lts_lpc54018_network_interface_port Condition">
+      <require Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Core Library"/>
+    </condition>
+    <condition id="freertos_plus_tcp_lts_m487_network_interface_port Condition">
+      <require Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Core Library"/>
+    </condition>
+    <condition id="freertos_plus_tcp_lts_mps2_an385_network_interface_port Condition">
+      <require Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Core Library"/>
+    </condition>
+    <condition id="freertos_plus_tcp_lts_rx_network_interface_port Condition">
+      <require Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Core Library"/>
+    </condition>
+    <condition id="freertos_plus_tcp_lts_sh2a_network_interface_port Condition">
+      <require Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Core Library"/>
+    </condition>
+    <condition id="freertos_plus_tcp_lts_stm32fxx_network_interface_port Condition">
+      <require Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Core Library"/>
+    </condition>
+    <condition id="freertos_plus_tcp_lts_stm32hxx_network_interface_port Condition">
+      <require Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Core Library"/>
+    </condition>
+    <condition id="freertos_plus_tcp_lts_winpcap_network_interface_port Condition">
+      <require Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Core Library"/>
+    </condition>
+    <condition id="freertos_plus_tcp_lts_zynq_network_interface_port Condition">
+      <require Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Core Library"/>
+    </condition>
+    <condition id="freertos_plus_tcp_lts_esp32_network_interface_port Condition">
+      <require Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Core Library"/>
+    </condition>
+    <condition id="freertos_plus_tcp_lts_ksz8851snl_network_interface_port Condition">
+      <require Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Core Library"/>
+    </condition>
+    <condition id="freertos_plus_tcp_lts_linux_network_interface_port Condition">
+      <require Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Core Library"/>
+    </condition>
+    <condition id="freertos_plus_tcp_lts_mw300_rd_network_interface_port Condition">
+      <require Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Core Library"/>
+    </condition>
+    <condition id="freertos_plus_tcp_lts_pic32mzef_eth_network_interface_port Condition">
+      <require Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Core Library"/>
+    </condition>
+    <condition id="freertos_plus_tcp_lts_pic32mzef_wifi_network_interface_port Condition">
+      <require Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Core Library"/>
+    </condition>
+    <condition id="freertos_plus_tcp_lts_xilinx_ultrascale_network_interface_port Condition">
+      <require Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Core Library"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <component Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Core Library" Cversion="3.1.0" condition="freertos_plus_tcp_lts_library Condition">
+      <description>Thread safe FreeRTOS TCP/IP stack working on top of the FreeRTOS-Kernel to implement the TCP/IP protocol with LTS. Suitable for microcontrollers.</description>
+      <files>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/FreeRTOS_ARP.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/FreeRTOS_DHCP.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/FreeRTOS_DNS.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/FreeRTOS_DNS_Cache.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/FreeRTOS_DNS_Callback.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/FreeRTOS_DNS_Networking.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/FreeRTOS_DNS_Parser.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/FreeRTOS_ICMP.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/FreeRTOS_IP.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/FreeRTOS_IP_Timers.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/FreeRTOS_IP_Utils.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/FreeRTOS_Sockets.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/FreeRTOS_Stream_Buffer.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/FreeRTOS_TCP_IP.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/FreeRTOS_TCP_Reception.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/FreeRTOS_TCP_State_Handling.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/FreeRTOS_TCP_Transmission.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/FreeRTOS_TCP_Utils.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/FreeRTOS_TCP_WIN.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/FreeRTOS_Tiny_TCP.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/FreeRTOS_UDP_IP.c"/>
+        <file category="include" name="FreeRTOS-Plus-TCP/source/include/"/>
+      </files>
+    </component>
+    <component Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Buffer Allocation" Cvariant="Buffer Allocation 1" Cversion="3.1.0" condition="freertos_plus_tcp_lts_buffer_allocation_1 Condition">
+      <description>https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/Embedded_Ethernet_Buffer_Management.html</description>
+      <files>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/BufferManagement/BufferAllocation_1.c"/>
+      </files>
+    </component>
+    <component Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Buffer Allocation" Cvariant="Buffer Allocation 2" Cversion="3.1.0" condition="freertos_plus_tcp_lts_buffer_allocation_2 Condition">
+      <description>https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/Embedded_Ethernet_Buffer_Management.html</description>
+      <files>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/BufferManagement/BufferAllocation_2.c"/>
+      </files>
+    </component>
+    <component Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Compiler Port" Cvariant="Custom" Cversion="3.1.0" condition="freertos_plus_tcp_lts_custom_compiler Condition">
+      <description>https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/Embedded_Compiler_Porting.html</description>
+      <files>
+        <file attr="template" category="header" name="FreeRTOS-Plus-TCP/source/portable/Compiler/CompilerName/pack_struct_end.h" select="Custom Compiler Port Template"/>
+        <file attr="template" category="header" name="FreeRTOS-Plus-TCP/source/portable/Compiler/CompilerName/pack_struct_start.h" select="Custom Compiler Port Template"/>
+      </files>
+    </component>
+    <component Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Compiler Port" Cvariant="GCC" Cversion="3.1.0" condition="freertos_plus_tcp_lts_gcc_compiler Condition">
+      <description>https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/Embedded_Compiler_Porting.html</description>
+      <files>
+        <file category="header" name="FreeRTOS-Plus-TCP/source/portable/Compiler/GCC/pack_struct_end.h"/>
+        <file category="header" name="FreeRTOS-Plus-TCP/source/portable/Compiler/GCC/pack_struct_start.h"/>
+      </files>
+    </component>
+    <component Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Compiler Port" Cvariant="IAR" Cversion="3.1.0" condition="freertos_plus_tcp_lts_iar_compiler Condition">
+      <description>https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/Embedded_Compiler_Porting.html</description>
+      <files>
+        <file category="header" name="FreeRTOS-Plus-TCP/source/portable/Compiler/IAR/pack_struct_end.h"/>
+        <file category="header" name="FreeRTOS-Plus-TCP/source/portable/Compiler/IAR/pack_struct_start.h"/>
+      </files>
+    </component>
+    <component Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Compiler Port" Cvariant="Keil" Cversion="3.1.0" condition="freertos_plus_tcp_lts_keil_compiler Condition">
+      <description>https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/Embedded_Compiler_Porting.html</description>
+      <files>
+        <file category="header" name="FreeRTOS-Plus-TCP/source/portable/Compiler/Keil/pack_struct_end.h"/>
+        <file category="header" name="FreeRTOS-Plus-TCP/source/portable/Compiler/Keil/pack_struct_start.h"/>
+      </files>
+    </component>
+    <component Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Compiler Port" Cvariant="MSVC" Cversion="3.1.0" condition="freertos_plus_tcp_lts_msvc_compiler Condition">
+      <description>https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/Embedded_Compiler_Porting.html</description>
+      <files>
+        <file category="header" name="FreeRTOS-Plus-TCP/source/portable/Compiler/MSVC/pack_struct_end.h"/>
+        <file category="header" name="FreeRTOS-Plus-TCP/source/portable/Compiler/MSVC/pack_struct_start.h"/>
+      </files>
+    </component>
+    <component Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Compiler Port" Cvariant="Renesas" Cversion="3.1.0" condition="freertos_plus_tcp_lts_renesas_compiler Condition">
+      <description>https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/Embedded_Compiler_Porting.html</description>
+      <files>
+        <file category="header" name="FreeRTOS-Plus-TCP/source/portable/Compiler/Renesas/pack_struct_end.h"/>
+        <file category="header" name="FreeRTOS-Plus-TCP/source/portable/Compiler/Renesas/pack_struct_start.h"/>
+      </files>
+    </component>
+    <component Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Network Interface" Cvariant="Custom" Cversion="3.1.0" condition="freertos_plus_tcp_lts_custom_interface_port Condition">
+      <description>https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/Embedded_Ethernet_Porting.html</description>
+      <files>
+        <file attr="template" category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/board_family/NetworkInterface.c" select="Custom Network Interface Template"/>
+      </files>
+    </component>
+    <component Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Network Interface" Cvariant="DriverSAM" Cversion="3.1.0" condition="freertos_plus_tcp_lts_driver_sam_network_interface_port Condition">
+      <description>https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/Embedded_Ethernet_Porting.html</description>
+      <files>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/DriverSAM/NetworkInterface.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/DriverSAM/gmac_SAM.c"/>
+        <file category="include" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/DriverSAM/"/>
+      </files>
+    </component>
+    <component Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Network Interface" Cvariant="LPC17xx" Cversion="3.1.0" condition="freertos_plus_tcp_lts_lpc17xx_network_interface_port Condition">
+      <description>https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/Embedded_Ethernet_Porting.html</description>
+      <files>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/LPC17xx/NetworkInterface.c"/>
+        <file category="include" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/LPC17xx/"/>
+      </files>
+    </component>
+    <component Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Network Interface" Cvariant="LPC18xx" Cversion="3.1.0" condition="freertos_plus_tcp_lts_lpc18xx_network_interface_port Condition">
+      <description>Requires NXP&apos;s LPCOpen library found at https://www.nxp.com/design/microcontrollers-developer-resources/lpcopen-libraries-and-examples/lpcopen-software-development-platform-lpc18xx:LPCOPEN-SOFTWARE-FOR-LPC18XX. See https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/Embedded_Ethernet_Porting.html</description>
+      <files>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/LPC18xx/NetworkInterface.c"/>
+        <file category="include" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/LPC18xx/"/>
+      </files>
+    </component>
+    <component Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Network Interface" Cvariant="LPC54018" Cversion="3.1.0" condition="freertos_plus_tcp_lts_lpc54018_network_interface_port Condition">
+      <description>https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/Embedded_Ethernet_Porting.html</description>
+      <files>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/LPC54018/NetworkInterface.c"/>
+        <file category="include" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/LPC54018/"/>
+      </files>
+    </component>
+    <component Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Network Interface" Cvariant="M487" Cversion="3.1.0" condition="freertos_plus_tcp_lts_m487_network_interface_port Condition">
+      <description>https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/Embedded_Ethernet_Porting.html</description>
+      <files>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/M487/NetworkInterface.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/M487/m480_eth.c"/>
+        <file category="include" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/M487/"/>
+      </files>
+    </component>
+    <component Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Network Interface" Cvariant="MPS2_AN385" Cversion="3.1.0" condition="freertos_plus_tcp_lts_mps2_an385_network_interface_port Condition">
+      <description>https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/Embedded_Ethernet_Porting.html</description>
+      <files>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/MPS2_AN385/NetworkInterface.c"/>
+        <file category="include" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/MPS2_AN385/"/>
+      </files>
+    </component>
+    <component Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Network Interface" Cvariant="RX" Cversion="3.1.0" condition="freertos_plus_tcp_lts_rx_network_interface_port Condition">
+      <description>https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/Embedded_Ethernet_Porting.html</description>
+      <files>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/RX/NetworkInterface.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/RX/ether_callback.c"/>
+        <file category="include" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/RX/"/>
+      </files>
+    </component>
+    <component Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Network Interface" Cvariant="SH2A" Cversion="3.1.0" condition="freertos_plus_tcp_lts_sh2a_network_interface_port Condition">
+      <description>https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/Embedded_Ethernet_Porting.html</description>
+      <files>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/SH2A/NetworkInterface.c"/>
+        <file category="include" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/SH2A/"/>
+      </files>
+    </component>
+    <component Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Network Interface" Cvariant="STM32Fxx" Cversion="3.1.0" condition="freertos_plus_tcp_lts_stm32fxx_network_interface_port Condition">
+      <description>https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/Embedded_Ethernet_Porting.html</description>
+      <files>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/STM32Fxx/NetworkInterface.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/STM32Fxx/stm32fxx_hal_eth.c"/>
+        <file category="include" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/STM32Fxx/"/>
+      </files>
+    </component>
+    <component Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Network Interface" Cvariant="STM32Hxx" Cversion="3.1.0" condition="freertos_plus_tcp_lts_stm32hxx_network_interface_port Condition">
+      <description>https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/Embedded_Ethernet_Porting.html</description>
+      <files>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/STM32Hxx/NetworkInterface.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/STM32Hxx/stm32hxx_hal_eth.c"/>
+        <file category="include" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/STM32Hxx/"/>
+      </files>
+    </component>
+    <component Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Network Interface" Cvariant="WinPCap" Cversion="3.1.0" condition="freertos_plus_tcp_lts_winpcap_network_interface_port Condition">
+      <description>https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/Embedded_Ethernet_Porting.html</description>
+      <files>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/WinPCap/FaultInjection.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/WinPCap/NetworkInterface.c"/>
+        <file category="include" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/WinPCap/"/>
+      </files>
+    </component>
+    <component Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Network Interface" Cvariant="Zynq" Cversion="3.1.0" condition="freertos_plus_tcp_lts_zynq_network_interface_port Condition">
+      <description>https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/Embedded_Ethernet_Porting.html</description>
+      <files>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/Zynq/NetworkInterface.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/Zynq/uncached_memory.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/Zynq/x_emacpsif_dma.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/Zynq/x_emacpsif_hw.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/Zynq/x_emacpsif_physpeed.c"/>
+        <file category="include" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/Zynq/"/>
+      </files>
+    </component>
+    <component Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Network Interface" Cvariant="esp32" Cversion="3.1.0" condition="freertos_plus_tcp_lts_esp32_network_interface_port Condition">
+      <description>https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/Embedded_Ethernet_Porting.html</description>
+      <files>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/esp32/NetworkInterface.c"/>
+        <file category="include" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/esp32/"/>
+      </files>
+    </component>
+    <component Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Network Interface" Cvariant="ksz8851snl" Cversion="3.1.0" condition="freertos_plus_tcp_lts_ksz8851snl_network_interface_port Condition">
+      <description>https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/Embedded_Ethernet_Porting.html</description>
+      <files>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/ksz8851snl/NetworkInterface.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/ksz8851snl/ksz8851snl.c"/>
+        <file category="include" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/ksz8851snl/"/>
+      </files>
+    </component>
+    <component Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Network Interface" Cvariant="linux" Cversion="3.1.0" condition="freertos_plus_tcp_lts_linux_network_interface_port Condition">
+      <description>https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/Embedded_Ethernet_Porting.html</description>
+      <files>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/linux/NetworkInterface.c"/>
+        <file category="include" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/linux/"/>
+      </files>
+    </component>
+    <component Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Network Interface" Cvariant="mw300_rd" Cversion="3.1.0" condition="freertos_plus_tcp_lts_mw300_rd_network_interface_port Condition">
+      <description>https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/Embedded_Ethernet_Porting.html</description>
+      <files>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/mw300_rd/NetworkInterface.c"/>
+        <file category="include" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/mw300_rd/"/>
+      </files>
+    </component>
+    <component Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Network Interface" Cvariant="pic32mzef ethernet" Cversion="3.1.0" condition="freertos_plus_tcp_lts_pic32mzef_eth_network_interface_port Condition">
+      <description>https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/Embedded_Ethernet_Porting.html</description>
+      <files>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/pic32mzef/BufferAllocation_2.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/pic32mzef/NetworkInterface_eth.c"/>
+        <file category="include" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/pic32mzef/"/>
+      </files>
+    </component>
+    <component Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Network Interface" Cvariant="pic32mzef wifi" Cversion="3.1.0" condition="freertos_plus_tcp_lts_pic32mzef_wifi_network_interface_port Condition">
+      <description>https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/Embedded_Ethernet_Porting.html</description>
+      <files>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/pic32mzef/BufferAllocation_2.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/pic32mzef/NetworkInterface_wifi.c"/>
+        <file category="include" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/pic32mzef/"/>
+      </files>
+    </component>
+    <component Cclass="FreeRTOS" Cgroup="FreeRTOS+ TCP" Csub="Network Interface" Cvariant="Xilinx Ultrascale" Cversion="3.1.0" condition="freertos_plus_tcp_lts_xilinx_ultrascale_network_interface_port Condition">
+      <description>https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/Embedded_Ethernet_Porting.html</description>
+      <files>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/xilinx_ultrascale/NetworkInterface.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/xilinx_ultrascale/uncached_memory.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/xilinx_ultrascale/x_emacpsif_dma.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/xilinx_ultrascale/x_emacpsif_hw.c"/>
+        <file category="source" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/xilinx_ultrascale/x_emacpsif_physpeed.c"/>
+        <file category="include" name="FreeRTOS-Plus-TCP/source/portable/NetworkInterface/xilinx_ultrascale/"/>
+      </files>
+    </component>
+  </components>
+</package>
+

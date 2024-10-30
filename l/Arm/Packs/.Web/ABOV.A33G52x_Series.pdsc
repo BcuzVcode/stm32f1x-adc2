@@ -1,0 +1,740 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>ABOV</vendor>
+  <name>A33G52x_Series</name>
+  <description>ABOV Semiconductor A33G52x Series Device Support, Drivers and Examples</description>
+  <url>https://www.abov.co.kr/data/mds/PACK/</url>
+  <supportContact>abov_fae@abov.co.kr</supportContact>
+  <releases>
+    <release version="1.0.10" date="2020-12-01">
+        - Removed Document directory
+        - Removed Coocox projects and startup files (Compiler support Discontinued.)
+        - Updated debug framework and uart driver
+        - Polling or interrupt type debug channel support
+        - Each Keil/IAR example are applied debug_frmwrk driver. (Tested)
+        - Added Release Notes.txt file
+        - Added UART example for using old version debug frame work.
+        - SVD/SFR register fields that overlap with the offset address are separated for each function. (UART, SPI)
+    </release>
+  </releases>
+  <keywords>
+    <keyword>ABOV</keyword>
+    <keyword>A33G52x</keyword>
+    <keyword>A33G527</keyword>
+    <keyword>A33G526</keyword>
+    <keyword>A33G524</keyword>
+    <keyword>General Purpose</keyword>
+  </keywords>
+  <devices>
+    <family Dfamily="A33G52x Series" Dvendor="ABOV Semiconductor:126">
+      <processor Dcore="Cortex-M3" DcoreVersion="r1p0" Dfpu="0" Dmpu="0" Dendian="Little-endian" />
+      <description>The ABOV A33G52x Series device family contains an ARM Cortex-M3 processor with a versatile set of on-chip peripherals.</description>
+      <!-- Subfamily : A33G527 *********************************************************-->
+      <subFamily DsubFamily="A33G52x">
+        <processor Dclock="75000000" />
+        <compile header="A33G52x\Core\include\A33G52x.h" />
+        <debug svd="A33G52x\SVD\A33G52x.svd" />
+        <feature type="VCC" n="3.00" m="5.50" />
+        <feature type="Temp" n="-40" m="85" />
+		<!-- use for all devices of the family  -->
+        <memory id="IROM1" start="0x00000000" size="0x60000" startup="1" default="1" />
+        <memory id="IRAM1" start="0x20000000" size="0x6000" init="0" default="1" />
+        <feature type="WDT" n="1" m="32" name="Watchdog Timer" />
+        <feature type="Other" n="1" m="32" name="FRT" />
+        <feature type="Timer" n="10" m="16" name="Timer" />
+        <feature type="PWM" n="8" m="16" name="PWM" />
+        <feature type="I2C" n="2" name="I2C" />
+        <feature type="UART" n="4" name="UART" />
+        <feature type="SPI" n="2" name="SPI" />
+
+        <!-- Device : A33G527 -->
+        <device Dname="A33G527">
+    	  <!-- finally, this is the default for the device -->
+          <description>384KB Code Flash, Package type 100MQFP</description>
+          <algorithm name="A33G52x\Flashloader\A33G527_Code_Flashloader.FLM" start="0x00000000" size="0x60000" default="1" />
+          <memory id="IROM1" start="0x00000000" size="0x60000" startup="1" default="1" />
+          <feature type="IOs" n="90" name="Inputs/Outputs" />
+          <feature type="QFP" n="100" name="MQFP" />
+		      <feature type="ADC" n="1" m="16" name="ADC" />
+        </device>
+        <!-- Device : A33G526 -->
+        <device Dname="A33G526">
+          <description>256KB Code Flash, Package type 64LQFP</description>
+		    <!-- finally, this is the default for the device -->
+          <algorithm name="A33G52x\Flashloader\A33G526_Code_Flashloader.FLM" start="0x00000000" size="0x40000" default="1" />
+          <memory id="IROM1" start="0x00000000" size="0x40000" startup="1" default="1" />
+          <feature type="IOs" n="60" name="Inputs/Outputs" />
+          <feature type="QFP" n="64" name="LQFP" />
+		      <feature type="ADC" n="1" m="10" name="ADC" />
+        </device>
+        <!-- Device : A33G526 -->
+        <device Dname="A33G524">
+	        <description>128KB Code Flash, Package type 64LQFP</description>
+	      <!-- finally, this is the default for the device -->
+          <algorithm name="A33G52x\Flashloader\A33G524_Code_Flashloader.FLM" start="0x00000000" size="0x20000" default="1" />
+          <memory id="IROM1" start="0x00000000" size="0x20000" startup="1" default="1" />
+          <feature type="IOs" n="60" name="Inputs/Outputs" />
+          <feature type="QFP" n="64" name="LQFP" />
+		      <feature type="ADC" n="1" m="10" name="ADC" />
+        </device>
+      </subFamily>
+    </family>
+  </devices>
+  <conditions>
+     <!-- condition : A33G526/527 ********************************************************-->
+    <condition id="A33G52x CMSIS">
+      <description>A33G524, A33G526, A33G527 device and CMSIS-Core</description>
+      <require Tcompiler="ARMCC" />
+      <require Cclass="CMSIS" Cgroup="CORE" />
+      <accept Dvendor="ABOV Semiconductor:126" Dname="A33G527" />
+      <accept Dvendor="ABOV Semiconductor:126" Dname="A33G526" />
+	  <accept Dvendor="ABOV Semiconductor:126" Dname="A33G524" />
+    </condition>
+  </conditions>
+  <components>
+    <!-- component : A33G527/526/524 *************************************************************-->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="A33G52x CMSIS">
+      <description>System Startup for ABOV A33G52x devices</description>
+      <files>
+        <file category="include" name="A33G52x\Core\include\" />
+        <file category="include" name="A33G52x\Drivers\include\" />
+        <file category="header" version="1.0.0" name="A33G52x\Core\include\A33G52x.h" attr="config" />
+        <file category="source" version="1.0.0" name="A33G52x\Core\source\ARM\startup_A33G52x.s" attr="config" />
+        <file category="header" version="1.0.0" name="A33G52x\Core\include\system_A33G52x.h" attr="config" />
+        <file category="source" version="1.0.0" name="A33G52x\Core\source\system_A33G52x.c" attr="config" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="Debug_frameWork" Cversion="1.0.0" condition="A33G52x CMSIS">
+      <description>A33G52x debug framework</description>
+      <files>
+        <file category="header" name="A33G52x\Drivers\include\slib.h" />
+        <file category="header" name="A33G52x\Drivers\include\console.h" />
+        <file category="source" name="A33G52x\Drivers\source\slib.c" />
+        <file category="source" name="A33G52x\Drivers\source\console.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="ADC" Cversion="1.0.0" condition="A33G52x CMSIS">
+      <description>A33G52x ADC control</description>
+      <files>
+        <file category="header" name="A33G52x\Drivers\include\a33g52x_adc.h" />
+        <file category="source" name="A33G52x\Drivers\source\a33g52x_adc.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="FMC" Cversion="1.0.0" condition="A33G52x CMSIS">
+      <description>A33G52x Flash Memory Controller</description>
+      <files>
+        <file category="header" name="A33G52x\Drivers\include\a33g52x_flash.h" />
+        <file category="source" name="A33G52x\Drivers\source\a33g52x_flash.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="FRT" Cversion="1.0.0" condition="A33G52x CMSIS">
+      <description>A33G52x 32-bit Free-Run Timer control</description>
+      <files>
+        <file category="header" name="A33G52x\Drivers\include\a33g52x_frt.h" />
+        <file category="source" name="A33G52x\Drivers\source\a33g52x_frt.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="GPIO" Cversion="1.0.0" condition="A33G52x CMSIS">
+      <description>A33G52x GPIO control</description>
+      <files>
+        <file category="header" name="A33G52x\Drivers\include\a33g52x_gpio.h" />
+        <file category="source" name="A33G52x\Drivers\source\a33g52x_gpio.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="I2C" Cversion="1.0.0" condition="A33G52x CMSIS">
+      <description>A33G52x I2C control</description>
+      <files>
+        <file category="header" name="A33G52x\Drivers\include\a33g52x_i2c.h" />
+        <file category="source" name="A33G52x\Drivers\source\a33g52x_i2c.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="PCU" Cversion="1.0.0" condition="A33G52x CMSIS">
+      <description>A33G52x Port Map controller</description>
+      <files>
+        <file category="header" name="A33G52x\Drivers\include\a33g52x_pcu.h" />
+        <file category="source" name="A33G52x\Drivers\source\a33g52x_pcu.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="PMU" Cversion="1.0.0" condition="A33G52x CMSIS">
+      <description>A33G52x Power Management Unit</description>
+      <files>
+        <file category="header" name="A33G52x\Drivers\include\a33g52x_pmu.h" />
+        <file category="source" name="A33G52x\Drivers\source\a33g52x_pmu.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="PWM" Cversion="1.0.0" condition="A33G52x CMSIS">
+      <description>A33G52x PWM control</description>
+      <files>
+        <file category="header" name="A33G52x\Drivers\include\a33g52x_pwm.h" />
+        <file category="source" name="A33G52x\Drivers\source\a33g52x_pwm.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="SPI" Cversion="1.0.0" condition="A33G52x CMSIS">
+      <description>A33G52x SPI control</description>
+      <files>
+        <file category="header" name="A33G52x\Drivers\include\a33g52x_spi.h" />
+        <file category="source" name="A33G52x\Drivers\source\a33g52x_spi.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="TIMER" Cversion="1.0.0" condition="A33G52x CMSIS">
+      <description>A33G52x Timer control</description>
+      <files>
+        <file category="header" name="A33G52x\Drivers\include\a33g52x_timer.h" />
+        <file category="source" name="A33G52x\Drivers\source\a33g52x_timer.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="UART" Cversion="1.0.0" condition="A33G52x CMSIS">
+      <description>A33G52x UART control</description>
+      <files>
+        <file category="header" name="A33G52x\Drivers\include\a33g52x_uart.h" />
+        <file category="source" name="A33G52x\Drivers\source\a33g52x_uart.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="WDT" Cversion="1.0.0" condition="A33G52x CMSIS">
+      <description>A33G52x WDT control</description>
+      <files>
+        <file category="header" name="A33G52x\Drivers\include\a33g52x_wdt.h" />
+        <file category="source" name="A33G52x\Drivers\source\a33g52x_wdt.c" />
+      </files>
+    </component>
+    <component Cclass="Device" Cgroup="Drivers" Csub="NVIC" Cversion="1.0.0" condition="A33G52x CMSIS">
+      <description>A33G52x NVIC Control</description>
+      <files>
+        <file category="header" name="A33G52x\Drivers\include\a33g52x_nvic.h" />
+        <file category="source" name="A33G52x\Drivers\source\a33g52x_nvic.c" />
+      </files>
+    </component>
+  </components>
+  <boards>
+    <!-- component : A33G52x *************************************************************-->
+    <board vendor="ABOV" name="StarterKit-A33G527VQN" revision="V1.1">
+      <description>StarterKit-A33G527VQN</description>
+	  <mountedDevice deviceIndex="0" Dvendor="ABOV Semiconductor:126" Dname="A33G527" />
+      <compatibleDevice deviceIndex="0" Dvendor="ABOV Semiconductor:126" Dname="A33G524" />
+      <feature type="XTAL" n="8000000" />
+      <feature type="PWR" n="5" name="USB Powered" />
+      <feature type="PWR" n="3" m="5" name="External Supply" />
+      <feature type="Button" n="2" name="Tact-switch: User and nReset" />
+      <feature type="LED" n="6" name="LEDs: 6 for user port" />
+      <debugInterface adapter="A-Link (CMSIS-DAP)" connector="USB Mini 5 pin"/>
+    </board>
+    <board vendor="ABOV" name="StarterKit-A33G526RLN" revision="V1.1">
+      <description>StarterKit-A33G526RLN</description>
+	  <mountedDevice deviceIndex="0" Dvendor="ABOV Semiconductor:126" Dname="A33G526" />
+      <feature type="XTAL" n="8000000" />
+      <feature type="PWR" n="5" name="USB Powered" />
+      <feature type="PWR" n="3" m="5" name="External Supply" />
+      <feature type="Button" n="2" name="Tact-switch: User and nReset" />
+      <feature type="LED" n="6" name="LEDs: 6 for user port" />
+      <debugInterface adapter="A-Link (CMSIS-DAP)" connector="USB Mini 5 pin"/>
+    </board>
+  </boards>
+  <examples>
+    <!-- example : A33G527 **********************************************************-->
+    <example name="Starter Kit - Gpio_LedBlinky" doc="Abstract.txt" folder="A33G52x\Examples\StarterKit\GPIO_LedBlinky_Test">
+      <description>Starter Kit - Gpio_LedBlinky (A33G527/526/524)</description>
+      <board name="StarterKit-A33G527VQN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\GPIO_LedBlinky_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV ADC Test" doc="Abstract.txt" folder="A33G52x\Examples\ADC\ADC_Test">
+      <description>ADC Test example (A33G527/526/524)</description>
+      <board name="StarterKit-A33G527VQN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\ADC_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV SYSTICK TEST" doc="Abstract.txt" folder="A33G52x\Examples\Cortex-M3\SysTick">
+      <description>Systick example (A33G527/526/524)</description>
+      <board name="StarterKit-A33G527VQN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\Systick.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV CODE/DATA FLASH TEST" doc="Abstract.txt" folder="A33G52x\Examples\FLASH\Flash_Test">
+      <description>Code/Data Flash Test example (A33G527/526/524)</description>
+      <board name="StarterKit-A33G527VQN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\Flash_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV FRT TEST" doc="Abstract.txt" folder="A33G52x\Examples\FRT\FRT_Test">
+      <description>FRT Periodic and Free-run Test example (A33G527/526/524)</description>
+      <board name="StarterKit-A33G527VQN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\FRT_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV GPIO Test" doc="Abstract.txt" folder="A33G52x\Examples\GPIO\GPIO_Test">
+      <description>GPIO Test example (A33G527/526/524)</description>
+      <board name="StarterKit-A33G527VQN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\GPIO_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV I2C TEST" doc="Abstract.txt" folder="A33G52x\Examples\I2C\I2C_Test">
+      <description>I2C Test example (A33G527/526/524)</description>
+      <board name="StarterKit-A33G527VQN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\I2C_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV CLOCK MONITORING TEST" doc="Abstract.txt" folder="A33G52x\Examples\PMU\CLKMonitor_Test">
+      <description>PMU - Clock Monitoring Test (A33G527/526/524)</description>
+      <board name="StarterKit-A33G527VQN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\CLKMonitor_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV LVI TEST" doc="Abstract.txt" folder="A33G52x\Examples\PMU\LVI_Test">
+      <description>PMU - Low-Voltage Interrupt Test (A33G527/526/524)</description>
+      <board name="StarterKit-A33G527VQN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\LVI_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV LVR TEST" doc="Abstract.txt" folder="A33G52x\Examples\PMU\LVR_Test">
+      <description>PMU - Low-Voltage Reset Test (A33G527/526/524)</description>
+      <board name="StarterKit-A33G527VQN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\LVR_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV MODE TEST" doc="Abstract.txt" folder="A33G52x\Examples\PMU\MODE_Test">
+      <description>PMU - Operating Mode Test (A33G527/526/524)</description>
+      <board name="StarterKit-A33G527VQN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\MODE_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV PLL TEST" doc="Abstract.txt" folder="A33G52x\Examples\PMU\PLL_Test">
+      <description>PMU - PLL Setting Test example (A33G527/526/524)</description>
+      <board name="StarterKit-A33G527VQN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\PLL_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV WAKE-UP TEST" doc="Abstract.txt" folder="A33G52x\Examples\PMU\Wakeup_Test">
+      <description>PMU - Wakeup Test Test example (A33G527/526/524)</description>
+      <board name="StarterKit-A33G527VQN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\Wakeup_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV PWM TEST" doc="Abstract.txt" folder="A33G52x\Examples\PWM\PWM_Test">
+      <description>PMU - PLL Setting Test example (A33G527/526/524)</description>
+      <board name="StarterKit-A33G527VQN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\PWM_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV SPI TEST" doc="Abstract.txt" folder="A33G52x\Examples\SPI\SPI_Test">
+      <description>SPI Test example (A33G527/526/524)</description>
+      <board name="StarterKit-A33G527VQN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\SPI_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV SPI EEPROM TEST" doc="Abstract.txt" folder="A33G52x\Examples\SPI\SPI_Test_EEPROM">
+      <description>SPI EEPROM Test example (A33G527/526/524)</description>
+      <board name="StarterKit-A33G527VQN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\SPI_Test_EEPROM.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV SPI Polling TEST" doc="Abstract.txt" folder="A33G52x\Examples\SPI\SPI_Test_Polling">
+      <description>SPI Polling Test example (A33G527/526/524)</description>
+      <board name="StarterKit-A33G527VQN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\SPI_Test_Polling.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV SPI Interrupt TEST" doc="Abstract.txt" folder="A33G52x\Examples\SPI\SPI_Test_Interrupt">
+      <description>SPI Interrupt Test example (A33G527/526/524)</description>
+      <board name="StarterKit-A33G527VQN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\SPI_Test_Interrupt.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV SPI Interrupt2 TEST" doc="Abstract.txt" folder="A33G52x\Examples\SPI\SPI_Test_Interrupt2">
+      <description>SPI Interrupt Test example (A33G527/526/524)</description>
+      <board name="StarterKit-A33G527VQN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\SPI_Test_Interrupt2.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV SRAM TEST" doc="Abstract.txt" folder="A33G52x\Examples\SRAM\SRAM_Test">
+      <description>SRAM Test example (A33G527/526/524)</description>
+      <board name="StarterKit-A33G527VQN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\SRAM_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV TIMER TEST" doc="Abstract.txt" folder="A33G52x\Examples\TIMER\TIMER_Test">
+      <description>Timer Test example (A33G527/526/524)</description>
+      <board name="StarterKit-A33G527VQN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\TIMER_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV UART TEST" doc="Abstract.txt" folder="A33G52x\Examples\UART\UART_HelloWorld">
+      <description>UART Hello World example (A33G527/526/524)</description>
+      <board name="StarterKit-A33G527VQN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\UART_HelloWorld.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV WDT TEST" doc="Abstract.txt" folder="A33G52x\Examples\WDT\WDT_Test">
+      <description>WDT Test example (A33G527/526/524)</description>
+      <board name="StarterKit-A33G527VQN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\WDT_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+     <!-- example : A33G526 **********************************************************-->
+    <example name="Starter Kit - Gpio_LedBlinky" doc="Abstract.txt" folder="A33G52x\Examples\StarterKit\GPIO_LedBlinky_Test">
+      <description>Starter Kit - Gpio_LedBlinky (A33G527/526/524)</description>
+      <board name="StarterKit-A33G526RLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\GPIO_LedBlinky_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV ADC Test" doc="Abstract.txt" folder="A33G52x\Examples\ADC\ADC_Test">
+      <description>ADC Test example (A33G527/526/524)</description>
+      <board name="StarterKit-A33G526RLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\ADC_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV SYSTICK TEST" doc="Abstract.txt" folder="A33G52x\Examples\Cortex-M3\SysTick">
+      <description>Systick example (A33G527/526/524)</description>
+      <board name="StarterKit-A33G526RLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\Systick.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV CODE/DATA FLASH TEST" doc="Abstract.txt" folder="A33G52x\Examples\FLASH\Flash_Test">
+      <description>Code/Data Flash Test example (A33G527/526/524)</description>
+      <board name="StarterKit-A33G526RLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\Flash_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV FRT TEST" doc="Abstract.txt" folder="A33G52x\Examples\FRT\FRT_Test">
+      <description>FRT Periodic and Free-run Test example  (A33G527/526/524)</description>
+      <board name="StarterKit-A33G526RLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\FRT_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV GPIO Test" doc="Abstract.txt" folder="A33G52x\Examples\GPIO\GPIO_Test">
+      <description>GPIO Test example (A33G527/526/524)</description>
+      <board name="StarterKit-A33G526RLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\GPIO_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV I2C TEST" doc="Abstract.txt" folder="A33G52x\Examples\I2C\I2C_Test">
+      <description>I2C Test example (A33G527/526/524)</description>
+      <board name="StarterKit-A33G526RLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\I2C_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV CLOCK MONITORING TEST" doc="Abstract.txt" folder="A33G52x\Examples\PMU\CLKMonitor_Test">
+      <description>PMU - Clock Monitoring Test  (A33G527/526/524)</description>
+      <board name="StarterKit-A33G526RLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\CLKMonitor_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV LVI TEST" doc="Abstract.txt" folder="A33G52x\Examples\PMU\LVI_Test">
+      <description>PMU - Low-Voltage Interrupt Test  (A33G527/526/524)</description>
+      <board name="StarterKit-A33G526RLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\LVI_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV LVR TEST" doc="Abstract.txt" folder="A33G52x\Examples\PMU\LVR_Test">
+      <description>PMU - Low-Voltage Reset Test (A33G527/526/524)</description>
+      <board name="StarterKit-A33G526RLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\LVR_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV MODE TEST" doc="Abstract.txt" folder="A33G52x\Examples\PMU\MODE_Test">
+      <description>PMU - Operating Mode Test (A33G527/526/524)</description>
+      <board name="StarterKit-A33G526RLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\MODE_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV PLL TEST" doc="Abstract.txt" folder="A33G52x\Examples\PMU\PLL_Test">
+      <description>PMU - PLL Setting Test example (A33G527/526/524)</description>
+      <board name="StarterKit-A33G526RLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\PLL_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV WAKE-UP TEST" doc="Abstract.txt" folder="A33G52x\Examples\PMU\Wakeup_Test">
+      <description>PMU - Wakeup Test Test example (A33G527/526/524)</description>
+      <board name="StarterKit-A33G526RLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\Wakeup_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV PWM TEST" doc="Abstract.txt" folder="A33G52x\Examples\PWM\PWM_Test">
+      <description>PMU - PLL Setting Test example (A33G527/526/524)</description>
+      <board name="StarterKit-A33G526RLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\PWM_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV SPI TEST" doc="Abstract.txt" folder="A33G52x\Examples\SPI\SPI_Test">
+      <description>SPI Test example (A33G527/526/524)</description>
+      <board name="StarterKit-A33G526RLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\SPI_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV SRAM TEST" doc="Abstract.txt" folder="A33G52x\Examples\SRAM\SRAM_Test">
+      <description>SRAM Test example (A33G527/526/524)</description>
+      <board name="StarterKit-A33G526RLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\SRAM_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV TIMER TEST" doc="Abstract.txt" folder="A33G52x\Examples\TIMER\TIMER_Test">
+      <description>Timer Test example (A33G527/526/524)</description>
+      <board name="StarterKit-A33G526RLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\TIMER_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV UART TEST" doc="Abstract.txt" folder="A33G52x\Examples\UART\UART_HelloWorld">
+      <description>UART Hello World example (A33G527/526/524)</description>
+      <board name="StarterKit-A33G526RLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\UART_HelloWorld.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+    <example name="ABOV WDT TEST" doc="Abstract.txt" folder="A33G52x\Examples\WDT\WDT_Test">
+      <description>WDT Test example (A33G527/526/524)</description>
+      <board name="StarterKit-A33G526RLN" vendor="ABOV" />
+      <project>
+        <environment name="uv" load="Keil\WDT_Test.uvprojx" />
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="CORE" />
+        <component Cclass="Device" Cgroup="Startup" />
+        <category>Getting Started</category>
+      </attributes>
+    </example>
+  </examples>
+</package>

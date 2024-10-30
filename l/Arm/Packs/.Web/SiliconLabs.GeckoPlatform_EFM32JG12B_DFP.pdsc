@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.7.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>SiliconLabs</vendor>
+  <url>https://www.silabs.com/documents/public/cmsis-packs/</url>
+  <name>GeckoPlatform_EFM32JG12B_DFP</name>
+  <description>Silicon Labs EFM32JG12B Jade Gecko Series Device Support.</description>
+  <license>License/license.md</license>
+
+  <releases>
+    <release version="4.4.0" date="2024-02-08">
+      New device family EFM32PG28 and new OPNs for EFR32SG28, EFR32MG24, EFR32BG24, MGM21, RM21
+    </release>
+    <release version="4.3.0" date="2023-06-15">
+      New device families EFR32SG23, EFR32SG28 and new OPNs for EFR32MG27, EFR32MG24, EFR32FG25, EFR32BG24, MGM24
+    </release>
+    <release version="4.2.0" date="2022-11-25">
+      New device families EFR32ZG28, EFR32FG28 and EFR32MR21
+    </release>
+    <release version="4.1.1" date="2022-06-22">
+      Add TrustZone support for Series2 Devices
+    </release>
+    <release version="4.1.0" date="2022-06-03">
+      Update CMSIS version to 5.8.0. New device families EFR32BG27, EFR32MG27. Documentation updated for ZGM130S, MGM220P, EFR32PG23. Add Cortex-M33 Generic User Guide
+    </release>
+    <release version="4.0.2" date="2022-04-22">
+      New OPNs for modules MGM24, for SoC EFR32MG24. New device families EFR32FG25. Documentation updated for EFM32PG22, EFR32BG24, EFR32MG24 and WGM160.
+    </release>
+    <release version="4.0.0" date="2022-01-24">
+      New OPNs for modules MGM21 and MGM24, for SoC EFR32MG24. New device families EFR32BG24, BGM24. Documentation updated for EFR32FG23, EFR32ZG23 and EFM32PG23.
+    </release>
+    <release version="3.2.0" date="2021-06-16">
+      New MCU's families efr32mg24, mgm24, wgm160.
+    </release>
+    <release version="3.1.0" date="2020-12-11">
+      New MCU's families efr32pg22, efr32fg23, efr32zg23 and efm32pg23.
+    </release>
+    <release version="3.0.0" date="2020-09-14">
+      Addition of EFR32ZG13L, EFR32ZG13S and removal of EFR32BG14P device families.
+    </release>
+    <release version="2.7.3" date="2020-03-23">
+      The PRORTC timer peripheral has been added to EFR32xG13 and EFR32xG14 device families.
+    </release>
+    <release version="2.7.0" date="2019-11-12">
+      Changed pack names and version number sequence.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Silicon Labs</keyword>
+    <keyword>Device Support</keyword>
+    <keyword>Device Family Package Silicon Labs</keyword>
+    <keyword>EFM32JG12B</keyword>
+    <keyword>EFM32</keyword>
+    <keyword>Jade Gecko</keyword>
+    <keyword>Gecko</keyword>
+  </keywords>
+
+  <devices>
+    <family Dfamily="EFM32JG12B Series" Dvendor="Silicon Labs:21">
+      <processor Dcore="Cortex-M3" DcoreVersion="r2p1" Dfpu="NO_FPU" Dmpu="MPU" Dtz="NO_TZ" Ddsp="NO_DSP" Dendian="Little-endian" Dclock="40000000"/>
+      <book name="Documents/cortex_m3_dgug.pdf"      title="Cortex-M3 Generic User Guide"/>
+      <book name="Documents/efm32-cortex-m3-rm.pdf"  title="EFM32 Cortex-M3 Reference Manual"/>
+      <book name="Documents/efm32jg12-rm.pdf"  title="EFM32JG12B Reference Manual"/>
+      <description>
+- ARM Cortex-M3 at 40 MHz&#xD;&#xA;- Ultra low energy operation in active and sleep modes&#xD;&#xA;- Hardware cryptographic engine (AES, ECC, and SHA) and TRNG&#xD;&#xA;- Autonomous low energy sensor interface (LESENSE)&#xD;&#xA;- Rich analog features including ADC, VDAC, OPAMPs, and capacitive touch sense&#xD;&#xA;- Integrated DC-DC converter&#xD;&#xA;- 5 V tolerant I/O&#xD;&#xA;&#xD;&#xA;The EFM32JG12 Jade Gecko MCUs are the world's most energyfriendly microcontrollers. EFM32JG12 features a powerful 32-bit ARM Cortex-M3 and a wide selection of peripherals, including a unique cryptographic hardware engine, True Random Number Generator, and robust capacitive touch sense unit. These features, combined with ultra-low current active and sleep modes, make EFM32JG12 microcontrollers well suited for any battery-powered application, as well as other systems requiring high performance and lowenergy consumption.
+      </description>
+
+      <subFamily DsubFamily="EFM32JG12B500">
+        <book         name="Documents/efm32jg12-datasheet.pdf"      title="EFM32JG12B500 Data Sheet"/>
+        <book         name="Documents/efm32jg12-errata.pdf"         title="EFM32JG12B500 Errata"/>
+        <!-- *************************  Device 'EFM32JG12B500F1024GL125'  ***************************** -->
+        <device Dname="EFM32JG12B500F1024GL125">
+          <compile header="Device/SiliconLabs/EFM32JG12B/Include/em_device.h"  define="EFM32JG12B500F1024GL125"/>
+          <debug      svd="SVD/EFM32JG12B/EFM32JG12B500F1024GL125.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32JG12B500F1024GM48'  ***************************** -->
+        <device Dname="EFM32JG12B500F1024GM48">
+          <compile header="Device/SiliconLabs/EFM32JG12B/Include/em_device.h"  define="EFM32JG12B500F1024GM48"/>
+          <debug      svd="SVD/EFM32JG12B/EFM32JG12B500F1024GM48.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32JG12B500F1024IL125'  ***************************** -->
+        <device Dname="EFM32JG12B500F1024IL125">
+          <compile header="Device/SiliconLabs/EFM32JG12B/Include/em_device.h"  define="EFM32JG12B500F1024IL125"/>
+          <debug      svd="SVD/EFM32JG12B/EFM32JG12B500F1024IL125.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+        <!-- *************************  Device 'EFM32JG12B500F1024IM48'  ***************************** -->
+        <device Dname="EFM32JG12B500F1024IM48">
+          <compile header="Device/SiliconLabs/EFM32JG12B/Include/em_device.h"  define="EFM32JG12B500F1024IM48"/>
+          <debug      svd="SVD/EFM32JG12B/EFM32JG12B500F1024IM48.svd"/>
+          <memory     id="IROM1"                start="0x00000000"  size="0x00100000"  startup="1"   default="1"/>
+          <memory     id="IRAM1"                start="0x20000000"  size="0x00040000"  init   ="0"   default="1"/>
+          <algorithm  name="Flash/GECKOS1.FLM"  start="0x00000000"  size="0x00100000"  RAMstart="0x20000000" RAMsize="0x40000" default="1" style="Keil"/>
+          <algorithm  name="Flash/FlashGECKOS1.flash"  start="0x00000000"  size="0x00100000"  default="0"  style="IAR"/>
+        </device>
+
+      </subFamily>
+
+    </family>
+  </devices>
+
+  <conditions>
+    <!-- Compiler Conditions -->
+    <condition id="Compiler GCC">
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="Compiler IAR">
+      <require Tcompiler="IAR"/>
+    </condition>
+
+    <!-- Device Conditions -->
+    <condition id="EFM32JG12B">
+      <description>Silicon Labs EFM32JG12B device series</description>
+      <require Dvendor="Silicon Labs:21" Dname="EFM32JG12B*"/>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="4.4.0" condition="EFM32JG12B">
+      <description>System Startup for Silicon Labs EFM32JG12B device series</description>
+      <files>
+        <!-- include folder -->
+        <file category="include" name="Device/SiliconLabs/EFM32JG12B/Include/"/>
+        <file category="header"  name="Device/SiliconLabs/EFM32JG12B/Include/em_device.h"/>
+        <!-- startup files -->
+        <file category="source"  name="Device/SiliconLabs/EFM32JG12B/Source/GCC/startup_efm32jg12b.S" condition="Compiler GCC"   attr="config" version="4.4.0"/>
+        <file category="source"  name="Device/SiliconLabs/EFM32JG12B/Source/IAR/startup_efm32jg12b.s" condition="Compiler IAR"   attr="config" version="4.4.0"/>
+        <!-- linker command file -->
+        <file category="linkerScript"  name="Device/SiliconLabs/EFM32JG12B/Source/GCC/efm32jg12b.ld" condition="Compiler GCC" attr="config" version="4.4.0"/>
+        <!-- system file -->
+        <file category="source"  name="Device/SiliconLabs/EFM32JG12B/Source/system_efm32jg12b.c" attr="config" version="4.4.0"/>
+      </files>
+    </component>
+  </components>
+</package>

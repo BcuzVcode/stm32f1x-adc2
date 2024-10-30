@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020-2022 ARM Limited
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+ <package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>ARM</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <supportContact>support-subsystem-iot@arm.com</supportContact>
+  <name>DMA350</name>
+  <description>
+  Pack for the DMA350 drivers.
+  </description>
+  <releases>
+    <release version="1.0.0" date="2022-09-30">
+     Initial release
+      - DMA350 Native Driver and library
+      - DMA MCU Driver HAL API
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>ARM</keyword>
+    <keyword>DMA</keyword>
+    <keyword>DMA350</keyword>
+  </keywords>
+
+  <conditions>
+    <condition id="DMA350">
+      <description>Condition for DMA350 Native Driver</description>
+      <require Cclass="Native Driver" Cgroup="DMA350 Remap"/>
+    </condition>
+
+    <condition id="DMA350 Remap">
+      <description>Condition for DMA350 Remap</description>
+      <require Cclass="Native Driver" Cgroup="DMA350"/>
+    </condition>
+  </conditions>
+
+  <apis>
+    <api Cclass="MCU Driver HAL" Cgroup="DMA350" Capiversion="1.0.0">
+      <description>MCU Driver HAL API for DMA</description>
+      <files>
+        <file category="header" path="MDH_API" name="MDH_API/hal/dma_api.h" version="1.0.0"/>
+      </files>
+    </api>
+  </apis>
+
+  <components>
+    <component Cclass="Native Driver" Cgroup="DMA350 Remap" Csub="Custom" Cversion="1.0.0" custom="1" condition="DMA350 Remap">
+      <description>DMA350 address remap template</description>
+      <files>
+        <file category="source" name="Native_Driver/dma350_address_remap_template.c" attr="template" select="Custom" version="1.0.0"/>
+      </files>
+    </component>
+
+    <component Cclass="Native Driver" Cgroup="DMA350" Cversion="1.1.0" condition="DMA350">
+      <description>Native DMA350 driver</description>
+      <files>
+        <file category="source" name="Native_Driver/dma350_drv.c"/>
+        <file category="header" name="Native_Driver/dma350_drv.h"/>
+        <file category="source" name="Native_Driver/dma350_ch_drv.c"/>
+        <file category="header" name="Native_Driver/dma350_ch_drv.h"/>
+        <file category="header" name="Native_Driver/dma350_regdef.h"/>
+        <file category="source" name="Native_Driver/dma350_lib.c"/>
+        <file category="header" name="Native_Driver/dma350_lib.h"/>
+      </files>
+    </component>
+
+  </components>
+
+ </package>

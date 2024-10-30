@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+	<vendor>MindMotion</vendor>
+	<url>http://www.mindmotion.com.cn/Download/MDK_KEIL/</url>
+	<name>MM32L3xx_DFP</name>
+	<description>MindMotion MM32L3xx Series Device Support, Drivers and Examples</description>
+	<releases>
+		<release version="1.0.8" date="2021-04-25">
+       Release version of MM32L3xx Device Family Pack.
+    </release>
+	</releases>
+	<keywords>
+		<!-- keywords for indexing -->
+		<keyword>MindMotion</keyword>
+		<keyword>Device Support</keyword>
+		<keyword>Device Family Package MindMotion</keyword>
+		<keyword>MM32L3xx</keyword>
+		<keyword>MM32</keyword>
+	</keywords>
+	<devices>
+		<!-- generated, do not modify this section! -->
+		<family Dfamily="MM32L3xx Series" Dvendor="MindMotion:132">
+			<processor Dcore="Cortex-M3" DcoreVersion="r1p0" Dfpu="0" Dmpu="0" Dendian="Little-endian"/>
+			<description>
+MM32L3xx Series
+			
+			</description>
+			<!-- ************************  Subfamily 'MM32L36x'  **************************** -->
+			<subFamily DsubFamily="MM32L36x">
+				<processor Dclock="96000000"/>
+			<description>
+Subfamily: MM32L36x
+
+Frequency: 96MHz 
+Memory: 64 kB Flash, 20 kB RAM
+Communication:up to 3 x UART, up to 2 x SPI, up to 2 x I2C,USB
+Analog : ADC, DAC
+power saving mode:stop, sleep, and standby mode
+Other:  AES
+			</description>
+				<!-- *************************  Device 'MM32L36x'  ***************************** -->
+				<device Dname="MM32L362NT">
+					<processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="96000000"/>
+					<compile header="Device/MM32L3xx/Include/HAL_device.h" define="MM32L362NT"/>
+					<debug svd="SVD/MM32L3xx.svd"/>
+					<memory id="IROM1" start="0x08000000" size="0x10000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x5000" init="0" default="1"/>
+					<algorithm name="Flash/MM32L3xx_64.FLM" start="0x08000000" size="0x10000" default="1"/>
+				</device>
+				<device Dname="MM32L362PT">
+					<processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="96000000"/>
+					<compile header="Device/MM32L3xx/Include/HAL_device.h" define="MM32L362PT"/>
+					<debug svd="SVD/MM32L3xx.svd"/>
+					<memory id="IROM1" start="0x08000000" size="0x10000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x5000" init="0" default="1"/>
+					<algorithm name="Flash/MM32L3xx_64.FLM" start="0x08000000" size="0x10000" default="1"/>
+				</device>
+				<device Dname="MM32L362PF">
+					<processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="96000000"/>
+					<compile header="Device/MM32L3xx/Include/HAL_device.h" define="MM32L362PF"/>
+					<debug svd="SVD/MM32L3xx.svd"/>
+					<memory id="IROM1" start="0x08000000" size="0x10000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x5000" init="0" default="1"/>
+					<algorithm name="Flash/MM32L3xx_64.FLM" start="0x08000000" size="0x10000" default="1"/>
+				</device>
+				<device Dname="MM32L362PS">
+					<processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="96000000"/>
+					<compile header="Device/MM32L3xx/Include/HAL_device.h" define="MM32L362PS"/>
+					<debug svd="SVD/MM32L3xx.svd"/>
+					<memory id="IROM1" start="0x08000000" size="0x10000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x5000" init="0" default="1"/>
+					<algorithm name="Flash/MM32L3xx_64.FLM" start="0x08000000" size="0x10000" default="1"/>
+				</device>
+			</subFamily>
+			<!-- ************************  Subfamily 'MM32L37x'  **************************** -->
+			<subFamily DsubFamily="MM32L37x">
+				<processor Dclock="96000000"/>
+			<description>
+Subfamily: MM32L37x
+
+Frequency: 96MHz 
+Memory: 128 kB Flash, 20 kB RAM
+Communication:up to 3 x UART, up to 2 x SPI, up to 2 x I2C,USB, CAN
+Analog : ADC, DAC
+power saving mode:stop, sleep, and standby mode
+Other:  AES
+			</description>				<!-- *************************  Device 'MM32L37x'  ***************************** -->
+				<device Dname="MM32L373NT">
+					<processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="96000000"/>
+					<compile header="Device/MM32L3xx/Include/HAL_device.h" define="MM32L373NT"/>
+					<debug svd="SVD/MM32L3xx.svd"/>
+					<memory id="IROM1" start="0x08000000" size="0x20000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x5000" init="0" default="1"/>
+					<algorithm name="Flash/MM32L3xx_128.FLM" start="0x08000000" size="0x20000" default="1"/>
+					
+				</device>
+				<device Dname="MM32L373PT">
+					<processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="96000000"/>
+					<compile header="Device/MM32L3xx/Include/HAL_device.h" define="MM32L373PT"/>
+					<debug svd="SVD/MM32L3xx.svd"/>
+					<memory id="IROM1" start="0x08000000" size="0x20000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x5000" init="0" default="1"/>
+					<algorithm name="Flash/MM32L3xx_128.FLM" start="0x08000000" size="0x20000" default="1"/>
+					
+				</device>
+				<device Dname="MM32L373PF">
+					<processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="96000000"/>
+					<compile header="Device/MM32L3xx/Include/HAL_device.h" define="MM32L373PF"/>
+					<debug svd="SVD/MM32L3xx.svd"/>
+					<memory id="IROM1" start="0x08000000" size="0x20000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x5000" init="0" default="1"/>
+					<algorithm name="Flash/MM32L3xx_128.FLM" start="0x08000000" size="0x20000" default="1"/>
+					
+				</device>
+				<device Dname="MM32L373PS">
+					<processor Dfpu="0" Dmpu="0" Dendian="Little-endian" Dclock="96000000"/>
+					<compile header="Device/MM32L3xx/Include/HAL_device.h" define="MM32L373PS"/>
+					<debug svd="SVD/MM32L3xx.svd"/>
+					<memory id="IROM1" start="0x08000000" size="0x20000" startup="1" default="1"/>
+					<memory id="IRAM1" start="0x20000000" size="0x5000" init="0" default="1"/>
+					<algorithm name="Flash/MM32L3xx_128.FLM" start="0x08000000" size="0x20000" default="1"/>
+					
+				</device>
+			</subFamily>
+		</family>
+	</devices>
+	<conditions>
+		<!-- conditions are dependency rules that can apply to a component or an individual file -->
+		<!-- Compiler Conditions -->
+		<condition id=" ARMCC">
+			<require Tcompiler="ARMCC"/>
+		</condition>
+		
+	
+		<condition id="ARMCM3 CMSIS">
+			<description>CMSIS CORE processor and device specific Startup files</description>
+			<require Cclass="CMSIS" Cgroup="CORE"/>
+			<require Dvendor="MindMotion:132" Dname="MM32L3*"/>
+		</condition>
+	</conditions>
+	<components>
+		<!-- CMSIS-Core component not required, is coming from CMSIS Pack -->
+		<!-- Startup MM32L3xx -->
+		<component Cclass="Device" Cgroup="Startup" Cversion="1.4.3" condition="ARMCM3 CMSIS">
+			<description>System Startup for MindMotion MM32L3xx Series devices</description>
+			<files>
+				<file category="header" name="Device/MM32L3xx/Include/HAL_device.h"/>
+				<file category="header" name="Device/MM32L3xx/Source/system_MM32L3xx.h"/>
+				<file category="sourceC" name="Device/MM32L3xx/Source/system_MM32L3xx.c" attr="config" version="1.4.3"/>
+				<file category="sourceAsm" name="Device/MM32L3xx/Source/KEIL_StartAsm/startup_MM32L3xx.s" attr="config" version="1.4.3" condition=" ARMCC"/>
+			</files>
+		</component>
+	    <component Cclass="Board" Cgroup="Samples" Csub="LED" Cversion="1.4.3" condition="ARMCM3 CMSIS"> 
+      <description>System Startup for MindMotion MM32L3xx Series devices</description>
+      <files>
+        <file category="header"  name="Boards/MBL3xxPS_Boardreg/RegSample/GPIO_LED/HARDWARE/LED/led.h"/>
+        <file category="sourceC"  name="Boards/MBL3xxPS_Boardreg/RegSample/GPIO_LED/HARDWARE/LED/led.c" attr="config"  version="1.4.3"/>
+        <file category="sourceC" name="Boards/MBL3xxPS_Boardreg/RegSample/GPIO_LED/USER/test.c" attr="config"  version="1.4.3"/>    
+      </files>
+    </component>		
+	</components>
+	<examples>
+		<!-- MM32_MBL3xxPS_Board Core Board -->
+		<example name="MM32_MBL3xxPS_Board GPIO LED blinky" doc="README.TXT" folder="Boards/MBL3xxPS_Boardreg/RegSample/GPIO_LED">
+			<description>MM32_MBL3xxPS_Board Blinky example</description>
+			<board name="MM32_MBL3xxPS_Board" vendor="MindMotion"/>
+			<project>
+				<environment name="uv" load="KEILPRJ/BLINK.uvprojx"/>
+			</project>
+			<attributes>
+				<component Cclass="CMSIS" Cgroup="CORE"/>
+				<component Cclass="Device" Cgroup="Startup"/>
+				<category>Getting Started</category>
+			</attributes>
+		</example>
+	</examples>
+	<boards>
+		<board vendor="MindMotion" name="MM32_MBL3xxPS_Board" revision="Ver 1.0">
+			<description>MindMotion MM32_MBL3xxPS_Board Development Board</description>
+			<image small="Images/MiniBoard_small.jpg" large="Images/MiniBoard_big.jpg"/>
+			<book category="manual" name="Documents/boards/l3reference.pdf" title="L3 series UserManual"/>
+			<mountedDevice deviceIndex="0" Dvendor="MindMotion:132" Dname="MM32L373PS"/>
+			<compatibleDevice deviceIndex="0" Dvendor="MindMotion:132" DsubFamily="MM32L37x"/>
+			<compatibleDevice deviceIndex="0" Dvendor="MindMotion:132" DsubFamily="MM32L36x"/>
+			<feature type="XTAL" n="8000000"/>
+			<feature type="PWR" n="5" name="USB Powered"/>
+			<feature type="PWR" n="3" m="5" name="External Supply"/>
+			<feature type="Button" n="1" name="Push-buttons: Reset"/>
+			<feature type="LED" n="2" name="LEDs: Power, One user"/>
+			<debugInterface adapter="JTAG/SW" connector="20 pin JTAG (0.1 inch connector)"/>
+		</board>
+	</boards>
+</package>
